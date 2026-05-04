@@ -1,6 +1,7 @@
 PORTNAME=	evaluate
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.4.6
+PORTREVISION=	1
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,7 +22,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}datasets>=2.0.0:misc/py-datasets@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}huggingface-hub>=0.7.0:misc/py-huggingface-hub@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}importlib-metadata>0:devel/py-importlib-metadata@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}multiprocess>0:devel/py-multiprocess@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.19.0:www/py-requests@${PY_FLAVOR} \

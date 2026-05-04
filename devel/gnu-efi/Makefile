@@ -1,5 +1,6 @@
 PORTNAME=	gnu-efi
 PORTVERSION=	3.0.18
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	SF/gnu-efi
 
@@ -25,8 +26,5 @@ PLIST_SUB+=	ARCH_amd64="" ARCH_i386="@comment "
 .elif ${ARCH} == i386
 PLIST_SUB+=	ARCH_i386="" ARCH_amd64="@comment "
 .endif
-
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.o
 
 .include <bsd.port.post.mk>

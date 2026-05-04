@@ -1,6 +1,6 @@
 PORTNAME=	HofstadterTools
 DISTVERSION=	1.0.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python # physics
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipython>0:devel/ipython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}prettytable>0:devel/py-prettytable@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tqdm>0:misc/py-tqdm@${PY_FLAVOR}

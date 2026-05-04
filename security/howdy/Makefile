@@ -1,6 +1,6 @@
 PORTNAME=	howdy
 PORTVERSION=	3.0.0.b.20230306
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	security
 
 MAINTAINER=	arrowd@FreeBSD.org
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	opencv>0:graphics/opencv \
 		${PYTHON_PKGNAMEPREFIX}python-pam>0:security/py-python-pam@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dlib>0:science/py-dlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
 		${LOCALBASE}/share/dlib-models/shape_predictor_5_face_landmarks.dat:misc/dlib-models
 
 USES=		python:run shebangfix

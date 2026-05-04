@@ -1,7 +1,7 @@
---- chrome/utility/services.cc.orig	2026-02-16 10:45:29 UTC
+--- chrome/utility/services.cc.orig	2026-03-30 11:37:05 UTC
 +++ chrome/utility/services.cc
-@@ -49,7 +49,7 @@
- #include "chrome/services/system_signals/mac/mac_system_signals_service.h"
+@@ -51,7 +51,7 @@
+ #include "services/proxy_resolver_mac/mac_system_proxy_resolver_impl.h"
  #endif  // BUILDFLAG(IS_MAC)
  
 -#if BUILDFLAG(IS_LINUX)
@@ -9,7 +9,7 @@
  #include "chrome/services/system_signals/linux/linux_system_signals_service.h"
  #endif  // BUILDFLAG(IS_LINUX)
  
-@@ -199,7 +199,7 @@ auto RunMacNotificationService(
+@@ -206,7 +206,7 @@ auto RunMacSystemProxyResolver(
  }
  #endif  // BUILDFLAG(IS_MAC)
  

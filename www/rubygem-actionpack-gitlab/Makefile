@@ -1,6 +1,6 @@
 PORTNAME=	actionpack
 PORTVERSION=	${RAILS_VERSION}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -18,9 +18,9 @@ RUN_DEPENDS=	rubygem-actionview-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/r
 		rubygem-cgi>=0:www/rubygem-cgi \
 		rubygem-nokogiri>=1.8.5:textproc/rubygem-nokogiri \
 		rubygem-racc>=0:devel/rubygem-racc \
-		rubygem-rack22>=2.2.4,3<3.3,3:www/rubygem-rack22 \
-		rubygem-rack-session10>=1.0.1:www/rubygem-rack-session10 \
-		rubygem-rack-test>=0.6.3:www/rubygem-rack-test \
+		rubygem-rack-gitlab>=2.2.4<3.3:www/rubygem-rack-gitlab \
+		rubygem-rack-session-gitlab>=1.0.1:www/rubygem-rack-session-gitlab \
+		rubygem-rack-test-gitlab>=0.6.3:www/rubygem-rack-test-gitlab \
 		rubygem-rails-dom-testing-rails-gitlab>=2.2<3:textproc/rubygem-rails-dom-testing-rails-gitlab \
 		rubygem-rails-html-sanitizer-gitlab>=1.6<2:textproc/rubygem-rails-html-sanitizer-gitlab \
 		rubygem-useragent>=0.16<1:devel/rubygem-useragent

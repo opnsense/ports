@@ -1,6 +1,7 @@
 PORTNAME=	cosign
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0.4
+DISTVERSION=	3.0.6
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -23,7 +24,7 @@ GO_BUILDFLAGS=	-ldflags="-buildid= \
 
 PLIST_FILES=	bin/${PORTNAME}
 
-GIT_HASH=	6832fba4928c1ad69400235bbc41212de5006176
+GIT_HASH=	f1ad3ee952313be5d74a49d67ba0aa8d0d5e351f
 
 .include <bsd.port.pre.mk>
 

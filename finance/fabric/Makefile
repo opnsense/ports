@@ -1,13 +1,13 @@
 PORTNAME=	fabric
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0.0
-PORTREVISION=	11
+DISTVERSION=	3.1.4
 CATEGORIES=	finance
 PKGNAMESUFFIX=	-hyperledger
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Enterprise-grade permissioned distributed ledger framework
-WWW=		https://wiki.hyperledger.org/display/fabric
+WWW=		https://wiki.hyperledger.org/display/fabric \
+		https://github.com/hyperledger/fabric
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -126,6 +126,8 @@ GH_TUPLE=	\
 		uber-go:multierr:v1.11.0:uber_go_multierr/vendor/go.uber.org/multierr \
 		uber-go:zap:v1.27.0:uber_go_zap/vendor/go.uber.org/zap
 
+GO_ENV+=	GOTOOLCHAIN=local+path
+
 PROGS=		configtxgen \
 		configtxlator \
 		cryptogen \
@@ -143,5 +145,8 @@ post-extract:
 	@${RLN} ${WRKSRC_moby_sys_sequential}/sequential ${WRKSRC}/vendor/github.com/moby/sys/sequential
 	@${MKDIR} ${WRKSRC}/vendor/github.com/spf13
 	@${RLN} ${WRKSRC_fsnotify_fsnotify} ${WRKSRC}/vendor/github.com/spf13/cast
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|^go 1\.26\.0$$|go 1.25.0|' ${WRKSRC}/go.mod
 
 .include <bsd.port.mk>

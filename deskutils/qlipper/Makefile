@@ -1,5 +1,5 @@
 PORTNAME=	qlipper
-PORTVERSION=	6.0.0
+PORTVERSION=	6.1.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	lxqt@FreeBSD.org

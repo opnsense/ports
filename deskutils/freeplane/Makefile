@@ -1,6 +1,6 @@
 PORTNAME=	freeplane
-DISTVERSION=	1.13.1
-PORTREVISION=	1
+DISTVERSION=	1.13.2
+PORTREVISION=	2
 CATEGORIES=	deskutils editors java
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20stable
 DISTNAME=	${PORTNAME}_bin-${PORTVERSION}
@@ -16,12 +16,15 @@ RUN_DEPENDS=	bash:shells/bash
 
 USES=		cpe desktop-file-utils java shebangfix zip
 
+JAVA_VERSION=	8 11 17 21 23
+
 SHEBANG_FILES=	${WRKSRC}/freeplane.sh
 
 NO_ARCH=	yes
 NO_BUILD=	yes
 SUB_FILES=	freeplane freeplane.desktop
 SUB_LIST=	DATADIR=${DATADIR} \
+		JAVA_HOME=${JAVA_HOME} \
 		PREFIX=${PREFIX}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

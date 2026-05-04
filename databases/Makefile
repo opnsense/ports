@@ -1,13 +1,17 @@
     COMMENT = Databases and related software
 
     SUBDIR += R-cran-DBI
+    SUBDIR += R-cran-RMariaDB
     SUBDIR += R-cran-RMySQL
     SUBDIR += R-cran-RPostgreSQL
+    SUBDIR += R-cran-RPostgres
     SUBDIR += R-cran-RSQLite
     SUBDIR += R-cran-cachem
     SUBDIR += R-cran-dbplyr
     SUBDIR += R-cran-dtplyr
     SUBDIR += R-cran-fastmap
+    SUBDIR += R-cran-nanoparquet
+    SUBDIR += R-cran-pool
     SUBDIR += R-cran-sqldf
     SUBDIR += WWWdb
     SUBDIR += adminer
@@ -26,6 +30,7 @@
     SUBDIR += cassandra-cpp-driver
     SUBDIR += cassandra3
     SUBDIR += cassandra4
+    SUBDIR += cassandra5
     SUBDIR += casstcl
     SUBDIR += cayley
     SUBDIR += cdb
@@ -56,6 +61,7 @@
     SUBDIR += dbtool
     SUBDIR += dbview
     SUBDIR += diesel
+    SUBDIR += dlmdb
     SUBDIR += duckdb
     SUBDIR += ejdb
     SUBDIR += emacsql
@@ -107,9 +113,9 @@
     SUBDIR += kdb
     SUBDIR += kexi
     SUBDIR += keydb
-    SUBDIR += kuzu
     SUBDIR += kyotocabinet
     SUBDIR += kyototycoon
+    SUBDIR += ladybug
     SUBDIR += ldb25
     SUBDIR += ldb28
     SUBDIR += ldb29
@@ -180,7 +186,6 @@
     SUBDIR += mongodb70
     SUBDIR += mongodb80
     SUBDIR += mongosh
-    SUBDIR += movine
     SUBDIR += mroonga
     SUBDIR += mtop
     SUBDIR += mydumper
@@ -194,12 +199,10 @@
     SUBDIR += mysql80-server
     SUBDIR += mysql84-client
     SUBDIR += mysql84-server
-    SUBDIR += mysql91-client
-    SUBDIR += mysql91-server
-    SUBDIR += mysql94-client
-    SUBDIR += mysql94-server
     SUBDIR += mysql96-client
     SUBDIR += mysql96-server
+    SUBDIR += mysql97-client
+    SUBDIR += mysql97-server
     SUBDIR += mysqlbackup
     SUBDIR += mysqldump-secure
     SUBDIR += mysqlreport
@@ -654,7 +657,6 @@
     SUBDIR += postgis34
     SUBDIR += postgis35
     SUBDIR += postgis36
-    SUBDIR += postgresql-cstore_fdw
     SUBDIR += postgresql-idn
     SUBDIR += postgresql-jdbc
     SUBDIR += postgresql-libpgeasy
@@ -793,6 +795,8 @@
     SUBDIR += py-mysql-connector-python
     SUBDIR += py-mysqlclient
     SUBDIR += py-ormar
+    SUBDIR += py-oxyde
+    SUBDIR += py-oxyde-core
     SUBDIR += py-partd
     SUBDIR += py-peewee
     SUBDIR += py-peewee_migrate
@@ -853,11 +857,13 @@
     SUBDIR += py-sqlcipher3
     SUBDIR += py-sqlframe
     SUBDIR += py-sqlglot
-    SUBDIR += py-sqlglotrs
+    SUBDIR += py-sqlglot-mypy
+    SUBDIR += py-sqlglotc
     SUBDIR += py-sqlite-anyio
     SUBDIR += py-sqlite-fts4
     SUBDIR += py-sqlite-migrate
     SUBDIR += py-sqlite-utils
+    SUBDIR += py-sqlite-vec
     SUBDIR += py-sqlite3
     SUBDIR += py-sqlmodel
     SUBDIR += py-sqlobject
@@ -1105,6 +1111,8 @@
     SUBDIR += sqlite-ext-pcre
     SUBDIR += sqlite-ext-regexp
     SUBDIR += sqlite-ext-spellfix
+    SUBDIR += sqlite-ext-vec
+    SUBDIR += sqlite-jdbc
     SUBDIR += sqlite2
     SUBDIR += sqlite3
     SUBDIR += sqlitebrowser
@@ -1156,6 +1164,7 @@
     SUBDIR += wfb2sql
     SUBDIR += xapian-bindings
     SUBDIR += xapian-core
+    SUBDIR += xapian-core14
     SUBDIR += xls2txt
     SUBDIR += xrootd
     SUBDIR += xtrabackup80

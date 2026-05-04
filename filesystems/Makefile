@@ -3,6 +3,7 @@
     SUBDIR += R-cran-fs
     SUBDIR += acfgfs
     SUBDIR += afuse
+    SUBDIR += amazon-efs-utils
     SUBDIR += archivemount
     SUBDIR += automount
     SUBDIR += avfs
@@ -55,6 +56,7 @@
     SUBDIR += lizardfs
     SUBDIR += lkl
     SUBDIR += ltfs
+    SUBDIR += mcp-server-filesystem
     SUBDIR += mergerfs
     SUBDIR += mhddfs
     SUBDIR += moosefs-cgi
@@ -65,14 +67,6 @@
     SUBDIR += moosefs-master
     SUBDIR += moosefs-metalogger
     SUBDIR += moosefs-netdump
-    SUBDIR += moosefs2-cgi
-    SUBDIR += moosefs2-cgiserv
-    SUBDIR += moosefs2-chunkserver
-    SUBDIR += moosefs2-cli
-    SUBDIR += moosefs2-client
-    SUBDIR += moosefs2-master
-    SUBDIR += moosefs2-metalogger
-    SUBDIR += moosefs2-netdump
     SUBDIR += moosefs3-cgi
     SUBDIR += moosefs3-cgiserv
     SUBDIR += moosefs3-chunkserver
@@ -104,6 +98,7 @@
     SUBDIR += py-fsspec-xrootd
     SUBDIR += py-fusepy
     SUBDIR += py-gcsfs
+    SUBDIR += py-ioztat
     SUBDIR += py-kerchunk
     SUBDIR += py-libzfs
     SUBDIR += py-llfuse

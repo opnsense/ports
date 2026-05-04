@@ -1,8 +1,8 @@
 PORTNAME=	mame
-DISTVERSION=	0.286
+DISTVERSION=	0.287
 CATEGORIES=	emulators games
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	MAME: a multi-purpose emulation framework
 WWW=		https://mamedev.org/
 

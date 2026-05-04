@@ -1,5 +1,5 @@
 PORTNAME=	nll
-PORTVERSION=	20260110a
+PORTVERSION=	20260317a
 CATEGORIES=	lang
 MASTER_SITES=	https://kozos.jp/nlux/archive/
 DISTNAME=	nlux-alpha-${PORTVERSION:C|[a-zA-Z]*$||}

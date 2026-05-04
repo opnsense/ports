@@ -1,6 +1,6 @@
---- v8/src/execution/isolate.cc.orig	2026-03-13 06:02:14 UTC
+--- v8/src/execution/isolate.cc.orig	2026-04-09 06:05:42 UTC
 +++ v8/src/execution/isolate.cc
-@@ -177,6 +177,10 @@
+@@ -178,6 +178,10 @@
  #include "src/execution/simulator-base.h"
  #endif
  
@@ -11,7 +11,7 @@
  extern "C" const uint8_t v8_Default_embedded_blob_code_[];
  extern "C" uint32_t v8_Default_embedded_blob_code_size_;
  extern "C" const uint8_t v8_Default_embedded_blob_data_[];
-@@ -5323,6 +5327,13 @@ void Isolate::InitializeDefaultEmbeddedBlob() {
+@@ -5420,6 +5424,13 @@ void Isolate::InitializeDefaultEmbeddedBlob() {
    uint32_t code_size = DefaultEmbeddedBlobCodeSize();
    const uint8_t* data = DefaultEmbeddedBlobData();
    uint32_t data_size = DefaultEmbeddedBlobDataSize();

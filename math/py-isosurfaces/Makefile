@@ -1,6 +1,6 @@
 PORTNAME=	isosurfaces
 DISTVERSION=	0.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,9 +11,9 @@ WWW=		https://github.com/jared-hughes/isosurfaces
 
 LICENSE=	MIT
 
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycairo>0:graphics/py-pycairo@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		xdg-open:devel/xdg-utils
 
 USES=		python

@@ -1,5 +1,5 @@
 PORTNAME=	lua-language-server
-DISTVERSION=	3.17.1
+DISTVERSION=	3.18.2
 PORTEPOCH=	1
 CATEGORIES=	devel
 
@@ -66,6 +66,8 @@ LM_INOTIFY_LINK=	links = "inotify",
 .endif
 
 post-patch:
+	${REINPLACE_CMD} -e 's|%CC%|${CCACHE_BIN} ${CC}|' ${WRKSRC}/3rd/luamake/compile/ninja/freebsd.ninja
+	${REINPLACE_CMD} -e 's|%CC%|${CCACHE_BIN} ${CC}|' ${WRKSRC}/3rd/luamake/scripts/globals.lua
 	${REINPLACE_CMD} -e 's|%LOCALBASE%|${LOCALBASE}|' ${WRKSRC}/3rd/bee.lua/compile/common.lua
 	${REINPLACE_CMD} -e 's|%LM_INOTIFY_LINK%|${LM_INOTIFY_LINK}|' ${WRKSRC}/3rd/bee.lua/compile/common.lua
 	${REINPLACE_CMD} -e 's|%LOCALBASE%|${LOCALBASE}|' ${WRKSRC}/3rd/luamake/compile/ninja/freebsd.ninja
@@ -77,8 +79,8 @@ post-patch:
 
 # `luamake all` instead of `luamake rebuild` because there is a flaky test
 do-build:
-	cd ${WRKSRC}/3rd/luamake && compile/build.sh notest
-	cd ${WRKSRC} && 3rd/luamake/luamake all
+	cd ${WRKSRC}/3rd/luamake && compile/build.sh -v notest
+	cd ${WRKSRC} && env && 3rd/luamake/luamake -v  all
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/bin

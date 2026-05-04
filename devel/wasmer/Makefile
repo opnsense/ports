@@ -1,7 +1,7 @@
 PORTNAME=	wasmer
 DISTVERSIONPREFIX=	v
-DISTVERSION=	6.1.0
-PORTREVISION=	3
+DISTVERSION=	7.0.1
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	kjozic@gmail.com
@@ -11,15 +11,15 @@ WWW=		https://wasmer.io/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	amd64
-ONLY_FOR_ARCHS_REASON=	only amd64 works so far (with some issues)
+ONLY_FOR_ARCHS=	amd64 aarch64
+ONLY_FOR_ARCHS_REASON=	only amd64 and aarch64 works so far
 
 BUILD_DEPENDS=	bash>0:shells/bash \
 		clang${_LLVM_VERSION}:devel/llvm${_LLVM_VERSION}
 LIB_DEPENDS=	libffi.so:devel/libffi \
 		libzstd.so:archivers/zstd
 
-USES=		cargo gmake llvm:18 nodejs:build pkgconfig
+USES=		cargo gmake llvm:21 nodejs:build pkgconfig
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	wasmerio
@@ -33,7 +33,7 @@ MAKE_ENV+=	ENABLE_CRANELIFT=1 \
 		ENABLE_V8=0 \
 		ENABLE_WAMR=0 \
 		ENABLE_WASMI=0 \
-		LLVM_SYS_180_PREFIX=${LLVM_PREFIX} \
+		LLVM_SYS_210_PREFIX=${LLVM_PREFIX} \
 		RUSTFLAGS="-L ${LOCALBASE}/lib -C linker=clang"
 
 ALL_TARGET=	build-wasmer
@@ -44,7 +44,7 @@ CXX=		clang++${_LLVM_VERSION}
 
 PLIST_FILES=	bin/wasmer
 
-_LLVM_VERSION=	18
+_LLVM_VERSION=	21
 
 pre-configure:
 	${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},' ${WRKSRC}/Makefile

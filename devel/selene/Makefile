@@ -1,11 +1,12 @@
 PORTNAME=	selene
-DISTVERSION=	0.29.0
-PORTREVISION=	2
+DISTVERSION=	0.30.1
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Command line tool to help write correct and idiomatic Lua code
-WWW=		https://kampfkarren.github.io/selene/
+WWW=		https://kampfkarren.github.io/selene/ \
+		https://github.com/Kampfkarren/selene
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
@@ -56,7 +57,7 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		flate2-1.0.25 \
 		fnv-1.0.7 \
 		form_urlencoded-1.1.0 \
-		full_moon-1.2.0 \
+		full_moon-2.1.1 \
 		full_moon_derive-0.11.0 \
 		generator-0.7.2 \
 		getrandom-0.2.8 \

@@ -1,5 +1,5 @@
 PORTNAME=	bluemoon
-DISTVERSION=	2.14
+DISTVERSION=	2.15
 CATEGORIES=	games
 MASTER_SITES=	http://www.catb.org/~esr/bluemoon/
 
@@ -14,11 +14,8 @@ USES=		ncurses:base
 
 PLIST_FILES=	bin/${PORTNAME} \
 		share/applications/${PORTNAME}.desktop \
-		share/man/man6/${PORTNAME}.6.gz \
+		share/doc/${PORTNAME}/README \
 		share/pixmaps/${PORTNAME}.png
-
-PORTDOCS=	NEWS.adoc README
-OPTIONS_DEFINE=	DOCS
 
 do-build:
 	cd ${WRKSRC} && \
@@ -28,8 +25,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${STAGEDIR}${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.png ${STAGEDIR}${PREFIX}/share/pixmaps
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.6 ${STAGEDIR}${PREFIX}/share/man/man6/
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.adoc ${STAGEDIR}${DOCSDIR}/README
 
 .include <bsd.port.mk>

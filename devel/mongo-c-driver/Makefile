@@ -1,6 +1,6 @@
 PORTNAME=	mongo-c-driver
 # Note: devel/mongo-cxx-driver requires specific versions of this port
-DISTVERSION=	1.30.7
+DISTVERSION=	1.30.8
 CATEGORIES=	devel
 
 MAINTAINER=	ports@bsdserwis.com

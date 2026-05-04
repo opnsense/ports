@@ -1,5 +1,6 @@
 PORTNAME=	hyperkitty
 PORTVERSION=	1.3.12
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -32,6 +33,7 @@ USE_PYTHON=	autoplist concurrent pep517
 SHEBANG_FILES=	hyperkitty/contrib/check_hk_import \
 		hyperkitty/contrib/cleanarch3
 
+USE_RC_SUBR=	mailman-qcluster
 NO_ARCH=	yes
 
 post-extract:

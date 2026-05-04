@@ -1,7 +1,6 @@
 PORTNAME=	nheko
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.12.0
-PORTREVISION=	5
+DISTVERSION=	0.12.1
 CATEGORIES=	net-im
 
 PATCH_SITES=	https://github.com/Nheko-Reborn/nheko/commit/
@@ -34,8 +33,7 @@ USES=		cmake compiler:c++20-lang desktop-file-utils \
 USE_GITHUB=	yes
 GH_ACCOUNT=	Nheko-Reborn
 GH_TUPLE=	hoytech:lmdbxx:029fb681213af3020f5e3a86045445552bd024c5:lmdb/deps/lmdb
-USE_QT=		base declarative multimedia \
-		svg \
+USE_QT=		base declarative multimedia svg \
 		tools:build translations:build
 
 # There is one external dependency: lmdb++
@@ -45,8 +43,6 @@ CMAKE_ARGS=	-DLMDBXX_INCLUDE_DIR=${WRKSRC}/deps/lmdb \
 CFLAGS+=	-DSPDLOG_FMT_EXTERNAL=1
 LDFLAGS+=	-L${LOCALBASE}/lib -lfmt
 
-PATCH_STRIP=	-p1
-
 OPTIONS_DEFINE=	VOIP
 OPTIONS_DEFAULT=
 
@@ -55,6 +51,5 @@ VOIP_LIB_DEPENDS=	libnice.so:net-im/libnice
 VOIP_USES=	gstreamer gettext-runtime xorg gnome
 VOIP_USE=	gstreamer=bad,dtls,srtp,webrtc xorg=xcb gnome=glib20
 VOIP_CMAKE_BOOL=	VOIP
-
 
 .include <bsd.port.mk>

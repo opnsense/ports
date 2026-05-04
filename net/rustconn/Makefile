@@ -1,6 +1,6 @@
 PORTNAME=	rustconn
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.15
+DISTVERSION=	0.12.9
 CATEGORIES=	net
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libgraphene-1.0.so:graphics/graphene \
 		libzstd.so:archivers/zstd
 
-USES=		cargo gettext-tools gnome shebangfix ssl
+USES=		cargo desktop-file-utils gettext-tools gnome shebangfix ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	totoshko88
 GH_PROJECT=	RustConn
@@ -33,6 +33,8 @@ SHEBANG_FILES=	po/compile-mo.sh
 CARGO_INSTALL_PATH=	${PORTNAME} ${PORTNAME}-cli
 
 RUSTCONN_DOCS=	BITWARDEN_SETUP.md USER_GUIDE.md
+
+MAKE_ENV=	CFLAGS="-O0 -pipe  -fstack-protector-strong -fno-strict-aliasing"
 
 OPTIONS_DEFINE=	DOCS KUBERNETES NLS RDP SERIAL VNC
 OPTIONS_SUB=	yes

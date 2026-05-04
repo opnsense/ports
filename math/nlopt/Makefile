@@ -1,6 +1,7 @@
 PORTNAME=	nlopt
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.10.1
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	rhurlin@FreeBSD.org
@@ -18,10 +19,10 @@ BROKEN_armv7=	fails to package: Unable to access file site-packages/_nlopt.a:No 
 FLAVORS=	full minimal
 FLAVOR?=	${FLAVORS:[1]}
 
-full_BUILD_DEPENDS=		${PYNUMPY} \
+full_BUILD_DEPENDS=		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 				swig:devel/swig
 full_LIB_DEPENDS=		liboctave.so:math/octave
-full_RUN_DEPENDS=		${PYNUMPY}
+full_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 full_CONFLICTS_INSTALL=		${PORTNAME}-minimal
 minimal_PKGNAMESUFFIX=		-minimal
 minimal_CONFLICTS_INSTALL=	${PORTNAME}

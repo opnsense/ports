@@ -1,6 +1,6 @@
 PORTNAME=	hyprutils
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.11.0
+DISTVERSION=	0.13.0
 CATEGORIES=	devel
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -23,7 +23,7 @@ USE_XORG=	pixman
 LDFLAGS+=	-pthread
 
 PLIST_SUB=	SOVERSION_FULL=${DISTVERSION:C/-.*//} \
-		SOVERSION_MAJOR=10
+		SOVERSION_MAJOR=12
 
 post-patch:
 # Respect PREFIX for system-wide config

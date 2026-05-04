@@ -1,4 +1,4 @@
---- chrome/browser/ui/url_identity.cc.orig	2025-10-30 15:44:36 UTC
+--- chrome/browser/ui/url_identity.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/ui/url_identity.cc
 @@ -17,7 +17,7 @@
  #include "url/gurl.h"
@@ -9,7 +9,7 @@
  #include "components/webapps/isolated_web_apps/scheme.h"
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
          // BUILDFLAG(IS_CHROMEOS)
-@@ -97,7 +97,7 @@ std::optional<webapps::AppId> GetIsolatedWebAppIdFromU
+@@ -90,7 +90,7 @@ UrlIdentity CreateChromeExtensionIdentityFromUrl(Profi
  }
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -18,7 +18,7 @@
  UrlIdentity CreateIsolatedWebAppIdentityFromUrl(Profile* profile,
                                                  const GURL& url,
                                                  const FormatOptions& options) {
-@@ -155,7 +155,7 @@ UrlIdentity UrlIdentity::CreateFromUrl(Profile* profil
+@@ -151,7 +151,7 @@ UrlIdentity UrlIdentity::CreateFromUrl(Profile* profil
    }
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

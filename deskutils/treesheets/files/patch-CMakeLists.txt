@@ -1,9 +1,9 @@
 Build with system wx workaround:
 https://github.com/aardappel/treesheets/issues/1083
 
---- CMakeLists.txt.orig	2026-03-08 20:24:05 UTC
+--- CMakeLists.txt.orig	2026-03-22 09:59:32 UTC
 +++ CMakeLists.txt
-@@ -12,7 +12,7 @@ endif()
+@@ -11,7 +11,7 @@ endif()
      message(STATUS "User-defined version: ${TREESHEETS_VERSION}")
  endif()
  
@@ -12,7 +12,7 @@ https://github.com/aardappel/treesheets/issues/1083
      DESCRIPTION "A free-form hierarchical data organizer"
      HOMEPAGE_URL "https://github.com/aardappel/treesheets"
      VERSION "${TREESHEETS_VERSION}")
-@@ -42,15 +42,6 @@ include(FetchContent)
+@@ -41,15 +41,6 @@ include(FetchContent)
  
  include(FetchContent)
  
@@ -28,7 +28,7 @@ https://github.com/aardappel/treesheets/issues/1083
  if(ENABLE_LOBSTER)
      FetchContent_Declare(
          lobster
-@@ -138,7 +129,12 @@ endif(ENABLE_LOBSTER)
+@@ -137,7 +128,12 @@ endif(ENABLE_LOBSTER)
  if(ENABLE_LOBSTER)
      target_link_libraries(TreeSheets PRIVATE lobster-impl)
  endif(ENABLE_LOBSTER)
@@ -42,7 +42,7 @@ https://github.com/aardappel/treesheets/issues/1083
  
  ### Installation
  
-@@ -193,7 +189,7 @@ install(FILES ${treesheets_readme_files} DESTINATION $
+@@ -192,7 +188,7 @@ install(FILES ${treesheets_readme_files} DESTINATION $
  install(DIRECTORY TS/docs DESTINATION ${TREESHEETS_DOCDIR})
  file(GLOB treesheets_readme_files "TS/readme*.html")
  install(FILES ${treesheets_readme_files} DESTINATION ${TREESHEETS_DOCDIR})

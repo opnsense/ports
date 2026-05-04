@@ -1,6 +1,6 @@
 PORTNAME=	mplhep
 DISTVERSION=	0.3.59
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +18,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>0:devel/py-hatch-vcs@${PY_FLAVOR
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cycler>0:devel/py-cycler@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=3.4:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mplhep-data>=0.0.4:science/py-mplhep-data@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}uhi>=0.2.0:misc/py-uhi@${PY_FLAVOR}

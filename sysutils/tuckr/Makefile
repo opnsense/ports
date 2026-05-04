@@ -1,5 +1,6 @@
 PORTNAME=	tuckr
-DISTVERSION=	0.13.0
+DISTVERSION=	0.13.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,16 +20,15 @@ CARGO_CRATES=	aead-0.5.2 \
 		aho-corasick-1.1.4 \
 		ansi-str-0.9.0 \
 		ansitok-0.3.0 \
-		anstream-0.6.21 \
-		anstyle-1.0.13 \
-		anstyle-parse-0.2.7 \
+		anstream-1.0.0 \
+		anstyle-1.0.14 \
+		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
-		arc-swap-1.8.1 \
+		arc-swap-1.9.1 \
 		arrayvec-0.7.6 \
-		base62-2.2.3 \
+		base62-2.2.4 \
 		bitflags-1.3.2 \
-		bitflags-2.10.0 \
 		block-buffer-0.10.4 \
 		bstr-1.12.1 \
 		bytecount-0.6.9 \
@@ -36,11 +36,11 @@ CARGO_CRATES=	aead-0.5.2 \
 		chacha20-0.9.1 \
 		chacha20poly1305-0.10.1 \
 		cipher-0.4.4 \
-		clap-4.5.58 \
-		clap_builder-4.5.58 \
-		clap_derive-4.5.55 \
-		clap_lex-1.0.0 \
-		colorchoice-1.0.4 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_derive-4.6.0 \
+		clap_lex-1.1.0 \
+		colorchoice-1.0.5 \
 		cpufeatures-0.2.17 \
 		crossbeam-deque-0.8.6 \
 		crossbeam-epoch-0.9.18 \
@@ -62,35 +62,35 @@ CARGO_CRATES=	aead-0.5.2 \
 		hashbrown-0.16.1 \
 		heck-0.5.0 \
 		ignore-0.4.25 \
-		indexmap-2.13.0 \
+		indexmap-2.13.1 \
 		inout-0.1.4 \
 		is_terminal_polyfill-1.70.2 \
 		itertools-0.11.0 \
-		itoa-1.0.17 \
+		itoa-1.0.18 \
 		lazy_static-1.5.0 \
-		libc-0.2.181 \
-		libredox-0.1.12 \
+		libc-0.2.184 \
+		libredox-0.1.15 \
 		log-0.4.29 \
 		memchr-2.8.0 \
 		minimal-lexical-0.2.1 \
 		nom-7.1.3 \
 		normpath-1.5.0 \
-		once_cell-1.21.3 \
+		once_cell-1.21.4 \
 		once_cell_polyfill-1.70.2 \
 		opaque-debug-0.3.1 \
 		option-ext-0.2.0 \
-		owo-colors-4.2.3 \
+		owo-colors-4.3.0 \
 		papergrid-0.17.0 \
 		poly1305-0.8.0 \
 		proc-macro-error-attr2-2.0.0 \
 		proc-macro-error2-2.0.1 \
 		proc-macro2-1.0.106 \
-		quote-1.0.44 \
+		quote-1.0.45 \
 		rand_core-0.6.4 \
 		redox_users-0.5.2 \
 		regex-1.12.3 \
 		regex-automata-0.4.14 \
-		regex-syntax-0.8.9 \
+		regex-syntax-0.8.10 \
 		rpassword-7.4.0 \
 		rtoolbox-0.0.3 \
 		rust-i18n-3.1.5 \
@@ -111,7 +111,7 @@ CARGO_CRATES=	aead-0.5.2 \
 		stable_deref_trait-1.2.1 \
 		strsim-0.11.1 \
 		subtle-2.6.1 \
-		syn-2.0.115 \
+		syn-2.0.117 \
 		sys-locale-0.3.2 \
 		tabled-0.20.0 \
 		tabled_derive-0.11.0 \
@@ -124,7 +124,7 @@ CARGO_CRATES=	aead-0.5.2 \
 		toml_write-0.1.2 \
 		triomphe-0.1.15 \
 		typenum-1.19.0 \
-		unicode-ident-1.0.23 \
+		unicode-ident-1.0.24 \
 		unicode-width-0.2.2 \
 		universal-hash-0.5.1 \
 		unsafe-libyaml-0.2.11 \
@@ -147,7 +147,7 @@ CARGO_CRATES=	aead-0.5.2 \
 		windows_x86_64_gnu-0.52.6 \
 		windows_x86_64_gnullvm-0.52.6 \
 		windows_x86_64_msvc-0.52.6 \
-		winnow-0.7.14 \
+		winnow-0.7.15 \
 		zeroize-1.8.2 \
 		zmij-1.0.21
 

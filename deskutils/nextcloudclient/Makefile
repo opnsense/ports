@@ -1,7 +1,6 @@
 PORTNAME=	nextcloudclient
-PORTVERSION=	4.0.6
+PORTVERSION=	33.0.3
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	mr@FreeBSD.org
@@ -12,6 +11,7 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	inkscape:graphics/inkscape
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
+		libkdsingleapplication-qt6.so:devel/kdsingleapplication \
 		libqt6keychain.so:security/qtkeychain@qt6 \
 		libxkbcommon.so:x11/libxkbcommon \
 		libp11.so:security/libp11
@@ -74,9 +74,5 @@ post-patch-GUIADDONS-off:
 
 pre-configure:
 	@(cd ${WRKSRC} && ${CP} -f sync-exclude.lst sync-exclude.lst.sample)
-
-post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/sync-exclude.lst ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.post.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	angie-module-postgres
 MODULE_VERSION=	1.0rc7
-MODULE_PORTREVISION=	3
+MODULE_PORTREVISION=	4
 GH_TUPLE=	FRiCKLE:ngx_postgres:${MODULE_VERSION}:module
 
 COMMENT=	Angie postgres dynamic module

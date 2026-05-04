@@ -1,6 +1,6 @@
 PORTNAME=	flexdock
 PORTVERSION=	1.2.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel java
 MASTER_SITES=	http://forge.scilab.org/index.php/p/${PORTNAME}/downloads/get/
 

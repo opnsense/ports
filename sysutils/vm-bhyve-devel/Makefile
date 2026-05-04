@@ -1,12 +1,12 @@
 PORTNAME=	vm-bhyve
 # Generate with 'git describe --tags' and break them up
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.99-63
-DISTVERSIONSUFFIX= -g19533fd
+DISTVERSION=	1.7.99-87
+DISTVERSIONSUFFIX= -g8655428
 CATEGORIES=		sysutils
 PKGNAMESUFFIX=		-devel
 
-MAINTAINER=	driesm@FreeBSD.org
+MAINTAINER=	vm-bhyve@FreeBSD.org
 COMMENT=	Management system for bhyve virtual machines
 WWW=		https://github.com/freebsd/vm-bhyve
 

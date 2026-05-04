@@ -1,5 +1,5 @@
 PORTNAME=	wireshark
-DISTVERSION=	4.6.4
+DISTVERSION=	4.6.5
 CATEGORIES=	net
 MASTER_SITES=	https://1.na.dl.wireshark.org/src/ \
 		https://1.eu.dl.wireshark.org/src/ \
@@ -33,8 +33,9 @@ FLAVORS=	default nox11
 FLAVOR?=	${FLAVORS:[1]}
 nox11_PKGNAMESUFFIX=	-nox11
 
-USES=		cmake compiler:c++11-lang cpe gettext-runtime:build gnome \
-		localbase pathfix perl5 pkgconfig python ssl tar:xz
+USES=		cmake compiler:c++11-lang cpe gettext-runtime:build \
+		gettext-tools:build gnome localbase pathfix perl5 pkgconfig \
+		python ssl tar:xz
 USE_GNOME=	glib20 libxml2
 USE_PERL5=	build
 USE_LDCONFIG=	yes

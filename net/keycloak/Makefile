@@ -1,5 +1,6 @@
 PORTNAME=	keycloak
-DISTVERSION=	26.5.5
+DISTVERSION=	26.5.7
+PORTREVISION=	1
 CATEGORIES=	net java
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -16,11 +17,14 @@ JAVA_VERSION=	21+
 JAVA_OS=	native
 JAVA_VENDOR=	openjdk
 
-USE_RC_SUBR=	keycloak
+USE_RC_SUBR=	${PORTNAME}
 
 SHEBANG_FILES=	bin/kc.sh \
 		bin/kcadm.sh \
 		bin/kcreg.sh
+
+EXTRACT_AFTER_ARGS=	--exclude '*.bat' \
+			--no-same-owner --no-same-permissions
 
 VAR_DIR?=	/var
 LOG_DIR?=	${VAR_DIR}/log/${PORTNAME}
@@ -29,8 +33,8 @@ RUN_DIR?=	${VAR_DIR}/run/${PORTNAME}
 NO_ARCH=	yes
 NO_BUILD=	yes
 
-SUB_FILES+=	pkg-message
-SUB_LIST+=	JAVA=${JAVA} \
+SUB_FILES=	pkg-message
+SUB_LIST=	JAVA=${JAVA} \
 		JAVA_HOME=${JAVA_HOME} \
 		LOG_DIR=${LOG_DIR} \
 		PORTNAME=${PORTNAME} \
@@ -41,7 +45,7 @@ SUB_LIST+=	JAVA=${JAVA} \
 KEYCLOAK_USER=	${PORTNAME}
 KEYCLOAK_GROUP=	${PORTNAME}
 USERS=		${KEYCLOAK_USER}
-GROUPS=		${USERS}
+GROUPS=		${KEYCLOAK_GROUP}
 
 PLIST_SUB=	VERSION=${DISTVERSION} \
 		USER=${KEYCLOAK_USER} \
@@ -52,14 +56,6 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 CONFIG_FILES=	conf/cache-ispn.xml \
 		conf/keycloak.conf \
 		lib/quarkus/build-system.properties
-
-post-patch:
-.for f in ${CONFIG_FILES}
-	${MV} ${WRKSRC}/${f} ${WRKSRC}/${f}.sample
-.endfor
-	${RM} ${WRKSRC}/bin/kc.bat
-	${RM} ${WRKSRC}/bin/kcadm.bat
-	${RM} ${WRKSRC}/bin/kcreg.bat
 
 do-install:
 	${MKDIR} ${STAGEDIR}${JAVASHAREDIR}/${PORTNAME}/bin \
@@ -72,10 +68,13 @@ do-install:
 	(cd ${WRKSRC}/bin && ${COPYTREE_SHARE} client ${STAGEDIR}${JAVASHAREDIR}/${PORTNAME}/bin)
 
 	# Install jar files, configuration and everything else
+.for f in ${CONFIG_FILES}
+	${MV} ${WRKSRC}/${f} ${WRKSRC}/${f}.sample
+.endfor
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "conf lib providers themes" ${STAGEDIR}${JAVASHAREDIR}/${PORTNAME})
 
 	# Create links for kc* binaries
-	${LN} -sf ../share/java/${PORTNAME}/bin/kcadm.sh ${STAGEDIR}${PREFIX}/bin/kcadm
-	${LN} -sf ../share/java/${PORTNAME}/bin/kcreg.sh ${STAGEDIR}${PREFIX}/bin/kcreg
+	${RLN} ${STAGEDIR}${JAVASHAREDIR}/${PORTNAME}/bin/kcadm.sh ${STAGEDIR}${PREFIX}/bin/kcadm
+	${RLN} ${STAGEDIR}${JAVASHAREDIR}/${PORTNAME}/bin/kcreg.sh ${STAGEDIR}${PREFIX}/bin/kcreg
 
 .include <bsd.port.mk>

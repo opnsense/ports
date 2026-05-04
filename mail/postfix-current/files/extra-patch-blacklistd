@@ -1,4 +1,4 @@
---- src/postscreen/Makefile.in.orig	2024-03-09 21:34:49 UTC
+--- src/postscreen/Makefile.in.orig	2026-04-02 20:28:51 UTC
 +++ src/postscreen/Makefile.in
 @@ -3,13 +3,13 @@ SRCS	= postscreen.c postscreen_dict.c postscreen_dnsbl
  	postscreen_early.c postscreen_smtpd.c postscreen_misc.c \
@@ -14,7 +14,7 @@
 -HDRS	= 
 +	postscreen_haproxy.o pfilter.o
 +HDRS	= pfilter.h
- TESTSRC	=
+ TESTSRC	= postscreen_dnsbl_test.c
  DEFS	= -I. -I$(INC_DIR) -D$(SYSTYPE)
  CFLAGS	= $(DEBUG) $(OPT) $(DEFS)
 --- src/postscreen/pfilter.c.orig	2025-07-11 20:30:00 UTC
@@ -64,7 +64,7 @@
  		switch (psc_dnsbl_action) {
  		case PSC_ACT_DROP:
  		    state->dnsbl_reply = vstring_sprintf(vstring_alloc(100),
---- src/smtpd/Makefile.in.orig	2025-01-09 22:06:10 UTC
+--- src/smtpd/Makefile.in.orig	2026-04-09 12:33:10 UTC
 +++ src/smtpd/Makefile.in
 @@ -2,14 +2,14 @@ SRCS	= smtpd.c smtpd_token.c smtpd_check.c smtpd_chat.
  SRCS	= smtpd.c smtpd_token.c smtpd_check.c smtpd_chat.c smtpd_state.c \
@@ -81,7 +81,7 @@
  	smtpd_sasl_glue.h smtpd_proxy.h smtpd_dsn_fix.h smtpd_milter.h \
 -	smtpd_resolve.h smtpd_expand.h
 +	smtpd_resolve.h smtpd_expand.h pfilter.h
- TESTSRC	= smtpd_token_test.c
+ TESTSRC	=
  DEFS	= -I. -I$(INC_DIR) -D$(SYSTYPE)
  CFLAGS	= $(DEBUG) $(OPT) $(DEFS)
 --- src/smtpd/pfilter.c.orig	2025-07-11 20:30:00 UTC

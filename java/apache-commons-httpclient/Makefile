@@ -1,6 +1,6 @@
 PORTNAME=	commons-httpclient
 DISTVERSION=	3.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	java www
 MASTER_SITES=	APACHE/httpcomponents/${PORTNAME}/source
 PKGNAMEPREFIX=	apache-

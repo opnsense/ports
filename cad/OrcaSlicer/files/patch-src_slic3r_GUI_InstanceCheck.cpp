@@ -1,4 +1,4 @@
---- src/slic3r/GUI/InstanceCheck.cpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/InstanceCheck.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/InstanceCheck.cpp
 @@ -24,7 +24,7 @@
  #include <strsafe.h>
@@ -18,7 +18,7 @@
  
  	static bool  send_message(const std::string &message_text, const std::string &version)
  	{
-@@ -308,7 +308,7 @@ bool instance_check(int argc, char** argv, bool app_co
+@@ -306,7 +306,7 @@ bool instance_check(int argc, char** argv, bool app_co
  	hashed_path = std::hash<std::string>{}(boost::filesystem::system_complete(argv[0]).string());
  #else
  	boost::system::error_code ec;

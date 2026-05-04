@@ -1,6 +1,6 @@
 PORTNAME=	openusd
 DISTVERSIONPREFIX=	v
-DISTVERSION=	25.11
+DISTVERSION=	26.05
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -25,12 +25,13 @@ USE_LDCONFIG=	yes
 CMAKE_OFF=	PXR_BUILD_EXAMPLES PXR_BUILD_TESTS PXR_BUILD_TUTORIALS \
 		PXR_ENABLE_PYTHON_SUPPORT
 
-OPTIONS_DEFINE=		IMAGING MONOLITHIC TOOLS
+OPTIONS_DEFINE=		IMAGING MONOLITHIC PYTHON TOOLS
 OPTIONS_DEFAULT=	IMAGING MONOLITHIC TOOLS
 OPTIONS_SUB=		yes
 
 IMAGING_DESC=		Build imaging components
 MONOLITHIC_DESC=	Build a monolithic library (required for blender)
+PYTHON_DESC=		Build Python bindings for testing
 TOOLS_DESC=		Build commandline tools
 
 IMAGING_LIB_DEPENDS=	libosdCPU.so:graphics/opensubdiv \
@@ -42,15 +43,26 @@ IMAGING_CMAKE_ON=	-DPTEX_INCLUDE_DIR=${LOCALBASE}/include
 
 MONOLITHIC_CMAKE_BOOL=	PXR_BUILD_MONOLITHIC
 
+PYTHON_CMAKE_BOOL=	PXR_ENABLE_PYTHON_SUPPORT
+
 TOOLS_CMAKE_BOOL=	PXR_BUILD_USD_TOOLS
 
-do-test: # tests are expected to be installed, see https://github.com/PixarAnimationStudios/USD/issues/1707
-	@cd ${BUILD_WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} \
-			-DPXR_BUILD_TESTS=ON -DPYTHON_EXECUTABLE=${PYTHON_CMD} ${CMAKE_SOURCE_PATH} && \
+TEST_ENV=	${MAKE_ENV} \
+		DISPLAY=${DISPLAY} \
+		XAUTHORITY=${XAUTHORITY} \
+		LD_LIBRARY_PATH=${STAGEDIR}${PREFIX}/lib:${LOCALBASE}/lib \
+		PXR_PLUGINPATH_NAME=${STAGEDIR}${PREFIX}/plugin/usd:${STAGEDIR}${PREFIX}/lib/usd
+
+do-test: install # tests are expected to be installed, see https://github.com/PixarAnimationStudios/USD/issues/1707
+	@${MKDIR} ${BUILD_WRKSRC} && \
+	cd ${BUILD_WRKSRC} && \
+		${SETENV} ${CONFIGURE_ENV} ${TEST_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} \
+			-DPXR_BUILD_TESTS=ON -DPXR_BUILD_IMAGING=OFF -DPYTHON_EXECUTABLE=${PYTHON_CMD} ${CMAKE_SOURCE_PATH} && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} install && \
 		${FIND} ${BUILD_WRKSRC} -name CTestTestfile.cmake -type f -exec \
 			${REINPLACE_CMD} -e 's|${PREFIX}/tests|${STAGEDIR}${PREFIX}/tests|g' {} + && \
-		ctest -C ${CMAKE_BUILD_TYPE} ${WRKSRC} --output-on-failure
+		${SETENV} ${TEST_ENV} ctest -C ${CMAKE_BUILD_TYPE} ${BUILD_WRKSRC} --output-on-failure
+
+# tests as of 26.05: 91% tests passed, 27 tests failed out of 312 (TODO: investigate failures)
 
 .include <bsd.port.mk>

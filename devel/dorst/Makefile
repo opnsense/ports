@@ -1,7 +1,7 @@
 PORTNAME=	dorst
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.19.5
-PORTREVISION=	5
+DISTVERSION=	0.20.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	slowdive@me.com
@@ -25,7 +25,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	charlesrocket
 
 .if ${FLAVOR:U} == gtk
-USES+=			desktop-file-utils gnome
+USES+=			gnome
 USE_GNOME=		glib20 gtk40 libadwaita
 CARGO_FEATURES+=	gui
 

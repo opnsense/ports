@@ -1,6 +1,6 @@
 PORTNAME=	appjail
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.9.1
+DISTVERSION=	4.12.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	dtxdf@FreeBSD.org
@@ -39,6 +39,7 @@ X11_RUN_DEPENDS=		su-exec:security/su-exec \
 				xauth:x11/xauth \
 				xdotool:x11/xdotool \
 				Xephyr:x11-servers/xorg-server@xephyr \
+				xev:x11/xev \
 				xseticon:x11/xseticon
 
 do-install-DOCS-on:

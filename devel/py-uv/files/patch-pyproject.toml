@@ -9,6 +9,15 @@
  
  [project]
  name = "uv"
+@@ -11,8 +11,6 @@ requires-python = ">=3.8"
+ keywords = [
+   "uv", "requirements", "packaging"
+ ]
+-license="MIT OR Apache-2.0"
+-license-files = ["LICENSE-APACHE", "LICENSE-MIT"]
+ classifiers = [
+   "Development Status :: 5 - Production/Stable",
+   "Environment :: Console",
 @@ -42,57 +42,12 @@ Discord = "https://discord.gg/astral-sh"
  Releases = "https://github.com/astral-sh/uv/releases"
  Discord = "https://discord.gg/astral-sh"

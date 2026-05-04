@@ -1,5 +1,5 @@
 PORTNAME=	llvmlite
-DISTVERSION=	0.46.0
+DISTVERSION=	0.47.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ MAKE_ENV=	LLVM_CONFIG=${LLVM_CONFIG} \
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
-post-patch:
+pre-configure:
 # Use required LLVM if multiple variants are present.
 	${REINPLACE_CMD} "s,%%LLVM_PREFIX%%,${LLVM_PREFIX}," ${WRKSRC}/ffi/CMakeLists.txt
 

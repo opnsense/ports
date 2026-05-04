@@ -1,6 +1,6 @@
---- thirdparty/jolt_physics/Jolt/Core/Core.h.orig	2025-08-13 15:24:56 UTC
+--- thirdparty/jolt_physics/Jolt/Core/Core.h.orig	2025-10-13 19:05:40 UTC
 +++ thirdparty/jolt_physics/Jolt/Core/Core.h
-@@ -215,7 +215,7 @@
+@@ -219,7 +219,7 @@
  		#define JPH_CPU_BIG_ENDIAN
  	#endif
  	#define JPH_VECTOR_ALIGNMENT 16

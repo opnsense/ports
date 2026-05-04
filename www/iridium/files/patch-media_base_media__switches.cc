@@ -1,4 +1,4 @@
---- media/base/media_switches.cc.orig	2026-02-20 10:25:07 UTC
+--- media/base/media_switches.cc.orig	2026-04-15 12:07:04 UTC
 +++ media/base/media_switches.cc
 @@ -20,7 +20,7 @@
  #include "ui/gl/gl_features.h"
@@ -7,10 +7,10 @@
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  #include "base/cpu.h"
+ #include "components/system_media_controls/linux/buildflags/buildflags.h"
  #endif
+@@ -428,13 +428,35 @@ BASE_FEATURE(kApplicationAudioCaptureMac, base::FEATUR
  
-@@ -411,13 +411,35 @@ BASE_FEATURE(kMacCatapLoopbackAudioForScreenShare,
- BASE_FEATURE(kUseSCContentSharingPicker, base::FEATURE_DISABLED_BY_DEFAULT);
  #endif  // BUILDFLAG(IS_MAC)
  
 -#if BUILDFLAG(IS_LINUX)
@@ -46,16 +46,7 @@
  #endif  // BUILDFLAG(IS_LINUX)
  
  // When enabled, MediaCapabilities will check with GPU Video Accelerator
-@@ -656,7 +678,7 @@ BASE_FEATURE(kFileDialogsTuckPictureInPicture,
- 
- // Show toolbar button that opens dialog for controlling media sessions.
- BASE_FEATURE(kGlobalMediaControls,
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-              base::FEATURE_ENABLED_BY_DEFAULT
- #else
-              base::FEATURE_DISABLED_BY_DEFAULT
-@@ -674,7 +696,7 @@ BASE_FEATURE(kGlobalMediaControlsUpdatedUI, base::FEAT
+@@ -681,7 +703,7 @@ BASE_FEATURE(kGlobalMediaControlsAutoDismiss, base::FE
  #if !BUILDFLAG(IS_ANDROID)
  // If enabled, users can request Media Remoting without fullscreen-in-tab.
  BASE_FEATURE(kMediaRemotingWithoutFullscreen,
@@ -64,7 +55,7 @@
               base::FEATURE_ENABLED_BY_DEFAULT
  #else
               base::FEATURE_DISABLED_BY_DEFAULT
-@@ -700,7 +722,7 @@ BASE_FEATURE(kSuspendMediaForFrozenFrames, base::FEATU
+@@ -704,7 +726,7 @@ BASE_FEATURE(kSuspendMediaForFrozenFrames, base::FEATU
  // autoplay policy.
  BASE_FEATURE(kUnifiedAutoplay, base::FEATURE_ENABLED_BY_DEFAULT);
  
@@ -73,7 +64,7 @@
  // Enable vaapi/v4l2 video decoding on linux. This is already enabled by default
  // on chromeos, but needs an experiment on linux.
  BASE_FEATURE(kAcceleratedVideoDecodeLinux,
-@@ -756,7 +778,7 @@ BASE_FEATURE(kVaapiVp9SModeHWEncoding, base::FEATURE_E
+@@ -760,7 +782,7 @@ BASE_FEATURE(kVaapiVp9SModeHWEncoding, base::FEATURE_E
  // Enables VSync aligned MJPEG decoding.
  BASE_FEATURE(kVSyncMjpegDecoding, base::FEATURE_DISABLED_BY_DEFAULT);
  #endif  // defined(ARCH_CPU_X86_FAMILY) && BUILDFLAG(IS_CHROMEOS)
@@ -82,7 +73,16 @@
  // Enable H264 temporal layer encoding with V4L2 HW encoder on ChromeOS.
  BASE_FEATURE(kV4L2H264TemporalLayerHWEncoding,
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -1272,7 +1294,7 @@ BASE_FEATURE(kUseOutOfProcessVideoDecoding,
+@@ -947,7 +969,7 @@ BASE_FEATURE(kHardwareSecureDecryptionRequireServerCer
+ BASE_FEATURE(kHardwareMediaKeyHandling,
+ #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
+              base::FEATURE_ENABLED_BY_DEFAULT
+-#elif BUILDFLAG(IS_LINUX)
++#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ #if BUILDFLAG(USE_MPRIS)
+              base::FEATURE_ENABLED_BY_DEFAULT
+ #else
+@@ -1284,7 +1306,7 @@ BASE_FEATURE(kUseOutOfProcessVideoDecoding,
  BASE_FEATURE(kUseSharedImageInOOPVDProcess, base::FEATURE_DISABLED_BY_DEFAULT);
  #endif  // BUILDFLAG(ALLOW_OOP_VIDEO_DECODER)
  
@@ -91,7 +91,7 @@
  // Spawn utility processes to perform hardware encode acceleration instead of
  // using the GPU process.
  BASE_FEATURE(kUseOutOfProcessVideoEncoding, base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -1334,7 +1356,7 @@ BASE_FEATURE(kRecordMediaEngagementScores, base::FEATU
+@@ -1346,7 +1368,7 @@ BASE_FEATURE(kRecordMediaEngagementScores, base::FEATU
  // Enables Media Engagement Index recording for Web Audio playbacks.
  BASE_FEATURE(kRecordWebAudioEngagement, base::FEATURE_ENABLED_BY_DEFAULT);
  
@@ -100,7 +100,7 @@
  // Reduces the number of buffers needed in the output video frame pool to
  // populate the Renderer pipeline for hardware accelerated VideoDecoder in
  // non-low latency scenarios.
-@@ -1610,7 +1632,7 @@ bool IsSystemLoopbackCaptureSupported() {
+@@ -1667,7 +1689,7 @@ bool IsSystemLoopbackCaptureSupported() {
  #elif BUILDFLAG(IS_MAC)
    return (IsMacSckSystemLoopbackCaptureSupported() ||
            IsMacCatapSystemLoopbackCaptureSupported());

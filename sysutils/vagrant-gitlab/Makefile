@@ -12,6 +12,8 @@ WWW=		https://www.vagrantup.com/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_i386=	Platform i386 is not supported
+
 BUILD_DEPENDS=	rubygem-builder>=2.1.2:devel/rubygem-builder \
 		rubygem-bundler>=1.12.5:sysutils/rubygem-bundler \
 		rubygem-main>=1.0:devel/rubygem-main

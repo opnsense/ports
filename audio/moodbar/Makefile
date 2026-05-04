@@ -11,7 +11,7 @@ LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfftw3.so:math/fftw3
-TEST_DEPENDS=	${PYNUMPY}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		compiler:c++17-lang gnome gstreamer meson pkgconfig python:test \
 		shebangfix tar:xz

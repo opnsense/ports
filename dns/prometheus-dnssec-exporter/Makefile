@@ -1,6 +1,6 @@
 PORTNAME=		prometheus-dnssec-exporter
 DISTVERSION=		g20220925
-PORTREVISION=	32
+PORTREVISION=	33
 CATEGORIES=		dns
 
 MAINTAINER=		philip@FreeBSD.org

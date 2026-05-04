@@ -1,6 +1,6 @@
 PORTNAME=	urbanaccess
 PORTVERSION=	0.2.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geopy>=1.11.0:net/py-geopy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=2.0:math/py-matplotlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.11,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.11:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}osmnet>=0.1.4:graphics/py-osmnet@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandana>=0.2.0:graphics/py-pandana@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=0.17.0,1:math/py-pandas@${PY_FLAVOR} \

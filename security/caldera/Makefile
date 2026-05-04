@@ -1,6 +1,6 @@
 PORTNAME=	caldera
 DISTVERSION=	5.3.0
-PORTREVISION=	17
+PORTREVISION=	19
 CATEGORIES=	security python
 
 MAINTAINER=	acm@FreeBSD.org
@@ -45,7 +45,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>0:www/py-aiohttp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}webdriver_manager>0:www/py-webdriver_manager@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}beautifulsoup>0:www/py-beautifulsoup@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}networkx>0:math/py-networkx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}croniter2>0:sysutils/py-croniter2@${PY_FLAVOR} \
 		upx>0:archivers/upx \
 		base64>0:converters/base64 \

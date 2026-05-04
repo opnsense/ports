@@ -1,6 +1,6 @@
 PORTNAME=	GPy
 DISTVERSION=	1.13.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,8 +17,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BROKEN=		requires OpenMP support that is missing on this architecture
 .endif
 
-BUILD_DEPENDS=	${PYNUMPY}
-RUN_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.3.0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}paramz>=0.9.6:science/py-paramz@${PY_FLAVOR} \

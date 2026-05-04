@@ -27,7 +27,7 @@ PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlalchemy20>=2.0.6:databases/py-sqlalchemy20
 		${PYTHON_PKGNAMEPREFIX}Jinja2>0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}joblib>=1.2.0:devel/py-joblib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>0:devel/py-jsonschema@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}orjson>0:devel/py-orjson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas-ta>0:finance/py-pandas-ta@${PY_FLAVOR} \

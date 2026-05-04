@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}openai>=2.0.0<3.0.0:misc/py-openai@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typer>=0.7.0<1.0.0:devel/py-typer@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}rich>=13.1.0<15.0.0:textproc/py-rich@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}rich>=13.1.0<16.0.0:textproc/py-rich@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}distro>=1.8.0<2.0.0:sysutils/py-distro@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}prompt-toolkit>=3.0.51:devel/py-prompt-toolkit@${PY_FLAVOR} \
 		curl:ftp/curl

@@ -1,7 +1,9 @@
 PORTNAME=	hamclock
 DISTVERSION=	4.22
+PORTREVISION=	1
 CATEGORIES=	x11 hamradio
-MASTER_SITES=	https://www.clearskyinstitute.com/ham/HamClock/
+MASTER_SITES=	https://www.clearskyinstitute.com/ham/HamClock/ \
+		LOCAL/db
 DISTNAME=	ESPHamClock
 
 MAINTAINER=	hamradio@FreeBSD.org
@@ -10,6 +12,9 @@ WWW=		https://www.clearskyinstitute.com/ham/HamClock/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Upstream programmer is deceased upstream server discontinued in June
+EXPIRATION_DATE=	2026-06-01
 
 USES=		gmake xorg zip desktop-file-utils
 USE_XORG=	x11 xorgproto

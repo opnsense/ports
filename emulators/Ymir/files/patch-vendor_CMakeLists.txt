@@ -1,6 +1,6 @@
---- vendor/CMakeLists.txt.orig	2025-10-12 17:41:59 UTC
+--- vendor/CMakeLists.txt.orig	2026-04-26 08:01:25 UTC
 +++ vendor/CMakeLists.txt
-@@ -36,28 +36,31 @@ message(STATUS "==> concurrentqueue")
+@@ -28,27 +28,31 @@ message(STATUS "==> concurrentqueue")
  # concurrentqueue - https://github.com/cameron314/concurrentqueue
  # - Not available as a vcpkg port
  message(STATUS "==> concurrentqueue")
@@ -31,7 +31,6 @@
  # libchdr - https://github.com/rtissera/libchdr
  # - Not available as a vcpkg port
  message(STATUS "==> libchdr")
--set(BUILD_FUZZER OFF)
 -add_subdirectory(libchdr)
 +pkg_check_modules(libchdr REQUIRED IMPORTED_TARGET GLOBAL libchdr)
 +add_library(chdr-static ALIAS PkgConfig::libchdr)

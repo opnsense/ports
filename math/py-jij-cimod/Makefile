@@ -13,7 +13,7 @@ WWW=		https://www.openjij.org/ \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0.10:devel/py-scikit-build-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \

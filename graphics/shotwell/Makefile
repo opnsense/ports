@@ -43,8 +43,8 @@ OPTIONS_SUB=	yes
 
 FACED_DESC=	Face Detection
 
-FACED_CONFIGURE_ON=	-Dface_detection=true
-FACED_CONFIGURE_OFF=	-Dface_detection=false -Dface_detection_helper=true
+FACED_MESON_ON=	-Dface_detection=true
+FACED_MESON_OFF=	-Dface_detection=false -Dface_detection_helper=true
 FACED_LIB_DEPENDS=	libopencv_core.so:graphics/opencv
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION}

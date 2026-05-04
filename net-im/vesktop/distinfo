@@ -1,0 +1,5 @@
+TIMESTAMP = 1776085724
+SHA256 (vesktop_1.6.3_amd64.deb) = 8a1e8269fa60f3fe93af133c9cbad901debc7efea5f6c14cece006b1b240d330
+SIZE (vesktop_1.6.3_amd64.deb) = 83176598
+SHA256 (vesktop_1.6.3_arm64.deb) = 084b64147baa168f2b5297a202227a31edc57a84f56c3152dcb14bb630b0f2b5
+SIZE (vesktop_1.6.3_arm64.deb) = 78336058

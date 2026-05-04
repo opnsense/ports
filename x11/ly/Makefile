@@ -4,7 +4,7 @@ DISTVERSION=	1.3.2
 CATEGORIES=	x11
 MASTER_SITES=	https://codeberg.org/fairyglade/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
-MAINTAINER=	bapt@FreeBSD.org
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	TUI (ncurses-like) display manager for X and Wayland
 WWW=		https://codeberg.org/fairyglade/ly
 

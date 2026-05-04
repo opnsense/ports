@@ -1,5 +1,6 @@
 PORTNAME=	cfgrib
 PORTVERSION=	0.9.15.1
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FL
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=19.2:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}click>=0:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}eccodes>=0.9.8:science/py-eccodes@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dask>=0:devel/py-dask@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}flake8>=0:devel/py-flake8@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=0:devel/py-pytest-cov@${PY_FLAVOR} \

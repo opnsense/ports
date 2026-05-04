@@ -1,6 +1,6 @@
 PORTNAME=	cytoscape
 DISTVERSION=	3.6.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	biology java
 MASTER_SITES=	LOCAL/yuri/:maven \
 		http://people.freebsd.org/~yuri/:maven

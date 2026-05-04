@@ -1,13 +1,14 @@
 PORTNAME=	kdenetwork-filesharing
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE Filesharing via Samba
 
-BUILD_DEPENDS=	${LOCALBASE}/include/qcoro6/qcoro/qcoro.h:devel/qcoro
+LIB_DEPENDS=	libQCoro6Core.so:devel/qcoro
 
-USES=		cmake compiler:c++11-lang gettext-tools kde:6 qt:6 tar:xz xorg
+USES=		cmake compiler:c++20-lang gettext-tools kde:6 qt:6 tar:xz xorg
 USE_KDE=	auth completion config coreaddons doctools i18n jobwidgets kio \
 		service solid widgetsaddons windowsystem \
 		ecm:build

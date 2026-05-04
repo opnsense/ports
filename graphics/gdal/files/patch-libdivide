@@ -1,0 +1,23 @@
+--- frmts/vrt/CMakeLists.txt.orig	2026-02-09 17:36:29 UTC
++++ frmts/vrt/CMakeLists.txt
+@@ -31,7 +31,8 @@ target_include_directories(gdal_vrt PRIVATE ${GDAL_RAS
+ endif()
+ 
+ target_include_directories(gdal_vrt PRIVATE ${GDAL_RASTER_FORMAT_SOURCE_DIR}/raw
+-                                            $<TARGET_PROPERTY:ogrsf_generic,SOURCE_DIR>)
++                                            $<TARGET_PROPERTY:ogrsf_generic,SOURCE_DIR>
++					    ${PROJECT_SOURCE_DIR}/third_party/libdivide)
+ 
+ if (GDAL_ENABLE_ARM_NEON_OPTIMIZATIONS)
+   target_compile_definitions(gdal_vrt PRIVATE -DUSE_NEON_OPTIMIZATIONS)
+--- frmts/vrt/pixelfunctions.cpp.orig	2026-02-09 17:36:29 UTC
++++ frmts/vrt/pixelfunctions.cpp
+@@ -30,7 +30,7 @@
+ #pragma GCC diagnostic ignored "-Wold-style-cast"
+ #pragma GCC diagnostic ignored "-Weffc++"
+ #endif
+-#include "../../third_party/libdivide/libdivide.h"
++#include "libdivide.h"
+ #ifdef __GNUC__
+ #pragma GCC diagnostic pop
+ #endif

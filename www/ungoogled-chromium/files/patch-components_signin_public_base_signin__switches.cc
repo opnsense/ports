@@ -1,6 +1,6 @@
---- components/signin/public/base/signin_switches.cc.orig	2026-03-15 18:32:51 UTC
+--- components/signin/public/base/signin_switches.cc.orig	2026-04-15 11:25:12 UTC
 +++ components/signin/public/base/signin_switches.cc
-@@ -78,7 +78,7 @@ base::TimeDelta GetAvatarSyncPromoFeatureMinimumCookeA
+@@ -79,7 +79,7 @@ base::TimeDelta GetAvatarSyncPromoFeatureMinimumCookeA
  #endif
  }
  
@@ -9,7 +9,7 @@
  BASE_FEATURE(kBeforeFirstRunDesktopRefreshSurvey,
               base::FEATURE_DISABLED_BY_DEFAULT);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
-@@ -113,7 +113,7 @@ BASE_FEATURE(kChromeAndroidIdentitySurveyBookmarkPromo
+@@ -114,7 +114,7 @@ BASE_FEATURE(kChromeAndroidIdentitySurveyBookmarkPromo
               base::FEATURE_DISABLED_BY_DEFAULT);
  #endif  // BUILDFLAG(IS_ANDROID)
  
@@ -18,7 +18,7 @@
  constexpr char kHatsSurveyProbabilityName[] = "probability";
  constexpr double kMediumSurveyProbability = 0.08;
  constexpr double kLowSurveyProbability = 0.008;
-@@ -206,7 +206,7 @@ BASE_FEATURE_PARAM(
+@@ -207,7 +207,7 @@ BASE_FEATURE_PARAM(
      kMediumSurveyProbability);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
  
@@ -27,16 +27,43 @@
  BASE_FEATURE(kChromeIdentitySurveyLaunchWithDelay,
               base::FEATURE_ENABLED_BY_DEFAULT);
  BASE_FEATURE_PARAM(base::TimeDelta,
-@@ -413,7 +413,7 @@ BASE_FEATURE_PARAM(base::TimeDelta,
-                    base::Days(7));
- #endif  // BUILDFLAG(ENABLE_DICE_SUPPORT)
+@@ -217,7 +217,7 @@ BASE_FEATURE_PARAM(base::TimeDelta,
+                    base::Milliseconds(3000));
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ BASE_FEATURE(kDisableU18FeedbackDesktop, base::FEATURE_DISABLED_BY_DEFAULT);
+ constexpr base::FeatureParam<U18FeedbackDesktopState>::Option
+     kDisableU18FeedbackDesktopStates[] = {
+@@ -390,7 +390,7 @@ const base::FeatureParam<base::TimeDelta>
+         base::Hours(8)};
+ #endif
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ BASE_FEATURE(kFirstRunDesktopRefresh, base::FEATURE_DISABLED_BY_DEFAULT);
+ BASE_FEATURE(kFirstRunDesktopChoiceScreenRefresh,
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -416,7 +416,7 @@ constexpr base::FeatureParam<FirstRunDesktopSignInProm
+         &kFirstRunDesktopSignInPromoVariations};
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ BASE_FEATURE(kFirstRunDesktopRevamp, base::FEATURE_DISABLED_BY_DEFAULT);
+ #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
+ 
+@@ -460,7 +460,7 @@ BASE_FEATURE(kMigrateAccountManagerDelegate, base::FEA
+ 
+ BASE_FEATURE(kNonDefaultGaiaOriginCheck, base::FEATURE_ENABLED_BY_DEFAULT);
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  BASE_FEATURE(kOpenAllProfilesFromProfilePickerExperiment,
               base::FEATURE_DISABLED_BY_DEFAULT);
  const base::FeatureParam<int>
-@@ -422,7 +422,7 @@ const base::FeatureParam<int>
+@@ -469,7 +469,7 @@ const base::FeatureParam<int>
          "max_profiles_count_to_show_open_all_button_in_profile_picker", 5};
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
  
@@ -45,16 +72,16 @@
  BASE_FEATURE(kPasswordUploadUiUpdate, base::FEATURE_DISABLED_BY_DEFAULT);
  
  BASE_FEATURE(kProfileCreationDeclineSigninCTAExperiment,
-@@ -467,7 +467,7 @@ BASE_FEATURE(kRestrictDeviceManagementServiceOAuthScop
- BASE_FEATURE(kRollbackDiceMigration, base::FEATURE_DISABLED_BY_DEFAULT);
- #endif  // BUILDFLAG(ENABLE_DICE_SUPPORT)
+@@ -515,7 +515,7 @@ BASE_FEATURE(kRestrictDeviceManagementServiceOAuthScop
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #endif  // !BUILDFLAG(IS_ANDROID)
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  BASE_FEATURE(kShowProfilePickerToAllUsersExperiment,
               base::FEATURE_DISABLED_BY_DEFAULT);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
-@@ -488,7 +488,7 @@ const base::FeatureParam<int> kContextualSigninPromoDi
+@@ -536,7 +536,7 @@ const base::FeatureParam<int> kContextualSigninPromoDi
      "contextual_signin_promo_dismissed_threshold",
      2);
  
@@ -63,7 +90,7 @@
  BASE_FEATURE(kSignInPromoMaterialNextUI, base::FEATURE_ENABLED_BY_DEFAULT);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
  
-@@ -544,7 +544,7 @@ BASE_FEATURE(kStableDeviceId, base::FEATURE_DISABLED_B
+@@ -606,7 +606,7 @@ BASE_FEATURE(kStableDeviceId, base::FEATURE_DISABLED_B
  BASE_FEATURE(kSupportAddSessionEmailPrefill, base::FEATURE_ENABLED_BY_DEFAULT);
  #endif
  

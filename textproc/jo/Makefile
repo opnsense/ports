@@ -1,5 +1,5 @@
 PORTNAME=	jo
-DISTVERSION=	1.7
+DISTVERSION=	1.9
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/jpmens/${PORTNAME}/releases/download/${DISTVERSION}/
 

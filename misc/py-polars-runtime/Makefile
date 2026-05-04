@@ -1,6 +1,6 @@
 PORTNAME=	polars-runtime
 DISTVERSIONPREFIX=	py-
-DISTVERSION=	1.39.0
+DISTVERSION=	1.40.1
 CATEGORIES=	misc
 #MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -159,7 +159,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		equivalent-1.0.2 \
 		errno-0.3.14 \
 		error-code-3.3.2 \
-		ethnum-1.5.2 \
+		ethnum-1.5.3 \
 		event-listener-5.4.1 \
 		event-listener-strategy-0.5.4 \
 		fallible-streaming-iterator-0.1.9 \
@@ -230,7 +230,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		idna-1.1.0 \
 		idna_adapter-1.2.1 \
 		indexmap-2.13.0 \
-		indoc-2.0.7 \
 		inventory-0.3.21 \
 		ipnet-2.11.0 \
 		iri-string-0.7.10 \
@@ -259,12 +258,11 @@ CARGO_CRATES=	adler2-2.0.1 \
 		lru-slab-0.1.2 \
 		lz4-1.28.1 \
 		lz4-sys-1.11.1+lz4-1.10.0 \
-		lz4_flex-0.12.0 \
+		lz4_flex-0.12.1 \
 		matrixmultiply-0.3.10 \
 		md-5-0.10.6 \
 		memchr-2.8.0 \
 		memmap2-0.9.10 \
-		memoffset-0.9.1 \
 		mimalloc-0.1.48 \
 		miniz_oxide-0.8.9 \
 		mio-1.1.1 \
@@ -281,7 +279,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		num-iter-0.1.45 \
 		num-rational-0.4.2 \
 		num-traits-0.2.19 \
-		numpy-0.27.1 \
+		numpy-0.28.0 \
 		objc2-0.6.3 \
 		objc2-app-kit-0.3.2 \
 		objc2-core-foundation-0.3.2 \
@@ -322,11 +320,11 @@ CARGO_CRATES=	adler2-2.0.1 \
 		prost-0.11.9 \
 		prost-derive-0.11.9 \
 		psm-0.1.30 \
-		pyo3-0.27.2 \
-		pyo3-build-config-0.27.2 \
-		pyo3-ffi-0.27.2 \
-		pyo3-macros-0.27.2 \
-		pyo3-macros-backend-0.27.2 \
+		pyo3-0.28.2 \
+		pyo3-build-config-0.28.2 \
+		pyo3-ffi-0.28.2 \
+		pyo3-macros-0.28.2 \
+		pyo3-macros-backend-0.28.2 \
 		quad-rand-0.2.3 \
 		quick-xml-0.39.1 \
 		quinn-0.11.9 \
@@ -473,7 +471,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		unicode-segmentation-1.12.0 \
 		unicode-width-0.2.2 \
 		unicode-xid-0.2.6 \
-		unindent-0.2.4 \
 		untrusted-0.9.0 \
 		unty-0.0.4 \
 		url-2.5.8 \
@@ -570,8 +567,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		zstd-safe-7.2.4 \
 		zstd-sys-2.0.16+zstd.1.5.7 \
 		object_store@git+https://github.com/kdn36/arrow-rs-object-store?branch=feat_checksum_crc64\#12323e21b6e420f1e9d630fa8c4a40de41b11f2f \
-		color-backtrace@git+https://github.com/orlp/color-backtrace?rev=bb62ccf1e9eb1f6b7af5f16acff1fd7151a876dd\#bb62ccf1e9eb1f6b7af5f16acff1fd7151a876dd \
-		tikv-jemalloc-sys,tikv-jemallocator@git+https://github.com/pola-rs/jemallocator?rev=c7991e5bb6b3e9f79db6b0f48dcda67c5c3d2936\#c7991e5bb6b3e9f79db6b0f48dcda67c5c3d2936
+		color-backtrace@git+https://github.com/orlp/color-backtrace?rev=bb62ccf1e9eb1f6b7af5f16acff1fd7151a876dd\#bb62ccf1e9eb1f6b7af5f16acff1fd7151a876dd
 CARGO_TARGET_DIR=	${WRKSRC}/target
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
@@ -583,6 +579,9 @@ TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${CARGO_WRKSRC}/tests
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+xpost-patch:
+	@${REINPLACE_CMD} -e 's|ethnum-1.5.2|ethnum-1.5.3|' ${WRKSRC}/Cargo.lock
 
 PLIST_SUB+=	FLAVOR=${FLAVOR} \
 		PORTVERSION=${PORTVERSION}

@@ -1,5 +1,6 @@
 PORTNAME=	apache-arrow
 DISTVERSION=	21.0.0
+PORTREVISION=	1
 CATEGORIES=	databases python
 MASTER_SITES=	APACHE/arrow/arrow-${DISTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,11 +16,11 @@ LICENSE_FILE=	${WRKSRC}/../LICENSE.txt
 BROKEN_i386=	compilation fails: ran out of registers during register allocation
 
 BUILD_DEPENDS=	cmake:devel/cmake-core \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libarrow.so:databases/arrow # assumes that arrow is built with PYTHON=ON (python support is built)
 
 USES=		compiler:c++11-lang pkgconfig python

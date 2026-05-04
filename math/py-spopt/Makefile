@@ -1,5 +1,6 @@
 PORTNAME=	spopt
 PORTVERSION=	0.7.0
+PORTREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geopandas>=0.14.0:graphics/py-geopandas@${PY
 		${PYTHON_PKGNAMEPREFIX}libpysal>=4.10.0:science/py-libpysal@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mapclassify>=2.7.0:graphics/py-mapclassify@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}networkx>=3.2,1:math/py-networkx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.26.0,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.26.0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=2.1.0,1:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pointpats>=2.4.0:graphics/py-pointpats@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}PuLP>=2.8:math/py-PuLP@${PY_FLAVOR} \

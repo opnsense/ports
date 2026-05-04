@@ -1,6 +1,6 @@
 PORTNAME=	ipyfastscape
 DISTVERSION=	0.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipygany>=0.5.0:science/py-ipygany@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ipywidgets>0:devel/py-ipywidgets@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ipython>=0:devel/ipython@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xarray>0:devel/py-xarray@${PY_FLAVOR}
 
 USES=		python

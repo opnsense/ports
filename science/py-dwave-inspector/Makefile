@@ -1,5 +1,6 @@
 PORTNAME=	dwave-inspector
 DISTVERSION=	0.5.5
+PORTREVISION=	1
 CATEGORIES=	science python # quantum-computing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -14,7 +15,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dimod>=0.10.0:science/py-dimod@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}dwave-cloud-client>=0.13.0:science/py-dwave-cloud-client@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dwave-system>=1.3.0:science/py-dwave-system@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}flask>=2.2:www/py-flask@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}orjson>=3.10.0:devel/py-orjson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}werkzeug>0:www/py-werkzeug@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}vcrpy>0:devel/py-vcrpy@${PY_FLAVOR}

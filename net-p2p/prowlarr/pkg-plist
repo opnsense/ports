@@ -10,23 +10,10 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/DryIoc.dll
 %%DATADIR%%/bin/Dynamitey.dll
 %%DATADIR%%/bin/FluentMigrator.Abstractions.dll
-%%DATADIR%%/bin/FluentMigrator.Extensions.Oracle.dll
 %%DATADIR%%/bin/FluentMigrator.Extensions.Postgres.dll
-%%DATADIR%%/bin/FluentMigrator.Extensions.SqlAnywhere.dll
-%%DATADIR%%/bin/FluentMigrator.Extensions.SqlServer.dll
 %%DATADIR%%/bin/FluentMigrator.Runner.Core.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.Db2.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.Firebird.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.Hana.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.MySql.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.Oracle.dll
 %%DATADIR%%/bin/FluentMigrator.Runner.Postgres.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.Redshift.dll
 %%DATADIR%%/bin/FluentMigrator.Runner.SQLite.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.SqlAnywhere.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.SqlServer.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.SqlServerCe.dll
-%%DATADIR%%/bin/FluentMigrator.Runner.dll
 %%DATADIR%%/bin/FluentMigrator.dll
 %%DATADIR%%/bin/FluentValidation.dll
 %%DATADIR%%/bin/ICSharpCode.SharpZipLib.dll
@@ -307,7 +294,6 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/System.Data.Common.dll
 %%DATADIR%%/bin/System.Data.DataSetExtensions.dll
 %%DATADIR%%/bin/System.Data.SQLite.dll
-%%DATADIR%%/bin/System.Data.SqlServerCe.dll
 %%DATADIR%%/bin/System.Data.dll
 %%DATADIR%%/bin/System.Diagnostics.Contracts.dll
 %%DATADIR%%/bin/System.Diagnostics.Debug.dll
@@ -420,7 +406,6 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/System.Security.Cryptography.X509Certificates.dll
 %%DATADIR%%/bin/System.Security.Cryptography.Xml.dll
 %%DATADIR%%/bin/System.Security.Cryptography.dll
-%%DATADIR%%/bin/System.Security.Permissions.dll
 %%DATADIR%%/bin/System.Security.Principal.Windows.dll
 %%DATADIR%%/bin/System.Security.Principal.dll
 %%DATADIR%%/bin/System.Security.SecureString.dll
@@ -451,7 +436,6 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/System.ValueTuple.dll
 %%DATADIR%%/bin/System.Web.HttpUtility.dll
 %%DATADIR%%/bin/System.Web.dll
-%%DATADIR%%/bin/System.Windows.Extensions.dll
 %%DATADIR%%/bin/System.Windows.dll
 %%DATADIR%%/bin/System.Xml.Linq.dll
 %%DATADIR%%/bin/System.Xml.ReaderWriter.dll
@@ -484,7 +468,6 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/UI/Content/Images/Icons/android-chrome-192x192.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/android-chrome-512x512.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/apple-touch-icon.png
-%%DATADIR%%/bin/UI/Content/Images/Icons/browserconfig.xml
 %%DATADIR%%/bin/UI/Content/Images/Icons/favicon-16x16.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/favicon-32x32.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/favicon-debug-16x16.png
@@ -496,7 +479,6 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/UI/Content/Images/Icons/logo-radarr.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/logo-readarr.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/logo-sonarr.png
-%%DATADIR%%/bin/UI/Content/Images/Icons/manifest.json
 %%DATADIR%%/bin/UI/Content/Images/Icons/mstile-144x144.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/mstile-150x150.png
 %%DATADIR%%/bin/UI/Content/Images/Icons/mstile-310x150.png
@@ -508,6 +490,8 @@ etc/libmap.d/Prowlarr.conf
 %%DATADIR%%/bin/UI/Content/Images/logo.png
 %%DATADIR%%/bin/UI/Content/Images/logo.svg
 %%DATADIR%%/bin/UI/Content/Images/poster-dark.png
+%%DATADIR%%/bin/UI/Content/browserconfig.xml
+%%DATADIR%%/bin/UI/Content/manifest.json
 %%DATADIR%%/bin/UI/Content/robots.txt
 %%DATADIR%%/bin/UI/Content/styles.css
 %%DATADIR%%/bin/UI/Content/styles.css.map

@@ -1,7 +1,6 @@
 PORTNAME=	pangolin
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.4
-PORTREVISION=	1
+DISTVERSION=	0.9.5
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -21,7 +20,7 @@ LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
 
-EXTRA_PATCHES=	${FILESDIR}/fix-build-with-clang.patch:-p1
+#EXTRA_PATCHES=	${FILESDIR}/fix-build-with-clang.patch:-p1
 
 USES=		cmake compiler:c++17-lang eigen:3 gl jpeg localbase:ldflags pkgconfig xorg
 USE_XORG=	ice sm x11 xext

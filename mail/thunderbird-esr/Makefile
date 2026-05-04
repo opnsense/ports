@@ -1,8 +1,9 @@
 PORTNAME=	thunderbird
-DISTVERSION=	140.8.1
+DISTVERSION=	140.10.1
+PORTREVISION=	1
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}esr-candidates/build1/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}esr-candidates/build2/source
 PKGNAMESUFFIX=	-esr
 DISTFILES=	${DISTNAME}esr.source${EXTRACT_SUFX}
 
@@ -23,8 +24,8 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip \
-		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
-		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc@${LLVM_VERSION} \
+		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
+		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc.a:devel/wasi-libc@${LLVM_VERSION} \
 		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
@@ -60,6 +61,8 @@ post-extract:
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/comm/mail/app/nsMailApp.cpp
+	@${REINPLACE_CMD} -e 's|wasm32-wasi|&p1|' \
+		${WRKSRC}/build/moz.configure/toolchain.configure
 
 port-pre-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/defaults

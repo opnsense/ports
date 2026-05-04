@@ -98,6 +98,7 @@ share/icons/hicolor/scalable/places/start-here-lxqt.svg
 %%LXQT_SHAREDIR%%/themes/Clearlooks/assets/scrollbars/scrollbar-h.png
 %%LXQT_SHAREDIR%%/themes/Clearlooks/assets/scrollbars/scrollbar-v.png
 %%LXQT_SHAREDIR%%/themes/Clearlooks/assets/scrollbars/slider-active.png
+%%LXQT_SHAREDIR%%/themes/Clearlooks/assets/scrollbars/slider-v.png
 %%LXQT_SHAREDIR%%/themes/Clearlooks/assets/scrollbars/slider.png
 %%LXQT_SHAREDIR%%/themes/Clearlooks/assets/scrollbars/subpage.png
 %%LXQT_SHAREDIR%%/themes/Clearlooks/lxqt-config.qss

@@ -1,6 +1,5 @@
 PORTNAME=	qemu
-DISTVERSION=	10.1.20251130
-PORTREVISION=	1
+DISTVERSION=	10.2.20260130
 CATEGORIES=	emulators
 PKGNAMESUFFIX=	-devel
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -14,6 +13,7 @@ LICENSE=	GPLv2
 ONLY_FOR_ARCHS=	amd64 powerpc powerpc64 powerpc64 powerpc64le
 
 BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR} \
 		bash:shells/bash
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
@@ -26,11 +26,11 @@ USES=		bison compiler:c11 cpe gmake gnome iconv:wchar_t localbase:ldflags \
 		ninja:build perl5 pkgconfig python:build shebangfix tar:xz xorg
 USE_GITLAB=	yes
 GL_ACCOUNT=	qemu-project
-GL_TAGNAME=	9ef49528b5286f078061b52ac41e0ca19fa10e36
+GL_TAGNAME=	ffcf1a7981793973ffbd8100a7c3c6042d02ae23
 GL_TUPLE=	qemu-project:keycodemapdb:f5772a62ec52591ff6870b7e8ef32482371f22c6:keycodemapdb/subprojects/keycodemapdb \
 		qemu-project:dtc:b6910bec11614980a21e46fbccc35934b671bd81:dtc/subprojects/dtc \
 		qemu-project:libvfio-user:0b28d205572c80b568a1003db2c8f37ca333e4d7:libvfio/subprojects/libvfio-user \
-		qemu-project:meson:29fa2050bc8f0e19a7079a7c8c7da40c5e1b7b8e:meson/meson \
+		qemu-project:meson:0db5a5a185d154449a808b688262d485a220b7a3:meson/meson \
 		qemu-project:berkeley-softfloat-3:b64af41c3276f97f0e181920400ee056b9c88037:berkeleysoftfloat3/subprojects/berkeley-softfloat-3 \
 		qemu-project:berkeley-testfloat-3:e7af9751d9f9fd3b47911f51a5cfd08af256a9ab:berkeleytestfloat3/subprojects/berkeley-testfloat-3
 USE_GNOME=	cairo glib20

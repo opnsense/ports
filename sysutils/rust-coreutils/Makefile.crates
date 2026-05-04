@@ -3,9 +3,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		allocator-api2-0.2.21 \
 		android_system_properties-0.1.5 \
 		ansi-width-0.1.0 \
-		anstream-0.6.21 \
+		anstream-1.0.0 \
 		anstyle-1.0.13 \
-		anstyle-parse-0.2.7 \
+		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
 		anyhow-1.0.101 \
@@ -18,43 +18,47 @@ CARGO_CRATES=	adler2-2.0.1 \
 		binary-heap-plus-0.5.0 \
 		bindgen-0.72.1 \
 		bitflags-1.3.2 \
-		bitflags-2.10.0 \
+		bitflags-2.11.0 \
 		bitvec-1.0.1 \
 		blake2b_simd-1.0.4 \
-		blake3-1.8.3 \
+		blake3-1.8.4 \
 		block-buffer-0.10.4 \
+		block-buffer-0.12.0 \
 		block2-0.6.2 \
 		bstr-1.12.1 \
 		bumpalo-3.19.1 \
 		bytecount-0.6.9 \
 		byteorder-1.5.0 \
-		calendrical_calculations-0.2.3 \
+		calendrical_calculations-0.2.4 \
 		cc-1.2.55 \
 		cexpr-0.6.0 \
 		cfg-if-1.0.4 \
 		cfg_aliases-0.2.1 \
+		chacha20-0.10.0 \
 		chrono-0.4.43 \
 		clang-sys-1.8.1 \
-		clap-4.5.60 \
-		clap_builder-4.5.60 \
-		clap_complete-4.5.66 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_complete-4.6.0 \
 		clap_lex-1.0.0 \
-		clap_mangen-0.2.31 \
-		codspeed-4.3.0 \
-		codspeed-divan-compat-4.3.0 \
-		codspeed-divan-compat-macros-4.3.0 \
-		codspeed-divan-compat-walltime-4.3.0 \
+		clap_mangen-0.3.0 \
+		codspeed-4.4.1 \
+		codspeed-divan-compat-4.4.1 \
+		codspeed-divan-compat-macros-4.4.1 \
+		codspeed-divan-compat-walltime-4.4.1 \
 		colorchoice-1.0.4 \
 		colored-2.2.0 \
 		compare-0.1.0 \
 		condtype-1.3.0 \
-		console-0.16.2 \
+		console-0.16.3 \
+		const-oid-0.10.2 \
 		const-random-0.1.18 \
 		const-random-macro-0.1.16 \
 		constant_time_eq-0.4.2 \
 		core-foundation-sys-0.8.7 \
 		core_maths-0.1.1 \
 		cpufeatures-0.2.17 \
+		cpufeatures-0.3.0 \
 		crc-3.3.0 \
 		crc-catalog-2.4.0 \
 		crc-fast-1.9.0 \
@@ -66,22 +70,24 @@ CARGO_CRATES=	adler2-2.0.1 \
 		crossterm_winapi-0.9.1 \
 		crunchy-0.2.4 \
 		crypto-common-0.1.7 \
-		ctor-0.6.3 \
+		crypto-common-0.2.1 \
+		ctor-0.8.0 \
 		ctor-proc-macro-0.0.7 \
-		ctrlc-3.5.1 \
+		ctrlc-3.5.2 \
 		data-encoding-2.10.0 \
 		data-encoding-macro-0.1.19 \
 		data-encoding-macro-internal-0.1.17 \
 		deranged-0.5.5 \
 		diff-0.1.13 \
 		digest-0.10.7 \
+		digest-0.11.2 \
 		dispatch2-0.3.0 \
 		displaydoc-0.2.5 \
 		divan-macros-0.1.17 \
 		dlv-list-0.5.2 \
 		dns-lookup-3.0.1 \
 		document-features-0.2.12 \
-		dtor-0.1.1 \
+		dtor-0.3.0 \
 		dtor-proc-macro-0.0.6 \
 		dunce-1.0.5 \
 		either-1.15.0 \
@@ -94,7 +100,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		filedescriptor-0.8.3 \
 		filetime-0.2.27 \
 		find-msvc-tools-0.1.9 \
-		fixed_decimal-0.7.1 \
+		fixed_decimal-0.7.2 \
 		flate2-1.1.9 \
 		fluent-0.17.0 \
 		fluent-bundle-0.16.0 \
@@ -114,39 +120,42 @@ CARGO_CRATES=	adler2-2.0.1 \
 		gcd-2.3.0 \
 		generic-array-0.14.7 \
 		getrandom-0.2.17 \
-		getrandom-0.3.4 \
+		getrandom-0.4.2 \
 		glob-0.3.3 \
 		half-2.7.1 \
 		hashbrown-0.14.5 \
 		hashbrown-0.15.5 \
 		hashbrown-0.16.1 \
+		heck-0.5.0 \
 		hex-0.4.3 \
 		hex-literal-1.1.0 \
 		hostname-0.4.2 \
+		hybrid-array-0.4.8 \
 		iana-time-zone-0.1.65 \
 		iana-time-zone-haiku-0.1.2 \
-		icu_calendar-2.1.1 \
-		icu_calendar_data-2.1.1 \
-		icu_collator-2.1.1 \
-		icu_collator_data-2.1.1 \
-		icu_collections-2.1.1 \
-		icu_datetime-2.1.1 \
-		icu_datetime_data-2.1.2 \
-		icu_decimal-2.1.1 \
-		icu_decimal_data-2.1.1 \
-		icu_locale-2.1.1 \
-		icu_locale_core-2.1.1 \
-		icu_locale_data-2.1.2 \
-		icu_normalizer-2.1.1 \
-		icu_normalizer_data-2.1.1 \
-		icu_pattern-0.4.1 \
-		icu_plurals-2.1.1 \
-		icu_plurals_data-2.1.1 \
-		icu_properties-2.1.2 \
-		icu_properties_data-2.1.2 \
-		icu_provider-2.1.1 \
-		icu_time-2.1.1 \
-		icu_time_data-2.1.1 \
+		icu_calendar-2.2.1 \
+		icu_calendar_data-2.2.0 \
+		icu_collator-2.2.0 \
+		icu_collator_data-2.2.0 \
+		icu_collections-2.2.0 \
+		icu_datetime-2.2.0 \
+		icu_datetime_data-2.2.0 \
+		icu_decimal-2.2.0 \
+		icu_decimal_data-2.2.0 \
+		icu_locale-2.2.0 \
+		icu_locale_core-2.2.0 \
+		icu_locale_data-2.2.0 \
+		icu_normalizer-2.2.0 \
+		icu_normalizer_data-2.2.0 \
+		icu_pattern-0.4.2 \
+		icu_plurals-2.2.0 \
+		icu_plurals_data-2.2.0 \
+		icu_properties-2.2.0 \
+		icu_properties_data-2.2.0 \
+		icu_provider-2.2.0 \
+		icu_time-2.2.0 \
+		icu_time_data-2.2.0 \
+		id-arena-2.3.0 \
 		indexmap-2.13.0 \
 		indicatif-0.18.4 \
 		inotify-0.11.0 \
@@ -156,8 +165,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		is_terminal_polyfill-1.70.2 \
 		itertools-0.13.0 \
 		itertools-0.14.0 \
-		itoa-1.0.17 \
-		ixdtf-0.6.4 \
+		itoa-1.0.18 \
 		jiff-0.2.23 \
 		jiff-icu-0.2.2 \
 		jiff-static-0.2.23 \
@@ -168,10 +176,11 @@ CARGO_CRATES=	adler2-2.0.1 \
 		kqueue-1.1.1 \
 		kqueue-sys-1.0.4 \
 		lazy_static-1.5.0 \
+		leb128fmt-0.1.0 \
 		libc-0.2.182 \
 		libloading-0.8.9 \
 		libm-0.2.16 \
-		libredox-0.1.12 \
+		libredox-0.1.15 \
 		linux-raw-sys-0.12.1 \
 		litemap-0.8.1 \
 		litrs-1.0.0 \
@@ -186,7 +195,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		minimal-lexical-0.2.1 \
 		miniz_oxide-0.8.9 \
 		mio-1.1.1 \
-		nix-0.30.1 \
+		nix-0.31.2 \
 		nom-7.1.3 \
 		nom-8.0.0 \
 		notify-8.2.0 \
@@ -217,7 +226,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		phf_shared-0.13.1 \
 		pin-project-lite-0.2.16 \
 		pkg-config-0.3.32 \
-		platform-info-2.0.5 \
+		plain-0.2.3 \
+		platform-info-2.1.0 \
 		portable-atomic-1.13.1 \
 		portable-atomic-util-0.2.5 \
 		potential_utf-0.1.4 \
@@ -230,14 +240,14 @@ CARGO_CRATES=	adler2-2.0.1 \
 		procfs-0.18.0 \
 		procfs-core-0.18.0 \
 		quote-1.0.45 \
-		r-efi-5.3.0 \
+		r-efi-6.0.0 \
 		radium-0.7.0 \
 		rand-0.8.5 \
-		rand-0.9.2 \
+		rand-0.10.0 \
 		rand_chacha-0.3.1 \
-		rand_chacha-0.9.0 \
+		rand_chacha-0.10.0 \
 		rand_core-0.6.4 \
-		rand_core-0.9.5 \
+		rand_core-0.10.0 \
 		rayon-1.11.0 \
 		rayon-core-1.13.0 \
 		redox_syscall-0.5.18 \
@@ -248,11 +258,12 @@ CARGO_CRATES=	adler2-2.0.1 \
 		regex-syntax-0.8.9 \
 		relative-path-1.9.3 \
 		rlimit-0.11.0 \
-		roff-0.2.2 \
+		roff-1.1.0 \
 		rstest-0.26.1 \
 		rstest_macros-0.26.1 \
+		rstest_reuse-0.7.0 \
 		rust-ini-0.21.3 \
-		rustc-hash-2.1.1 \
+		rustc-hash-2.1.2 \
 		rustc_version-0.4.1 \
 		rustix-1.1.4 \
 		rustversion-1.0.22 \
@@ -276,7 +287,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		simd-adler32-0.3.8 \
 		siphasher-1.0.2 \
 		slab-0.4.12 \
-		sm3-0.4.2 \
+		sm3-0.5.0 \
 		smallvec-1.15.1 \
 		smawk-0.3.2 \
 		socket2-0.6.2 \
@@ -288,8 +299,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		syn-2.0.114 \
 		synstructure-0.13.2 \
 		tap-1.0.1 \
-		tempfile-3.26.0 \
-		terminal_size-0.4.3 \
+		tempfile-3.27.0 \
+		terminal_size-0.4.4 \
 		textwrap-0.16.2 \
 		thiserror-1.0.69 \
 		thiserror-2.0.18 \
@@ -299,7 +310,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		time-core-0.1.8 \
 		time-macros-0.2.27 \
 		tiny-keccak-2.0.2 \
-		tinystr-0.8.2 \
+		tinystr-0.8.3 \
 		toml_datetime-0.7.5+spec-1.1.0 \
 		toml_edit-0.23.10+spec-1.0.0 \
 		toml_parser-1.0.6+spec-1.1.0 \
@@ -312,6 +323,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		unicode-linebreak-0.1.5 \
 		unicode-width-0.1.14 \
 		unicode-width-0.2.2 \
+		unicode-xid-0.2.6 \
 		unindent-0.2.4 \
 		unit-prefix-0.5.2 \
 		utf16_iter-1.0.5 \
@@ -320,16 +332,20 @@ CARGO_CRATES=	adler2-2.0.1 \
 		utmp-classic-0.1.6 \
 		utmp-classic-raw-0.1.3 \
 		uuid-1.20.0 \
-		uutils_term_grid-0.7.0 \
+		uutils_term_grid-0.8.0 \
 		version_check-0.9.5 \
 		vsimd-0.8.0 \
 		walkdir-2.5.0 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
 		wasip2-1.0.2+wasi-0.2.9 \
+		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
 		wasm-bindgen-0.2.108 \
 		wasm-bindgen-macro-0.2.108 \
 		wasm-bindgen-macro-support-0.2.108 \
 		wasm-bindgen-shared-0.2.108 \
+		wasm-encoder-0.244.0 \
+		wasm-metadata-0.244.0 \
+		wasmparser-0.244.0 \
 		web-time-1.1.0 \
 		wild-2.2.1 \
 		winapi-0.3.9 \
@@ -365,13 +381,18 @@ CARGO_CRATES=	adler2-2.0.1 \
 		windows_x86_64_msvc-0.53.1 \
 		winnow-0.7.14 \
 		wit-bindgen-0.51.0 \
+		wit-bindgen-core-0.51.0 \
+		wit-bindgen-rust-0.51.0 \
+		wit-bindgen-rust-macro-0.51.0 \
+		wit-component-0.244.0 \
+		wit-parser-0.244.0 \
 		write16-1.0.0 \
 		writeable-0.6.2 \
 		wyz-0.5.1 \
 		xattr-1.6.1 \
 		yansi-1.0.1 \
-		yoke-0.8.1 \
-		yoke-derive-0.8.1 \
+		yoke-0.8.2 \
+		yoke-derive-0.8.2 \
 		z85-3.0.7 \
 		zerocopy-0.7.35 \
 		zerocopy-0.8.39 \
@@ -379,10 +400,10 @@ CARGO_CRATES=	adler2-2.0.1 \
 		zerocopy-derive-0.8.39 \
 		zerofrom-0.1.6 \
 		zerofrom-derive-0.1.6 \
-		zerotrie-0.2.3 \
-		zerovec-0.11.5 \
-		zerovec-derive-0.11.2 \
-		zip-8.2.0 \
+		zerotrie-0.2.4 \
+		zerovec-0.11.6 \
+		zerovec-derive-0.11.3 \
+		zip-8.5.0 \
 		zlib-rs-0.6.0 \
 		zmij-1.0.19 \
 		zopfli-0.8.3

@@ -26,7 +26,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cloudpickle>0:devel/py-cloudpickle@${PY_FLAV
 # 100 passed, 7 skipped, 4 warnings
 # 1 failure may occur, see https://github.com/spyder-ide/spyder-kernels/issues/501
 # test_django_settings fail if www/djangoXX not installed
-#TEST_DEPENDS=	${PYNUMPY} \
+#TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 #		${PYTHON_PKGNAMEPREFIX}codecov>0:devel/py-codecov@${PY_FLAVOR} \
 #		${PYTHON_PKGNAMEPREFIX}cython>0:lang/cython@${PY_FLAVOR} \
 #		${PYTHON_PKGNAMEPREFIX}dask>0:devel/py-dask@${PY_FLAVOR} \

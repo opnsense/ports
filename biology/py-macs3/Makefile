@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 NOT_FOR_ARCHS=	i386
 NOT_FOR_ARCHS_REASON_i386=Requires _Float16
 
-COMMON_DEPENDS=	${PYNUMPY} \
+COMMON_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>1.11.1:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cykhash>=2.0,<3.0:devel/py-cykhash@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-learn>=1.3:science/py-scikit-learn@${PY_FLAVOR} \

@@ -1,6 +1,7 @@
 PORTNAME=	USearch
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.24.0
+PORTREVISION=	1
 CATEGORIES=	math java
 
 MAINTAINER=	markus.graf@markusgraf.net

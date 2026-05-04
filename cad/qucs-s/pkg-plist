@@ -10,6 +10,7 @@ bin/qucs_run_hdl
 bin/qucs_run_verilog
 bin/qucsator_rf
 bin/qucsconv_rf
+bin/rxcalc
 share/applications/qucs-s.desktop
 share/icons/hicolor/128x128/apps/qucs-s.png
 share/icons/hicolor/16x16/apps/qucs-s.png
@@ -24,6 +25,10 @@ share/man/man1/qucs-s.1.gz
 share/man/man1/qucsator_rf.1.gz
 share/man/man1/qucsconv_rf.1.gz
 share/metainfo/io.github.ra3xdh.qucs_s.metainfo.xml
+%%DATADIR%%/examples/Postprocessing/ExternalPostprocessing_prj/LPF.sch
+%%DATADIR%%/examples/Postprocessing/ExternalPostprocessing_prj/OctavePlot.m
+%%DATADIR%%/examples/Postprocessing/ExternalPostprocessing_prj/PythonPlot.py
+%%DATADIR%%/examples/Postprocessing/ExternalPostprocessing_prj/parse_qucs_dat.m
 %%DATADIR%%/examples/README
 %%DATADIR%%/examples/external_interface/cpp-interface/boostconverter.net
 %%DATADIR%%/examples/external_interface/cpp-interface/main.cpp
@@ -340,6 +345,8 @@ share/metainfo/io.github.ra3xdh.qucs_s.metainfo.xml
 %%DATADIR%%/library/Analog.lib
 %%DATADIR%%/library/AudioIC.lib
 %%DATADIR%%/library/BF998.lib
+%%DATADIR%%/library/BJT_Darlington.lib
+%%DATADIR%%/library/BJT_Darlington/DarlingtonTIP14X.cir
 %%DATADIR%%/library/BJT_Extended.lib
 %%DATADIR%%/library/Bridges.lib
 %%DATADIR%%/library/Cores.lib
@@ -367,6 +374,8 @@ share/metainfo/io.github.ra3xdh.qucs_s.metainfo.xml
 %%DATADIR%%/library/MixerIC.lib
 %%DATADIR%%/library/NMOSFETs.lib
 %%DATADIR%%/library/Neon.lib
+%%DATADIR%%/library/OpAmp_140.lib
+%%DATADIR%%/library/OpAmp_544.lib
 %%DATADIR%%/library/OpAmps.lib
 %%DATADIR%%/library/Optocoupler.lib
 %%DATADIR%%/library/Optocoupler/moc3052_3062.cir
@@ -458,6 +467,7 @@ share/metainfo/io.github.ra3xdh.qucs_s.metainfo.xml
 %%DATADIR%%/python/rc_ac_sweep.net
 %%DATADIR%%/spicelibrary/coax.cir
 %%DATADIR%%/spicelibrary/core.cir
+%%DATADIR%%/spicelibrary/spdt.cir
 %%DATADIR%%/spicelibrary/winding.cir
 %%DATADIR%%/spicelibrary/xfmr.cir
 %%DATADIR%%/symbols/and2.sym

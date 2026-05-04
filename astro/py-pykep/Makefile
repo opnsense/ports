@@ -1,7 +1,7 @@
 PORTNAME=	pykep
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.6.2
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	astro python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LIB_DEPENDS=	libboost_serialization.so:devel/boost-libs \
 		libkeplerian_toolbox.so:astro/pykep \
 		${PY_BOOST}
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pygmo2>0:science/py-pygmo2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}

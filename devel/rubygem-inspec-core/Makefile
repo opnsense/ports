@@ -1,5 +1,5 @@
 PORTNAME=	inspec-core
-PORTVERSION=	7.0.95
+PORTVERSION=	7.0.107
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -34,7 +34,7 @@ RUN_DEPENDS=	rubygem-addressable>=2.4<3:www/rubygem-addressable \
 		rubygem-syslog>=0.1<1:devel/rubygem-syslog \
 		rubygem-thor>=0.20<1.6.0:devel/rubygem-thor \
 		rubygem-tomlrb>=1.3<2.1:textproc/rubygem-tomlrb \
-		rubygem-train-core>=3.13.4<4:net/rubygem-train-core \
+		rubygem-train-core>=3.16.1<4:net/rubygem-train-core \
 		rubygem-tty-prompt>=0.17<1:devel/rubygem-tty-prompt \
 		rubygem-tty-table>=0.10<1:devel/rubygem-tty-table
 

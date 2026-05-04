@@ -1,4 +1,4 @@
---- components/autofill/core/common/autofill_payments_features.cc.orig	2026-03-15 18:32:51 UTC
+--- components/autofill/core/common/autofill_payments_features.cc.orig	2026-04-15 11:25:12 UTC
 +++ components/autofill/core/common/autofill_payments_features.cc
 @@ -32,7 +32,7 @@ BASE_FEATURE(kAutofillEnableAiBasedAmountExtraction,
  // of the allowlisted merchant websites.
@@ -63,7 +63,7 @@
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -173,7 +173,7 @@ BASE_FEATURE(kAutofillEnableFlatRateCardBenefitsBlockl
+@@ -169,7 +169,7 @@ BASE_FEATURE(kAutofillEnableFlatRateCardBenefitsBlockl
  // Payments Autofill UI.
  BASE_FEATURE(kAutofillEnableFlatRateCardBenefitsFromCurinos,
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -72,7 +72,25 @@
               base::FEATURE_ENABLED_BY_DEFAULT);
  #else
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -325,7 +325,7 @@ const base::FeatureParam<int> kAutofillVcnEnrollStrike
+@@ -247,7 +247,7 @@ BASE_FEATURE(kAutofillEnableTouchToFillReshowForBnpl,
+ // the card, and FIDO is not.
+ BASE_FEATURE(kAutofillEnableVcn3dsAuthentication,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -271,7 +271,7 @@ BASE_FEATURE(kAutofillEnableWalletBranding, base::FEAT
+ // eligibility.
+ BASE_FEATURE(kAutofillPreferBuyNowPayLaterBlocklists,
+ #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
+              base::FEATURE_ENABLED_BY_DEFAULT);
+ #else
+              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -329,7 +329,7 @@ const base::FeatureParam<int> kAutofillVcnEnrollStrike
      /*default_value=*/180};
  
  bool ShouldShowImprovedUserConsentForCreditCardSave() {

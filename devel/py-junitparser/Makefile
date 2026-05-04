@@ -1,5 +1,5 @@
 PORTNAME=	junitparser
-DISTVERSION=	4.0.2
+DISTVERSION=	5.0.0
 CATEGORIES=	devel net
 #MASTER_SITES=	PYPI # some test files are missing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,7 +21,11 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	weiwei
 
 NO_ARCH=	yes
+TEST_ARGS=	tests
 
-# tests as of 4.0.2: 123 passed, 2 skipped in 8.13s
+# tests as of 5.0.0:
+# Results (1.70s):
+#        381 passed
+#          2 skipped
 
 .include <bsd.port.mk>

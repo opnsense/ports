@@ -1,5 +1,5 @@
 PORTNAME=	himitsu
-DISTVERSION=	0.9
+DISTVERSION=	0.10
 CATEGORIES=	security
 MASTER_SITES=	https://git.sr.ht/~sircmpwn/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 

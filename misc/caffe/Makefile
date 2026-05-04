@@ -1,7 +1,7 @@
 PORTNAME=	caffe
 DISTVERSION=	1.0-136
 DISTVERSIONSUFFIX=	-g9b891540
-PORTREVISION=	23
+PORTREVISION=	24
 CATEGORIES=	misc # machine-learning
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -16,7 +16,7 @@ LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	bash:shells/bash \
-		${PYNUMPY}
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libsnappy.so:archivers/snappy \
 		libleveldb.so:databases/leveldb \
 		liblmdb.so:databases/lmdb \
@@ -28,7 +28,7 @@ LIB_DEPENDS=	libsnappy.so:archivers/snappy \
 		libopencv_highgui.so:graphics/opencv \
 		libopenblas.so:math/openblas \
 		libhdf5.so:science/hdf5
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}protobuf>0:devel/py-protobuf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydot>0:graphics/py-pydot@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydotplus>0:graphics/py-pydotplus@${PY_FLAVOR} \

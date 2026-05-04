@@ -1,6 +1,6 @@
 PORTNAME=	intellij-ultimate
 DISTVERSION=	2025.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	https://download-cdn.jetbrains.com/idea/
 DISTNAME=	idea-${DISTVERSION}

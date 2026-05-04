@@ -1,6 +1,6 @@
---- chrome/browser/ui/ui_features.h.orig	2026-02-16 10:45:29 UTC
+--- chrome/browser/ui/ui_features.h.orig	2026-04-15 12:07:04 UTC
 +++ chrome/browser/ui/ui_features.h
-@@ -24,7 +24,7 @@ BASE_DECLARE_FEATURE(kAllowEyeDropperWGCScreenCapture)
+@@ -25,7 +25,7 @@ BASE_DECLARE_FEATURE(kBrowserWidgetCacheThemeService);
  
  BASE_DECLARE_FEATURE(kCreateNewTabGroupAppMenuTopLevel);
  
@@ -9,8 +9,8 @@
  BASE_DECLARE_FEATURE(kDseIntegrity);
  BASE_DECLARE_FEATURE(kFewerUpdateConfirmations);
  #endif
-@@ -56,7 +56,7 @@ enum class PdfInfoBarTrigger { kPdfLoad = 0, kStartup 
- BASE_DECLARE_FEATURE_PARAM(PdfInfoBarTrigger, kPdfInfoBarTrigger);
+@@ -66,7 +66,7 @@ BASE_DECLARE_FEATURE_PARAM(int,
+ BASE_DECLARE_FEATURE_PARAM(int, kSeparateDefaultAndPinPromptMessageVersion);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
  
 -#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
@@ -18,7 +18,7 @@
  // When enabled, user may see the session restore UI flow.
  BASE_DECLARE_FEATURE(kSessionRestoreInfobar);
  
-@@ -290,7 +290,7 @@ BASE_DECLARE_FEATURE(kViewsFirstRunDialog);
+@@ -285,7 +285,7 @@ BASE_DECLARE_FEATURE(kViewsFirstRunDialog);
  BASE_DECLARE_FEATURE(kViewsJSAppModalDialog);
  #endif
  
@@ -27,9 +27,9 @@
  BASE_DECLARE_FEATURE(kUsePortalAccentColor);
  #endif
  
-@@ -400,7 +400,7 @@ BASE_DECLARE_FEATURE(kWhatsNewDesktopRefresh);
- 
- BASE_DECLARE_FEATURE(kTabGroupsFocusing);
+@@ -390,7 +390,7 @@ BASE_DECLARE_FEATURE(kTabGroupsFocusing);
+ BASE_DECLARE_FEATURE_PARAM(bool, kTabGroupsFocusingPinnedTabs);
+ BASE_DECLARE_FEATURE_PARAM(bool, kTabGroupsFocusingDefaultToFocused);
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

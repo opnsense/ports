@@ -27,4 +27,9 @@ USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
+OPTIONS_DEFINE=	LSP
+LSP_DESC=	Language Server Protocol support
+
+LSP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygls>=2:devel/py-pygls@${PY_FLAVOR}
+
 .include <bsd.port.mk>

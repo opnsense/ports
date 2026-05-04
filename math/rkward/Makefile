@@ -1,6 +1,5 @@
 PORTNAME=	rkward
-PORTVERSION=	0.8.2
-PORTREVISION=	1
+PORTVERSION=	0.8.3
 CATEGORIES=	math
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/
 
@@ -13,7 +12,8 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 LIB_DEPENDS=	libR.so:math/R	\
 		libcups.so:print/cups	\
-		libxkbcommon.so:x11/libxkbcommon
+		libxkbcommon.so:x11/libxkbcommon	\
+		libxcb-cursor.so:x11/xcb-util-cursor
 RUN_DEPENDS=	kbibtex:databases/kbibtex	\
 		hs-pandoc>0:textproc/hs-pandoc	\
 		${LR_MOD_DIR}/R2HTML/INDEX:textproc/R-cran-R2HTML	\
@@ -24,7 +24,7 @@ TEST_DEPENDS=	${LR_MOD_DIR}/FAdist/INDEX:science/R-cran-FAdist	\
 USES=		cmake compiler:c++11-lang desktop-file-utils gettext gl fortran	\
 		kde:6 localbase php:cli qt:6 shared-mime-info xorg
 USE_GL=		opengl
-USE_QT=		base declarative positioning webchannel webengine
+USE_QT=		base declarative positioning webchannel webengine websockets webview
 USE_XORG=	ice x11 xcb xext
 USE_KDE=	archive bookmarks breeze-icons colorscheme completion config	\
 		configwidgets coreaddons crash ecm doctools guiaddons i18n	\

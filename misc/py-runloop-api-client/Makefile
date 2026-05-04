@@ -1,6 +1,6 @@
 PORTNAME=	runloop-api-client
 #DISTVERSIONPREFIX=	v
-DISTVERSION=	0.60.0
+DISTVERSION=	1.20.0
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +20,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}anyio>=3.5.05:devel/py-anyio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}httpx>=0.23.0:www/py-httpx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=1.9.0:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sniffio>=0:devel/py-sniffio@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.10:devel/py-typing-extensions@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.10:devel/py-typing-extensions@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}uuid-utils>=0.11.0:misc/py-uuid-utils@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dirty-equals>=0.6.0:devel/py-dirty-equals@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}importlib-metadata>=6.7.0:devel/py-importlib-metadata@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mypy>0:devel/py-mypy@${PY_FLAVOR} \
@@ -41,6 +42,6 @@ NO_ARCH=	yes
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
-# tests run forever
+# tests as of : 1652 failed, 1475 passed, 309 skipped, 520 errors in 23590.03s (6:33:10) (failures are due to missing RUNLOOP_API_KEY env var)
 
 .include <bsd.port.mk>

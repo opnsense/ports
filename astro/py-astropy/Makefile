@@ -1,5 +1,6 @@
 PORTNAME=	astropy
 DISTVERSION=	7.1.1
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	astro
 MASTER_SITES=	PYPI
@@ -12,9 +13,9 @@ WWW=		https://www.astropy.org/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}extension-helpers>=0:astro/py-extension-helpers@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyerfa>=0:astro/py-pyerfa@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}astropy-iers-data>=0:astro/py-astropy-iers-data@${PY_FLAVOR}
 

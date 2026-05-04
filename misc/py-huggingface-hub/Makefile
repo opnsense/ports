@@ -1,5 +1,5 @@
 PORTNAME=	huggingface-hub
-DISTVERSION=	1.7.1
+DISTVERSION=	1.12.0
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,8 @@ WWW=		https://github.com/huggingface/huggingface_hub
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}filelock>=3.10.0:sysutils/py-filelock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fsspec>=2023.5.0:filesystems/py-fsspec@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}httpx>=0.23.0<1:www/py-httpx@${PY_FLAVOR} \
@@ -21,11 +23,11 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}filelock>=3.10.0:sysutils/py-filelock@${PY_F
 		${PYTHON_PKGNAMEPREFIX}typer>0:devel/py-typer@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.1.0:devel/py-typing-extensions@${PY_FLAVOR} \
 		${RUN_DEPENDS_${ARCH}}
-RUN_DEPENDS_amd64=	${PYTHON_PKGNAMEPREFIX}hf-xet>=1.4.2<2.0.0:misc/py-hf-xet@${PY_FLAVOR}
-RUN_DEPENDS_aarch4=	${PYTHON_PKGNAMEPREFIX}hf-xet>=1.4.2<2.0.0:misc/py-hf-xet@${PY_FLAVOR}
+RUN_DEPENDS_amd64=	${PYTHON_PKGNAMEPREFIX}hf-xet>=1.4.3<2.0.0:misc/py-hf-xet@${PY_FLAVOR}
+RUN_DEPENDS_aarch4=	${PYTHON_PKGNAMEPREFIX}hf-xet>=1.4.3<2.0.0:misc/py-hf-xet@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 

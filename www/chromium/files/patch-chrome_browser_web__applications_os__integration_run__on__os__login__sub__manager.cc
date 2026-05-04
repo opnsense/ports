@@ -1,6 +1,6 @@
---- chrome/browser/web_applications/os_integration/run_on_os_login_sub_manager.cc.orig	2026-03-13 06:02:14 UTC
+--- chrome/browser/web_applications/os_integration/run_on_os_login_sub_manager.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/web_applications/os_integration/run_on_os_login_sub_manager.cc
-@@ -55,7 +55,7 @@ proto::os_state::RunOnOsLogin::Mode ConvertWebAppRunOn
+@@ -54,7 +54,7 @@ proto::os_state::RunOnOsLogin::Mode ConvertWebAppRunOn
  // different from other platforms, see web_app_run_on_os_login_manager.h for
  // more info.
  bool DoesRunOnOsLoginRequireExecution() {

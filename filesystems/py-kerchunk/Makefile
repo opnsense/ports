@@ -1,5 +1,6 @@
 PORTNAME=	kerchunk
 PORTVERSION=	0.2.7
+PORTREVISION=	1
 CATEGORIES=	filesystems python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FL
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fsspec>=0:filesystems/py-fsspec@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numcodecs>=0:misc/py-numcodecs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ujson>=0:devel/py-ujson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zarr>=0.1<3,1:devel/py-zarr@${PY_FLAVOR}
 

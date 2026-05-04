@@ -1,8 +1,10 @@
 PORTNAME=	appstream-generator
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.10.2
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	ports-mgmt
+MASTER_SITES=	LOCAL/arrowd/:assets
+DISTFILES=	${_ASSETS_DISTNAME}${EXTRACT_SUFX}:assets
 
 MAINTAINER=	arrowd@FreeBSD.org
 COMMENT=	Fast AppStream metadata generator
@@ -36,12 +38,17 @@ GH_ACCOUNT=	ximion
 OPTIONS_DEFINE=		MANPAGES
 MANPAGES_BUILD_DEPENDS=	xsltproc:textproc/libxslt
 
-MESON_ARGS=	-Ddownload-js=false -Dbackward=false
+MESON_ARGS=	-Dbackward=false
 
 CFLAGS+=	-fexperimental-library
 
 DATADIR=	${PREFIX}/share/appstream
 OPTIONS_SUB=	yes
+# only needed to fool meson
+BINARY_ALIAS=	npm=true
+
+_ASSETS_DISTNAME=${PORTNAME}-js-assets-${_ASSETS_VERSION}
+_ASSETS_VERSION=${PORTVERSION}
 
 .include <bsd.port.pre.mk>
 
@@ -54,6 +61,17 @@ post-patch:
 post-install:
 	cd ${WRKSRC}/data && \
 		${COPYTREE_SHARE} templates ${STAGEDIR}${DATADIR}
-	${INSTALL_SCRIPT} ${PATCHDIR}/poudriere-hook-bulk.sh ${STAGEDIR}${DATADIR}
+	@${MKDIR} -p ${STAGEDIR}${PREFIX}/etc/poudriere.d/hooks
+	${INSTALL_SCRIPT} ${PATCHDIR}/poudriere-hook-bulk.sh \
+		${STAGEDIR}${PREFIX}/etc/poudriere.d/hooks/appstream-post-bulk.sh.sample
+
+repackage-js:
+	pkg info npm > /dev/null
+	cd ${WRKSRC}/contrib/setup && ./build_js.sh
+	cd ${WRKDIR} && ${TAR} -czf /tmp/${_ASSETS_DISTNAME}${EXTRACT_SUFX} \
+		${WRKSRC:T}/data/templates/default/static/js
+	@cd /tmp && sha256 ${_ASSETS_DISTNAME}${EXTRACT_SUFX} \
+		&& ${ECHO_CMD} -n "SIZE (${_ASSETS_DISTNAME}${EXTRACT_SUFX}) = " \
+		&& ${STAT} -f %z ${_ASSETS_DISTNAME}${EXTRACT_SUFX} \
 
 .include <bsd.port.post.mk>

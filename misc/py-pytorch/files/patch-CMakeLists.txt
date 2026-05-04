@@ -1,4 +1,4 @@
---- CMakeLists.txt.orig	2026-01-21 17:08:59 UTC
+--- CMakeLists.txt.orig	2026-03-23 18:40:42 UTC
 +++ CMakeLists.txt
 @@ -173,7 +173,7 @@ set(CPU_RISCV OFF)
  set(CPU_POWER OFF)
@@ -27,7 +27,7 @@
  option(USE_MAGMA "Use MAGMA" ON)
  option(USE_PYTORCH_METAL "Use Metal for PyTorch iOS build" OFF)
  option(USE_PYTORCH_METAL_EXPORT "Export Metal models on MacOSX desktop" OFF)
-@@ -476,15 +476,15 @@ option(USE_SYSTEM_CPUINFO "Use system-provided cpuinfo
+@@ -481,15 +481,15 @@ option(USE_SYSTEM_CPUINFO "Use system-provided cpuinfo
  # USE_SYSTEM_LIBS being "OFF".
  option(USE_SYSTEM_LIBS "Use all available system-provided libraries." OFF)
  option(USE_SYSTEM_CPUINFO "Use system-provided cpuinfo." OFF)

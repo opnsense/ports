@@ -2,7 +2,7 @@ PORTNAME=	agx-emulsion
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.1.0-alpha
 DISTVERSIONSUFFIX=	-84-g0e0baf2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -21,7 +21,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}openimageio>0:graphics/py-openimageio@${PY_F
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}napari>=0.5.5:misc/py-napari@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numba>=0.61.0:devel/py-numba@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}opt-einsum>=3.4.0:math/py-opt-einsum@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyFFTW>=0.15.0:math/py-pyFFTW@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-image>0:graphics/py-scikit-image@${PY_FLAVOR} \

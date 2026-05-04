@@ -23,4 +23,6 @@ USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
+PORTSCOUT=	skipv:2.0.0
+
 .include <bsd.port.mk>

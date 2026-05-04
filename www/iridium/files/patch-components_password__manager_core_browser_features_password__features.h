@@ -1,8 +1,8 @@
---- components/password_manager/core/browser/features/password_features.h.orig	2026-02-16 10:45:29 UTC
+--- components/password_manager/core/browser/features/password_features.h.orig	2026-04-15 12:07:04 UTC
 +++ components/password_manager/core/browser/features/password_features.h
-@@ -171,7 +171,7 @@ BASE_DECLARE_FEATURE(kPasswordManagerLogToTerminal);
- // classifications.
- BASE_DECLARE_FEATURE(kProactivelyDownloadModelForPasswordChange);
+@@ -188,7 +188,7 @@ BASE_DECLARE_FEATURE(kReduceRequirementsForPasswordCha
+ // Triggers password change glow invoking Glic from settings.
+ BASE_DECLARE_FEATURE(kPasswordCheckup);
  
 -#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

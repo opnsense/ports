@@ -1,5 +1,5 @@
 PORTNAME=	aeidon
-PORTVERSION=	1.15
+PORTVERSION=	1.16
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,6 +20,6 @@ USE_PYTHON=	autoplist concurrent pep517
 NO_ARCH=	yes
 
 post-patch:
-	@${SED} -e 's|%%PORTVERSION%%|${PORTVERSION}|' ${WRKSRC}/setup-aeidon.py > ${WRKSRC}/setup.py
+	@${SED} -e 's|%%PORTVERSION%%|${PORTVERSION}|' ${WRKSRC}/setup-aeidon-pypi.py > ${WRKSRC}/setup.py
 
 .include <bsd.port.mk>

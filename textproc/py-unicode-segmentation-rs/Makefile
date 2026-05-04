@@ -1,5 +1,5 @@
 PORTNAME=	unicode-segmentation-rs
-PORTVERSION=	0.2.1
+PORTVERSION=	0.2.2
 PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI

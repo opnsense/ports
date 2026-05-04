@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/frame/system_menu_model_delegate.cc.orig	2026-02-16 10:45:29 UTC
+--- chrome/browser/ui/views/frame/system_menu_model_delegate.cc.orig	2026-04-15 12:07:04 UTC
 +++ chrome/browser/ui/views/frame/system_menu_model_delegate.cc
-@@ -24,7 +24,7 @@
+@@ -27,7 +27,7 @@
  #include "chromeos/ui/frame/desks/move_to_desks_menu_model.h"
  #endif
  
@@ -9,7 +9,7 @@
  #include "chrome/common/pref_names.h"
  #endif
  
-@@ -41,7 +41,7 @@ SystemMenuModelDelegate::SystemMenuModelDelegate(
+@@ -39,7 +39,7 @@ SystemMenuModelDelegate::SystemMenuModelDelegate(
  SystemMenuModelDelegate::~SystemMenuModelDelegate() = default;
  
  bool SystemMenuModelDelegate::IsCommandIdChecked(int command_id) const {
@@ -18,7 +18,7 @@
    if (command_id == IDC_USE_SYSTEM_TITLE_BAR) {
      PrefService* prefs = browser_->profile()->GetPrefs();
      return !prefs->GetBoolean(prefs::kUseCustomChromeFrame);
-@@ -66,7 +66,7 @@ bool SystemMenuModelDelegate::IsCommandIdEnabled(int c
+@@ -62,7 +62,7 @@ bool SystemMenuModelDelegate::IsCommandIdEnabled(int c
  }
  
  bool SystemMenuModelDelegate::IsCommandIdVisible(int command_id) const {

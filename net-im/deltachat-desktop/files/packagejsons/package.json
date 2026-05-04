@@ -2,7 +2,7 @@
   "private": "true",
   "name": "deltachat-desktop",
   "type": "module",
-  "version": "2.43.0",
+  "version": "2.49.1",
   "scripts": {
     "preinstall": "node ./bin/check-nodejs-version.js",
     "check": "pnpm check:types && pnpm check:lint && pnpm check:format && pnpm check:target-versions",
@@ -56,7 +56,11 @@
     ],
     "overrides": {
       "stylus": "npm:empty-npm-package@1.0.0",
-      "esbuild-plugin-inline-worker>esbuild": "^0.25.0"
+      "esbuild-plugin-inline-worker>esbuild": "^0.25.0",
+      "minimatch@>=3.0.0 <3.1.4": "^3.1.4",
+      "minimatch@>=5.0.0 <5.1.8": "^5.1.8",
+      "minimatch@>=9.0.0 <9.0.7": "^9.0.7",
+      "minimatch@>=10.0.0 <10.2.3": "^10.2.3"
     }
   },
   "devDependencies": {
@@ -73,7 +77,6 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "git-cliff": "^2.11.0",
     "globals": "^17.0.0",
-    "ignore-walk": "^8.0.0",
     "prettier": "^3.7.4",
     "typescript": "catalog:",
     "typescript-eslint": "^8.51.0",

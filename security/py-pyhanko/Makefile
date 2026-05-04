@@ -1,5 +1,5 @@
 PORTNAME=	pyhanko
-PORTVERSION=	0.33.0
+PORTVERSION=	0.34.1
 CATEGORIES=	security python
 MASTER_SITES=	PYPI \
 		https://github.com/MatthiasValvekens/pyHanko/releases/download/v${PORTVERSION}/
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}asn1crypto>=1.5.1:devel/py-asn1crypto@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyhanko-certvalidator>=0.29.0<0.30:security/py-pyhanko-certvalidator@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyhanko-certvalidator>=0.30.0<0.31:security/py-pyhanko-certvalidator@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>=5.4.0:devel/py-lxml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=6.0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.31.0:www/py-requests@${PY_FLAVOR} \
@@ -37,7 +37,7 @@ QR_DESC=	QR code support
 
 ASYNC_HTTP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>=3.9<3.14:www/py-aiohttp@${PY_FLAVOR}
 ETSI_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}signxml>=4.2.0:security/py-signxml@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}xsdata>=24.4<26.0:devel/py-xsdata@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}xsdata>=24.4<27.0:devel/py-xsdata@${PY_FLAVOR} \
 IMAGE_SUPPORT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=7.2.0:graphics/py-pillow@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}python-barcode>=0.16.1<0.16.1_99:graphics/py-python-barcode@${PY_FLAVOR}
 OPENTYPE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=4.33.3:print/py-fonttools@${PY_FLAVOR} \

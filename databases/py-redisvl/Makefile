@@ -1,12 +1,8 @@
 PORTNAME=	redisvl
-DISTVERSION=	0.15.0
-PORTREVISION=	1
+DISTVERSION=	0.18.0
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-
-PATCH_SITES=	https://github.com/redis/redis-vl-python/commit/
-PATCHFILES=	817a255df0c97921236ed507a177621a00e18bdf.patch:-p1
 
 MAINTAINER=	tagattie@FreeBSD.org
 COMMENT=	Python client library and CLI for using Redis as a vector database
@@ -16,7 +12,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16<3:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.4<7.0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}redis>=5.0<8.0:databases/py-redis@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2<3:devel/py-pydantic2@${PY_FLAVOR} \

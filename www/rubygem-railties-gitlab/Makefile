@@ -1,5 +1,6 @@
 PORTNAME=	railties
 PORTVERSION=	${RAILS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -16,7 +17,7 @@ RUN_DEPENDS=	rubygem-actionpack-gitlab>=${PORTVERSION}<${PORTVERSION}_99:www/rub
 		rubygem-activesupport-gitlab>=${PORTVERSION}<${PORTVERSION}_99:devel/rubygem-activesupport-gitlab \
 		rubygem-cgi>=0:www/rubygem-cgi \
 		rubygem-irb-gitlab>=1.13:devel/rubygem-irb-gitlab \
-		rubygem-rackup10>=1.0.0:www/rubygem-rackup10 \
+		rubygem-rackup-gitlab>=1.0.0:www/rubygem-rackup-gitlab \
 		rubygem-rake>=12.2:devel/rubygem-rake \
 		rubygem-thor>=1.2.2<2:devel/rubygem-thor \
 		rubygem-tsort>=0.2:devel/rubygem-tsort \

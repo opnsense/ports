@@ -1,6 +1,6 @@
 PORTNAME=	gomate
 DISTVERSION=	g20170711
-PORTREVISION=	38
+PORTREVISION=	39
 CATEGORIES=	editors
 
 MAINTAINER=	fabian.freyer@physik.tu-berlin.de

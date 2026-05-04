@@ -1,6 +1,7 @@
 PORTNAME=	signal-desktop
 DISTVERSIONPREFIX=	v
-DISTVERSION=	8.2.0
+DISTVERSION=	8.4.1
+PORTREVISION=	3
 CATEGORIES=	net-im
 MASTER_SITES=	LOCAL/mikael/signal-desktop/:npm \
 		https://registry.npmjs.org/@esbuild/freebsd-arm64/-/:esbuildarm64 \
@@ -16,7 +17,7 @@ WWW=		https://signal.org/
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libringrtc.so:multimedia/ringrtc \
 		${LOCALBASE}/lib/libsignal_node.so:net-im/libsignal-node \

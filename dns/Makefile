@@ -229,6 +229,7 @@
     SUBDIR += rubygem-validates_hostname
     SUBDIR += rubygem-validates_hostname-gitlab
     SUBDIR += rubygem-zonefile
+    SUBDIR += s6-dns
     SUBDIR += samba-nsupdate
     SUBDIR += scavenge
     SUBDIR += sleuth

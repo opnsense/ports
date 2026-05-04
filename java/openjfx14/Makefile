@@ -1,6 +1,6 @@
 PORTNAME=	openjfx
 DISTVERSION=	14.0.2.1+1
-PORTREVISION=	19
+PORTREVISION=	20
 CATEGORIES=	java x11-toolkits devel
 MASTER_SITES=	https://repo.maven.apache.org/maven2/org/apache/lucene/lucene-core/7.7.1/:core \
 		https://repo.maven.apache.org/maven2/org/apache/lucene/lucene-grouping/7.7.1/:grouping \
@@ -22,9 +22,6 @@ WWW=		https://openjdk.java.net/projects/openjfx/
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-DEPRECATED=	Depends on legacy ffmpeg4, consider migrating to multimedia/ffmpeg
-EXPIRATION_DATE=2026-06-30
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64 powerpc64le
 

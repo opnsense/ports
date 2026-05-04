@@ -13,6 +13,7 @@ hdf5/lib/plugin/lib__nch5shuffle.so
 hdf5/lib/plugin/lib__nch5zstd.so
 hdf5/lib/plugin/lib__nczhdf5filters.so
 hdf5/lib/plugin/lib__nczstdfilters.so
+include/ncudfplugins.h
 include/netcdf.h
 include/netcdf_aux.h
 include/netcdf_dispatch.h
@@ -23,11 +24,12 @@ include/netcdf_json.h
 include/netcdf_mem.h
 include/netcdf_meta.h
 include/netcdf_proplist.h
+include/netcdf_vutils.h
 lib/libnetcdf.a
 lib/libnetcdf.settings
 lib/libnetcdf.so
 lib/libnetcdf.so.22
-lib/libnetcdf.so.22.1.0
+lib/libnetcdf.so.22.2.0
 libdata/pkgconfig/netcdf.pc
 %%DOXYGEN%%%%PORTDOCS%%%%DOCSDIR%%/InstallTreeWindows.png
 %%DOXYGEN%%%%PORTDOCS%%%%DOCSDIR%%/RELEASE_NOTES.html

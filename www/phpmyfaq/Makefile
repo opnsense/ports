@@ -1,5 +1,5 @@
 PORTNAME=	phpmyfaq
-DISTVERSION=	4.0.16
+DISTVERSION=	4.1.1
 CATEGORIES=	www
 MASTER_SITES=	https://download.phpmyfaq.de/files/
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -13,6 +13,7 @@ LICENSE=	MPL20
 USES=		cpe php:web,flavors
 USE_PHP=	curl fileinfo filter gd json mysqli session spl xml xmlrpc \
 		xmlwriter zlib
+IGNORE_WITH_PHP=	82
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 

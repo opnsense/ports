@@ -1,9 +1,6 @@
 PORTNAME=	lyrionmusicserver
-DISTVERSION=	9.0.3
+DISTVERSION=	9.1.0
 CATEGORIES=	audio
-
-
-PORTSCOUT=   skipv:10.0.3,10.0.4,release-10.0.0.0
 
 MAINTAINER=	trueos@norwegianrockcat.com
 COMMENT=	Audio streaming server that powers Squeezebox players previously from Logitech and many other devices
@@ -13,43 +10,20 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/License.txt
 # Contains non-redistributable firmware, documentation, and images
 
+ONLY_FOR_ARCHS=		aarch64 amd64 i386
+ONLY_FOR_ARCHS_REASON=	Only tested on these archs, set ARCHNAME to value of perl -V:archname for other platforms
+
 BUILD_DEPENDS=	nasm:devel/nasm \
 		bash:shells/bash \
 		rsync:net/rsync
+RUN_DEPENDS=	p5-EV>0:devel/p5-EV \
+		p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL
 
-LIB_DEPENDS=	libgd.so:graphics/gd
-RUN_DEPENDS=	p5-Audio-Scan>0:audio/p5-Audio-Scan \
-		p5-Class-XSAccessor>0:devel/p5-Class-XSAccessor \
-		p5-DBD-SQLite>0:databases/p5-DBD-SQLite \
-		p5-Data-Dump>0:devel/p5-Data-Dump \
-		p5-Digest-SHA1>0:security/p5-Digest-SHA1 \
-		p5-EV>0:devel/p5-EV \
-		p5-Encode-Detect>0:converters/p5-Encode-Detect \
-		p5-HTML-Parser>0:www/p5-HTML-Parser \
-		p5-Image-Scale>0:graphics/p5-Image-Scale \
-		p5-IO-AIO>0:devel/p5-IO-AIO \
-		p5-IO-Interface>0:net/p5-IO-Interface \
-		p5-IO-String>0:devel/p5-IO-String \
-		p5-IO-Socket-Socks>0:net/p5-IO-Socket-Socks \
-		p5-JSON-XS-VersionOneAndTwo>0:converters/p5-JSON-XS-VersionOneAndTwo \
-		p5-Sub-Name>0:devel/p5-Sub-Name \
-		p5-Template-Toolkit>0:www/p5-Template-Toolkit \
-		p5-XML-Parser>0:textproc/p5-XML-Parser \
-	        p5-XML-Simple>0:textproc/p5-XML-Simple \
-		p5-YAML-LibYAML>0:textproc/p5-YAML-LibYAML \
-		p5-YAML-Syck>0:textproc/p5-YAML-Syck \
-		p5-YAML>0:textproc/p5-YAML \
-		p5-IO-Socket-SSL>=0:security/p5-IO-Socket-SSL \
-
-
-ONLY_FOR_ARCHS=	i386 amd64 aarch64
-ONLY_FOR_ARCHS_REASON= Only tested on these archs, set ARCHNAME to value of perl -V:archname for other platforms
-
-
-USES=		gettext-runtime gmake perl5 shebangfix
+USES=		gmake perl5 shebangfix
 USE_GITHUB=	yes
-GH_TUPLE=	LMS-Community:slimserver:9977737 \
-		LMS-Community:slimserver-vendor:8b106d7:vendor
+GH_ACCOUNT=	LMS-Community
+GH_PROJECT=	slimserver
+GH_TUPLE=	LMS-Community:slimserver-vendor:b62107b:vendor
 USE_RC_SUBR=	lyrionmusicserver
 SHEBANG_FILES=	Bin/darwin/check-update.pl \
 		CPAN/Log/Log4perl/Layout/PatternLayout/Multiline.pm \
@@ -61,6 +35,18 @@ SHEBANG_FILES=	Bin/darwin/check-update.pl \
 		scanner.pl \
 		slimserver.pl \
 		${WRKSRC_vendor}/CPAN/hints/darwin.pl
+
+EXTRACT_AFTER_ARGS=	--exclude .devcontainer \
+			--exclude DEVCONTAINERS.md \
+			--exclude CPAN/EV.pm \
+			--no-same-owner --no-same-permissions
+
+PORTSCOUT=	skipv:10.0.3,10.0.4,release-10.0.0.0
+
+SLIMDIR?=	share/lyrionmusicserver
+SLIMDBDIR?=	/var/db/lyrionmusicserver
+SLIMUSER?=	slimserv
+SLIMGROUP?=	${SLIMUSER}
 
 SUB_FILES=	Custom.pm \
 		lyrionmusicserver.conf \
@@ -75,10 +61,12 @@ SUB_LIST=	PERL=${PERL} \
 		SLIMGROUP=${SLIMGROUP} \
 		CONFFILES="${CONFFILES}"
 
+.if ${SLIMUSER} == slimserv
 USERS=		${SLIMUSER}
+.endif
+.if ${SLIMGROUP} == slimserv
 GROUPS=		${SLIMGROUP}
-
-PATCH_WRKSRC=	${WRKDIR}
+.endif
 
 PLIST_SUB=	SLIMDIR=${SLIMDIR} \
 		SLIMDBDIR=${SLIMDBDIR} \
@@ -101,11 +89,6 @@ TEST_VARS_OFF=		CONTRIB_FLAGS=-t
 DOCFILES=	Changelog*.html License*.txt
 CONFFILES=	convert.conf types.conf
 
-SLIMDIR?=	share/lyrionmusicserver
-SLIMDBDIR?=	/var/db/lyrionmusicserver
-SLIMUSER?=	slimserv
-SLIMGROUP?=	${SLIMUSER}
-
 .include <bsd.port.pre.mk>
 
 # ARCHNAME=$(shell ${PERL} -V:archname | ${awk} -F\' '{print $2}')
@@ -120,29 +103,6 @@ ARCHNAME=	amd64-freebsd-thread-multi
 .if ${ARCH} == "aarch64"
 ARCHNAME=	aarch64-freebsd-thread-multi
 .endif
-
-post-patch:
-	${RM} -rf ${WRKSRC}/CPAN/Class/XSAccessor \
-		  ${WRKSRC}/CPAN/Class/XSAccessor.pm \
-		  ${WRKSRC}/CPAN/DBD \
-		  ${WRKSRC}/CPAN/DBI \
-		  ${WRKSRC}/CPAN/DBI.pm \
-		  ${WRKSRC}/CPAN/Data/Dump.pm \
-		  ${WRKSRC}/CPAN/Digest \
-		  ${WRKSRC}/CPAN/EV.pm \
-		  ${WRKSRC}/CPAN/Encode/Detect \
-		  ${WRKSRC}/CPAN/HTML \
-		  ${WRKSRC}/CPAN/Image \
-		  ${WRKSRC}/CPAN/IO \
-		  ${WRKSRC}/CPAN/JSON \
-		  ${WRKSRC}/CPAN/Sub \
-		  ${WRKSRC}/CPAN/Template.pm \
-		  ${WRKSRC}/CPAN/Template \
-		  ${WRKSRC}/CPAN/XML \
-		  ${WRKSRC}/CPAN/YAML \
-		  ${WRKSRC}/CPAN/common \
-		  ${WRKSRC}/lib/Audio \
-		  ${WRKSRC}/lib/Template \
 
 do-build:
 	cd ${WRKSRC_vendor}/CPAN && ./buildme.sh ${CONTRIB_FLAGS}
@@ -176,8 +136,9 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
 	${INSTALL_DATA} ${WRKDIR}/lyrionmusicserver.conf \
 	    ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/
-	@${MKDIR} ${STAGEDIR}${SLIMDBDIR}
-	@${LN} -s ${SLIMDBDIR}/cache ${STAGEDIR}${PREFIX}/${SLIMDIR}/Cache
+	@${MKDIR} ${STAGEDIR}${SLIMDBDIR}/cache
+	@${RLN} ${STAGEDIR}${SLIMDBDIR}/cache ${STAGEDIR}${PREFIX}/${SLIMDIR}/Cache
+
 do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} ${DOCFILES} ${STAGEDIR}${DOCSDIR})

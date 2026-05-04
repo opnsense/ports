@@ -4,7 +4,7 @@ CATEGORIES=	devel education python
 MASTER_SITES=	PYPI
 PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	Python IDE for beginners
 WWW=		https://thonny.org/
 

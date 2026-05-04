@@ -1,6 +1,6 @@
 PORTNAME=	pyodesys
 DISTVERSION=	0.14.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}appdirs>0:devel/py-appdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=2.2.5:math/py-matplotlib@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}notebook>=5.7.8:www/py-notebook@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.2.3:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sym>=0.3.7:math/py-sym@${PY_FLAVOR} \

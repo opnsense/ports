@@ -29,7 +29,7 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		gdk4-0.11.0 \
 		gdk4-sys-0.11.0 \
 		getrandom-0.2.16 \
-		gio-0.22.2 \
+		gio-0.22.5 \
 		gio-sys-0.22.0 \
 		glib-0.22.0 \
 		glib-macros-0.22.0 \
@@ -50,17 +50,16 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		hyprparser-0.1.6 \
 		ignore-0.4.23 \
 		indexmap-2.11.4 \
-		inventory-0.3.22 \
+		inventory-0.3.24 \
 		itertools-0.11.0 \
 		itoa-1.0.15 \
 		lazy_static-1.5.0 \
-		libc-0.2.183 \
+		libc-0.2.185 \
 		log-0.4.28 \
 		memchr-2.8.0 \
 		memoffset-0.9.1 \
 		minreq-2.14.1 \
 		normpath-1.5.0 \
-		once_cell-1.21.3 \
 		pango-0.22.0 \
 		pango-sys-0.22.0 \
 		pin-project-lite-0.2.16 \
@@ -73,9 +72,9 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		regex-automata-0.4.11 \
 		regex-syntax-0.8.6 \
 		ring-0.17.14 \
-		rust-i18n-3.1.5 \
-		rust-i18n-macro-3.1.5 \
-		rust-i18n-support-3.1.5 \
+		rust-i18n-4.0.0 \
+		rust-i18n-macro-4.0.0 \
+		rust-i18n-support-4.0.0 \
 		rustc_version-0.4.1 \
 		rustls-0.21.12 \
 		rustls-webpki-0.101.7 \
@@ -129,4 +128,5 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		windows_x86_64_gnullvm-0.52.6 \
 		windows_x86_64_msvc-0.52.6 \
 		winnow-0.7.13 \
+		xxhash-rust-0.8.15 \
 		zmij-1.0.13

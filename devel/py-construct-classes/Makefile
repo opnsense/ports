@@ -1,5 +1,5 @@
 PORTNAME=	construct-classes
-PORTVERSION=	0.2.2
+PORTVERSION=	0.2.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ WWW=		https://pypi.org/project/construct-classes/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>0:devel/py-flit-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}construct>=2.10:devel/py-construct@${PY_FLAVOR}
 

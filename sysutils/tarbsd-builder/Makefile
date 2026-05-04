@@ -1,5 +1,5 @@
 PORTNAME=	tarbsd-builder
-DISTVERSION=	26.03.01
+DISTVERSION=	26.04.11
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 DIST_SUBDIR=	${DISTNAME}-${DISTVERSION}
@@ -17,7 +17,7 @@ USES=		php:flavors,build
 USE_GITHUB=	yes
 GH_ACCOUNT=	pavetheway91
 GH_PROJECT=	tarbsd
-USE_PHP=	ctype filter mbstring pcntl phar zlib
+USE_PHP=	ctype filter intl mbstring pcntl phar zlib
 
 NO_ARCH=	yes
 

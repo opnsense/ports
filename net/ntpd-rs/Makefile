@@ -1,6 +1,6 @@
 PORTNAME=	ntpd-rs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.7.1
+DISTVERSION=	1.7.2
 CATEGORIES=	net
 
 MAINTAINER=	mikael@FreeBSD.org
@@ -22,6 +22,10 @@ GH_ACCOUNT=	pendulum-project
 
 USE_RC_SUBR=	ntp_daemon
 
+OPTIONS_DEFINE=		MANPAGES
+OPTIONS_DEFAULT=	MANPAGES
+OPTIONS_SUB=		yes
+
 BINFILES=	ntp-ctl ntp-daemon ntp-metrics-exporter
 
 post-patch:
@@ -35,5 +39,10 @@ do-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/ntp.server.toml ${STAGEDIR}${ETCDIR}/ntp.server.toml.sample
 	${INSTALL_DATA} ${WRKSRC}/docs/examples/conf/ntp.toml.default ${STAGEDIR}${ETCDIR}/ntp.toml.sample
+
+do-install-MANPAGES-on:
+.for i in 5 8
+	${INSTALL_MAN} ${WRKSRC}/docs/precompiled/man/*.${i} ${STAGEDIR}${PREFIX}/share/man/man${i}/
+.endfor
 
 .include <bsd.port.mk>

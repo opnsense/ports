@@ -10,6 +10,9 @@ WWW=		https://github.com/yama-natuki/2chproxy.pl
 
 LICENSE=	MIT
 
+DEPRECATED=	Abandoned, it is not compatible with the current servers, migrate to proxy2ch
+EXPIRATION_DATE=2026-05-31
+
 RUN_DEPENDS=	p5-HTTP-Daemon>0:www/p5-HTTP-Daemon \
 		p5-IO-Compress>0:archivers/p5-IO-Compress \
 		p5-URI>0:net/p5-URI \

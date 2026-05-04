@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.40-18876 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-gd46ddcee5d
+DISTVERSION=	0.0.40-19240 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-ge26c80c129
 CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -28,18 +28,18 @@ ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
-GH_TUPLE=	RPCS3:soundtouch:2.3.1-78-g3982730:soundtouch/3rdparty/SoundTouch/soundtouch \
+GH_TUPLE=	RPCS3:soundtouch:2.3.1-87-ga0fba77:soundtouch/3rdparty/SoundTouch/soundtouch \
 		asmjit:asmjit:416f735:asmjit/3rdparty/asmjit/asmjit \
-		jbeder:yaml-cpp:yaml-cpp-0.9.0-1-g05c44fc:yamlcpp/3rdparty/yaml-cpp/yaml-cpp \
+		jbeder:yaml-cpp:yaml-cpp-0.9.0-1-g51a5d62:yamlcpp/3rdparty/yaml-cpp/yaml-cpp \
 		kcat:openal-soft:1.23.1:openal_soft/3rdparty/OpenAL/openal-soft \
 		kinetiknz:cubeb:cubeb-0.2-1628-g4848575:cubeb/3rdparty/cubeb/cubeb \
 		Megamouse:VulkanMemoryAllocator:1d8f600:vkalloc/3rdparty/GPUOpen/VulkanMemoryAllocator \
 		nothings:stb:013ac3b:stb/3rdparty/stblib/stb \
 		protocolbuffers:protobuf:edaa823d8b36:protobuf/3rdparty/protobuf/protobuf \
-		wolfSSL:wolfssl:v5.8.0-stable:wolfssl/3rdparty/wolfssl/wolfssl \
+		wolfSSL:wolfssl:v5.9.1-stable:wolfssl/3rdparty/wolfssl/wolfssl \
 		xioTechnologies:Fusion:v1.2.11:fusion/3rdparty/fusion/fusion
 
-USES=		cmake gl iconv:wchar_t llvm:min=20,lib localbase:ldflags \
+USES=		cmake gl iconv:wchar_t llvm:min=20,${LLVM_DEP} localbase:ldflags \
 		openal:soft pkgconfig python:build qt:6 xorg
 USE_GL=		gl glew
 USE_QT=		base multimedia svg
@@ -48,11 +48,11 @@ CMAKE_ON=	CMAKE_SKIP_RPATH
 CMAKE_ON+=	${GLSLANG FFMPEG HIDAPI LIBPNG LIBUSB MINIUPNPC PUGIXML RTMIDI XXHASH ZSTD:L:S/^/USE_SYSTEM_/}
 CMAKE_ON+=	BUNDLE_SPEEX # only used by cubeb tests
 CMAKE_OFF=	USE_NATIVE_INSTRUCTIONS USE_PRECOMPILED_HEADERS
-CMAKE_ARGS+=	-DLLVM_DIR:PATH="${LLVM_PREFIX}/lib/cmake/llvm"
+CMAKE_ARGS+=	-DLLVM_DIR:PATH="${LOCALBASE}/${LIB_DEPENDS:M*llvm*:T}/lib/cmake/llvm"
 LDFLAGS+=	-Wl,--as-needed # GLU
 
-OPTIONS_DEFINE=	ALSA EVDEV FAUDIO JACK LTO OPENCV PULSEAUDIO SDL SNDIO VULKAN
-OPTIONS_DEFAULT=EVDEV FAUDIO JACK LTO OPENCV PULSEAUDIO SDL SNDIO VULKAN
+OPTIONS_DEFINE=	ALSA EVDEV FAUDIO JACK LLVM19 LTO OPENCV PULSEAUDIO SDL SNDIO VULKAN
+OPTIONS_DEFAULT=EVDEV FAUDIO JACK LLVM19 LTO OPENCV PULSEAUDIO SDL SNDIO VULKAN
 
 ALSA_BUILD_DEPENDS=	alsa-lib>0:audio/alsa-lib
 ALSA_CMAKE_BOOL=	USE_ALSA
@@ -69,6 +69,12 @@ FAUDIO_CMAKE_BOOL=	USE_FAUDIO USE_SYSTEM_FAUDIO
 
 JACK_BUILD_DEPENDS=	jackit>0:audio/jack
 JACK_CMAKE_BOOL=	USE_JACK
+
+# https://github.com/RPCS3/rpcs3/commits/master/3rdparty/llvm/llvm
+LLVM19_DESC=		LLVM version recommended by upstream
+LLVM19_LIB_DEPENDS=	libLLVM-19.so:devel/llvm19
+LLVM19_VARS=		LLVM_DEP=build
+LLVM19_VARS_OFF=	LLVM_DEP=lib
 
 LTO_CMAKE_BOOL=		USE_LTO
 

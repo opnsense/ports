@@ -1,6 +1,6 @@
 PORTNAME=	webstorm
 DISTVERSION=	2025.2.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	https://download-cdn.jetbrains.com/webstorm/
 PKGNAMEPREFIX=	jetbrains-

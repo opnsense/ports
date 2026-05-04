@@ -1,5 +1,5 @@
 PORTNAME=	highspy
-DISTVERSION=	1.11.0
+DISTVERSION=	1.14.0
 CATEGORIES=	math
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,16 +11,16 @@ WWW=		https://github.com/automl/random_forest_run
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0.3.3:devel/py-scikit-build-core@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		cmake:indirect compiler:c++11-lang python
 USE_PYTHON=	pep517 autoplist pytest
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
-# tests as of 1.11.0: 58 passed in 2.98s
+# tests as of 1.14.0: 61 passed in 0.25s
 
 .include <bsd.port.mk>

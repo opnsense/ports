@@ -1,7 +1,7 @@
 PORTNAME=	rjieba
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.13
-PORTREVISION=	5
+DISTVERSION=	0.2.1
+PORTREVISION=	1
 CATEGORIES=	chinese python
 #MASTER_SITES=	PYPI # doesn't get into distinfo
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -30,6 +30,6 @@ CARGO_TARGET_DIR=${WRKSRC}/target
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/tests
 
-# tests as of 0.1.13: 6 passed in 2.03s
+# tests as of 0.2.0: 6 passed in 2.42s
 
 .include <bsd.port.mk>

@@ -1,5 +1,6 @@
 PORTNAME=	rouge-score
 DISTVERSION=	0.1.2
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ LICENSE=	APACHE20
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}absl-py>=0:devel/py-absl-py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}nltk>=0:textproc/py-nltk@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.14.0:devel/py-six@${PY_FLAVOR}
 
 USES=		python

@@ -1,5 +1,5 @@
 PORTNAME=	mlmmj
-PORTVERSION=	1.8.0
+PORTVERSION=	2.0.1
 CATEGORIES=	mail
 MASTER_SITES=	https://codeberg.org/mlmmj/mlmmj/releases/download/RELEASE_${PORTVERSION:C/\./_/g}/
 
@@ -12,9 +12,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cpe iconv shebangfix tar:xz pkgconfig
 SHEBANG_FILES=	contrib/web/perl-user/mlmmj.cgi
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-receive-strip
-GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+HAS_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-receive-strip --mandir=${PREFIX}/share/man
 
 CPPFLAGS+=	-I${ICONV_INCLUDE_PATH}
 LDFLAGS+=	${ICONV_LIB_PATH}

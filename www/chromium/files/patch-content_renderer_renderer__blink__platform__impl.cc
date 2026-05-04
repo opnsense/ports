@@ -1,11 +1,11 @@
---- content/renderer/renderer_blink_platform_impl.cc.orig	2026-01-14 08:33:23 UTC
+--- content/renderer/renderer_blink_platform_impl.cc.orig	2026-04-09 06:05:42 UTC
 +++ content/renderer/renderer_blink_platform_impl.cc
 @@ -121,7 +121,7 @@
  #include "content/child/child_process_sandbox_support_impl_win.h"
  #endif
  
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  #include "content/child/font_data/font_data_manager.h"
  #include "skia/ext/font_utils.h"
  #include "third_party/blink/public/web/win/web_font_rendering.h"
@@ -38,8 +38,8 @@
      SkFontConfigInterface::SetGlobal(font_loader);
  #endif
  
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
      // Create a FontDataManager if it's enabled, and if we're not in a
      // single-process environment. In single process, the SkFontMgr is already
      // installed by browser process code at this point.

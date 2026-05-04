@@ -368,6 +368,7 @@ share/locale/cs/LC_MESSAGES/plasma_applet_org.kde.plasma_applet_dict.mo
 share/locale/cs/LC_MESSAGES/plasma_calendar_alternatecalendar.mo
 share/locale/cs/LC_MESSAGES/plasma_calendar_astronomicalevents.mo
 share/locale/cs/LC_MESSAGES/plasma_runner_CharacterRunner.mo
+share/locale/cs/LC_MESSAGES/plasma_runner_colors.mo
 share/locale/cs/LC_MESSAGES/plasma_runner_converterrunner.mo
 share/locale/cs/LC_MESSAGES/plasma_runner_datetime.mo
 share/locale/cs/LC_MESSAGES/plasma_runner_katesessions.mo
@@ -375,6 +376,7 @@ share/locale/cs/LC_MESSAGES/plasma_runner_konsoleprofiles.mo
 share/locale/cs/LC_MESSAGES/plasma_runner_krunner_dictionary.mo
 share/locale/cs/LC_MESSAGES/plasma_runner_spellcheckrunner.mo
 share/locale/cs/LC_MESSAGES/plasma_wallpaper_org.kde.potd.mo
+share/locale/cs/LC_MESSAGES/plasma_wallpaper_org.kde.tiled.mo
 share/locale/csb/LC_MESSAGES/plasma_applet_org.kde.plasma.colorpicker.mo
 share/locale/csb/LC_MESSAGES/plasma_applet_org.kde.plasma.comic.mo
 share/locale/csb/LC_MESSAGES/plasma_applet_org.kde.plasma.fifteenpuzzle.mo

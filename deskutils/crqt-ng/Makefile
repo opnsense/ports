@@ -2,7 +2,7 @@ PORTNAME=	crqt-ng
 DISTVERSION=	1.0.15
 CATEGORIES=	deskutils
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	E-book reader
 WWW=		https://gitlab.com/coolreader-ng/crqt-ng
 

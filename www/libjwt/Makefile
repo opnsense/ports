@@ -1,5 +1,5 @@
 PORTNAME=	libjwt
-PORTVERSION=	2.1.2
+PORTVERSION=	2.1.3
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/benmcollins/libjwt/releases/download/v${PORTVERSION}/
 
@@ -15,7 +15,7 @@ BUILD_DEPENDS=	jansson>=2.0:devel/jansson
 LIB_DEPENDS=	libjansson.so:devel/jansson
 TEST_DEPENDS=	check>=0.9.4:devel/check
 
-USES=		gmake libtool pkgconfig ssl tar:bz2
+USES=		gmake libtool pkgconfig ssl tar:xz
 
 CONFIGURE_ARGS=	--disable-doxygen-chi \
 		--disable-doxygen-chm \

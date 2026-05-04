@@ -129,7 +129,7 @@ include/pmix_tool.h
 include/pmix_version.h
 lib/libpmix.so
 lib/libpmix.so.2
-lib/libpmix.so.2.13.9
+lib/libpmix.so.2.13.10
 lib/pmix/pmix_mca_pcompress_zlib.so
 %%ZLIBNG%%lib/pmix/pmix_mca_pcompress_zlibng.so
 libdata/pkgconfig/pmix.pc
@@ -214,6 +214,7 @@ libdata/pkgconfig/pmix.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/security.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_sources/versions.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/_sphinx_javascript_frameworks_compat.js
+%%PORTDOCS%%%%DOCSDIR%%/html/_static/base-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/basic.css
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/css/badge_only.css
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/css/fonts/Roboto-Slab-Bold.woff
@@ -236,6 +237,7 @@ libdata/pkgconfig/pmix.pc
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/css/theme.css
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/doctools.js
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/documentation_options.js
+%%PORTDOCS%%%%DOCSDIR%%/html/_static/english-stemmer.js
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/file.png
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/fonts/Lato/lato-bold.eot
 %%PORTDOCS%%%%DOCSDIR%%/html/_static/fonts/Lato/lato-bold.ttf

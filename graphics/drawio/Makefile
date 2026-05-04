@@ -1,5 +1,5 @@
 PORTNAME=	drawio
-PORTVERSION=	29.3.6
+PORTVERSION=	29.6.6
 PORTREVISION=	2
 DISTVERSIONPREFIX=	x86_64-
 CATEGORIES=	graphics
@@ -12,7 +12,7 @@ WWW=		https://drawio.com/
 
 LICENSE=	APACHE20
 
-USES=		desktop-file-utils electronfix:38 shared-mime-info
+USES=		desktop-file-utils electronfix:40 shared-mime-info
 
 NO_BUILD=	yes
 SUB_FILES=	drawio

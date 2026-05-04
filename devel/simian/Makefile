@@ -1,6 +1,6 @@
 PORTNAME=	simian
 PORTVERSION=	2.5.10
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.harukizaemon.com/simian/
 

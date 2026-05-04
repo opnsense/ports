@@ -27,7 +27,6 @@
     SUBDIR += ah-tty
     SUBDIR += aimage
     SUBDIR += aird
-    SUBDIR += alfio
     SUBDIR += alloy
     SUBDIR += am-utils
     SUBDIR += amazon-ssm-agent
@@ -117,10 +116,14 @@
     SUBDIR += bchunk
     SUBDIR += beadm
     SUBDIR += beats8
+    SUBDIR += beats91
+    SUBDIR += beats92
+    SUBDIR += beats93
     SUBDIR += bfs
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
     SUBDIR += bhyvemgr
+    SUBDIR += bin
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
@@ -363,6 +366,7 @@
     SUBDIR += envconsul
     SUBDIR += epazote
     SUBDIR += erdtree
+    SUBDIR += erldash
     SUBDIR += etcmerge
     SUBDIR += ethname
     SUBDIR += evhz
@@ -533,6 +537,7 @@
     SUBDIR += imgurbash2
     SUBDIR += immortal
     SUBDIR += incron
+    SUBDIR += incus-client
     SUBDIR += infracost
     SUBDIR += initool
     SUBDIR += inotify-tools
@@ -751,6 +756,7 @@
     SUBDIR += moreutils
     SUBDIR += most
     SUBDIR += mountsmb2
+    SUBDIR += mpifileutils
     SUBDIR += mping
     SUBDIR += mprocs
     SUBDIR += mptd
@@ -806,6 +812,7 @@
     SUBDIR += nvimpager
     SUBDIR += nvme-cli
     SUBDIR += nvramtool
+    SUBDIR += nvtop
     SUBDIR += oak
     SUBDIR += obliterate
     SUBDIR += oc
@@ -1033,6 +1040,7 @@
     SUBDIR += pxattr
     SUBDIR += py-ansible-compat
     SUBDIR += py-ansible-core
+    SUBDIR += py-ansible-core218
     SUBDIR += py-ansible-core219
     SUBDIR += py-ansible-core220
     SUBDIR += py-ansible-lint
@@ -1040,7 +1048,6 @@
     SUBDIR += py-appjail-gui
     SUBDIR += py-azure-cli
     SUBDIR += py-azure-cli-acr
-    SUBDIR += py-azure-cli-base
     SUBDIR += py-azure-cli-core
     SUBDIR += py-azure-cli-telemetry
     SUBDIR += py-bitrot
@@ -1054,6 +1061,7 @@
     SUBDIR += py-croniter2
     SUBDIR += py-dbuild
     SUBDIR += py-debian-inspector
+    SUBDIR += py-dex
     SUBDIR += py-dict-toolbox
     SUBDIR += py-diffoscope
     SUBDIR += py-director
@@ -1069,6 +1077,7 @@
     SUBDIR += py-focker
     SUBDIR += py-glances
     SUBDIR += py-google-compute-engine
+    SUBDIR += py-greaseweazle
     SUBDIR += py-hared
     SUBDIR += py-hcloud
     SUBDIR += py-healthchecks
@@ -1076,7 +1085,6 @@
     SUBDIR += py-howdoi
     SUBDIR += py-hpilo
     SUBDIR += py-iowait
-    SUBDIR += py-ioztat
     SUBDIR += py-jailconf
     SUBDIR += py-keep
     SUBDIR += py-kubernetes
@@ -1298,6 +1306,7 @@
     SUBDIR += rw-tui
     SUBDIR += s-tui
     SUBDIR += s6
+    SUBDIR += s6-frontend
     SUBDIR += s6-rc
     SUBDIR += safe-rm
     SUBDIR += safecat
@@ -1385,6 +1394,7 @@
     SUBDIR += swapusage
     SUBDIR += sweeper
     SUBDIR += swtpm
+    SUBDIR += sylve
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
@@ -1407,6 +1417,7 @@
     SUBDIR += tarsnap-gui
     SUBDIR += tarsnap-periodic
     SUBDIR += tartarus
+    SUBDIR += taws
     SUBDIR += tbku
     SUBDIR += tclsyslog
     SUBDIR += tcplist
@@ -1433,8 +1444,6 @@
     SUBDIR += tldr
     SUBDIR += tlsdate
     SUBDIR += tm
-    SUBDIR += tmate
-    SUBDIR += tmate-ssh-server
     SUBDIR += tmpreaper
     SUBDIR += tmpwatch
     SUBDIR += tmux
@@ -1546,6 +1555,7 @@
     SUBDIR += uif2iso
     SUBDIR += unetbootin
     SUBDIR += uniutils
+    SUBDIR += unixexec
     SUBDIR += unquote
     SUBDIR += unstow
     SUBDIR += upower
@@ -1595,6 +1605,7 @@
     SUBDIR += wait_on
     SUBDIR += waitforssh
     SUBDIR += walk
+    SUBDIR += wander
     SUBDIR += watchcat
     SUBDIR += watchfolder
     SUBDIR += watchman

@@ -1,5 +1,5 @@
 PORTNAME=	chef
-PORTVERSION=	19.1.164
+PORTVERSION=	19.2.12
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
@@ -29,7 +29,7 @@ RUN_DEPENDS=	rubygem-addressable>=0:www/rubygem-addressable \
 		rubygem-ffi-libarchive>=1.0.3<2:devel/rubygem-ffi-libarchive \
 		rubygem-ffi-yajl>=2.2<3:devel/rubygem-ffi-yajl \
 		rubygem-iniparse>=1.4<2:devel/rubygem-iniparse \
-		rubygem-inspec-core>=7.0.95<7.1:devel/rubygem-inspec-core \
+		rubygem-inspec-core>=7.0.107<7.1:devel/rubygem-inspec-core \
 		rubygem-license-acceptance>=1.0.5<3:sysutils/rubygem-license-acceptance \
 		rubygem-mixlib-archive>=0.4<2.0:devel/rubygem-mixlib-archive \
 		rubygem-mixlib-authentication>=2.1<4:devel/rubygem-mixlib-authentication \

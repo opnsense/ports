@@ -1,6 +1,6 @@
 PORTNAME=	llama-cpp-python
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.3.16
+DISTVERSION=	0.3.20
 CATEGORIES=	misc # machine-learning
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0.9.2:devel/py-scikit-b
 LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}diskcache>=5.6.1:devel/py-diskcache@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>=2.11.3:devel/py-Jinja2@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.5.0:devel/py-typing-extensions@${PY_FLAVOR}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}fastapi>=0.100.0:www/py-fastapi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic-settings>=2.0.1:devel/py-pydantic-settings@${PY_FLAVOR} \
@@ -34,7 +34,7 @@ USE_PYTHON=	pep517 autoplist pytest
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	abetlen
-GH_TUPLE=	ggerganov:llama.cpp:b6598:cpp/vendor/llama.cpp
+GH_TUPLE=	ggerganov:llama.cpp:f49e917:cpp/vendor/llama.cpp
 
 SHEBANG_GLOB=	*.py
 

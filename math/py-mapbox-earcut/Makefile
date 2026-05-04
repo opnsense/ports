@@ -1,7 +1,6 @@
 PORTNAME=	mapbox-earcut
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.2
-PORTREVISION=	1
+DISTVERSION=	2.0.0
 CATEGORIES=	math
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,11 +12,12 @@ WWW=		https://manimpango.manim.community/en/latest/
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scikit-build-core>0:devel/py-scikit-build-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}nanobind>0:devel/py-nanobind@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	distutils autoplist pytest
+USES=		cmake:indirect python
+USE_PYTHON=	pep517 autoplist pytest
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	skogler
@@ -26,7 +26,6 @@ GH_PROJECT=	mapbox_earcut_python
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/tests
 
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/mapbox_earcut${PYTHON_TAG}.so
+# tests as of 2.0.0: 13 passed, 12 skipped in 2.79s
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	esda
-PORTVERSION=	2.8.1
+PORTVERSION=	2.9.0
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,10 +17,10 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61.0:devel/py-setuptools@${PY_
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}geopandas>=0.14:graphics/py-geopandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}libpysal>=4.12:science/py-libpysal@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.26,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.26:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=2.1,1:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-learn>=1.4:science/py-scikit-learn@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}scipy>=1.12:science/py-scipy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}scipy>=1.12,1:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}shapely>=2.1:devel/py-shapely@${PY_FLAVOR}
 
 USES=		python:3.11+

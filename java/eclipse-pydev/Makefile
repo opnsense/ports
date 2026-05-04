@@ -1,6 +1,6 @@
 PORTNAME=	pydev
 PORTVERSION=	13.1.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	java devel python
 MASTER_SITES=	https://github.com/fabioz/Pydev/releases/download/${PORTNAME}_13_1_0/
 PKGNAMEPREFIX=	eclipse-

@@ -1,6 +1,6 @@
---- chrome/browser/chrome_content_browser_client_navigation_throttles.cc.orig	2026-03-15 18:32:51 UTC
+--- chrome/browser/chrome_content_browser_client_navigation_throttles.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/chrome_content_browser_client_navigation_throttles.cc
-@@ -135,7 +135,7 @@
+@@ -139,7 +139,7 @@
  #include "chrome/browser/captive_portal/captive_portal_service_factory.h"
  #endif  // BUILDFLAG(ENABLE_CAPTIVE_PORTAL_DETECTION)
  
@@ -27,7 +27,7 @@
    enterprise_connectors::DeviceTrustNavigationThrottle::MaybeCreateAndAdd(
        registry);
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) ||
-@@ -494,7 +494,7 @@ void CreateAndAddChromeThrottlesForNavigation(
+@@ -500,7 +500,7 @@ void CreateAndAddChromeThrottlesForNavigation(
        registry, ui_manager);
  #endif  // BUILDFLAG(SAFE_BROWSING_AVAILABLE)
  

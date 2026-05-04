@@ -3,6 +3,7 @@
 
 PORTNAME=	widevine-cdm
 PORTVERSION=	4.10.2934.0
+PORTREVISION=	1
 CATEGORIES=	www multimedia linux
 MASTER_SITES=	https://dl.google.com/linux/deb/pool/main/g/google-chrome-stable/
 PKGNAMEPREFIX=	linux-
@@ -24,7 +25,7 @@ NO_BUILD=	yes
 PLIST_FILES=	lib/WidevineCdm/_platform_specific/linux_x64/libwidevinecdm.so \
 		lib/WidevineCdm/manifest.json
 
-CHROME_VERSION=	145.0.7632.116-1
+CHROME_VERSION=	147.0.7727.101-1
 
 post-extract:
 	cd ${WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} data.tar.xz ${EXTRACT_AFTER_ARGS}

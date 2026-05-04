@@ -1,6 +1,6 @@
 PORTNAME=	ducc0
 DISTVERSION=	0.34.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ BROKEN_armv7=	clang runs out of memory
 BROKEN_i386=	non-constant-expression cannot be narrowed from type 'long long' to 'int' in initializer list (reported to the author on 2021-05-02 and 2022-02-01)
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		compiler:c++17-lang python
 

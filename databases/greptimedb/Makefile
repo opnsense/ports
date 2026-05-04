@@ -1,7 +1,6 @@
 PORTNAME=	greptimedb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.0-rc.1-nightly-20260216
-PORTREVISION=	1
+DISTVERSION=	1.0.0
 CATEGORIES=	databases
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -58,41 +57,40 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		arrayref-0.3.9 \
 		arrayvec-0.7.6 \
 		arrow-56.2.0 \
-		arrow-57.0.0 \
+		arrow-57.3.0 \
 		arrow-arith-56.2.0 \
-		arrow-arith-57.0.0 \
+		arrow-arith-57.3.0 \
 		arrow-array-56.2.0 \
-		arrow-array-57.0.0 \
+		arrow-array-57.3.0 \
 		arrow-buffer-56.2.0 \
-		arrow-buffer-57.0.0 \
+		arrow-buffer-57.3.0 \
 		arrow-cast-56.2.0 \
-		arrow-cast-57.0.0 \
+		arrow-cast-57.3.0 \
 		arrow-csv-56.2.0 \
-		arrow-csv-57.0.0 \
+		arrow-csv-57.3.0 \
 		arrow-data-56.2.0 \
-		arrow-data-57.0.0 \
-		arrow-flight-57.0.0 \
+		arrow-data-57.3.0 \
+		arrow-flight-57.3.0 \
 		arrow-ipc-56.2.0 \
-		arrow-ipc-57.0.0 \
+		arrow-ipc-57.3.0 \
 		arrow-json-56.2.0 \
-		arrow-json-57.0.0 \
+		arrow-json-57.3.0 \
 		arrow-ord-56.2.0 \
-		arrow-ord-57.0.0 \
-		arrow-pg-0.11.0 \
+		arrow-ord-57.3.0 \
+		arrow-pg-0.12.2 \
 		arrow-row-56.2.0 \
-		arrow-row-57.0.0 \
+		arrow-row-57.3.0 \
 		arrow-schema-56.2.0 \
-		arrow-schema-57.0.0 \
+		arrow-schema-57.3.0 \
 		arrow-select-56.2.0 \
-		arrow-select-57.0.0 \
+		arrow-select-57.3.0 \
 		arrow-string-56.2.0 \
-		arrow-string-57.0.0 \
+		arrow-string-57.3.0 \
 		ascii-canvas-4.0.0 \
 		async-broadcast-0.7.2 \
 		async-channel-1.9.0 \
 		async-channel-2.3.1 \
-		async-compression-0.3.15 \
-		async-compression-0.4.19 \
+		async-compression-0.4.41 \
 		async-fs-2.1.2 \
 		async-lock-3.4.0 \
 		async-recursion-1.1.1 \
@@ -104,7 +102,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		asynchronous-codec-0.7.0 \
 		atoi-2.0.0 \
 		atomic-waker-1.1.2 \
-		atty-0.2.14 \
 		auto_impl-1.3.0 \
 		auto_ops-0.3.0 \
 		autocfg-1.5.0 \
@@ -145,24 +142,18 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		bon-macros-3.6.5 \
 		borsh-1.5.7 \
 		borsh-derive-1.5.7 \
-		brotli-7.0.0 \
 		brotli-8.0.1 \
-		brotli-decompressor-4.0.3 \
 		brotli-decompressor-5.0.0 \
 		bstr-1.12.0 \
 		btoi-0.4.3 \
 		bufstream-0.1.4 \
-		build-data-0.2.3 \
 		bumpalo-3.19.0 \
 		bytecheck-0.6.12 \
 		bytecheck_derive-0.6.12 \
 		bytemuck-1.23.1 \
 		byteorder-1.5.0 \
-		bytes-1.11.0 \
-		bzip2-0.4.4 \
-		bzip2-0.5.2 \
+		bytes-1.11.1 \
 		bzip2-0.6.1 \
-		bzip2-sys-0.1.13+1.0.8 \
 		cactus-1.0.7 \
 		cargo-manifest-0.19.1 \
 		cast-0.3.0 \
@@ -179,9 +170,10 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		cfgrammar-0.13.10 \
 		cgmath-0.18.0 \
 		chacha20-0.9.1 \
+		chacha20-0.10.0 \
 		chacha20poly1305-0.10.1 \
 		charset-0.1.5 \
-		chrono-0.4.42 \
+		chrono-0.4.44 \
 		chrono-tz-0.10.4 \
 		chrono-tz-build-0.5.0 \
 		ciborium-0.2.2 \
@@ -190,11 +182,9 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		cidr-0.3.1 \
 		cipher-0.4.4 \
 		clang-sys-1.8.1 \
-		clap-3.2.25 \
 		clap-4.5.40 \
 		clap_builder-4.5.40 \
 		clap_derive-4.5.40 \
-		clap_lex-0.2.4 \
 		clap_lex-0.7.5 \
 		clocksource-0.8.1 \
 		cmac-0.7.2 \
@@ -204,8 +194,9 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		colorchoice-1.0.4 \
 		colored-2.2.0 \
 		comfy-table-7.1.2 \
-		comma-1.0.0 \
 		community-id-0.2.3 \
+		compression-codecs-0.4.37 \
+		compression-core-0.4.31 \
 		concurrent-queue-2.5.0 \
 		config-0.13.4 \
 		console-0.15.11 \
@@ -227,11 +218,11 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		core2-0.4.0 \
 		cpp_demangle-0.4.4 \
 		cpufeatures-0.2.17 \
+		cpufeatures-0.3.0 \
 		crc-3.3.0 \
 		crc-catalog-2.4.0 \
 		crc32c-0.6.8 \
 		crc32fast-1.4.2 \
-		criterion-0.4.0 \
 		criterion-0.5.1 \
 		criterion-0.7.0 \
 		criterion-plot-0.5.0 \
@@ -264,6 +255,8 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		darling_macro-0.21.1 \
 		dary_heap-0.3.7 \
 		dashmap-6.1.0 \
+		datafusion-orc-0.7.0 \
+		datafusion-pg-catalog-0.15.1 \
 		dbl-0.3.2 \
 		deadpool-0.12.2 \
 		deadpool-postgres-0.14.1 \
@@ -271,7 +264,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		debugid-0.8.0 \
 		delta-encoding-0.4.8 \
 		der-0.7.10 \
-		deranged-0.4.0 \
+		deranged-0.5.8 \
 		derivative-2.2.0 \
 		derive-new-0.7.0 \
 		derive_arbitrary-1.4.1 \
@@ -325,7 +318,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		fallible-iterator-0.2.0 \
 		fallible-streaming-iterator-0.1.9 \
 		fancy-regex-0.14.0 \
-		fast-float-0.2.0 \
+		fast-float2-0.2.3 \
 		fastbloom-0.8.0 \
 		fastdivide-0.4.2 \
 		fastrand-2.3.0 \
@@ -334,7 +327,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		fixedbitset-0.4.2 \
 		fixedbitset-0.5.7 \
 		flatbuffers-25.2.10 \
-		flate2-1.1.4 \
+		flate2-1.1.9 \
 		flexbuffers-25.2.10 \
 		float-cmp-0.10.0 \
 		float_eq-1.0.1 \
@@ -380,7 +373,9 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		getopts-0.2.23 \
 		getrandom-0.2.16 \
 		getrandom-0.3.3 \
+		getrandom-0.4.1 \
 		gimli-0.31.1 \
+		git2-0.20.4 \
 		glob-0.3.2 \
 		gloo-timers-0.3.0 \
 		grok-2.1.0 \
@@ -394,7 +389,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		hashbrown-0.12.3 \
 		hashbrown-0.14.5 \
 		hashbrown-0.15.4 \
-		hashbrown-0.16.0 \
+		hashbrown-0.16.1 \
 		hashlink-0.10.0 \
 		hdrhistogram-7.5.4 \
 		headers-0.4.1 \
@@ -402,7 +397,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		heapless-0.8.0 \
 		heck-0.4.1 \
 		heck-0.5.0 \
-		hermit-abi-0.1.19 \
 		hermit-abi-0.5.2 \
 		hex-0.4.3 \
 		hkdf-0.12.4 \
@@ -444,6 +438,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		icu_properties-2.0.1 \
 		icu_properties_data-2.0.1 \
 		icu_provider-2.0.0 \
+		id-arena-2.3.0 \
 		ident_case-1.0.1 \
 		idna-1.1.0 \
 		idna_adapter-1.2.1 \
@@ -453,7 +448,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		include_dir-0.7.4 \
 		include_dir_macros-0.7.4 \
 		indexmap-1.9.3 \
-		indexmap-2.12.0 \
+		indexmap-2.13.0 \
 		indoc-2.0.6 \
 		inferno-0.11.21 \
 		inferno-0.12.2 \
@@ -470,7 +465,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		ipnet-2.11.0 \
 		iri-string-0.7.8 \
 		is-terminal-0.4.16 \
-		is_debug-1.1.0 \
 		is_terminal_polyfill-1.70.1 \
 		iso8601-0.6.3 \
 		itertools-0.10.5 \
@@ -485,12 +479,13 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		js-sys-0.3.77 \
 		json-patch-2.0.0 \
 		json5-0.4.1 \
+		jsonb-0.4.4 \
 		jsonpath-rust-0.5.1 \
 		jsonpath-rust-0.7.5 \
 		jsonptr-0.4.7 \
 		jsonwebtoken-9.3.1 \
 		k8s-openapi-0.22.0 \
-		keccak-0.1.5 \
+		keccak-0.1.6 \
 		keyed_priority_queue-0.4.2 \
 		kqueue-1.1.1 \
 		kqueue-sys-1.0.4 \
@@ -506,6 +501,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		lazy-regex-3.4.1 \
 		lazy-regex-proc_macros-3.4.1 \
 		lazy_static-1.5.0 \
+		leb128fmt-0.1.0 \
 		levenshtein_automata-0.2.1 \
 		lexical-core-1.0.5 \
 		lexical-parse-float-1.0.5 \
@@ -514,15 +510,17 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		lexical-write-float-1.0.5 \
 		lexical-write-integer-1.0.5 \
 		libbz2-rs-sys-0.2.1 \
-		libc-0.2.177 \
+		libc-0.2.180 \
 		libflate-2.1.0 \
 		libflate_lz77-2.1.0 \
 		libfuzzer-sys-0.4.9 \
+		libgit2-sys-0.18.3+1.9.2 \
 		libloading-0.8.8 \
+		liblzma-0.4.6 \
+		liblzma-sys-0.4.4 \
 		libm-0.2.15 \
 		libredox-0.1.4 \
 		libsqlite3-sys-0.30.1 \
-		libz-rs-sys-0.5.1 \
 		libz-sys-1.1.22 \
 		link-cplusplus-1.0.12 \
 		linked-hash-map-0.5.6 \
@@ -541,21 +539,20 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		lru-slab-0.1.2 \
 		lz4-1.28.1 \
 		lz4-sys-1.11.1+lz4-1.10.0 \
-		lz4_flex-0.11.5 \
-		lzma-sys-0.1.20 \
+		lz4_flex-0.11.6 \
+		lz4_flex-0.12.1 \
 		lzokay-native-0.1.0 \
 		mappings-0.7.1 \
 		match_cfg-0.1.0 \
-		matchers-0.1.0 \
+		matchers-0.2.0 \
 		matchit-0.7.3 \
 		matchit-0.8.4 \
 		matrixmultiply-0.3.10 \
 		md-5-0.10.6 \
 		md5-0.8.0 \
 		measure_time-0.9.0 \
-		memchr-2.7.5 \
+		memchr-2.8.0 \
 		memmap2-0.9.5 \
-		memoffset-0.6.5 \
 		memoffset-0.7.1 \
 		mime-0.3.17 \
 		mime_guess-2.0.5 \
@@ -582,7 +579,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		neli-0.6.5 \
 		neli-proc-macros-0.1.4 \
 		new_debug_unreachable-1.0.6 \
-		nix-0.25.1 \
 		nix-0.26.4 \
 		nix-0.28.0 \
 		nix-0.30.1 \
@@ -592,12 +588,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		notify-8.0.0 \
 		notify-types-2.0.0 \
 		ntapi-0.4.1 \
-		nu-ansi-term-0.46.0 \
+		nu-ansi-term-0.50.3 \
 		num-0.4.3 \
 		num-bigint-0.4.6 \
-		num-bigint-dig-0.8.4 \
+		num-bigint-dig-0.8.6 \
 		num-complex-0.4.6 \
-		num-conv-0.1.0 \
+		num-conv-0.2.0 \
 		num-derive-0.4.2 \
 		num-format-0.4.4 \
 		num-integer-0.1.46 \
@@ -614,7 +610,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		num_threads-0.1.7 \
 		object-0.36.7 \
 		object-pool-0.5.4 \
-		object_store-0.12.4 \
+		object_store-0.12.5 \
 		object_store_opendal-0.54.0 \
 		octseq-0.5.2 \
 		ofb-0.6.1 \
@@ -643,9 +639,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		ordered-multimap-0.4.3 \
 		ordered-multimap-0.7.3 \
 		os_info-3.12.0 \
-		os_str_bytes-6.6.1 \
 		outref-0.5.2 \
-		overload-0.1.1 \
 		ownedbytes-0.9.0 \
 		packedvec-1.2.5 \
 		pad-0.1.6 \
@@ -654,7 +648,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		parking_lot-0.12.4 \
 		parking_lot_core-0.8.6 \
 		parking_lot_core-0.9.11 \
-		parquet-57.0.0 \
+		parquet-57.3.0 \
 		parse-size-1.1.0 \
 		parse-zoneinfo-0.4.1 \
 		paste-1.0.15 \
@@ -677,7 +671,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		petgraph-0.7.1 \
 		petgraph-0.8.3 \
 		pg_interval_2-0.5.2 \
-		pgwire-0.37.3 \
+		pgwire-0.38.3 \
 		phf-0.11.3 \
 		phf-0.12.1 \
 		phf_codegen-0.12.1 \
@@ -724,14 +718,13 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		prometheus-0.13.4 \
 		prometheus-0.14.0 \
 		prometheus-static-metric-0.5.1 \
-		promql-parser-0.7.1 \
+		promql-parser-0.7.3 \
 		proptest-1.9.0 \
 		prost-0.11.9 \
 		prost-0.12.6 \
 		prost-0.13.5 \
 		prost-0.14.1 \
 		prost-build-0.12.6 \
-		prost-build-0.13.5 \
 		prost-build-0.14.1 \
 		prost-derive-0.11.9 \
 		prost-derive-0.12.6 \
@@ -761,9 +754,9 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		quick-xml-0.37.5 \
 		quick-xml-0.38.4 \
 		quinn-0.11.8 \
-		quinn-proto-0.11.12 \
+		quinn-proto-0.11.14 \
 		quinn-udp-0.5.13 \
-		quote-1.0.41 \
+		quote-1.0.44 \
 		quoted-string-0.6.1 \
 		quoted_printable-0.5.1 \
 		r-efi-5.3.0 \
@@ -771,10 +764,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		raft-engine-0.4.2 \
 		rand-0.8.5 \
 		rand-0.9.1 \
+		rand-0.10.0 \
 		rand_chacha-0.3.1 \
 		rand_chacha-0.9.0 \
 		rand_core-0.6.4 \
 		rand_core-0.9.3 \
+		rand_core-0.10.0 \
 		rand_distr-0.4.3 \
 		rand_xorshift-0.4.0 \
 		ratelimit-0.10.0 \
@@ -788,20 +783,16 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		ref-cast-1.0.24 \
 		ref-cast-impl-1.0.24 \
 		regex-1.12.2 \
-		regex-automata-0.1.10 \
 		regex-automata-0.4.13 \
 		regex-filtered-0.2.0 \
 		regex-lite-0.1.6 \
-		regex-syntax-0.6.29 \
-		regex-syntax-0.8.7 \
-		regress-0.9.1 \
+		regex-syntax-0.8.10 \
 		regress-0.10.5 \
 		relative-path-1.9.3 \
 		rend-0.4.2 \
 		replace_with-0.1.8 \
 		reqsign-0.16.5 \
 		reqwest-0.12.24 \
-		rexpect-0.5.0 \
 		rgb-0.8.50 \
 		ring-0.17.14 \
 		rkyv-0.7.46 \
@@ -811,13 +802,11 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		robust-1.2.0 \
 		ron-0.7.1 \
 		roxmltree-0.20.0 \
-		rsa-0.9.8 \
-		rsasl-2.2.0 \
+		rsa-0.9.10 \
+		rsasl-2.2.1 \
 		rstar-0.12.2 \
 		rstest-0.25.0 \
-		rstest-0.26.1 \
 		rstest_macros-0.25.0 \
-		rstest_macros-0.26.1 \
 		rstest_reuse-0.7.0 \
 		rust-embed-6.8.1 \
 		rust-embed-impl-6.8.1 \
@@ -837,15 +826,10 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		rustls-native-certs-0.8.1 \
 		rustls-pemfile-2.2.0 \
 		rustls-pki-types-1.12.0 \
-		rustls-webpki-0.103.3 \
+		rustls-webpki-0.103.10 \
 		rustversion-1.0.21 \
 		ryu-1.0.20 \
 		s2-0.0.12 \
-		safe-proc-macro2-1.0.95 \
-		safe-quote-1.0.40 \
-		safe-regex-0.3.0 \
-		safe-regex-compiler-0.3.0 \
-		safe-regex-macro-0.3.0 \
 		safe_arch-0.7.4 \
 		salsa20-0.10.2 \
 		same-file-1.0.6 \
@@ -885,7 +869,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		sha1-0.10.6 \
 		sha2-0.10.9 \
 		sha3-0.10.8 \
-		shadow-rs-1.2.1 \
 		sharded-slab-0.1.7 \
 		shlex-1.3.0 \
 		signal-hook-registry-1.4.5 \
@@ -899,7 +882,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		simple_asn1-0.6.3 \
 		siphasher-1.0.1 \
 		sketches-ddsketch-0.3.0 \
-		slab-0.4.10 \
+		slab-0.4.12 \
 		slotmap-1.0.7 \
 		smallvec-1.15.1 \
 		smol_str-0.3.4 \
@@ -939,13 +922,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		strum_macros-0.26.4 \
 		strum_macros-0.27.1 \
 		subprocess-0.2.9 \
-		substrait-0.37.3 \
 		substrait-0.62.2 \
 		subtle-2.6.1 \
 		symbolic-common-12.15.5 \
 		symbolic-demangle-12.15.5 \
 		syn-1.0.109 \
-		syn-2.0.114 \
+		syn-2.0.117 \
 		sync_wrapper-0.1.2 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
@@ -963,13 +945,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		tantivy-stacker-0.5.0 \
 		tantivy-tokenizer-api-0.5.0 \
 		tap-1.0.1 \
-		tar-0.4.44 \
+		tar-0.4.45 \
 		temp-env-0.3.6 \
 		tempfile-3.23.0 \
 		term-1.0.2 \
 		termcolor-1.4.1 \
 		termtree-0.5.1 \
-		textwrap-0.16.2 \
 		thiserror-1.0.69 \
 		thiserror-2.0.17 \
 		thiserror-impl-1.0.69 \
@@ -980,15 +961,15 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		tikv-jemalloc-ctl-0.6.0 \
 		tikv-jemalloc-sys-0.6.0+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7 \
 		tikv-jemallocator-0.6.0 \
-		time-0.3.41 \
-		time-core-0.1.4 \
-		time-macros-0.2.22 \
+		time-0.3.47 \
+		time-core-0.1.8 \
+		time-macros-0.2.27 \
 		tiny-keccak-2.0.2 \
 		tinystr-0.8.1 \
 		tinytemplate-1.2.1 \
 		tinyvec-1.9.0 \
 		tinyvec_macros-0.1.1 \
-		tokio-1.48.0 \
+		tokio-1.49.0 \
 		tokio-io-timeout-1.2.0 \
 		tokio-macros-2.6.0 \
 		tokio-metrics-0.3.1 \
@@ -998,7 +979,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		tokio-rustls-0.26.2 \
 		tokio-stream-0.1.17 \
 		tokio-test-0.4.4 \
-		tokio-util-0.7.16 \
+		tokio-util-0.7.18 \
 		toml-0.5.11 \
 		toml-0.8.23 \
 		toml_datetime-0.6.11 \
@@ -1025,7 +1006,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		tracing-log-0.2.0 \
 		tracing-opentelemetry-0.31.0 \
 		tracing-serde-0.2.0 \
-		tracing-subscriber-0.3.19 \
+		tracing-subscriber-0.3.20 \
 		trim-in-place-0.1.7 \
 		try-lock-0.2.5 \
 		twox-hash-2.1.1 \
@@ -1033,15 +1014,9 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		typenum-1.18.0 \
 		typetag-0.2.20 \
 		typetag-impl-0.2.20 \
-		typify-0.1.0 \
 		typify-0.5.0 \
-		typify-impl-0.1.0 \
 		typify-impl-0.5.0 \
-		typify-macro-0.1.0 \
 		typify-macro-0.5.0 \
-		tz-rs-0.7.0 \
-		tzdb-0.7.2 \
-		tzdb_data-0.2.2 \
 		ua-parser-0.2.1 \
 		ucd-trie-0.1.7 \
 		unarray-0.1.4 \
@@ -1065,7 +1040,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		utf8-width-0.1.7 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
-		uuid-1.18.1 \
+		uuid-1.21.0 \
 		valuable-0.1.1 \
 		value-trait-0.11.0 \
 		variadics-0.0.9 \
@@ -1082,6 +1057,8 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		want-0.3.1 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
 		wasi-0.14.2+wasi-0.2.4 \
+		wasip2-1.0.2+wasi-0.2.9 \
+		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
 		wasite-0.1.0 \
 		wasm-bindgen-0.2.100 \
 		wasm-bindgen-backend-0.2.100 \
@@ -1089,7 +1066,10 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		wasm-bindgen-macro-0.2.100 \
 		wasm-bindgen-macro-support-0.2.100 \
 		wasm-bindgen-shared-0.2.100 \
+		wasm-encoder-0.244.0 \
+		wasm-metadata-0.244.0 \
 		wasm-streams-0.4.2 \
+		wasmparser-0.244.0 \
 		web-sys-0.3.77 \
 		web-time-1.1.0 \
 		webpki-0.22.4 \
@@ -1142,7 +1122,13 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		winnow-0.5.40 \
 		winnow-0.6.26 \
 		winnow-0.7.11 \
+		wit-bindgen-0.51.0 \
+		wit-bindgen-core-0.51.0 \
 		wit-bindgen-rt-0.39.0 \
+		wit-bindgen-rust-0.51.0 \
+		wit-bindgen-rust-macro-0.51.0 \
+		wit-component-0.244.0 \
+		wit-parser-0.244.0 \
 		wkt-0.11.1 \
 		woothee-0.13.0 \
 		writeable-0.6.1 \
@@ -1150,7 +1136,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		x509-certificate-0.23.1 \
 		x509-certificate-0.25.0 \
 		xattr-1.5.1 \
-		xz2-0.1.7 \
 		yaml-rust-0.4.5 \
 		yansi-1.0.1 \
 		yoke-0.8.0 \
@@ -1164,27 +1149,22 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		zerotrie-0.2.2 \
 		zerovec-0.11.2 \
 		zerovec-derive-0.11.1 \
-		zlib-rs-0.5.1 \
+		zlib-rs-0.6.2 \
 		zmij-1.0.12 \
-		zstd-0.11.2+zstd.1.5.2 \
 		zstd-0.13.3 \
-		zstd-safe-5.0.2+zstd.1.5.2 \
 		zstd-safe-7.2.4 \
 		zstd-sys-2.0.15+zstd.1.5.7 \
-		datafusion-orc@git+https://github.com/GreptimeTeam/datafusion-orc.git?rev=35f2e04bf81f2ab7b6f86c0450d6a77b7098d43e\#35f2e04bf81f2ab7b6f86c0450d6a77b7098d43e \
-		greptime-proto@git+https://github.com/GreptimeTeam/greptime-proto.git?rev=030f1e48ab1075aef8ebac5a1e0a38e081903430\#030f1e48ab1075aef8ebac5a1e0a38e081903430 \
 		opensrv-mysql@git+https://github.com/datafuselabs/opensrv?tag=v0.10.0\#074bd8fb81da3c9e6d6a098a482f3380478b9c0b \
-		datafusion-pg-catalog@git+https://github.com/GreptimeTeam/datafusion-postgres.git?rev=74ac8e2806be6de91ff192b97f64735392539d16\#74ac8e2806be6de91ff192b97f64735392539d16 \
 		otel-arrow-rust,otlp-derive,otlp-model@git+https://github.com/GreptimeTeam/otel-arrow?rev=5da284414e9b14f678344b51e5292229e4b5f8d2\#5da284414e9b14f678344b51e5292229e4b5f8d2 \
 		memcomparable@git+https://github.com/v0y4g3r/memcomparable.git?rev=a07122dc03556bbd88ad66234cbea7efd3b23efb\#a07122dc03556bbd88ad66234cbea7efd3b23efb \
-		jsonb@git+https://github.com/databendlabs/jsonb.git?rev=8c8d2fc294a39f3ff08909d60f718639cfba3875\#8c8d2fc294a39f3ff08909d60f718639cfba3875 \
+		greptime-proto@git+https://github.com/GreptimeTeam/greptime-proto.git?rev=092ba1d01e2da676dca66cca7eebb55009da8ef8\#092ba1d01e2da676dca66cca7eebb55009da8ef8 \
 		uddsketch@git+https://github.com/GreptimeTeam/timescaledb-toolkit.git?rev=84828fe8fb494a6a61412a3da96517fc80f7bb20\#84828fe8fb494a6a61412a3da96517fc80f7bb20 \
 		loki-proto@git+https://github.com/GreptimeTeam/loki-proto.git?rev=f69c8924c4babe516373e26a4118be82d976629c\#f69c8924c4babe516373e26a4118be82d976629c \
+		sqlparser,sqlparser_derive@git+https://github.com/GreptimeTeam/sqlparser-rs.git?rev=2aefa08a8d69c96eec2d6d6703598a009bba6e4c\#2aefa08a8d69c96eec2d6d6703598a009bba6e4c \
 		sqlness@git+https://github.com/GreptimeTeam/sqlness?rev=6bc85ce077a87756e68ef5a5cd5707071a9da380\#6bc85ce077a87756e68ef5a5cd5707071a9da380 \
 		rskafka@git+https://github.com/GreptimeTeam/rskafka.git?rev=f5688f83e7da591cda3f2674c2408b4c0ed4ed50\#f5688f83e7da591cda3f2674c2408b4c0ed4ed50 \
 		influxdb_line_protocol@git+https://github.com/evenyag/influxdb_iox?branch=feat%2Fline-protocol\#10ef0d0b02705ac7518717390939fa3a9bcfcacc \
-		datafusion,datafusion-catalog,datafusion-catalog-listing,datafusion-common,datafusion-common-runtime,datafusion-datasource,datafusion-datasource-arrow,datafusion-datasource-csv,datafusion-datasource-json,datafusion-datasource-parquet,datafusion-doc,datafusion-execution,datafusion-expr,datafusion-expr-common,datafusion-functions,datafusion-functions-aggregate,datafusion-functions-aggregate-common,datafusion-functions-nested,datafusion-functions-table,datafusion-functions-window,datafusion-functions-window-common,datafusion-macros,datafusion-optimizer,datafusion-physical-expr,datafusion-physical-expr-adapter,datafusion-physical-expr-common,datafusion-physical-optimizer,datafusion-physical-plan,datafusion-pruning,datafusion-session,datafusion-sql,datafusion-substrait@git+https://github.com/GreptimeTeam/datafusion.git?rev=7143b2fc4492a7970774583ed0997a459f3e5c05\#7143b2fc4492a7970774583ed0997a459f3e5c05 \
-		sqlparser,sqlparser_derive@git+https://github.com/GreptimeTeam/sqlparser-rs.git?rev=d7d95a44889e099e32d78e9bad9bc00598faef28\#d7d95a44889e099e32d78e9bad9bc00598faef28 \
+		datafusion,datafusion-catalog,datafusion-catalog-listing,datafusion-common,datafusion-common-runtime,datafusion-datasource,datafusion-datasource-arrow,datafusion-datasource-csv,datafusion-datasource-json,datafusion-datasource-parquet,datafusion-doc,datafusion-execution,datafusion-expr,datafusion-expr-common,datafusion-functions,datafusion-functions-aggregate,datafusion-functions-aggregate-common,datafusion-functions-nested,datafusion-functions-table,datafusion-functions-window,datafusion-functions-window-common,datafusion-macros,datafusion-optimizer,datafusion-physical-expr,datafusion-physical-expr-adapter,datafusion-physical-expr-common,datafusion-physical-optimizer,datafusion-physical-plan,datafusion-pruning,datafusion-session,datafusion-sql,datafusion-substrait@git+https://github.com/GreptimeTeam/datafusion.git?rev=02b82535e0160c4545667f36a03e1ff9d1d2e51f\#02b82535e0160c4545667f36a03e1ff9d1d2e51f \
 		meter-core,meter-macros@git+https://github.com/GreptimeTeam/greptime-meter.git?rev=5618e779cf2bb4755b499c630fba4c35e91898cb\#5618e779cf2bb4755b499c630fba4c35e91898cb
 
 USER=		nobody
@@ -1209,13 +1189,9 @@ post-patch:
 	@${ECHO} '#![recursion_limit = "256"]' > ${WRKSRC}/src/common/datasource/src/lib.rs.new
 	@cat ${WRKSRC}/src/common/datasource/src/lib.rs >> ${WRKSRC}/src/common/datasource/src/lib.rs.new
 	@${MV} ${WRKSRC}/src/common/datasource/src/lib.rs.new ${WRKSRC}/src/common/datasource/src/lib.rs
-	# fix: add recursion limit to cmd/greptime binary
-	@${ECHO} '#![recursion_limit = "256"]' > ${WRKSRC}/src/cmd/src/bin/greptime.rs.new
-	@cat ${WRKSRC}/src/cmd/src/bin/greptime.rs >> ${WRKSRC}/src/cmd/src/bin/greptime.rs.new
-	@${MV} ${WRKSRC}/src/cmd/src/bin/greptime.rs.new ${WRKSRC}/src/cmd/src/bin/greptime.rs
-	# fix otel-arrow protobuf path  
+	# fix otel-arrow protobuf path
 	@${REINPLACE_CMD} -i '' \
-		-e 's|format!("{base}/../../proto/opentelemetry-proto").as_str()|format!("{base}/../../../greptimedb-1.0.0-rc.1-nightly-20260216/cargo-crates/opentelemetry-proto-0.30.0/src/proto/opentelemetry-proto").as_str()|' \
+		-e 's|format!("{base}/../../proto/opentelemetry-proto").as_str()|format!("{base}/../../../${PORTNAME}-${DISTVERSION}/cargo-crates/opentelemetry-proto-0.30.0/src/proto/opentelemetry-proto").as_str()|' \
 		${WRKDIR}/otel-arrow-5da284414e9b14f678344b51e5292229e4b5f8d2/rust/otel-arrow-rust/build.rs
 
 do-install:

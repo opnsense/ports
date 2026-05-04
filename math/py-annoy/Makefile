@@ -13,7 +13,7 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
-		${PYNUMPY}
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	distutils autoplist pytest # tests fail because nose is broken

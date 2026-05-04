@@ -1,5 +1,5 @@
 PORTNAME=	log4cpp
-PORTVERSION=	1.1.5
+PORTVERSION=	1.1.6
 CATEGORIES=	devel
 MASTER_SITES=	SF/log4cpp/log4cpp-1.1.x%20%28new%29/log4cpp-1.1
 

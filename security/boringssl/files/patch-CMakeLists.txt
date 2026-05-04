@@ -1,8 +1,8 @@
---- CMakeLists.txt.orig	2026-02-12 11:30:37.064017000 -0500
-+++ CMakeLists.txt	2026-02-12 11:34:38.653744000 -0500
-@@ -768,6 +768,9 @@
- add_executable(bssl ${BSSL_SOURCES})
- target_link_libraries(bssl ssl crypto)
+--- CMakeLists.txt.orig	2026-04-14 06:05:39 UTC
++++ CMakeLists.txt
+@@ -773,6 +773,9 @@ endif()
+   target_link_libraries(generate_mldsa_certs crypto)
+ endif()
  
 +SET_TARGET_PROPERTIES(ssl PROPERTIES SOVERSION 1)
 +SET_TARGET_PROPERTIES(crypto PROPERTIES SOVERSION 1)

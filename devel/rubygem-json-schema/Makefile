@@ -1,5 +1,5 @@
 PORTNAME=	json-schema
-PORTVERSION=	6.1.0
+PORTVERSION=	6.2.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

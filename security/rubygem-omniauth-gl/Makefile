@@ -1,6 +1,6 @@
 PORTNAME=	omniauth
 PORTVERSION=	2.1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 # this port is a replacement for rubygem-omniauth which fixes depedency conflicts
@@ -16,8 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	rubygem-hashie-gitlab>=3.4.6:devel/rubygem-hashie-gitlab \
 		rubygem-logger-gitlab>=0:devel/rubygem-logger-gitlab \
-		rubygem-rack>=2.2.3,3:www/rubygem-rack \
-		rubygem-rack-protection3>=0:www/rubygem-rack-protection3
+		rubygem-rack-gitlab>=2.2.3:www/rubygem-rack-gitlab \
+		rubygem-rack-protection-gitlab>=0:www/rubygem-rack-protection-gitlab
 
 USES=		cpe gem
 

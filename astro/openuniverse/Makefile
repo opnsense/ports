@@ -4,7 +4,7 @@ PORTREVISION=	16
 CATEGORIES=	astro
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	OpenGL Solar System simulator for X Window System
 WWW=		https://openuniverse.sourceforge.net/
 

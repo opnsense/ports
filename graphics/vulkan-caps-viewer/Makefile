@@ -2,7 +2,7 @@ PORTNAME=	vulkan-caps-viewer
 DISTVERSION=	4.10
 CATEGORIES=	graphics
 
-MAINTAINER=	atanubiswas484@gmail.com
+MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Vulkan Hardware Capability Viewer
 WWW=		https://vulkan.gpuinfo.org/
 

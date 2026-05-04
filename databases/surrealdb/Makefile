@@ -1,6 +1,7 @@
 PORTNAME=	surrealdb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0.4
+DISTVERSION=	3.0.5
+PORTREVISION=	3
 CATEGORIES=	databases
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -13,6 +14,7 @@ LICENSE_NAME=	Business Source License 1.1
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
+BROKEN_aarch64=	compilation fails: unsupported platform, see https://github.com/bytecodealliance/wasmtime/issues/12819
 BROKEN_armv7=	compilation fails: memory allocation of 83886084 bytes failed
 BROKEN_i386=	compilation fails: memory allocation of 109051908 bytes failed
 
@@ -76,8 +78,8 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		atomic-polyfill-1.0.3 \
 		atomic-waker-1.1.2 \
 		autocfg-1.5.0 \
-		aws-lc-rs-1.15.3 \
-		aws-lc-sys-0.36.0 \
+		aws-lc-rs-1.16.2 \
+		aws-lc-sys-0.39.0 \
 		axum-0.6.20 \
 		axum-0.8.8 \
 		axum-core-0.3.4 \
@@ -401,7 +403,7 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		lru-slab-0.1.2 \
 		lz4-1.28.1 \
 		lz4-sys-1.11.1+lz4-1.10.0 \
-		lz4_flex-0.12.0 \
+		lz4_flex-0.12.1 \
 		lzma-rust2-0.15.7 \
 		mac-0.1.1 \
 		mach2-0.4.3 \
@@ -611,7 +613,7 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		rustls-platform-verifier-0.6.2 \
 		rustls-platform-verifier-android-0.1.1 \
 		rustls-webpki-0.101.7 \
-		rustls-webpki-0.103.9 \
+		rustls-webpki-0.103.10 \
 		rustversion-1.0.22 \
 		rustyline-17.0.2 \
 		rustyline-derive-0.11.1 \
@@ -693,7 +695,7 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		system-interface-0.27.3 \
 		take_mut-0.2.2 \
 		tap-1.0.1 \
-		tar-0.4.44 \
+		tar-0.4.45 \
 		target-lexicon-0.13.4 \
 		temp-dir-0.1.16 \
 		tempfile-3.24.0 \

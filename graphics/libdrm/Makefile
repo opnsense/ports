@@ -25,7 +25,7 @@ TESTS_DESC=	Build and install test programs
 TESTS_MESON_TRUE=	install-test-programs
 
 # avoid circular dependency in case cairo supports OpenGL (cairo->mesa-libs->libdrm->cairo)
-CONFIGURE_ARGS+=	-Dcairo-tests=disabled
+MESON_ARGS+=	-Dcairo-tests=disabled
 
 # Disable some targets known to not work on FreeBSD
 MESON_ARGS+=	-Domap=disabled \

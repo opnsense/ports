@@ -1,6 +1,7 @@
 PORTNAME=	llama-cpp
 DISTVERSIONPREFIX=	b
-DISTVERSION=	8182
+DISTVERSION=	8895
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -36,8 +37,8 @@ CMAKE_TESTING_ON=	LLAMA_BUILD_TESTS
 USER=		nobody
 SUB_LIST=	USER=${USER}
 
-OPTIONS_DEFINE=		CURL EXAMPLES VULKAN
-OPTIONS_DEFAULT=	CURL VULKAN
+OPTIONS_DEFINE=		CURL EXAMPLES
+OPTIONS_DEFAULT=	CURL EXAMPLES
 OPTIONS_SUB=		yes
 
 CURL_DESCR=		Use libcurl to download model from an URL
@@ -46,11 +47,6 @@ CURL_USES=		localbase
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 
 EXAMPLES_CMAKE_BOOL=	LLAMA_BUILD_EXAMPLES
-
-VULKAN_CMAKE_BOOL=	GGML_VULKAN
-VULKAN_BUILD_DEPENDS=	glslc:graphics/shaderc \
-			vulkan-headers>0:graphics/vulkan-headers
-VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 
 BINARY_ALIAS=	git=false \
 		python=${PYTHON_CMD} # for tests

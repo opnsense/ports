@@ -1,6 +1,6 @@
 PORTNAME=	libmatthew
 DISTVERSION=	0.8.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel java
 MASTER_SITES=	http://www.matthew.ath.cx/projects/java/
 DISTNAME=	${PORTNAME}-java-${DISTVERSION}

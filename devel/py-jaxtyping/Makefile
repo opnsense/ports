@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}wadler-lindig>=0.1.3:devel/py-wadler-lindig@
 		${PYTHON_PKGNAMEPREFIX}equinox>=0.13.1:misc/py-equinox@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ipython>0:devel/ipython@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jax>0:math/py-jax@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=1.2.0:devel/py-pytest-asyncio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>=8.4.2:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tensorflow>0:science/py-tensorflow@${PY_FLAVOR} \

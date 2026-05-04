@@ -14,7 +14,8 @@ WWW=		https://openzl.org/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_i386=	fails to build: error: static assertion failed due to requirement 'sizeof(HeapMeta) == 16': sizeof(HeapMeta) must be 16 to guarantee alignment
+NOT_FOR_ARCHS=	armv7 i386 powerpc
+NOT_FOR_ARCHS_REASON=	32-bit platforms not yet supported (https://github.com/facebook/openzl/issues/342)
 
 BUILD_DEPENDS=	gmd5sum:sysutils/coreutils
 LIB_DEPENDS=	libzstd.so:archivers/zstd

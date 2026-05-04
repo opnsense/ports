@@ -1,6 +1,6 @@
 PORTNAME=	chempy
 DISTVERSION=	0.10.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science python # chemistry
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dot2tex>=2.11.3:print/dot2tex@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=2.2.3:math/py-matplotlib@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}PuLP>=1.6.8:math/py-PuLP@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyneqsys>=0.5.7:math/py-pyneqsys@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyodesys>=0.14.1:math/py-pyodesys@${PY_FLAVOR} \

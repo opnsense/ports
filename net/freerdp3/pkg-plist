@@ -66,6 +66,7 @@ include/freerdp%%MAJORVERSION%%/freerdp/client/tsmf.h
 include/freerdp%%MAJORVERSION%%/freerdp/client/utils/smartcard_cli.h
 include/freerdp%%MAJORVERSION%%/freerdp/client/video.h
 include/freerdp%%MAJORVERSION%%/freerdp/codec/audio.h
+include/freerdp%%MAJORVERSION%%/freerdp/codec/av1.h
 include/freerdp%%MAJORVERSION%%/freerdp/codec/bitmap.h
 include/freerdp%%MAJORVERSION%%/freerdp/codec/bulk.h
 include/freerdp%%MAJORVERSION%%/freerdp/codec/clear.h

@@ -1,4 +1,4 @@
---- chrome/browser/media/router/discovery/discovery_network_list_posix.cc.orig	2026-01-14 08:33:23 UTC
+--- chrome/browser/media/router/discovery/discovery_network_list_posix.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/media/router/discovery/discovery_network_list_posix.cc
 @@ -5,11 +5,12 @@
  #include "chrome/browser/media/router/discovery/discovery_network_list.h"
@@ -45,4 +45,4 @@
 +}
  #endif
  
- void GetDiscoveryNetworkInfoListImpl(
+ base::span<const uint8_t> SocketAddressAsByteSpan(const sll* ll_addr) {

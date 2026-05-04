@@ -1,4 +1,4 @@
---- gpu/command_buffer/service/shared_context_state.cc.orig	2026-02-15 10:01:45 UTC
+--- gpu/command_buffer/service/shared_context_state.cc.orig	2026-04-15 11:25:12 UTC
 +++ gpu/command_buffer/service/shared_context_state.cc
 @@ -61,7 +61,7 @@
  #include "gpu/vulkan/vulkan_implementation.h"
@@ -9,7 +9,7 @@
  #include "gpu/command_buffer/service/external_semaphore_pool.h"
  #endif
  
-@@ -304,7 +304,7 @@ SharedContextState::SharedContextState(
+@@ -298,7 +298,7 @@ SharedContextState::SharedContextState(
    ) {
      if (vk_context_provider_) {
  #if BUILDFLAG(ENABLE_VULKAN) && \
@@ -18,7 +18,7 @@
        external_semaphore_pool_ = std::make_unique<ExternalSemaphorePool>(this);
  #endif
      }
-@@ -345,7 +345,7 @@ SharedContextState::~SharedContextState() {
+@@ -339,7 +339,7 @@ SharedContextState::~SharedContextState() {
    }
  
  #if BUILDFLAG(ENABLE_VULKAN) && \

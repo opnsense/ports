@@ -1,6 +1,6 @@
 PORTNAME=	orthanc-mysql
 DISTVERSION=	5.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science
 MASTER_SITES=	https://orthanc.uclouvain.be/downloads/sources/orthanc-mysql/:mysql \
 		https://orthanc.uclouvain.be/downloads/sources/orthanc/:orthanc \
@@ -41,7 +41,9 @@ CXXFLAGS+=	-I${LOCALBASE}/include -DNDEBUG
 
 PLIST_SUB=	DISTVERSION=${DISTVERSION}
 
-.include "${.CURDIR}/../../science/orthanc/version.mk"
+# Doesn't build with 1.12.11
+# .include "${.CURDIR}/../../science/orthanc/version.mk"
+ORTHANC_VER=	1.12.10
 
 post-extract:
 		${MKDIR} ${WRKSRC}/MySQL/ThirdPartyDownloads

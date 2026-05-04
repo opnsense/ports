@@ -10,7 +10,7 @@ WWW=		https://spot.lrde.epita.fr
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-TEST_DEPENDS=	${PYNUMPY} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
 		syfco:math/hs-syfco
 

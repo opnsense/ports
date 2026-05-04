@@ -1,5 +1,6 @@
 PORTNAME=	oslo.upgradecheck
 PORTVERSION=	2.4.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +21,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}oslo.config>=5.2.0:devel/py-oslo.config@${PY
 		${PYTHON_PKGNAMEPREFIX}oslo.policy>=2.0.0:devel/py-oslo.policy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}oslo.utils>=4.5.0:devel/py-oslo.utils@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pbr>=0:devel/py-pbr@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}prettytable0>=0.7.1:devel/py-prettytable0@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}prettytable>=0.7.1:devel/py-prettytable@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517

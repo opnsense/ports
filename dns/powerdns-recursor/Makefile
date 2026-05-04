@@ -1,5 +1,6 @@
 PORTNAME=	recursor
-DISTVERSION=	5.3.5
+DISTVERSION=	5.4.1
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	https://downloads.powerdns.com/releases/
 PKGNAMEPREFIX=	powerdns-
@@ -22,7 +23,7 @@ LIB_DEPENDS=	libboost_context.so:devel/boost-libs \
 		libsodium.so:security/libsodium
 
 USES=		cargo compiler:c++11-lib cpe localbase meson pkgconfig \
-		python:build tar:xz
+		python:build ssl tar:xz
 
 CPE_VENDOR=	powerdns
 USE_RC_SUBR=	pdns_recursor
@@ -46,7 +47,7 @@ TARGET_ORDER_OVERRIDE=	750:cargo-configure
 USERS=		pdns_recursor
 GROUPS=		pdns
 
-OPTIONS_DEFINE=		DNSTAP SNMP
+OPTIONS_DEFINE=		DNSTAP GNUTLS SNMP
 OPTIONS_DEFAULT=	LUA
 OPTIONS_SINGLE=		EXTLUA
 OPTIONS_SINGLE_EXTLUA=	LUA LUAJIT
@@ -57,6 +58,9 @@ LUA_DESC=	Use lang/lua
 
 DNSTAP_LIB_DEPENDS=	libfstrm.so:devel/fstrm
 DNSTAP_MESON_ENABLED=	dnstap
+
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
+GNUTLS_MESON_ENABLED=	tls-gnutls
 
 LUAJIT_USES=		luajit
 LUAJIT_MESON_ON=	-Dlua=luajit

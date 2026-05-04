@@ -1,4 +1,4 @@
-TIMESTAMP = 1773272635
+TIMESTAMP = 1775790245
 SHA256 (rust/crates/aho-corasick-1.1.3.crate) = 8e60d3430d3a69478ad0993f19238d2df97c507009a52b3c10addcd7f6bcb916
 SIZE (rust/crates/aho-corasick-1.1.3.crate) = 183311
 SHA256 (rust/crates/anstream-0.6.20.crate) = 3ae563653d1938f79b1ab1b5e668c87c76a9930414574a6583a7b7e11a8e6192
@@ -365,5 +365,5 @@ SHA256 (rust/crates/wit-bindgen-rt-0.39.0.crate) = 6f42320e61fe2cfd34354ecb597f8
 SIZE (rust/crates/wit-bindgen-rt-0.39.0.crate) = 12241
 SHA256 (rust/crates/yansi-1.0.1.crate) = cfe53a6657fd280eaa890a3bc59152892ffa3e30101319d168b781ed6529b049
 SIZE (rust/crates/yansi-1.0.1.crate) = 75497
-SHA256 (vmalloc-ratify-2.4.0_GH0.tar.gz) = e6022537afba01e1f09888ffd5246d140d671f2d81c115f826091fc4174a7969
-SIZE (vmalloc-ratify-2.4.0_GH0.tar.gz) = 33441
+SHA256 (vmalloc-ratify-2.5.0_GH0.tar.gz) = 737700f2b88ed796736174cfebb8efc38f25dedea57dc5eba68fa5dd9b35bb8c
+SIZE (vmalloc-ratify-2.5.0_GH0.tar.gz) = 33770

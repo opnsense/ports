@@ -5,7 +5,7 @@ CATEGORIES=	mail gnustep
 MASTER_SITES=	SAVANNAH/gnustep-nonfsf/
 DISTNAME=	GNUMail-${DISTVERSION}
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	GNUstep mail client
 WWW=		https://www.nongnu.org/gnustep-nonfsf/gnumail/
 

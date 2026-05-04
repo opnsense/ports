@@ -1,5 +1,14 @@
---- 3rd/luamake/compile/ninja/freebsd.ninja.orig	2026-01-10 05:26:24 UTC
+--- 3rd/luamake/compile/ninja/freebsd.ninja.orig	2025-12-23 05:34:22 UTC
 +++ 3rd/luamake/compile/ninja/freebsd.ninja
+@@ -2,7 +2,7 @@ obj = $builddir/obj
+ builddir = build/freebsd
+ bin = $builddir/bin
+ obj = $builddir/obj
+-cc = clang
++cc = %CC%
+ ar = ar
+ luamake = luamake
+ rule c_source_lua
 @@ -30,7 +30,7 @@ rule cxx_source_bee_2
  rule cxx_source_bee_2
    command = $cc -MMD -MT $out -MF $out.d -std=c++17 -fno-rtti -O2 -Wall $

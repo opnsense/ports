@@ -1,6 +1,6 @@
 PORTNAME=	jython
 PORTVERSION=	2.7.0
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	installer-
 CATEGORIES=	lang python java
 MASTER_SITES=	https://repo1.maven.org/maven2/org/python/jython-installer/${PORTVERSION}/

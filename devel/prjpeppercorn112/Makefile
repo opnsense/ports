@@ -1,10 +1,8 @@
 PORTNAME=		prjpeppercorn
 DISTVERSIONPREFIX=	v
 DISTVERSION=		1.12
+PORTREVISION=		1
 CATEGORIES=		devel
-MASTER_SITES+=		https://mirror.insane.engineer/gatemate-timings/20260210/:timings
-DISTFILES+=		gatemate-timings-latest.tar.gz:timings
-DIST_SUBDIR=		${PORTNAME}/${DISTVERSION}
 PKGNAMESUFFIX=		112
 
 MAINTAINER=	jbo@FreeBSD.org

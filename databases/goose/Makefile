@@ -1,6 +1,6 @@
 PORTNAME=	goose
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.27.0
+DISTVERSION=	3.27.1
 CATEGORIES=	databases
 PKGNAMESUFFIX=	-db-migration-tool
 
@@ -10,6 +10,9 @@ WWW=		https://pressly.github.io/goose/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS_REASON=	module modernc.org/sqlite only supported on aarch64 and amd64
 
 USES=		go:modules
 

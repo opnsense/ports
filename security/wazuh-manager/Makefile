@@ -1,9 +1,8 @@
 PORTNAME=	wazuh
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.14.3
-PORTREVISION=	1
+DISTVERSION=	4.14.5
 CATEGORIES=	security
-MASTER_SITES=	https://packages.wazuh.com/deps/49/libraries/sources/:wazuh_sources \
+MASTER_SITES=	https://packages.wazuh.com/deps/51/libraries/sources/:wazuh_sources \
 		LOCAL/acm/${PORTNAME}/:wazuh_cache
 PKGNAMESUFFIX=	-manager
 DISTFILES=	${EXTERNAL_DISTFILES} \
@@ -38,7 +37,7 @@ USES=		cpe dos2unix gmake perl5 python:3.11 readline shebangfix sqlite:3 uidfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	alonsobsd
 GH_PROJECT=	wazuh-freebsd
-GH_TAGNAME=	dd9bd1bb551141e15cde1399a0000c6a392511ad
+GH_TAGNAME=	22e254c6366d51a38792163162dd019a45a00c55
 
 USE_RC_SUBR=	${PORTNAME}${PKGNAMESUFFIX}
 
@@ -146,8 +145,8 @@ WAZUHMOD770=	/etc/decoders /etc/lists /etc/lists/amazon /etc/lists/malicious-ioc
 
 WAZUHPREFIX=	/var/ossec
 
-WZPYTHONWHEELS=	cffi-1.15.1-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
-		cryptography-44.0.1-cp37-abi3-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
+WZPYTHONWHEELS=	cffi-2.0.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
+		cryptography-46.0.6-cp311-abi3-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		greenlet-2.0.2-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		grpcio-1.69.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		lazy_object_proxy-1.10.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
@@ -166,31 +165,23 @@ FBSD_RELEASE=	freebsd_${UNAME_r:S/./_/g:S/-/_/g}
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "aarch64" && ${OSVERSION} < 1400000
-IGNORE=		FreeBSD ${OSVERSION} ${ARCH} is not supported
-.endif
-
 .if ${ARCH} == "aarch64"
-FBSD14_PATCH_LEVEL=	_p5
+FBSD14_PATCH_LEVEL=	_p3
+FBSD15_PATCH_LEVEL=	_p8
 .endif
 
 .if ${ARCH} != "aarch64"
-FBSD13_PATCH_LEVEL=	_p6
-FBSD14_PATCH_LEVEL=	_p5
+FBSD14_PATCH_LEVEL=	_p3
+FBSD15_PATCH_LEVEL=	_p8
 .endif
 
-.if ${OSVERSION} >= 1300139 && ${OSVERSION} < 1400000
-FBSD_VERSION_BASE=freebsd_13_5_release${FBSD13_PATCH_LEVEL}
-FBSD_MAJOR_VERSION=13
-WAZUH_CACHENAME=${PORTNAME}-cache-fbsd13-${ARCH}-${DISTVERSION}
-DISTFILES+=	${WAZUH_CACHENAME}${EXTRACT_SUFX}:wazuh_cache
-.elif ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
-FBSD_VERSION_BASE=freebsd_14_3_release${FBSD14_PATCH_LEVEL}
+.if ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
+FBSD_VERSION_BASE=freebsd_14_4_release${FBSD14_PATCH_LEVEL}
 FBSD_MAJOR_VERSION=14
 WAZUH_CACHENAME=${PORTNAME}-cache-fbsd14-${ARCH}-${DISTVERSION}
 DISTFILES+=	${WAZUH_CACHENAME}${EXTRACT_SUFX}:wazuh_cache
 .elif ${OSVERSION} >= 1500000 && ${OSVERSION} < 1600000
-FBSD_VERSION_BASE=freebsd_15_0_release
+FBSD_VERSION_BASE=freebsd_15_0_release${FBSD15_PATCH_LEVEL}
 FBSD_MAJOR_VERSION=15
 WAZUH_CACHENAME=${PORTNAME}-cache-fbsd15-${ARCH}-${DISTVERSION}
 DISTFILES+=     ${WAZUH_CACHENAME}${EXTRACT_SUFX}:wazuh_cache

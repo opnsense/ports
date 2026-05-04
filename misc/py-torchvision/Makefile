@@ -1,6 +1,7 @@
 PORTNAME=	torchvision
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.25.0
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libpng16.so:graphics/png \
 		libwebp.so:graphics/webp
-PY_DEPENDS=	${PYNUMPY} \
+PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR}
 PY_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pillow>=5.3.0:graphics/py-pillow@${PY_FLAVOR} # image backend

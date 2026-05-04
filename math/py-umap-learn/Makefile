@@ -1,6 +1,6 @@
 PORTNAME=	umap-learn
 DISTVERSION=	0.5.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ WWW=		https://github.com/lmcinnes/umap
 LICENSE=	BSD3CLAUSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numba>=0.51.2:devel/py-numba@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pynndescent>=0.5:math/py-pynndescent@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-learn>=0.22:science/py-scikit-learn@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.3.1:science/py-scipy@${PY_FLAVOR} \

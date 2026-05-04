@@ -1,6 +1,5 @@
 PORTNAME=	opensearch
-DISTVERSION=	2.19.4
-PORTREVISION=	2
+DISTVERSION=	2.19.5
 DISTVERSIONSUFFIX=	-linux-${OPENSEARCH_ARCH}
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${DISTVERSION}/

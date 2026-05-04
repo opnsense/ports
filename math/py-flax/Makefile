@@ -1,6 +1,6 @@
 PORTNAME=	flax
 PORTVERSION=	0.6.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jax>=0.4.2:math/py-jax@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}msgpack>=0:devel/py-msgpack@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.12,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.12:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.4.1:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rich>=11.1:textproc/py-rich@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.1.1:devel/py-typing-extensions@${PY_FLAVOR}

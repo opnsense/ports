@@ -1,6 +1,6 @@
---- gpu/config/gpu_finch_features.h.orig	2026-03-15 18:32:51 UTC
+--- gpu/config/gpu_finch_features.h.orig	2026-04-15 11:25:12 UTC
 +++ gpu/config/gpu_finch_features.h
-@@ -102,7 +102,7 @@ GPU_CONFIG_EXPORT BASE_DECLARE_FEATURE(kPruneOldTransf
+@@ -107,7 +107,7 @@ GPU_CONFIG_EXPORT BASE_DECLARE_FEATURE(kPruneOldTransf
  
  GPU_CONFIG_EXPORT BASE_DECLARE_FEATURE(kRemoveGPULegacyIPC);
  

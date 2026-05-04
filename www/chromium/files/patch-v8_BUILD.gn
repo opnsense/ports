@@ -1,15 +1,15 @@
---- v8/BUILD.gn.orig	2026-03-13 06:02:14 UTC
+--- v8/BUILD.gn.orig	2026-04-09 06:05:42 UTC
 +++ v8/BUILD.gn
-@@ -1014,6 +1014,8 @@ external_v8_defines = [
+@@ -1024,6 +1024,8 @@ external_v8_defines = [
+   "V8_TARGET_OS_MACOS",
+   "V8_TARGET_OS_WIN",
    "V8_TARGET_OS_CHROMEOS",
-   "V8_TARGET_ARCH_ARM64",
-   "V8_TARGET_ARCH_PPC64",
 +  "V8_TARGET_OS_OPENBSD",
 +  "V8_TARGET_OS_FREEBSD",
- ]
- 
- enabled_external_v8_defines = [
-@@ -1094,6 +1096,12 @@ if (target_os == "android") {
+   "V8_TARGET_ARCH_ARM64",
+   "V8_TARGET_ARCH_PPC64",
+   "V8_TARGET_ARCH_MIPS64",
+@@ -1108,6 +1110,12 @@ if (target_os == "android") {
  } else if (target_os == "chromeos") {
    enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
    enabled_external_v8_defines += [ "V8_TARGET_OS_CHROMEOS" ]
@@ -22,15 +22,17 @@
  }
  
  # Some V8_TARGET_ARCH_ defines that affect Api constants (see usages of
-@@ -1844,7 +1852,6 @@ config("strict_warnings") {
+@@ -1870,9 +1878,6 @@ config("strict_warnings") {
+       cflags += [ "-Wshorten-64-to-32" ]
      }
-     cflags += [
-       "-Wmissing-field-initializers",
--      "-Wunnecessary-virtual-specifier",
-     ]
+     cflags += [ "-Wmissing-field-initializers" ]
+-    if (v8_current_cpu != "ppc64" && v8_current_cpu != "s390x") {
+-      cflags += [ "-Wunnecessary-virtual-specifier" ]
+-    }
    }
  }
-@@ -2772,6 +2779,12 @@ template("run_mksnapshot") {
+ 
+@@ -2826,6 +2831,12 @@ template("run_mksnapshot") {
        if (!v8_enable_builtins_profiling && v8_enable_builtins_reordering) {
          args += [ "--reorder-builtins" ]
        }
@@ -43,7 +45,7 @@
      }
  
      # This is needed to distinguish between generating code for the simulator
-@@ -7130,7 +7143,7 @@ v8_component("v8_libbase") {
+@@ -7223,7 +7234,7 @@ v8_component("v8_libbase") {
      }
    }
  
@@ -52,7 +54,7 @@
      sources += [
        "src/base/debug/stack_trace_posix.cc",
        "src/base/platform/platform-linux.cc",
-@@ -7141,6 +7154,18 @@ v8_component("v8_libbase") {
+@@ -7234,6 +7245,18 @@ v8_component("v8_libbase") {
        "dl",
        "rt",
      ]

@@ -2,7 +2,7 @@
 
 PORTNAME=	Imath
 PORTVERSION=	3.2.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math devel graphics
 MASTER_SITES=	https://github.com/AcademySoftwareFoundation/${PORTNAME}/releases/download/v${PORTVERSION}/ \
 		LOCAL/mandree/
@@ -39,10 +39,10 @@ OPTIONS_SUB=	yes
 LARGE_STACK_DESC=	Enable sys-dependent large stack optimizations
 LARGE_STACK_CMAKE_BOOL=	IMATH_ENABLE_LARGE_STACK
 
-PYTHON_BUILD_DEPENDS=	${PYNUMPY}
+PYTHON_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 PYTHON_LIB_DEPENDS=	${PY_BOOST} \
 			libboost_container.so:devel/boost-libs
-PYTHON_RUN_DEPENDS=	${PYNUMPY}
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 PYTHON_USES=		python
 PYTHON_CMAKE_BOOL=	PYTHON
 

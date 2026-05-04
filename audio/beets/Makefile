@@ -1,6 +1,6 @@
 PORTNAME=	beets
 DISTVERSION=	2.5.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio python
 MASTER_SITES=	PYPI
 
@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}confuse>=1.0.0:devel/py-confuse@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}munkres>=1.0.0:math/py-munkres@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}musicbrainzngs>=0.4:audio/py-musicbrainzngs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mutagen>=1.45:audio/py-mutagen@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}platformdirs>=0:devel/py-platformdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyacoustid>=0:audio/py-pyacoustid@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR} \

@@ -1,6 +1,6 @@
 PORTNAME=	anki
 DISTVERSION=	25.09.2
-PORTREVISION=	4
+PORTREVISION=	7
 # Don't forget to update ${_MY_BUILDHASH} if DISTVERSION changes
 CATEGORIES=	games education python
 MASTER_SITES=	LOCAL/kai/:yarncache
@@ -22,8 +22,6 @@ BUILD_DEPENDS=	protoc:devel/protobuf \
 		yarn:www/yarn \
 		${PYTHON_PKGNAMEPREFIX}black>0:devel/py-black@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}mypy-protobuf>=1.21:devel/py-mypy-protobuf@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}ruff>0:devel/py-ruff@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 RUN_DEPENDS=	lame:audio/lame \
@@ -65,6 +63,7 @@ CARGO_TARGET_DIR=	${WRKSRC}/out/rust
 
 # Variables used by the "runner" build system
 MAKE_ENV+=	NODE_BINARY=${LOCALBASE}/bin/node \
+		NODE_OPTIONS=--max-old-space-size=1024 \
 		OFFLINE_BUILD=1 \
 		PROTOC_BINARY=${LOCALBASE}/bin/protoc \
 		PYTHON_BINARY=${PYTHON_CMD} \
@@ -117,7 +116,6 @@ pre-configure:
 	# Create paths for the Python pseudo venv and link some binaries to it.
 	${MKDIR} ${WRKSRC}/out/pyenv/bin
 	${LN} -s ${PYTHON_CMD} ${WRKSRC}/out/pyenv/bin/python
-	${LN} -s ${LOCALBASE}/bin/protoc-gen-mypy ${WRKSRC}/out/pyenv/bin/protoc-gen-mypy
 
 # Overview of the build process
 #

@@ -62,7 +62,6 @@ lib/picolisp/img/no.png
 lib/picolisp/lib.css
 lib/picolisp/lib.l
 lib/picolisp/lib/adm.l
-lib/picolisp/lib/android.l
 lib/picolisp/lib/app.l
 lib/picolisp/lib/bash_completion
 lib/picolisp/lib/btree.l

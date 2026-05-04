@@ -1,6 +1,6 @@
---- src/slic3r/GUI/PresetComboBoxes.cpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/PresetComboBoxes.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/PresetComboBoxes.cpp
-@@ -746,7 +746,7 @@ PlaterPresetComboBox::PlaterPresetComboBox(wxWindow *p
+@@ -891,7 +891,7 @@ PlaterPresetComboBox::PlaterPresetComboBox(wxWindow *p
              {
                  // In a case of a physical printer, for its editing open PhysicalPrinterDialog
                  if (m_type == Preset::TYPE_PRINTER
@@ -9,7 +9,7 @@
                      // To edit extruder color from the sidebar
                      || m_type == Preset::TYPE_FILAMENT
  #endif //__linux__
-@@ -755,7 +755,7 @@ PlaterPresetComboBox::PlaterPresetComboBox(wxWindow *p
+@@ -900,7 +900,7 @@ PlaterPresetComboBox::PlaterPresetComboBox(wxWindow *p
                  else
                      switch_to_tab();
              });
@@ -18,7 +18,7 @@
          edit_btn->Hide();
  #endif //__linux__
      }
-@@ -914,7 +914,7 @@ void PlaterPresetComboBox::show_edit_menu()
+@@ -1066,7 +1066,7 @@ void PlaterPresetComboBox::show_edit_menu()
      append_menu_item(menu, wxID_ANY, _L("Edit preset"), "",
          [this](wxCommandEvent&) { this->switch_to_tab(); }, "cog", menu, []() { return true; }, wxGetApp().plater());
  

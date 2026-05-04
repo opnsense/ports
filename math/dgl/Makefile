@@ -1,5 +1,6 @@
 PORTNAME=	dgl
 DISTVERSION=	1.1.2
+PORTREVISION=	1
 CATEGORIES=	math # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,6 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${BACKEND_DEPENDS} \
 		bash:shells/bash \
 		gmake:devel/gmake
+LIB_DEPENDS=	libuv.so:devel/libuv
 
 USES=		cmake:testing compiler:c++17-lang localbase:ldflags python:build shebangfix
 USE_LDCONFIG=	yes

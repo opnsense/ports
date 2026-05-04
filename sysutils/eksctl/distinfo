@@ -1,5 +1,5 @@
-TIMESTAMP = 1771676483
-SHA256 (go/sysutils_eksctl/eksctl-v0.223.0/v0.223.0.mod) = 21bb2313ec06bdb6074d9ed6a92af79a22bfdaac98f9b4dff185794d0d8c97bf
-SIZE (go/sysutils_eksctl/eksctl-v0.223.0/v0.223.0.mod) = 25565
-SHA256 (go/sysutils_eksctl/eksctl-v0.223.0/v0.223.0.zip) = a775460846cee4f4e0e78b9d96ca3ae1fbc8c2161232e58719ee3bee3de02df3
-SIZE (go/sysutils_eksctl/eksctl-v0.223.0/v0.223.0.zip) = 13956242
+TIMESTAMP = 1777717270
+SHA256 (go/sysutils_eksctl/eksctl-v0.226.0/v0.226.0.mod) = 28ddf14ca0df62c323955e97b8fd2cbc2e79b33b048915e738af68dc254183b6
+SIZE (go/sysutils_eksctl/eksctl-v0.226.0/v0.226.0.mod) = 25662
+SHA256 (go/sysutils_eksctl/eksctl-v0.226.0/v0.226.0.zip) = 719f5ea073cb25dec9f138165844c2248e1df706a3d640a3c0d4ea2773713c3f
+SIZE (go/sysutils_eksctl/eksctl-v0.226.0/v0.226.0.zip) = 13980832

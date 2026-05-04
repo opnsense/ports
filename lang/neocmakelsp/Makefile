@@ -1,6 +1,6 @@
 PORTNAME=	neocmakelsp
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.10.1
+DISTVERSION=	0.10.2
 CATEGORIES=	lang
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,28 +19,28 @@ GH_ACCOUNT=	Decodetalkers
 
 CARGO_BUILDDEP=	no
 CARGO_CRATES=	aho-corasick-1.1.4 \
-		anstream-0.6.21 \
-		anstyle-1.0.13 \
-		anstyle-parse-0.2.7 \
+		anstream-1.0.0 \
+		anstyle-1.0.14 \
+		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
-		anyhow-1.0.101 \
-		assert_cmd-2.1.2 \
+		anyhow-1.0.102 \
+		assert_cmd-2.2.0 \
 		auto_impl-1.3.0 \
 		bitflags-2.11.0 \
 		borrow-or-share-0.2.4 \
 		bstr-1.12.1 \
 		bytes-1.11.1 \
-		cc-1.2.56 \
+		cc-1.2.58 \
 		cfg-if-1.0.4 \
-		clap-4.5.59 \
-		clap_builder-4.5.59 \
-		clap_complete-4.5.66 \
-		clap_derive-4.5.55 \
-		clap_lex-1.0.0 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_complete-4.6.0 \
+		clap_derive-4.6.0 \
+		clap_lex-1.1.0 \
 		cli-table-0.5.0 \
 		cli-table-derive-0.5.0 \
-		colorchoice-1.0.4 \
+		colorchoice-1.0.5 \
 		const-random-0.1.18 \
 		const-random-macro-0.1.16 \
 		crossbeam-deque-0.8.6 \
@@ -68,7 +68,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		futures-task-0.3.32 \
 		futures-util-0.3.32 \
 		getrandom-0.2.17 \
-		getrandom-0.4.1 \
+		getrandom-0.4.2 \
 		glob-0.3.3 \
 		globset-0.4.18 \
 		hashbrown-0.14.5 \
@@ -82,18 +82,18 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		indoc-2.0.7 \
 		is_executable-1.0.5 \
 		is_terminal_polyfill-1.70.2 \
-		itoa-1.0.17 \
+		itoa-1.0.18 \
 		lazy_static-1.5.0 \
 		leb128fmt-0.1.0 \
-		libc-0.2.182 \
-		linux-raw-sys-0.11.0 \
+		libc-0.2.184 \
+		linux-raw-sys-0.12.1 \
 		lock_api-0.4.14 \
 		log-0.4.29 \
 		lsp-types-f-0.99.0 \
 		memchr-2.8.0 \
-		mio-1.1.1 \
+		mio-1.2.0 \
 		nu-ansi-term-0.50.3 \
-		once_cell-1.21.3 \
+		once_cell-1.21.4 \
 		once_cell_polyfill-1.70.2 \
 		ordered-multimap-0.7.3 \
 		parking_lot-0.12.5 \
@@ -102,22 +102,22 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		path-dedot-3.1.1 \
 		pathdiff-0.2.3 \
 		percent-encoding-2.3.2 \
-		pin-project-lite-0.2.16 \
+		pin-project-lite-0.2.17 \
 		predicates-3.1.4 \
 		predicates-core-1.0.10 \
 		predicates-tree-1.0.13 \
 		prettyplease-0.2.37 \
 		proc-macro2-1.0.106 \
-		quote-1.0.44 \
-		r-efi-5.3.0 \
+		quote-1.0.45 \
+		r-efi-6.0.0 \
 		redox_syscall-0.5.18 \
 		ref-cast-1.0.25 \
 		ref-cast-impl-1.0.25 \
 		regex-1.12.3 \
 		regex-automata-0.4.14 \
-		regex-syntax-0.8.9 \
+		regex-syntax-0.8.10 \
 		rust-ini-0.21.3 \
-		rustix-1.1.3 \
+		rustix-1.1.4 \
 		rustversion-1.0.22 \
 		ryu-1.0.23 \
 		same-file-1.0.6 \
@@ -128,31 +128,31 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		serde_derive-1.0.228 \
 		serde_json-1.0.149 \
 		serde_repr-0.1.20 \
-		serde_spanned-1.0.4 \
+		serde_spanned-1.1.1 \
 		sharded-slab-0.1.7 \
 		shlex-1.3.0 \
 		signal-hook-registry-1.4.8 \
 		slab-0.4.12 \
 		smallvec-1.15.1 \
-		socket2-0.6.2 \
+		socket2-0.6.3 \
 		streaming-iterator-0.1.9 \
 		strsim-0.11.1 \
-		syn-2.0.116 \
+		syn-2.0.117 \
 		sync_wrapper-1.0.2 \
-		tempfile-3.25.0 \
+		tempfile-3.27.0 \
 		termcolor-1.4.1 \
 		termtree-0.5.1 \
 		thiserror-2.0.18 \
 		thiserror-impl-2.0.18 \
 		thread_local-1.1.9 \
 		tiny-keccak-2.0.2 \
-		tokio-1.49.0 \
-		tokio-macros-2.6.0 \
+		tokio-1.50.0 \
+		tokio-macros-2.6.1 \
 		tokio-util-0.7.18 \
-		toml-1.0.3+spec-1.1.0 \
-		toml_datetime-1.0.0+spec-1.1.0 \
-		toml_parser-1.0.9+spec-1.1.0 \
-		toml_writer-1.0.6+spec-1.1.0 \
+		toml-1.1.2+spec-1.1.0 \
+		toml_datetime-1.1.1+spec-1.1.0 \
+		toml_parser-1.1.2+spec-1.1.0 \
+		toml_writer-1.1.1+spec-1.1.0 \
 		tower-0.5.3 \
 		tower-layer-0.3.3 \
 		tower-lsp-f-0.24.0 \
@@ -161,8 +161,8 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		tracing-attributes-0.1.31 \
 		tracing-core-0.1.36 \
 		tracing-log-0.2.0 \
-		tracing-subscriber-0.3.22 \
-		tree-sitter-0.26.5 \
+		tracing-subscriber-0.3.23 \
+		tree-sitter-0.26.8 \
 		tree-sitter-cmake-0.7.1 \
 		tree-sitter-language-0.1.7 \
 		treesitter_kind_collector-0.2.0 \
@@ -192,7 +192,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		windows_x86_64_gnu-0.53.1 \
 		windows_x86_64_gnullvm-0.53.1 \
 		windows_x86_64_msvc-0.53.1 \
-		winnow-0.7.14 \
+		winnow-1.0.1 \
 		wit-bindgen-0.51.0 \
 		wit-bindgen-core-0.51.0 \
 		wit-bindgen-rust-0.51.0 \

@@ -1,11 +1,7 @@
 PORTNAME=	boringssl
-PORTVERSION=	0.20260211.0
-PORTREVISION=	2
+PORTVERSION=	0.20260413.0
 CATEGORIES=	security
 EXTRACT_ONLY=	${GH_ACCOUNT}-${PORTNAME}-${PORTVERSION}_GH0.tar.gz
-
-PATCH_SITES=	https://github.com/google/boringssl/commit/
-PATCHFILES=	100a6181500bb6d4e4d4ff299ca420d919aa764c.patch:-p1
 
 MAINTAINER=	osa@FreeBSD.org
 COMMENT=	Fork of OpenSSL
@@ -36,12 +32,12 @@ MAKE_ENV+=	GOFLAGS=-mod=readonly \
 
 .if ${.TARGETS} == "makesum" || ${.TARGETS} == "test"
 MASTER_SITES+=	https://proxy.golang.org/:gomods
-DISTFILES+=	filippo.io/edwards25519/@v/v1.1.0.zip:gomods \
-		filippo.io/edwards25519/@v/v1.1.0.mod:gomods \
-		golang.org/x/crypto/@v/v0.37.0.zip:gomods \
-		golang.org/x/crypto/@v/v0.37.0.mod:gomods \
-		golang.org/x/sys/@v/v0.32.0.zip:gomods \
-		golang.org/x/sys/@v/v0.32.0.mod:gomods
+DISTFILES+=	filippo.io/edwards25519/@v/v1.2.0.zip:gomods \
+		filippo.io/edwards25519/@v/v1.2.0.mod:gomods \
+		golang.org/x/crypto/@v/v0.43.0.zip:gomods \
+		golang.org/x/crypto/@v/v0.43.0.mod:gomods \
+		golang.org/x/sys/@v/v0.37.0.zip:gomods \
+		golang.org/x/sys/@v/v0.37.0.mod:gomods
 .endif
 
 post-install:

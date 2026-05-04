@@ -1,6 +1,7 @@
 PORTNAME=	gitlab-code-parser
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.22.0
+PORTREVISION=	2
 CATEGORIES=	textproc
 
 MAINTAINER=	mfechner@FreeBSD.org

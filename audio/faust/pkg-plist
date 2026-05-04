@@ -140,6 +140,7 @@ include/faust/audio/teensy-dsp.h
 include/faust/dsp/cmajor-cpp-dsp.h
 include/faust/dsp/cmajorpatch-dsp.h
 include/faust/dsp/cpp-dsp-adapter.h
+include/faust/dsp/daisy-poly.h
 include/faust/dsp/dsp-adapter.h
 include/faust/dsp/dsp-adapter.h.orig
 include/faust/dsp/dsp-bench.h
@@ -171,6 +172,7 @@ include/faust/dsp/llvm-dsp-adapter1.h
 include/faust/dsp/llvm-dsp-c.h
 include/faust/dsp/llvm-dsp.h
 include/faust/dsp/llvm-machine-dsp.h
+include/faust/dsp/nam_faust_dsp.h
 include/faust/dsp/poly-dsp.h
 include/faust/dsp/poly-interpreter-dsp.h
 include/faust/dsp/poly-llvm-dsp.h
@@ -201,6 +203,7 @@ include/faust/gui/Esp32SensorUI.h
 include/faust/gui/FUI.h
 include/faust/gui/GTKUI.h
 include/faust/gui/GUI.h
+include/faust/gui/HTMLExport.h
 include/faust/gui/HTTPDControler.h
 include/faust/gui/HothouseControlUI.h
 include/faust/gui/JSONControl.h
@@ -230,6 +233,7 @@ include/faust/gui/PrintUI.h
 include/faust/gui/QTUI.h
 include/faust/gui/RosCI.h
 include/faust/gui/RosUI.h
+include/faust/gui/SVGExport.h
 include/faust/gui/SaveUI.h
 include/faust/gui/SimpleParser.h
 include/faust/gui/SoundUI.h
@@ -259,6 +263,7 @@ include/faust/midi/bela-midi.h
 include/faust/midi/daisy-midi.h
 include/faust/midi/esp32-midi.h
 include/faust/midi/gramophone-midi.h
+include/faust/midi/hothouse-midi.h
 include/faust/midi/iplug2-midi.h
 include/faust/midi/jack-midi.h
 include/faust/midi/juce-midi.h
@@ -281,14 +286,14 @@ include/faust/vst/faust.h
 include/faust/vst/voice.h
 include/faust/vst/vstui.h
 lib/ios-libsndfile.a
-%%HTTPD_LIB%%lib/libHTTPDFaust.a
-%%HTTPD_LIB%%lib/libHTTPDFaust.so
-%%HTTPD_LIB%%lib/libHTTPDFaust.so.0
-%%HTTPD_LIB%%lib/libHTTPDFaust.so.0.7.1
+lib/libHTTPDFaust.a
+lib/libHTTPDFaust.so
+lib/libHTTPDFaust.so.0
+lib/libHTTPDFaust.so.0.7.1
 lib/libOSCFaust.a
 lib/libfaust.so
 lib/libfaust.so.2
-lib/libfaust.so.2.83.1
+lib/libfaust.so.2.85.5
 %%HIGHLIGHT%%share/apps/katepart/syntax/faust.xml
 %%DATADIR%%/AU/AUPublic/AUBase/AUBase.cpp
 %%DATADIR%%/AU/AUPublic/AUBase/AUBase.h
@@ -456,7 +461,11 @@ lib/libfaust.so.2.83.1
 %%DATADIR%%/daisy/Makefile
 %%DATADIR%%/daisy/README.md
 %%DATADIR%%/daisy/ex_faust.cpp
-%%DATADIR%%/daisy/faust_daisy_mem.py
+%%DATADIR%%/daisy/faust_daisy_parser.py
+%%DATADIR%%/daisy/generate_config.py
+%%DATADIR%%/daisy/patch.json
+%%DATADIR%%/daisy/pod.json
+%%DATADIR%%/debug.lib
 %%DATADIR%%/delays.lib
 %%DATADIR%%/demos.lib
 %%DATADIR%%/doc.lib
@@ -516,6 +525,8 @@ lib/libfaust.so.2.83.1
 %%DATADIR%%/hothouse/Makefile
 %%DATADIR%%/hothouse/README.md
 %%DATADIR%%/hothouse/ex_faust.cpp
+%%DATADIR%%/hothouse/faust_sdram_converter.py
+%%DATADIR%%/hysteresis.lib
 %%DATADIR%%/iOS/Default-568h@2x.png
 %%DATADIR%%/iOS/Default-Landscape@2x~ipad.png
 %%DATADIR%%/iOS/Default-Landscape~ipad.png

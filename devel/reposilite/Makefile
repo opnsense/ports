@@ -1,5 +1,6 @@
 PORTNAME=	reposilite
 DISTVERSION=	3.5.28
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-all
 CATEGORIES=	devel www java
 MASTER_SITES=	https://maven.reposilite.com/releases/com/reposilite/reposilite/${DISTVERSION}/

@@ -1,5 +1,5 @@
 PORTNAME=	rb_sys
-PORTVERSION=	0.9.124
+PORTVERSION=	0.9.126
 CATEGORIES=	lang rubygems
 MASTER_SITES=	RG
 
@@ -13,7 +13,8 @@ LICENSE_COMB=   dual
 LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
 
-RUN_DEPENDS=	rubygem-rake-compiler-dock>=1.11.0<1.11.0_99:devel/rubygem-rake-compiler-dock
+RUN_DEPENDS=	rubygem-json>=2:devel/rubygem-json \
+		rubygem-rake-compiler-dock>=1.11.0<1.11.0_99:devel/rubygem-rake-compiler-dock
 
 USES=		gem
 

@@ -1,5 +1,5 @@
 PORTNAME=	gyp-next
-PORTVERSION=	0.21.1
+PORTVERSION=	0.22.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/nodejs/gyp-next/releases/download/v${PORTVERSION}/

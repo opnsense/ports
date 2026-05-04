@@ -1,6 +1,6 @@
---- src/slic3r/GUI/EditGCodeDialog.cpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/EditGCodeDialog.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/EditGCodeDialog.cpp
-@@ -719,7 +719,7 @@ void ParamsModel::GetValue(wxVariant& variant, const w
+@@ -721,7 +721,7 @@ void ParamsModel::GetValue(wxVariant& variant, const w
  
      ParamsNode* node = static_cast<ParamsNode*>(item.GetID());
      if (col == (unsigned int)0)
@@ -9,7 +9,7 @@
  //        variant << wxDataViewIconText(node->GetFormattedText(), get_bmp_bundle(node->icon_name)->GetIconFor(m_ctrl->GetParent())); //TODO: update to bundle with wx update
      {
          wxIcon icon;
-@@ -740,7 +740,7 @@ bool ParamsModel::SetValue(const wxVariant& variant, c
+@@ -742,7 +742,7 @@ bool ParamsModel::SetValue(const wxVariant& variant, c
  
      ParamsNode* node = static_cast<ParamsNode*>(item.GetID());
      if (col == (unsigned int)0) {
@@ -18,7 +18,7 @@
          wxDataViewIconText data;
          data << variant;
          node->icon = data.GetIcon();
-@@ -800,7 +800,7 @@ wxString     ParamsModel::GetColumnType(unsigned int c
+@@ -802,7 +802,7 @@ wxString     ParamsModel::GetColumnType(unsigned int c
  }
  unsigned int ParamsModel::GetColumnCount() const { return 1; }
  wxString     ParamsModel::GetColumnType(unsigned int col) const {
@@ -27,7 +27,7 @@
      return wxT("wxDataViewIconText");
  #else
      return wxT("DataViewBitmapText");
-@@ -825,7 +825,7 @@ ParamsViewCtrl::ParamsViewCtrl(wxWindow *parent, wxSiz
+@@ -827,7 +827,7 @@ ParamsViewCtrl::ParamsViewCtrl(wxWindow *parent, wxSiz
      this->AssociateModel(model);
      model->SetAssociatedControl(this);
  

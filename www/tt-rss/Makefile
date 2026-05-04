@@ -1,5 +1,5 @@
 PORTNAME=	tt-rss
-DISTVERSION=	g20260117
+DISTVERSION=	g20260317
 PORTEPOCH=	2
 CATEGORIES=	www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -10,12 +10,12 @@ WWW=		https://github.com/tt-rss/tt-rss/
 
 LICENSE=	GPLv2
 
-RUN_DEPENDS=	${LOCALBASE}/bin/git:devel/git
+RUN_DEPENDS=	git:devel/git
 
 USES=		gettext-tools php:cli,web,flavors shebangfix
 
 USE_GITHUB=	yes
-GH_TAGNAME=	b3a89920a0ca903e52795c333e5d6834ea87c987
+GH_TAGNAME=	5cbcc14224e52861512242c39aeeb961a82dadac
 # phe json/openssl extension is required but it's statically linked in default php
 USE_PHP=	ctype dom exif fileinfo filter iconv intl mbstring pcntl pdo \
 		pdo_pgsql phar posix session simplexml sockets sodium tokenizer \
@@ -23,8 +23,6 @@ USE_PHP=	ctype dom exif fileinfo filter iconv intl mbstring pcntl pdo \
 USE_RC_SUBR=	ttrssd
 
 SHEBANG_FILES=	update.php update_daemon2.php
-
-REINPLACE_ARGS=	-i ""
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -50,8 +48,7 @@ do-install:
 		${STAGEDIR}${DATADIR} \
 		${STAGEDIR}${EXAMPLESDIR}
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} "*" ${STAGEDIR}${WWWDIR} \
-		"! -name LICENSE ! -name .empty ! -name Jenkinsfile")
-	${RM} -r ${STAGEDIR}${WWWDIR}/debian
+		"! -name LICENSE ! -name .empty ! -name docker-compose.yml")
 	${INSTALL_DATA} ${WRKDIR}/httpd-tt-rss.conf ${STAGEDIR}${DATADIR}
 	${ECHO} "${OPSYS}:${PORTVERSION}:${GH_TAGNAME:C/^(.{11}).*$/\1/W}}" > \
 		"${STAGEDIR}${WWWDIR}/version_static.txt"

@@ -1,15 +1,15 @@
---- chrome/browser/ui/ui_features.cc.orig	2026-03-15 18:32:51 UTC
+--- chrome/browser/ui/ui_features.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/ui/ui_features.cc
-@@ -33,7 +33,7 @@ BASE_FEATURE(kBrowserWidgetCacheThemeService,
- BASE_FEATURE(kCreateNewTabGroupAppMenuTopLevel,
-              base::FEATURE_DISABLED_BY_DEFAULT);
+@@ -38,7 +38,7 @@ BASE_FEATURE(kGlassToolbar, base::FEATURE_DISABLED_BY_
+ 
+ BASE_FEATURE(kDetachedTabs, base::FEATURE_DISABLED_BY_DEFAULT);
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  BASE_FEATURE(kDseIntegrity, base::FEATURE_ENABLED_BY_DEFAULT);
  // Enables the feature to remove the last confirmation dialog when relaunching
  // to update Chrome.
-@@ -313,7 +313,7 @@ BASE_FEATURE(kViewsFirstRunDialog, base::FEATURE_ENABL
+@@ -297,7 +297,7 @@ BASE_FEATURE(kViewsFirstRunDialog, base::FEATURE_ENABL
  BASE_FEATURE(kViewsJSAppModalDialog, base::FEATURE_DISABLED_BY_DEFAULT);
  #endif
  
@@ -18,7 +18,7 @@
  BASE_FEATURE(kUsePortalAccentColor, base::FEATURE_ENABLED_BY_DEFAULT);
  #endif
  
-@@ -513,7 +513,7 @@ bool IsBookmarkTabGroupConversionEnabled() {
+@@ -449,7 +449,7 @@ bool IsBookmarkTabGroupConversionEnabled() {
    return base::FeatureList::IsEnabled(kBookmarkTabGroupConversion);
  }
  
@@ -27,8 +27,8 @@
  BASE_FEATURE(kSessionRestoreInfobar, base::FEATURE_DISABLED_BY_DEFAULT);
  
  BASE_FEATURE_PARAM(bool,
-@@ -576,7 +576,7 @@ BASE_FEATURE_PARAM(bool,
-                    "tab_groups_focusing_pinned_tabs",
+@@ -530,7 +530,7 @@ BASE_FEATURE_PARAM(bool,
+                    "tab_groups_focusing_default_to_focused",
                     false);
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)

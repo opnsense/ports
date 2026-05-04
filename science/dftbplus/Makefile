@@ -1,6 +1,6 @@
 PORTNAME=	dftbplus
 DISTVERSION=	24.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,7 +14,7 @@ BROKEN_aarch64=	Lack of IEEE754 support in gcc causes "Cannot find an intrinsic 
 LIB_DEPENDS=	libblas.so:math/blas \
 		liblapack.so:math/lapack \
 		libopenblas.so:math/openblas
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 TEST_DEPENDS=	bash:shells/bash
 
 USES=		cmake compiler:gcc-c++11-lib fortran pkgconfig python:build shebangfix

@@ -1,7 +1,7 @@
 PORTNAME=	godot
-DISTVERSION=	4.4.1
+DISTVERSION=	4.6.1
 DISTVERSIONSUFFIX=	-stable
-PORTREVISION?=	3
+PORTREVISION?=	0
 CATEGORIES=	devel games
 
 MAINTAINER=	FreeBSD@Shaneware.biz
@@ -15,59 +15,61 @@ LICENSE_FILE_MIT=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	yasm:devel/yasm
 LIB_DEPENDS=	libbrotlicommon.so:archivers/brotli \
-		libbrotlidec.so:archivers/brotli \
+		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libgraphite2.so:graphics/graphite2 \
 		libharfbuzz-icu.so:print/harfbuzz-icu \
 		libharfbuzz.so:print/harfbuzz \
-		libogg.so:audio/libogg \
-		libpng.so:graphics/png \
-		libtheora.so:multimedia/libtheora \
-		libtheoradec.so:multimedia/libtheora \
-		libvorbis.so:audio/libvorbis \
-		libvorbisfile.so:audio/libvorbis \
-		libwebp.so:graphics/webp \
+		libmbedtls.so:security/mbedtls3 \
 		libminiupnpc.so:net/miniupnpc \
-		libopenxr_loader.so:graphics/openxr \
+		libogg.so:audio/libogg \
 		libpcre2-32.so:devel/pcre2 \
+		libpng.so:graphics/png \
 		libRecast.so:graphics/recastnavigation \
+		libtheora.so:multimedia/libtheora \
+		libvorbis.so:audio/libvorbis \
+		libwebp.so:graphics/webp \
 		libwslay_shared.so:www/wslay \
-		libzstd.so:archivers/zstd \
-		libfontconfig.so:x11-fonts/fontconfig
+		libzstd.so:archivers/zstd
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		xdg-user-dir:devel/xdg-user-dirs \
 		xmessage:x11/xmessage
 
-USES=		compiler:c++17-lang cpe gl pkgconfig scons
+USES=		compiler:c++17-lang cpe gl pkgconfig scons sdl
+
 CPE_VENDOR=	godotengine
 USE_GITHUB=	yes
 GH_ACCOUNT=	godotengine
 USE_GL=		gl glew glu
+USE_SDL=	sdl3
 
-MAKE_ARGS+=		platform=linuxbsd \
-			dbus=True \
-			brotli=True \
-			builtin_brotli=False \
-			builtin_freetype=False \
-			builtin_graphite=False \
-			builtin_harfbuzz=False \
-			builtin_libogg=False \
-			builtin_libpng=False \
-			builtin_libtheora=False \
-			builtin_libvorbis=False \
-			builtin_libwebp=False \
-			builtin_miniupnpc=False \
-			builtin_openxr=False \
-			builtin_pcre2=False \
-			builtin_recastnavigation=False \
-			builtin_wslay=False \
-			builtin_zlib=False \
-			builtin_zstd=False \
-			fontconfig=True \
-			opengl3=True \
-			use_sowrap=True \
-			verbose=True \
-			${MAKE_ARGS_${CHOSEN_COMPILER_TYPE}}
+# enabling builtin_openxr results in an uncaught exception during init
+MAKE_ARGS+=	platform=linuxbsd \
+		dbus=True \
+		brotli=True \
+		builtin_brotli=False \
+		builtin_freetype=False \
+		builtin_graphite=False \
+		builtin_harfbuzz=False \
+		builtin_libogg=False \
+		builtin_libpng=False \
+		builtin_libtheora=False \
+		builtin_libvorbis=False \
+		builtin_libwebp=False \
+		builtin_mbedtls=False \
+		builtin_miniupnpc=False \
+		builtin_pcre2=False \
+		builtin_recastnavigation=False \
+		builtin_sdl=False \
+		builtin_wslay=False \
+		builtin_zlib=False \
+		builtin_zstd=False \
+		fontconfig=True \
+		opengl3=True \
+		use_sowrap=True \
+		verbose=True \
+		disable_path_overrides=False \
+		${MAKE_ARGS_${CHOSEN_COMPILER_TYPE}}
 MAKE_ARGS_clang=	use_llvm=True
 
 CXXFLAGS_i386=		${CXXFLAGS_i386_${CHOSEN_COMPILER_TYPE}}
@@ -92,8 +94,8 @@ ALSA_LIB_DEPENDS=		libasound.so:audio/alsa-lib
 ALSA_MAKE_ARGS=			alsa=True
 ALSA_MAKE_ARGS_OFF=		alsa=False
 
-# master head at 6/3 - no branch made for 4.4 yet
-EXAMPLES_GH_TUPLE=		godotengine:godot-demo-projects:fdb2f50a2088:DEMOS
+# master head at 20/2 - no branch made for 4.6 yet
+EXAMPLES_GH_TUPLE=		godotengine:godot-demo-projects:f228ea632391:DEMOS
 EXAMPLES_PORTEXAMPLES=		*
 
 MOLD_BUILD_DEPENDS=		mold:devel/mold
@@ -145,8 +147,6 @@ MAKE_ARGS+=	module_embree_enabled=no \
 post-patch:
 	@${REINPLACE_CMD} -e 's|custom_build|${OPSYS}_Ports_build|' \
 		${WRKSRC}/methods.py
-	@${REINPLACE_CMD} -e 's|/usr/include/recastnavigation|${LOCALBASE}/include/recastnavigation|' \
-		${WRKSRC}/platform/linuxbsd/detect.py
 
 # The official godot binary name reflects options used to compile
 # We just want a simple name matching the portname

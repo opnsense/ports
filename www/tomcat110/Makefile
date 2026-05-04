@@ -1,13 +1,12 @@
 PORTNAME=	tomcat
-DISTVERSION=	11.0.18
-PORTREVISION=	1
+DISTVERSION=	11.0.21
 CATEGORIES=	www java
-MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${DISTVERSION:C/([0-9]+)(.*)/\1/}/v${DISTVERSION}/bin
+MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${DISTVERSION:R:R}/v${DISTVERSION}/bin
 PKGNAMESUFFIX=	110
 DISTNAME=	apache-${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	vvd@FreeBSD.org
-COMMENT=	Open-source Java web server by Apache, 11.0.x branch
+COMMENT=	Open-source Java web server by Apache, ${DISTVERSION:R}.x branch
 WWW=		https://tomcat.apache.org/
 
 LICENSE=	APACHE20

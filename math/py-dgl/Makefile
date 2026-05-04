@@ -1,6 +1,6 @@
 PORTNAME=	dgl
 DISTVERSION=	1.1.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math python # machine-learning
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -15,7 +15,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${BACKEND_DEPENDS}
 LIB_DEPENDS=	libdgl.so:math/dgl
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}networkx>=2.1:math/py-networkx@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>=5.8.0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.19.0:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.1.0:science/py-scipy@${PY_FLAVOR} \

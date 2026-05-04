@@ -1,6 +1,5 @@
 PORTNAME=	mediastreamer
-DISTVERSION=	5.4.72
-PORTREVISION=	1
+DISTVERSION=	5.4.100
 CATEGORIES=	net
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -14,9 +13,6 @@ LIB_DEPENDS=	libbctoolbox.so:net/bctoolbox \
 		libbzrtp.so:security/bzrtp \
 		libortp.so:net/ortp \
 		libsrtp2.so:net/libsrtp2
-
-DEPRECATED=	Depends on legacy ffmpeg4, consider migrating to multimedia/ffmpeg
-EXPIRATION_DATE=2026-06-30
 
 USES=		cmake compiler gnome python:build sqlite
 USE_GITLAB=	yes

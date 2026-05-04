@@ -1,5 +1,5 @@
 PORTNAME=	s3fs
-PORTVERSION=	2026.2.0
+PORTVERSION=	2026.4.0
 CATEGORIES=	filesystems devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiobotocore>=2.19.0<4.0.0:devel/py-aiobotocore@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}aiohttp>=0:www/py-aiohttp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}aiohttp>=3.9.0:www/py-aiohttp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fsspec>=${PORTVERSION}<${PORTVERSION}_99:filesystems/py-fsspec@${PY_FLAVOR}
 
 USES=		python

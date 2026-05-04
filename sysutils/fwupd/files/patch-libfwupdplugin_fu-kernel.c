@@ -1,6 +1,6 @@
---- libfwupdplugin/fu-kernel.c.orig	2025-09-12 09:55:19 UTC
+--- libfwupdplugin/fu-kernel.c.orig	2026-03-12 10:08:33 UTC
 +++ libfwupdplugin/fu-kernel.c
-@@ -329,6 +329,9 @@ fu_kernel_get_cmdline(GError **error)
+@@ -342,6 +342,9 @@ fu_kernel_get_cmdline(GError **error)
  	if (!g_file_get_contents("/proc/cmdline", &buf, &bufsz, error))
  		return NULL;
  	return fu_kernel_parse_cmdline(buf, bufsz);

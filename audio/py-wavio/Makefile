@@ -1,6 +1,6 @@
 PORTNAME=	wavio
 DISTVERSION=	0.0.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +11,7 @@ WWW=		https://github.com/WarrenWeckesser/wavio/
 
 LICENSE=	BSD2CLAUSE
 
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	distutils autoplist pytest

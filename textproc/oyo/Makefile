@@ -1,6 +1,7 @@
 PORTNAME=	oyo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.24
+DISTVERSION=	0.1.30
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -21,7 +22,8 @@ CARGO_INSTALL_PATH=	crates/oyo
 OPTIONS_DEFINE=	DOCS
 
 post-patch-DOCS-on:
-	${REINPLACE_CMD} -e 's|\.\./\(assets/\)|${DOCSDIR}/\1|g' ${WRKSRC}/docs/*.md
+	${REINPLACE_CMD} -e 's|\.\./\(assets/\)|${DOCSDIR}/\1|g' \
+		${WRKSRC}/docs/DIFF_PREVIEWS.md
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/assets

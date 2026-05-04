@@ -1,7 +1,7 @@
 PORTNAME=	thanos
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.41.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	alven@FreeBSD.org
@@ -16,7 +16,7 @@ USES=		go:modules
 
 GO_MODULE=	github.com/thanos-io/thanos
 GO_TARGET=	./cmd/${PORTNAME}
-GO_BUILDFLAGS=	-ldflags "\
+GO_BUILDFLAGS=	-tags slicelabels -ldflags "\
 		-s -w \
 		-X github.com/prometheus/common/version.Branch="master" \
 		-X github.com/prometheus/common/version.BuildDate=${BUILD_DATE} \

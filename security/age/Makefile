@@ -1,7 +1,7 @@
 PORTNAME=	age
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.3.1
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	security
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -15,10 +15,12 @@ USES=		go:modules
 
 GO_MODULE=	filippo.io/age
 GO_TARGET=	./cmd/age \
-		./cmd/age-keygen
+		./cmd/age-keygen \
+		./cmd/age-plugin-batchpass
 
 PLIST_FILES=	bin/age \
 		bin/age-keygen \
+		bin/age-plugin-batchpass \
 		share/man/man1/age-inspect.1.gz \
 		share/man/man1/age-keygen.1.gz \
 		share/man/man1/age-plugin-batchpass.1.gz \

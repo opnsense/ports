@@ -11,7 +11,7 @@ WWW=		https://bitbucket.org/brentp/biostuff/src/
 
 LICENSE=	MIT
 
-BUILD_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		python

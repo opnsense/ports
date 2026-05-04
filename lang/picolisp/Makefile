@@ -1,5 +1,5 @@
 PORTNAME=	picolisp
-PORTVERSION=	25.12
+PORTVERSION=	26.3
 CATEGORIES=	lang
 MASTER_SITES=	https://software-lab.de/
 DISTNAME=	picoLisp-${PORTVERSION}
@@ -26,7 +26,6 @@ post-patch:
 		-e 's|llvm-link|llvm-link${LLVM_VERSION}|' \
 		-e 's|llvm-config|${LLVM_CONFIG}|' \
 		-e '/^.SILENT:/d' \
-		-e '52s|$$| `pkg-config --cflags readline libffi`|' \
 		${WRKSRC}/Makefile
 	${REINPLACE_CMD} -i '' -e 's|/usr|${PREFIX}|g' ${WRKSRC}/../bin/*
 

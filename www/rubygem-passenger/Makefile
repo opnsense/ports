@@ -12,7 +12,8 @@ WWW=		https://www.phusionpassenger.com/ \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	rubygem-rack>=1.6.13,3:www/rubygem-rack \
+BUILD_DEPENDS=	rubygem-logger>=1.7.0:devel/rubygem-logger \
+		rubygem-rack>=1.6.13,3:www/rubygem-rack \
 		rubygem-rake>=12.3.3:devel/rubygem-rake \
 		utf8cpp>=4.0.3:devel/utf8cpp
 LIB_DEPENDS=	libapr-1.so:devel/apr1 \

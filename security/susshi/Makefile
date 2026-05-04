@@ -1,0 +1,197 @@
+PORTNAME=	susshi
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.14.0
+PORTREVISION=	1
+CATEGORIES=	security
+
+MAINTAINER=	yuri@FreeBSD.org
+COMMENT=	Terminal-based SSH connection manager
+WWW=		https://github.com/yatoub/susshi
+
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENCE
+
+LIB_DEPENDS=	libssh2.so:security/libssh2
+
+USES=		cargo
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	yatoub
+
+CARGO_CRATES=	allocator-api2-0.2.21 \
+		anstream-1.0.0 \
+		anstyle-1.0.13 \
+		anstyle-parse-1.0.0 \
+		anstyle-query-1.1.5 \
+		anstyle-wincon-3.0.11 \
+		anyhow-1.0.102 \
+		arboard-3.6.1 \
+		bitflags-2.11.0 \
+		castaway-0.2.4 \
+		catppuccin-2.7.0 \
+		cc-1.2.56 \
+		cfg-if-1.0.4 \
+		cfg_aliases-0.2.1 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_derive-4.6.0 \
+		clap_lex-1.0.0 \
+		clipboard-win-5.4.1 \
+		colorchoice-1.0.4 \
+		compact_str-0.9.0 \
+		convert_case-0.10.0 \
+		crossterm-0.29.0 \
+		crossterm_winapi-0.9.1 \
+		darling-0.23.0 \
+		darling_core-0.23.0 \
+		darling_macro-0.23.0 \
+		deranged-0.5.8 \
+		derive_more-2.1.1 \
+		derive_more-impl-2.1.1 \
+		dirs-6.0.0 \
+		dirs-sys-0.5.0 \
+		dispatch2-0.3.0 \
+		document-features-0.2.12 \
+		either-1.15.0 \
+		equivalent-1.0.2 \
+		errno-0.3.14 \
+		error-code-3.3.2 \
+		fastrand-2.3.0 \
+		find-msvc-tools-0.1.9 \
+		foldhash-0.1.5 \
+		foldhash-0.2.0 \
+		gethostname-1.1.0 \
+		getrandom-0.2.17 \
+		getrandom-0.4.1 \
+		hashbrown-0.15.5 \
+		hashbrown-0.16.1 \
+		heck-0.5.0 \
+		id-arena-2.3.0 \
+		ident_case-1.0.1 \
+		indexmap-2.13.0 \
+		indoc-2.0.7 \
+		instability-0.3.11 \
+		is_terminal_polyfill-1.70.2 \
+		itertools-0.14.0 \
+		itoa-1.0.17 \
+		kasuari-0.4.11 \
+		leb128fmt-0.1.0 \
+		libc-0.2.183 \
+		libredox-0.1.12 \
+		libssh2-sys-0.3.1 \
+		libz-sys-1.1.24 \
+		line-clipping-0.3.5 \
+		linux-raw-sys-0.12.1 \
+		litrs-1.0.0 \
+		lock_api-0.4.14 \
+		log-0.4.29 \
+		lru-0.16.3 \
+		memchr-2.8.0 \
+		mio-1.1.1 \
+		nix-0.31.2 \
+		num-conv-0.2.0 \
+		num_threads-0.1.7 \
+		objc2-0.6.3 \
+		objc2-app-kit-0.3.2 \
+		objc2-core-foundation-0.3.2 \
+		objc2-core-graphics-0.3.2 \
+		objc2-encode-4.1.0 \
+		objc2-foundation-0.3.2 \
+		objc2-io-surface-0.3.2 \
+		once_cell-1.21.3 \
+		once_cell_polyfill-1.70.2 \
+		openssl-src-300.5.5+3.5.5 \
+		openssl-sys-0.9.111 \
+		option-ext-0.2.0 \
+		parking_lot-0.12.5 \
+		parking_lot_core-0.9.12 \
+		percent-encoding-2.3.2 \
+		pkg-config-0.3.32 \
+		portable-atomic-1.13.1 \
+		powerfmt-0.2.0 \
+		prettyplease-0.2.37 \
+		proc-macro2-1.0.106 \
+		quote-1.0.45 \
+		r-efi-5.3.0 \
+		ratatui-0.30.0 \
+		ratatui-core-0.1.0 \
+		ratatui-crossterm-0.1.0 \
+		ratatui-widgets-0.3.0 \
+		redox_syscall-0.5.18 \
+		redox_users-0.5.2 \
+		rustc_version-0.4.1 \
+		rustix-1.1.4 \
+		rustversion-1.0.22 \
+		ryu-1.0.23 \
+		scopeguard-1.2.0 \
+		semver-1.0.27 \
+		serde-1.0.228 \
+		serde_core-1.0.228 \
+		serde_derive-1.0.228 \
+		serde_json-1.0.149 \
+		serde_yaml-0.9.34+deprecated \
+		shellexpand-3.1.2 \
+		shlex-1.3.0 \
+		signal-hook-0.3.18 \
+		signal-hook-mio-0.2.5 \
+		signal-hook-registry-1.4.8 \
+		smallvec-1.15.1 \
+		ssh2-0.9.5 \
+		static_assertions-1.1.0 \
+		strsim-0.11.1 \
+		strum-0.27.2 \
+		strum_macros-0.27.2 \
+		syn-2.0.117 \
+		tempfile-3.27.0 \
+		thiserror-2.0.18 \
+		thiserror-impl-2.0.18 \
+		time-0.3.47 \
+		time-core-0.1.8 \
+		unicode-ident-1.0.24 \
+		unicode-segmentation-1.12.0 \
+		unicode-truncate-2.0.1 \
+		unicode-width-0.2.2 \
+		unicode-xid-0.2.6 \
+		unsafe-libyaml-0.2.11 \
+		utf8parse-0.2.2 \
+		vcpkg-0.2.15 \
+		wasi-0.11.1+wasi-snapshot-preview1 \
+		wasip2-1.0.2+wasi-0.2.9 \
+		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
+		wasm-encoder-0.244.0 \
+		wasm-metadata-0.244.0 \
+		wasmparser-0.244.0 \
+		winapi-0.3.9 \
+		winapi-i686-pc-windows-gnu-0.4.0 \
+		winapi-x86_64-pc-windows-gnu-0.4.0 \
+		windows-link-0.2.1 \
+		windows-sys-0.60.2 \
+		windows-sys-0.61.2 \
+		windows-targets-0.53.5 \
+		windows_aarch64_gnullvm-0.53.1 \
+		windows_aarch64_msvc-0.53.1 \
+		windows_i686_gnu-0.53.1 \
+		windows_i686_gnullvm-0.53.1 \
+		windows_i686_msvc-0.53.1 \
+		windows_x86_64_gnu-0.53.1 \
+		windows_x86_64_gnullvm-0.53.1 \
+		windows_x86_64_msvc-0.53.1 \
+		wit-bindgen-0.51.0 \
+		wit-bindgen-core-0.51.0 \
+		wit-bindgen-rust-0.51.0 \
+		wit-bindgen-rust-macro-0.51.0 \
+		wit-component-0.244.0 \
+		wit-parser-0.244.0 \
+		x11rb-0.13.2 \
+		x11rb-protocol-0.13.2 \
+		zmij-1.0.21
+
+OPENSSLINC=	${DESTDIR}/usr/include
+OPENSSLLIB=	${DESTDIR}/usr/lib
+
+PLIST_FILES=	bin/${PORTNAME}
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+
+.include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	ubelt
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.1
+DISTVERSION=	1.4.2
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scikit-build>0:devel/py-scikit-build@${PY_FLAVOR} \
 		cmake:devel/cmake-core
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=21.0:devel/py-packaging@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pygments>=2.2.0:textproc/py-pygments@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>0:devel/py-coverage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=3.0.0:devel/py-pytest-cov@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-timeout>=1.4.2:devel/py-pytest-timeout@${PY_FLAVOR} \
@@ -30,6 +32,12 @@ NO_ARCH=	yes
 
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-# tests as of 1.4.0: 238 passed, 6 skipped in 8.76
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	ubelt/ tests/ -p no:doctest -p no:relaxed --xdoctest --xdoctest-style=google
+
+# tests as of 1.4.2:
+# Results (15.93s):
+#       1831 passed
+#         25 skipped
 
 .include <bsd.port.mk>

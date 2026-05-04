@@ -12,7 +12,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 TEST_DEPENDS=	bash:shells/bash \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR}
 
 USES=		compiler:c++11-lang gettext-runtime gmake libtool shebangfix

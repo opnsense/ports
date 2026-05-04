@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/profiles/profile_menu_coordinator.cc.orig	2026-01-16 13:40:34 UTC
+--- chrome/browser/ui/views/profiles/profile_menu_coordinator.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/ui/views/profiles/profile_menu_coordinator.cc
-@@ -86,7 +86,7 @@ void ProfileMenuCoordinator::ShowWithPromoResults(
+@@ -76,7 +76,7 @@ void ProfileMenuCoordinator::ShowWithPromoResults(
        ->NotifyFeaturePromoFeatureUsed(
            feature_engagement::kIPHProfileSwitchFeature,
            FeaturePromoFeatureUsedAction::kClosePromoIfPresent);

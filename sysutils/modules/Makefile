@@ -3,7 +3,7 @@ DISTVERSION=	5.6.1
 CATEGORIES=	sysutils tcl
 MASTER_SITES=	https://github.com/envmodules/modules/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	Dynamic modification of a user environment
 WWW=		https://modules.sourceforge.net/
 

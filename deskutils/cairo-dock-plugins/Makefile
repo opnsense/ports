@@ -2,7 +2,7 @@ PORTNAME=	cairo-dock-plugins
 DISTVERSION=	3.6.2
 CATEGORIES=	deskutils
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	Cairo-Dock-Plugins for Cairo-Dock
 WWW=		https://github.com/Cairo-Dock/cairo-dock-core/wiki/
 

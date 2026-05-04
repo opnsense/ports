@@ -288,8 +288,13 @@ RUN_DEPENDS+=	gsfonts>=0:print/gsfonts
 .endif
 
 .if ${PORT_OPTIONS:MFFMPEG}
+. if ${FLAVOR:U} == x11
 BUILD_DEPENDS+=		ffmpeg:multimedia/ffmpeg
 RUN_DEPENDS+=		ffmpeg:multimedia/ffmpeg
+. else
+BUILD_DEPENDS+=		ffmpeg:multimedia/ffmpeg@nox11
+RUN_DEPENDS+=		ffmpeg:multimedia/ffmpeg@nox11
+. endif
 .endif
 
 .if ${PORT_OPTIONS:MDOCS}

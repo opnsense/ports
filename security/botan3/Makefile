@@ -1,7 +1,7 @@
 PORTNAME=	botan
-DISTVERSION=	3.10.0
+DISTVERSION=	3.11.1
 CATEGORIES=	security
-MASTER_SITES=	http://botan.randombit.net/releases/
+MASTER_SITES=	https://botan.randombit.net/releases/
 PKGNAMESUFFIX=	${_BOTANMAJOR}
 DISTNAME=	Botan-${PORTVERSION}
 

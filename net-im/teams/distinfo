@@ -1,5 +1,5 @@
-TIMESTAMP = 1773306841
-SHA256 (teams-2.7.9-node-modules.tar.gz) = d5c2d8768338f6ee5f99252c0ba7d288dc87d9ce598ad3c5fa6273aa78417d21
-SIZE (teams-2.7.9-node-modules.tar.gz) = 106494919
-SHA256 (IsmaelMartinez-teams-for-linux-v2.7.9_GH0.tar.gz) = a4b50a05a79cbaae0dc8037288fb76a83a54531b7e47a968fdbb9bf36e023ba2
-SIZE (IsmaelMartinez-teams-for-linux-v2.7.9_GH0.tar.gz) = 13022011
+TIMESTAMP = 1776764498
+SHA256 (teams-2.8.0-node-modules.tar.gz) = f17fde810ec07f80a4f8af835863a6cf1a90a9a736c07757661073af81d58312
+SIZE (teams-2.8.0-node-modules.tar.gz) = 106554669
+SHA256 (IsmaelMartinez-teams-for-linux-v2.8.0_GH0.tar.gz) = 1f20c2a05254d0f421294602668446a960d6d7d4a3696e56422414612edddf7f
+SIZE (IsmaelMartinez-teams-for-linux-v2.8.0_GH0.tar.gz) = 13037735

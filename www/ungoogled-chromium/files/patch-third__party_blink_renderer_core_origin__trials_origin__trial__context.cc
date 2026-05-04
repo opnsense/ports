@@ -1,6 +1,6 @@
---- third_party/blink/renderer/core/origin_trials/origin_trial_context.cc.orig	2026-02-15 10:01:45 UTC
+--- third_party/blink/renderer/core/origin_trials/origin_trial_context.cc.orig	2026-04-15 11:25:12 UTC
 +++ third_party/blink/renderer/core/origin_trials/origin_trial_context.cc
-@@ -563,7 +563,7 @@ bool OriginTrialContext::CanEnableTrialFromName(const 
+@@ -559,7 +559,7 @@ bool OriginTrialContext::CanEnableTrialFromName(const 
  
    if (trial_name == "WebAppInstallation") {
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

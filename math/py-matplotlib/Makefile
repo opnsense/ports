@@ -1,5 +1,6 @@
 PORTNAME=	matplotlib
 DISTVERSION=	3.10.8
+PORTREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png \
 		libqhull_r.so:math/qhull
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}contourpy>=1.0.1:math/py-contourpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cycler>=0.10:devel/py-cycler@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fonttools>=4.22.0:print/py-fonttools@${PY_FLAVOR} \
@@ -33,6 +34,8 @@ USE_CXXSTD=			c++17
 USE_PYTHON=			autoplist pep517
 PEP517_BUILD_CONFIG_SETTING=	-Csetup-args="-Dsystem-freetype=true" \
 				-Csetup-args="-Dsystem-qhull=true"
+
+BINARY_ALIAS=	pybind11-config=pybind11-config-${PYTHON_VER}
 
 PLIST_SUB=	VER=${PORTVERSION}
 PORTEXAMPLES=	*

@@ -1,6 +1,6 @@
 PORTNAME=	paraview
 DISTVERSION=	${PARAVIEW_VER}.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	science graphics
 MASTER_SITES=	http://www.paraview.org/files/v${PARAVIEW_VER}/
 DISTNAME=	ParaView-v${PORTVERSION}
@@ -14,7 +14,7 @@ LICENSE=	BSD3CLAUSE
 
 #BROKEN_i386=	no matching member function for call to 'getArrayType'
 
-BUILD_DEPENDS=	${PYNUMPY}	\
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		cli11>0:devel/cli11	\
 		utf8cpp>0:devel/utf8cpp	\
 		fast_float>0:math/fast_float \
@@ -57,7 +57,7 @@ LIB_DEPENDS=	libhdf5.so:science/hdf5 \
 		libboost_thread.so:devel/boost-libs \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libdouble-conversion.so:devel/double-conversion
-RUN_DEPENDS=	${PYNUMPY}	\
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		bash:shells/bash	\
 		vtk${VTK_VER:R}>0:math/vtk${VTK_VER:R} \
 		${PYTHON_SITELIBDIR}/matplotlib/pyplot.py:math/py-matplotlib@${PY_FLAVOR}

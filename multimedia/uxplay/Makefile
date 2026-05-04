@@ -1,6 +1,6 @@
 PORTNAME=	uxplay
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.73.3
+DISTVERSION=	1.73.6
 CATEGORIES=	multimedia
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -23,8 +23,7 @@ USE_GNOME=	glib20
 USE_GSTREAMER=	core plugins
 USE_XORG=	ice sm x11 xext
 
-SHEBANG_FILES=	Bluetooth_LE_beacon/dbus/uxplay-beacon.py \
-		Bluetooth_LE_beacon/winrt/uxplay-beacon.py
+SHEBANG_FILES=	Bluetooth_LE_beacon/uxplay-beacon.py
 
 CMAKE_ARGS=	-DNO_MARCH_NATIVE=on
 
@@ -32,6 +31,9 @@ SUB_FILES=	pkg-message
 
 PLIST_FILES=	bin/uxplay \
 		bin/uxplay-beacon.py \
+		bin/uxplay_beacon_module_BleuIO.py \
+		bin/uxplay_beacon_module_BlueZ.py \
+		bin/uxplay_beacon_module_HCI.py \
 		share/man/man1/uxplay-beacon.1.gz \
 		share/man/man1/uxplay.1.gz
 

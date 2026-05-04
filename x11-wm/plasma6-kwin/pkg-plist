@@ -114,6 +114,7 @@ include/kwin/pluginmanager.h
 include/kwin/pointer_input.h
 include/kwin/rulebooksettings.h
 include/kwin/rules.h
+include/kwin/scene/backgroundeffectitem.h
 include/kwin/scene/borderoutline.h
 include/kwin/scene/borderradius.h
 include/kwin/scene/cursoritem.h

@@ -1,5 +1,5 @@
 PORTNAME=	sqwebmail
-PORTVERSION=	6.3.0
+PORTVERSION=	6.3.1
 CATEGORIES=	mail www
 MASTER_SITES=	SF/courier/webmail/${PORTVERSION}
 
@@ -13,7 +13,7 @@ BUILD_DEPENDS=	courierauthconfig:security/courier-authlib-base \
 		gpg:security/gnupg
 RUN_DEPENDS=	courierauthconfig:security/courier-authlib-base \
 		gpg:security/gnupg
-LIB_DEPENDS=	libpcre.so:devel/pcre \
+LIB_DEPENDS=	libpcre2-8.so:devel/pcre2 \
 		libcourier-unicode.so:devel/courier-unicode \
 		libidn2.so:dns/libidn2
 
@@ -177,16 +177,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|$$LIBFAM||g; s|HAVE_FAM|DO_NOT_HAVE_FAM|g' \
 		${WRKSRC}/libs/maildir/configure
 .endif
-	@${REINPLACE_CMD} -e 's|LIBPCRE=-lpcre|LIBPCRE="-L${LOCALBASE}/lib -lpcre"|g' \
-		${WRKSRC}/libs/maildir/configure
-
 	@${REINPLACE_CMD} -e 's|@echo|echo|g'  ${WRKSRC}/libs/maildir/configure
 
-	@${REINPLACE_CMD} -e 's|-lpcre|-L${LOCALBASE}/lib &|g' \
-		${WRKSRC}/libs/sqwebmail/Makefile.in
-
-	@${REINPLACE_CMD} -e 's|\$$(testmaildirfilter_LDADD)|& \$$(LIBPCRE)|g; \
-		s|$$(LINK) $$(maildirkw_LDFLAGS)|$$(CXXLINK) $$(maildirkw_LDFLAGS)|' \
+	@${REINPLACE_CMD} -e 's|$$(LINK) $$(maildirkw_LDFLAGS)|$$(CXXLINK) $$(maildirkw_LDFLAGS)|' \
 		${WRKSRC}/libs/maildir/Makefile.in
 
 	@${REINPLACE_CMD} -e 's|^case x$$lockmethod in|${TEST} \&\& &|g' \

@@ -1,7 +1,6 @@
 PORTNAME=	git-cliff
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.12.0
-PORTREVISION=	1
+DISTVERSION=	2.13.1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -106,12 +105,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		either-1.15.0 \
 		encode_unicode-1.0.0 \
 		encoding_rs-0.8.35 \
-		env_logger-0.10.2 \
 		equator-0.4.2 \
 		equator-macro-0.4.2 \
 		equivalent-1.0.2 \
 		errno-0.3.14 \
 		etcetera-0.10.0 \
+		etcetera-0.11.0 \
 		expect-test-1.5.1 \
 		fastrand-2.3.0 \
 		find-msvc-tools-0.1.5 \
@@ -156,7 +155,6 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		httparse-1.10.1 \
 		httpdate-1.0.3 \
 		humansize-2.1.3 \
-		humantime-2.3.0 \
 		hyper-1.7.0 \
 		hyper-rustls-0.27.7 \
 		hyper-util-0.1.16 \
@@ -175,7 +173,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		include-flate-0.3.1 \
 		include-flate-codegen-0.3.1 \
 		include-flate-compress-0.3.1 \
-		indexmap-2.12.1 \
+		indexmap-2.13.0 \
 		indicatif-0.18.3 \
 		inferno-0.11.21 \
 		ipnet-2.11.0 \
@@ -185,22 +183,21 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		itoa-1.0.15 \
 		jobserver-0.1.34 \
 		js-sys-0.3.78 \
-		lazy-regex-3.4.2 \
-		lazy-regex-proc_macros-3.4.2 \
 		lazy_static-1.5.0 \
-		libc-0.2.178 \
+		libc-0.2.184 \
 		libflate-2.2.1 \
 		libflate_lz77-2.2.0 \
 		libgit2-sys-0.18.3+1.9.2 \
 		libm-0.2.15 \
 		libredox-0.1.10 \
 		libz-sys-1.1.22 \
-		linux-raw-sys-0.11.0 \
+		linux-raw-sys-0.12.1 \
 		litemap-0.8.1 \
 		litrs-1.0.0 \
-		lock_api-0.4.13 \
+		lock_api-0.4.14 \
 		log-0.4.29 \
 		lru-slab-0.1.2 \
+		matchers-0.2.0 \
 		memchr-2.7.6 \
 		memmap2-0.5.10 \
 		memmap2-0.9.8 \
@@ -210,6 +207,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		mio-1.1.1 \
 		next_version-0.2.26 \
 		nix-0.26.4 \
+		nu-ansi-term-0.50.3 \
 		num-conv-0.1.0 \
 		num-format-0.4.4 \
 		num-traits-0.2.19 \
@@ -218,6 +216,9 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		once_cell_polyfill-1.70.2 \
 		openssl-probe-0.1.6 \
 		option-ext-0.2.0 \
+		owo-colors-4.2.3 \
+		parking_lot-0.12.5 \
+		parking_lot_core-0.9.12 \
 		parse-zoneinfo-0.3.1 \
 		pathdiff-0.2.3 \
 		percent-encoding-2.3.2 \
@@ -253,23 +254,24 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		rand_chacha-0.9.0 \
 		rand_core-0.6.4 \
 		rand_core-0.9.3 \
+		redox_syscall-0.5.18 \
 		redox_users-0.5.2 \
 		reflink-copy-0.1.28 \
 		regex-1.12.2 \
 		regex-automata-0.4.13 \
 		regex-syntax-0.8.8 \
-		reqwest-0.12.25 \
+		reqwest-0.12.28 \
 		reqwest-middleware-0.4.2 \
 		rgb-0.8.52 \
 		ring-0.17.14 \
 		rle-decode-fast-1.0.3 \
 		roff-0.2.2 \
-		rust-embed-8.9.0 \
+		rust-embed-8.11.0 \
 		rust-embed-impl-8.9.0 \
 		rust-embed-utils-8.9.0 \
 		rustc-demangle-0.1.26 \
 		rustc-hash-2.1.1 \
-		rustix-1.1.2 \
+		rustix-1.1.4 \
 		rustls-0.23.31 \
 		rustls-native-certs-0.8.1 \
 		rustls-pemfile-2.2.0 \
@@ -278,8 +280,10 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		rustversion-1.0.22 \
 		ryu-1.0.20 \
 		same-file-1.0.6 \
+		scc-2.4.0 \
 		schannel-0.1.28 \
 		scopeguard-1.2.0 \
+		sdd-3.0.10 \
 		secrecy-0.8.0 \
 		security-framework-3.4.0 \
 		security-framework-sys-2.15.0 \
@@ -291,9 +295,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		serde_regex-1.1.0 \
 		serde_spanned-1.0.3 \
 		serde_urlencoded-0.7.1 \
+		serial_test-3.4.0 \
+		serial_test_derive-3.4.0 \
 		sha-1-0.10.1 \
 		sha1-0.10.6 \
 		sha2-0.10.9 \
+		sharded-slab-0.1.7 \
 		shellexpand-3.1.1 \
 		shlex-1.3.0 \
 		siphasher-1.0.1 \
@@ -314,21 +321,21 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
 		temp-dir-0.1.16 \
-		tempfile-3.22.0 \
+		tempfile-3.27.0 \
 		tera-1.20.1 \
-		termcolor-1.4.1 \
 		terminal_size-0.4.3 \
 		thiserror-1.0.69 \
 		thiserror-2.0.17 \
 		thiserror-impl-1.0.69 \
 		thiserror-impl-2.0.17 \
+		thread_local-1.1.9 \
 		time-0.3.44 \
 		time-core-0.1.6 \
 		time-macros-0.2.24 \
 		tinystr-0.8.2 \
 		tinyvec-1.10.0 \
 		tinyvec_macros-0.1.1 \
-		tokio-1.48.0 \
+		tokio-1.49.0 \
 		tokio-macros-2.6.0 \
 		tokio-rustls-0.26.2 \
 		tokio-stream-0.1.17 \
@@ -341,8 +348,13 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		tower-http-0.6.8 \
 		tower-layer-0.3.3 \
 		tower-service-0.3.3 \
-		tracing-0.1.41 \
-		tracing-core-0.1.34 \
+		tracing-0.1.44 \
+		tracing-attributes-0.1.31 \
+		tracing-core-0.1.36 \
+		tracing-indicatif-0.3.14 \
+		tracing-log-0.2.0 \
+		tracing-serde-0.2.0 \
+		tracing-subscriber-0.3.22 \
 		try-lock-0.2.5 \
 		typenum-1.19.0 \
 		ucd-trie-0.1.7 \
@@ -363,9 +375,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
 		uuid-1.18.1 \
+		valuable-0.1.1 \
 		vcpkg-0.2.15 \
 		version_check-0.9.5 \
 		virtue-0.0.18 \
+		vt100-0.16.2 \
+		vte-0.15.0 \
 		walkdir-2.5.0 \
 		want-0.3.1 \
 		wasi-0.11.1+wasi-snapshot-preview1 \

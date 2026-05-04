@@ -1,6 +1,6 @@
 PORTNAME=	abipy
 DISTVERSION=	0.9.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	science python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}APScheduler>0:devel/py-apscheduler@${PY_FLAV
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}monty>0:devel/py-monty@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}netCDF4>0:science/py-netCDF4@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}phonopy>0:science/py-phonopy@${PY_FLAVOR} \

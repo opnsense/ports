@@ -1,6 +1,6 @@
 PORTNAME=	shaderc
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2026.1
+DISTVERSION=	2026.2
 CATEGORIES=	graphics devel
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -20,9 +20,9 @@ USES=		cmake:testing compiler:c++11-lib localbase:ldflags \
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
 # for GH_TAGNAME in GH_TUPLE
-# git clone --quiet https://github.com/KhronosGroup/SPIRV-Headers.git && git -C SPIRV-Headers describe <COMMIT_HASH>
+# git clone --filter=blob:none --no-checkout --quiet https://github.com/KhronosGroup/SPIRV-Headers.git && git -C SPIRV-Headers describe <COMMIT_HASH>
 # for COMMIT_HASH see ${WRKSRC}/DEPS
-GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-461-g04f10f6:headers/third_party/spirv-headers
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-472-gad9184e:headers/third_party/spirv-headers
 
 USE_LDCONFIG=	yes
 

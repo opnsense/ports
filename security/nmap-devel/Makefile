@@ -1,5 +1,5 @@
 PORTNAME=	nmap
-PORTVERSION=	7.95.${NMAP_COMMIT_DATE}
+PORTVERSION=	7.100.${NMAP_COMMIT_DATE}
 PORTREVISION=	1
 CATEGORIES=	security
 PKGNAMESUFFIX=	-devel
@@ -30,8 +30,8 @@ EXTRACT_AFTER_ARGS=	--exclude ${GH_PROJECT_DEFAULT}-${GH_TAGNAME_EXTRACT}/mswin3
 			--no-same-owner --no-same-permissions
 
 USE_GITHUB=	yes
-GH_TAGNAME=	a5b332ccd
-NMAP_COMMIT_DATE=	20260128
+GH_TAGNAME=	6dac43b5d
+NMAP_COMMIT_DATE=	20260327
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=--without-localdirs \
@@ -40,6 +40,7 @@ CONFIGURE_ARGS=--without-localdirs \
 		--with-libpcre=${LOCALBASE} \
 		--with-liblua=included \
 		--without-nmap-update
+
 MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=	DOCS NLS PCAP SSH2 SSL
@@ -68,8 +69,13 @@ STRIP_FILES+=	nmap nping
 
 .include <bsd.port.options.mk>
 
-.if defined(SSL_DEFAULT) && ${SSL_DEFAULT} == libressl
-BROKEN=	error: OpenSSL-1.1.1 is the minimum supported version. LibreSSLis not supported
+.if defined(SSL_DEFAULT)
+.if ${SSL_DEFAULT} == libressl
+BROKEN=	error: OpenSSL-3.0.0 is the minimum supported version. LibreSSLis not supported
+.endif
+.if ${SSL_DEFAULT} == openssl111
+BROKEN= error: OpenSSL-3.0.0 is the minimum supported version.
+.endif
 .endif
 
 .if exists(/usr/lib/libibverbs.a)

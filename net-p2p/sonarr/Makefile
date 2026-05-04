@@ -1,6 +1,5 @@
 PORTNAME=	sonarr
-DISTVERSION=	4.0.16.2944
-PORTREVISION=	1
+DISTVERSION=	4.0.17.2952
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/Sonarr/Sonarr/releases/download/v${DISTVERSION}/
 DISTNAME=	Sonarr.main.${DISTVERSION}.freebsd-x64

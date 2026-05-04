@@ -1,9 +1,9 @@
 PORTNAME=	magic-wormhole
-DISTVERSION=	0.16.0
-PORTREVISION=	4
+DISTVERSION=	0.18.0
 CATEGORIES=	net
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+#DISTNAME=	${PORTNAME:S/-/_/g}-${DISTVERSION}
 
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Get things from one computer to another, safely
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=19.2.0:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}autobahn>=0.14.1:www/py-autobahn@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}Automat>=0.3.0:devel/py-Automat@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Automat>0:devel/py-Automat@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}click>0:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hkdf>=0.0.3:security/py-hkdf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}humanize>=0:devel/py-humanize@${PY_FLAVOR} \

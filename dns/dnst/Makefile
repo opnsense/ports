@@ -1,7 +1,7 @@
 PORTNAME=	dnst
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.0-rc2
-PORTREVISION=	4
+DISTVERSION=	0.2.0-alpha1
+PORTREVISION=	1
 CATEGORIES=	dns net
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -15,7 +15,6 @@ USES=		cargo cpe ssl
 CPE_VENDOR=	nlnetlabs
 USE_GITHUB=	yes
 GH_ACCOUNT=	NLnetLabs
-GH_TAGNAME=	1184e356a
 
 PLIST_FILES=	bin/dnst bin/ldns
 

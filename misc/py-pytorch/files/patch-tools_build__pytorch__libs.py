@@ -1,6 +1,6 @@
---- tools/build_pytorch_libs.py.orig	2025-08-06 17:08:06 UTC
+--- tools/build_pytorch_libs.py.orig	2026-03-23 18:40:49 UTC
 +++ tools/build_pytorch_libs.py
-@@ -91,7 +91,8 @@ def build_pytorch(
+@@ -93,7 +93,8 @@ def build_pytorch(
          and not check_negative_env_flag("USE_NCCL")
          and not check_env_flag("USE_SYSTEM_NCCL")
      ):

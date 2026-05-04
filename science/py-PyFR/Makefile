@@ -1,5 +1,6 @@
 PORTNAME=	PyFR
 DISTVERSION=	3.1
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}appdirs>=1.4.0:devel/py-appdirs@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}h5py>=2.10:science/py-h5py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mako>=1.0.0:textproc/py-mako@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mpi4py>=3.1.0:net/py-mpi4py@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}platformdirs>=2.2.0:devel/py-platformdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytools>=2016.2.1:devel/py-pytools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rtree>=1.0.1:devel/py-rtree@${PY_FLAVOR}

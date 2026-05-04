@@ -1,8 +1,8 @@
---- chrome/browser/media/webrtc/webrtc_logging_controller.cc.orig	2026-02-16 10:45:29 UTC
+--- chrome/browser/media/webrtc/webrtc_logging_controller.cc.orig	2026-04-15 12:07:04 UTC
 +++ chrome/browser/media/webrtc/webrtc_logging_controller.cc
-@@ -26,7 +26,7 @@
- #include "components/webrtc_logging/browser/text_log_list.h"
- #include "content/public/browser/render_process_host.h"
+@@ -30,7 +30,7 @@
+ #include "net/base/schemeful_site.h"
+ #include "url/origin.h"
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)

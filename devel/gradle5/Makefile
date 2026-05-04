@@ -1,6 +1,6 @@
 PORTNAME=	gradle
 PORTVERSION=	5.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	devel java
 MASTER_SITES=	https://downloads.gradle.org/distributions/
 EXTRACT_SUFX=	-bin.zip

@@ -1,12 +1,12 @@
 PORTNAME=	ngtcp2
-PORTVERSION=	1.21.0
+PORTVERSION=	1.22.1
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/ngtcp2/ngtcp2/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	lib
 PKGNAMESUFFIX=	-gnutls
 
 MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	Implementation of QUIC protocol (gnutls backend)
+COMMENT=	Implementation of QUIC protocol (GnuTLS backend)
 WWW=		https://nghttp2.org/ngtcp2/ \
 		https://github.com/ngtcp2/ngtcp2
 

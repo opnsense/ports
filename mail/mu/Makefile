@@ -1,5 +1,6 @@
 PORTNAME=	mu
 DISTVERSION=	1.12.15
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	https://github.com/djcb/${PORTNAME}/releases/download/v${DISTVERSION}/
 

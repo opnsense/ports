@@ -4,7 +4,7 @@ DISTVERSION=	3.4
 PORTREVISION=	3
 CATEGORIES=	devel python
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	Distribute compilation of C(++) code across machines ${${FLAVOR}_COMMENT}
 WWW=		https://distcc.github.io/
 

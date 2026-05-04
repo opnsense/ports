@@ -1,5 +1,5 @@
 PORTNAME=	github-copilot-language-server
-DISTVERSION=	1.399.0
+DISTVERSION=	1.465.0
 CATEGORIES=	misc # machine-learning
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
 		${NODE_HEADERS}${EXTRACT_SUFX}
@@ -11,9 +11,6 @@ WWW=		https://github.com/github/copilot-language-server-release
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/node_modules/${PACKAGE_NAME}/LICENSE
-
-ONLY_FOR_ARCHS=		aarch64 amd64
-ONLY_FOR_ARCHS_REASON=	binaries are installed in folders with architecture encoded in them, patches are welcome to fix this limitation
 
 FETCH_DEPENDS=	npm:www/npm \
 		jq:textproc/jq \
@@ -33,7 +30,7 @@ PACKAGE_NAME=	@github/copilot-language-server
 
 NODE_HEADERS=	node-v24.11.0-headers
 
-JS_ARCH=	${ARCH:S/amd64/x64/:S/aarch64/arm64/}
+JS_ARCH=	${ARCH:S/amd64/x64/:S/aarch64/arm64/:S/i386/ia32/:S/powerpc64le/ppc64le/:S/powerpc64/ppc64/:C/armv[67]/arm/} # modeled after electron.mk
 PLIST_SUB=	JS_ARCH=${JS_ARCH}
 
 DD=		${DISTDIR}/${DIST_SUBDIR}
@@ -51,8 +48,6 @@ dep_kerberos_version=		7.0.0
 .for dep in ${DEP_MODULES}
 DISTFILES+=	${dep:S/_/-/g}-${dep_${dep}_version}${EXTRACT_SUFX}
 .endfor
-
-#NO_CHECKSUM=	yes
 
 do-fetch:
 	@if ! [ -f ${DD}/${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} ] || \

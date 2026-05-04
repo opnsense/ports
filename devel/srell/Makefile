@@ -1,5 +1,5 @@
 PORTNAME=	srell
-DISTVERSION=	4.070
+DISTVERSION=	2026.01
 CATEGORIES=	devel
 MASTER_SITES=	https://www.akenotsuki.com/misc/${PORTNAME}/releases/
 DISTNAME=	${PORTNAME}${DISTVERSION:S/./_/}
@@ -23,9 +23,7 @@ OPTIONS_DEFINE=	DOCS
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/include/${PORTNAME}
 	cd ${WRKSRC} && \
-		${INSTALL_DATA} srell.hpp \
-				srell_ucfdata2.h \
-				srell_updata3.h \
+		${INSTALL_DATA} srell.hpp srell_*.h \
 		${STAGEDIR}${PREFIX}/include/${PORTNAME}
 
 post-install-DOCS-on:

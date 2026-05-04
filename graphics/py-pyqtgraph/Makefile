@@ -1,6 +1,6 @@
 PORTNAME=	pyqtgraph
 DISTVERSION=	0.13.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ WWW=		https://www.pyqtgraph.org/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}colorcet>0:graphics/py-colorcet@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \

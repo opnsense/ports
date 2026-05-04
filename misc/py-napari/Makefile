@@ -1,6 +1,6 @@
 PORTNAME=	napari
 DISTVERSION=	0.6.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -31,7 +31,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=9.0:graphics/py-pillow@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}napari-plugin-engine>=0.1.9:graphics/py-napari-plugin-engine@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}napari-svg>=0.1.8:misc/py-napari-svg@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}npe2>=0.7.9:misc/py-npe2@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numpydoc>=1.0.0:textproc/py-numpydoc@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=1.3.3:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pint>=0.17:devel/py-pint@${PY_FLAVOR} \

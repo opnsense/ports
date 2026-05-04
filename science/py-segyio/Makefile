@@ -1,7 +1,7 @@
 PORTNAME=	segyio
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.9.13
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -18,7 +18,7 @@ BUILD_DEPENDS=	cmake:devel/cmake-core \
 		${PYTHON_PKGNAMEPREFIX}scikit-build>0:devel/py-scikit-build@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR}
 LIB_DEPENDS=	libsegyio.so:science/segyio
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		compiler:c++11-lang python
 USE_PYTHON=	distutils autoplist pytest

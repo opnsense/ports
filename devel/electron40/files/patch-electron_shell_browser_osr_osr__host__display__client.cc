@@ -1,6 +1,6 @@
---- electron/shell/browser/osr/osr_host_display_client.cc.orig	2026-01-15 18:39:20 UTC
+--- electron/shell/browser/osr/osr_host_display_client.cc.orig	2026-04-15 14:05:49 UTC
 +++ electron/shell/browser/osr/osr_host_display_client.cc
-@@ -94,7 +94,7 @@ void OffScreenHostDisplayClient::CreateLayeredWindowUp
+@@ -102,7 +102,7 @@ void OffScreenHostDisplayClient::CreateLayeredWindowUp
    layered_window_updater_->SetActive(active_);
  }
  

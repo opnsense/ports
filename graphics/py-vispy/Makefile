@@ -1,5 +1,6 @@
 PORTNAME=	vispy
 DISTVERSION=	0.15.2
+PORTREVISION=	1
 CATEGORIES=	graphics science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,14 +13,14 @@ WWW=		https://vispy.org/ \
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=7.1:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}freetype-py>0:print/py-freetype-py@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hsluv>0:graphics/py-hsluv@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}kiwisolver>0:math/py-kiwisolver@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
 
 USES=		python

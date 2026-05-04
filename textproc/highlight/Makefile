@@ -1,10 +1,10 @@
 PORTNAME=	highlight
-DISTVERSION=	4.18
+DISTVERSION=	4.19
 PORTEPOCH=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://andre-simon.de/zip/
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Customizable syntax highlighter
 WWW=		http://andre-simon.de/
 

@@ -1,5 +1,5 @@
 PORTNAME=	subnetcalc
-DISTVERSION=	2.6.5
+DISTVERSION=	2.6.6
 CATEGORIES=	net
 MASTER_SITES=	https://www.nntb.no/~dreibh/subnetcalc/download/
 
@@ -15,6 +15,7 @@ USES=		cmake gettext tar:xz
 PLIST_FILES=	bin/subnetcalc \
 		share/bash-completion/completions/subnetcalc \
 		share/locale/de/LC_MESSAGES/subnetcalc.mo \
+		share/locale/ka/LC_MESSAGES/subnetcalc.mo \
 		share/locale/nb/LC_MESSAGES/subnetcalc.mo \
 		share/man/man1/subnetcalc.1.gz
 

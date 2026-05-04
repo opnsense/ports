@@ -1,4 +1,4 @@
---- gpu/command_buffer/service/shared_image/shared_image_factory.cc.orig	2026-02-16 10:45:29 UTC
+--- gpu/command_buffer/service/shared_image/shared_image_factory.cc.orig	2026-04-15 12:07:04 UTC
 +++ gpu/command_buffer/service/shared_image/shared_image_factory.cc
 @@ -51,7 +51,7 @@
  #include "gpu/command_buffer/service/shared_image/angle_vulkan_image_backing_factory.h"
@@ -9,7 +9,7 @@
  #include "gpu/command_buffer/service/shared_image/external_vk_image_backing_factory.h"
  #endif
  
-@@ -113,7 +113,7 @@ const char* GmbTypeToString(gfx::GpuMemoryBufferType t
+@@ -114,7 +114,7 @@ const char* GmbTypeToString(gfx::GpuMemoryBufferType t
      case gfx::IO_SURFACE_BUFFER:
        return "platform";
  #endif
@@ -18,7 +18,7 @@
      case gfx::NATIVE_PIXMAP:
        return "platform";
  #endif
-@@ -134,7 +134,7 @@ gfx::GpuMemoryBufferType GetNativeBufferType() {
+@@ -135,7 +135,7 @@ gfx::GpuMemoryBufferType GetNativeBufferType() {
    return gfx::GpuMemoryBufferType::IO_SURFACE_BUFFER;
  #elif BUILDFLAG(IS_ANDROID)
    return gfx::GpuMemoryBufferType::ANDROID_HARDWARE_BUFFER;
@@ -36,3 +36,12 @@
    if (gr_context_type_ == GrContextType::kVulkan
  #if BUILDFLAG(USE_WEBGPU_ON_VULKAN_VIA_GL_INTEROP)
        /* We support GL context for WebGPU gl-vulkan interop (on linux).*/
+@@ -1028,7 +1028,7 @@ void SharedImageFactory::LogGetFactoryFailed(gpu::Shar
+   }
+ #endif  // BUILDFLAG(IS_ANDROID)
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+   // VizBufferQueue with Vulkan enabled over command-line for Linux does not
+   // work. Suppress dumps for these cases.
+   if (context_state_->GrContextIsVulkan() &&

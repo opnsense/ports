@@ -3,7 +3,7 @@ DISTVERSION=	0.15.1
 PORTREVISION=	1
 CATEGORIES=	devel
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	Zig LSP implementation + Zig Language Server
 WWW=		https://github.com/zigtools/zls
 

@@ -1,5 +1,6 @@
 PORTNAME=	napari-svg
 DISTVERSION=	0.2.1
+PORTREVISION=	1
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}imageio>=2.5.0:graphics/py-imageio@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.16.0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16.0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}vispy>=0.6.4:graphics/py-vispy@${PY_FLAVOR}
 
 USES=		python

@@ -747,6 +747,7 @@ share/locale/ca@valencia/LC_MESSAGES/kcmkwincompositing_x11.mo
 share/locale/ca@valencia/LC_MESSAGES/kcmkwinscreenedges_x11.mo
 share/locale/ca@valencia/LC_MESSAGES/kcmkwm_x11.mo
 share/locale/ca@valencia/LC_MESSAGES/kwin_x11.mo
+share/locale/cs/LC_MESSAGES/kcm_animations_x11.mo
 share/locale/cs/LC_MESSAGES/kcm_kwin_effects_x11.mo
 share/locale/cs/LC_MESSAGES/kcm_kwin_scripts_x11.mo
 share/locale/cs/LC_MESSAGES/kcm_kwin_virtualdesktops_x11.mo
@@ -1028,6 +1029,7 @@ share/locale/it/LC_MESSAGES/kcmkwincompositing_x11.mo
 share/locale/it/LC_MESSAGES/kcmkwinscreenedges_x11.mo
 share/locale/it/LC_MESSAGES/kcmkwm_x11.mo
 share/locale/it/LC_MESSAGES/kwin_x11.mo
+share/locale/ja/LC_MESSAGES/kcm_animations_x11.mo
 share/locale/ja/LC_MESSAGES/kcm_kwin_effects_x11.mo
 share/locale/ja/LC_MESSAGES/kcm_kwin_scripts_x11.mo
 share/locale/ja/LC_MESSAGES/kcm_kwin_virtualdesktops_x11.mo

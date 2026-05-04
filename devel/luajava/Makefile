@@ -1,6 +1,6 @@
 PORTNAME=	luajava
 PORTVERSION=	1.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel java
 MASTER_SITES=	http://luaforge.net/frs/download.php/2105/
 

@@ -1195,6 +1195,8 @@ share/applications/emacsclient.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-parser.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-recur.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-recur.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-shortdoc.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-shortdoc.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-utils.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar-utils.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/calendar/icalendar.el.gz
@@ -1804,6 +1806,8 @@ share/applications/emacsclient.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shadow.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shortdoc.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shortdoc.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shortdoc-doc.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shortdoc-doc.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shorthands.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/shorthands.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/emacs-lisp/smie.el.gz
@@ -2708,6 +2712,8 @@ share/applications/emacsclient.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/slovak.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/symbol-ksc.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/symbol-ksc.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/syriac.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/syriac.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/tamil-dvorak.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/tamil-dvorak.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/thai.el.gz
@@ -3257,6 +3263,8 @@ share/applications/emacsclient.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-comint.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-core.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-core.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-csharp.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-csharp.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-css.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-css.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/org/ob-ditaa.el.gz
@@ -4091,10 +4099,10 @@ share/applications/emacsclient.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/transient.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/tree-widget.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/tree-widget.elc
-%%DATADIR%%/%%EMACS_VER%%/lisp/treesit.el.gz
-%%DATADIR%%/%%EMACS_VER%%/lisp/treesit.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/treesit-x.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/treesit-x.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/treesit.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/treesit.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/tty-tip.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/tty-tip.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/tutorial.el.gz
@@ -4309,7 +4317,6 @@ share/applications/emacsclient.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/xwidget.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/yank-media.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/yank-media.elc
-%%SOURCES%%%%DATADIR%%/%%EMACS_VER%%/site-lisp/site-start.el
 %%DATADIR%%/%%EMACS_VER%%/site-lisp/subdirs.el
 %%SOURCES%%%%DATADIR%%/%%EMACS_VER%%/src/alloc.c
 %%SOURCES%%%%DATADIR%%/%%EMACS_VER%%/src/android-asset.h
@@ -4567,6 +4574,8 @@ share/applications/emacsclient.desktop
 %%SOURCES%%%%DATADIR%%/%%EMACS_VER%%/src/xwidget.h
 %%DATADIR%%/info/elisp_type_hierarchy.jpg
 %%DATADIR%%/info/elisp_type_hierarchy.txt
+%%DATADIR%%/site-lisp/default.el
+%%DATADIR%%/site-lisp/site-start.el
 %%DATADIR%%/site-lisp/subdirs.el
 share/icons/hicolor/128x128/apps/emacs.png
 share/icons/hicolor/16x16/apps/emacs.png

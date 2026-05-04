@@ -1,6 +1,6 @@
 PORTNAME=	fmptools
 DISTVERSION=	0.2.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 MASTER_SITES=	https://github.com/evanmiller/${PORTNAME}/releases/download/v${DISTVERSION}/
 

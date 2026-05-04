@@ -1,5 +1,5 @@
 PORTNAME=	pound
-PORTVERSION=	4.21
+PORTVERSION=	4.22
 CATEGORIES=	www net
 MASTER_SITES=	https://github.com/graygnuorg/pound/releases/download/v${PORTVERSION}/
 
@@ -29,7 +29,7 @@ PORTDOCS=	AUTHORS ChangeLog ChangeLog.apsis NEWS README THANKS
 OPTIONS_DEFINE=	DOCS LUA PCRE
 OPTIONS_DEFAULT=PCRE
 
-LUA_USES=		lua # supported versions: 5.3.5 or 5.4
+LUA_USES=		lua:53+
 LUA_CONFIGURE_ENV=	LUA_CFLAGS="-I${LUA_INCDIR}" \
 			LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER} -lm"
 LUA_CONFIGURE_OFF=	--disable-lua

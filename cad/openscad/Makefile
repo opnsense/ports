@@ -16,7 +16,7 @@ WWW=		https://www.openscad.org/
 BUILD_DEPENDS=	cgal>0:math/cgal \
 		evdev-proto>0:devel/evdev-proto \
 		${LOCALBASE}/include/glm/glm.hpp:math/glm \
-		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR}
 
 LIB_DEPENDS=	libzip.so:archivers/libzip \
 		libhidapi.so:comms/hidapi \

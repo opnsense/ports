@@ -8,7 +8,7 @@
  classifiers = [
    "Development Status :: 5 - Production/Stable",
    "Environment :: Console",
-@@ -37,19 +36,12 @@ Discord = "https://discord.gg/astral-sh"
+@@ -36,20 +35,12 @@ Discord = "https://discord.gg/astral-sh"
  Discord = "https://discord.gg/astral-sh"
  
  [build-system]
@@ -24,6 +24,7 @@
 -include = [
 -  { path = "LICENSE-APACHE", format = "sdist" },
 -  { path = "LICENSE-MIT", format = "sdist" },
+-  { path = "rust-toolchain.toml", format = "sdist" },
 -]
 -manifest-path = "crates/uv-build/Cargo.toml"
 -python-source = "python"

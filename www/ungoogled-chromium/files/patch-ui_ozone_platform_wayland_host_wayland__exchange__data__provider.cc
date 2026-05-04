@@ -1,4 +1,4 @@
---- ui/ozone/platform/wayland/host/wayland_exchange_data_provider.cc.orig	2026-03-15 18:32:51 UTC
+--- ui/ozone/platform/wayland/host/wayland_exchange_data_provider.cc.orig	2026-04-15 11:25:12 UTC
 +++ ui/ozone/platform/wayland/host/wayland_exchange_data_provider.cc
 @@ -74,7 +74,7 @@ int MimeTypeToFormat(const std::string& mime_type) {
    if (mime_type == ui::kMimeTypeDataTransferCustomData) {
@@ -9,7 +9,7 @@
    if (mime_type == ui::kMimeTypePortalFileTransfer ||
        mime_type == ui::kMimeTypePortalFiles) {
      return OSExchangeData::PICKLED_DATA;
-@@ -213,7 +213,7 @@ std::unique_ptr<OSExchangeDataProvider> WaylandExchang
+@@ -210,7 +210,7 @@ std::unique_ptr<OSExchangeDataProvider> WaylandExchang
      const {
    auto clone = std::make_unique<WaylandExchangeDataProvider>();
    CopyData(clone.get());
@@ -18,7 +18,7 @@
    clone->additional_data_ = additional_data_;
  #endif
    return clone;
-@@ -223,7 +223,7 @@ void WaylandExchangeDataProvider::SetFilenames(
+@@ -220,7 +220,7 @@ void WaylandExchangeDataProvider::SetFilenames(
      const std::vector<FileInfo>& filenames) {
    OSExchangeDataProviderNonBacked::SetFilenames(filenames);
  
@@ -27,7 +27,7 @@
    // Synchronously register files to get the key. This blocks the UI thread
    // briefly but ensures the key is ready for the data offer.
    std::string key = ui::clipboard_util::RegisterFilesWithPortal(filenames);
-@@ -267,7 +267,7 @@ std::vector<std::string> WaylandExchangeDataProvider::
+@@ -264,7 +264,7 @@ std::vector<std::string> WaylandExchangeDataProvider::
      mime_types.push_back(mime_type);
    }
  
@@ -36,7 +36,7 @@
    for (const auto& item : additional_data_) {
      mime_types.push_back(item.first);
    }
-@@ -285,7 +285,7 @@ void WaylandExchangeDataProvider::AddData(PlatformClip
+@@ -282,7 +282,7 @@ void WaylandExchangeDataProvider::AddData(PlatformClip
    DCHECK(data);
    DCHECK(IsMimeTypeSupported(mime_type));
  
@@ -45,8 +45,8 @@
    if (mime_type == ui::kMimeTypePortalFileTransfer ||
        mime_type == ui::kMimeTypePortalFiles) {
      additional_data_[mime_type] = base::as_string_view(*data);
-@@ -359,7 +359,7 @@ bool WaylandExchangeDataProvider::ExtractData(const st
-                                pickle->size());
+@@ -355,7 +355,7 @@ bool WaylandExchangeDataProvider::ExtractData(const st
+     *out_content = std::string(pickle->AsStringView());
      return true;
    }
 -#if BUILDFLAG(IS_LINUX)

@@ -1,10 +1,9 @@
 PORTNAME=	openmpi
-DISTVERSION=	5.0.9
-PORTREVISION=	1
+DISTVERSION=	5.0.10
 CATEGORIES=	net parallel
 MASTER_SITES=	https://download.open-mpi.org/release/open-mpi/v${DISTVERSION:R}/
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	High Performance Message Passing Library
 WWW=		https://www.open-mpi.org/
 

@@ -3,7 +3,7 @@ DISTVERSION=	2026.02.03
 CATEGORIES=	graphics
 MASTER_SITES=	https://pwmt.org/projects/zathura-cb/download/
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Comic book plugin for Zathura PDF viewer
 WWW=		https://pwmt.org/projects/zathura-cb/
 

@@ -38,6 +38,7 @@
     SUBDIR += R-cran-acepack
     SUBDIR += R-cran-admisc
     SUBDIR += R-cran-alabama
+    SUBDIR += R-cran-ankiR
     SUBDIR += R-cran-ash
     SUBDIR += R-cran-assertthat
     SUBDIR += R-cran-backports
@@ -45,6 +46,7 @@
     SUBDIR += R-cran-car
     SUBDIR += R-cran-carData
     SUBDIR += R-cran-coda
+    SUBDIR += R-cran-collections
     SUBDIR += R-cran-combinat
     SUBDIR += R-cran-conf.design
     SUBDIR += R-cran-conquer
@@ -312,6 +314,7 @@
     SUBDIR += ecos
     SUBDIR += edenmath
     SUBDIR += eigen3
+    SUBDIR += eigen5
     SUBDIR += eispack
     SUBDIR += elan
     SUBDIR += elemental
@@ -590,6 +593,7 @@
     SUBDIR += octave-forge-fl-core
     SUBDIR += octave-forge-fpl
     SUBDIR += octave-forge-fuzzy-logic-toolkit
+    SUBDIR += octave-forge-fxp
     SUBDIR += octave-forge-ga
     SUBDIR += octave-forge-general
     SUBDIR += octave-forge-generate_html
@@ -659,6 +663,7 @@
     SUBDIR += octave-forge-pythonic
     SUBDIR += octave-forge-quaternion
     SUBDIR += octave-forge-queueing
+    SUBDIR += octave-forge-rf
     SUBDIR += octave-forge-rtree
     SUBDIR += octave-forge-secs1d
     SUBDIR += octave-forge-secs2d
@@ -944,6 +949,9 @@
     SUBDIR += py-annoy
     SUBDIR += py-apgl
     SUBDIR += py-arviz
+    SUBDIR += py-arviz-base
+    SUBDIR += py-arviz-plots
+    SUBDIR += py-arviz-stats
     SUBDIR += py-arybo
     SUBDIR += py-autograd
     SUBDIR += py-awkward
@@ -1009,6 +1017,7 @@
     SUBDIR += py-highspy
     SUBDIR += py-hmmlearn
     SUBDIR += py-hypernetx
+    SUBDIR += py-ibis-framework
     SUBDIR += py-igraph
     SUBDIR += py-iminuit
     SUBDIR += py-intspan
@@ -1059,6 +1068,7 @@
     SUBDIR += py-numpy
     SUBDIR += py-numpy-groupies
     SUBDIR += py-numpy-stl
+    SUBDIR += py-numpy1
     SUBDIR += py-openTSNE
     SUBDIR += py-opt-einsum
     SUBDIR += py-or-tools
@@ -1146,6 +1156,7 @@
     SUBDIR += py-theano
     SUBDIR += py-timple
     SUBDIR += py-topologic
+    SUBDIR += py-torchsde
     SUBDIR += py-triangle
     SUBDIR += py-umap-learn
     SUBDIR += py-uncertainties

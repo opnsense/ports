@@ -1,6 +1,6 @@
 PORTNAME=	Ymir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.1
+DISTVERSION=	0.3.0
 CATEGORIES=	emulators
 
 MAINTAINER=	bsdcode@disroot.org
@@ -25,6 +25,7 @@ BUILD_DEPENDS=	cereal>0:devel/cereal \
 		semver>0:devel/semver \
 		stb>0:devel/stb \
 		vulkan-headers>0:graphics/vulkan-headers
+
 LIB_DEPENDS=	libchdr.so:devel/libchdr \
 		libcurl.so:ftp/curl \
 		libfmt.so:devel/libfmt \
@@ -44,12 +45,14 @@ _gtk4_BR_DEPENDS=		zenity:x11/zenity4
 ${FLAVOR}_BUILD_DEPENDS=	${_${FLAVOR}_BR_DEPENDS}
 ${FLAVOR}_RUN_DEPENDS=		${_${FLAVOR}_BR_DEPENDS}
 
-USES=		cmake compiler:c++20-lang desktop-file-utils gl \
-		llvm${_LLVM_${ARCH}} localbase pkgconfig sdl xorg
+USES=		cmake compiler:c++20-lang gl llvm${_LLVM_${ARCH}} localbase \
+		pkgconfig sdl xorg
 _LLVM_aarch64=	:min=21
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	StrikerX3
 GH_TUPLE=	StrikerX3:mio:4e4cdc711d73d9dc96c0cb9475e6951f476218e6:mio/vendor/mio
+
 USE_GL=		glut
 USE_SDL=	sdl3
 USE_XORG=	xi xmu
@@ -70,10 +73,13 @@ PLIST_FILES=	bin/ymir-sdl3 \
 		share/icons/hicolor/256x256/apps/ymir.png \
 		share/metainfo/io.github.strikerx3.ymir.xml
 
-OPTIONS_DEFINE=		LTO YMDASM
+OPTIONS_DEFINE=		FEATUREFLAG LTO YMDASM
 OPTIONS_DEFAULT=	LTO
 
+FEATUREFLAG_DESC=	Enable experimental features
 YMDASM_DESC=		Include Ymir disassembly tool
+
+FEATUREFLAG_CMAKE_BOOL=	Ymir_FEATUREFLAG_DEFAULT
 
 LTO_CMAKE_BOOL=		Ymir_ENABLE_IPO
 

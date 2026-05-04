@@ -1,0 +1,15 @@
+--- MODULE.bazel.orig	2026-04-05 02:28:47 UTC
++++ MODULE.bazel
+@@ -132,6 +132,12 @@ local_path_override(
+     path = "./third_party/remoteapis",
+ )
+ 
++single_version_override(
++    module_name = "rules_python",
++    patch_strip = 1,
++    patches = ["//toolchain_local:rules_python_freebsd.patch"],
++)
++
+ # =========================================
+ # Java dependencies
+ # =========================================

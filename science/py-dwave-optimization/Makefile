@@ -1,6 +1,6 @@
 PORTNAME=	dwave-optimization
 DISTVERSION=	0.6.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python # quantum-computing
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,9 +13,9 @@ WWW=		https://github.com/dwavesystems/dwave-optimization
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}meson-python>=0.18.0:devel/meson-python@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist cython pep517 pytest

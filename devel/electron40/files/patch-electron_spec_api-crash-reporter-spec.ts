@@ -1,4 +1,4 @@
---- electron/spec/api-crash-reporter-spec.ts.orig	2024-10-22 02:29:46 UTC
+--- electron/spec/api-crash-reporter-spec.ts.orig	2026-04-15 14:05:49 UTC
 +++ electron/spec/api-crash-reporter-spec.ts
 @@ -14,7 +14,7 @@ const isWindowsOnArm = process.platform === 'win32' &&
  import { ifdescribe, ifit, defer, startRemoteControlApp, repeatedly, listen } from './lib/spec-helpers';
@@ -27,7 +27,7 @@
        const { port, waitForCrash } = await startServer();
        let exitCode: number | null = null;
        const appPath = path.join(__dirname, 'fixtures', 'apps', 'crash');
-@@ -533,7 +533,7 @@ ifdescribe(!isLinuxOnArm && !process.mas && !process.e
+@@ -561,7 +561,7 @@ ifdescribe(!isLinuxOnArm && !process.mas && !process.e
        }
      }
  
@@ -36,7 +36,7 @@
        ? ['main', 'renderer', 'sandboxed-renderer']
        : ['main', 'renderer', 'sandboxed-renderer', 'node'];
      for (const crashingProcess of processList) {
-@@ -546,7 +546,7 @@ ifdescribe(!isLinuxOnArm && !process.mas && !process.e
+@@ -574,7 +574,7 @@ ifdescribe(!isLinuxOnArm && !process.mas && !process.e
              return app.getPath('crashDumps');
            });
            let reportsDir = crashesDir;
@@ -45,7 +45,7 @@
              reportsDir = path.join(crashesDir, 'completed');
            } else if (process.platform === 'win32') {
              reportsDir = path.join(crashesDir, 'reports');
-@@ -570,7 +570,7 @@ ifdescribe(!isLinuxOnArm && !process.mas && !process.e
+@@ -598,7 +598,7 @@ ifdescribe(!isLinuxOnArm && !process.mas && !process.e
            expect(remoteCrashesDir).to.equal(crashesDir);
  
            let reportsDir = crashesDir;

@@ -1,5 +1,6 @@
 PORTNAME=	netCDF4
 DISTVERSION=	1.7.2
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,10 +12,10 @@ WWW=		https://unidata.github.io/netcdf4-python/
 
 LICENSE=	MIT
 
-BUILD_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libhdf5.so:science/hdf5 \
 		libnetcdf.so:science/netcdf
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cftime>=0:devel/py-cftime@${PY_FLAVOR}
 
 USES=		python

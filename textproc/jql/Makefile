@@ -1,6 +1,7 @@
 PORTNAME=	jql
 DISTVERSIONPREFIX=	jql-v
-DISTVERSION=	8.0.10
+DISTVERSION=	8.1.2
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,6 +11,8 @@ WWW=		https://github.com/yamafaktory/jql
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE-MIT
 
+BROKEN_i386=	fails to link: ld: error: undefined symbol: __atomic_load
+
 USES=		cargo
 
 USE_GITHUB=	yes
@@ -18,30 +21,30 @@ GH_ACCOUNT=	yamafaktory
 CARGO_CRATES=	aho-corasick-1.1.4 \
 		alloca-0.4.0 \
 		anes-0.1.6 \
-		anstream-0.6.21 \
+		anstream-1.0.0 \
 		anstyle-1.0.13 \
-		anstyle-parse-0.2.7 \
+		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
-		anyhow-1.0.100 \
+		anyhow-1.0.102 \
 		ar_archive_writer-0.2.0 \
 		autocfg-1.5.0 \
 		bumpalo-3.19.1 \
-		bytes-1.11.0 \
+		bytes-1.11.1 \
 		cast-0.3.0 \
 		cc-1.2.53 \
 		cfg-if-1.0.4 \
 		ciborium-0.2.2 \
 		ciborium-io-0.2.2 \
 		ciborium-ll-0.2.2 \
-		clap-4.5.54 \
-		clap_builder-4.5.54 \
-		clap_derive-4.5.49 \
-		clap_lex-0.7.7 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_derive-4.6.0 \
+		clap_lex-1.1.0 \
 		colorchoice-1.0.4 \
 		colored_json-5.0.0 \
-		criterion-0.8.1 \
-		criterion-plot-0.8.1 \
+		criterion-0.8.2 \
+		criterion-plot-0.8.2 \
 		crossbeam-deque-0.8.6 \
 		crossbeam-epoch-0.9.18 \
 		crossbeam-utils-0.8.21 \
@@ -58,7 +61,9 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		itoa-1.0.17 \
 		js-sys-0.3.85 \
 		libc-0.2.180 \
+		libmimalloc-sys-0.1.44 \
 		memchr-2.7.6 \
+		mimalloc-0.1.48 \
 		num-traits-0.2.19 \
 		object-0.32.2 \
 		once_cell-1.21.3 \
@@ -69,9 +74,9 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		plotters-0.3.7 \
 		plotters-backend-0.3.7 \
 		plotters-svg-0.3.7 \
-		proc-macro2-1.0.105 \
+		proc-macro2-1.0.106 \
 		psm-0.1.28 \
-		quote-1.0.43 \
+		quote-1.0.45 \
 		rayon-1.11.0 \
 		rayon-core-1.13.0 \
 		regex-1.12.2 \
@@ -87,11 +92,11 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		shlex-1.3.0 \
 		stacker-0.1.22 \
 		strsim-0.11.1 \
-		syn-2.0.114 \
+		syn-2.0.117 \
 		thiserror-2.0.18 \
 		thiserror-impl-2.0.18 \
 		tinytemplate-1.2.1 \
-		tokio-1.49.0 \
+		tokio-1.50.0 \
 		tokio-macros-2.6.0 \
 		unicode-ident-1.0.22 \
 		utf8parse-0.2.2 \
@@ -117,7 +122,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		windows_x86_64_gnu-0.52.6 \
 		windows_x86_64_gnullvm-0.52.6 \
 		windows_x86_64_msvc-0.52.6 \
-		winnow-0.7.14 \
+		winnow-1.0.0 \
 		yansi-1.0.1 \
 		zerocopy-0.8.33 \
 		zerocopy-derive-0.8.33 \

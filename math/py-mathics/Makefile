@@ -1,6 +1,6 @@
 PORTNAME=	Mathics3
 PORTVERSION=	9.0.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ WWW=		https://mathics.org/
 
 LICENSE=	GPLv3+
 
-BUILD_DEPENDS=	${PYNUMPY}		\
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}		\
 		${PY_PILLOW}		\
 		${PY_SETUPTOOLS}	\
 		${PYTHON_PKGNAMEPREFIX}pint>0:devel/py-pint@${PY_FLAVOR} \
@@ -29,7 +29,7 @@ BUILD_DEPENDS=	${PYNUMPY}		\
 		${PYTHON_PKGNAMEPREFIX}scikit-image>0:graphics/py-scikit-image@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-dateutil>0:devel/py-python-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Mathics_Scanner>0:math/py-mathics-scanner
-RUN_DEPENDS=	${PYNUMPY}	\
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		${PY_PILLOW}	\
 		bash:shells/bash	\
 		${PYTHON_PKGNAMEPREFIX}py>0:devel/py-py@${PY_FLAVOR} \

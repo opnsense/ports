@@ -1,6 +1,6 @@
---- src/slic3r/GUI/GUI_App.hpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/GUI_App.hpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/GUI_App.hpp
-@@ -235,7 +235,7 @@ public:
+@@ -238,7 +238,7 @@ class GUI_App : public wxApp (private)
      bool            m_app_conf_exists{ false };
      EAppMode        m_app_mode{ EAppMode::Editor };
      bool            m_is_recreating_gui{ false };

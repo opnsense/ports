@@ -1,5 +1,6 @@
 PORTNAME=	pysal
 PORTVERSION=	25.7
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +26,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}access>=1.1.9:science/py-access@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}mapclassify>=2.10.0:graphics/py-mapclassify@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mgwr>=2.2.1:graphics/py-mgwr@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}momepy>=0.10.0:graphics/py-momepy@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.22,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.22:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=22:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=1.4:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}platformdirs>=2.0.2:devel/py-platformdirs@${PY_FLAVOR} \

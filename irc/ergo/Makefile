@@ -1,7 +1,6 @@
 PORTNAME=	ergo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.16.0
-PORTREVISION=	5
+DISTVERSION=	2.18.0
 CATEGORIES=	irc
 PKGNAMESUFFIX=	-irc-server
 
@@ -13,7 +12,7 @@ WWW=		https://ergo.chat \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25+,modules
+USES=		go:1.26+,modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ergochat

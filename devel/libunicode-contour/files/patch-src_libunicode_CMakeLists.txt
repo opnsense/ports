@@ -1,6 +1,6 @@
---- src/libunicode/CMakeLists.txt.orig	2026-02-16 23:18:35 UTC
+--- src/libunicode/CMakeLists.txt.orig	2026-04-08 23:58:40 UTC
 +++ src/libunicode/CMakeLists.txt
-@@ -102,9 +102,10 @@ endif()
+@@ -111,9 +111,10 @@ endif()
  
  # =========================================================================================================
  

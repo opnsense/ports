@@ -1,8 +1,21 @@
 bin/klog
+%%DOCSDIR%%/AUTHORS
+%%DOCSDIR%%/COPYING
+%%DOCSDIR%%/Changelog
+%%DOCSDIR%%/INSTALL-es.txt
+%%DOCSDIR%%/INSTALL-linux
+%%DOCSDIR%%/INSTALL.txt
+%%DOCSDIR%%/NEWS
+%%DOCSDIR%%/README
+%%DOCSDIR%%/README-DEVEL
+%%DOCSDIR%%/TODO
+%%DOCSDIR%%/TROUBLESHOOTING
+share/icons/hicolor/scalable/apps/klog.svg
 %%DATADIR%%/translations/klog_ca.qm
 %%DATADIR%%/translations/klog_cs.qm
 %%DATADIR%%/translations/klog_da.qm
 %%DATADIR%%/translations/klog_de.qm
+%%DATADIR%%/translations/klog_en.qm
 %%DATADIR%%/translations/klog_es.qm
 %%DATADIR%%/translations/klog_fi.qm
 %%DATADIR%%/translations/klog_fr.qm
@@ -15,3 +28,5 @@ bin/klog
 %%DATADIR%%/translations/klog_ru.qm
 %%DATADIR%%/translations/klog_uk.qm
 share/man/man1/klog.1.gz
+share/metainfo/klog.metainfo.xml
+share/pixmaps/klog.png

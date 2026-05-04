@@ -1,7 +1,7 @@
 PORTNAME=	bout++
 DISTVERSIONPREFIX=	v
 DISTVERSION=	5.1.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	science math # physics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -20,7 +20,7 @@ RUN_DEPENDS=	bash:shells/bash \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=3.2.1:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}natsort>=8.1.0:devel/py-natsort@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}netCDF4>=0:science/py-netCDF4@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.22.0:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.22.0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.4.1:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sympy>=1.5.1:math/py-sympy@${PY_FLAVOR}
 

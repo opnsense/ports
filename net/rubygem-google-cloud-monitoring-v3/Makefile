@@ -1,5 +1,5 @@
 PORTNAME=	google-cloud-monitoring-v3
-PORTVERSION=	1.7.1
+PORTVERSION=	1.9.0
 CATEGORIES=	net rubygems
 MASTER_SITES=	RG
 

@@ -22,7 +22,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}awscli>=0:devel/py-awscli@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}azure-storage-blob>=0:devel/py-azure-storage-blob@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}boto3>=0:www/py-boto3@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}google-cloud-storage>=2.6.0:www/py-google-cloud-storage@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}paramiko>=0:security/py-paramiko@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyopenssl>=0,1:security/py-pyopenssl@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-benchmark>=0:devel/py-pytest-benchmark@${PY_FLAVOR} \

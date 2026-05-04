@@ -1,5 +1,6 @@
 PORTNAME=	astroquery
 PORTVERSION=	0.4.11
+PORTREVISION=	1
 CATEGORIES=	astro python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}astropy>=5.0:astro/py-astropy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}beautifulsoup>=4.8:www/py-beautifulsoup@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}html5lib>=0.999:www/py-html5lib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}keyring>=15.0:security/py-keyring@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.20:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.20:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyvo>=1.5:astro/py-pyvo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.19:www/py-requests@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fsspec>=0:filesystems/py-fsspec@${PY_FLAVOR} \

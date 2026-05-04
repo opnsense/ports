@@ -1,6 +1,6 @@
 PORTNAME=	ghidra
 DISTVERSION=	12.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel security java
 MASTER_SITES=	https://github.com/NationalSecurityAgency/${PORTNAME}/releases/download/Ghidra_${DISTVERSION}_build/
 DISTNAME=	${PORTNAME}_${DISTVERSION}_PUBLIC_20260129

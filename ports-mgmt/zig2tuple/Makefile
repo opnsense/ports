@@ -2,7 +2,7 @@ PORTNAME=	zig2tuple
 DISTVERSION=	g20251226
 CATEGORIES=	ports-mgmt
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	Generate ZIG_TUPLE knob for Zig ports
 WWW=		https://github.com/kenrap/zig2tuple
 

@@ -1,6 +1,6 @@
---- headless/BUILD.gn.orig	2026-03-15 18:32:51 UTC
+--- headless/BUILD.gn.orig	2026-04-15 11:25:12 UTC
 +++ headless/BUILD.gn
-@@ -872,7 +872,7 @@ component("headless_shell_lib") {
+@@ -849,7 +849,7 @@ component("headless_shell_lib") {
      "//printing/buildflags",
    ]
  

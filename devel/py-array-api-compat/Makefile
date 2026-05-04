@@ -1,5 +1,5 @@
 PORTNAME=	array-api-compat
-PORTVERSION=	1.13.0
+PORTVERSION=	1.14.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/data-apis/array-api-compat/releases/download/${PORTVERSION}/
@@ -28,7 +28,7 @@ DASK_DESC=	Dask array support
 SPARSE_DESC=	Sparse array support
 
 DASK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dask>=2024.9.0:devel/py-dask@${PY_FLAVOR}
-NUMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.22,1:math/py-numpy@${PY_FLAVOR}
+NUMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.22:math/py-numpy1@${PY_FLAVOR}
 SPARSE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sparse>=0.15.1:devel/py-sparse@${PY_FLAVOR}
 
 .include <bsd.port.mk>

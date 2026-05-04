@@ -1,6 +1,6 @@
 PORTNAME=	java-simple-serial-connector
 PORTVERSION=	2.8.0
-PORTREVISION=	4
+PORTREVISION=	5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	comms java
 

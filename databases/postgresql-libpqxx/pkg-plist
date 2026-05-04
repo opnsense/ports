@@ -49,7 +49,6 @@ include/pqxx/internal/header-post.hxx
 include/pqxx/internal/header-pre.hxx
 include/pqxx/internal/ignore-deprecated-post.hxx
 include/pqxx/internal/ignore-deprecated-pre.hxx
-include/pqxx/internal/libpq-forward.hxx
 include/pqxx/internal/result_iter.hxx
 include/pqxx/internal/result_iterator.hxx
 include/pqxx/internal/sql_cursor.hxx

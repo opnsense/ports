@@ -1,6 +1,6 @@
 PORTNAME=	qtqr
 DISTVERSION=	2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics python
 MASTER_SITES=	https://launchpad.net/qr-tools/2.0/${PORTVERSION}/+download/ \
 		LOCAL/ehaupt
@@ -14,7 +14,7 @@ WWW=		https://launchpad.net/qr-tools
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0:math/py-numpy@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pillow>0:graphics/py-pillow@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}zbar-py>=1.0.4:graphics/py-zbar-py@${PY_FLAVOR}
 

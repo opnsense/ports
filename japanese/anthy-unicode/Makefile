@@ -3,7 +3,7 @@ DISTVERSION=	1.0.0.20260127
 CATEGORIES=	japanese
 MASTER_SITES=	https://github.com/fujiwarat/${PORTNAME}/releases/download/${DISTVERSION}/
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Library for Japanese text input
 WWW=		https://github.com/fujiwarat/anthy-unicode/
 

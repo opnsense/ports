@@ -1,6 +1,6 @@
 PORTNAME=	pluma
 PORTVERSION=	1.28.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	editors mate
 MASTER_SITES=	MATE
 DIST_SUBDIR=	mate
@@ -25,7 +25,7 @@ USES=		compiler:c11 desktop-file-utils gettext-tools gmake gnome libtool localba
 USE_XORG=	ice sm x11
 USE_GNOME=	cairo gdkpixbuf gnomeprefix gtk30 gtksourceview4 \
 		intltool introspection libxml2
-USE_MATE=	desktop:build
+USE_MATE=	desktop
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share

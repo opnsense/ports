@@ -1,5 +1,5 @@
 PORTNAME=	sys-uname
-PORTVERSION=	1.5.0
+PORTVERSION=	1.5.1
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 

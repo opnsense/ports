@@ -1,5 +1,6 @@
 PORTNAME=	kitinerary
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -7,6 +8,8 @@ COMMENT=	Data Model and Extraction System for Travel Reservation information
 WWW=		https://www.kde.org/
 
 LICENSE=	LGPL21
+
+IGNORE_FreeBSD_13=	does not build with OpenSSL 1.1.1
 
 LIB_DEPENDS=	libphonenumber.so:devel/libphonenumber \
 		libpoppler.so:graphics/poppler \

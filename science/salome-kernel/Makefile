@@ -1,7 +1,7 @@
 PORTNAME=	salome-kernel
 DISTVERSIONPREFIX=	V
 DISTVERSION=	9_11_0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	science # physics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,7 +12,7 @@ WWW=		https://www.salome-platform.org/ \
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PY_DEPENDS=	${PYNUMPY} \
+PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}omniorb>0:devel/py-omniorb \
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}

@@ -1,15 +1,15 @@
---- src/slic3r/GUI/OpenGLManager.cpp.orig	2025-10-02 19:32:12.000000000 +0200
-+++ src/slic3r/GUI/OpenGLManager.cpp	2026-03-06 11:00:00.000000000 +0100
-@@ -244,7 +244,11 @@
+--- src/slic3r/GUI/OpenGLManager.cpp.orig	2026-03-22 17:56:38 UTC
++++ src/slic3r/GUI/OpenGLManager.cpp
+@@ -264,7 +264,11 @@ bool OpenGLManager::init_gl(bool popup_error)
      if (!m_gl_initialized) {
+         glewExperimental = true;
          GLenum result = glewInit();
 -        if (result != GLEW_OK) {
--            BOOST_LOG_TRIVIAL(error) << "Unable to init glew library";
 +        if (result != GLEW_OK
 +#ifdef GLEW_ERROR_NO_GLX_DISPLAY
 +            && result != GLEW_ERROR_NO_GLX_DISPLAY
 +#endif
 +            ) {
-+            BOOST_LOG_TRIVIAL(error) << "Unable to init glew library: " << (const char*)glewGetErrorString(result);
+             BOOST_LOG_TRIVIAL(error) << "Unable to init glew library, Error: " << glewGetErrorString(result);
              return false;
          }

@@ -1,7 +1,7 @@
 PORTNAME=	sniffnet
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.2
-PORTREVISION=	3
+DISTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	net wayland
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -31,6 +31,11 @@ OPTIONS_DEFINE=	DOCS
 CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false
 RUSTFLAGS+=	-C target-feature=+sse2
 .endif
+
+post-patch:
+# https://github.com/RazrFalcon/fontdb/issues/61
+	@${REINPLACE_CMD} -e 's|/etc|${LOCALBASE}&|g' \
+		${WRKSRC_crate_fontdb}/src/lib.rs
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/resources/packaging/linux/${PORTNAME}.desktop \

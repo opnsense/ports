@@ -1,7 +1,7 @@
 PORTNAME=	ta-lib # provides Python namespace 'talib'
 DISTVERSIONPREFIX=	TA_Lib-
 DISTVERSION=	0.4.32
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	finance python
 #MASTER_SITES=	PYPI # tests fail whe PYPI is used, see https://github.com/TA-Lib/ta-lib-python/issues/663
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,9 +14,9 @@ WWW=		https://ta-lib.github.io/ta-lib-python/
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libta_lib.so:devel/ta-lib
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}polars>0:misc/py-polars@${PY_FLAVOR}
 
 USES=		python

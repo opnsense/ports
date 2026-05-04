@@ -1,6 +1,6 @@
 PORTNAME=	mayavi
 DISTVERSION=	4.8.2
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	graphics science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,11 +22,11 @@ LICENSE_FILE_APACHE11=		${WRKSRC}/LICENSE_COLORBREWER.txt
 BROKEN=		compilation fails: VTK throws std::runtime_erroe, see https://gitlab.kitware.com/vtk/vtk/-/issues/19994
 BROKEN_i386=	stage fails: Building TVTK classes... Fatal Python error: Illegal instruction
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PY_SPHINX} \
 		sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
 LIB_DEPENDS=	libvtkCommonCore-${VTK_VER}.so:math/vtk${VTK_VER:R}
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}apptools>0:devel/py-apptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}envisage>0:devel/py-envisage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyface>=6.1.1:devel/py-pyface@${PY_FLAVOR} \

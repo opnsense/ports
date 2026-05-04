@@ -27,6 +27,8 @@ USE_QT=		5compat base declarative \
 		tools:build
 USE_XORG=	x11
 
+LDFLAGS_i386=	-Wl,-znotext
+
 # Requires PocketSphinx-5prealpha
 SPHINX_DESC=	Speech recognition via PocketSphinx
 SPHINX_LIB_DEPENDS=	libpocketsphinx.so:audio/pocketsphinx

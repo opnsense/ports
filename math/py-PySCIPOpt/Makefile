@@ -1,6 +1,6 @@
 PORTNAME=	PySCIPOpt
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.6.0
+DISTVERSION=	6.1.0
 CATEGORIES=	math python
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,8 +11,9 @@ WWW=		https://github.com/SCIP-Interfaces/PySCIPOpt
 
 LICENSE=	MIT
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libscip.so:math/SCIP
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}networkx>0:math/py-networkx@${PY_FLAVOR}
 
 USES=		localbase python
@@ -26,10 +27,6 @@ TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/pyscipopt/scip*.so
 
-# tests as of 5.6.0:
-# Results (26.54s):
-#      330 passed
-#       11 xfailed
-#      105 skipped
+# tests as of 6.1.0: 418 passed, 109 skipped, 11 xfailed, 12 warnings in 24.22s
 
 .include <bsd.port.mk>

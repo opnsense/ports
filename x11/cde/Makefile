@@ -1,5 +1,6 @@
 PORTNAME=	cde
 DISTVERSION=	2.5.3
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	SF/cdesktopenv/src/
 
@@ -52,7 +53,7 @@ MAKE_ARGS+=	PERL=${PERL} "LOCAL_LDFLAGS=${LDFLAGS}"
 MAKE_JOBS_UNSAFE=yes
 MAKE_ENV=	MALLOC_CONF=junk:false
 SUB_FILES=	pkg-message
-CFLAGS+=	-Wno-register -Wno-incompatible-function-pointer-types \
+CFLAGS+=	-O -Wno-register -Wno-incompatible-function-pointer-types \
 		-Wno-implicit-function-declaration
 LDFLAGS+=	-z muldefs #--allow-multiple-definition
 LDFLAGS+=	-lutil

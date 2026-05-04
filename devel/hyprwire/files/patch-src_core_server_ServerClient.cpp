@@ -1,6 +1,6 @@
---- src/core/server/ServerClient.cpp.orig	2026-02-04 11:08:13 UTC
+--- src/core/server/ServerClient.cpp.orig	2026-04-25 23:30:02 UTC
 +++ src/core/server/ServerClient.cpp
-@@ -13,6 +13,11 @@
+@@ -15,6 +15,11 @@
  #include <sys/socket.h>
  #include <sys/types.h>
  
@@ -12,7 +12,7 @@
  using namespace Hyprwire;
  
  CServerClient::CServerClient(int fd) : m_fd(fd) {
-@@ -31,19 +36,29 @@ void CServerClient::dispatchFirstPoll() {
+@@ -37,19 +42,29 @@ void CServerClient::dispatchFirstPoll() {
  
      // get peer's pid
  

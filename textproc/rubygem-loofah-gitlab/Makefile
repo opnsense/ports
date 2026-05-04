@@ -1,5 +1,5 @@
 PORTNAME=	loofah
-PORTVERSION=	2.25.0
+PORTVERSION=	2.25.1
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -16,8 +16,8 @@ RUN_DEPENDS=	rubygem-crass>=1.0.2<1.1:www/rubygem-crass \
 
 USES=		cpe gem
 
-NO_ARCH=	yes
-
 CPE_VENDOR=	loofah_project
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

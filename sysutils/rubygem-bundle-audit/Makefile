@@ -1,5 +1,5 @@
 PORTNAME=	bundle-audit
-PORTVERSION=	0.1.0
+PORTVERSION=	0.2.0
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 

@@ -1,5 +1,5 @@
 PORTNAME=	altair
-PORTVERSION=	6.0.0
+PORTVERSION=	6.1.0
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>=3.0:devel/py-jsonschema@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}narwhals>=1.27.1:math/py-narwhals@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}narwhals>=2.4.0:math/py-narwhals@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR}
 
 USES=		python

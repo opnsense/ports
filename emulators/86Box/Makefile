@@ -3,6 +3,9 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	5.3
 CATEGORIES=	emulators
 
+PATCH_SITES=	https://github.com/86Box/86Box/commit/
+PATCHFILES=	0092ce15de3efac108b961882f870a8c05e8c38f.patch:-p1 # https://github.com/86Box/86Box/commit/0092ce15de3efac108b961882f870a8c05e8c38f
+
 MAINTAINER=	tiga@FreeBSD.org
 COMMENT=	Emulator of x86-based machines based on PCem
 WWW=		https://86box.net/

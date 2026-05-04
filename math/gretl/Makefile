@@ -1,6 +1,5 @@
 PORTNAME=	gretl
-PORTVERSION=	2024d
-PORTREVISION=	2
+PORTVERSION=	2026b
 CATEGORIES=	math finance
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSIONFULL}/
 
@@ -34,6 +33,8 @@ ALL_TARGET=	# empty
 SSP_CFLAGS?=	-fstack-protector # XXX -strong crashes mklang on 12.0+ i386
 CONFIGURE_ENV=	ac_cv_lib_dl_dlopen="" \
 		LAPACK_LIBS="${LAPACK} ${BLAS}"
+
+LDFLAGS+=	-lomp
 
 PLIST_SUB=	GTK_VER=${GTK_VER}
 

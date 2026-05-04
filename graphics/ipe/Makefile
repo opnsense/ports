@@ -1,9 +1,7 @@
 PORTNAME=	ipe
-DISTVERSION=	7.2.27
-DISTVERSIONSUFFIX=	-src
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	7.2.30
 CATEGORIES=	graphics
-MASTER_SITES=	https://github.com/otfried/ipe/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Extensible vector graphics editor with LaTeX support
@@ -19,6 +17,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
 USES=		compiler:c++11-lib gmake gnome jpeg lua:54 pkgconfig shebangfix qt:6 tex
+USE_GITHUB=	yes
+GH_ACCOUNT=	otfried
 USE_GNOME=	cairo
 USE_LDCONFIG=	yes
 USE_QT=		base
@@ -50,7 +50,7 @@ CPPFLAGS+=	-I${LOCALBASE}/${QT_INCDIR_REL} \
 
 DESKTOP_ENTRIES="Ipe" "" "ipe" "ipe" "" ""
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}/src
+WRKSRC_SUBDIR=	src
 
 PLIST_SUB=	VERSION="${DISTVERSION}"
 PORTDOCS=	*

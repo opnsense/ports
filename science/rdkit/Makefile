@@ -1,6 +1,7 @@
 PORTNAME=	rdkit
 DISTVERSIONPREFIX=	Release_
 DISTVERSION=	2025_09_2
+PORTREVISION=	1
 CATEGORIES=	science
 MASTER_SITES=	https://github.com/schrodinger/maeparser/archive/:maeparser \
 		https://github.com/schrodinger/coordgenlibs/archive/:coordgen \
@@ -78,9 +79,9 @@ PGSQL_DESC=		Build the PostgreSQL cartridge
 PGSQL_CMAKE_BOOL=	RDK_BUILD_PGSQL
 
 PYTHON_CMAKE_BOOL=	RDK_BUILD_PYTHON_WRAPPERS
-PYTHON_BUILD_DEPENDS=	${PYNUMPY}
+PYTHON_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 PYTHON_LIB_DEPENDS=	${PY_BOOST}
-PYTHON_RUN_DEPENDS=	${PYNUMPY} \
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 			${PY_PILLOW} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}reportlab>0:print/py-reportlab@${PY_FLAVOR}

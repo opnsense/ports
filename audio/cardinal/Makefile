@@ -1,7 +1,7 @@
 # CAVEAT cross-compilation (ex. CPUTYPE=znver3) fails, upstream needs to fix this: https://github.com/DISTRHO/Cardinal/issues/646
 
 PORTNAME=	cardinal
-DISTVERSION=	25.06
+DISTVERSION=	26.02
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/DISTRHO/Cardinal/releases/download/${DISTVERSION}/
 
@@ -22,6 +22,7 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libdbus-1.so:devel/dbus \
 		libfftw3f.so:math/fftw3-float \
 		libjansson.so:devel/jansson \
+		liblo.so:audio/liblo \
 		libpffft.so:math/pffft \
 		libpulse-simple.so:audio/pulseaudio \
 		libsamplerate.so:audio/libsamplerate \

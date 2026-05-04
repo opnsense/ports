@@ -1,4 +1,4 @@
---- src/slic3r/GUI/DesktopIntegrationDialog.cpp.orig	2025-03-07 08:28:42 UTC
+--- src/slic3r/GUI/DesktopIntegrationDialog.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/DesktopIntegrationDialog.cpp
 @@ -1,4 +1,4 @@
 -#ifdef __linux__
@@ -6,8 +6,8 @@
  #include "DesktopIntegrationDialog.hpp"
  #include "GUI_App.hpp"
  #include "GUI.hpp"
-@@ -667,4 +667,4 @@
-
+@@ -667,4 +667,4 @@ DesktopIntegrationDialog::~DesktopIntegrationDialog()
+ 
  } // namespace GUI
  } // namespace Slic3r
 -#endif // __linux__

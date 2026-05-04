@@ -1,6 +1,6 @@
 PORTNAME=	netgen
 DISTVERSIONPREFIX=	v
-DISTVERSION=	6.2.2602
+DISTVERSION=	6.2.2603
 CATEGORIES=	cad
 
 PATCH_SITES=	https://github.com/alexxy/netgen/commit/
@@ -29,7 +29,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \
 USES=		cmake gl localbase:ldflags python tcl tk xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	NGSolve
-GH_TUPLE=	NGSolve:pybind11:v3.0.1:pybind11/external_dependencies/pybind11
+GH_TUPLE=	NGSolve:pybind11:v3.0.3:pybind11/external_dependencies/pybind11
 USE_GL=		gl glu
 USE_LDCONFIG=	yes
 USE_XORG=	x11 xi xmu

@@ -1,6 +1,6 @@
---- base/threading/platform_thread.h.orig	2026-02-16 10:45:29 UTC
+--- base/threading/platform_thread.h.orig	2026-04-15 12:07:04 UTC
 +++ base/threading/platform_thread.h
-@@ -60,6 +60,8 @@ class BASE_EXPORT PlatformThreadId {
+@@ -67,6 +67,8 @@ class BASE_EXPORT PlatformThreadId {
    using UnderlyingType = zx_koid_t;
  #elif BUILDFLAG(IS_APPLE)
    using UnderlyingType = uint64_t;

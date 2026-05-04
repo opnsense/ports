@@ -1,6 +1,6 @@
---- base/files/file_util_unittest.cc.orig	2025-11-01 06:40:37 UTC
+--- base/files/file_util_unittest.cc.orig	2026-04-15 11:25:12 UTC
 +++ base/files/file_util_unittest.cc
-@@ -4156,7 +4156,7 @@ TEST_F(FileUtilTest, ReadFileToStringWithNamedPipe) {
+@@ -4158,7 +4158,7 @@ TEST_F(FileUtilTest, ReadFileToStringWithNamedPipe) {
  }
  #endif  // BUILDFLAG(IS_WIN)
  

@@ -1,17 +1,20 @@
 PORTNAME=	armagetronad
-DISTVERSION=	0.2.9.2.5
+DISTVERSION=	0.2.9.3.0
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/stable/${DISTVERSION}/
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Tron clone in 3D
-WWW=		http://www.armagetronad.org/
+WWW=		http://www.armagetronad.org/ \
+		https://github.com/ArmagetronAd/armagetronad
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	bash:shells/bash
-LIB_DEPENDS=	libpng.so:graphics/png
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libpng.so:graphics/png \
+		libZThread.so:devel/zthread
 
 USES=		autoreconf desktop-file-utils gl gmake gnome pkgconfig sdl \
 		tar:tbz

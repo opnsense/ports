@@ -1,20 +1,19 @@
 PORTNAME=	wire
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.7.0
-PORTREVISION=	2
+DISTVERSION=	1.1.0
 CATEGORIES=	devel
 PKGNAMEPREFIX=	go-
 
 MAINTAINER=	jordan@ostreff.info
 COMMENT=	Compile-time Dependency Injection for Go
-WWW=		https://github.com/google/wire
+WWW=		https://github.com/goforj/wire/
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules
 
-GO_MODULE=	github.com/google/wire
+GO_MODULE=	github.com/goforj/wire
 GO_TARGET=	./cmd/wire
 
 PLIST_FILES=	bin/${PORTNAME}

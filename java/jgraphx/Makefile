@@ -1,6 +1,6 @@
 PORTNAME=	jgraphx
 PORTVERSION=	4.2.2
-PORTREVISION=	2
+PORTREVISION=	4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	java graphics
 
@@ -14,7 +14,6 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 USES=		java:ant,run
 USE_GITHUB=	yes
 GH_ACCOUNT=	jgraph
-JAVA_VERSION=  8 # math/scilab needs java 8 compatible classes
 
 NO_ARCH=	yes
 

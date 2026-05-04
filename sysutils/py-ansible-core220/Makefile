@@ -4,12 +4,14 @@
 # XXX workaround until Python 3.12 becomes the default.
 
 PORTNAME=	ansible-core
-DISTVERSION=	2.20.2
+DISTVERSION=	2.20.5
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-PKGNAMESUFFIX=	220
 DISTFILES=	${PORTNAME:R:S/-/_/}-${DISTVERSION}${EXTRACT_SUFX}
+.if !defined(MASTERDIR)
+PKGNAMESUFFIX=	220
+.endif
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Radically simple IT automation

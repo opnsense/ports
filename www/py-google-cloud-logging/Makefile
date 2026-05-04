@@ -1,5 +1,5 @@
 PORTNAME=	google-cloud-logging
-PORTVERSION=	3.13.0
+PORTVERSION=	3.15.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -8,7 +8,8 @@ DISTNAME=	google_cloud_logging-${PORTVERSION}
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Stackdriver Logging API client library
 WWW=		https://cloud.google.com/python/docs/reference/logging/latest \
-		https://github.com/googleapis/python-logging
+		https://github.com/googleapis/google-cloud-python/tree/main/packages/google-cloud-logging \
+		https://github.com/googleapis/google-cloud-python
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -21,9 +22,10 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}google-api-core>=2.11.0<3.0.0:www/py-google-
 		${PYTHON_PKGNAMEPREFIX}google-cloud-audit-log>=0.3.1<1.0.0:www/py-google-cloud-audit-log@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}google-cloud-core>=2.0.0<3.0.0:www/py-google-cloud-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}grpc-google-iam-v1>=0.12.4<1.0.0:devel/py-grpc-google-iam-v1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}grpcio>=1.75.1<2.0.0:devel/py-grpcio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=1.9.0:devel/py-opentelemetry-api@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}proto-plus>=1.25.0<2.0.0:devel/py-proto-plus@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}protobuf>=4.21.6,1<7.0.0,1:devel/py-protobuf@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}protobuf>=4.25.8,1<8.0.0,1:devel/py-protobuf@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517

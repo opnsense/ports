@@ -1,6 +1,5 @@
 PORTNAME=	prismlauncher
-DISTVERSION=	10.0.5
-PORTREVISION=	1
+DISTVERSION=	11.0.1
 CATEGORIES=	games java
 MASTER_SITES=	https://github.com/PrismLauncher/PrismLauncher/releases/download/${DISTVERSION}/
 DISTNAME=	PrismLauncher-${DISTVERSION}
@@ -13,21 +12,18 @@ WWW=		https://prismlauncher.org/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING.md
 
+BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 LIB_DEPENDS=	libcmark.so:textproc/cmark \
 		libqrencode.so:graphics/libqrencode \
 		libquazip1-qt6.so:archivers/quazip@qt6 \
 		libtomlplusplus.so:devel/tomlplusplus
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
-		lwjgl>0:games/lwjgl \
 		lwjgl3>0:games/lwjgl3 \
-		openjdk21>0:java/openjdk21 \
 		xrandr:x11/xrandr
 
 USES=		cmake compiler:c++17-lang desktop-file-utils gl java kde:6 \
 		pkgconfig qt:6 shared-mime-info
 USE_GITHUB=	nodefault
-GH_TUPLE=	gulrak:filesystem:0e72911:filesystem/libraries/filesystem \
-		PrismLauncher:libnbtplusplus:531449b:libnbtplusplus/libraries/libnbtplusplus
 USE_GL=		opengl
 USE_KDE=	ecm:build
 USE_QT=		base networkauth

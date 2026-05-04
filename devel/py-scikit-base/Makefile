@@ -1,5 +1,5 @@
 PORTNAME=	scikit-base
-PORTVERSION=	0.13.1
+PORTVERSION=	1.0.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,7 +26,7 @@ NO_ARCH=	yes
 OPTIONS_DEFINE=	ALL
 ALL_DESC=	All optional dependencies
 
-ALL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
+ALL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pandas>=0,1:math/py-pandas@${PY_FLAVOR}
 
 .include <bsd.port.mk>

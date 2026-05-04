@@ -1,5 +1,6 @@
 PORTNAME=	ase
 DISTVERSION=	3.26.0
+PORTREVISION=	1
 CATEGORIES=	science python # chemistry
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +13,7 @@ WWW=		https://ase-lib.org/ \
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
 
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=3.1.0:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.1.0:science/py-scipy@${PY_FLAVOR}
 #		nwchem:science/nwchem

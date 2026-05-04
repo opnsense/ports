@@ -1,5 +1,6 @@
 PORTNAME=	icet
 DISTVERSION=	3.2
+PORTREVISION=	1
 CATEGORIES=	science # chemistry, physics
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ase>0:science/py-ase@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numba>=0.55:devel/py-numba@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=0.23:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.0.0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}spglib>=1.12.0:science/py-spglib@${PY_FLAVOR} \

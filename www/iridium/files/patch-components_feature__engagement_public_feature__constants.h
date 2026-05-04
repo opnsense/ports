@@ -1,4 +1,4 @@
---- components/feature_engagement/public/feature_constants.h.orig	2026-02-20 10:25:07 UTC
+--- components/feature_engagement/public/feature_constants.h.orig	2026-04-15 12:07:04 UTC
 +++ components/feature_engagement/public/feature_constants.h
 @@ -31,7 +31,7 @@ FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHDemoMode);
  FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHDummyFeature);
@@ -9,7 +9,7 @@
  #if BUILDFLAG(GOOGLE_CHROME_BRANDING)
  FEATURE_CONSTANTS_DECLARE_FEATURE(kEsbDownloadRowPromoFeature);
  #endif
-@@ -398,7 +398,7 @@ FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHiOSGeminiContext
+@@ -407,7 +407,7 @@ FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHiOSActiveDaysTra
  
  #endif  // BUILDFLAG(IS_IOS)
  
@@ -18,7 +18,7 @@
      BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_FUCHSIA)
  FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHAutofillBnplAffirmOrZipSuggestionFeature);
  FEATURE_CONSTANTS_DECLARE_FEATURE(
-@@ -431,7 +431,7 @@ FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHGoogleOneOfferNo
+@@ -440,7 +440,7 @@ FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHGoogleOneOfferNo
  FEATURE_CONSTANTS_DECLARE_FEATURE(kIPHLauncherSearchHelpUiFeature);
  #endif
  

@@ -1,5 +1,6 @@
 PORTNAME=	langchain-tests
 DISTVERSION=	1.1.5
+PORTREVISION=	1
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +16,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpx>=0.28.1:www/py-httpx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}langchain-core>=1.1.2:misc/py-langchain-core@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>=7:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0.20:devel/py-pytest-asyncio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-benchmark>0:devel/py-pytest-benchmark@${PY_FLAVOR} \

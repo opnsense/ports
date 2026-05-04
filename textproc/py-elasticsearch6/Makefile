@@ -8,7 +8,8 @@ PKGNAMESUFFIX=	6
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Official Python low-level client for Elasticsearch
-WWW=		https://github.com/elastic/elasticsearch-py
+WWW=		https://www.elastic.co/guide/en/elasticsearch/client/python-api/current/index.html \
+		https://github.com/elastic/elasticsearch-py
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -18,7 +19,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLA
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}urllib3>=1.21.1,1:net/py-urllib3@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=0:devel/py-coverage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mock>=0:devel/py-mock@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=0,1:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.0.0:www/py-requests@${PY_FLAVOR}
@@ -29,6 +30,8 @@ USE_PYTHON=	autoplist concurrent nose pep517
 NO_ARCH=	yes
 
 CPE_VENDOR=	elastic
+
+PORTSCOUT=	limit:^6\.
 
 OPTIONS_DEFINE=	REQUESTS
 OPTIONS_DEFAULT=REQUESTS

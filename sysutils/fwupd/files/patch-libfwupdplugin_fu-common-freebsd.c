@@ -1,4 +1,4 @@
---- libfwupdplugin/fu-common-freebsd.c.orig	2025-09-12 09:55:19 UTC
+--- libfwupdplugin/fu-common-freebsd.c.orig	2026-03-12 10:08:33 UTC
 +++ libfwupdplugin/fu-common-freebsd.c
 @@ -14,6 +14,7 @@
  
@@ -8,12 +8,16 @@
  
  /* bsdisks doesn't provide Manager object */
  #define UDISKS_DBUS_PATH	      "/org/freedesktop/UDisks2"
-@@ -122,9 +123,45 @@ fu_common_get_olson_timezone_id_impl(GError **error)
+@@ -122,9 +123,49 @@ fu_common_get_olson_timezone_id_impl(FuPathStore *psto
  gchar *
- fu_common_get_olson_timezone_id_impl(GError **error)
+ fu_common_get_olson_timezone_id_impl(FuPathStore *pstore, GError **error)
  {
-+	g_autofree gchar *fn_localtime = fu_path_from_kind(FU_PATH_KIND_LOCALTIME);
-+	g_autoptr(GFile) file_localtime = g_file_new_for_path(fn_localtime);
++	const gchar *fn_localtime;
++	g_autoptr(GFile) file_localtime = NULL;
++
++	fn_localtime = fu_path_store_get_path(pstore, FU_PATH_KIND_LOCALTIME, error);
++	if (fn_localtime == NULL)
++		return NULL;
 +
 +	/* use the last two sections of the symlink target */
 +	g_debug("looking for timezone file %s", fn_localtime);

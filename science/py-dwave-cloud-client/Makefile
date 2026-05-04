@@ -1,5 +1,6 @@
 PORTNAME=	dwave-cloud-client
-DISTVERSION=	0.14.0
+DISTVERSION=	0.14.4
+PORTREVISION=	1
 CATEGORIES=	science python www # quantum-computing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -18,7 +19,7 @@ PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}authlib>=1.2:security/py-authlib@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}homebase>=1.0:devel/py-homebase@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}http-sf>=1.0.4:www/py-http-sf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}importlib-metadata>=5.0.0:devel/py-importlib-metadata@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}orjson>=3.10:devel/py-orjson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=19:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}plucky>=0.4.3:devel/py-plucky@${PY_FLAVOR} \

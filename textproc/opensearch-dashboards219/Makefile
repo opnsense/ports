@@ -1,5 +1,5 @@
 PORTNAME=	opensearch-dashboards
-DISTVERSION=	2.19.4
+DISTVERSION=	2.19.5
 DISTVERSIONSUFFIX=	-linux-${OPENSEARCH_ARCH}
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${DISTVERSION}/
@@ -29,7 +29,7 @@ SUB_LIST=	PORTNAME="${PORTNAME}" \
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-NODE_VER=	20.19.2
+NODE_VER=	20.20.2
 NO_BUILD=	yes
 
 _DEVDIR=	${WRKDIR}/.devdir

@@ -9,6 +9,7 @@ include/pybind11/conduit/pybind11_conduit_v1.h
 include/pybind11/conduit/pybind11_platform_abi_id.h
 include/pybind11/conduit/wrap_include_python_h.h
 include/pybind11/critical_section.h
+include/pybind11/detail/argument_vector.h
 include/pybind11/detail/class.h
 include/pybind11/detail/common.h
 include/pybind11/detail/cpp_conduit.h
@@ -16,6 +17,7 @@ include/pybind11/detail/descr.h
 include/pybind11/detail/dynamic_raw_ptr_cast_if_possible.h
 include/pybind11/detail/exception_translation.h
 include/pybind11/detail/function_record_pyobject.h
+include/pybind11/detail/holder_caster_foreign_helpers.h
 include/pybind11/detail/init.h
 include/pybind11/detail/internals.h
 include/pybind11/detail/native_enum_data.h
@@ -50,6 +52,7 @@ include/pybind11/trampoline_self_life_support.h
 include/pybind11/type_caster_pyobject_ptr.h
 include/pybind11/typing.h
 include/pybind11/warnings.h
+libdata/pkgconfig/pybind11.pc
 share/cmake/pybind11/FindPythonLibsNew.cmake
 share/cmake/pybind11/pybind11Common.cmake
 share/cmake/pybind11/pybind11Config.cmake
@@ -58,4 +61,3 @@ share/cmake/pybind11/pybind11GuessPythonExtSuffix.cmake
 share/cmake/pybind11/pybind11NewTools.cmake
 share/cmake/pybind11/pybind11Targets.cmake
 share/cmake/pybind11/pybind11Tools.cmake
-share/pkgconfig/pybind11.pc

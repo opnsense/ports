@@ -384,8 +384,10 @@ share/applications/ibus-setup-typing-booster.desktop
 %%DATADIR%%/engine/__pycache__/itb_pango%%PYTHON_TAG%%.pyc
 %%DATADIR%%/engine/__pycache__/itb_sound%%PYTHON_TAG%%.opt-1.pyc
 %%DATADIR%%/engine/__pycache__/itb_sound%%PYTHON_TAG%%.pyc
-%%DATADIR%%/engine/__pycache__/itb_util%%PYTHON_TAG%%.opt-1.pyc
-%%DATADIR%%/engine/__pycache__/itb_util%%PYTHON_TAG%%.pyc
+%%DATADIR%%/engine/__pycache__/itb_util_core%%PYTHON_TAG%%.opt-1.pyc
+%%DATADIR%%/engine/__pycache__/itb_util_core%%PYTHON_TAG%%.pyc
+%%DATADIR%%/engine/__pycache__/itb_util_gui%%PYTHON_TAG%%.opt-1.pyc
+%%DATADIR%%/engine/__pycache__/itb_util_gui%%PYTHON_TAG%%.pyc
 %%DATADIR%%/engine/__pycache__/itb_version%%PYTHON_TAG%%.opt-1.pyc
 %%DATADIR%%/engine/__pycache__/itb_version%%PYTHON_TAG%%.pyc
 %%DATADIR%%/engine/__pycache__/m17n_translit%%PYTHON_TAG%%.opt-1.pyc
@@ -411,7 +413,8 @@ share/applications/ibus-setup-typing-booster.desktop
 %%DATADIR%%/engine/itb_ollama.py
 %%DATADIR%%/engine/itb_pango.py
 %%DATADIR%%/engine/itb_sound.py
-%%DATADIR%%/engine/itb_util.py
+%%DATADIR%%/engine/itb_util_core.py
+%%DATADIR%%/engine/itb_util_gui.py
 %%DATADIR%%/engine/itb_version.py
 %%DATADIR%%/engine/m17n_translit.py
 %%DATADIR%%/engine/main.py

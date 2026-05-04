@@ -1,5 +1,6 @@
 PORTNAME=	terra
-DISTVERSION=	1.9-1
+DISTVERSION=	1.9-11
+PORTREVISION=	2
 CATEGORIES=	math
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -18,8 +19,6 @@ RUN_DEPENDS=	${CRAN_DEPENDS}
 TEST_DEPENDS=	R-cran-deldir>0:math/R-cran-deldir \
 		R-cran-ncdf4>0:math/R-cran-ncdf4
 
-USES=		cran:auto-plist,compiles dos2unix sqlite:3
-
-DOS2UNIX_FILES=	inst/tinytest/test_subst.R src/raster_methods.cpp
+USES=		cran:auto-plist,compiles sqlite:3
 
 .include <bsd.port.mk>

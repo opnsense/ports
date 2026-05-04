@@ -96,6 +96,12 @@ PREVASSET_DISTFILES+=		${_PREV_ASSET_FILE}.tar.xz:gnat
 PREVASSET_VARS=			_GNAT13_PATH=${WRKDIR}/${_PREV_ASSET_FILE}/bin
 _OSVERARCH=			${OSVERSION}${ARCH}
 
+.include <bsd.port.pre.mk>
+
+.if ${UID} != 0
+BINMODE=	755
+.endif
+
 _ASSET_FILE=		gnat-${_GNAT_ARCH}-${OPSYS:tl}.${OSREL:R}-${PKGVERSION}
 _GCC_VER=		${DISTVERSION:R:R}
 _GNATBIND=		${_GNAT13_PATH}/gnatbind

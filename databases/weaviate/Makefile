@@ -1,8 +1,7 @@
 PORTNAME=	weaviate
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.34.3
-PORTREVISION=	5
-CATEGORIES=	databases # artificial-intelligence
+DISTVERSION=	1.37.2
+CATEGORIES=	databases # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Vector database that stores both objects and vectors
@@ -16,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 NOT_FOR_ARCHS=	armv7 i386 powerpc
 NOT_FOR_ARCHS_REASON=	port seems to not support 32 bit platforms
 
-USES=		go:modules
+USES=		go:1.26,modules
 
 GO_MODULE=	github.com/weaviate/weaviate
 GO_TARGET=	./cmd/weaviate-server

@@ -1,7 +1,7 @@
 PORTNAME=	CyLP
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.92.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -16,7 +16,7 @@ LICENSE_PERMS=	auto-accept dist-mirror dist-sell pkg-mirror pkg-sell
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}hypothesis>0:devel/py-hypothesis@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libblas.so:math/blas \
 		libCbc.so:math/cbc \
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libblas.so:math/blas \
 		libCoinUtils.so:math/coinutils \
 		liblapack.so:math/lapack \
 		libOsi.so:math/osi
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=0.10.0:science/py-scipy@${PY_FLAVOR}
 
 USES=		compiler:c++11-lang python

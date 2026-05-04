@@ -244,7 +244,6 @@
     SUBDIR += mimedefang
     SUBDIR += mini_sendmail
     SUBDIR += minimalist
-    SUBDIR += missey
     SUBDIR += mlmmj
     SUBDIR += mlmmj-archive-mid
     SUBDIR += mlmmj-archiver
@@ -534,7 +533,7 @@
     SUBDIR += py-managesieve3
     SUBDIR += py-notmuch
     SUBDIR += py-notmuch2
-    SUBDIR += py-offlineimap3
+    SUBDIR += py-offlineimap
     SUBDIR += py-postfix-mta-sts-resolver
     SUBDIR += py-premailer
     SUBDIR += py-pyisemail
@@ -739,6 +738,7 @@
     SUBDIR += squirrelmail-wetteronline-plugin
     SUBDIR += sqwebmail
     SUBDIR += ssmtp
+    SUBDIR += stalwart
     SUBDIR += surblhost
     SUBDIR += swaks
     SUBDIR += sylpheed

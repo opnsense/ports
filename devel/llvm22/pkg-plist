@@ -168,7 +168,7 @@ bin/offload-arch%%LLVM_SUFFIX%%
 %%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/formatters/synth.py
 %%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/lldb-argdumper
 %%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/native/__init__.py
-%%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/native/_lldb.abi3.so
+%%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/native/_lldb%%PYTHON_SOABI%%.so
 %%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/plugins/__init__.py
 %%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/plugins/operating_system.py
 %%LLDB%%llvm%%LLVM_SUFFIX%%/%%PYTHON_SITELIBDIR%%/lldb/plugins/parsed_cmd.py

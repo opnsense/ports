@@ -1,4 +1,4 @@
---- src/slic3r/Utils/WxFontUtils.cpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/Utils/WxFontUtils.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/Utils/WxFontUtils.cpp
 @@ -8,7 +8,7 @@
  #include <wx/uri.h>
@@ -36,7 +36,7 @@
      return EmbossStyle::Type::wx_lin_font_descr;
  #else
      return EmbossStyle::Type::undefined;
-@@ -347,4 +347,4 @@ std::unique_ptr<Emboss::FontFile> WxFontUtils::set_bol
+@@ -381,4 +381,4 @@ std::unique_ptr<Emboss::FontFile> WxFontUtils::set_bol
      // There is NO bold font by wx
      font.SetWeight(orig_weight);
      return nullptr;

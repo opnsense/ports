@@ -1,7 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
-PORTREVISION=	2
+PORTREVISION=	4
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -93,6 +93,10 @@ USE_ELECTRON=	npm:yarn4 prefetch extract
 NPM_EXTRACT_WRKSRC=	${WRKSRC:H}/${PORTNAME}-${ELECTRON_VER}
 
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper buildtools/linux64/clang-format
+
+# Unbreak build that is being killed in a poudriere VM with a signal due to OOM.
+# Limit parallel compilation to avoid OOM on large Chromium files (e.g. browser_interface_binders.cc) which can use several GB of RAM per job.
+MAKE_JOBS_NUMBER_LIMIT=	4
 
 MAKE_ARGS=	-C out/${BUILDTYPE}
 MAKE_ENV+=	C_INCLUDE_PATH=${LOCALBASE}/include \

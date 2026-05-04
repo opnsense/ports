@@ -11,7 +11,7 @@ WWW=		http://packages.python.org/apgl/
 
 LICENSE=	GPLv3
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0.7.0:science/py-scipy@${PY_FLAVOR}
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 

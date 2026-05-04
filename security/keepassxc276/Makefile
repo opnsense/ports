@@ -1,6 +1,6 @@
 PORTNAME=	keepassxc
 DISTVERSION=	2.7.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/keepassxreboot/keepassxc/releases/download/${DISTVERSION}/
 PKGNAMESUFFIX=	276

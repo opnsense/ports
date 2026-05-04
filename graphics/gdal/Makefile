@@ -1,6 +1,6 @@
 PORTNAME=	gdal
-PORTVERSION=	3.11.5
-PORTREVISION=	2
+PORTVERSION=	3.12.4
+PORTREVISION=	1
 CATEGORIES=	graphics geography
 MASTER_SITES=	https://download.osgeo.org/gdal/${PORTVERSION}/ \
 		LOCAL/sunpoet
@@ -14,6 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
 BUILD_DEPENDS=	fast_float>=0:math/fast_float \
+		libdivide>=0:math/libdivide \
 		libertiff>=0:graphics/libertiff \
 		libgeotiff>=1.5.0:graphics/libgeotiff \
 		proj>=6,1:graphics/proj
@@ -69,6 +70,7 @@ CMAKE_ON=	AVIF_VERSION_CHECK \
 		ENABLE_PAM \
 		GDAL_AUTOLOAD_PLUGINS \
 		GDAL_BUILD_OPTIONAL_DRIVERS \
+		GDAL_ENABLE_ALGORITHMS \
 		GDAL_HIDE_INTERNAL_SYMBOLS \
 		GDAL_OBJECT_LIBRARIES_POSITION_INDEPENDENT_CODE \
 		GDAL_SPLIT_EXPORTED_LIBS \
@@ -244,6 +246,7 @@ EXTRACT_AFTER_ARGS=	--exclude ${DISTNAME}/alg/internal_libqhull \
 			--exclude ${DISTNAME}/ogr/ogrsf_frmts/geojson/libjson \
 			--exclude ${DISTNAME}/third_party/fast_float \
 			--exclude ${DISTNAME}/third_party/LercLib \
+			--exclude ${DISTNAME}/third_party/libdivide \
 			--exclude ${DISTNAME}/third_party/libertiff \
 			--no-same-owner --no-same-permissions
 .else
@@ -259,6 +262,7 @@ post-patch:
 	@${RM} -r ${WRKSRC}/ogr/ogrsf_frmts/geojson/libjson/
 	@${RM} -r ${WRKSRC}/third_party/fast_float/
 	@${RM} -r ${WRKSRC}/third_party/LercLib/
+	@${RM} -r ${WRKSRC}/third_party/libdivide/
 	@${RM} -r ${WRKSRC}/third_party/libertiff/
 .endif
 

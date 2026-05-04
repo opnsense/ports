@@ -182,6 +182,7 @@ share/icons/hicolor/48x48/apps/brightnesssettings.svg
 %%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_en_GB.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_es.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_et.qm
+%%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_eu.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_fi.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_fr.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-file-associations/lxqt-config-file-associations_gl.qm
@@ -271,6 +272,7 @@ share/icons/hicolor/48x48/apps/brightnesssettings.svg
 %%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_de.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_el.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_en_GB.qm
+%%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_eo.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_es.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_et.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-locale/lxqt-config-locale_eu.qm

@@ -1,6 +1,7 @@
 PORTNAME=	microbin
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.1.4
+PORTREVISION=	2
 CATEGORIES=	www
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,6 +11,8 @@ WWW=		https://microbin.eu \
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	link fails: ld: error: undefined symbol: __atomic_load
 
 BUILD_DEPENDS=	bash:shells/bash \
 		gmake:devel/gmake

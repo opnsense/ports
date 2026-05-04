@@ -1,5 +1,5 @@
 PORTNAME=	django-rq
-PORTVERSION=	3.2.2
+PORTVERSION=	4.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -27,11 +27,6 @@ NO_ARCH=	yes
 TEST_ENV=	PYTHONPATH=.
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}*django-rq
-
-OPTIONS_DEFINE=	SENTRY
-SENTRY_DESC=	Sentry support
-
-SENTRY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sentry-sdk>=1.0.0:devel/py-sentry-sdk@${PY_FLAVOR}
 
 # https://github.com/rq/django-rq/blob/master/Makefile
 do-test:

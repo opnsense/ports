@@ -1,6 +1,6 @@
---- chrome/browser/glic/host/glic_page_handler.cc.orig	2026-03-13 06:02:14 UTC
+--- chrome/browser/glic/host/glic_page_handler.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/glic/host/glic_page_handler.cc
-@@ -156,7 +156,7 @@ namespace {
+@@ -179,7 +179,7 @@ mojom::FormFactor GetGlicFormFactor(ui::DeviceFormFact
  constexpr mojom::Platform kPlatform = mojom::Platform::kMacOS;
  #elif BUILDFLAG(IS_WIN)
  constexpr mojom::Platform kPlatform = mojom::Platform::kWindows;

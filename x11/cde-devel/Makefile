@@ -1,5 +1,6 @@
 PORTNAME=	cde
 PORTVERSION=	${COMMIT_DATE}
+PORTREVISION=	1
 CATEGORIES=	x11
 .if !defined(MASTERDIR)
 PKGNAMESUFFIX=	-devel
@@ -62,7 +63,7 @@ MAKE_ARGS+=	PERL=${PERL} "LOCAL_LDFLAGS=${LDFLAGS}"
 MAKE_JOBS_UNSAFE=yes
 MAKE_ENV=	MALLOC_CONF=junk:false
 SUB_FILES=	pkg-message
-CFLAGS+=	-Wno-register -Wno-incompatible-function-pointer-types \
+CFLAGS+=	-O -Wno-register -Wno-incompatible-function-pointer-types \
 		-Wno-implicit-function-declaration
 LDFLAGS+=	-z muldefs #--allow-multiple-definition
 

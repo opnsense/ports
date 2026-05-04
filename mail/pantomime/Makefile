@@ -5,7 +5,7 @@ CATEGORIES=	mail gnustep
 MASTER_SITES=	SAVANNAH/gnustep-nonfsf/
 DISTNAME=	Pantomime-${DISTVERSION}
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Mail/MIME handling library for GNUstep
 WWW=		https://www.nongnu.org/gnustep-nonfsf/gnumail/
 

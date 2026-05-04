@@ -53,7 +53,7 @@ MAKE_ENV=	CLASSPATH="" \
 		JAVA_HOME="" \
 		LD_LIBRARY_PATH="" \
 		LOG=cmdlines \
-		MAKEFLAGS=""
+		MAKEFLAGS="CONF_CHECK=ignore"
 
 JDK_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc64/ppc64/}
 BOOTSTRAPJDKFILE=	openjdk24-24.0.2+12.2_2.${JDK_ARCH}.tar.xz

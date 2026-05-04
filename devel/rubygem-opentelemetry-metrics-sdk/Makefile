@@ -1,5 +1,5 @@
 PORTNAME=	opentelemetry-metrics-sdk
-PORTVERSION=	0.12.0
+PORTVERSION=	0.13.1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

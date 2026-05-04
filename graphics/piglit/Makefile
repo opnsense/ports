@@ -1,6 +1,6 @@
 PORTNAME=	piglit
 PORTVERSION=	20200910
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 
 MAINTAINER=	x11@FreeBSD.org
@@ -11,7 +11,7 @@ LICENSE=	MIT GPLv2 GPLv3 LGPL20
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
 		vulkan-headers>0:graphics/vulkan-headers \
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libdrm.so:graphics/libdrm \
 		libwaffle-1.so:graphics/waffle \
 		libwayland-egl.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 

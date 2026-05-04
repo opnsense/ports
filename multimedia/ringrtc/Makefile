@@ -1,6 +1,7 @@
 PORTNAME=	ringrtc
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.65.2
+DISTVERSION=	2.67.0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	LOCAL/mikael/ringrtc/:boringssl \
 		LOCAL/mikael/ringrtc/:build \
@@ -44,7 +45,7 @@ WWW=		https://github.com/signalapp/ringrtc
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	gn:devel/gn \
 		protoc:devel/protobuf
@@ -62,7 +63,7 @@ GH_TUPLE=	signalapp:ringrtc:${DISTVERSIONPREFIX}${DISTVERSION} \
 		signalapp:webrtc:${WEBRTC_REV}:webrtc
 
 # sh net-im/signal-desktop/get_deps.sh
-WEBRTC_REV=	7444f
+WEBRTC_REV=	7444h
 
 # modify webrtc_fetch.sh, then sh webrtc_fetch.sh
 BORINGSSL_REV=		db638238d29708a20b991af3b2488e45a8bbcf71
@@ -76,7 +77,7 @@ LIBSRTP_REV=		a52756acb1c5e133089c798736dd171567df11f5
 LIBVPX_REV=		8d00aca60b951444582b1373e4e47f0ca6e0871c
 LIBYUV_REV=		5b22f31cb5d39c1309a589f148678c2a217e75db
 NASM_REV=		e2c93c34982b286b27ce8b56dd7159e0b90869a2
-OPUS_REV=		55513e81d8f606bd75d0ff773d2144e5f2a732f5
+OPUS_REV=		22244de5a79bd1d6d623c32e72bf1954b56235be
 PERFETTO_REV=		d5bbee7afdf259af4212929ccbff467dd5349953
 PROTOBUFJS_REV=		e6d763860001ba1a76a63adcff5efb12b1c96024
 RE2_REV=		6569a9a3df256f4c0c3813cb8ee2f8eef6e2c1fb

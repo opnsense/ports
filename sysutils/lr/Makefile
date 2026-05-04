@@ -28,7 +28,6 @@ VIM_DESC=	Vim plugin
 CONTRIB_RUN_DEPENDS=	xe:sysutils/xe
 
 EMACS_USES=	emacs
-EMACS_VARS=	EMACS_NO_DEPENDS=yes
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/lr

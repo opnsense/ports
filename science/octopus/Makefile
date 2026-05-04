@@ -1,6 +1,5 @@
 PORTNAME=	octopus
-DISTVERSION=	16.0
-PORTREVISION=	2
+DISTVERSION=	16.3
 CATEGORIES=	science # chemistry
 MASTER_SITES=	https://octopus-code.org/download/${DISTVERSION}/
 

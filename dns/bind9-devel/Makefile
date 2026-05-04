@@ -1,7 +1,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.21.19
+DISTVERSION=	9.21.21
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
@@ -37,7 +37,8 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libnghttp2.so:www/libnghttp2 \
 		liburcu.so:sysutils/liburcu \
-		libuv.so:devel/libuv
+		libuv.so:devel/libuv \
+		liblmdb.so:databases/lmdb
 
 .if !defined(BIND_TOOLS_SLAVE)
 RUN_DEPENDS=	bind-tools>0:dns/bind-tools
@@ -86,10 +87,10 @@ SUB_FILES=	named.conf pkg-message
 PORTDOCS=	*
 .endif # BIND_TOOLS_SLAVE
 
-OPTIONS_DEFINE=		DNSTAP DOCS GEOIP IDN LMDB OVERRIDECACHE QUERYTRACE \
+OPTIONS_DEFINE=		DNSTAP DOCS GEOIP IDN OVERRIDECACHE QUERYTRACE \
 			START_LATE
 OPTIONS_DEFAULT=	DNSTAP ${${OSREL:R} < 15:?GSSAPI_NONE:GSSAPI_BASE} IDN \
-			LMDB STATS_JSON STATS_XML
+			STATS_JSON STATS_XML
 
 OPTIONS_GROUP=		STATS
 OPTIONS_GROUP_STATS=	STATS_JSON STATS_XML
@@ -98,7 +99,7 @@ OPTIONS_SINGLE=		GSSAPI
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 
 .if defined(BIND_TOOLS_SLAVE)
-OPTIONS_EXCLUDE=	DOCS GEOIP LMDB OVERRIDECACHE QUERYTRACE START_LATE \
+OPTIONS_EXCLUDE=	DOCS GEOIP OVERRIDECACHE QUERYTRACE START_LATE \
 			STATS_JSON STATS_XML
 .endif # BIND_TOOLS_SLAVE
 
@@ -109,7 +110,6 @@ GSSAPI_BASE_DESC=	Using ${${OSREL:R} < 15:?Heimdal in base (nsupdate is broken):
 GSSAPI_HEIMDAL_DESC=	Using security/heimdal (nsupdate is broken)
 GSSAPI_MIT_DESC=	Using security/krb5
 GSSAPI_NONE_DESC=	Disable
-LMDB_DESC=		Use LMDB for zone management
 OVERRIDECACHE_DESC=	Use the override-cache patch
 QUERYTRACE_DESC=	Enable the very verbose query tracelogging
 START_LATE_DESC=	Start BIND late in the boot process (see help)
@@ -150,9 +150,6 @@ GSSAPI_NONE_MESON_ON=	-Dgssapi=disabled
 IDN_LIB_DEPENDS=	libidn2.so:dns/libidn2
 IDN_USES=		iconv
 IDN_MESON_ENABLED=	idn
-
-LMDB_LIB_DEPENDS=	liblmdb.so:databases/lmdb
-LMDB_MESON_ENABLED=	lmdb
 
 OVERRIDECACHE_EXTRA_PATCHES=	${FILESDIR}/extrapatch-bind-min-override-ttl
 

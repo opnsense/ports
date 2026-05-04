@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/data_sharing/collaboration_controller_delegate_desktop.cc.orig	2026-03-13 06:02:14 UTC
+--- chrome/browser/ui/views/data_sharing/collaboration_controller_delegate_desktop.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/ui/views/data_sharing/collaboration_controller_delegate_desktop.cc
-@@ -95,7 +95,7 @@ DialogText GetPromptDialogTextFromStatus(
+@@ -96,7 +96,7 @@ DialogText GetPromptDialogTextFromStatus(
        break;
    }
  

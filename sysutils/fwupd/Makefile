@@ -1,5 +1,5 @@
 PORTNAME=	fwupd
-DISTVERSION=	2.0.19
+DISTVERSION=	2.1.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	decke@FreeBSD.org
@@ -21,7 +21,6 @@ BUILD_DEPENDS=	blkid:filesystems/libblkid \
 LIB_DEPENDS=	libcbor.so:devel/libcbor \
 		libcurl.so:ftp/curl \
 		libdrm.so:graphics/libdrm \
-		libefiboot.so:devel/efivar \
 		libelf.so:devel/libelf \
 		libgcab-1.0.so:archivers/gcab \
 		libgnutls.so:security/gnutls \
@@ -33,12 +32,13 @@ LIB_DEPENDS=	libcbor.so:devel/libcbor \
 		libprotobuf-c.so:devel/protobuf-c \
 		libxmlb.so:textproc/libxmlb
 RUN_DEPENDS=	blkid:filesystems/libblkid \
+		bsdisks:sysutils/bsdisks \
 		dbus-daemon:devel/dbus \
 		flashrom>0:sysutils/flashrom \
 		${LOCALBASE}/libdata/pkgconfig/fwupd-efi.pc:sysutils/fwupd-efi \
 		valgrind>0:devel/valgrind
 
-USES=		cmake:indirect gettext gnome libarchive meson pkgconfig python readline shebangfix sqlite vala:build
+USES=		cmake:indirect gettext gnome inotify libarchive meson pkgconfig python readline shebangfix sqlite vala:build
 USE_GITHUB=	yes
 USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
@@ -55,18 +55,13 @@ TEST_MESON_TRUE=	tests
 SHEBANG_GLOB=	*.py
 
 MESON_ARGS+=	-Dlibmnl=disabled \
+		-Dlogind=disabled \
 		-Dpolkit=disabled \
 		-Dsystemd=disabled \
 		-Dpassim=disabled \
+		-Dhsi=disabled \
 		-Dumockdev_tests=disabled \
 		-Dplugin_modem_manager=disabled \
 		-Dpython=${PYTHON_CMD}
-
-.include <bsd.port.options.mk>
-
-# FreeBSD 14.x needs extra libinotify dependency
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500000
-LIB_DEPENDS+=	libinotify.so:devel/libinotify
-.endif
 
 .include <bsd.port.mk>

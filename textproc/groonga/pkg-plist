@@ -27,6 +27,7 @@ include/groonga/groonga/distance.h
 include/groonga/groonga/dump.h
 include/groonga/groonga/error.h
 include/groonga/groonga/expr.h
+include/groonga/groonga/extractor.h
 include/groonga/groonga/file_reader.h
 include/groonga/groonga/float.h
 include/groonga/groonga/geo.h
@@ -37,6 +38,7 @@ include/groonga/groonga/highlighter.h
 include/groonga/groonga/id.h
 include/groonga/groonga/ii.h
 include/groonga/groonga/index_column.h
+include/groonga/groonga/json.h
 include/groonga/groonga/language_model.h
 include/groonga/groonga/memory.h
 include/groonga/groonga/memory_map.h

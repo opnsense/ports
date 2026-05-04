@@ -1,5 +1,5 @@
 PORTNAME=	strawberry-graphql
-DISTVERSION=	0.307.1
+DISTVERSION=	0.315.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -12,7 +12,7 @@ WWW=		https://github.com/strawberry-graphql/strawberry
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=1.6:devel/py-poetry-core@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.10.10<0.12:devel/py-uv-build@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cross-web>=0.4.0:www/py-cross-web@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}graphql-core>=3.2.0<3.4.0:devel/py-graphql-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=23:devel/py-packaging@${PY_FLAVOR} \
@@ -26,10 +26,11 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}*${PORTNAME}
 
 NO_ARCH=	yes
 
-OPTIONS_DEFINE=		AIOHTTP ASGI CHANNELS CLI DEBUG DJANGO \
+OPTIONS_DEFINE=		AIOHTTP APOLLO-FEDERATION ASGI CHANNELS CLI DEBUG DJANGO \
 			FASTAPI FLASK OPENTELEMETRY PYDANTIC
 
 AIOHTTP_DESC=		Basic AIOHTTP integration
+APOLLO-FEDERATION_DESC=	Apollo Federation GraphQL support
 ASGI_DESC=		Basic ASGI integration
 CHANNELS_DESC=		Support for Django Channels
 CLI_DESC=		Support for CLI commands
@@ -41,6 +42,7 @@ OPENTELEMETRY_DESC=	Generate Open Telemetry compatible tracing information
 PYDANTIC_DESC=		Support for Pydantic models
 
 AIOHTTP_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}aiohttp>=3.7.4<4:www/py-aiohttp@${PY_FLAVOR}
+APOLLO-FEDERATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=3.20:devel/py-protobuf@${PY_FLAVOR}
 ASGI_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}multipart>=0.0.7:devel/py-multipart@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}starlette>=0.18.0:www/py-starlette@${PY_FLAVOR}
 CHANNELS_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}asgiref>=3.2:www/py-asgiref@${PY_FLAVOR} \

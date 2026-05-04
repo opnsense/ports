@@ -1,11 +1,13 @@
 PORTNAME=	ord
-DISTVERSION=	0.27.0
+DISTVERSION=	0.27.1
+PORTREVISION=	1
 CATEGORIES=	finance
 PKGNAMESUFFIX=	-crypto-wallet
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Block-chain index, block explorer, and command-line crypto-wallet
-WWW=		https://ordinals.com
+WWW=		https://ordinals.com \
+		https://github.com/ordinals/ord
 
 LICENSE=	CC0-1.0
 
@@ -23,13 +25,13 @@ CARGO_CRATES=	adler2-2.0.1 \
 		alloca-0.4.0 \
 		android_system_properties-0.1.5 \
 		anes-0.1.6 \
-		anstream-0.6.21 \
-		anstyle-1.0.13 \
-		anstyle-parse-0.2.7 \
+		anstream-1.0.0 \
+		anstyle-1.0.14 \
+		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
 		anyhow-1.0.102 \
-		arc-swap-1.8.2 \
+		arc-swap-1.9.0 \
 		array-init-0.0.4 \
 		arrayvec-0.7.6 \
 		asn1-rs-0.6.2 \
@@ -46,8 +48,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		atom_syndication-0.12.7 \
 		atomic-waker-1.1.2 \
 		autocfg-1.5.0 \
-		aws-lc-rs-1.16.1 \
-		aws-lc-sys-0.38.0 \
+		aws-lc-rs-1.16.2 \
+		aws-lc-sys-0.39.1 \
 		axum-0.8.8 \
 		axum-core-0.5.6 \
 		axum-server-0.8.0 \
@@ -79,7 +81,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		byteorder-1.5.0 \
 		bytes-1.11.1 \
 		cast-0.3.0 \
-		cc-1.2.56 \
+		cc-1.2.58 \
 		cfg-if-0.1.10 \
 		cfg-if-1.0.4 \
 		cfg_aliases-0.2.1 \
@@ -87,17 +89,17 @@ CARGO_CRATES=	adler2-2.0.1 \
 		ciborium-0.2.2 \
 		ciborium-io-0.2.2 \
 		ciborium-ll-0.2.2 \
-		clap-4.5.60 \
-		clap_builder-4.5.60 \
-		clap_derive-4.5.55 \
-		clap_lex-1.0.0 \
-		cmake-0.1.57 \
-		colorchoice-1.0.4 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_derive-4.6.0 \
+		clap_lex-1.1.0 \
+		cmake-0.1.58 \
+		colorchoice-1.0.5 \
 		colored-3.1.1 \
 		compression-codecs-0.4.37 \
 		compression-core-0.4.31 \
 		concurrent-queue-2.5.0 \
-		console-0.16.2 \
+		console-0.16.3 \
 		core-foundation-0.9.4 \
 		core-foundation-0.10.1 \
 		core-foundation-sys-0.8.7 \
@@ -112,13 +114,10 @@ CARGO_CRATES=	adler2-2.0.1 \
 		crypto-common-0.1.7 \
 		ctrlc-3.5.2 \
 		darling-0.20.11 \
-		darling-0.21.3 \
 		darling-0.23.0 \
 		darling_core-0.20.11 \
-		darling_core-0.21.3 \
 		darling_core-0.23.0 \
 		darling_macro-0.20.11 \
-		darling_macro-0.21.3 \
 		darling_macro-0.23.0 \
 		data-encoding-2.10.0 \
 		der-parser-9.0.0 \
@@ -140,8 +139,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		either-1.15.0 \
 		encode_unicode-1.0.0 \
 		encoding_rs-0.8.35 \
-		env_filter-1.0.0 \
-		env_logger-0.11.9 \
+		env_filter-1.0.1 \
+		env_logger-0.11.10 \
 		equivalent-1.0.2 \
 		errno-0.3.14 \
 		event-listener-5.4.1 \
@@ -214,14 +213,14 @@ CARGO_CRATES=	adler2-2.0.1 \
 		indicatif-0.18.4 \
 		instant-0.1.13 \
 		ipnet-2.12.0 \
-		iri-string-0.7.10 \
+		iri-string-0.7.11 \
 		is_terminal_polyfill-1.70.2 \
 		itertools-0.13.0 \
-		itoa-1.0.17 \
+		itoa-1.0.18 \
 		jiff-0.2.23 \
 		jiff-static-0.2.23 \
 		jobserver-0.1.34 \
-		js-sys-0.3.91 \
+		js-sys-0.3.92 \
 		jsonrpc-0.18.0 \
 		jsonrpc-core-18.0.0 \
 		jsonrpc-derive-18.0.0 \
@@ -231,7 +230,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		lazy_static-1.5.0 \
 		leb128fmt-0.1.0 \
 		libc-0.2.183 \
-		libredox-0.1.14 \
+		libredox-0.1.15 \
 		linux-raw-sys-0.12.1 \
 		litemap-0.8.1 \
 		lock_api-0.4.14 \
@@ -247,7 +246,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		miniscript-13.0.0 \
 		miniz_oxide-0.8.9 \
 		minreq-2.14.1 \
-		mio-1.1.1 \
+		mio-1.2.0 \
 		mp4-0.14.0 \
 		native-tls-0.2.18 \
 		net2-0.2.39 \
@@ -258,7 +257,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		nom-7.1.3 \
 		ntapi-0.4.3 \
 		num-bigint-0.4.6 \
-		num-conv-0.2.0 \
+		num-conv-0.2.1 \
 		num-integer-0.1.46 \
 		num-rational-0.4.2 \
 		num-traits-0.2.19 \
@@ -267,13 +266,13 @@ CARGO_CRATES=	adler2-2.0.1 \
 		objc2-encode-4.1.0 \
 		objc2-io-kit-0.3.2 \
 		oid-registry-0.7.1 \
-		once_cell-1.21.3 \
+		once_cell-1.21.4 \
 		once_cell_polyfill-1.70.2 \
 		oorandom-11.1.5 \
-		openssl-0.10.75 \
+		openssl-0.10.76 \
 		openssl-macros-0.1.1 \
 		openssl-probe-0.2.1 \
-		openssl-sys-0.9.111 \
+		openssl-sys-0.9.112 \
 		option-ext-0.2.0 \
 		ord-bitcoincore-rpc-0.19.0 \
 		ord-bitcoincore-rpc-json-0.19.0 \
@@ -292,7 +291,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		plotters-svg-0.3.7 \
 		polling-3.11.0 \
 		portable-atomic-1.13.1 \
-		portable-atomic-util-0.2.5 \
+		portable-atomic-util-0.2.6 \
 		potential_utf-0.1.4 \
 		powerfmt-0.2.0 \
 		ppv-lite86-0.2.21 \
@@ -329,7 +328,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rustls-0.23.37 \
 		rustls-acme-0.15.1 \
 		rustls-pki-types-1.14.0 \
-		rustls-webpki-0.103.9 \
+		rustls-webpki-0.103.10 \
 		rustversion-1.0.22 \
 		ryu-1.0.23 \
 		same-file-1.0.6 \
@@ -349,13 +348,13 @@ CARGO_CRATES=	adler2-2.0.1 \
 		serde_json-1.0.149 \
 		serde_path_to_error-0.1.20 \
 		serde_urlencoded-0.7.1 \
-		serde_with-3.17.0 \
-		serde_with_macros-3.17.0 \
+		serde_with-3.18.0 \
+		serde_with_macros-3.18.0 \
 		serde_yaml-0.9.34+deprecated \
 		sha2-0.10.9 \
 		sha3-0.10.8 \
 		shlex-1.3.0 \
-		simd-adler32-0.3.8 \
+		simd-adler32-0.3.9 \
 		slab-0.4.12 \
 		smallvec-0.6.14 \
 		smallvec-1.15.1 \
@@ -375,7 +374,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		sysinfo-0.38.4 \
 		system-configuration-0.7.0 \
 		system-configuration-sys-0.6.0 \
-		tempfile-3.26.0 \
+		tempfile-3.27.0 \
 		thiserror-1.0.69 \
 		thiserror-2.0.18 \
 		thiserror-impl-1.0.69 \
@@ -385,7 +384,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		time-macros-0.2.27 \
 		tinystr-0.8.2 \
 		tinytemplate-1.2.1 \
-		tinyvec-1.10.0 \
+		tinyvec-1.11.0 \
 		tinyvec_macros-0.1.1 \
 		tokio-1.50.0 \
 		tokio-macros-2.6.1 \
@@ -423,15 +422,15 @@ CARGO_CRATES=	adler2-2.0.1 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
 		wasip2-1.0.2+wasi-0.2.9 \
 		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
-		wasm-bindgen-0.2.114 \
-		wasm-bindgen-futures-0.4.64 \
-		wasm-bindgen-macro-0.2.114 \
-		wasm-bindgen-macro-support-0.2.114 \
-		wasm-bindgen-shared-0.2.114 \
+		wasm-bindgen-0.2.115 \
+		wasm-bindgen-futures-0.4.65 \
+		wasm-bindgen-macro-0.2.115 \
+		wasm-bindgen-macro-support-0.2.115 \
+		wasm-bindgen-shared-0.2.115 \
 		wasm-encoder-0.244.0 \
 		wasm-metadata-0.244.0 \
 		wasmparser-0.244.0 \
-		web-sys-0.3.91 \
+		web-sys-0.3.92 \
 		web-time-1.1.0 \
 		webpki-roots-0.26.11 \
 		webpki-roots-1.0.6 \
@@ -474,8 +473,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		yasna-0.5.2 \
 		yoke-0.8.1 \
 		yoke-derive-0.8.1 \
-		zerocopy-0.8.42 \
-		zerocopy-derive-0.8.42 \
+		zerocopy-0.8.47 \
+		zerocopy-derive-0.8.47 \
 		zerofrom-0.1.6 \
 		zerofrom-derive-0.1.6 \
 		zeroize-1.8.2 \

@@ -1,6 +1,6 @@
 PORTNAME=	clojure
 DISTVERSION=	1.12.0.1488
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang lisp java
 MASTER_SITES=	https://download.clojure.org/install/
 DISTNAME=	clojure-tools-${DISTVERSION}

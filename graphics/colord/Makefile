@@ -1,6 +1,6 @@
 PORTNAME=	colord
 PORTVERSION=	1.4.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.freedesktop.org/software/colord/releases/
 
@@ -56,6 +56,7 @@ COMPLETION_BUILD_DEPENDS=	bash-completion>=2.0:shells/bash-completion
 DOCS_BUILD_DEPENDS=		gtkdoc-scan:textproc/gtk-doc
 POLKIT_LIB_DEPENDS=		libpolkit-gobject-1.so:sysutils/polkit
 POLKIT_CONFIGURE_ENABLE=	polkit
+PPROFILES_BUILD_DEPENDS=	colprof:graphics/argyllcms
 MANPAGES_BUILD_DEPENDS=		xsltproc:textproc/libxslt \
 				docbook-xsl-ns>0:textproc/docbook-xsl-ns
 SANE_LIB_DEPENDS=		libsane.so:graphics/sane-backends

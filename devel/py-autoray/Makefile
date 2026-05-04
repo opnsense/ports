@@ -20,7 +20,7 @@ BE_DEPENDS=	${PYTHON_PKGNAMEPREFIX}autograd>0:math/py-autograd@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sparse>0:devel/py-sparse@${PY_FLAVOR}
 #BE_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}tensorflow>0:science/py-tensorflow@${PY_FLAVOR} # tests crash with tensorflow
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=0:devel/py-coverage@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=0:devel/py-pytest-cov@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \
 		${BE_DEPENDS}

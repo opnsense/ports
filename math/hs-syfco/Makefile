@@ -2,11 +2,15 @@ PORTNAME=	syfco
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1-34
 DISTVERSIONSUFFIX=	-g0f0f6a6
+PORTREVISION=	1
 CATEGORIES=	math lang haskell
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Synthesis Format Conversion Tool
 WWW=		https://github.com/reactive-systems/syfco
+
+DEPRECATED=		Depends on a deprecated compiler version
+EXPIRATION_DATE=	2026-05-30
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -1,5 +1,5 @@
 PORTNAME=	notes
-PORTVERSION=	4.13.0
+PORTVERSION=	5.0.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www editors
 
@@ -9,7 +9,7 @@ WWW=		https://apps.nextcloud.com/apps/notes
 
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-NEXTCLOUD_RUN_DEPENDS=	28
+NEXTCLOUD_RUN_DEPENDS=	30
 
 USES=		nextcloud php:flavors
 

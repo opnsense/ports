@@ -1,5 +1,6 @@
 PORTNAME=	textual-fastdatatable
 DISTVERSION=	0.14.0
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=1.28.0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.26.4:math/py-numpy@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.26.4:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=2.3.3,1:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyarrow>=21.0.0:databases/py-pyarrow@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}textual>=0.89.1:textproc/py-textual@${PY_FLAVOR} \

@@ -328,6 +328,7 @@ lib/virtualbox/components/VirtualBox_XPCOM.xpt
 %%DATADIR%%/UnattendedTemplates/suse_autoinstall.xml
 %%DATADIR%%/UnattendedTemplates/ubuntu_autoinstall_meta_data
 %%DATADIR%%/UnattendedTemplates/ubuntu_autoinstall_user_data
+%%DATADIR%%/UnattendedTemplates/ubuntu_postinstall.sh
 %%DATADIR%%/UnattendedTemplates/ubuntu_preseed.cfg
 %%DATADIR%%/UnattendedTemplates/win_nt5_unattended.sif
 %%DATADIR%%/UnattendedTemplates/win_nt6_unattended.xml

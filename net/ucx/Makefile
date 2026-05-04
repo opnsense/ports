@@ -1,5 +1,6 @@
 PORTNAME=		ucx
 DISTVERSION=		1.20.0
+PORTREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		https://github.com/openucx/ucx/releases/download/v${DISTVERSION}/
 

@@ -1,5 +1,7 @@
 PORTNAME=	notmuch
 DISTVERSION=	0.40
+# Keep PORTREVISION?=0 so bumps do not overwrite PORTREVISION in slave ports
+PORTREVISION?=	1
 CATEGORIES?=	mail
 MASTER_SITES=	https://notmuchmail.org/releases/
 

@@ -1,5 +1,6 @@
 PORTNAME=	wlroots
-DISTVERSION=	0.20.0-rc4
+DISTVERSION=	0.20.0
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 PKGNAMESUFFIX=	020
 
@@ -15,6 +16,7 @@ BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 LIB_DEPENDS=	libdrm.so:graphics/libdrm \
 		libwayland-server.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon
+RUN_DEPENDS=	wayland-protocols>0:graphics/wayland-protocols
 
 USES=		compiler:c11 gl meson pkgconfig xorg
 USE_GITLAB=	yes

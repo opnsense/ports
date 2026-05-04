@@ -1,4 +1,4 @@
---- remoting/host/host_main.cc.orig	2026-03-13 06:02:14 UTC
+--- remoting/host/host_main.cc.orig	2026-04-09 06:05:42 UTC
 +++ remoting/host/host_main.cc
 @@ -47,7 +47,7 @@ namespace remoting {
  // Known entry points.
@@ -16,9 +16,9 @@
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  int XSessionChooserMain();
+ int UserSystemdEnvMain();
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
- 
-@@ -70,7 +70,7 @@ void Usage(const base::FilePath& program_name) {
+@@ -71,7 +71,7 @@ void Usage(const base::FilePath& program_name) {
        "\n"
        "Options:\n"
  
@@ -27,7 +27,7 @@
        "  --audio-pipe-name=<pipe> - Sets the pipe name to capture audio on "
        "Linux.\n"
  #endif  // BUILDFLAG(IS_LINUX)
-@@ -150,7 +150,7 @@ MainRoutineFn SelectMainRoutine(const std::string& pro
+@@ -151,7 +151,7 @@ MainRoutineFn SelectMainRoutine(const std::string& pro
      main_routine = &SingleProcessHostProcessMain;
    } else if (process_type == kProcessTypeNetwork) {
      main_routine = &NetworkProcessMain;
@@ -36,7 +36,7 @@
    } else if (process_type == kProcessTypeDaemon) {
      main_routine = &DaemonProcessMain;
    } else if (process_type == kProcessTypeDesktop) {
-@@ -164,7 +164,7 @@ MainRoutineFn SelectMainRoutine(const std::string& pro
+@@ -165,7 +165,7 @@ MainRoutineFn SelectMainRoutine(const std::string& pro
    } else if (process_type == kProcessTypeUrlForwarderConfigurator) {
      main_routine = &UrlForwarderConfiguratorMain;
  #endif  // BUILDFLAG(IS_WIN)
@@ -44,8 +44,8 @@
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
    } else if (process_type == kProcessTypeXSessionChooser) {
      main_routine = &XSessionChooserMain;
- #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
-@@ -232,7 +232,7 @@ int HostMain(int argc, char** argv) {
+   } else if (process_type == kProcessTypeUserSystemdEnv) {
+@@ -235,7 +235,7 @@ int HostMain(int argc, char** argv) {
    // Note that we enable crash reporting only if the user has opted in to having
    // the crash reports uploaded.
    if (IsUsageStatsAllowed()) {
@@ -54,7 +54,7 @@
      InitializeCrashpadReporting();
  #elif BUILDFLAG(IS_WIN)
      // TODO: joedow - Enable crash reporting for the RDP process.
-@@ -276,7 +276,7 @@ int HostMain(int argc, char** argv) {
+@@ -279,7 +279,7 @@ int HostMain(int argc, char** argv) {
    // Mac, where the broker process is the agent process broker.
    is_broker_process |= main_routine == &SingleProcessHostProcessMain;
  #endif

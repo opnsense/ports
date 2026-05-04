@@ -1,5 +1,6 @@
 PORTNAME=	ndindex
 PORTVERSION=	1.10.1
+PORTREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
 		https://github.com/Quansight-Labs/ndindex/releases/download/${PORTVERSION}/
@@ -22,7 +23,7 @@ USE_PYTHON=	autoplist concurrent cython pep517
 OPTIONS_DEFINE=	ARRAYS
 ARRAYS_DESC=	Array support
 
-ARRAYS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
+ARRAYS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR}
 
 post-install:
 	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +

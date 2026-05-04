@@ -1,5 +1,5 @@
 PORTNAME=	azure-core-tracing-opentelemetry
-PORTVERSION=	1.0.0b12
+PORTVERSION=	1.0.0b13
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ WWW=		https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/core/azure-cor
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}azure-core>=1.24.0:devel/py-azure-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=1.12.0:devel/py-opentelemetry-api@${PY_FLAVOR}

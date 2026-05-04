@@ -4,7 +4,7 @@ DISTVERSIONSUFFIX=	-freebsdport
 PORTREVISION=	8
 CATEGORIES=	deskutils
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Powerful e-book reader
 WWW=		https://fbreader.org/
 

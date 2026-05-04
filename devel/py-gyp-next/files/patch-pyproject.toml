@@ -1,9 +1,9 @@
---- pyproject.toml.orig	2025-06-22 10:53:48 UTC
+--- pyproject.toml.orig	2026-04-21 07:23:16 UTC
 +++ pyproject.toml
-@@ -12,7 +12,7 @@ requires-python = ">=3.8"
+@@ -12,7 +12,7 @@ requires-python = ">=3.9"
  readme = "README.md"
  license = { file="LICENSE" }
- requires-python = ">=3.8"
+ requires-python = ">=3.9"
 -dependencies = ["packaging>=24.0", "setuptools>=69.5.1"]
 +dependencies = ["packaging>=24.0", "setuptools>=61.0"]
  classifiers = [

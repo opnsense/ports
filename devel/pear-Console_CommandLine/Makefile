@@ -8,6 +8,9 @@ WWW=		https://pear.php.net/package/Console_CommandLine
 
 LICENSE=	MIT
 
+DEPRECATED=	No longer maintained upstream
+EXPIRATION_DATE=	2026-05-12
+
 NO_ARCH=	yes
 USES=		pear php
 USE_PHP=	dom

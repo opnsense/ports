@@ -1,5 +1,6 @@
 PORTNAME=	dwave-hybrid
-DISTVERSION=	0.6.14
+DISTVERSION=	0.6.15
+PORTREVISION=	1
 CATEGORIES=	science python # quantum-computing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -18,7 +19,7 @@ PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>5:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dwave-samplers>=1.0.0:science/py-dwave-samplers@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dwave-system>=1.16.0:science/py-dwave-system@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}networkx>0:math/py-networkx@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}minorminer>=0.1.7:math/py-minorminer@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}plucky>=0.4.3:devel/py-plucky@${PY_FLAVOR}
 BUILD_DEPENDS=	${PY_DEPENDS}

@@ -1,5 +1,5 @@
 PORTNAME=	uuid-utils
-DISTVERSION=	0.12.0
+DISTVERSION=	0.14.1
 PORTREVISION=	1
 CATEGORIES=	misc python
 #MASTER_SITES=	PYPI
@@ -66,7 +66,7 @@ CARGO_CRATES=	ahash-0.8.12 \
 		typenum-1.18.0 \
 		unicode-ident-1.0.12 \
 		unindent-0.2.3 \
-		uuid-1.18.1 \
+		uuid-1.20.0 \
 		version_check-0.9.4 \
 		wasi-0.14.2+wasi-0.2.4 \
 		wasm-bindgen-0.2.100 \
@@ -87,7 +87,8 @@ CARGO_TEST=	no
 CARGO_TARGET_DIR=	${WRKSRC}/target
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	tests/
 
-# tests as of 0.12.0: 41 passed in 0.35s
+# tests as of 0.14.1: 162 passed
 
 .include <bsd.port.mk>

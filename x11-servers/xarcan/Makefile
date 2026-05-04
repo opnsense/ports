@@ -9,6 +9,9 @@ WWW=		https://arcan-fe.com/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		Fails to build, error: call to undeclared function 'arcan_timemillis'
+EXPIRATION_DATE=2026-05-31
+
 BUILD_DEPENDS=	${LOCALBASE}/include/GL/internal/dri_interface.h:graphics/mesa-dri
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
 		libarcan_shmif_ext.so:multimedia/arcan \

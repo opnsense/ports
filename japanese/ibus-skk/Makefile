@@ -4,6 +4,9 @@ DISTVERSION=	1.4.3
 PORTREVISION=	2
 CATEGORIES=	japanese
 
+PATCH_SITES=	https://github.com/ueno/${PORTNAME}/commit/
+PATCHFILES=	b9c00e304412c513738516a567df14a4a28e4a21.patch:-p1
+
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Japanese SKK input engine for IBus
 WWW=		https://github.com/ueno/ibus-skk

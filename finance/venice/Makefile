@@ -1,5 +1,6 @@
 PORTNAME=	venice
 DISTVERSION=	0.753beta
+PORTREVISION=	1
 CATEGORIES=	finance java
 MASTER_SITES=	SF/mov/${PORTNAME}/0.753%20beta/ \
 		SF/nemysisfreebsdp/:icons

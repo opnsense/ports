@@ -1,9 +1,8 @@
 PORTNAME=	Catalyst-Controller-BindLex
-PORTVERSION=	0.03
-PORTREVISION=	2
+DISTVERSION=	0.05
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
-MASTER_SITE_SUBDIR=	CPAN:NUFFIN
+MASTER_SITE_SUBDIR=	CPAN:MSTROUT
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -12,6 +11,9 @@ WWW=		https://metacpan.org/release/Catalyst-Controller-BindLex
 
 LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual
+
+DEPRECATED=		Upstream unmaintained and declared to be dangerous to use
+EXPIRATION_DATE=	2026-05-08
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Catalyst-Runtime>=0:www/p5-Catalyst-Runtime \
@@ -22,6 +24,6 @@ RUN_DEPENDS=	p5-Catalyst-Runtime>=0:www/p5-Catalyst-Runtime \
 
 NO_ARCH=	yes
 USES=		perl5
-USE_PERL5=	modbuild
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

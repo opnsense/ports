@@ -1,5 +1,5 @@
 PORTNAME=	react-rails
-PORTVERSION=	3.2.1
+PORTVERSION=	3.3.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

@@ -1,5 +1,5 @@
 PORTNAME=	wolfssl
-PORTVERSION=	5.8.4
+PORTVERSION=	5.9.1
 PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	https://www.wolfssl.com/ \
@@ -12,7 +12,7 @@ WWW=		https://www.wolfssl.com/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cpe libtool zip
+USES=		cpe libtool zip autoreconf
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
@@ -38,7 +38,14 @@ CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--enable-ssh \
 		--enable-static \
 		--enable-tls13 \
-		--enable-tls13-draft18
+		--enable-tls13-draft18 \
+		--enable-keying-material \
+		--enable-all-asm
+
+.if "${ARCH}" == "amd64"
+CONFIGURE_ARGS+=	--enable-aesni-with-avx
+.endif
+
 TEST_TARGET=	check
 CFLAGS+=	-DWOLFSSL_ALT_NAMES -DWOLFSSL_GETRANDOM=1 -DWOLFSSL_TLS13_MIDDLEBOX_COMPAT
 CFLAGS_i386=	-DWOLFSSL_SHA224

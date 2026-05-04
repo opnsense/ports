@@ -1,5 +1,6 @@
 PORTNAME=	skyfield
 PORTVERSION=	1.54
+PORTREVISION=	1
 CATEGORIES=	astro python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,11 +11,11 @@ WWW=		https://rhodesmill.org/skyfield/
 
 LICENSE=	MIT
 
-BUILD_DEPENDS=	${PYNUMPY}	\
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}sgp4>0:astro/py-sgp4@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}jplephem>0:astro/py-jplephem@${PY_FLAVOR}\
 		${PYTHON_PKGNAMEPREFIX}certifi>0:security/py-certifi@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}	\
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR}	\

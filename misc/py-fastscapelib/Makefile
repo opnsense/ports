@@ -1,6 +1,7 @@
 PORTNAME=	fastscapelib
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.3.0
+PORTREVISION=	1
 CATEGORIES=	misc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -15,13 +16,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	cmake:devel/cmake-core \
 		xtensor>0:math/xtensor \
 		xtensor-python>0:math/xtensor-python \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>0:devel/py-pyproject-metadata@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-build>0:devel/py-scikit-build@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-build-core>0:devel/py-scikit-build-core@${PY_FLAVOR}
 LIB_DEPENDS=	libhealpix_cxx.so:science/healpix
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	pep517 autoplist pytest

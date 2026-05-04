@@ -1,6 +1,6 @@
 PORTNAME=	surfer
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.0
+DISTVERSION=	0.7.0
 CATEGORIES=	cad
 
 MAINTAINER=	jbo@FreeBSD.org
@@ -18,7 +18,7 @@ GL_ACCOUNT=	surfer-project
 # For vendored crates (git submodules)
 USE_GITHUB=	nodefault		# Cannot use yes because USE_GITLAB=yes above
 GH_TUPLE=	jkarns275:f128:e60de395f0d6454c1dc546b87f06a6358425b6b6:f128 \
-		ics-jku:instruction-decoder:7c5adb7621a6f277ee13ec1a4babe32ce56cc0c3:instdec
+		ics-jku:instruction-decoder:02bdcbfd5663a72e4a0b1b9d54519412d417fab1:instdec
 
 PLIST_FILES=	bin/surfer
 

@@ -18,6 +18,7 @@ libexec/appjail/getservbyname/getservbyname
 libexec/appjail/ipcheck/ipcheck
 libexec/appjail/jexec/jexec
 libexec/appjail/network/network
+libexec/appjail/juexec/juexec
 %%DATADIR%%/Isotype.png
 %%DATADIR%%/cmd/apply
 %%DATADIR%%/cmd/checkOld
@@ -180,6 +181,7 @@ libexec/appjail/network/network
 %%DATADIR%%/scripts/run_jail.sh
 %%DATADIR%%/scripts/runas.sh
 %%DATADIR%%/scripts/super-mv.sh
+%%DATADIR%%/scripts/xresize-exec.sh
 %%EXAMPLESDIR%%/appjail.conf
 %%EXAMPLESDIR%%/templates/bridge.conf
 %%EXAMPLESDIR%%/templates/freebsd-oci.conf

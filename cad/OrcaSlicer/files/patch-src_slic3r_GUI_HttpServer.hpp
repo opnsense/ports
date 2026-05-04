@@ -1,6 +1,6 @@
---- src/slic3r/GUI/HttpServer.hpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/HttpServer.hpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/HttpServer.hpp
-@@ -115,7 +115,7 @@ class HttpServer (private)
+@@ -128,7 +128,7 @@ class HttpServer (private)
      {
      public:
          HttpServer&                        server;

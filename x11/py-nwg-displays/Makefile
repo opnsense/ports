@@ -1,6 +1,6 @@
 PORTNAME=	nwg-displays
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.3.28
+DISTVERSION=	0.4.0
 CATEGORIES=	x11 wayland python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -11,6 +11,8 @@ WWW=		https://github.com/nwg-piotr/nwg-displays
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libgtk-layer-shell.so:x11-toolkits/gtk-layer-shell
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}i3ipc>0:x11/py-i3ipc@${PY_FLAVOR}
 
@@ -20,7 +22,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	nwg-piotr
 
 USE_GNOME=	gtk30 pygobject3
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 SHEBANG_FILES=	nwg_displays/main.py
 

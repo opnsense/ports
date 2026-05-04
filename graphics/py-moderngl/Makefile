@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}glcontext>=3.0.0:graphics/py-glcontext@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}PyOpenGL>0:graphics/py-PyOpenGL@${PY_FLAVOR}
-TEST_DEPENDS=	${PYNUMPY} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.2.1:science/py-scipy@${PY_FLAVOR}
 
 USES=		python

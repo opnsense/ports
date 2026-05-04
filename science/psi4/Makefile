@@ -1,21 +1,22 @@
 PORTNAME=	psi4
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.1
-PORTREVISION=	5
+DISTVERSION=	1.10
 CATEGORIES=	science # quantum-chemistry
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Open-source suite of ab initio quantum chemistry programs
-WWW=		https://psicode.org/
+WWW=		https://psicode.org/ \
+		https://github.com/psi4/psi4/
 
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gau2grid>0:math/py-gau2grid@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}optking>0:science/py-optking@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}optking>=0.4.2:science/py-optking@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}qcelemental>0:science/py-qcelemental@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}qcengine>0:science/py-qcengine@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}qcengine>0:science/py-qcengine@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}qcmanybody>=0.5.1:science/py-qcmanybody@${PY_FLAVOR}
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
 		${LOCALBASE}/include/pybind11/pybind11.h:devel/pybind11 \
 		${PY_DEPENDS} \

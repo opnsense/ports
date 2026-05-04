@@ -1,6 +1,6 @@
---- chrome/browser/chrome_browser_interface_binders_webui.cc.orig	2026-03-15 18:32:51 UTC
+--- chrome/browser/chrome_browser_interface_binders_webui.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/chrome_browser_interface_binders_webui.cc
-@@ -44,14 +44,14 @@
+@@ -48,14 +48,14 @@
  #include "mojo/public/cpp/bindings/binder_map.h"
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -17,7 +17,7 @@
  #include "chrome/browser/ui/webui/skills/skills.mojom.h"
  #include "chrome/browser/ui/webui/skills/skills_ui.h"
  #endif
-@@ -153,7 +153,7 @@ void PopulateChromeWebUIFrameBinders(
+@@ -165,7 +165,7 @@ void PopulateChromeWebUIFrameBinders(
  #endif  // BUILDFLAG(IS_CHROMEOS)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -26,7 +26,7 @@
    RegisterWebUIControllerInterfaceBinder<discards::mojom::DetailsProvider,
                                           DiscardsUI>(map);
  
-@@ -165,7 +165,7 @@ void PopulateChromeWebUIFrameBinders(
+@@ -177,7 +177,7 @@ void PopulateChromeWebUIFrameBinders(
  #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

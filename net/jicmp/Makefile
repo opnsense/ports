@@ -1,12 +1,15 @@
 PORTNAME=	jicmp
 PORTVERSION=	1.4.4
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	net java
 MASTER_SITES=	SF/opennms/JICMP/stable-1.4/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Java native interface (JNI) to ICMP (ping)
 WWW=		https://www.opennms.org/index.php/Jicmp
+
+DEPRECATED=	several years behind on upstream, no maintainer, moved to https://github.com/OpenNMS/jicmp
+EXPIRATION_DATE=	2026-07-28
 
 WRKSRC=		${WRKDIR}/jicmp-${PORTVERSION}
 

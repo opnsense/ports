@@ -10,7 +10,7 @@ WWW=		https://github.com/sunqm/libcint
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYNUMPY} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyscf>0:science/py-pyscf@${PY_FLAVOR}
 
 USES=		cmake blaslapack:openblas python:test

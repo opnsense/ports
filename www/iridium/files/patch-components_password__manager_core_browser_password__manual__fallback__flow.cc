@@ -1,6 +1,6 @@
---- components/password_manager/core/browser/password_manual_fallback_flow.cc.orig	2026-01-16 14:21:21 UTC
+--- components/password_manager/core/browser/password_manual_fallback_flow.cc.orig	2026-04-16 10:10:12 UTC
 +++ components/password_manager/core/browser/password_manual_fallback_flow.cc
-@@ -47,7 +47,7 @@ std::u16string GetUsernameFromLabel(const std::u16stri
+@@ -46,7 +46,7 @@ std::u16string GetUsernameFromLabel(const std::u16stri
  }
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || \

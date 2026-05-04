@@ -1,6 +1,6 @@
 PORTNAME=	autofirma
 DISTVERSION=	1.9
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	https://firmaelectronica.gob.es/content/dam/firmaelectronica/descargas-software/autofirma19/
 DISTNAME=	Autofirma_Linux_Debian
@@ -17,7 +17,7 @@ EXTRACT_DEPENDS=	zip:archivers/zip
 LIB_DEPENDS=	libnss3.so:security/nss
 
 USES=		desktop-file-utils java zip
-JAVA_VERSION=	24
+JAVA_VERSION=	21
 JAVA_VENDOR=	openjdk
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}

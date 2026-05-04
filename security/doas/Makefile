@@ -1,5 +1,5 @@
 PORTNAME=	doas
-PORTVERSION=	6.3p13
+PORTVERSION=	6.4
 CATEGORIES=	security
 MASTER_SITES=	https://codeberg.org/thejessesmith/doas/archive/${PORTVERSION}${EXTRACT_SUFX}?dummy=/
 
@@ -21,19 +21,9 @@ MAKE_ENV+=	TARGETPATH=-DGLOBAL_PATH='\"${_GLOBAL_PATH}\"'
 
 CONFLICTS=	opendoas
 
-BINMODE=	4755
 SUB_FILES=	pkg-message
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
-
-PLIST_FILES=	bin/doas \
-		bin/doasedit \
-		bin/vidoas \
-		etc/doas.conf.sample \
-		share/man/man1/doas.1.gz \
-		share/man/man5/doas.conf.5.gz \
-		share/man/man8/doasedit.8.gz \
-		share/man/man8/vidoas.8.gz
 
 # These are upstream's default paths that are set for the GLOBAL_PATH variable
 # in doas.h since the 6.1 release. Those paths are then used for target user's

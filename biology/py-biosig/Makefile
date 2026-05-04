@@ -1,6 +1,5 @@
 PORTNAME=	biosig
-DISTVERSION=	2.6.1
-PORTREVISION=	1
+DISTVERSION=	3.9.5
 CATEGORIES=	biology
 MASTER_SITES=	SF/${PORTNAME}/BioSig%20for%20C_C%2B%2B/src/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +12,7 @@ WWW=		https://biosig.sourceforge.net/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/../../COPYING
 
-BUILD_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libbiosig.so:biology/biosig
 
 USES=		python tar:xz

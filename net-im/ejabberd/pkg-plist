@@ -165,6 +165,7 @@
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/ebin/mod_invites_opt.beam
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/ebin/mod_invites_register.beam
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/ebin/mod_invites_sql.beam
+%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/HOWTO.md
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/apps.html
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/apps.json
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/base.html
@@ -177,7 +178,11 @@
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/register_error.html
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/register_success.html
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/roster.html
+%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/bootstrap/css/bootstrap.min.css
+%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/bootstrap/js/bootstrap.min.js
+%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/favicon.png
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/illus-empty.svg
+%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/invite.css
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/invite.js
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/logos/apple_as.svg
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/priv/mod_invites/static/logos/beagle-im.svg
@@ -382,9 +387,6 @@
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/include/mqtt.hrl
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/include/pubsub.hrl
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/include/translate.hrl
-%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/base64url-%%BASE64URL_VER%%/LICENSE.txt
-%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/base64url-%%BASE64URL_VER%%/ebin/base64url.app
-%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/base64url-%%BASE64URL_VER%%/ebin/base64url.beam
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/cache_tab-%%CACHE_TAB_VER%%/LICENSE.txt
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/cache_tab-%%CACHE_TAB_VER%%/ebin/cache_tab.app
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/cache_tab-%%CACHE_TAB_VER%%/ebin/cache_tab.beam
@@ -448,7 +450,7 @@
 %%SIP%%%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/esip-%%ESIP_VER%%/ebin/esip_udp_sup.beam
 %%SIP%%%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/esip-%%ESIP_VER%%/include/esip.hrl
 %%SIP%%%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/esip-%%ESIP_VER%%/include/esip_lib.hrl
-%%SIP%%%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/esip-%%ESIP_VER%%/priv/lib/esip_drv.so
+%%SIP%%%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/esip-%%ESIP_VER%%/priv/lib/esip_codec.so
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/ezlib-%%EZLIB_VER%%/LICENSE.txt
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/ezlib-%%EZLIB_VER%%/ebin/ezlib.app
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/ezlib-%%EZLIB_VER%%/ebin/ezlib.beam
@@ -764,9 +766,6 @@
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/eimp-%%EIMP_VER%%/ebin/eimp_worker.beam
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/eimp-%%EIMP_VER%%/priv/bin/eimp
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/eimp-%%EIMP_VER%%/LICENSE.txt
-%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/unicode_util_compat-%%UNICODE_UTIL_COMPAT_VER%%/LICENSE
-%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/unicode_util_compat-%%UNICODE_UTIL_COMPAT_VER%%/ebin/unicode_util_compat.app
-%%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/unicode_util_compat-%%UNICODE_UTIL_COMPAT_VER%%/ebin/unicode_util_compat.beam
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/xmpp-%%XMPP_VER%%/LICENSE.txt
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/xmpp-%%XMPP_VER%%/ebin/captcha_form.beam
 %%EJABBERD_LIBDIR%%/%%PORTNAME%%-%%PORTVERSION%%/lib/xmpp-%%XMPP_VER%%/ebin/flex_offline.beam

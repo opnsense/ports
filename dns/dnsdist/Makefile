@@ -1,9 +1,9 @@
 PORTNAME=	dnsdist
-DISTVERSION=	2.0.2
+DISTVERSION=	2.0.5
 PORTREVISION=	1
 CATEGORIES=	dns net
 MASTER_SITES=	https://downloads.powerdns.com/releases/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+DISTFILES+=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	tremere@cainites.net
 COMMENT=	Highly DNS-, DoS- and abuse-aware loadbalancer
@@ -104,7 +104,7 @@ OPENSSL_MESON_ON=	-Dlibcrypto-path=${OPENSSLBASE}
 SNMP_LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 SNMP_MESON_ENABLED=	snmp
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
 .if !(${OSVERSION} < 1400000 && ${SSL_DEFAULT} == "base")
 OPENSSL_MESON_ON+=	-Dtls-libssl-providers=true
@@ -115,4 +115,4 @@ OPENSSL_MESON_ON+=	-Dtls-libssl-engines=true
 post-install:
 	${MV} ${STAGEDIR}${ETCDIR}/dnsdist.conf-dist ${STAGEDIR}${ETCDIR}/dnsdist.conf.sample
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

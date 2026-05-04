@@ -1,0 +1,4 @@
+PyDOE is a Python package that provides extensive support for design of
+experiments (DOE) methods and is capable of creating designs for any
+number of factors, enabling scientists, engineers, and statisticians to
+efficiently construct experimental designs.

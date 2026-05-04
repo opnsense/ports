@@ -1,6 +1,5 @@
 PORTNAME=	ibus-typing-booster
-PORTVERSION=	2.30.4
-PORTREVISION=	1
+PORTVERSION=	2.30.7
 CATEGORIES=	textproc
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -39,6 +38,7 @@ GH_ACCOUNT=	mike-fabian
 
 USES=		autoreconf desktop-file-utils gettext gmake gnome iconv pathfix	\
 		pkgconfig python shebangfix
+BINARY_ALIAS=	python3=${PYTHON_CMD}
 SHEBANG_FILES=	engine/emoji-picker.in engine/ibus-engine-typing-booster.in	\
 		setup/ibus-setup-typing-booster.in
 SHEBANG_LANG=	sh
@@ -54,18 +54,17 @@ GLIB_SCHEMAS=	org.freedesktop.ibus.engine.typing-booster.gschema.xml
 TEST_TARGET=	check
 TEST_ENV=	${MAKE_ENV} \
 		IBUS_TYPING_BOOSTER_DEBUG_LEVEL=1
-TESTING_UNSAFE=	yes
+TESTING_UNSAFE=	yes	# See https://github.com/mike-fabian/ibus-typing-booster/issues/38
 
 OPTIONS_DEFINE=	HUNSPELL
 OPTIONS_DEFAULT=HUNSPELL
 
 HUNSPELL_RUN_DEPENDS=	hunspell:textproc/hunspell
 
-SPELL2FIX=	engine/itb_util.py setup/user_transliteration.py
+SPELL2FIX=	setup/user_transliteration.py engine/itb_util_core.py
 SHR2FIX=	engine/itb_sound.py ${GLIB_SCHEMAS}
 XML2FIX=	org.freedesktop.ibus.engine.typing_booster.metainfo.xml.in	\
 		org.freedesktop.ibus.engine.typing_booster.emoji_picker.metainfo.xml.in
-X11LOC2FIX=	engine/itb_util.py tests/test_compose_sequences.py tests/test_itb.py
 COMP2DEL=	engine/Makefile setup/Makefile
 
 pre-configure:
@@ -73,8 +72,6 @@ pre-configure:
 	${REINPLACE_CMD} -e 's|/usr/share/myspell|${LOCALBASE}/share/hunspell|'	\
 		${WRKSRC}/${f}
 .endfor
-	${FIND} ${WRKSRC} -name "*.py" | ${XARGS}	\
-	${REINPLACE_CMD} -e 's|/usr/bin/python3| ${PYTHON_CMD}|'
 .for f in ${XML2FIX}
 	${REINPLACE_CMD} -e 's|/usr/libexec|${PREFIX}/libexec|'	${WRKSRC}/${f}
 .endfor
@@ -82,12 +79,8 @@ pre-configure:
 	${REINPLACE_CMD} -e 's|/usr/share/ibus-typing-booster|${DATADIR}|'	\
 		-e 's|/usr/share|${LOCALBASE}/share|' ${WRKSRC}/${f}
 .endfor
-	${REINPLACE_CMD} -e 's|/usr/share/unicode|${LOCALBASE}/share/unicode|'	\
-		${WRKSRC}/engine/itb_emoji.py
-.for f in ${X11LOC2FIX}
-	${REINPLACE_CMD} -e 's|/usr/share/X11/locale|${LOCALBASE}/lib/X11/locale|'	\
-		${WRKSRC}/${f}
-.endfor
+	${FIND} ${WRKSRC} -type f | ${XARGS}	\
+		${REINPLACE_CMD} -e 's|/usr/share|${LOCALBASE}/share|'
 
 post-configure:
 .for f in ${COMP2DEL}

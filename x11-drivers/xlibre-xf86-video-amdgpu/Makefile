@@ -1,6 +1,6 @@
 PORTNAME=	xlibre-xf86-video-amdgpu
 PORTVERSION=	25.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	xlibre@FreeBSD.org
@@ -21,8 +21,11 @@ USE_GL=		gbm
 
 CONFIGURE_ARGS+=--disable-udev
 
-PLIST_FILES=	${MODULEDIR}/drivers/video/amdgpu_drv.so \
+PLIST_FILES=	${MODULEDIR}/drivers/amdgpu_drv.so \
 		share/man/man4/amdgpu.4x.gz \
 		share/X11/xorg.conf.d/10-amdgpu.conf
+
+post-patch:
+	${REINPLACE_CMD} -e 's|--variable=video_drivers_dir`|--variable=moduledir`/drivers|g' ${WRKSRC}/configure.ac
 
 .include <bsd.port.mk>

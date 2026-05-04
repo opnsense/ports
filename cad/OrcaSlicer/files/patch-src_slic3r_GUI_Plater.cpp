@@ -1,6 +1,6 @@
---- src/slic3r/GUI/Plater.cpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/Plater.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/Plater.cpp
-@@ -6369,9 +6369,6 @@ void Plater::priv::set_current_panel(wxPanel* panel, b
+@@ -8886,9 +8886,6 @@ void Plater::priv::set_current_panel(wxPanel* panel, b
      if (!old_panel) {
          //BBS: only switch to the first panel when visible
          panel->Show();

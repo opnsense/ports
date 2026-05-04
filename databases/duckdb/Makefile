@@ -1,6 +1,6 @@
 PORTNAME=	duckdb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.5.0
+DISTVERSION=	1.5.2
 MASTER_SITES=	https://github.com/postgres/postgres/archive/refs/tags/:postgres_sources
 DISTFILES=	REL_15_13.tar.gz:postgres_sources
 CATEGORIES=	databases
@@ -21,12 +21,12 @@ GH_TUPLE=	\
 		duckdb:duckdb-encodings:06295e77b13de65842992c82f14289ea679e4730:encodings/extension/encodings \
 		duckdb:duckdb-excel:9421a2d75bd7544336caa73e5f9e6063cc7f6992:excel/extension/excel \
 		duckdb:duckdb-fts:6814ec9a7d5fd63500176507262b0dbf7cea0095:fts/extension/fts \
-		duckdb:duckdb-httpfs:74f954001f3a740c909181b02259de6c7b942632:httpfs/extension/httpfs \
+		duckdb:duckdb-httpfs:13e18b3c9f3810334f5972b76a3acc247b28e537:httpfs/extension/httpfs \
 		duckdb:duckdb-inet:fe7f60bb60245197680fb07ecd1629a1dc3d91c8:inet/extension/inet \
-		duckdb:duckdb-postgres:a42c490df0019406658073c003b7d89dd4338466:postgres/extension/postgres_scanner \
-		duckdb:duckdb-mysql:372a86f96f4735ed3a1c3bb2e50594a2d73bc143:mysql/extension/mysql_scanner \
-		duckdb:duckdb-spatial:8734819c1de196ed9c012d0b68319d47faaf1aa3:spatial/extension/spatial \
-		duckdb:duckdb-sqlite:fb7cf51c40af3fe54873d7f9b4cc289fdb73091b:sqlite/extension/sqlite_scanner \
+		duckdb:duckdb-postgres:c89234f0b1985f4ee0f52f16e742a1ab2d4ae4f0:postgres/extension/postgres_scanner \
+		duckdb:duckdb-mysql:e2760cb11f13a12ce74e8c798c07c48deb97a577:mysql/extension/mysql_scanner \
+		duckdb:duckdb-spatial:dc1996bfd16bd8614fb4ccb5895b3ee0dbd4298e:spatial/extension/spatial \
+		duckdb:duckdb-sqlite:a087a5878900d8bae155e97fd1b18c4cec0cca21:sqlite/extension/sqlite_scanner \
 		duckdb:duckdb-sqlsmith:e6e6750ceb91e1869b2c736abb70d818bac73e9a:sqlsmith/extension/sqlsmith \
 		duckdb:duckdb-vss:b833341c8737fd3f3558c7720cc575ae8fc82598:vss/extension/vss
 # the list of out-of-tree extensions is here: .github/config/out_of_tree_extensions.cmake
@@ -98,10 +98,6 @@ post-patch: # remove cmake files of out-of-tree extensions to build them like in
 post-test: # run tests
 	@cd ${TEST_WRKSRC} && test/unittest
 
-# tests as of 1.4.4: All tests passed (28 skipped tests, 365953 assertions in 4014 test cases)
-
-# tests as of 1.5.0, see https://github.com/duckdb/duckdb/issues/21262:
-# test cases:    927 |    926 passed | 1 failed | 3 skipped
-# assertions: 832399 | 832398 passed | 1 failed | 3 skipped
+# tests as of 1.5.2: All tests passed (21 skipped tests, 1059565 assertions in 4438 test cases)
 
 .include <bsd.port.mk>

@@ -1,5 +1,6 @@
 PORTNAME=	yosys-ghdl-plugin
-PORTVERSION=	g20251221
+DISTVERSIONPREFIX=      v
+DISTVERSION=    6.0.0
 CATEGORIES=	cad
 
 MAINTAINER=	nsonack@herrhotzenplotz.de
@@ -12,14 +13,14 @@ BUILD_DEPENDS=	ghdl>0:cad/ghdl \
 		yosys>0:cad/yosys
 RUN_DEPENDS=	yosys>0:cad/yosys
 LIB_DEPENDS=	libffi.so:devel/libffi \
-		libghdl-5_1_1.so:cad/ghdl \
+		libghdl-6_0_0.so:cad/ghdl \
 		libtcmalloc.so:devel/google-perftools
 
 USES=		gmake readline tcl
 USE_GITHUB=	yes
 GH_ACCOUNT=	ghdl
 GH_PROJECT=	ghdl-yosys-plugin
-GH_TAGNAME=	a8883f5c0eaffcf6bfea519318f5f7ae1210ba24
+GH_TAGNAME=	ghdl-${DISTVERSIONPREFIX}${DISTVERSION}
 
 MAKE_ENV+=	GHDL=${LOCALBASE}/bin/ghdl \
 		YOSYS_CONFIG=${LOCALBASE}/bin/yosys-config

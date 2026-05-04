@@ -1,6 +1,6 @@
 PORTNAME=	ncbi-cxx-toolkit
 DISTVERSIONPREFIX=	release/
-DISTVERSION=	29.7.0
+DISTVERSION=	30.2.0
 CATEGORIES=	biology science devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -9,7 +9,7 @@ WWW=		https://ncbi.github.io/cxx-toolkit/ \
 		https://github.com/ncbi/ncbi-cxx-toolkit-public
 
 LICENSE=	PD
-LICENSE_FILE=	${WRKSRC}/doc/public/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # uses intrincs for CRC computation, probably easy to port if desired
 ONLY_FOR_ARCHS=	aarch64 amd64

@@ -9,7 +9,7 @@ MAINTAINER=	vbox@FreeBSD.org
 COMMENT=	VirtualBox kernel module for FreeBSD
 WWW=		https://www.virtualbox.org/
 
-LICENSE=	GPLv2
+LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 DEPRECATED=		Upstream EOL reaches on 2025-04-15, use emulators/virtualbox-ose-kmod-72 instead

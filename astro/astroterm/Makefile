@@ -1,6 +1,6 @@
 PORTNAME=	astroterm
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.10
+DISTVERSION=	1.2.0
 CATEGORIES=	astro
 MASTER_SITES=	https://web.archive.org/web/20231007085824if_/http://tdc-www.harvard.edu/catalogs/:DATA \
 		https://web.archive.org/web/20250114171002if_/http://tdc-www.harvard.edu/catalogs/:ASCIIDATA
@@ -17,9 +17,9 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	xxd:sysutils/xxd
-LIB_DEPENDS=	libargtable2.so:devel/argtable
+LIB_DEPENDS=	libargtable3.so:devel/argtable3
 
-USES=		meson ncurses ninja pkgconfig
+USES=		localbase:ldflags meson ncurses ninja pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	da-luce
 

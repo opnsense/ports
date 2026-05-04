@@ -19,6 +19,7 @@ GL_ACCOUNT=	videolan
 GH_TUPLE=	fastfloat:fast_float:v8.2.2:fast_float/3rdparty/fast_float
 MESON_DISABLED=	d3d11 libdovi
 MESON_FALSE=	demos
+MESON_ARGS=	-Dvulkan-sdk="${LOCALBASE}"
 
 OPTIONS_DEFINE=	LCMS2 LIBUNWIND OPENGL TEST VULKAN XXHASH
 OPTIONS_DEFAULT=LCMS2 LIBUNWIND OPENGL SHADERC XXHASH
@@ -65,7 +66,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' \
 		${WRKSRC}/src/vulkan/utils_gen.py
 # https://github.com/mesonbuild/meson/issues/7746
-	@${REINPLACE_CMD} "s,static:,dirs: '${LOCALBASE}/lib'\, &," \
+	@${REINPLACE_CMD} "/find.*glslang.*static/s/)/, dirs: vulkan_lib_dirs)/" \
 		${WRKSRC}/src/glsl/meson.build
 # Extract (snapshot) version from port version instead of meson.build
 	@${REINPLACE_CMD} -e "s/'git'/'${FALSE}'/" \

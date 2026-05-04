@@ -1,8 +1,8 @@
---- remoting/host/desktop_session_connector.h.orig	2026-03-13 06:02:14 UTC
+--- remoting/host/desktop_session_connector.h.orig	2026-04-09 06:05:42 UTC
 +++ remoting/host/desktop_session_connector.h
-@@ -50,7 +50,7 @@ class DesktopSessionConnector : public mojom::DesktopS
-   virtual bool BindConnectionEventsReceiver(
-       mojo::ScopedInterfaceEndpointHandle handle) = 0;
+@@ -57,7 +57,7 @@ class DesktopSessionConnector : public mojom::DesktopS
+   // connections.
+   virtual void SetRequiredUsername(std::string_view username) = 0;
  
 -#if !BUILDFLAG(IS_WIN) && !BUILDFLAG(IS_LINUX)
 +#if !BUILDFLAG(IS_WIN) && !BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_BSD)

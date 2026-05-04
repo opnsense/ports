@@ -1,5 +1,5 @@
 PORTNAME=	lief
-PORTVERSION=	0.17.5
+PORTVERSION=	0.17.6
 CATEGORIES=	devel
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -16,7 +16,8 @@ BUILD_DEPENDS=	${LOCALBASE}/include/tcb/span.hpp:devel/span \
 		nlohmann-json>=0:devel/nlohmann-json \
 		tl-expected>=0:devel/tl-expected \
 		utf8cpp>=0:devel/utf8cpp
-LIB_DEPENDS=	libmbedtls.so:security/mbedtls3 \
+LIB_DEPENDS=	libfmt.so:devel/libfmt \
+		libmbedtls.so:security/mbedtls3 \
 		libspdlog.so:devel/spdlog
 
 USES=		cmake:testing localbase:ldflags pkgconfig

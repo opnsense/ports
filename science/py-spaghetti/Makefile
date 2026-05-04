@@ -1,5 +1,6 @@
 PORTNAME=	spaghetti
 PORTVERSION=	1.7.6
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +19,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61.0:devel/py-setuptools@${PY_
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}esda>=2.1:science/py-esda@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}geopandas>=0.12:graphics/py-geopandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}libpysal>=4.6:science/py-libpysal@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.22,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.22:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=1.4,1:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rtree>=1.0:devel/py-rtree@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.8:science/py-scipy@${PY_FLAVOR} \

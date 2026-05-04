@@ -1,3 +1,3 @@
-TIMESTAMP = 1769874374
-SHA256 (toml_fmt_common-1.2.0.tar.gz) = 9c3630dc9409157e866b27ee0cdacf453636735b26dcf0fff385d3d2c1166698
-SIZE (toml_fmt_common-1.2.0.tar.gz) = 9735
+TIMESTAMP = 1775587458
+SHA256 (toml_fmt_common-1.3.2.tar.gz) = d0da45f0244e8d410787fa8ddf5a5594016abb2a7b97f400ce20ec8b0a6a4804
+SIZE (toml_fmt_common-1.3.2.tar.gz) = 7583

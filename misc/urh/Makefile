@@ -1,6 +1,6 @@
 PORTNAME=	urh
 DISTVERSION=	2.9.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc hamradio python
 MASTER_SITES=	PYPI
 
@@ -15,8 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BROKEN=		requires OpenMP support that is missing on this architecture
 .endif
 
-BUILD_DEPENDS=	${PYNUMPY}
-RUN_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyzmq>0:net/py-pyzmq@${PY_FLAVOR}
 

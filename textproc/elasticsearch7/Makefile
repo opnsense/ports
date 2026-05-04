@@ -1,6 +1,6 @@
 PORTNAME=	elasticsearch
 DISTVERSION=	7.17.29
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	textproc java devel
 MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/ \
 		LOCAL/vvd/elastic

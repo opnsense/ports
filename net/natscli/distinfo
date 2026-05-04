@@ -1,5 +1,5 @@
-TIMESTAMP = 1758619262
-SHA256 (go/net_natscli/natscli-v0.3.0/v0.3.0.mod) = 1a9f7ed781697f9ef9d743175a206c928afea20ea1dc221ad6d2a8b84b7d5662
-SIZE (go/net_natscli/natscli-v0.3.0/v0.3.0.mod) = 3093
-SHA256 (go/net_natscli/natscli-v0.3.0/v0.3.0.zip) = 15ca0ddcc80e49c37a97f106361b37c7aee5686fe9d6dbf220d8b254b2437982
-SIZE (go/net_natscli/natscli-v0.3.0/v0.3.0.zip) = 420751
+TIMESTAMP = 1776522248
+SHA256 (go/net_natscli/natscli-v0.3.2/v0.3.2.mod) = 6f0f878b2d9aa149bf34950a969febc66103161f1f9c9ba7e80494277b26b192
+SIZE (go/net_natscli/natscli-v0.3.2/v0.3.2.mod) = 3335
+SHA256 (go/net_natscli/natscli-v0.3.2/v0.3.2.zip) = 6487e6e2ac273cc6e8a2b4f9a9452ae018830b98ca880803fb68fe93e6cd54e7
+SIZE (go/net_natscli/natscli-v0.3.2/v0.3.2.zip) = 431408

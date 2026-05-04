@@ -631,6 +631,9 @@ bin/openbve-traineditor2
 %%DATADIR%%/Data/InputDevicePlugins/DenshaDeGoInput.dll
 %%DATADIR%%/Data/InputDevicePlugins/DenshaDeGoInput.dll.config
 %%DATADIR%%/Data/InputDevicePlugins/DenshaDeGoInput.pdb
+%%DATADIR%%/Data/InputDevicePlugins/KatoInput.dll
+%%DATADIR%%/Data/InputDevicePlugins/KatoInput.dll.config
+%%DATADIR%%/Data/InputDevicePlugins/KatoInput.pdb
 %%DATADIR%%/Data/InputDevicePlugins/SanYingInput.dll
 %%DATADIR%%/Data/InputDevicePlugins/SanYingInput.dll.config
 %%DATADIR%%/Data/InputDevicePlugins/SanYingInput.pdb

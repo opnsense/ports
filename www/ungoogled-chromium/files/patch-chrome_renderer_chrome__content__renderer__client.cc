@@ -1,4 +1,4 @@
---- chrome/renderer/chrome_content_renderer_client.cc.orig	2026-03-15 18:32:51 UTC
+--- chrome/renderer/chrome_content_renderer_client.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/renderer/chrome_content_renderer_client.cc
 @@ -184,7 +184,7 @@
  #include "v8/include/v8-isolate.h"
@@ -9,7 +9,7 @@
  #include "components/webapps/isolated_web_apps/scheme.h"
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
          // BUILDFLAG(IS_CHROMEOS)
-@@ -425,7 +425,7 @@ void ChromeContentRendererClient::RenderThreadStarted(
+@@ -427,7 +427,7 @@ void ChromeContentRendererClient::RenderThreadStarted(
    WebSecurityPolicy::RegisterURLSchemeAsExtension(
        WebString::FromASCII(extensions::kExtensionScheme));
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -18,7 +18,7 @@
    WebSecurityPolicy::RegisterURLSchemeAsIsolatedApp(
        WebString::FromASCII(webapps::kIsolatedAppScheme));
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
-@@ -494,7 +494,7 @@ void ChromeContentRendererClient::RenderThreadStarted(
+@@ -496,7 +496,7 @@ void ChromeContentRendererClient::RenderThreadStarted(
        WebString::FromASCII(chrome::kChromeSearchScheme));
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

@@ -9,6 +9,6 @@ Features
     - Support for videos (with mpvpaper)
     - Support for multiple monitors (with swww, swaybg, hyprpaper or mpvpaper)
     - Works on Wayland (with swww, swaybg, hyprpaper, wallutils or mpvpaper)
-    - Works on Xorg (with feh or wallutils)
-    - Restores wallpaper at launch of your WM
+    - Works on Xorg (with feh, wallutils or xwallpaper)
+    - Restores wallpaper at launch of your WM (waypaper --restore)
     - Caching for fast loading

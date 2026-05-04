@@ -1,4 +1,4 @@
---- chrome/browser/ui/webui/about/about_ui.cc.orig	2025-08-07 06:57:29 UTC
+--- chrome/browser/ui/webui/about/about_ui.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/ui/webui/about/about_ui.cc
 @@ -415,7 +415,7 @@ using about_ui::AppendHeader;
  
@@ -18,7 +18,7 @@
  LinuxProxyConfigUI::LinuxProxyConfigUI()
      : AboutUIConfigBase(chrome::kChromeUILinuxProxyConfigHost) {}
  #endif
-@@ -495,7 +495,7 @@ void AboutUIHTMLSource::StartDataRequest(
+@@ -494,7 +494,7 @@ void AboutUIHTMLSource::StartDataRequest(
        response =
            ui::ResourceBundle::GetSharedInstance().LoadDataResourceString(idr);
      }

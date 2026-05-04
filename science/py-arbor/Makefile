@@ -1,6 +1,7 @@
 PORTNAME=	arbor
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.11.0
+PORTREVISION=	1
 CATEGORIES=	science
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	gmake:devel/gmake \
 		pybind11>0:devel/pybind11 \
 		nlohmann-json>0:devel/nlohmann-json
 LIB_DEPENDS=	libarbor.so:science/arbor
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 
 USES=		cmake compiler:c++17-lang localbase:ldflags python
 USE_PYTHON=	flavors unittest # tests fail to run, see https://github.com/arbor-sim/arbor/issues/2395

@@ -1,6 +1,6 @@
---- src/slic3r/GUI/GUI_Utils.hpp.orig	2025-10-02 17:32:12 UTC
+--- src/slic3r/GUI/GUI_Utils.hpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/GUI_Utils.hpp
-@@ -498,7 +498,7 @@ void staticbox_remove_margin(wxStaticBox* sb);
+@@ -519,7 +519,7 @@ void staticbox_remove_margin(wxStaticBox* sb);
  void staticbox_remove_margin(wxStaticBox* sb);
  #endif
  

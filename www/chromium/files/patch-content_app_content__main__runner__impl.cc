@@ -1,4 +1,4 @@
---- content/app/content_main_runner_impl.cc.orig	2026-03-13 06:02:14 UTC
+--- content/app/content_main_runner_impl.cc.orig	2026-04-09 06:05:42 UTC
 +++ content/app/content_main_runner_impl.cc
 @@ -152,18 +152,21 @@
  #include "content/browser/posix_file_descriptor_info_impl.h"
@@ -90,13 +90,8 @@
      // On Linux/ChromeOS, the HangWatcher can't start until after the sandbox is
      // initialized, because the sandbox can't be started with multiple threads.
      // TODO(mpdenton): start the HangWatcher after the sandbox is initialized.
-@@ -848,13 +865,15 @@ int ContentMainRunnerImpl::Initialize(ContentMainParam
-   g_fds->Set(kTraceOutputSharedMemoryDescriptor,
-              kTraceOutputSharedMemoryDescriptor +
+@@ -853,11 +870,10 @@ int ContentMainRunnerImpl::Initialize(ContentMainParam
                   base::GlobalDescriptors::kBaseDescriptor);
-+  g_fds->Set(kPseudonymizationSaltDescriptor,
-+             kPseudonymizationSaltDescriptor +
-+                 base::GlobalDescriptors::kBaseDescriptor);
  #endif  // !BUILDFLAG(IS_ANDROID)
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_OPENBSD)
@@ -109,7 +104,7 @@
  
  #endif  // !BUILDFLAG(IS_WIN)
  
-@@ -1010,7 +1029,7 @@ int ContentMainRunnerImpl::Initialize(ContentMainParam
+@@ -1015,7 +1031,7 @@ int ContentMainRunnerImpl::Initialize(ContentMainParam
      // SeatbeltExecServer.
      CHECK(sandbox::Seatbelt::IsSandboxed());
    }
@@ -118,13 +113,7 @@
    // In sandboxed processes and zygotes, certain resource should be pre-warmed
    // as they cannot be initialized under a sandbox. In addition, loading these
    // resources in zygotes (including the unsandboxed zygote) allows them to be
-@@ -1020,10 +1039,22 @@ int ContentMainRunnerImpl::Initialize(ContentMainParam
-       process_type == switches::kZygoteProcess) {
-     PreSandboxInit();
-   }
-+#elif BUILDFLAG(IS_BSD)
-+  PreSandboxInit();
- #elif BUILDFLAG(IS_IOS) && !BUILDFLAG(IS_IOS_TVOS)
+@@ -1029,6 +1045,16 @@ int ContentMainRunnerImpl::Initialize(ContentMainParam
    ChildProcessEnterSandbox();
  #endif
  
@@ -141,7 +130,7 @@
    delegate_->SandboxInitialized(process_type);
  
  #if BUILDFLAG(USE_ZYGOTE)
-@@ -1140,6 +1171,11 @@ NO_STACK_PROTECTOR int ContentMainRunnerImpl::Run() {
+@@ -1145,6 +1171,11 @@ NO_STACK_PROTECTOR int ContentMainRunnerImpl::Run() {
    content_main_params_.reset();
  
    RegisterMainThreadFactories();

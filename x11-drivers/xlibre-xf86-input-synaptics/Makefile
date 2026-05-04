@@ -1,6 +1,6 @@
 PORTNAME=	xlibre-xf86-input-synaptics
 PORTVERSION=	25.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-drivers
 
 MAINTAINER=	xlibre@FreeBSD.org
@@ -11,7 +11,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		pathfix xorg xlibre-cat:driver
-USE_XORG=	x11 xtst
+USE_XORG=	x11 xi xtst
 
 OPTIONS_DEFINE=	EVDEV
 OPTIONS_DEFAULT=EVDEV

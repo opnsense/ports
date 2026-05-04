@@ -1,9 +1,8 @@
 PORTNAME=	mew
 DISTVERSION=	6.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail elisp
 MASTER_SITES=	http://www.mew.org/Release/
-PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Messaging in the Emacs World for emacs
@@ -12,17 +11,17 @@ WWW=		https://www.Mew.org/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		emacs
+USES=		emacs:build
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-elispdir=${LOCALBASE}/${EMACS_VERSION_SITE_LISPDIR}/mew \
-		--with-etcdir=${LOCALBASE}/${EMACS_VERSION_SITE_LISPDIR}/mew/etc
+CONFIGURE_ARGS=	--with-elispdir=${LOCALBASE}/${EMACS_SITE_LISPDIR}/mew \
+		--with-etcdir=${LOCALBASE}/${EMACS_SITE_LISPDIR}/mew/etc
 
 # target name for make build and install
 ALL_TARGET=	all info jinfo
 INSTALL_TARGET=	install install-jinfo
 
-CONFLICTS_INSTALL=	mew-devel mew-devel-emacs_* mew-emacs_* # bin/cmew bin/incm
+CONFLICTS_INSTALL=	mew-devel mew-emacs_*
 
 SUB_FILES=	pkg-message
 
@@ -41,6 +40,10 @@ STUNNEL_DESC=	Support TLS feature using stunnel
 
 DATABASE_RUN_DEPENDS=	rubygem-sqlite3>=0:databases/rubygem-sqlite3
 STUNNEL_RUN_DEPENDS=	stunnel>=0:security/stunnel
+
+post-install:
+	@${FIND} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}/mew \
+	-name "*.elc" -delete
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}

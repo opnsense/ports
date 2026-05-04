@@ -66,7 +66,7 @@ IMG_USES=		magick:run,test
 MULTI_RUN_DEPENDS=	p5-Text-MultiMarkdown>=0:textproc/p5-Text-MultiMarkdown
 PO4A_BUILD_DEPENDS=	po4a>=0.39:textproc/po4a
 PO4A_RUN_DEPENDS=	po4a>=0.39:textproc/po4a
-SEARCH_RUN_DEPENDS=	${LOCALBASE}/www/xapian-omega/cgi-bin/omega:www/xapian-omega \
+SEARCH_RUN_DEPENDS=	${LOCALBASE}/www/xapian-omega/cgi-bin/omega:www/xapian-omega14 \
 			p5-Digest-SHA1>=0:security/p5-Digest-SHA1 \
 			p5-Search-Xapian>=0:databases/p5-Search-Xapian
 

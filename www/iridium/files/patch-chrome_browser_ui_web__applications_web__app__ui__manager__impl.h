@@ -1,6 +1,6 @@
---- chrome/browser/ui/web_applications/web_app_ui_manager_impl.h.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/ui/web_applications/web_app_ui_manager_impl.h.orig	2026-04-15 12:07:04 UTC
 +++ chrome/browser/ui/web_applications/web_app_ui_manager_impl.h
-@@ -244,7 +244,7 @@ class WebAppUiManagerImpl : public BrowserListObserver
+@@ -257,7 +257,7 @@ class WebAppUiManagerImpl : public BrowserCollectionOb
        UninstallCompleteCallback uninstall_complete_callback,
        webapps::UninstallResultCode uninstall_code);
  

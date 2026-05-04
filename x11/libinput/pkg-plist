@@ -96,6 +96,7 @@ share/man/man1/libinput-quirks.1.gz
 share/man/man1/libinput-record.1.gz
 share/man/man1/libinput-replay.1.gz
 share/man/man1/libinput-test.1.gz
+%%TEST%%share/man/man1/libinput-test-suite.1.gz
 share/man/man1/libinput.1.gz
 share/zsh/site-functions/_libinput
 @dir %%ETCDIR%%

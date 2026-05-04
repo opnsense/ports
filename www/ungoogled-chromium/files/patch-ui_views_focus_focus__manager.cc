@@ -1,6 +1,6 @@
---- ui/views/focus/focus_manager.cc.orig	2026-02-15 10:01:45 UTC
+--- ui/views/focus/focus_manager.cc.orig	2026-04-15 11:25:12 UTC
 +++ ui/views/focus/focus_manager.cc
-@@ -609,7 +609,7 @@ bool FocusManager::RedirectAcceleratorToParentWidget(
+@@ -620,7 +620,7 @@ bool FocusManager::RedirectAcceleratorToParentWidget(
      return false;
    }
  
@@ -9,7 +9,7 @@
    // Processing an accelerator can delete things. Because we
    // need these objects afterwards on Linux, save widget_ as weak pointer and
    // save the close_on_deactivate property value of widget_delegate in a
-@@ -627,7 +627,7 @@ bool FocusManager::RedirectAcceleratorToParentWidget(
+@@ -638,7 +638,7 @@ bool FocusManager::RedirectAcceleratorToParentWidget(
    const bool accelerator_processed =
        focus_manager->ProcessAccelerator(accelerator);
  

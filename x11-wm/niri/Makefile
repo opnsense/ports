@@ -1,10 +1,10 @@
 PORTNAME=	niri
 DISTVERSIONPREFIX=	v
-DISTVERSION=	25.11
-PORTREVISION=	2
+DISTVERSION=	26.04
+PORTREVISION=	1
 CATEGORIES=	x11-wm wayland
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	lme@FreeBSD.org
 COMMENT=	Scrollable-tiling Wayland compositor
 WWW=		https://github.com/YaLTeR/niri
 
@@ -23,7 +23,7 @@ USE_GITHUB=	yes
 USE_GL=		gbm
 USE_GNOME=	cairo pango
 USE_XORG=	pixman
-GH_ACCOUNT=	YaLTeR
+GH_ACCOUNT=	niri-wm
 CARGO_FEATURES=	--no-default-features dbus
 PLIST_FILES=	bin/${PORTNAME} \
 		share/wayland-sessions/${PORTNAME}.desktop \

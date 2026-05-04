@@ -10,6 +10,9 @@ WWW=		http://mattn.github.com/growl-for-linux/
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Obsolete software that does not compile with recent versions of GCC or Clang
+EXPIRATION_DATE=	2026-05-12
+
 BUILD_DEPENDS=	desktop-file-install:devel/desktop-file-utils
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libdbus-1.so:devel/dbus \
@@ -35,6 +38,7 @@ PLIST_SUB=	DESKTOPDIR=${DESKTOPDIR:S,^${PREFIX}/,,}
 
 USES=		autoreconf compiler:nestedfct gnome libtool pkgconfig sqlite:3 \
 		ssl
+USE_CSTD=	gnu11
 USE_GITHUB=	yes
 USE_GNOME=	cairo gdkpixbuf gtk20 libxml2
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}/display \

@@ -1,6 +1,6 @@
---- chrome/common/chrome_features.h.orig	2026-03-13 06:02:14 UTC
+--- chrome/common/chrome_features.h.orig	2026-04-16 08:18:50 UTC
 +++ chrome/common/chrome_features.h
-@@ -82,7 +82,7 @@ BASE_DECLARE_FEATURE(kUseKeychainKeyProvider);
+@@ -81,7 +81,7 @@ BASE_DECLARE_FEATURE(kUseKeychainKeyProvider);
  #endif  // BUILDFLAG(IS_MAC)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -9,7 +9,7 @@
  COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kAutofillAddressSurvey);
  COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kAutofillCardSurvey);
  COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kAutofillPasswordSurvey);
-@@ -167,7 +167,7 @@ BASE_DECLARE_FEATURE(kDesktopPWAsTabStripSettings);
+@@ -162,7 +162,7 @@ BASE_DECLARE_FEATURE(kDesktopPWAsTabStripSettings);
  COMPONENT_EXPORT(CHROME_FEATURES)
  BASE_DECLARE_FEATURE(kShowResetProfileBannerV2);
  
@@ -18,7 +18,7 @@
  COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kChromeAppsDeprecation);
  COMPONENT_EXPORT(CHROME_FEATURES)
  BASE_DECLARE_FEATURE(kShortcutsNotApps);
-@@ -1001,7 +1001,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+@@ -1012,7 +1012,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
  BASE_DECLARE_FEATURE(kIsolatedWebAppBundleCache);
  #endif
  
@@ -27,7 +27,7 @@
  COMPONENT_EXPORT(CHROME_FEATURES) BASE_DECLARE_FEATURE(kLinuxLowMemoryMonitor);
  COMPONENT_EXPORT(CHROME_FEATURES)
  extern const base::FeatureParam<int> kLinuxLowMemoryMonitorModerateLevel;
-@@ -1009,7 +1009,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
+@@ -1020,7 +1020,7 @@ COMPONENT_EXPORT(CHROME_FEATURES)
  extern const base::FeatureParam<int> kLinuxLowMemoryMonitorCriticalLevel;
  #endif  // BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
  

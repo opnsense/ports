@@ -1,12 +1,12 @@
 PORTNAME=	licensee
-PORTVERSION=	9.18.0
-PORTREVISION=	1
+PORTVERSION=	9.19.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Detects under what license a project is distributed
-WWW=		https://github.com/benbalter/licensee
+WWW=		https://licensee.github.io/licensee/ \
+		https://github.com/benbalter/licensee
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md

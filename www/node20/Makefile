@@ -1,7 +1,7 @@
 PORTNAME=	node
 PORTVERSION=	${NODEJS_PORTVERSION}
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${PORTVERSION}/
 PKGNAMESUFFIX=	${PORTVERSION:R:R}
@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_SSL=	libressl libressl-devel
 BROKEN_SSL_REASON=	Node.js ${PORTVERSION:R:R}.x requires OpenSSL or the BUNDLED_SSL option enabled
+DEPRECATED=	Node.js 20.* has reached its EoL on 2026-04-30. Use Node.js 24.* (www/node24) instead
+EXPIRATION_DATE=2026-05-31
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
 BUILD_DEPENDS=	objdump:devel/binutils

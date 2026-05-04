@@ -1,5 +1,6 @@
 PORTNAME=	transformers
 DISTVERSION=	5.3.0
+PORTREVISION=	1
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}filelock>0:sysutils/py-filelock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}huggingface-hub>=1.3.0:misc/py-huggingface-hub@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=20.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.1:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}regex>=2019.12.17:textproc/py-regex@${PY_FLAVOR} \

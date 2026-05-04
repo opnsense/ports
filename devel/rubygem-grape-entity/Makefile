@@ -1,6 +1,5 @@
 PORTNAME=	grape-entity
-PORTVERSION=	1.0.1
-PORTREVISION=	2
+PORTVERSION=	1.0.4
 PORTEPOCH=	1
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
@@ -13,7 +12,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rubygem-activesupport-gitlab>=3.0.0:devel/rubygem-activesupport-gitlab \
-		rubygem-multi_json-gitlab>=1.3.2:devel/rubygem-multi_json-gitlab
+		rubygem-multi_json-gitlab>=1.0:devel/rubygem-multi_json-gitlab
 
 USES=		gem
 

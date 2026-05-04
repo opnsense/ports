@@ -1,6 +1,5 @@
 PORTNAME=	agrum
-DISTVERSION=	2.3.0
-PORTREVISION=	1
+DISTVERSION=	2.3.2
 CATEGORIES=	science math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -21,7 +20,7 @@ LLD_UNSAFE=	yes
 USE_GITLAB=	yes
 GL_ACCOUNT=	agrumery
 GL_PROJECT=	aGrUM
-GL_TAGNAME=	50ed291c
+GL_TAGNAME=	84561d99
 
 SHEBANG_FILES=	act
 
@@ -43,7 +42,7 @@ OPENMP_CMAKE_BOOL=	USE_OPENMP
 PYTHON_CMAKE_BOOL=	BUILD_PYTHON
 PYTHON_USES=		python
 PYTHON_PLIST_SUB=	PYTHON_VER_MAJ=${PYTHON_VER:R}
-PYTHON_RUN_DEPENDS=	${PYNUMPY} \
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib-inline>0:math/py-matplotlib-inline@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}nbconvert>0:devel/py-nbconvert@${PY_FLAVOR} \
@@ -61,6 +60,6 @@ do-test:
 	@cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} ./act test release agrum -t all
 
-# tests as of 2.3.0: Failed 0 of 1486 tests
+# tests as of 2.3.2: Failed 0 of 1487 tests
 
 .include <bsd.port.mk>

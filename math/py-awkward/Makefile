@@ -1,5 +1,6 @@
 PORTNAME=	awkward
 PORTVERSION=	2.9.0
+PORTREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-fancy-pypi-readme>=0:devel/py-hatch-
 		${PYTHON_PKGNAMEPREFIX}hatchling>=1.10.0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}awkward-cpp>=52<52_99:math/py-awkward-cpp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fsspec>=2022.11.0:filesystems/py-fsspec@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.21.3,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.21.3:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR}
 
 USES=		python

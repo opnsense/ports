@@ -1,5 +1,5 @@
 PORTNAME=	bullet_train
-PORTVERSION=	1.39.0
+PORTVERSION=	1.44.0
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -20,9 +20,9 @@ RUN_DEPENDS=	rubygem-bullet_train-has_uuid>=0:www/rubygem-bullet_train-has_uuid 
 		rubygem-cable_ready>=5.0.0<5.1:www/rubygem-cable_ready \
 		rubygem-cancancan>=0:security/rubygem-cancancan \
 		rubygem-colorize>=0:devel/rubygem-colorize \
-		rubygem-commonmarker>=1.0.0:textproc/rubygem-commonmarker \
+		rubygem-commonmarker>=2.7.0:textproc/rubygem-commonmarker \
 		rubygem-devise-pwned_password>=0:devel/rubygem-devise-pwned_password \
-		rubygem-devise-rails81>=0:devel/rubygem-devise-rails81 \
+		rubygem-devise-rails81>=5.0<6:devel/rubygem-devise-rails81 \
 		rubygem-fastimage>=0:graphics/rubygem-fastimage \
 		rubygem-figaro>=0:devel/rubygem-figaro \
 		rubygem-http_accept_language>=0:devel/rubygem-http_accept_language \
@@ -30,7 +30,7 @@ RUN_DEPENDS=	rubygem-bullet_train-has_uuid>=0:www/rubygem-bullet_train-has_uuid 
 		rubygem-omniauth>=2<3:security/rubygem-omniauth \
 		rubygem-pagy>=9:devel/rubygem-pagy \
 		rubygem-possessive>=0:www/rubygem-possessive \
-		rubygem-rails81>=6.0.0:www/rubygem-rails81 \
+		rubygem-rails81>=7.0.0:www/rubygem-rails81 \
 		rubygem-showcase-rails>=0:www/rubygem-showcase-rails
 
 USES=		gem

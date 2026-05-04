@@ -1,5 +1,6 @@
 PORTNAME=	fpylll
 PORTVERSION=	0.6.4
+PORTREVISION=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,7 +11,7 @@ WWW=		https://github.com/fplll/fpylll
 
 LICENSE=	GPLv2
 
-BUILD_DEPENDS=	${PYNUMPY}	\
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}black>0:devel/py-black@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}pythran>0:devel/py-pythran@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}cysignals>0:devel/py-cysignals@${PY_FLAVOR} \
@@ -20,7 +21,7 @@ LIB_DEPENDS=	libfplll.so:math/fplll	\
 		libmpfr.so:math/mpfr	\
 		libpari.so:math/pari	\
 		libqd.so:math/qd
-RUN_DEPENDS=	${PYNUMPY}	\
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}black>0:devel/py-black@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}pythran>0:devel/py-pythran@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}cysignals>0:devel/py-cysignals@${PY_FLAVOR}

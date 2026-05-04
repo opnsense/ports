@@ -10,7 +10,7 @@ https://github.com/zostera/django-bootstrap3/commit/e02004187be369e33556d8d7e0fe
  [build-system]
  build-backend = "uv_build"
 -requires = ["uv_build>=0.9.6,<0.10.0"]
-+requires = ["uv_build>=0.9.6,<0.11.0"]
++requires = ["uv_build>=0.9.6,<0.12.0"]
  
  [project]
  authors = [

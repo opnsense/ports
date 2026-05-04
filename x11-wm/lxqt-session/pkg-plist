@@ -40,6 +40,7 @@ share/applications/lxqt-suspend.desktop
 %%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_it.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_ja.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_ka.qm
+%%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_kk.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_ko.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_lg.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-session/lxqt-config-session_lt.qm

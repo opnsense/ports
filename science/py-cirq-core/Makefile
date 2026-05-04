@@ -1,7 +1,7 @@
 PORTNAME=	cirq-core
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python # quantum-computing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,7 +12,7 @@ WWW=		https://github.com/quantumlib/cirq
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cirq-google>0:science/py-cirq-google@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}duet>=0.2.6:net/py-duet@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \

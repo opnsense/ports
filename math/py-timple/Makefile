@@ -1,6 +1,6 @@
 PORTNAME=	timple
 PORTVERSION=	0.1.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +11,7 @@ WWW=		https://github.com/theOehrly/Timple
 
 LICENSE=	MIT
 
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=0:math/py-matplotlib@${PY_FLAVOR}
 
 USES=	python

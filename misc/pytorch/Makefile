@@ -13,6 +13,7 @@ WWW=		https://pytorch.org/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_aarch64=	compilation fails: clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=294067
 BROKEN_i386=	compilation fails: error: use of undeclared identifier 'AVX2'
 
 BUILD_DEPENDS=	gmake:devel/gmake \
@@ -49,7 +50,7 @@ OPTIONS_DEFAULT=	PYTHON
 OPTIONS_SUB=		yes
 
 PYTHON_CMAKE_BOOL=	BUILD_PYTHON
-PYTHON_PY_DEPENDS=	${PYNUMPY} \
+PYTHON_PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}typing-extensions>0:devel/py-typing-extensions@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR}
 PYTHON_BUILD_DEPENDS=	${PYTHON_PY_DEPENDS} \

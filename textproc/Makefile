@@ -63,6 +63,7 @@
     SUBDIR += aq
     SUBDIR += arianna
     SUBDIR += asciidoc
+    SUBDIR += asciinema
     SUBDIR += asm-xml
     SUBDIR += asm2html
     SUBDIR += aspell
@@ -332,7 +333,6 @@
     SUBDIR += it-mythes
     SUBDIR += itstool
     SUBDIR += jade
-    SUBDIR += jalingo
     SUBDIR += jaq
     SUBDIR += jarnal
     SUBDIR += jdictionary
@@ -350,6 +350,7 @@
     SUBDIR += json-yaml
     SUBDIR += json2yaml
     SUBDIR += jsonfmt
+    SUBDIR += jsongrep
     SUBDIR += jtc
     SUBDIR += kdiff3
     SUBDIR += kepubify
@@ -385,7 +386,6 @@
     SUBDIR += lasem
     SUBDIR += latex-service
     SUBDIR += latex2html
-    SUBDIR += lexilla
     SUBDIR += libabw
     SUBDIR += libcroco
     SUBDIR += libcss
@@ -515,6 +515,7 @@
     SUBDIR += muse
     SUBDIR += mxml
     SUBDIR += mythes
+    SUBDIR += nano-pdf
     SUBDIR += nb-aspell
     SUBDIR += nds-aspell
     SUBDIR += nerdlog
@@ -1233,6 +1234,8 @@
     SUBDIR += pa-aspell
     SUBDIR += pageedit
     SUBDIR += par
+    SUBDIR += pdf-form-filler-mcp
+    SUBDIR += pdf-reader-mcp
     SUBDIR += pdfgrep
     SUBDIR += pdfoutline
     SUBDIR += pdfresurrect
@@ -1337,7 +1340,6 @@
     SUBDIR += py-anymarkup
     SUBDIR += py-anymarkup-core
     SUBDIR += py-arabic-reshaper
-    SUBDIR += py-asciinema
     SUBDIR += py-asonic
     SUBDIR += py-autopep8
     SUBDIR += py-awesome-slugify
@@ -1413,6 +1415,8 @@
     SUBDIR += py-graphemeu
     SUBDIR += py-grep-ast
     SUBDIR += py-griffe
+    SUBDIR += py-griffecli
+    SUBDIR += py-griffelib
     SUBDIR += py-grimoire-elk
     SUBDIR += py-grimoirelab-panels
     SUBDIR += py-guess-language
@@ -1460,7 +1464,9 @@
     SUBDIR += py-latexcodec
     SUBDIR += py-license-expression
     SUBDIR += py-line-protocol-parser
+    SUBDIR += py-lingua-language-detector
     SUBDIR += py-linkify-it-py
+    SUBDIR += py-llguidance
     SUBDIR += py-m2r
     SUBDIR += py-mako
     SUBDIR += py-markdown
@@ -1519,6 +1525,7 @@
     SUBDIR += py-openstackdocstheme
     SUBDIR += py-openstep-plist
     SUBDIR += py-os-api-ref
+    SUBDIR += py-outlines-core
     SUBDIR += py-packageurl-python
     SUBDIR += py-pager
     SUBDIR += py-paginate
@@ -1532,6 +1539,7 @@
     SUBDIR += py-parsel
     SUBDIR += py-parsimonious
     SUBDIR += py-parso
+    SUBDIR += py-partial-json-parser
     SUBDIR += py-patiencediff
     SUBDIR += py-pdf2docx
     SUBDIR += py-pdfminer.six
@@ -1569,6 +1577,7 @@
     SUBDIR += py-pylons-sphinx-themes
     SUBDIR += py-pyls-spyder
     SUBDIR += py-pymdown-extensions
+    SUBDIR += py-pymupdf4llm
     SUBDIR += py-pypa-docs-theme
     SUBDIR += py-pypandoc
     SUBDIR += py-pyphen
@@ -1764,9 +1773,11 @@
     SUBDIR += py-xmlschema
     SUBDIR += py-yapf
     SUBDIR += py-youseedee
+    SUBDIR += py-yte
     SUBDIR += py-zensical
     SUBDIR += py-zope.i18nmessageid
     SUBDIR += py-zpt
+    SUBDIR += pymupdf4llm-mcp
     SUBDIR += qo
     SUBDIR += qprint
     SUBDIR += qr

@@ -1,7 +1,7 @@
 PORTNAME=	cantera
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.1.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	science # chemistry physics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -65,10 +65,10 @@ PYTHON_USE=		PYTHON=cython
 PYTHON_MAKE_ARGS=	python_cmd=${PYTHON_CMD} python_package=full
 PYTHON_MAKE_ARGS_OFF=	python_package="none"
 PYTHON_BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-			${PYNUMPY} \
+			${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
-PYTHON_RUN_DEPENDS=	${PYNUMPY} \
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \

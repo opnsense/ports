@@ -753,7 +753,7 @@ share/applications/ghidra.desktop
 %%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.22.9.json.diff
 %%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.23.1.json.diff
 %%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.23.10.json.diff
-%%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.2%%PYTHON_VER%%.json.diff
+%%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.23.11.json.diff
 %%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.23.12.json.diff
 %%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.23.2.json.diff
 %%DATADIR%%/Ghidra/Features/Base/data/typeinfo/golang/patchverdiffs/go1.23.3.json.diff
@@ -1585,7 +1585,7 @@ share/applications/ghidra.desktop
 %%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/ReadMe.txt
 %%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/abeille/formsrt.jar
 %%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/commons/commons-codec-1.15.jar
-%%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/commons/commons-net-%%PYTHON_VER%%.1.jar
+%%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/commons/commons-net-3.11.1.jar
 %%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/commons/httpclient-4.5.13.jar
 %%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/cron/joda-time-2.7.jar
 %%DATADIR%%/Ghidra/Features/GhidraServer/data/yajsw-stable-13.18/lib/extended/cron/prevayler-core-2.6.jar

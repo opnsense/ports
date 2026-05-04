@@ -1,6 +1,7 @@
 PORTNAME=	spglib
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.7.0
+PORTREVISION=	1
 CATEGORIES=	science python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -16,10 +17,10 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@$
 		${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyproject-metadata>0:devel/py-pyproject-metadata@${PY_FLAVOR} \
 		cmake:devel/cmake-core \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PY_SETUPTOOLS}
 LIB_DEPENDS=	libsymspg.so:science/spglib
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.9.0:devel/py-typing-extensions@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest-benchmark>0:devel/py-pytest-benchmark@${PY_FLAVOR}
 

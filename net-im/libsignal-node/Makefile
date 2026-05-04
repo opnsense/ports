@@ -1,6 +1,7 @@
 PORTNAME=	libsignal
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.88.0
+DISTVERSION=	0.89.1
+PORTREVISION=	1
 CATEGORIES=	net-im
 MASTER_SITES=	LOCAL/mikael/signal-desktop/:npm
 PKGNAMESUFFIX=	-node
@@ -13,7 +14,7 @@ WWW=		https://github.com/signalapp/libsignal
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS=	amd64
 
 EXTRACT_DEPENDS=npm:www/npm${NODEJS_SUFFIX}
 BUILD_DEPENDS=	llvm-config${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT} \

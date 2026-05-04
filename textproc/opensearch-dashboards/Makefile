@@ -1,5 +1,5 @@
 PORTNAME=	opensearch-dashboards
-DISTVERSION=	3.5.0
+DISTVERSION=	3.6.0
 DISTVERSIONSUFFIX=	-linux-${OPENSEARCH_ARCH}
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.opensearch.org/releases/bundle/${PORTNAME}/${DISTVERSION}/

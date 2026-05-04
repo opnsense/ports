@@ -1,10 +1,10 @@
 PORTNAME?=	openexr
-PORTVERSION?=	3.4.5 # ALSO update openexr-website-docs! -- verify sigstore: make makesum verify-sigstore
+DISTVERSION?=	3.4.11 # ALSO update openexr-website-docs! -- verify sigstore: make makesum verify-sigstore
 PORTREVISION?=	0
 CATEGORIES=	graphics devel
 .if !defined(MASTERDIR)
 MASTER_SITES=	https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/v1.0/:testimages \
-		https://github.com/AcademySoftwareFoundation/openexr/releases/download/v${PORTVERSION}/:DEFAULT \
+		https://github.com/AcademySoftwareFoundation/openexr/releases/download/v${DISTVERSION}/:DEFAULT \
 		LOCAL/mandree/openexr/:DEFAULT \
 		LOCAL/mandree/openexr/:testimages
 DISTFILES=	${EXTRACT_ONLY}:DEFAULT
@@ -26,7 +26,7 @@ DISTFILES+=	v2/LeftView/Balls.exr:testimages
 DISTFILES+=	v2/Stereo/Trunks.exr:testimages
 .endif
 DIST_SUBDIR=	openexr # hardcode - not using ${PORTNAME} - so we can share the distdir with openexr-website-docs, avoiding double download of ...
-EXTRACT_ONLY=	openexr-${PORTVERSION}${EXTRACT_SUFX}
+EXTRACT_ONLY=	openexr-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	mandree@FreeBSD.org
 COMMENT=	High dynamic-range (HDR) image file format
@@ -47,7 +47,7 @@ LIB_DEPENDS?=	libImath-3_2.so.30:math/Imath \
 USES?=		cmake:testing compiler:c++14-lang cpe pathfix pkgconfig
 
 #USE_GITHUB=	yes
-#GH_TUPLE=	AcademySoftwareFoundation:openexr:v${PORTVERSION}
+#GH_TUPLE=	AcademySoftwareFoundation:openexr:v${DISTVERSION}
 
 USE_LDCONFIG=	yes
 
@@ -65,11 +65,8 @@ CMAKE_TESTING_ON=	BUILD_TESTING \
 
 TEST_ENV+=	CTEST_OUTPUT_ON_FAILURE=TRUE
 
-# OpenEXR mandates SSE2 on i386
-CFLAGS_i386+=	-msse2
 CPPFLAGS+=	-I.
-# must be linked with -l{thr|pthread} explicitly
-LDFLAGS+=	-lpthread
+LDFLAGS+=	-pthread
 
 _MAJORVER=	3_4
 _VER=		33

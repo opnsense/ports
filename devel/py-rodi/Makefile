@@ -1,6 +1,6 @@
 PORTNAME=	rodi
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.8
+DISTVERSION=	2.1.0
 CATEGORIES=	devel python
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -23,6 +23,6 @@ GH_ACCOUNT=	Neoteroi
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
-# tests as of 2.0.8: 177 passed in 2.73s
+# tests as of 2.1.0: 196 passed in 0.44s
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	xmltodict
-PORTVERSION=	1.0.3
+PORTVERSION=	1.0.4
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/martinblech/xmltodict/releases/download/v${PORTVERSION}/

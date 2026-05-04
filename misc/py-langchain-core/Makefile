@@ -25,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}blockbuster>=1.5.18:devel/py-blockbuster@${
 		${PYTHON_PKGNAMEPREFIX}freezegun>=1.2.2:devel/py-freezegun@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}grandalf>=0.8:math/py-grandalf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}langchain-tests>0:misc/py-langchain-tests@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0.21.1:devel/py-pytest-asyncio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-benchmark>0:devel/py-pytest-benchmark@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-codspeed>0:devel/py-pytest-codspeed@${PY_FLAVOR} \

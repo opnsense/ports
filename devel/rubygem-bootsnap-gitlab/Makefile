@@ -1,5 +1,5 @@
 PORTNAME=	bootsnap
-PORTVERSION=	1.18.6
+PORTVERSION=	1.23.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-gitlab
@@ -16,7 +16,5 @@ RUN_DEPENDS=	rubygem-msgpack>=1.2<2:devel/rubygem-msgpack
 USES=		gem
 
 PLIST_FILES=	bin/bootsnap
-
-PORTSCOUT=	limit:^1\.18\.
 
 .include <bsd.port.mk>

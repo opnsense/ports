@@ -1,5 +1,5 @@
 PORTNAME=	cliff
-PORTVERSION=	4.13.1
+PORTVERSION=	4.13.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=6.1.1:devel/py-pbr@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}autopage>=0.4.0:devel/py-autopage@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cmd2>=1.0.0:devel/py-cmd2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}prettytable0>=0.7.2:devel/py-prettytable0@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}prettytable>=0.7.2:devel/py-prettytable@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=3.12:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}stevedore>=5.6.0:devel/py-stevedore@${PY_FLAVOR}
 

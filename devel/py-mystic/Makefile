@@ -1,5 +1,6 @@
 PORTNAME=	mystic
 PORTVERSION=	0.4.5
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=42:devel/py-setuptools@${PY_FL
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dill>=0.4.1:devel/py-dill@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}klepto>=0.2.8:devel/py-klepto@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mpmath>=0.19:math/py-mpmath@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.0,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.0:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sympy>=0.6.7:math/py-sympy@${PY_FLAVOR}
 
 USES=		python

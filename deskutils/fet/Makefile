@@ -1,5 +1,5 @@
 PORTNAME=	fet
-DISTVERSION=	7.6.3
+DISTVERSION=	7.8.5
 CATEGORIES=	deskutils education
 MASTER_SITES=	https://lalescu.ro/liviu/fet/download/ \
 		https://lalescu.ro/liviu/fet/download/old/ \
@@ -13,9 +13,10 @@ WWW=		https://lalescu.ro/liviu/fet/
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c++17-lang gl qmake qt:6 tar:bzip2
+USES=		cmake compiler:c++17-lang gl qt:6 tar:xz xorg
 USE_GL=		opengl
 USE_QT=		base
+USE_XORG=	ice x11 xcb
 
 DESKTOP_ENTRIES=	"FET" \
 			"Free timetable software" \
@@ -34,8 +35,10 @@ post-patch:
 		${WRKSRC}/src/interface/fet.cpp
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/fet ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_PROGRAM} ${WRKSRC}/fet-cl ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${CONFIGURE_WRKSRC}/src/interface/fet \
+		${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${CONFIGURE_WRKSRC}/src/cl/fet-cl \
+		${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/man/fet*.gz ${STAGEDIR}${PREFIX}/share/man/man1
 
 do-install-EXAMPLES-on:

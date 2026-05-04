@@ -1,6 +1,6 @@
 PORTNAME=	lace
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.1
+DISTVERSION=	2.3.2
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-work-stealing
 
@@ -10,9 +10,6 @@ WWW=		https://github.com/trolando/lace
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_armv7=	compilation fails: error: static assertion failed due to requirement '(sizeof(struct _lace_task) % 64) == 0': lace_task size should be a multiple of LACE_CACHE_LINE_SIZE
-BROKEN_i386=	compilation fails: error: static assertion failed due to requirement '(sizeof(struct _lace_task) % 64) == 0': lace_task size should be a multiple of LACE_CACHE_LINE_SIZE
 
 USES=		cmake:testing
 
@@ -32,6 +29,6 @@ pre-configure: # see discussion in https://github.com/trolando/lace/issues/16
 	@${REINPLACE_CMD} -e 's,memory_order_[[:alnum:]_]*,memory_order_seq_cst,g' \
 		${WRKSRC}/src/*.[ch] ${WRKSRC}/src/lace.sh
 
-# tests as of 2.2.1: 100% tests passed, 0 tests failed out of 3
+# tests as of 2.3.2: 100% tests passed, 0 tests failed out of 4
 
 .include <bsd.port.mk>

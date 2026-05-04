@@ -1,5 +1,6 @@
 PORTNAME=	astropy-healpix
 PORTVERSION=	1.1.3
+PORTREVISION=	1
 CATEGORIES=	astro python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,12 +15,12 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}extension-helpers>0:astro/py-extension-helpers@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}astropy>=5:astro/py-astropy@${PY_FLAVOR} \
-		${PYNUMPY}
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>0:devel/py-hypothesis@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-astropy>0:astro/py-pytest-astropy@${PY_FLAVOR}
 

@@ -14,7 +14,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.1.0:devel/py-cffi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}flit-core>0:devel/py-flit-core@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.1.0:devel/py-cffi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xcffib>=0.3.2:x11/py-xcffib@${PY_FLAVOR}
-TEST_DEPENDS=	${PYNUMPY} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR} \
 		gdk-pixbuf2>0:graphics/gdk-pixbuf2
 

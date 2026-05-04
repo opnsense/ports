@@ -1,9 +1,9 @@
 PORTNAME=	OrcaSlicer
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.3.1
+DISTVERSION=	2.3.2
 CATEGORIES=	cad
 
-MAINTAINER=	bapt@FreeBSD.org
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	Slicing Software for Precision 3D Prints
 WWW=		https://www.orcaslicer.com
 
@@ -44,6 +44,7 @@ USE_XORG=	x11
 
 CMAKE_ARGS=	-DSLIC3R_FHS=1 \
 		-DSLIC3R_GTK=3 \
+		-DSLIC3R_STATIC=0 \
 		-DORCA_TOOLS=1 \
 		-DBBL_RELEASE_TO_PUBLIC=1 \
 		-DBBL_INTERNAL_TESTING=0

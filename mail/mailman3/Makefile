@@ -1,6 +1,6 @@
 PORTNAME=	mailman
 DISTVERSION=	3.3.10
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	mail
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -45,5 +45,8 @@ NO_ARCH=	yes
 SUB_LIST=	PYTHON_CMD=${PYTHON_CMD}
 USERS=		mailman
 GROUPS=		mailman
+
+post-patch:
+	${FIND} ${WRKSRC} -name '*.orig' -delete
 
 .include <bsd.port.mk>

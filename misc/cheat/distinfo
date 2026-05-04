@@ -1,6 +1,6 @@
-TIMESTAMP = 1771201798
-SHA256 (cheat-cheat-5.0.0_GH0.tar.gz) = 2388cd72266c0fc8469b579ca9541224740b5d944ce751053cf99853af9ef779
-SIZE (cheat-cheat-5.0.0_GH0.tar.gz) = 3438152
+TIMESTAMP = 1775931016
+SHA256 (cheat-cheat-5.1.0_GH0.tar.gz) = 5ef8864dacb5b37268d7d26cd01f74b99a33b2e5eb5b290e4221358410c99db4
+SIZE (cheat-cheat-5.1.0_GH0.tar.gz) = 3442396
 SHA256 (Microsoft-go-winio-v0.6.2_GH0.tar.gz) = 0bf0aedbb0a38c494fda60804679e270fe98ca05dc9c2659584df1e3e1e0bd17
 SIZE (Microsoft-go-winio-v0.6.2_GH0.tar.gz) = 114145
 SHA256 (ProtonMail-go-crypto-v1.3.0_GH0.tar.gz) = 05f38ede69b73f91a57697c2807f90699542b079937312a52485ff8cf3c6ce9b

@@ -1,6 +1,6 @@
 PORTNAME=	xclipsync
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.3
+DISTVERSION=	0.2.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	dtxdf@FreeBSD.org
@@ -19,7 +19,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 PLIST_FILES=	bin/xclipsync \
-		libexec/xclipsync/smart-xclip-out.sh \
+		libexec/xclipsync/smart-xclip.sh \
 		libexec/xclipsync/xclipfrom \
 		share/man/man1/xclipsync.1.gz
 

@@ -1,5 +1,5 @@
 PORTNAME=	Dancer2-Plugin-LogReport
-PORTVERSION=	2.02
+PORTVERSION=	2.03
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MARKOV
@@ -14,7 +14,7 @@ LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Dancer2>=0.207:www/p5-Dancer2 \
-		p5-Log-Report>=1.42:devel/p5-Log-Report \
+		p5-Log-Report>=1.45:devel/p5-Log-Report \
 		p5-Log-Report-Template>=0:devel/p5-Log-Report-Template
 
 USES=		perl5

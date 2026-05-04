@@ -1,6 +1,6 @@
 PORTNAME=	toyplot
 PORTVERSION=	0.19.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +11,7 @@ WWW=		https://pypi.org/project/toyplot/
 
 LICENSE=	BSD3CLAUSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.8:math/py-numpy@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.8:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}colormath>=2.1.1:math/py-colormath@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}multipledispatch>=0.4.7:devel/py-multipledispatch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}png>=0.0.17:graphics/py-png@${PY_FLAVOR} \

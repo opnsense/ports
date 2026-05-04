@@ -1,6 +1,5 @@
 PORTNAME=	copyq
-DISTVERSION=	13.0.0
-PORTREVISION=	1
+DISTVERSION=	15.0.0
 CATEGORIES=	deskutils
 MASTER_SITES=	https://github.com/hluk/CopyQ/releases/download/v${DISTVERSION}/
 DISTNAME=	Copyq-${DISTVERSION}
@@ -12,13 +11,13 @@ WWW=		https://github.com/hluk/CopyQ
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libxkbcommon.so:x11/libxkbcommon
-
 USES=		cmake gl kde:6 pkgconfig qt:6 xorg
 USE_GL=		opengl
 USE_KDE=	guiaddons notifications statusnotifieritem ecm:build
 USE_QT=		base declarative svg translations:build
 USE_XORG=	ice sm x11 xext xfixes xtst
+
+CMAKE_OFF=	WITH_AUDIO WITH_QCA_ENCRYPTION
 
 PORTSCOUT=	limit:^d\.d\.
 

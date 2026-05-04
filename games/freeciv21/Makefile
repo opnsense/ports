@@ -22,7 +22,7 @@ USE_KDE=	archive
 USE_QT=		core gui network svg widgets buildtools:build qmake:build
 USE_SDL=	mixer2 sdl2
 
-FC21_VERSION=	v3.1.0
+FC21_VERSION=	v3.1.1
 
 CMAKE_ON=	CMAKE_DISABLE_FIND_PACKAGE_Git
 CMAKE_OFF=	FREECIV_DOWNLOAD_FONTS

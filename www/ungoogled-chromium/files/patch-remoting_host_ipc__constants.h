@@ -1,6 +1,6 @@
---- remoting/host/ipc_constants.h.orig	2026-03-15 18:32:51 UTC
+--- remoting/host/ipc_constants.h.orig	2026-04-15 11:25:12 UTC
 +++ remoting/host/ipc_constants.h
-@@ -38,7 +38,7 @@ extern const char kAgentProcessBrokerMessagePipeId[];
+@@ -39,7 +39,7 @@ extern const char kAgentProcessBrokerMessagePipeId[];
  const mojo::NamedPlatformChannel::ServerName& GetAgentProcessBrokerServerName();
  #endif
  

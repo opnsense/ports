@@ -52,7 +52,7 @@ MAKE_ENV=	LANG="C" \
 		CXX=${CXX} \
 		CPP=${CPP} \
 		LOG=cmdlines \
-		MAKEFLAGS=""
+		MAKEFLAGS="CONF_CHECK=ignore"
 
 JDK_ARCH=	${ARCH:S/amd64/x86_64/:S/i386/x86/:S/powerpc64/ppc64/}
 BOOTSTRAPJDKFILE=	openjdk17-17.0.17+10.1.${JDK_ARCH}.tar.xz

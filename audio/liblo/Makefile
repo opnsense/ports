@@ -1,7 +1,8 @@
 PORTNAME=	liblo
-PORTVERSION=	0.34
+PORTVERSION=	0.35
 CATEGORIES=	audio
-MASTER_SITES=	SF
+MASTER_SITES=	https://github.com/radarsat1/liblo/releases/download/${PORTVERSION}/ \
+		SF
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Lightweight Open Sound Control implementation

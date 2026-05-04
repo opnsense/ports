@@ -1,6 +1,6 @@
 PORTNAME=	zanata-cli
 PORTVERSION=	4.6.2
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-dist
 CATEGORIES=	devel java
 MASTER_SITES=	https://repo.maven.apache.org/maven2/org/zanata/${PORTNAME}/${PORTVERSION}/

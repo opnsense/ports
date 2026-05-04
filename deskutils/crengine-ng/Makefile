@@ -2,7 +2,7 @@ PORTNAME=	crengine-ng
 DISTVERSION=	0.9.12
 CATEGORIES=	deskutils
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	Cross-platform library for text viewers and e-book readers
 WWW=		https://gitlab.com/coolreader-ng/crengine-ng
 

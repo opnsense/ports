@@ -1,5 +1,6 @@
 PORTNAME=	ammonite
 DISTVERSION=	3.0.8
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	https://github.com/lihaoyi/Ammonite/releases/download/${DISTVERSION}/
 DISTNAME=	3.3-${DISTVERSION}

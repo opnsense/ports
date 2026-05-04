@@ -1,6 +1,7 @@
 PORTNAME=	noctavox
-DISTVERSION=	g20260211
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.2.7
+PORTREVISION=	0
 CATEGORIES=	audio
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -19,7 +20,8 @@ LICENSE_PERMS_UNICODE=		dist-mirror dist-sell pkg-mirror pkg-sell \
 LICENSE_PERMS_UNICODE-DFS-2016=	dist-mirror dist-sell pkg-mirror pkg-sell \
 				auto-accept
 
-LIB_DEPENDS=	libasound.so:audio/alsa-lib
+LIB_DEPENDS=	libasound.so:audio/alsa-lib \
+		libdbus-1.so:devel/dbus
 RUN_DEPENDS=	alsa-plugins>=1.2.12:audio/alsa-plugins
 
 USES=		cargo
@@ -27,9 +29,6 @@ USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	Jaxx497
 GH_PROJECT=	NoctaVox
-GH_TAGNAME=	1b04b23
-
-CARGO_INSTALL_PATH=	${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

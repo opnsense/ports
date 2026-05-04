@@ -1,6 +1,6 @@
 PORTNAME=	ldapbrowser
 PORTVERSION=	2.8.2
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	net java
 MASTER_SITES=	LOCAL/ronald \
 		https://www.klop.ws/distfiles/ \

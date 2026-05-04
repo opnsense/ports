@@ -1,9 +1,9 @@
---- src/slic3r/GUI/CalibrationWizardPage.cpp.orig	2025-03-01 00:00:00 UTC
+--- src/slic3r/GUI/CalibrationWizardPage.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/slic3r/GUI/CalibrationWizardPage.cpp
-@@ -424,7 +424,7 @@
+@@ -448,7 +448,7 @@ CaliPageCaption::CaliPageCaption(wxWindow* parent, Cal
          wxPostEvent(m_parent, event);
          });
-
+ 
 -#ifdef __linux__
 +#if defined(__linux__) || defined(__FreeBSD__)
      wxGetApp().CallAfter([this, title_text]() {

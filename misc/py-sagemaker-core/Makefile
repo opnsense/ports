@@ -1,5 +1,5 @@
 PORTNAME=	sagemaker-core
-DISTVERSION=	2.0.1
+DISTVERSION=	2.9.0
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=20.3.0:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}importlib-metadata>=7.0>=1.4.0:devel/py-importlib-metadata@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>0:devel/py-jsonschema@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mock>0:devel/py-mock@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}omegaconf>=2.1.0:devel/py-omegaconf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=20.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=1.0.0:math/py-pandas@${PY_FLAVOR} \

@@ -1,4 +1,4 @@
---- src/libslic3r/utils.cpp.orig	2025-10-02 17:32:12 UTC
+--- src/libslic3r/utils.cpp.orig	2026-03-22 17:56:38 UTC
 +++ src/libslic3r/utils.cpp
 @@ -41,6 +41,11 @@
  		#include <dirent.h>
@@ -12,7 +12,7 @@
  #endif
  
  #include <boost/log/core.hpp>
-@@ -847,7 +852,7 @@ CopyFileResult copy_file_inner(const std::string& from
+@@ -853,7 +858,7 @@ CopyFileResult copy_file_inner(const std::string& from
  	// That may happen when copying on some exotic file system, for example Linux on Chrome.
  	copy_file_linux(source, target, ec);
  #else // __linux__
@@ -21,7 +21,7 @@
  #endif // __linux__
  	if (ec) {
  		error_message = ec.message();
-@@ -1205,6 +1210,12 @@ std::string get_process_name(int pid)
+@@ -1251,6 +1256,12 @@ std::string get_process_name(int pid)
  	char* p = pathbuf;
  	while (auto q = strchr(p + 1, '/')) p = q;
  	return p;
@@ -34,7 +34,7 @@
  #else
      char pathbuf[512]  = {0};
      char proc_path[32] = "/proc/self/exe";
-@@ -1484,7 +1495,7 @@ bool makedir(const std::string path) {
+@@ -1566,7 +1577,7 @@ bool makedir(const std::string path) {
  #ifdef WIN32
  	if (_access(path.c_str(), 0) != 0)
  		return _mkdir(path.c_str()) == 0;

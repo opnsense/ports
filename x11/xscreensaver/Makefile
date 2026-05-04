@@ -1,5 +1,5 @@
 PORTNAME=	xscreensaver
-DISTVERSION=	6.14
+DISTVERSION=	6.15
 CATEGORIES=	x11
 MASTER_SITES=	${WWW}
 
@@ -46,7 +46,7 @@ CONFIGURE_ARGS=	--enable-locking \
 		--with-xshm-ext \
 		--without-kerberos \
 		--without-shadow
-CONFIGURE_ENV=	PERL="${PERL}" INSTALL_PROGRAM="${INSTALL_SCRIPT}"
+CONFIGURE_ENV=	PERL="${PERL}"
 
 MAKE_ARGS=	install_prefix=${STAGEDIR}
 
@@ -101,12 +101,5 @@ post-install:
 	${RM} ${STAGEDIR}${PREFIX}/etc/pam.d/xscreensaver
 	${LN} -s ${LOCALBASE}/etc/pam.d/unix-selfauth \
 		${STAGEDIR}${PREFIX}/etc/pam.d/xscreensaver
-	#XXX: Get rid of this after issue with trying to strip ShaderToy savers
-	# will be fixed. Those are shell scripts, not binaries.
-	${STRIP_CMD} ${xscreensaver xscreensaver-command xscreensaver-settings \
-		:L:S|^|${STAGEDIR}${PREFIX}/bin/|}
-	${FIND} ${STAGEDIR}${PREFIX}/bin/xscreensaver-hacks/ -type f -exec \
-		${AWK} 'RS="\0" FNR>1 {next} !/^#!( +)?\// {print FILENAME ; next}' {} + | \
-		${XARGS} ${STRIP_CMD}
 
 .include <bsd.port.mk>

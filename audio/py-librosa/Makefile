@@ -1,6 +1,6 @@
 PORTNAME=	librosa
 DISTVERSION=	0.11.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio python
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,7 +21,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}audioread>=2.1.9:audio/py-audioread@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}lazy_loader>=0.1:devel/py-lazy_loader@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}msgpack>=1.0:devel/py-msgpack@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numba>=0.51.0:devel/py-numba@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=20.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pooch>=1.1:devel/py-pooch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-learn>=1.1.0:science/py-scikit-learn@${PY_FLAVOR} \

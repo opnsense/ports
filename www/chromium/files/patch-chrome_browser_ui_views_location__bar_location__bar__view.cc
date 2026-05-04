@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/location_bar/location_bar_view.cc.orig	2026-03-13 06:02:14 UTC
+--- chrome/browser/ui/views/location_bar/location_bar_view.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/ui/views/location_bar/location_bar_view.cc
-@@ -1846,7 +1846,7 @@ void LocationBarView::OnPopupStateChanged(OmniboxPopup
+@@ -1873,7 +1873,7 @@ void LocationBarView::OnPopupStateChanged(OmniboxPopup
      }
    }
  

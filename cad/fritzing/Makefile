@@ -2,7 +2,7 @@ PORTNAME=	fritzing
 PORTVERSION=	1.0.6
 CATEGORIES=	cad
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	CAD for printed circuit boards
 WWW=		https://fritzing.org/
 

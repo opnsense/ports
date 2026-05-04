@@ -9,7 +9,7 @@ MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Computer vision and image processing library for Python
 WWW=		https://packages.python.org/mahotas/
 
-BUILD_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
 LIB_DEPENDS=	libfreeimage.so:graphics/freeimage
 
 USE_GCC=	yes

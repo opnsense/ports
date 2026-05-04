@@ -1,5 +1,6 @@
 PORTNAME=	freebsd-sysroot
 DISTVERSION=	a2025-11-26
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	${_SYSROOT_DIST:@f@https://download.freebsd.org/$f?dummy=/:${FLAVOR}@} \
 		LOCAL/rust:${FLAVOR}
@@ -10,6 +11,8 @@ EXTRACT_ONLY=	${DISTFILES:[1]:S/:${FLAVOR}$$//}
 MAINTAINER=	rust@FreeBSD.org
 COMMENT=	FreeBSD ${_SYSROOT_VER} ${FLAVOR:S/_/ /} sysroot
 WWW=		https://www.FreeBSD.org/
+
+NO_SHLIB_REQUIRES_GLOB=	libprivate*
 
 LICENSE=	FREEBSD
 LICENSE_NAME=	FreeBSD base licenses

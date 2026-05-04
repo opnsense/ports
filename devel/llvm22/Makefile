@@ -1,5 +1,5 @@
 PORTNAME=	llvm
-DISTVERSION=	22.1.0
+DISTVERSION=	22.1.3
 PORTREVISION=	0
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION}/
@@ -195,6 +195,7 @@ LLDB_CMAKE_ON= \
 	-DCURSES_CURSES_LIBRARY=/usr/lib/libcurses.so \
 	-DCURSES_FORM_LIBRARY=/usr/lib/libform.so \
 	-DCURSES_NCURSES_LIBRARY=/usr/lib/libncurses.so \
+	-DLLDB_ENABLE_PYTHON_LIMITED_API=OFF \
 	-DPANEL_LIBRARIES=/usr/lib/libpanel.so
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_IMPLIES=		CLANG
@@ -645,7 +646,7 @@ build-plist:
 	    ${GREP} -v man/man1 | ${SED} -e 's|${STAGEDIR}${PREFIX}/||' \
 	    -e 's|${LUA_MODLIBDIR:C|${PREFIX}/||}|%%LUA_MODLIBDIR%%|' \
 	    -e 's|${PYTHON_SITELIBDIR:C|${PREFIX}/||}|%%PYTHON_SITELIBDIR%%|' \
-	    -e 's|${PYTHON_TAG:C/\./\\./g}${PYTHON_ABIVER}|%%PYTHON_TAG%%%%PYTHON_ABIVER%%|' \
+	    -e 's|${PYTHON_SOABI}|%%PYTHON_SOABI%%|' \
 	    -e 's|${LLVM_RELEASE}|%%LLVM_RELEASE%%|' \
 	    -e 's|release.cmake|%%CMAKE_BUILD_TYPE%%.cmake|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \

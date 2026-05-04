@@ -1,6 +1,5 @@
 PORTNAME=	glvis
-DISTVERSION=	4.4
-PORTREVISION=	1
+DISTVERSION=	4.5
 CATEGORIES=	graphics
 MASTER_SITES=	https://glvis.github.io/releases/
 PKGNAMESUFFIX=	-mesh-visualizer # other software also has the name glvis
@@ -18,9 +17,11 @@ BUILD_DEPENDS=	glm>0:math/glm \
 		xxd:editors/vim
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
+		libgcc_s.so.1:lang/gcc14 \
 		libHYPRE.so:science/hypre \
 		libmetis.so:math/metis \
 		libmfem.so:math/mfem \
+		libopenblas.so:math/openblas \
 		libpng.so:graphics/png
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scikit-image>0:graphics/py-scikit-image@${PY_FLAVOR}
 

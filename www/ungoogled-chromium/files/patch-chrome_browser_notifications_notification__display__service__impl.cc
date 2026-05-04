@@ -1,4 +1,4 @@
---- chrome/browser/notifications/notification_display_service_impl.cc.orig	2025-04-15 08:30:07 UTC
+--- chrome/browser/notifications/notification_display_service_impl.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/notifications/notification_display_service_impl.cc
 @@ -31,7 +31,7 @@
  #endif
@@ -9,7 +9,7 @@
  #include "chrome/browser/send_tab_to_self/desktop_notification_handler.h"
  #include "chrome/browser/sharing/sharing_notification_handler.h"
  #endif
-@@ -60,7 +60,7 @@ NotificationDisplayServiceImpl* NotificationDisplaySer
+@@ -64,7 +64,7 @@ NotificationDisplayServiceImpl* NotificationDisplaySer
  // static
  void NotificationDisplayServiceImpl::RegisterProfilePrefs(
      user_prefs::PrefRegistrySyncable* registry) {
@@ -18,7 +18,7 @@
    registry->RegisterBooleanPref(prefs::kAllowSystemNotifications, true);
  #endif
  }
-@@ -76,7 +76,7 @@ NotificationDisplayServiceImpl::NotificationDisplaySer
+@@ -80,7 +80,7 @@ NotificationDisplayServiceImpl::NotificationDisplaySer
                             std::make_unique<PersistentNotificationHandler>());
  
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
@@ -27,7 +27,7 @@
      AddNotificationHandler(
          NotificationHandler::Type::SEND_TAB_TO_SELF,
          std::make_unique<send_tab_to_self::DesktopNotificationHandler>(
-@@ -84,7 +84,7 @@ NotificationDisplayServiceImpl::NotificationDisplaySer
+@@ -88,7 +88,7 @@ NotificationDisplayServiceImpl::NotificationDisplaySer
  #endif
  
  #if (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \

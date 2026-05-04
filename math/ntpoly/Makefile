@@ -12,7 +12,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	swig>0:devel/swig
-TEST_DEPENDS=	${PYNUMPY}	\
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
 		bash:shells/bash	\
 		${PYTHON_PKGNAMEPREFIX}mpi4py-mpich>0:net/py-mpi4py-mpich@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}

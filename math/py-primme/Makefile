@@ -1,6 +1,6 @@
 PORTNAME=	primme
 DISTVERSION=	3.2.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,13 +13,13 @@ WWW=		https://www.cs.wm.edu/~andreas/software/ \
 LICENSE=	BSD3CLAUSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libprimme.so:math/primme \
 		libblas.so:math/blas \
 		liblapack.so:math/lapack
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}future>0:devel/py-future@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}nose>=0:devel/py-nose@${PY_FLAVOR}

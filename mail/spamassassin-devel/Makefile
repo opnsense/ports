@@ -1,6 +1,6 @@
 PORTNAME=	spamassassin
 PORTVERSION=	${SA_COMMIT_DATE}
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES?=	mail perl5
 PKGNAMESUFFIX=	-devel
 
@@ -10,8 +10,8 @@ WWW=		https://spamassassin.apache.org/
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	apache
-GH_TAGNAME=	afca839db
-SA_COMMIT_DATE=	2026.02.27
+GH_TAGNAME=	d0f8417bc
+SA_COMMIT_DATE=	2026.04.28
 
 LICENSE=	APACHE20
 
@@ -187,6 +187,7 @@ post-patch::
 		-e 's,B_CONFDIR)/v400.pre,B_CONFDIR)/v400.pre.sample,g' \
 		-e 's,B_CONFDIR)/v401.pre,B_CONFDIR)/v401.pre.sample,g' \
 		-e 's,B_CONFDIR)/v402.pre,B_CONFDIR)/v402.pre.sample,g' \
+		-e 's,B_CONFDIR)/v403.pre,B_CONFDIR)/v403.pre.sample,g' \
 		-e 's/require DBI/0/' \
 		${WRKSRC}/Makefile.PL
 	${REINPLACE_CMD} -e '/^CC =/d; \

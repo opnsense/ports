@@ -1,6 +1,5 @@
 PORTNAME=	qgis
-DISTVERSION=	3.44.7
-PORTREVISION=	1
+DISTVERSION=	3.44.9
 CATEGORIES=	graphics geography
 MASTER_SITES=	https://qgis.org/downloads/
 
@@ -80,7 +79,7 @@ RUN_DEPENDS=	astyle:devel/astyle \
 		${PYTHON_PKGNAMEPREFIX}netCDF4>=1.6.2:science/py-netCDF4@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}networkx>=2.8.8:math/py-networkx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}nltk>=3.7:textproc/py-nltk@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}OWSLib>=0.27.2:graphics/py-OWSLib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=1.5.0:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pbr>=5.10.0:devel/py-pbr@${PY_FLAVOR} \

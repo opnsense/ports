@@ -1,6 +1,6 @@
 PORTNAME=		carbonzipper
 DISTVERSION=		0.74
-PORTREVISION=	37
+PORTREVISION=	38
 CATEGORIES=		net-mgmt
 
 MAINTAINER=		a.andersson.thn@gmail.com

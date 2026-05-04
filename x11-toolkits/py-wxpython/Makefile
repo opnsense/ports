@@ -1,5 +1,6 @@
 PORTNAME=	wxpython
 DISTVERSION=	4.2.5
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +20,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=2.26.0:www/py-requests@${PY_FLAV
 		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR} \
 		${PY_TYPING_EXTENSIONS}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0:math/py-numpy@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
 		${PY_TYPING_EXTENSIONS}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}appdirs>=0:devel/py-appdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.26.0:www/py-requests@${PY_FLAVOR} \
@@ -30,7 +31,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}appdirs>=0:devel/py-appdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxcontrib-jquery>=0:textproc/py-sphinxcontrib-jquery@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}beautifulsoup>=4:www/py-beautifulsoup@${PY_FLAVOR} \
 		${PY_TYPING_EXTENSIONS} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=0:math/py-numpy@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR}
 
 USES=		compiler:c++11-lib localbase pkgconfig pyqt:6 python
 USE_WX=		3.2

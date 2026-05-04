@@ -1,5 +1,5 @@
 PORTNAME=	toml-fmt-common
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +11,6 @@ WWW=		https://github.com/tox-dev/toml-fmt/tree/main/toml-fmt-common \
 		https://github.com/tox-dev/toml-fmt
 
 LICENSE=	MIT
-LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0.5:devel/py-hatch-vcs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hatchling>=1.27:devel/py-hatchling@${PY_FLAVOR}

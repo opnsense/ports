@@ -11,6 +11,7 @@ include/dpp/cluster_coro_calls.h
 include/dpp/collector.h
 include/dpp/colors.h
 include/dpp/commandhandler.h
+include/dpp/compat.h
 include/dpp/coro.h
 include/dpp/coro/async.h
 include/dpp/coro/awaitable.h
@@ -81,6 +82,7 @@ include/dpp/unicode_emoji.h
 include/dpp/user.h
 include/dpp/utility.h
 include/dpp/version.h
+include/dpp/voice_channel_effect.h
 include/dpp/voiceregion.h
 include/dpp/voicestate.h
 include/dpp/webhook.h
@@ -93,5 +95,5 @@ lib/cmake/dpp/dpp-config.cmake
 lib/cmake/dpp/dpp-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/dpp/dpp.cmake
 lib/libdpp.so
-lib/libdpp.so.10.1.3
+lib/libdpp.so.10.1.4
 libdata/pkgconfig/dpp.pc

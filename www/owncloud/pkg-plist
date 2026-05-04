@@ -119,6 +119,8 @@
 %%WWWDIR%%/apps/comments/l10n/ku_IQ.json
 %%WWWDIR%%/apps/comments/l10n/lb.js
 %%WWWDIR%%/apps/comments/l10n/lb.json
+%%WWWDIR%%/apps/comments/l10n/lo.js
+%%WWWDIR%%/apps/comments/l10n/lo.json
 %%WWWDIR%%/apps/comments/l10n/lt_LT.js
 %%WWWDIR%%/apps/comments/l10n/lt_LT.json
 %%WWWDIR%%/apps/comments/l10n/lv.js
@@ -193,6 +195,8 @@
 %%WWWDIR%%/apps/comments/l10n/uz.json
 %%WWWDIR%%/apps/comments/l10n/vi.js
 %%WWWDIR%%/apps/comments/l10n/vi.json
+%%WWWDIR%%/apps/comments/l10n/zh-Hans.js
+%%WWWDIR%%/apps/comments/l10n/zh-Hans.json
 %%WWWDIR%%/apps/comments/l10n/zh_CN.js
 %%WWWDIR%%/apps/comments/l10n/zh_CN.json
 %%WWWDIR%%/apps/comments/l10n/zh_HK.js
@@ -615,6 +619,8 @@
 %%WWWDIR%%/apps/dav/l10n/ur_PK.json
 %%WWWDIR%%/apps/dav/l10n/vi.js
 %%WWWDIR%%/apps/dav/l10n/vi.json
+%%WWWDIR%%/apps/dav/l10n/zh-Hans.js
+%%WWWDIR%%/apps/dav/l10n/zh-Hans.json
 %%WWWDIR%%/apps/dav/l10n/zh_CN.js
 %%WWWDIR%%/apps/dav/l10n/zh_CN.json
 %%WWWDIR%%/apps/dav/l10n/zh_HK.js
@@ -1186,6 +1192,8 @@
 %%WWWDIR%%/apps/federatedfilesharing/l10n/el.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/en_GB.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/en_GB.json
+%%WWWDIR%%/apps/federatedfilesharing/l10n/en_US.js
+%%WWWDIR%%/apps/federatedfilesharing/l10n/en_US.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/eo.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/eo.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/es.js
@@ -1226,6 +1234,8 @@
 %%WWWDIR%%/apps/federatedfilesharing/l10n/ko.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/lb.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/lb.json
+%%WWWDIR%%/apps/federatedfilesharing/l10n/lo.js
+%%WWWDIR%%/apps/federatedfilesharing/l10n/lo.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/lt_LT.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/lt_LT.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/lv.js
@@ -1274,10 +1284,16 @@
 %%WWWDIR%%/apps/federatedfilesharing/l10n/ug.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/uk.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/uk.json
+%%WWWDIR%%/apps/federatedfilesharing/l10n/uz.js
+%%WWWDIR%%/apps/federatedfilesharing/l10n/uz.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/vi.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/vi.json
+%%WWWDIR%%/apps/federatedfilesharing/l10n/zh-Hans.js
+%%WWWDIR%%/apps/federatedfilesharing/l10n/zh-Hans.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/zh_CN.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/zh_CN.json
+%%WWWDIR%%/apps/federatedfilesharing/l10n/zh_HK.js
+%%WWWDIR%%/apps/federatedfilesharing/l10n/zh_HK.json
 %%WWWDIR%%/apps/federatedfilesharing/l10n/zh_TW.js
 %%WWWDIR%%/apps/federatedfilesharing/l10n/zh_TW.json
 %%WWWDIR%%/apps/federatedfilesharing/lib/Address.php
@@ -1356,6 +1372,8 @@
 %%WWWDIR%%/apps/federation/l10n/el.json
 %%WWWDIR%%/apps/federation/l10n/en_GB.js
 %%WWWDIR%%/apps/federation/l10n/en_GB.json
+%%WWWDIR%%/apps/federation/l10n/en_US.js
+%%WWWDIR%%/apps/federation/l10n/en_US.json
 %%WWWDIR%%/apps/federation/l10n/eo.js
 %%WWWDIR%%/apps/federation/l10n/eo.json
 %%WWWDIR%%/apps/federation/l10n/es.js
@@ -1408,6 +1426,8 @@
 %%WWWDIR%%/apps/federation/l10n/ku_IQ.json
 %%WWWDIR%%/apps/federation/l10n/lb.js
 %%WWWDIR%%/apps/federation/l10n/lb.json
+%%WWWDIR%%/apps/federation/l10n/lo.js
+%%WWWDIR%%/apps/federation/l10n/lo.json
 %%WWWDIR%%/apps/federation/l10n/lt_LT.js
 %%WWWDIR%%/apps/federation/l10n/lt_LT.json
 %%WWWDIR%%/apps/federation/l10n/lv.js
@@ -1474,6 +1494,8 @@
 %%WWWDIR%%/apps/federation/l10n/ur_PK.json
 %%WWWDIR%%/apps/federation/l10n/vi.js
 %%WWWDIR%%/apps/federation/l10n/vi.json
+%%WWWDIR%%/apps/federation/l10n/zh-Hans.js
+%%WWWDIR%%/apps/federation/l10n/zh-Hans.json
 %%WWWDIR%%/apps/federation/l10n/zh_CN.js
 %%WWWDIR%%/apps/federation/l10n/zh_CN.json
 %%WWWDIR%%/apps/federation/l10n/zh_HK.js
@@ -2019,8 +2041,12 @@
 %%WWWDIR%%/apps/files_external/l10n/uk.json
 %%WWWDIR%%/apps/files_external/l10n/ur_PK.js
 %%WWWDIR%%/apps/files_external/l10n/ur_PK.json
+%%WWWDIR%%/apps/files_external/l10n/uz.js
+%%WWWDIR%%/apps/files_external/l10n/uz.json
 %%WWWDIR%%/apps/files_external/l10n/vi.js
 %%WWWDIR%%/apps/files_external/l10n/vi.json
+%%WWWDIR%%/apps/files_external/l10n/zh-Hans.js
+%%WWWDIR%%/apps/files_external/l10n/zh-Hans.json
 %%WWWDIR%%/apps/files_external/l10n/zh_CN.js
 %%WWWDIR%%/apps/files_external/l10n/zh_CN.json
 %%WWWDIR%%/apps/files_external/l10n/zh_HK.js
@@ -2365,8 +2391,12 @@
 %%WWWDIR%%/apps/files_sharing/l10n/uk.json
 %%WWWDIR%%/apps/files_sharing/l10n/ur_PK.js
 %%WWWDIR%%/apps/files_sharing/l10n/ur_PK.json
+%%WWWDIR%%/apps/files_sharing/l10n/uz.js
+%%WWWDIR%%/apps/files_sharing/l10n/uz.json
 %%WWWDIR%%/apps/files_sharing/l10n/vi.js
 %%WWWDIR%%/apps/files_sharing/l10n/vi.json
+%%WWWDIR%%/apps/files_sharing/l10n/zh-Hans.js
+%%WWWDIR%%/apps/files_sharing/l10n/zh-Hans.json
 %%WWWDIR%%/apps/files_sharing/l10n/zh_CN.GB2312.js
 %%WWWDIR%%/apps/files_sharing/l10n/zh_CN.GB2312.json
 %%WWWDIR%%/apps/files_sharing/l10n/zh_CN.js
@@ -2549,6 +2579,8 @@
 %%WWWDIR%%/apps/files_trashbin/l10n/ku_IQ.json
 %%WWWDIR%%/apps/files_trashbin/l10n/lb.js
 %%WWWDIR%%/apps/files_trashbin/l10n/lb.json
+%%WWWDIR%%/apps/files_trashbin/l10n/lo.js
+%%WWWDIR%%/apps/files_trashbin/l10n/lo.json
 %%WWWDIR%%/apps/files_trashbin/l10n/lt_LT.js
 %%WWWDIR%%/apps/files_trashbin/l10n/lt_LT.json
 %%WWWDIR%%/apps/files_trashbin/l10n/lv.js
@@ -2623,8 +2655,12 @@
 %%WWWDIR%%/apps/files_trashbin/l10n/uk.json
 %%WWWDIR%%/apps/files_trashbin/l10n/ur_PK.js
 %%WWWDIR%%/apps/files_trashbin/l10n/ur_PK.json
+%%WWWDIR%%/apps/files_trashbin/l10n/uz.js
+%%WWWDIR%%/apps/files_trashbin/l10n/uz.json
 %%WWWDIR%%/apps/files_trashbin/l10n/vi.js
 %%WWWDIR%%/apps/files_trashbin/l10n/vi.json
+%%WWWDIR%%/apps/files_trashbin/l10n/zh-Hans.js
+%%WWWDIR%%/apps/files_trashbin/l10n/zh-Hans.json
 %%WWWDIR%%/apps/files_trashbin/l10n/zh_CN.js
 %%WWWDIR%%/apps/files_trashbin/l10n/zh_CN.json
 %%WWWDIR%%/apps/files_trashbin/l10n/zh_HK.js
@@ -2695,6 +2731,8 @@
 %%WWWDIR%%/apps/files_versions/l10n/el.json
 %%WWWDIR%%/apps/files_versions/l10n/en_GB.js
 %%WWWDIR%%/apps/files_versions/l10n/en_GB.json
+%%WWWDIR%%/apps/files_versions/l10n/en_US.js
+%%WWWDIR%%/apps/files_versions/l10n/en_US.json
 %%WWWDIR%%/apps/files_versions/l10n/eo.js
 %%WWWDIR%%/apps/files_versions/l10n/eo.json
 %%WWWDIR%%/apps/files_versions/l10n/es.js
@@ -2743,6 +2781,8 @@
 %%WWWDIR%%/apps/files_versions/l10n/ku_IQ.json
 %%WWWDIR%%/apps/files_versions/l10n/lb.js
 %%WWWDIR%%/apps/files_versions/l10n/lb.json
+%%WWWDIR%%/apps/files_versions/l10n/lo.js
+%%WWWDIR%%/apps/files_versions/l10n/lo.json
 %%WWWDIR%%/apps/files_versions/l10n/lt_LT.js
 %%WWWDIR%%/apps/files_versions/l10n/lt_LT.json
 %%WWWDIR%%/apps/files_versions/l10n/lv.js
@@ -2803,6 +2843,8 @@
 %%WWWDIR%%/apps/files_versions/l10n/ur_PK.json
 %%WWWDIR%%/apps/files_versions/l10n/vi.js
 %%WWWDIR%%/apps/files_versions/l10n/vi.json
+%%WWWDIR%%/apps/files_versions/l10n/zh-Hans.js
+%%WWWDIR%%/apps/files_versions/l10n/zh-Hans.json
 %%WWWDIR%%/apps/files_versions/l10n/zh_CN.js
 %%WWWDIR%%/apps/files_versions/l10n/zh_CN.json
 %%WWWDIR%%/apps/files_versions/l10n/zh_HK.js
@@ -3230,6 +3272,8 @@
 %%WWWDIR%%/apps/systemtags/l10n/ku_IQ.json
 %%WWWDIR%%/apps/systemtags/l10n/lb.js
 %%WWWDIR%%/apps/systemtags/l10n/lb.json
+%%WWWDIR%%/apps/systemtags/l10n/lo.js
+%%WWWDIR%%/apps/systemtags/l10n/lo.json
 %%WWWDIR%%/apps/systemtags/l10n/lt_LT.js
 %%WWWDIR%%/apps/systemtags/l10n/lt_LT.json
 %%WWWDIR%%/apps/systemtags/l10n/lv.js
@@ -3300,8 +3344,12 @@
 %%WWWDIR%%/apps/systemtags/l10n/uk.json
 %%WWWDIR%%/apps/systemtags/l10n/ur_PK.js
 %%WWWDIR%%/apps/systemtags/l10n/ur_PK.json
+%%WWWDIR%%/apps/systemtags/l10n/uz.js
+%%WWWDIR%%/apps/systemtags/l10n/uz.json
 %%WWWDIR%%/apps/systemtags/l10n/vi.js
 %%WWWDIR%%/apps/systemtags/l10n/vi.json
+%%WWWDIR%%/apps/systemtags/l10n/zh-Hans.js
+%%WWWDIR%%/apps/systemtags/l10n/zh-Hans.json
 %%WWWDIR%%/apps/systemtags/l10n/zh_CN.js
 %%WWWDIR%%/apps/systemtags/l10n/zh_CN.json
 %%WWWDIR%%/apps/systemtags/l10n/zh_HK.js
@@ -3336,6 +3384,8 @@
 %%WWWDIR%%/apps/updatenotification/l10n/ca.json
 %%WWWDIR%%/apps/updatenotification/l10n/cs_CZ.js
 %%WWWDIR%%/apps/updatenotification/l10n/cs_CZ.json
+%%WWWDIR%%/apps/updatenotification/l10n/cy_GB.js
+%%WWWDIR%%/apps/updatenotification/l10n/cy_GB.json
 %%WWWDIR%%/apps/updatenotification/l10n/da.js
 %%WWWDIR%%/apps/updatenotification/l10n/da.json
 %%WWWDIR%%/apps/updatenotification/l10n/de.js
@@ -3348,6 +3398,8 @@
 %%WWWDIR%%/apps/updatenotification/l10n/el.json
 %%WWWDIR%%/apps/updatenotification/l10n/en_GB.js
 %%WWWDIR%%/apps/updatenotification/l10n/en_GB.json
+%%WWWDIR%%/apps/updatenotification/l10n/en_US.js
+%%WWWDIR%%/apps/updatenotification/l10n/en_US.json
 %%WWWDIR%%/apps/updatenotification/l10n/eo.js
 %%WWWDIR%%/apps/updatenotification/l10n/eo.json
 %%WWWDIR%%/apps/updatenotification/l10n/es.js
@@ -3386,6 +3438,8 @@
 %%WWWDIR%%/apps/updatenotification/l10n/ja.json
 %%WWWDIR%%/apps/updatenotification/l10n/km.js
 %%WWWDIR%%/apps/updatenotification/l10n/km.json
+%%WWWDIR%%/apps/updatenotification/l10n/kn.js
+%%WWWDIR%%/apps/updatenotification/l10n/kn.json
 %%WWWDIR%%/apps/updatenotification/l10n/ko.js
 %%WWWDIR%%/apps/updatenotification/l10n/ko.json
 %%WWWDIR%%/apps/updatenotification/l10n/lb.js
@@ -3424,6 +3478,8 @@
 %%WWWDIR%%/apps/updatenotification/l10n/sq.json
 %%WWWDIR%%/apps/updatenotification/l10n/sr.js
 %%WWWDIR%%/apps/updatenotification/l10n/sr.json
+%%WWWDIR%%/apps/updatenotification/l10n/sr@latin.js
+%%WWWDIR%%/apps/updatenotification/l10n/sr@latin.json
 %%WWWDIR%%/apps/updatenotification/l10n/sv.js
 %%WWWDIR%%/apps/updatenotification/l10n/sv.json
 %%WWWDIR%%/apps/updatenotification/l10n/th_TH.js
@@ -3434,8 +3490,16 @@
 %%WWWDIR%%/apps/updatenotification/l10n/ug.json
 %%WWWDIR%%/apps/updatenotification/l10n/uk.js
 %%WWWDIR%%/apps/updatenotification/l10n/uk.json
+%%WWWDIR%%/apps/updatenotification/l10n/ur_PK.js
+%%WWWDIR%%/apps/updatenotification/l10n/ur_PK.json
+%%WWWDIR%%/apps/updatenotification/l10n/vi.js
+%%WWWDIR%%/apps/updatenotification/l10n/vi.json
+%%WWWDIR%%/apps/updatenotification/l10n/zh-Hans.js
+%%WWWDIR%%/apps/updatenotification/l10n/zh-Hans.json
 %%WWWDIR%%/apps/updatenotification/l10n/zh_CN.js
 %%WWWDIR%%/apps/updatenotification/l10n/zh_CN.json
+%%WWWDIR%%/apps/updatenotification/l10n/zh_HK.js
+%%WWWDIR%%/apps/updatenotification/l10n/zh_HK.json
 %%WWWDIR%%/apps/updatenotification/l10n/zh_TW.js
 %%WWWDIR%%/apps/updatenotification/l10n/zh_TW.json
 %%WWWDIR%%/apps/updatenotification/lib/AppInfo/Application.php
@@ -4091,9 +4155,13 @@
 %%WWWDIR%%/core/l10n/uk.json
 %%WWWDIR%%/core/l10n/ur_PK.js
 %%WWWDIR%%/core/l10n/ur_PK.json
+%%WWWDIR%%/core/l10n/uz.js
+%%WWWDIR%%/core/l10n/uz.json
 %%WWWDIR%%/core/l10n/vi.js
 %%WWWDIR%%/core/l10n/vi.json
 %%WWWDIR%%/core/l10n/xgettextfiles
+%%WWWDIR%%/core/l10n/zh-Hans.js
+%%WWWDIR%%/core/l10n/zh-Hans.json
 %%WWWDIR%%/core/l10n/zh_CN.js
 %%WWWDIR%%/core/l10n/zh_CN.json
 %%WWWDIR%%/core/l10n/zh_HK.js
@@ -7948,6 +8016,7 @@
 %%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Math/Common/FiniteField/Integer.php
 %%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Math/PrimeField.php
 %%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Math/PrimeField/Integer.php
+%%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Net/SCP.php
 %%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Net/SFTP.php
 %%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Net/SFTP/Stream.php
 %%WWWDIR%%/lib/composer/phpseclib/phpseclib/phpseclib/Net/SSH2.php
@@ -9837,6 +9906,8 @@
 %%WWWDIR%%/lib/l10n/uk.json
 %%WWWDIR%%/lib/l10n/ur_PK.js
 %%WWWDIR%%/lib/l10n/ur_PK.json
+%%WWWDIR%%/lib/l10n/uz.js
+%%WWWDIR%%/lib/l10n/uz.json
 %%WWWDIR%%/lib/l10n/vi.js
 %%WWWDIR%%/lib/l10n/vi.json
 %%WWWDIR%%/lib/l10n/zh-Hans.js
@@ -10119,6 +10190,7 @@
 %%WWWDIR%%/lib/private/Http/Client/Response.php
 %%WWWDIR%%/lib/private/Http/Client/WebDavClientService.php
 %%WWWDIR%%/lib/private/Image/BmpToResource.php
+%%WWWDIR%%/lib/private/Image/ImagickFactory.php
 %%WWWDIR%%/lib/private/Installer.php
 %%WWWDIR%%/lib/private/IntegrityCheck/Checker.php
 %%WWWDIR%%/lib/private/IntegrityCheck/Exceptions/InvalidSignatureException.php

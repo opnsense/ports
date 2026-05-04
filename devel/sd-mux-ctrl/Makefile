@@ -1,6 +1,6 @@
 PORTNAME=	sd-mux-ctrl
 DISTVERSION=	g20200217
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	https://git.tizen.org/cgit/tools/testlab/sd-mux/snapshot/sd-mux-9dd189d973da64e033a0c5c2adb3d94b23153d94.tar.bz2?/
 
@@ -13,6 +13,9 @@ WWW=		https://git.tizen.org/cgit/tools/testlab/sd-mux/
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=		Upstream project is unmaintained as the Tizen project is no longer active
+EXPIRATION_DATE=	2026-05-07
 
 LIB_DEPENDS=	libftdi1.so:devel/libftdi1 \
 		libpopt.so:devel/popt

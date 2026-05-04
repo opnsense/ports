@@ -1,4 +1,5 @@
 bin/nvc
+include/vhpi_ext_nvc.h
 include/vhpi_user.h
 lib/nvc/ieee.08/IEEE.FIXED_FLOAT_TYPES
 lib/nvc/ieee.08/IEEE.FIXED_GENERIC_PKG

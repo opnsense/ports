@@ -1,6 +1,6 @@
 PORTNAME=	icingaweb2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.12.6
+DISTVERSION=	2.13.0
 CATEGORIES=	net-mgmt www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
@@ -8,12 +8,13 @@ MAINTAINER=	flo@FreeBSD.org
 COMMENT=	Next generation web interface for Icinga 1 and 2
 WWW=		https://www.icinga.com/products/icinga-web-2
 
-LICENSE=	GPLv2
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	GPLv3
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	icinga-php-library${PHP_PKGNAMESUFFIX}>=0.14.2:net-mgmt/icinga-php-library@${PHP_FLAVOR} \
 		icinga-php-thirdparty${PHP_PKGNAMESUFFIX}>=0.12.1:net-mgmt/icinga-php-thirdparty@${PHP_FLAVOR} \
-		icingaweb2-module-incubator${PHP_PKGNAMESUFFIX}>=0.20.0:net-mgmt/icingaweb2-module-incubator@${PHP_FLAVOR}
+		icingaweb2-module-incubator${PHP_PKGNAMESUFFIX}>=0.20.0:net-mgmt/icingaweb2-module-incubator@${PHP_FLAVOR} \
+		icingaweb2-module-monitoring${PHP_PKGNAMESUFFIX}>=2.12.6:net-mgmt/icingaweb2-module-monitoring@${PHP_FLAVOR}
 
 USES=		php:build,web,flavors shebangfix gettext
 USE_PHP=	bcmath bitset ctype curl dom fileinfo filter gd gettext iconv intl ldap \

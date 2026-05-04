@@ -1,11 +1,10 @@
 PORTNAME=	ccache
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.10.2
-PORTREVISION=	2
+DISTVERSION=	4.13.5
 CATEGORIES=	devel
 PKGNAMESUFFIX=	4
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	osidorkin@gmail.com
 COMMENT=	Tool to minimize the compile time of C/C++ programs
 WWW=		https://ccache.dev/
 
@@ -15,10 +14,8 @@ LICENSE_FILE=	${WRKSRC}/GPL-3.0.txt
 USES=		cmake:noninja compiler:c++17-lang pathfix shebangfix
 USE_GITHUB=	yes
 
-# /bin/bash -> /bin/sh to reduce tests dep.
-SHEBANG_FILES=	test/*
+SHEBANG_FILES=	doc/scripts/* test/*
 SHEBANG_GLOB=	*.sh *.bash
-bash_CMD=	/bin/sh
 
 CMAKE_ARGS+=	-D DEPS=LOCAL
 CMAKE_OFF=	WARNINGS_AS_ERRORS \
@@ -32,18 +29,20 @@ CONFLICTS_INSTALL?=	ccache ccache-static
 NO_CCACHE_DEPEND=	yes
 SUB_FILES=	ccache_clean ccache-update-links.sh world-ccache
 
-PORTDOCS=	AUTHORS.adoc AUTHORS.html MANUAL.adoc MANUAL.html \
-		NEWS.adoc NEWS.html
+PORTDOCS=	AUTHORS.html AUTHORS.md LICENSE.md MANUAL.html MANUAL.md \
+		NEWS.html NEWS.md authors.adoc manual.adoc news.adoc
 
 OPTIONS_DEFINE=		CLANGLINK DOCS LLVMLINK STATIC TEST
-OPTIONS_DEFAULT=	CLANGLINK LLVMLINK
+OPTIONS_DEFAULT=	CLANGLINK LLVMLINK STATIC
 OPTIONS_SUB=		yes
 
 CLANGLINK_DESC=		Create clang compiler links if clang is installed
 LLVMLINK_DESC=		Create llvm compiler links if llvm is installed
 
-DOCS_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
-DOCS_USES=		perl5
+DOCS_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor \
+			bash:shells/bash \
+			pandoc:textproc/hs-pandoc
+DOCS_USES=		groff:run perl5
 DOCS_CMAKE_BOOL=	ENABLE_DOCUMENTATION
 DOCS_ALL_TARGET=	all doc
 
@@ -59,8 +58,11 @@ STATIC_CMAKE_ON=	-D DEP_BLAKE3=BUNDLED -D DEP_CPPHTTPLIB=BUNDLED \
 STATIC_LDFLAGS=		-static
 
 TEST_BUILD_DEPENDS=	doctest>=2.4.6:devel/doctest
+TEST_TEST_DEPENDS=	bash:shells/bash \
+			objdump:devel/binutils
+TEST_USES=		perl5
 TEST_CMAKE_BOOL=	ENABLE_TESTING
-TEST_TARGET=		check
+TEST_TEST_TARGET=	check
 
 .include <bsd.port.pre.mk>
 
@@ -71,13 +73,13 @@ PLIST_SUB+=		CCLINKDIR="${CCLINKDIR}"
 CCACHE_COMPILERS+=	icc icpc
 .endif
 
-GNU_COMPILERS+=		11 12 13 14 15
+GNU_COMPILERS+=		12 13 14 15 16
 CCACHE_COMPILERS+=	cc c++ CC gcc g++ ${GNU_COMPILERS:S|^|gcc|} \
 			${GNU_COMPILERS:S|^|g++|} \
 			${GNU_COMPILERS:S|^|cpp|}
 
 .if ${PORT_OPTIONS:MCLANGLINK}
-CLANG_COMPILERS+=	11 12 13 14 15 16 17 18 19 -devel
+CLANG_COMPILERS+=	12 13 14 15 16 17 18 19 20 21 22 -devel
 CCACHE_COMPILERS+=	clang clang++ ${CLANG_COMPILERS:S|^|clang|} \
 			${CLANG_COMPILERS:S|^|clang++|} \
 			${CLANG_COMPILERS:S|^|cpp|}
@@ -105,5 +107,6 @@ post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${BUILD_WRKSRC}/doc/*.html ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/*.adoc ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/LICENSE.adoc ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>

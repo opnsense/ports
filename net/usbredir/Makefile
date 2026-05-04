@@ -1,5 +1,5 @@
 PORTNAME=	usbredir
-DISTVERSION=	0.9.0
+DISTVERSION=	0.13.0
 DISTVERSIONPREFIX=	${PORTNAME}-
 CATEGORIES=	net devel
 
@@ -10,17 +10,13 @@ WWW=		https://gitlab.freedesktop.org/spice/usbredir/
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	dual
 
-USES=		autoreconf gmake libtool pathfix pkgconfig tar:bzip2
+USES=		gnome libtool meson pkgconfig
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	spice
+USE_GNOME=	glib20
 USE_LDCONFIG=	yes
-
-GNU_CONFIGURE=	yes
 
 INSTALL_TARGET=	install-strip
 
-post-patch:
-	@${REINPLACE_CMD} 's|SOL_TCP|IPPROTO_TCP|' \
-	       ${WRKSRC}/usbredirserver/usbredirserver.c
 .include <bsd.port.mk>

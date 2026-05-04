@@ -13,6 +13,7 @@ include/saga/saga_api/metadata.h
 include/saga/saga_api/parameters.h
 include/saga/saga_api/pointcloud.h
 include/saga/saga_api/saga_api.h
+include/saga/saga_api/saga_version.h
 include/saga/saga_api/shapes.h
 include/saga/saga_api/table.h
 include/saga/saga_api/table_dbase.h
@@ -46,6 +47,7 @@ lib/libsaga_gdi.so.%%PORTVERSION%%
 %%PYTHON_SITELIBDIR%%/PySAGA/plot.py
 %%PYTHON_SITELIBDIR%%/PySAGA/saga_api.py
 %%PYTHON_SITELIBDIR%%/PySAGA/saga_api.pyi
+%%PYTHON_SITELIBDIR%%/PySAGA/tools/__init__.py
 %%PYTHON_SITELIBDIR%%/PySAGA/tools/_tool_chains_uncategorized.py
 %%PYTHON_SITELIBDIR%%/PySAGA/tools/climate_tools.py
 %%PYTHON_SITELIBDIR%%/PySAGA/tools/contrib_perego.py
@@ -225,10 +227,17 @@ share/pixmaps/saga.png
 %%DATADIR%%/docs/saga_python_readme.txt
 %%DATADIR%%/docs/saga_toolchains_cheat_sheet.xml
 %%DATADIR%%/docs/saga_toolchains_manual.odt
+%%DATADIR%%/docs/tools/ta_morphometry/ta_morphometry_1.txt
+%%DATADIR%%/docs/tools/ta_morphometry/ta_morphometry_1_a.jpg
+%%DATADIR%%/docs/tools/ta_morphometry/ta_morphometry_1_b.jpg
+%%DATADIR%%/docs/tools/ta_morphometry/ta_morphometry_1_editors.txt
+%%DATADIR%%/docs/tools/ta_morphometry/ta_morphometry_1_parameters.txt
+%%DATADIR%%/docs/tools/ta_morphometry/ta_morphometry_1_references.txt
 %%DATADIR%%/helper/convert2utf-8.bat
 %%DATADIR%%/helper/convert2utf-8.py
 %%DATADIR%%/helper/create_archive.py
 %%DATADIR%%/helper/create_python_toolboxes.py
+%%DATADIR%%/helper/deprecated_tool_names.txt
 %%DATADIR%%/helper/doxygen_saga_api_chm
 %%DATADIR%%/helper/doxygen_saga_api_html
 %%DATADIR%%/helper/make_arcsaga_toolboxes.bat
@@ -314,6 +323,12 @@ share/pixmaps/saga.png
 %%DATADIR%%/resources/color_ramps/CET-R3.pal
 %%DATADIR%%/resources/color_ramps/CET-R4.pal
 %%DATADIR%%/resources/color_ramps/README.md
+%%DATADIR%%/resources/docs/tools/ta_morphometry/ta_morphometry_1.txt
+%%DATADIR%%/resources/docs/tools/ta_morphometry/ta_morphometry_1_a.jpg
+%%DATADIR%%/resources/docs/tools/ta_morphometry/ta_morphometry_1_b.jpg
+%%DATADIR%%/resources/docs/tools/ta_morphometry/ta_morphometry_1_editors.txt
+%%DATADIR%%/resources/docs/tools/ta_morphometry/ta_morphometry_1_parameters.txt
+%%DATADIR%%/resources/docs/tools/ta_morphometry/ta_morphometry_1_references.txt
 %%DATADIR%%/saga.bra.txt
 %%DATADIR%%/saga.ger.txt
 %%DATADIR%%/saga.lng.txt

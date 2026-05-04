@@ -1,6 +1,5 @@
 PORTNAME=	optking
-DISTVERSION=	0.3.0
-PORTREVISION=	3
+DISTVERSION=	0.5.0
 CATEGORIES=	science python # chemistry
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,7 +11,7 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}msgpack>=1.0:devel/py-msgpack@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}qcelemental>=0.20.0:science/py-qcelemental@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}qcengine>=0.20.0:science/py-qcengine@${PY_FLAVOR}
 TEST_DEPENDS=	dftd3:science/dftd3

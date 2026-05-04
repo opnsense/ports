@@ -1,5 +1,5 @@
 PORTNAME=	unison
-PORTVERSION=	2.53.8
+PORTVERSION=	2.54.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
@@ -33,7 +33,7 @@ PLIST_SUB=	PORTVERSION=${PORTVERSION}
 ALL_TARGET=	manpage
 
 OPTIONS_DEFINE=		DOCS FSMONITOR
-OPTIONS_DEFAULT?=	FSMONITOR
+OPTIONS_DEFAULT=	FSMONITOR
 OPTIONS_SUB=		YES
 
 FSMONITOR_DESC=	Compile and install fsmonitor plugin
@@ -48,7 +48,6 @@ ALL_TARGET+=	tui
 PLIST_SUB+=	X11="@comment "
 .else
 ALL_TARGET+=	tui gui
-SUB_FILES=	${PORTNAME}.desktop
 USE_GNOME=	atk cairo gdkpixbuf glib20 gtk30 pango
 USES+=		gettext-runtime gnome
 PLIST_SUB+=	X11=""
@@ -77,7 +76,6 @@ post-build-DOCS-on:
 
 post-install:
 .if ${FLAVOR} != nox11
-	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${STAGEDIR}${DESKTOPDIR}
 	${INSTALL_DATA} ${WRKSRC}/src/win32rc/U_4_48x48x32.png ${STAGEDIR}${PREFIX}/share/pixmaps/${PORTNAME}.png
 .endif
 

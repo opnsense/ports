@@ -1,4 +1,4 @@
---- third_party/blink/renderer/platform/graphics/begin_frame_provider.cc.orig	2026-03-13 06:02:14 UTC
+--- third_party/blink/renderer/platform/graphics/begin_frame_provider.cc.orig	2026-04-09 06:05:42 UTC
 +++ third_party/blink/renderer/platform/graphics/begin_frame_provider.cc
 @@ -71,7 +71,11 @@ void BeginFrameProvider::CreateCompositorFrameSinkIfNe
  
@@ -7,7 +7,7 @@
 +  // pledge(2)
 +  // stop this baloney
 +#if !defined(OS_OPENBSD)
-   base::PlatformThread::SetCurrentThreadType(base::ThreadType::kPresentation);
+   lease_.emplace(base::ThreadType::kPresentation);
 +#endif
  
    mojo::Remote<mojom::blink::EmbeddedFrameSinkProvider> provider;
