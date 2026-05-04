@@ -9,14 +9,15 @@ CARGO_CRATES=	adler2-2.0.1 \
 		anyhow-1.0.101 \
 		ar_archive_writer-0.5.1 \
 		arbitrary-1.4.2 \
+		arwen-0.0.5 \
+		arwen-codesign-0.0.1-alpha.1 \
 		autocfg-1.5.0 \
 		automod-1.0.16 \
-		base64-0.21.7 \
 		base64-0.22.1 \
 		base64ct-1.8.3 \
-		bitflags-1.3.2 \
 		bitflags-2.10.0 \
 		block-buffer-0.10.4 \
+		borrow-or-share-0.2.4 \
 		boxcar-0.2.14 \
 		bstr-1.12.1 \
 		bumpalo-3.19.1 \
@@ -27,7 +28,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		cab-0.6.0 \
 		camino-1.2.2 \
 		cargo-config2-0.1.40 \
-		cargo-cyclonedx-0.5.7 \
+		cargo-cyclonedx-0.5.9 \
 		cargo-lock-10.1.0 \
 		cargo-options-0.7.6 \
 		cargo-platform-0.1.9 \
@@ -72,7 +73,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		crossbeam-epoch-0.9.18 \
 		crossbeam-utils-0.8.21 \
 		crypto-common-0.1.7 \
-		cyclonedx-bom-0.8.0 \
+		cyclonedx-bom-0.8.1 \
 		cyclonedx-bom-macros-0.1.0 \
 		data-encoding-2.10.0 \
 		der-0.7.10 \
@@ -101,9 +102,10 @@ CARGO_CRATES=	adler2-2.0.1 \
 		filetime-0.2.27 \
 		find-msvc-tools-0.1.9 \
 		flate2-1.1.9 \
-		fluent-uri-0.1.4 \
+		fluent-uri-0.4.1 \
 		fnv-1.0.7 \
 		foldhash-0.1.5 \
+		foldhash-0.2.0 \
 		foreign-types-0.3.2 \
 		foreign-types-shared-0.1.1 \
 		form_urlencoded-1.2.2 \
@@ -136,7 +138,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		icu_properties-2.1.2 \
 		icu_properties_data-2.1.2 \
 		icu_provider-2.1.1 \
-		idna-0.4.0 \
 		idna-1.1.0 \
 		idna_adapter-1.2.1 \
 		ignore-0.4.25 \
@@ -155,7 +156,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		js-sys-0.3.85 \
 		keyring-2.3.3 \
 		lazy_static-1.5.0 \
-		lddtree-0.4.0 \
+		lddtree-0.5.0 \
 		libbz2-rs-sys-0.2.2 \
 		libc-0.2.180 \
 		libmimalloc-sys-0.1.44 \
@@ -189,6 +190,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		num-traits-0.2.19 \
 		number_prefix-0.4.0 \
 		object-0.37.3 \
+		object-0.38.1 \
 		once_cell-1.21.3 \
 		once_cell_polyfill-1.70.2 \
 		openssl-0.10.75 \
@@ -197,7 +199,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		openssl-probe-0.2.1 \
 		openssl-sys-0.9.111 \
 		option-ext-0.2.0 \
-		ordered-float-4.6.0 \
+		ordered-float-5.1.0 \
 		os_pipe-1.2.3 \
 		parking_lot-0.12.5 \
 		parking_lot_core-0.9.12 \
@@ -226,6 +228,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		proc-macro2-1.0.106 \
 		psm-0.1.30 \
 		purl-0.1.6 \
+		pyo3-introspection-0.28.2 \
 		pyproject-toml-0.13.7 \
 		python-pkginfo-0.6.8 \
 		quote-1.0.44 \
@@ -243,7 +246,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		redox_users-0.5.2 \
 		ref-cast-1.0.25 \
 		ref-cast-impl-1.0.25 \
-		reflink-copy-0.1.28 \
+		reflink-copy-0.1.29 \
 		regex-1.12.3 \
 		regex-automata-0.3.9 \
 		regex-automata-0.4.14 \
@@ -263,8 +266,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rustls-pki-types-1.14.0 \
 		rustls-platform-verifier-0.6.2 \
 		rustls-platform-verifier-android-0.1.1 \
-		rustls-webpki-0.103.9 \
+		rustls-webpki-0.103.10 \
 		rustversion-1.0.22 \
+		ruzstd-0.8.2 \
 		same-file-1.0.6 \
 		scc-2.4.0 \
 		schannel-0.1.28 \
@@ -300,16 +304,16 @@ CARGO_CRATES=	adler2-2.0.1 \
 		snapbox-0.6.24 \
 		snapbox-macros-0.4.0 \
 		socks-0.3.4 \
-		spdx-0.10.9 \
+		spdx-0.13.4 \
 		stable_deref_trait-1.2.1 \
 		stacker-0.1.23 \
 		strsim-0.11.1 \
-		strum-0.26.3 \
-		strum_macros-0.26.4 \
+		strum-0.28.0 \
+		strum_macros-0.28.0 \
 		subtle-2.6.1 \
 		syn-2.0.114 \
 		synstructure-0.13.2 \
-		tar-0.4.44 \
+		tar-0.4.45 \
 		target-lexicon-0.13.4 \
 		tempfile-3.24.0 \
 		termcolor-1.4.1 \
@@ -324,8 +328,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		time-core-0.1.8 \
 		time-macros-0.2.27 \
 		tinystr-0.8.2 \
-		tinyvec-1.10.0 \
-		tinyvec_macros-0.1.1 \
 		toml-0.8.23 \
 		toml-0.9.11+spec-1.1.0 \
 		toml_datetime-0.6.11 \
@@ -347,10 +349,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		typed-path-0.12.3 \
 		typenum-1.19.0 \
 		unicase-2.9.0 \
-		unicode-bidi-0.3.18 \
 		unicode-ident-1.0.22 \
 		unicode-linebreak-0.1.5 \
-		unicode-normalization-0.1.25 \
 		unicode-segmentation-1.12.0 \
 		unicode-width-0.2.2 \
 		unicode-xid-0.2.6 \
@@ -364,7 +364,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
 		uuid-1.20.0 \
-		validator-0.16.1 \
+		validator-0.19.0 \
 		valuable-0.1.1 \
 		vcpkg-0.2.15 \
 		version-ranges-0.1.2 \
