@@ -21,7 +21,8 @@ SHEBANG_FILES=	test/run-test.sh \
 		test/*.py
 
 MESON_ARGS=	-Dtests=enabled \
-		-Dpython.bytecompile=1
+		-Dpython.bytecompile=1 \
+		-Dpython=${PYTHON_CMD}
 
 DOCSDIR=	${PREFIX}/share/doc/dbus-python
 EXAMPLESDIR=	${PREFIX}/share/examples/dbus-python
@@ -32,7 +33,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 OPTIONS_SUB=	yes
 
 DOCS_DESC=			Build and install HTML documentation (requires Sphinx)
-DOCS_BUILD_DEPENDS=		sphinx-build:textproc/py-sphinx \
+DOCS_BUILD_DEPENDS=		${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}sphinx_rtd_theme>0:textproc/py-sphinx_rtd_theme@${PY_FLAVOR}
 DOCS_MESON_ENABLED=		doc
 
