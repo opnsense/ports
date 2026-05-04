@@ -1,4 +1,4 @@
---- pyproject.toml.orig	2026-01-23 15:28:32 UTC
+--- pyproject.toml.orig	2026-02-20 20:14:45 UTC
 +++ pyproject.toml
 @@ -1,7 +1,7 @@ requires = [
  [build-system]
@@ -13,12 +13,12 @@
  maintainers = [
      { name = "Jason Madden", email = "jason@seecoresoftware.com" }
  ]
--license = "MIT AND Python-2.0"
+-license = "MIT AND PSF-2.0"
 -license-files = [
 -    'LICENSE',
 -    'LICENSE.PSF',
 -]
-+license = { text = "MIT AND Python-2.0" }
++license = { text = "MIT AND PSF-2.0" }
  classifiers = [
      "Development Status :: 5 - Production/Stable",
      "Intended Audience :: Developers",
