@@ -1,6 +1,6 @@
 PORTNAME=	netbird
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.66.3
+DISTVERSION=	0.70.0
 CATEGORIES=	security net net-vpn
 
 MAINTAINER=	dev@netbird.io
