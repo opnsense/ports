@@ -1,6 +1,7 @@
 PORTNAME=	crowdsec-firewall-bouncer
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.0.34
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	manuel@crowdsec.net
