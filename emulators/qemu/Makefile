@@ -1,6 +1,5 @@
 PORTNAME=	qemu
-DISTVERSION=	11.0.0
-PORTREVISION=	1
+DISTVERSION=	10.2.1
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.qemu.org/
 DIST_SUBDIR=	qemu/${PORTVERSION}
@@ -16,9 +15,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64 powerpc64le
 # We need to check if it build with other ARCHS
 .endif
 
-BUILD_DEPENDS=	bash:shells/bash \
-		${PYTHON_PKGNAMEPREFIX}qemu.qmp>=0.0.5:emulators/py-qemu.qmp@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	bash:shells/bash
 .if ${FLAVOR:U} != guestagent
 LIB_DEPENDS+=	libzstd.so:archivers/zstd
 .endif
@@ -54,7 +51,7 @@ guestagent_PLIST=		${.CURDIR}/pkg-plist-ga
 guestagent_CONFLICTS_INSTALL=	qemu qemu-devel qemu-nox11 qemu-tools qemu-utils qemu6* \
 				qemu7* qemu-guest-agent
 
-USES=		cpe gmake gnome ninja perl5 pkgconfig python shebangfix tar:xz
+USES=		cpe gmake gnome ninja perl5 pkgconfig python:build shebangfix tar:xz
 SHEBANG_FILES=	scripts/xml-preprocess.py
 USE_GNOME=	glib20
 USE_PERL5=	build
@@ -125,6 +122,9 @@ CFLAGS:=	${CFLAGS:C/-fno-tree-vrp//}
 WITHOUT_CPU_CFLAGS=	yes #to avoid problems with register allocation
 
 BINARY_ALIAS=	python3=${PYTHON_VERSION}
+.if exists(/usr/include/sys/inotify.h)
+EXTRA_PATCHES+=                ${PATCHDIR}/extra-patch-meson.build
+.endif
 
 PORTDOCS=	.buildinfo _static/* about/* dbus-dbusindex.html devel/* docs \
 		genindex.html glossary.html index.html interop/* objects.inv \
