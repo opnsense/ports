@@ -1,0 +1,76 @@
+From 4bcc9650fac9a48502679cd793d269ef60caef07 Mon Sep 17 00:00:00 2001
+From: Simon Kelley <simon@thekelleys.org.uk>
+Date: Mon, 4 May 2026 16:18:33 +0100
+Subject: [PATCH] Fix memory leak reading ARP cache on *BSD.
+
+arp_enumerate() on *BSD platforms has a bad memory leak.
+
+Thanks to Sagie Duchovne-Nave for finding this problem. His
+description is included below:
+
+ arp_enumerate() allocates a heap buffer via expand_buf() to hold the
+ kernel ARP table dump retrieved through sysctl(NET_RT_FLAGS). This
+ buffer is never freed on any return path -- neither the early error
+ returns nor the normal return after iteration -- causing a leak on
+ every call.
+
+ The leak is most acute in the DHCPv6 path. get_client_mac() calls
+ find_mac() up to five times per packet with lazy=0. Because the
+ 'updated' flag is local to each find_mac() invocation, a cached
+ ARP_EMPTY entry for an unresolvable IPv6 address does not short-
+ circuit the kernel lookup: each call falls through to iface_enumerate()
+ -> arp_enumerate(), leaking one buffer per call. This yields up to
+ five leaked allocations per DHCPv6 SOLICIT packet. The leak size per
+ call equals the full system-wide IPv4 ARP table dump across all
+ interfaces.
+
+ The condition is readily triggered by a DHCPv6 client whose MAC
+ address cannot be resolved via NDP -- which is the common case on
+ FreeBSD, because arp_enumerate() queries NET_RT_FLAGS/RTF_LLINFO,
+ which returns IPv4 ARP entries only; IPv6 NDP neighbour entries are
+ not included. As a result every IPv6 MAC lookup fails unconditionally
+ on FreeBSD, every failed lookup produces an ARP_EMPTY record that is
+ never promoted, and every subsequent packet for that client leaks five
+ buffers.
+
+This fix is by Simon Kelley, not Sagie, so any bugs are my fault.
+The fix is to make the buffer statically allocated, so that expand_buf()
+is normally a NOOP, but when the ARP cache grows, it grows to match.
+This avoids fragmenting the heap with many malloc/free calls.
+It's a common design pattern in dnsmasq, but the original author
+of this code missed the importance of that static allocation. Since
+that was before dnsmasq moved into git, the details are lost to time.
+---
+ src/bpf.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git src/bpf.c src/bpf.c
+index f8c8b35..658a34a 100644
+--- src/bpf.c
++++ src/bpf.c
+@@ -47,7 +47,7 @@ static union all_addr del_addr;
+ 
+ #if defined(HAVE_BSD_NETWORK) && !defined(__APPLE__)
+ 
+-int arp_enumerate(void *parm, callback_t callback)
++static int arp_enumerate(void *parm, callback_t callback)
+ {
+   int mib[6];
+   size_t needed;
+@@ -55,12 +55,9 @@ int arp_enumerate(void *parm, callback_t callback)
+   struct rt_msghdr *rtm;
+   struct sockaddr_inarp *sin2;
+   struct sockaddr_dl *sdl;
+-  struct iovec buff;
++  static struct iovec buff;
+   int rc;
+ 
+-  buff.iov_base = NULL;
+-  buff.iov_len = 0;
+-
+   mib[0] = CTL_NET;
+   mib[1] = PF_ROUTE;
+   mib[2] = 0;
+-- 
+2.20.1
+
