@@ -46,7 +46,6 @@ include/frr/lib/iana_afi.h
 include/frr/lib/id_alloc.h
 include/frr/lib/if.h
 include/frr/lib/if_rmap.h
-include/frr/lib/imsg.h
 include/frr/lib/ipaddr.h
 include/frr/lib/iso.h
 include/frr/lib/jhash.h
@@ -74,6 +73,7 @@ include/frr/lib/mlag.h
 include/frr/lib/module.h
 include/frr/lib/monotime.h
 include/frr/lib/mpls.h
+include/frr/lib/netlink_parser.h
 include/frr/lib/network.h
 include/frr/lib/nexthop.h
 include/frr/lib/nexthop_group.h
