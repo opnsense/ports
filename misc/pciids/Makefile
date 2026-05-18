@@ -1,5 +1,5 @@
 PORTNAME=	pciids
-PORTVERSION=	20260430
+PORTVERSION=	20260514
 CATEGORIES=	misc
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -17,7 +17,7 @@ PORTDATA=	pci.ids
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	pciutils
-GH_TAGNAME=	1f4ff7c
+GH_TAGNAME=	f27adfb
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/
