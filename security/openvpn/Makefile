@@ -1,5 +1,5 @@
 PORTNAME=		openvpn
-DISTVERSION=		2.6.20
+DISTVERSION=		2.7.4
 PORTREVISION?=		0
 CATEGORIES=		security net net-vpn
 MASTER_SITES=		https://swupdate.openvpn.org/community/releases/ \
@@ -28,7 +28,7 @@ SHEBANG_FILES=		sample/sample-scripts/auth-pam.pl \
 
 GNU_CONFIGURE=		yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
-CONFIGURE_ARGS+=	--enable-strict --with-crypto-library=openssl
+CONFIGURE_ARGS+=	--with-crypto-library=openssl
 # set PLUGIN_LIBDIR so that unqualified plugin paths are found:
 CONFIGURE_ENV+=		PLUGINDIR="${PREFIX}/lib/openvpn/plugins"
 
@@ -45,7 +45,6 @@ PORTEXAMPLES=		*
 OPTIONS_DEFINE=		ASYNC_PUSH DCO DOCS EASYRSA EXAMPLES LZ4 LZO PKCS11 SMALL \
 			TEST UNITTESTS X509ALTUSERNAME
 OPTIONS_DEFAULT=	DCO EASYRSA LZ4 LZO PKCS11 TEST
-OPTIONS_EXCLUDE_FreeBSD_13=	DCO # FreeBSD 14 only
 
 ASYNC_PUSH_DESC=	Enable async-push support
 DCO_DESC=		Data Channel Offload/ovpn(4) support->README.dco.md
@@ -157,8 +156,6 @@ post-build:
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-auth-pam.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-down-root.so
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.up ${STAGEDIR}${PREFIX}/libexec/openvpn-client.up
-	${INSTALL_SCRIPT} ${WRKSRC}/contrib/pull-resolv-conf/client.down ${STAGEDIR}${PREFIX}/libexec/openvpn-client.down
 	${INSTALL_SCRIPT} ${WRKDIR}/openvpn-client ${STAGEDIR}${PREFIX}/sbin/openvpn-client
 	${MKDIR} ${STAGEDIR}${PREFIX}/include
 
