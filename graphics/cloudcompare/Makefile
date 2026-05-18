@@ -1,12 +1,15 @@
 PORTNAME=	cloudcompare
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.13.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/refs/tags/v2.12.4/snap/gui/:icons
 DISTFILES=	ccViewer.png:icons cloudcompare.png:icons
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
 EXTRACT_ONLY=	${_DISTFILES:N*.png}
+
+PATCH_SITES=	https://github.com/CloudCompare/CloudCompare/commit/
+PATCHFILES=	449a8e5106d119d4bce71b6d0a84e3d663a3bbf9.patch:-p1
 
 MAINTAINER=	alven@FreeBSD.org
 COMMENT=	3D point cloud (and triangular mesh) editing and processing software

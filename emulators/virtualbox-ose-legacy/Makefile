@@ -3,7 +3,7 @@ DISTVERSION=	5.2.44
 PORTREVISION=	36
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.virtualbox.org/virtualbox/${DISTVERSION}/:src \
-		LOCAL/bofh/emulators/virtualbox-ose-legacy:docs \
+		LOCAL/bofh/emulators/virtualbox-ose${_VER}:docs \
 		LOCAL/vvd:docs
 DISTFILES=	VirtualBox-${DISTVERSION}${EXTRACT_SUFX}:src \
 		VirtualBox-docs-${DISTVERSION}${EXTRACT_SUFX}:docs
@@ -27,12 +27,12 @@ BUILD_DEPENDS=	gtar:archivers/gtar \
 		xsltproc:textproc/libxslt
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libcurl.so:ftp/curl
-RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod-legacy
+RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod${_VER}
 
 FLAVORS=	x11 nox11
 FLAVOR?=	${FLAVORS:[1]}
-_VER=		legacy
-${FLAVOR}_PKGNAMESUFFIX=	-${${FLAVOR:N${FLAVORS:[1]}} ${_VER}:L:ts-}
+_VER=		-legacy
+${FLAVOR}_PKGNAMESUFFIX=	${FLAVOR:N${FLAVORS:[1]}:C|(.+)|-\1|}${_VER}
 
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 CPE_VENDOR=	oracle

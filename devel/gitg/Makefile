@@ -1,5 +1,6 @@
 PORTNAME=	gitg
 DISTVERSION=	44
+PORTREVISION=	1
 CATEGORIES=	devel deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -7,6 +8,8 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	GTK-based git repository viewer
 WWW=		https://wiki.gnome.org/Apps/Gitg
+
+BROKEN=		Fails to build, error: typedef redefinition with different types ('struct _GIBaseInfoStub' vs 'struct _GIBaseInfo')
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING

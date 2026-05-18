@@ -1,6 +1,7 @@
 PORTNAME=	connect
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.89.3
+DISTVERSION=	4.90.3
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMEPREFIX=	redpanda-
 
@@ -30,8 +31,8 @@ ETCDIR=		${PREFIX}/etc/${PKGNAMEPREFIX}${PORTNAME}
 USERS=		benthos
 GROUPS=		benthos
 
-PLIST_FILES=	"@dir(,,755) %%ETCDIR%%" \
-		"@sample %%ETCDIR%%/config.yaml.sample" \
+PLIST_FILES=	"@dir(,,755) ${ETCDIR}" \
+		"@sample ${ETCDIR}/config.yaml.sample" \
 		bin/redpanda-connect
 
 OPTIONS_DEFINE=		ENTERPRISE

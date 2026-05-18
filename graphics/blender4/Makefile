@@ -1,6 +1,6 @@
 PORTNAME=	blender4
 DISTVERSION=	4.5.5
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics multimedia
 MASTER_SITES=	http://download.blender.org/source/ \
 		http://mirror.cs.umn.edu/blender.org/source/ \
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/doc/license/GPL3-license.txt
 ONLY_FOR_ARCHS=		aarch64 amd64 powerpc64 powerpc64le riscv64
 ONLY_FOR_ARCHS_REASON=	static_assert(sizeof(unsigned long long) == sizeof(struct hipArray*))
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libfreetype.so:print/freetype2 \
 		libepoxy.so:graphics/libepoxy \
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff \
 		libzstd.so:archivers/zstd
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 # libboost_regex.so just acts as a placeholder; several boost
 # libraries are used, if either of the most common options in blender
 # are set. We will pull boost in just to be on the safe side.

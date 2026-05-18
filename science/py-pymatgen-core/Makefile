@@ -1,6 +1,7 @@
 PORTNAME=	pymatgen-core
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2026.4.16
+PORTREVISION=	1
 CATEGORIES=	science python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,7 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bibtexparser>=1.4.3:textproc/py-bibtexparser@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}contourpy>=1.3.1:math/py-contourpy@${PY_FLAVOR} \
@@ -26,7 +27,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bibtexparser>=1.4.3:textproc/py-bibtexparser
 		${PYTHON_PKGNAMEPREFIX}monty>=2026.2.18:devel/py-monty@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mpmath>=1.3.0:math/py-mpmath@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}networkx>=2.7:math/py-networkx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}orjson>=3.10.18:devel/py-orjson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=24.2:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}palettable>=3.3.3:misc/py-palettable@${PY_FLAVOR} \

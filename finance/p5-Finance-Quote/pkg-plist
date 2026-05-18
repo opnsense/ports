@@ -17,6 +17,7 @@
 %%SITE_PERL%%/Finance/Quote/CurrencyRates/FinanceAPI.pm
 %%SITE_PERL%%/Finance/Quote/CurrencyRates/Fixer.pm
 %%SITE_PERL%%/Finance/Quote/CurrencyRates/OpenExchange.pm
+%%SITE_PERL%%/Finance/Quote/CurrencyRates/TwelveData.pm
 %%SITE_PERL%%/Finance/Quote/CurrencyRates/YahooJSON.pm
 %%SITE_PERL%%/Finance/Quote/Deka.pm
 %%SITE_PERL%%/Finance/Quote/FTfunds.pm
@@ -71,6 +72,7 @@
 %%PERL5_MAN3%%/Finance::Quote::CurrencyRates::FinanceAPI.3.gz
 %%PERL5_MAN3%%/Finance::Quote::CurrencyRates::Fixer.3.gz
 %%PERL5_MAN3%%/Finance::Quote::CurrencyRates::OpenExchange.3.gz
+%%PERL5_MAN3%%/Finance::Quote::CurrencyRates::TwelveData.3.gz
 %%PERL5_MAN3%%/Finance::Quote::CurrencyRates::YahooJSON.3.gz
 %%PERL5_MAN3%%/Finance::Quote::Deka.3.gz
 %%PERL5_MAN3%%/Finance::Quote::FTfunds.3.gz

@@ -64,6 +64,7 @@
     SUBDIR += filebot
     SUBDIR += flvmeta
     SUBDIR += fswebcam
+    SUBDIR += funnelcake
     SUBDIR += gaupol
     SUBDIR += gavl
     SUBDIR += get_iplayer

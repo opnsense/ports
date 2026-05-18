@@ -1,6 +1,6 @@
 PORTNAME=	kokoro
 DISTVERSION=	0.9.4
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}huggingface-hub>0:misc/py-huggingface-hub@${
 		${PYTHON_PKGNAMEPREFIX}loguru>0:devel/py-loguru@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}misaki>=0.9.4:misc/py-misaki@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}num2words>0:devel/py-num2words@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}spacy>0:textproc/py-spacy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}transformers>=0:misc/py-transformers@${PY_FLAVOR}

@@ -1,5 +1,6 @@
 PORTNAME=	gguf
 DISTVERSION=	0.18.0.${GH_TAGNAME:S/b//} # the base version is in pyproject.toml, updated by post-patch
+PORTREVISION=	1
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # the PYPI version is way behind of llama-cpp
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=1.0.0:devel/py-poetry-core@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=5.1:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sentencepiece>=0.1.98:textproc/py-sentencepiece@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tqdm>=4.27:misc/py-tqdm@${PY_FLAVOR}

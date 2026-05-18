@@ -1,5 +1,5 @@
-TIMESTAMP = 1777619838
-SHA256 (go/net_redpanda-connect/connect-v4.89.3/v4.89.3.mod) = df7f004918b7c63cf4e20b5ced8056eaf0c99fb0e7815cbe0334399375134205
-SIZE (go/net_redpanda-connect/connect-v4.89.3/v4.89.3.mod) = 28960
-SHA256 (go/net_redpanda-connect/connect-v4.89.3/v4.89.3.zip) = 791953eeb85d505b2ec51a46ace58af16573718f54d95aa45dfed03572125078
-SIZE (go/net_redpanda-connect/connect-v4.89.3/v4.89.3.zip) = 4180020
+TIMESTAMP = 1778205969
+SHA256 (go/net_redpanda-connect/connect-v4.90.3/v4.90.3.mod) = 7e76dfeffbcbb31533ff9768099469a294fc64350cba33146aa13fae1a7cd379
+SIZE (go/net_redpanda-connect/connect-v4.90.3/v4.90.3.mod) = 28930
+SHA256 (go/net_redpanda-connect/connect-v4.90.3/v4.90.3.zip) = 7c46713d8a29ca78f8e357d21123073b9ff90ecfe35b1506b123f1af84679ac8
+SIZE (go/net_redpanda-connect/connect-v4.90.3/v4.90.3.zip) = 4266226

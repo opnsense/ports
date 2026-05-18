@@ -1,5 +1,6 @@
 PORTNAME=	smoldyn
 DISTVERSION=	2.75
+PORTREVISION=	1
 CATEGORIES=	science
 MASTER_SITES=	https://www.smoldyn.org/
 
@@ -13,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/License.txt
 LIB_DEPENDS=	libtiff.so:graphics/tiff
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flaky>0:devel/py-flaky@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake:testing compiler:c++11-lang gl localbase:ldflags python:test tar:tgz shebangfix xorg
 USE_GL=		gl glu glut

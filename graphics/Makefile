@@ -155,7 +155,7 @@
     SUBDIR += drawing
     SUBDIR += drawio
     SUBDIR += drawpile
-    SUBDIR += drm-510-kmod
+    SUBDIR += drawy
     SUBDIR += drm-515-kmod
     SUBDIR += drm-61-kmod
     SUBDIR += drm-66-kmod
@@ -634,9 +634,6 @@
     SUBDIR += npretty
     SUBDIR += nsxiv
     SUBDIR += nurbs++
-    SUBDIR += nvidia-drm-510-kmod
-    SUBDIR += nvidia-drm-510-kmod-580
-    SUBDIR += nvidia-drm-510-kmod-devel
     SUBDIR += nvidia-drm-515-kmod
     SUBDIR += nvidia-drm-515-kmod-580
     SUBDIR += nvidia-drm-515-kmod-devel
@@ -664,6 +661,7 @@
     SUBDIR += oidn
     SUBDIR += okular
     SUBDIR += open3d
+    SUBDIR += openboard
     SUBDIR += opencollada
     SUBDIR += opencolorio
     SUBDIR += opencolorio-tools
@@ -937,6 +935,7 @@
     SUBDIR += py-djvulibre
     SUBDIR += py-easyocr
     SUBDIR += py-exifread
+    SUBDIR += py-exiv2
     SUBDIR += py-f3d
     SUBDIR += py-face_recognition
     SUBDIR += py-face_recognition_models

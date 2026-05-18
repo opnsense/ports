@@ -1,7 +1,5 @@
 PORTNAME=	github-copilot-cli
-DISTVERSION=	1.0.35-6
-PORTREVISION=	1
-PORTEPOCH=	1
+DISTVERSION=	1.0.48
 CATEGORIES=	misc # machine-learning
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 DIST_SUBDIR=	${PORTNAME}-x # -x is to see if it would fix checksum errors
@@ -154,6 +152,15 @@ post-patch:
 	${REINPLACE_CMD} -i '' \
 		-e 's|qg.default.createElement(U,{color:e.MUTED},"v",t)|qg.default.createElement(U,{color:e.MUTED},"v","${PORTVERSION}")|g' \
 		${WRKSRC}/node_modules/@github/copilot/index.js
+	# keytar bundles node-addon-api 4.3.0, whose napi.h initializes
+	# TypedArray::unknown_array_type with static_cast<napi_typedarray_type>(-1).
+	# Clang 16+ (FreeBSD 16-CURRENT) rejects this as "not a constant expression"
+	# because -1 falls outside the valid range [0,15] of the enum.
+	# Adding 'inline' makes it a C++17 inline static data member whose
+	# initialiser is no longer required to be a constant expression.
+	@${REINPLACE_CMD} -i '' \
+		-e "s/static const napi_typedarray_type unknown_array_type = /static inline const napi_typedarray_type unknown_array_type = /" \
+		${WRKSRC}/../keytar-${dep_keytar_version}/node_modules/keytar/node_modules/node-addon-api/napi.h
 
 do-build:
 	# Create directory for FreeBSD prebuilds
@@ -194,6 +201,12 @@ do-build:
 	@${STRIP_CMD} ${WRKSRC}/copilot
 .endif	# FLAVOR == binary
 
+x:
+	${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME} -path "*/build/*" -name *.node | ${XARGS} ${STRIP_CMD}
+
+x2:
+	@${STRIP_CMD} ${WRKSRC}/copilot
+
 do-install:
 .if ${FLAVOR} == script
 	# install files
@@ -219,8 +232,8 @@ do-install:
 	@${CHMOD} +x ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME}/npm-loader.js
 	# create symlink in bin
 	@${RLN} -s ${STAGEDIR}${PREFIX}/lib/node_modules/.bin/copilot ${STAGEDIR}${PREFIX}/bin/copilot
-	# strip binaries
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME} -path "*/build/*" -name *.node | ${XARGS} ${STRIP_CMD}
+	# strip binaries (disabed because it breaks on 14 where strip fails with a cryptic error)
+	#@${FIND} ${STAGEDIR}${PREFIX}/lib/node_modules/${PACKAGE_NAME} -path "*/build/*" -name *.node | ${XARGS} ${STRIP_CMD}
 .elif ${FLAVOR} == binary
 	${INSTALL_PROGRAM} ${WRKSRC}/copilot ${STAGEDIR}${PREFIX}/bin/copilot
 .endif	# FLAVOR

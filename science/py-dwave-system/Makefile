@@ -1,6 +1,6 @@
 PORTNAME=	dwave-system
 DISTVERSION=	1.34.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python # quantum-computing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -19,7 +19,7 @@ PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dimod>=0.12.20:science/py-dimod@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}dwave-samplers>=1.0.0:science/py-dwave-samplers@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}homebase>=1.0.0:devel/py-homebase@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}minorminer>=0.2.19:math/py-minorminer@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.7.3:science/py-scipy@${PY_FLAVOR}
 BUILD_DEPENDS=	${PY_DEPENDS}
 RUN_DEPENDS=	${PY_DEPENDS}

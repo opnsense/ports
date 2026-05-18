@@ -1,6 +1,6 @@
 PORTNAME=	root
 DISTVERSION=	6.38.00
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	devel science math parallel python
 MASTER_SITES=	https://root.cern/download/
 DISTFILES=	${PORTNAME}_v${DISTVERSION}.source${EXTRACT_SUFX}
@@ -161,7 +161,7 @@ OPENGL_USE=		gl=glew,glu,opengl
 
 PYROOT_CMAKE_BOOL=	pyroot tpython tmva-pymva
 PYROOT_DESC=		Enable bindings between Python and C++ with PyROOT
-PYROOT_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+PYROOT_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 PYROOT_USES=		python:build,run
 PYROOT_USES_OFF=	python:build
 

@@ -11,8 +11,8 @@ WWW=		https://dpdk.org/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/license/README
 
-ONLY_FOR_ARCHS=	aarch64 amd64
-ONLY_FOR_ARCHS_REASON=	only tested on 64-bit x86 hardware
+ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64le
+ONLY_FOR_ARCHS_REASON=	only supported on aarch64, amd64, and powerpc64le
 
 BUILD_DEPENDS=	objdump:devel/binutils \
 		${PYTHON_PKGNAMEPREFIX}pyelftools>0:devel/py-pyelftools@${PY_FLAVOR}
@@ -71,12 +71,28 @@ PLIST_SUB+=	LIBMAJOR=26 LIBVER=26.0
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == "aarch64"
+# powerpc64le: platform=native uses getauxval(AT_PLATFORM) which does not
+# exist on FreeBSD; use generic (power8 baseline) unless the user set CPUTYPE.
+.if ${ARCH} == "powerpc64le"
+.  if defined(CPUTYPE)
+MESON_ARGS+=	-Dplatform=${CPUTYPE}
+.  else
+MESON_ARGS+=	-Dplatform=generic
+.  endif
+PLIST_SUB+=	AARCH64="@comment " \
+		AMD64="@comment " \
+		POWERPC64LE="" \
+		NOTPOWERPC64LE="@comment "
+.elif ${ARCH} == "aarch64"
 PLIST_SUB+=	AARCH64="" \
-		AMD64="@comment "
+		AMD64="@comment " \
+		POWERPC64LE="@comment " \
+		NOTPOWERPC64LE=""
 .elif ${ARCH} == "amd64"
 PLIST_SUB+=	AARCH64="@comment " \
-		AMD64=""
+		AMD64="" \
+		POWERPC64LE="@comment " \
+		NOTPOWERPC64LE=""
 .endif
 
 post-patch-TOOLS-off:

@@ -205,6 +205,7 @@
     SUBDIR += mutationpp
     SUBDIR += namd
     SUBDIR += ncrystal
+    SUBDIR += neko
     SUBDIR += nest
     SUBDIR += netcdf
     SUBDIR += netcdf-cxx
@@ -349,6 +350,7 @@
     SUBDIR += py-geometric
     SUBDIR += py-gpaw
     SUBDIR += py-gsd
+    SUBDIR += py-gwlearn
     SUBDIR += py-h5json
     SUBDIR += py-h5netcdf
     SUBDIR += py-h5py

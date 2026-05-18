@@ -1,9 +1,10 @@
 PORTNAME=	firefox
-DISTVERSION=	150.0.1
+DISTVERSION=	151.0
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build2/source
 DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 
 MAINTAINER=	gecko@FreeBSD.org
@@ -11,7 +12,7 @@ COMMENT=	Web browser based on the browser portion of Mozilla
 WWW=		https://www.firefox.com/
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.122.2:security/nss \
+		nss>=3.123.1:security/nss \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \

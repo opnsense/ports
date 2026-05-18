@@ -1,7 +1,7 @@
 PORTNAME=	clarabel
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.11.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math python
 #MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 BROKEN_i386=	compilation fails, see https://github.com/sarah-ek/gemm/issues/30
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.0:devel/py-maturin@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 
 USES=		cargo python

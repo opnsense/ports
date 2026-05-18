@@ -28,12 +28,12 @@ BUILD_DEPENDS=	gtar:archivers/gtar \
 		xsltproc:textproc/libxslt
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libcurl.so:ftp/curl
-RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod-70
+RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod${_VER}
 
 FLAVORS=	x11 nox11
 FLAVOR?=	${FLAVORS:[1]}
-_VER=		${DISTVERSION:R:S|.||}
-${FLAVOR}_PKGNAMESUFFIX=	-${${FLAVOR:N${FLAVORS:[1]}} ${_VER}:L:ts-}
+_VER=		-${DISTVERSION:R:S|.||}
+${FLAVOR}_PKGNAMESUFFIX=	${FLAVOR:N${FLAVORS:[1]}:C|(.+)|-\1|}${_VER}
 
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 CPE_VENDOR=	oracle

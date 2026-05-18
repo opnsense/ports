@@ -269,7 +269,6 @@
     SUBDIR += flightgear
     SUBDIR += flightgear-aircraft
     SUBDIR += flightgear-data
-    SUBDIR += flightgear-mb339-pan
     SUBDIR += flobopuyo
     SUBDIR += flyhard
     SUBDIR += flying
@@ -587,7 +586,6 @@
     SUBDIR += linux-unrealgold
     SUBDIR += linux-ut
     SUBDIR += linux-virtual-jay-peak
-    SUBDIR += linwarrior
     SUBDIR += lizzie
     SUBDIR += lm-solve
     SUBDIR += lmarbles

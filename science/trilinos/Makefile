@@ -1,5 +1,6 @@
 PORTNAME=	trilinos
 DISTVERSION=	16.2.0
+PORTREVISION=	1
 CATEGORIES=	science # physics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -17,7 +18,7 @@ BROKEN_i386=	kokkos assumes a 64-bit build; i.e., 8-byte pointers, but found 4-b
 BUILD_DEPENDS=	bash:shells/bash \
 		boost-libs>0:devel/boost-libs \
 		swig:devel/swig \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libamd.so:math/suitesparse-amd \
 		libblas.so:math/blas \
 		liblapack.so:math/lapack \

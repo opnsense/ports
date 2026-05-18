@@ -1,6 +1,6 @@
 PORTNAME=	lean-ctx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.4.7
+DISTVERSION=	3.6.6
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,6 +10,9 @@ WWW=		https://leanctx.com \
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/../LICENSE
+
+BUILD_DEPENDS=	gmake:devel/gmake
+LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 USES=		cargo
 
@@ -28,6 +31,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		anes-0.1.6 \
 		anstyle-1.0.14 \
 		anyhow-1.0.102 \
+		argon2-0.5.3 \
+		arrayref-0.3.9 \
+		arrayvec-0.7.6 \
 		async-trait-0.1.89 \
 		atomic-0.6.1 \
 		atomic-waker-1.1.2 \
@@ -38,10 +44,17 @@ CARGO_CRATES=	adler2-2.0.1 \
 		axum-core-0.5.6 \
 		base64-0.21.7 \
 		base64-0.22.1 \
+		base64ct-1.8.3 \
+		bincode-2.0.1 \
+		bincode_derive-2.0.1 \
 		bit-set-0.5.3 \
+		bit-set-0.8.0 \
 		bit-vec-0.6.3 \
+		bit-vec-0.8.0 \
 		bitflags-1.3.2 \
 		bitflags-2.11.1 \
+		blake2-0.10.6 \
+		blake3-1.8.5 \
 		block-buffer-0.10.4 \
 		block-buffer-0.12.0 \
 		bstr-1.12.1 \
@@ -70,6 +83,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		cmov-0.5.3 \
 		combine-4.6.7 \
 		compact_str-0.9.0 \
+		const-oid-0.9.6 \
 		const-oid-0.10.2 \
 		constant_time_eq-0.4.2 \
 		convert_case-0.10.0 \
@@ -80,6 +94,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		crc32fast-1.5.0 \
 		criterion-0.5.1 \
 		criterion-plot-0.5.0 \
+		crossbeam-channel-0.5.15 \
 		crossbeam-deque-0.8.6 \
 		crossbeam-epoch-0.9.18 \
 		crossbeam-utils-0.8.21 \
@@ -91,6 +106,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		crypto-common-0.2.1 \
 		csscolorparser-0.6.2 \
 		ctutils-0.4.2 \
+		curve25519-dalek-4.1.3 \
+		curve25519-dalek-derive-0.1.1 \
 		darling-0.23.0 \
 		darling_core-0.23.0 \
 		darling_macro-0.23.0 \
@@ -99,6 +116,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		deadpool-runtime-0.1.4 \
 		deflate64-0.1.12 \
 		deltae-0.3.2 \
+		der-0.7.10 \
 		deranged-0.5.8 \
 		derive_more-2.1.1 \
 		derive_more-impl-2.1.1 \
@@ -110,6 +128,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		document-features-0.2.12 \
 		dunce-1.0.5 \
 		dyn-clone-1.0.20 \
+		ed25519-2.2.3 \
+		ed25519-dalek-2.2.0 \
 		either-1.15.0 \
 		email-encoding-0.4.1 \
 		email_address-0.2.9 \
@@ -122,6 +142,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		fancy-regex-0.11.0 \
 		fancy-regex-0.13.0 \
 		fastrand-2.4.1 \
+		fiat-crypto-0.2.9 \
 		filedescriptor-0.8.3 \
 		filetime-0.2.27 \
 		find-msvc-tools-0.1.9 \
@@ -129,6 +150,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		fixedbitset-0.4.2 \
 		flatbuffers-24.12.23 \
 		flate2-1.1.9 \
+		fluent-uri-0.1.4 \
 		fnv-1.0.7 \
 		foldhash-0.1.5 \
 		foldhash-0.2.0 \
@@ -217,6 +239,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		log-0.4.29 \
 		lru-0.16.4 \
 		lru-slab-0.1.2 \
+		lsp-types-0.97.0 \
 		lzma-rust2-0.16.2 \
 		mac_address-1.1.8 \
 		matchers-0.2.0 \
@@ -224,12 +247,14 @@ CARGO_CRATES=	adler2-2.0.1 \
 		md-5-0.10.6 \
 		md-5-0.11.0 \
 		memchr-2.8.0 \
+		memmap2-0.9.10 \
 		memmem-0.1.1 \
 		memoffset-0.9.1 \
 		mime-0.3.17 \
 		minimal-lexical-0.2.1 \
 		miniz_oxide-0.8.9 \
 		mio-1.2.0 \
+		moka-0.12.15 \
 		nix-0.29.0 \
 		nom-7.1.3 \
 		nom-8.0.0 \
@@ -250,6 +275,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		ordered-float-4.6.0 \
 		parking_lot-0.12.5 \
 		parking_lot_core-0.9.12 \
+		password-hash-0.5.0 \
+		paste-1.0.15 \
 		pastey-0.2.2 \
 		pbkdf2-0.12.2 \
 		pem-3.0.6 \
@@ -266,6 +293,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		phf_shared-0.11.3 \
 		phf_shared-0.13.1 \
 		pin-project-lite-0.2.17 \
+		pkcs8-0.10.2 \
 		pkg-config-0.3.33 \
 		plain-0.2.3 \
 		plotters-0.3.7 \
@@ -280,6 +308,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		ppv-lite86-0.2.21 \
 		prettyplease-0.2.37 \
 		proc-macro2-1.0.106 \
+		proptest-1.11.0 \
+		quick-error-1.2.3 \
 		quinn-0.11.9 \
 		quinn-proto-0.11.14 \
 		quinn-udp-0.5.14 \
@@ -294,6 +324,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rand_core-0.6.4 \
 		rand_core-0.9.5 \
 		rand_core-0.10.1 \
+		rand_xorshift-0.4.0 \
 		ratatui-0.30.0 \
 		ratatui-core-0.1.0 \
 		ratatui-crossterm-0.1.0 \
@@ -339,6 +370,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rustls-platform-verifier-android-0.1.1 \
 		rustls-webpki-0.103.13 \
 		rustversion-1.0.22 \
+		rusty-fork-0.3.1 \
 		ryu-1.0.23 \
 		same-file-1.0.6 \
 		schannel-0.1.29 \
@@ -354,6 +386,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		serde_derive_internals-0.29.1 \
 		serde_json-1.0.149 \
 		serde_path_to_error-0.1.20 \
+		serde_repr-0.1.20 \
 		serde_spanned-0.6.9 \
 		serde_urlencoded-0.7.1 \
 		sha1-0.10.6 \
@@ -372,6 +405,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		slab-0.4.12 \
 		smallvec-1.15.1 \
 		socket2-0.6.3 \
+		spki-0.7.3 \
 		sqlite-wasm-rs-0.5.3 \
 		sse-stream-0.2.2 \
 		stable_deref_trait-1.2.1 \
@@ -386,6 +420,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		syn-2.0.117 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
+		tagptr-0.2.0 \
 		tar-0.4.45 \
 		tempfile-3.27.0 \
 		terminfo-0.9.0 \
@@ -397,6 +432,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		thiserror-impl-2.0.18 \
 		thread_local-1.1.9 \
 		tiktoken-rs-0.6.0 \
+		tikv-jemalloc-ctl-0.6.1 \
+		tikv-jemalloc-sys-0.6.1+5.3.0-1-ge13ca993e8ccb9ba9847cc330696e02839f328f7 \
+		tikv-jemallocator-0.6.1 \
 		time-0.3.47 \
 		time-core-0.1.8 \
 		time-macros-0.2.27 \
@@ -448,6 +486,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		typeid-1.0.3 \
 		typenum-1.20.0 \
 		ucd-trie-0.1.7 \
+		unarray-0.1.4 \
 		unicode-bidi-0.3.18 \
 		unicode-ident-1.0.24 \
 		unicode-normalization-0.1.25 \
@@ -457,9 +496,11 @@ CARGO_CRATES=	adler2-2.0.1 \
 		unicode-width-0.2.2 \
 		unicode-xid-0.2.6 \
 		untrusted-0.9.0 \
+		unty-0.0.4 \
 		ureq-3.3.0 \
 		ureq-proto-0.6.0 \
 		url-2.5.8 \
+		urlencoding-2.1.3 \
 		utf8-zero-0.8.1 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
@@ -467,7 +508,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		valuable-0.1.1 \
 		vcpkg-0.2.15 \
 		version_check-0.9.5 \
+		virtue-0.0.18 \
 		vtparse-0.6.2 \
+		wait-timeout-0.2.1 \
 		walkdir-2.5.0 \
 		want-0.3.1 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
@@ -573,10 +616,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		zstd-safe-7.2.4 \
 		zstd-sys-2.0.16+zstd.1.5.7
 
-PLIST_FILES=	bin/${PORTNAME} \
-		bin/gen_mcp_manifest \
-		bin/gen_tdd_schema \
-		bin/seed_observatory
+PLIST_FILES=	bin/${PORTNAME}
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}

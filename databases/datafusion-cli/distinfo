@@ -1,4 +1,4 @@
-TIMESTAMP = 1777252478
+TIMESTAMP = 1777906401
 SHA256 (rust/crates/abi_stable-0.11.3.crate) = 69d6512d3eb05ffe5004c59c206de7f99c34951504056ce23fc953842f12c445
 SIZE (rust/crates/abi_stable-0.11.3.crate) = 327641
 SHA256 (rust/crates/abi_stable_derive-0.11.3.crate) = d7178468b407a4ee10e881bc7a328a65e739f0863615cca4429d43916b05e898
@@ -707,8 +707,6 @@ SHA256 (rust/crates/prost-derive-0.14.3.crate) = 27c6023962132f4b30eb4c172c91ce9
 SIZE (rust/crates/prost-derive-0.14.3.crate) = 21365
 SHA256 (rust/crates/prost-types-0.14.3.crate) = 8991c4cbdb8bc5b11f0b074ffe286c30e523de90fee5ba8132f1399f23cb3dd7
 SIZE (rust/crates/prost-types-0.14.3.crate) = 49368
-SHA256 (rust/crates/protobuf-src-2.1.1+27.1.crate) = 6217c3504da19b85a3a4b2e9a5183d635822d83507ba0986624b5c05b83bfc40
-SIZE (rust/crates/protobuf-src-2.1.1+27.1.crate) = 8446160
 SHA256 (rust/crates/psm-0.1.30.crate) = 3852766467df634d74f0b2d7819bf8dc483a0eb2e3b0f50f756f9cfe8b0d18d8
 SIZE (rust/crates/psm-0.1.30.crate) = 25061
 SHA256 (rust/crates/quad-rand-0.2.3.crate) = 5a651516ddc9168ebd67b24afd085a718be02f8858fe406591b013d101ce2f40

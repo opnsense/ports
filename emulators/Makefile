@@ -62,6 +62,7 @@
     SUBDIR += lib765
     SUBDIR += libc6-shim
     SUBDIR += libdsk
+    SUBDIR += libmt32emu
     SUBDIR += libretro-bsnes
     SUBDIR += libretro-flycast
     SUBDIR += libretro-kronos

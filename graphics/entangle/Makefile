@@ -1,12 +1,14 @@
 PORTNAME=	entangle
 PORTVERSION=	1.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.entangle-photo.org/download/sources/
 
 MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Digital camera tethered control and capture program
 WWW=		https://www.entangle-photo.org/
+
+BROKEN=		Fails to build, ld: error: undefined symbol: g_irepository_require
 
 LICENSE=	GPLv3
 

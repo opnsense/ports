@@ -1,6 +1,6 @@
 PORTNAME=	ntfy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.21.0
+DISTVERSION=	2.22.0
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/:assets
@@ -43,7 +43,7 @@ DOCS_USES=		python
 
 # Run 'git checkout ${DISTVERSIONPREFIX}${DISTVERSION} && git rev-parse --short HEAD'
 # in the ntfy repository to get the value of GITID.
-GITID=		7ce5e8a
+GITID=		5ad2431
 
 BUILD_DATE=	$$(date -u "+%Y-%m-%dT%H:%M:%SZ")
 

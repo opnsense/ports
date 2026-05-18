@@ -1,6 +1,6 @@
 PORTNAME=	boutdata
 DISTVERSION=	0.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science education
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}matplotlib>=3.8.0:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}natsort>=8.1.0:devel/py-natsort@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}netCDF4>0:science/py-netCDF4@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.12.0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sympy>=1.5.1:math/py-sympy@${PY_FLAVOR}
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \

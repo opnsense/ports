@@ -1,6 +1,6 @@
 PORTNAME=	tfel
 DISTVERSION=	3.2.1-1
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	science
 PKGNAMESUFFIX=	-mfront-edf
 
@@ -11,11 +11,11 @@ WWW=		https://tfel.sourceforge.net/
 LICENSE=	GPLv3
 
 BUILD_DEPENDS=	gnuplot:math/gnuplot	\
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	${PY_BOOST}		\
 		libboost_thread.so:devel/boost-libs
 RUN_DEPENDS=	gnuplot:math/gnuplot	\
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake compiler:c++0x fortran localbase python
 

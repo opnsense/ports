@@ -50,11 +50,11 @@ lib/cmake/llama/llama-config.cmake
 lib/cmake/llama/llama-version.cmake
 lib/libllama-common.so
 lib/libllama-common.so.0
-lib/libllama-common.so.0.0.8895
+lib/libllama-common.so.0.0.%%DISTVERSION%%
 lib/libllama.so
 lib/libllama.so.0
-lib/libllama.so.0.0.8895
+lib/libllama.so.0.0.%%DISTVERSION%%
 lib/libmtmd.so
 lib/libmtmd.so.0
-lib/libmtmd.so.0.0.8895
+lib/libmtmd.so.0.0.%%DISTVERSION%%
 libdata/pkgconfig/llama.pc

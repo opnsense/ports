@@ -1,5 +1,5 @@
 PORTNAME=	ktx
-DISTVERSION=	1.45
+DISTVERSION=	1.47
 CATEGORIES=	games
 
 MAINTAINER=	vvd@FreeBSD.org
@@ -11,10 +11,12 @@ LICENSE=	GPLv2
 RUN_DEPENDS=	mvdsv:games/mvdsv
 
 USES=		cmake dos2unix
-DOS2UNIX_FILES=	resources/example-configs/ktx/ktx.cfg \
+DOS2UNIX_FILES=	resources/example-configs/id1/maps/arena3.ent \
+		resources/example-configs/ktx/ktx.cfg \
 		resources/example-configs/ktx/mvdsv.cfg \
 		resources/example-configs/ktx/problem.cfg \
-		resources/example-configs/ktx/race/routes/ztricks2.route
+		resources/example-configs/ktx/race/routes/ztricks2.route \
+		resources/extralog/ktxlog_0.1.xsd
 USE_GITHUB=	yes
 GH_ACCOUNT=	QW-Group
 USE_RC_SUBR=	${PORTNAME}

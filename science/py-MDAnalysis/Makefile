@@ -1,5 +1,6 @@
 PORTNAME=	MDAnalysis
 DISTVERSION=	2.10.0
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +14,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cython>=0.28:lang/cython@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.26.0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.26.0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=2.0:devel/py-packaging@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}GridDataFormats>=0.4.0:math/py-GridDataFormats@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}biopython>=1.80:biology/py-biopython@${PY_FLAVOR} \
@@ -24,7 +25,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}GridDataFormats>=0.4.0:math/py-GridDataForma
 		rdkit>0:science/rdkit \
 		${PYTHON_PKGNAMEPREFIX}mmtf-python>=1.0.0:science/py-mmtf-python@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}networkx>=2.0:math/py-networkx@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.26.0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.26.0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.5.0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}seaborn>0:math/py-seaborn@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tqdm>=4.43.0:misc/py-tqdm@${PY_FLAVOR}

@@ -1,12 +1,14 @@
 PORTNAME=	astroid
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.17
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	mail
 
 MAINTAINER=	mylan.connolly@gmail.com
 COMMENT=	Graphical email client for notmuch, inspired by sup and others
 WWW=		https://astroidmail.github.io/
+
+BROKEN=		fails to build, fatal error: 'girepository.h' file not found
 
 LICENSE=	GPLv3+ LGPL21+
 LICENSE_COMB=	dual

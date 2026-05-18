@@ -1,5 +1,5 @@
 PORTNAME=	php84
-DISTVERSION=	8.4.20
+DISTVERSION=	8.4.21
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -45,9 +45,6 @@ OPTIONS_EXCLUDE_aarch64=	DTRACE
 # dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
 OPTIONS_EXCLUDE_armv6=	DTRACE
 OPTIONS_EXCLUDE_armv7=	DTRACE
-# Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
-OPTIONS_EXCLUDE_mips=	DTRACE FPM
-OPTIONS_EXCLUDE_mips64=	DTRACE FPM
 OPTIONS_EXCLUDE_riscv64=	DTRACE
 NO_OPTIONS_SORT=	yes
 OPTIONS_SUB=			yes
@@ -398,10 +395,16 @@ CONFIGURE_ARGS+= --with-unixODBC=${LOCALBASE}
 .  endif
 
 .  if ${PHP_MODNAME} == "opcache"
-LIB_DEPENDS+=	libcapstone.so:devel/capstone
 # This is needed by Zend extensions, keep before everything.
 PHP_MOD_PRIO=		10
-CONFIGURE_ARGS+=        --enable-opcache --with-capstone
+CONFIGURE_ARGS+=        --enable-opcache
+
+OPTIONS_DEFINE=	JIT
+
+JIT_DESC=		Enable JIT support for opcache
+
+JIT_LIB_DEPENDS=	libcapstone.so:devel/capstone
+JIT_CONFIGURE_ON=	--with-capstone --enable-opcache-jit=yes
 .  endif
 
 .  if ${PHP_MODNAME} == "pcntl"

@@ -18,8 +18,8 @@ LIB_DEPENDS=	libbacktrace.so:devel/libbacktrace \
 		libsnappy.so:archivers/snappy \
 		libzstd.so:archivers/zstd
 
-USES=		cmake compiler:c++17-lang gl localbase:ldflags pkgconfig python \
-		qt:6 shebangfix xorg
+USES=		cmake:testing compiler:c++17-lang gl localbase:ldflags pkgconfig \
+		python qt:6 shebangfix xorg
 USE_GITHUB=	yes
 GH_TUPLE=	microsoft:DirectXMath:apr2025:DirectXMath/thirdparty/directxmath \
 		facebook:zstd:v1.5.7:zstd/thirdparty/zstd

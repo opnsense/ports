@@ -1,5 +1,5 @@
 PORTNAME=	eog
-DISTVERSION=	49.3
+DISTVERSION=	50.1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -29,8 +29,6 @@ GLIB_SCHEMAS=	org.gnome.eog.enums.xml \
 USE_XORG=	x11
 
 MESON_ARGS=	-Dlibportal=false
-
-PORTSCOUT=	limit:^49\.
 
 PLIST_SUB+=	VERSION=3.0
 

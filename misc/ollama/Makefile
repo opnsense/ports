@@ -1,6 +1,6 @@
 PORTNAME=	ollama
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.23.0
+DISTVERSION=	0.24.0
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,15 +19,15 @@ BUILD_DEPENDS=	bash:shells/bash \
 		${LOCALBASE}/include/stb/stb_image.h:devel/stb \
 		patchelf:sysutils/patchelf
 
-USES=		cmake:indirect go:1.24+,modules localbase pkgconfig
+USES=		cmake:indirect go:1.26+,modules localbase pkgconfig
 USE_RC_SUBR=	ollama
 
 GO_MODULE=	github.com/yurivict/${PORTNAME} # fork with FreeBSD patches
 GO_TARGET=	.
 GO_ENV+=	CGO_CXXFLAGS="${CXXFLAGS}"
 
-MLX_CORE_VERSION=	0.31.1
-MLX_C_VERSION=		0.6.0
+MLX_CORE_VERSION=	0.31.2
+MLX_C_VERSION=		fba4470b89073180056c9ea46c443051375f7399
 JSON_VERSION=		3.11.3
 
 PLIST_FILES=	bin/${PORTNAME} \
@@ -70,10 +70,10 @@ _CMAKE_FLAGS=	-DCMAKE_BUILD_TYPE=Release -DGGML_BACKEND_DL=ON -DGGML_BACKEND_DIR
 .if ${PORT_OPTIONS:MMLX}
 GO_BUILDFLAGS+=	-tags mlx
 DISTFILES+=	v${MLX_CORE_VERSION}.tar.gz:mlxsrc \
-		v${MLX_C_VERSION}.tar.gz:mlxcsrc \
+		${MLX_C_VERSION}.tar.gz:mlxcsrc \
 		json.tar.xz:jsonsrc
 MASTER_SITES+=	https://github.com/ml-explore/mlx/archive/refs/tags/:mlxsrc \
-		https://github.com/ml-explore/mlx-c/archive/refs/tags/:mlxcsrc \
+		https://github.com/ml-explore/mlx-c/archive/:mlxcsrc \
 		https://github.com/nlohmann/json/releases/download/v${JSON_VERSION}/:jsonsrc
 .endif
 

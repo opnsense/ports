@@ -1,5 +1,5 @@
 PORTNAME=	translate-toolkit
-PORTVERSION=	3.19.7
+PORTVERSION=	3.19.10
 CATEGORIES=	textproc
 MASTER_SITES=	PYPI \
 		https://github.com/translate/translate/releases/download/${PORTVERSION}/
@@ -42,6 +42,7 @@ MANPAGES=	android2po \
 		ini2po \
 		json2po \
 		md2po \
+		mdx2po \
 		moz2po \
 		mozlang2po \
 		odf2xliff \
@@ -58,6 +59,7 @@ MANPAGES=	android2po \
 		po2ini \
 		po2json \
 		po2md \
+		po2mdx \
 		po2moz \
 		po2mozlang \
 		po2odf \
@@ -126,9 +128,9 @@ RC_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}pyparsing>=3.2.0<3.4:devel/py-pyparsing@
 RC_VARS=		MANPAGES+="po2rc rc2po"
 SPELLCHECK_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}enchant>=3.3.0:textproc/py-enchant@${PY_FLAVOR}
 SUBTITLES_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aeidon>=1.15<1.17:textproc/py-aeidon@${PY_FLAVOR}
-TOML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tomlkit>=0.13.0<0.15.0:textproc/py-tomlkit@${PY_FLAVOR}
+TOML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tomlkit>=0.13.0<0.16.0:textproc/py-tomlkit@${PY_FLAVOR}
 TOML_VARS=		MANPAGES+="toml2po po2toml"
-YAML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ruamel.yaml>=0.18.0<0.20.0:devel/py-ruamel.yaml@${PY_FLAVOR}
+YAML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ruamel.yaml>=0.19.1<0.20.0:devel/py-ruamel.yaml@${PY_FLAVOR}
 YAML_VARS=		MANPAGES+="po2yaml yaml2po"
 
 .include <bsd.port.options.mk>

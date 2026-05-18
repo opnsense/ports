@@ -1,7 +1,7 @@
 PORTNAME=	precice
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.1.2
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	science # physics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -13,10 +13,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN=		fails to build with Boost>=1.87
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libmpicxx.so:net/mpich
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake:noninja,testing compiler:c++14-lang eigen:3 gnome pkgconfig python shebangfix # fails with ninja: phony target 'binprecice' names itself as an input; ignoring
 USE_GNOME=	libxml2

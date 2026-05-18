@@ -38,7 +38,8 @@ forgejo_start() {
 			chown ${forgejo_user} "$d"
 		fi
 	done
-	/usr/sbin/daemon %%DAEMONARGS%% \
+	/usr/sbin/daemon \
+		-S -l ${forgejo_facility} -s ${forgejo_priority} -T ${name} \
 		-u ${forgejo_user} -p ${pidfile} \
 		/usr/bin/env -i \
 		"FORGEJO_CUSTOM=${forgejo_custom}" \

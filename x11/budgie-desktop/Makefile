@@ -1,12 +1,15 @@
 PORTNAME=	budgie-desktop
 DISTVERSIONPREFIX=	v
 DISTVERSION=	10.9.3
+PORTREVISION=	2
 CATEGORIES=	x11 budgie
 MASTER_SITES=	BUDGIE
 
 MAINTAINER=	duchateau.olivier@gmail.com
 COMMENT=	Modern and familiar desktop environment
 WWW=		https://github.com/BuddiesOfBudgie/budgie-desktop
+
+BROKEN=		Fails to build, vapigen command fails
 
 LICENSE=		GPLv2 LGPL21
 LICENSE_COMB=		multi

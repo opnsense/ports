@@ -1,7 +1,7 @@
 PORTNAME=	setzer
 DISTVERSIONPREFIX=	v
 DISTVERSION=	66
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	editors
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libadwaita-1.so:x11-toolkits/libadwaita \
 		libportal.so:deskutils/libportal \
 		libwebkitgtk-6.0.so:www/webkit2-gtk@60
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bibtexparser>0:textproc/py-bibtexparser@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pdfminer.six>=0:textproc/py-pdfminer.six@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pexpect>=0:misc/py-pexpect@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyxdg>=0:devel/py-pyxdg@${PY_FLAVOR} \

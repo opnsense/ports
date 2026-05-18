@@ -1,5 +1,6 @@
 PORTNAME=	xgrammar
 DISTVERSION=	0.1.33
+PORTREVISION=	1
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scikit-build-core>=0.10.0:devel/py-scikit-build-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}nanobind>=2.5.0:devel/py-nanobind@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>0:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytorch>=1.10.0:misc/py-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}transformers>=4.38.0:misc/py-transformers@${PY_FLAVOR} \

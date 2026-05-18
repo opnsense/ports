@@ -12,7 +12,6 @@
     SUBDIR += antivirus-milter
     SUBDIR += anubis
     SUBDIR += archiveopteryx
-    SUBDIR += archiveopteryx-devel
     SUBDIR += archivesmtp
     SUBDIR += archmbox
     SUBDIR += ask
@@ -148,6 +147,7 @@
     SUBDIR += gnarwl
     SUBDIR += gnubiff
     SUBDIR += gnumail
+    SUBDIR += goimapnotify
     SUBDIR += gotmail
     SUBDIR += grepmail
     SUBDIR += greyfix

@@ -1,6 +1,6 @@
 PORTNAME=	lightgbm
 DISTVERSION=	4.6.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NOT_FOR_ARCHS=	armv6 armv7 i386 # Exception: Cannot install LightGBM in 32-bit Python, please use 64-bit Python instead
 
-PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-learn>=0.22.0:science/py-scikit-learn@${PY_FLAVOR}
 BUILD_DEPENDS=	cmake:devel/cmake-core \

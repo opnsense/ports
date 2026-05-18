@@ -15,8 +15,7 @@ LICENSE_COMB=	multi
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64
 
-CONFLICTS_INSTALL=	drm-510-kmod \
-			drm-515-kmod \
+CONFLICTS_INSTALL=	drm-515-kmod \
 			drm-61-kmod
 
 USES=		kmod uidfix compiler:c++11-lang
@@ -31,7 +30,7 @@ GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
 SUB_FILES=	pkg-message
 SUB_LIST=	PORTNAME=${PORTNAME} OPSYS=${OPSYS} OSREL=${OSREL}
 
-.if ${OPSYS} == FreeBSD && !( ${OSVERSION} >= 1500058 )
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500058
 IGNORE=		not supported on older than 1500058, no kernel support
 .endif
 .if ${OPSYS} != FreeBSD

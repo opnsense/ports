@@ -1,5 +1,6 @@
 PORTNAME=	tokenizers
 DISTVERSION=	0.23.1
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.0<2.0:devel/py-maturin@${PY_FLA
 LIB_DEPENDS=	libonig.so:devel/oniguruma
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}huggingface-hub>=0.16.4<2.0:misc/py-huggingface-hub@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}datasets>0:misc/py-datasets@${PY_FLAVOR}
 
 USES=		cargo python

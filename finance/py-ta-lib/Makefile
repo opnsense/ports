@@ -11,12 +11,14 @@ MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Python wrapper for TA-Lib (Technical Analysis Library)
 WWW=		https://ta-lib.github.io/ta-lib-python/
 
+BROKEN=		fails to build with NumPy 2.x
+
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libta_lib.so:devel/ta-lib
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}polars>0:misc/py-polars@${PY_FLAVOR}
 
 USES=		python

@@ -1,6 +1,6 @@
 PORTNAME=	samplerate
 DISTVERSION=	0.2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		pybind11>0:devel/pybind11 \
 		cmake:devel/cmake-core
 LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake compiler:c++14-lang pkgconfig python
 USE_PYTHON=	flavors pytest

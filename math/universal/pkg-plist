@@ -12,6 +12,7 @@ include/blas/blas/blas_l2.hpp
 include/blas/blas/blas_l3.hpp
 include/blas/blas/inverse.hpp
 include/blas/cg_fdp_solvers.hpp
+include/blas/conversions.hpp
 include/blas/exceptions.hpp
 include/blas/ext/README.md
 include/blas/ext/fdp_blas.hpp
@@ -587,6 +588,7 @@ include/universal/number/lns/attributes.hpp
 include/universal/number/lns/exceptions.hpp
 include/universal/number/lns/fdp.hpp
 include/universal/number/lns/lns.hpp
+include/universal/number/lns/lns_addsub_algorithms.hpp
 include/universal/number/lns/lns_fwd.hpp
 include/universal/number/lns/lns_impl.hpp
 include/universal/number/lns/lns_traits.hpp
@@ -1035,6 +1037,7 @@ include/universal/verification/cfloat_test_suite_mathlib.hpp
 include/universal/verification/fixpnt_test_suite.hpp
 include/universal/verification/fixpnt_test_suite_mathlib.hpp
 include/universal/verification/integer_test_suite.hpp
+include/universal/verification/lns_test_suite.hpp
 include/universal/verification/lns_test_suite_mathlib.hpp
 include/universal/verification/posit_number_system.hpp
 include/universal/verification/posit_test_suite.hpp

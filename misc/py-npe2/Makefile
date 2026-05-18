@@ -1,5 +1,6 @@
 PORTNAME=	npe2
 DISTVERSION=	0.7.9
+PORTREVISION=	1
 CATEGORIES=	misc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,7 +27,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jsonschema>0:devel/py-jsonschema@${PY_FLAVO
 		${PYTHON_PKGNAMEPREFIX}magicgui>0:x11-toolkits/py-magicgui@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}napari-plugin-engine>0:graphics/py-napari-plugin-engine@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}napari-svg>=0.1.5:misc/py-napari-svg@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>0:devel/py-pytest-cov@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-pretty>=0:devel/py-pytest-pretty@${PY_FLAVOR}
 

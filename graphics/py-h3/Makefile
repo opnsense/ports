@@ -1,5 +1,6 @@
 PORTNAME=	h3
 PORTVERSION=	4.4.2
+PORTREVISION=	1
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +18,7 @@ BUILD_DEPENDS=	h3>=4.4.1:graphics/h3 \
 #		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR}
 #		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libh3.so:graphics/h3
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake:indirect localbase:ldflags ninja:build python
 USE_PYTHON=	autoplist concurrent cython pep517 pytest
@@ -29,7 +30,7 @@ OPTIONS_DEFINE=	NUMPY
 OPTIONS_DEFAULT=NUMPY
 NUMPY_DESC=	NumPy support
 
-NUMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR}
+NUMPY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
 
 post-patch:
 # Clean up bundled libraries

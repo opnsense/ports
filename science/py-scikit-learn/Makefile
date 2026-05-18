@@ -1,6 +1,6 @@
 PORTNAME=	scikit-learn
 DISTVERSION=	1.8.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}joblib>=1.3.0:devel/py-joblib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.10.0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}threadpoolctl>=3.2.0:devel/py-threadpoolctl@${PY_FLAVOR}
 RUN_DEPENDS:=	${BUILD_DEPENDS}
@@ -27,6 +27,7 @@ TEST_ARGS=	sklearn
 TEST_WRKSRC=	${STAGEDIR}${PYTHON_SITELIBDIR}
 
 SHEBANG_FILES=	sklearn/_build_utils/version.py
+BINARY_ALIAS=	cython=cython-${PYTHON_VER}
 
 post-install: # strip binaries
 	@${STRIP_CMD} \

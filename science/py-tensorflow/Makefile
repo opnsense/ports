@@ -1,7 +1,7 @@
 PORTNAME=	tensorflow
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.21.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science python # machine-learning
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	${PORTNAME}
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}grpcio-tools>=1.22.0:devel/py-grpcio-tools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.22.0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.22.0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
 		bash:shells/bash \
 		bazel:devel/bazel7 \
@@ -45,7 +45,7 @@ RUN_DEPENDS=	pybind11>=2.6.2:devel/pybind11 \
 		${PYTHON_PKGNAMEPREFIX}gast>=0.2.1:devel/py-gast@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}google-pasta>=0.1.1:devel/py-google-pasta@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}h5py>=2.9.0:science/py-h5py@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.22.0:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.22.0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=21.3:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.21.0:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}protobuf>=3.20.3:devel/py-protobuf@${PY_FLAVOR} \
@@ -150,7 +150,7 @@ post-patch:
 		${WRKSRC}/freebsd/cc_toolchain_config.bzl \
 		${WRKSRC}/.bazelrc \
 		${WRKSRC}/WORKSPACE
-	@${REINPLACE_CMD} -e "s#%%NUMPY_INCLUDEDIR%%#${PYTHON_SITELIBDIR}/numpy/core/include#g" \
+	@${REINPLACE_CMD} -e "s#%%NUMPY_INCLUDEDIR%%#${PYTHON_SITELIBDIR}/numpy/_core/include#g" \
 		${WRKDIR}/bazelrc \
 		${WRKSRC}/freebsd/cc_toolchain_config.bzl
 
@@ -194,11 +194,11 @@ post-patch:
 	# numpy needs extra cc_library for numpy_headers used by C++ deps
 	@${MKDIR} ${WRKSRC}/bazel_pypi_hub/numpy
 	@${MKDIR} ${WRKSRC}/bazel_pypi_hub/numpy/include
-	@${LN} -sf ${PYTHON_SITELIBDIR}/numpy/core/include/numpy \
+	@${LN} -sf ${PYTHON_SITELIBDIR}/numpy/_core/include/numpy \
 		${WRKSRC}/bazel_pypi_hub/numpy/include/numpy
 	# build_pip_package.py expects site-packages/numpy/{_core,core}/include
 	@${MKDIR} ${WRKSRC}/bazel_pypi_hub/numpy/site-packages/numpy/core
-	@${LN} -sf ${PYTHON_SITELIBDIR}/numpy/core/include \
+	@${LN} -sf ${PYTHON_SITELIBDIR}/numpy/_core/include \
 		${WRKSRC}/bazel_pypi_hub/numpy/site-packages/numpy/core/include
 	@${PRINTF} 'package(default_visibility = ["//visibility:public"])\npy_library(name = "pkg", srcs = [])\npy_library(name = "lib", srcs = [])\nalias(name = "numpy", actual = ":pkg")\ncc_library(\n    name = "numpy_headers",\n    hdrs = glob(["include/**/*.h"]),\n    includes = ["include"],\n)\n' \
 		> ${WRKSRC}/bazel_pypi_hub/numpy/BUILD.bazel

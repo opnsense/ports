@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	16.0.6
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/ \
 		https://${PRE_}releases.llvm.org/${LLVM_RELEASE}${RCDIR}/
@@ -330,7 +330,7 @@ CMAKE_ARGS+=	-DLLVM_ENABLE_PROJECTS="${LLVM_ENABLE_PROJECTS:ts;}"
 .include "${.CURDIR}/Makefile.COMMANDS"
 .include "${.CURDIR}/Makefile.MAN1SRCS"
 
-_FREEBSD_BACKENDS=	AArch64 ARM Mips PowerPC RISCV X86
+_FREEBSD_BACKENDS=	AArch64 ARM PowerPC RISCV X86
 FREEBSD_BACKENDS=	${_FREEBSD_BACKENDS}
 .if ${ARCH} == amd64
 _NATIVE_BACKENDS=	X86
@@ -340,8 +340,6 @@ _NATIVE_BACKENDS=	AArch64 ARM
 _NATIVE_BACKENDS=	ARM
 .elif ${ARCH} == i386
 _NATIVE_BACKENDS=	X86
-.elif ${ARCH:Mmips*}
-_NATIVE_BACKENDS=	Mips
 .elif ${ARCH:Mpowerpc*}
 _NATIVE_BACKENDS=	PowerPC
 .elif ${ARCH:Mriscv*}
@@ -357,7 +355,7 @@ FREEBSD_BACKENDS+=	WebAssembly
 NATIVE_BACKENDS+=	WebAssembly
 .endif
 STANDARD_BACKENDS=	${_FREEBSD_BACKENDS} AMDGPU AVR BPF Hexagon Lanai \
-			LoongArch MSP430 NVPTX Sparc SystemZ VE WebAssembly XCore
+			LoongArch Mips MSP430 NVPTX Sparc SystemZ VE WebAssembly XCore
 _BE_LIBS_COMMON=	CodeGen Desc Info
 _BE_LIBS_AArch64=	AsmParser Disassembler Utils
 _BE_LIBS_BACKWARDS_AArch64=Exegesis

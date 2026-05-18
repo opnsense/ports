@@ -1,6 +1,6 @@
 PORTNAME=	sing-box
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.13.11
+DISTVERSION=	1.13.12
 CATEGORIES=	net
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -16,7 +16,8 @@ USES=		go:1.24+,modules
 GO_MODULE=	github.com/sagernet/sing-box
 GO_TARGET=	./cmd/sing-box
 
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/${PORTNAME} \
+		"@sample etc/sing-box.json.sample"
 
 USE_RC_SUBR=	${PORTNAME}
 
@@ -53,5 +54,9 @@ OCM_VARS=		GO_TAGS+=with_ocm
 .if !empty (GO_TAGS)
 GO_BUILDFLAGS+=	-tags "${GO_TAGS}"
 .endif
+
+post-install:
+	# install default config file
+	${INSTALL_DATA} ${FILESDIR}/sing-box.json ${STAGEDIR}${PREFIX}/etc/sing-box.json.sample
 
 .include <bsd.port.post.mk>

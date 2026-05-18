@@ -91,6 +91,7 @@
     SUBDIR += gqlplus
     SUBDIR += grass8
     SUBDIR += greptimedb
+    SUBDIR += groonga-normalizer-mysql
     SUBDIR += hashtypes
     SUBDIR += heidisql
     SUBDIR += hiredis
@@ -108,7 +109,6 @@
     SUBDIR += jetbrains-datagrip
     SUBDIR += jlog
     SUBDIR += jrobin
-    SUBDIR += jrrd
     SUBDIR += kbibtex
     SUBDIR += kdb
     SUBDIR += kexi
@@ -120,7 +120,6 @@
     SUBDIR += ldb28
     SUBDIR += ldb29
     SUBDIR += leo_center
-    SUBDIR += leofs
     SUBDIR += leveldb
     SUBDIR += libcouchbase
     SUBDIR += libdbi
@@ -436,6 +435,7 @@
     SUBDIR += p5-Memcached-libmemcached
     SUBDIR += p5-Metadata
     SUBDIR += p5-Mojo-Pg
+    SUBDIR += p5-Mojo-SQL
     SUBDIR += p5-MongoDB
     SUBDIR += p5-Mongoose
     SUBDIR += p5-MySQL-Diff
@@ -751,6 +751,7 @@
     SUBDIR += py-anysqlite
     SUBDIR += py-apache-arrow
     SUBDIR += py-apsw
+    SUBDIR += py-apswutils
     SUBDIR += py-asyncmy
     SUBDIR += py-asyncpg
     SUBDIR += py-berkeleydb

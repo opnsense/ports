@@ -35,6 +35,10 @@ MAKE_ENV+=	DEBUG_FLAGS=${DEBUG_FLAGS} \
 WRKSRC=		${WRKDIR}/NVIDIA-FreeBSD-${ARCH_SUFX}-${NVIDIA_DISTVERSION}/
 WRKSRC_SUBDIR=	src/nvidia-drm/
 
+.if ${NVVERSION} < 595.07105 && empty(.CURDIR:M*graphics/nvidia-drm-5*)
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-nvidia-drm-freebsd-lkpi.c-20250918-01
+.endif
+
 .if ${NVVERSION} < 565.00000
 EXTRA_PATCHES+= ${FILESDIR}/extra-patch-nvidia-drm-conftest.h
 .endif #565.00

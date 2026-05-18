@@ -1,6 +1,6 @@
 PORTNAME=	Ymir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.3.0
+DISTVERSION=	0.3.1
 CATEGORIES=	emulators
 
 MAINTAINER=	bsdcode@disroot.org
@@ -61,8 +61,7 @@ CMAKE_OFF=	Ymir_DEV_BUILD \
 		Ymir_ENABLE_IMGUI_DEMO \
 		Ymir_ENABLE_SANDBOX \
 		Ymir_ENABLE_TESTS \
-		Ymir_ENABLE_UPDATE_CHECKS \
-		Ymir_INCLUDE_PACKAGING
+		Ymir_ENABLE_UPDATE_CHECKS
 
 CFLAGS+=	-I${LOCALBASE}/include/concurrentqueue/moodycamel \
 		-I${LOCALBASE}/include/stb \

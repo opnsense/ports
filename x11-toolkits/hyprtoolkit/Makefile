@@ -1,7 +1,6 @@
 PORTNAME=	hyprtoolkit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5.3
-PORTREVISION=	3
+DISTVERSION=	0.5.4
 CATEGORIES=	x11-toolkits
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -36,12 +35,6 @@ LDFLAGS+=	-pthread
 
 PLIST_SUB=	SOVERSION_FULL=${DISTVERSION} \
 		SOVERSION_MAJOR=5
-
-# XXX Drop after FreeBSD 13.5 EOL around 2026-04-30
-# https://cgit.freebsd.org/src/commit/?id=af93fea71038
-.if !exists(/usr/include/sys/timerfd.h)
-LIB_DEPENDS+=	libepoll-shim.so:devel/libepoll-shim
-.endif
 
 # XXX Drop after FreeBSD 14.* EOL around 2028-11-30
 # https://cgit.freebsd.org/src/commit/?id=3965de642c29

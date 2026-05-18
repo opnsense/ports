@@ -1,9 +1,9 @@
 PORTNAME=	fwup
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.15.0
+DISTVERSION=	1.16.0
 CATEGORIES=	sysutils
 
-MAINTAINER=	dch@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Configurable embedded Linux firmware update creator and runner
 WWW=		https://github.com/fhunleth/fwup
 

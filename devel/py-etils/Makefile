@@ -1,5 +1,6 @@
 PORTNAME=	etils
 PORTVERSION=	1.14.0
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -47,11 +48,11 @@ EAPP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}absl-py>=0:devel/py-absl-py@${PY_FLAVOR
 			${PYTHON_PKGNAMEPREFIX}simple-parsing>=0:devel/py-simple-parsing@${PY_FLAVOR}
 ECOLAB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jupyter>=0:devel/py-jupyter@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}mediapy>=0:devel/py-mediapy@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR} \
+			${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}packaging>=0:devel/py-packaging@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}protobuf>=0,1:devel/py-protobuf@${PY_FLAVOR}
 ENP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}einops>=0:misc/py-einops@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}numpy1>=0:math/py-numpy1@${PY_FLAVOR}
+			${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
 EPATH_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fsspec>=0:filesystems/py-fsspec@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}zipp>=0:devel/py-zipp@${PY_FLAVOR}

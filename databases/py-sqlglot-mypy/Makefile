@@ -1,5 +1,5 @@
 PORTNAME=	sqlglot-mypy
-PORTVERSION=	1.20.0.post5
+PORTVERSION=	1.20.0.post7
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -26,6 +26,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}librt>=0.8.0:devel/py-librt@${PY_FLAVOR} \
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}librt>=0.8.0:devel/py-librt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mypy_extensions>=1.0.0:devel/py-mypy_extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pathspec>=1.0.0:devel/py-pathspec@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>=0:databases/py-sqlite3@${PY_FLAVOR} \
 		${PY_TOMLI} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.6.0:devel/py-typing-extensions@${PY_FLAVOR}
 

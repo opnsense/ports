@@ -1,7 +1,7 @@
 PORTNAME=	votca
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2026
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -32,7 +32,7 @@ LIB_DEPENDS=	libboost_program_options.so:devel/boost-libs \
 		libsz.so:science/libaec \
 		libxc.so:science/libxc
 RUN_DEPENDS=	bash:shells/bash \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PY_DEPENDS}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 

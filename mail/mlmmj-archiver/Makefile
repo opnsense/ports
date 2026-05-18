@@ -1,5 +1,5 @@
 PORTNAME=	mlmmj-archiver
-DISTVERSION=	0.7.0
+DISTVERSION=	0.7.1
 CATEGORIES=	mail www
 MASTER_SITES=	https://codeberg.org/bapt/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 

@@ -2,7 +2,6 @@
 
     SUBDIR += 2bsd-vi
     SUBDIR += abiword
-    SUBDIR += abiword-docs
     SUBDIR += ad
     SUBDIR += aee
     SUBDIR += aewan
@@ -62,6 +61,7 @@
     SUBDIR += gummi
     SUBDIR += helix
     SUBDIR += heme
+    SUBDIR += hexapoda
     SUBDIR += hexcurse
     SUBDIR += hexedit
     SUBDIR += hexer

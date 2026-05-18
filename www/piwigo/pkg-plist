@@ -1308,6 +1308,7 @@
 @(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/eu_ES/iso.txt
 @(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/eu_ES/upgrade.lang.php
 @(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/eu_ES/whats_new_15.lang.php
+@(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/eu_ES/whats_new_16.lang.php
 @(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/fa_IR/about.html
 @(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/fa_IR/admin.lang.php
 @(%%WWWOWN%%,%%WWWGRP%%,750) %%WWWDIR%%/language/fa_IR/common.lang.php

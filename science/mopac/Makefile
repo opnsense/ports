@@ -1,6 +1,7 @@
 PORTNAME=	mopac
 DISTVERSIONPREFIX=	v
 DISTVERSION=	23.2.5
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	science # chemistry
 
@@ -12,7 +13,7 @@ WWW=		http://openmopac.net \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		blaslapack:openblas cmake:testing fortran python:test
 USE_LDCONFIG=	yes

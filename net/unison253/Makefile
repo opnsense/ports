@@ -1,5 +1,6 @@
 PORTNAME=	unison
 PORTVERSION=	2.53.8
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
@@ -18,15 +19,16 @@ VERSIONSUFFIX=	253
 DEPRECATED=	Legacy release unsupported by upstream
 EXPIRATION_DATE=	2027-06-30
 
-nox11_PKGNAMESUFFIX=		-nox11
-nox11_CONFLICTS_INSTALL=	unison
+nox11_PKGNAMESUFFIX=		${VERSIONSUFFIX}-nox11
+nox11_CONFLICTS_INSTALL=	unison${VERSIONSUFFIX}
 
+x11_PKGNAMESUFFIX=	${VERSIONSUFFIX}
 x11_BUILD_DEPENDS=	icotool:graphics/icoutils \
 			ocaml-lablgtk3>0:x11-toolkits/ocaml-lablgtk3
 x11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \
 			libharfbuzz.so:print/harfbuzz
-x11_CONFLICTS_INSTALL=	unison-nox11
+x11_CONFLICTS_INSTALL=	unison${VERSIONSUFFIX}-nox11
 
 USES=		localbase ocaml:build pkgconfig
 USE_GITHUB=	yes

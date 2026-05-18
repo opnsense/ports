@@ -1,6 +1,6 @@
 PORTNAME=	blender
 DISTVERSION=	5.0.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics multimedia
 MASTER_SITES=	http://download.blender.org/source/ \
 		http://mirror.cs.umn.edu/blender.org/source/ \
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/doc/license/GPL3-license.txt
 ONLY_FOR_ARCHS=		aarch64 amd64 powerpc64le riscv64
 ONLY_FOR_ARCHS_REASON=	static_assert(sizeof(unsigned long long) == sizeof(struct hipArray*))
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libepoxy.so:graphics/libepoxy \
 		libOpenImageIO.so:graphics/openimageio \
@@ -24,7 +24,7 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libsamplerate.so:audio/libsamplerate \
 		libtiff.so:graphics/tiff \
 		libzstd.so:archivers/zstd
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake:noninja compiler:c++17-lang cpe eigen:3 jpeg llvm:build,run \
 		pkgconfig python:3.11 shebangfix tar:xz xorg

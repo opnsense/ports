@@ -1,7 +1,7 @@
 PORTNAME=	rmsd
 DISTVERSIONPREFIX=	${PORTNAME}-
 DISTVERSION=	1.6.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science
 #MASTER_SITES=	PYPI # missing test files, see https://github.com/charnley/rmsd/issues/123
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,7 @@ WWW=		https://github.com/charnley/rmsd
 
 LICENSE=	BSD2CLAUSE
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 
 USES=		python

@@ -1,5 +1,5 @@
-TIMESTAMP = 1777713915
-SHA256 (go/devel_go-wire/wire-v1.1.0/v1.1.0.mod) = 0dd1469c88b26ed6e32d0d60e05dd66a2e05d26baaa9a008d38fd771a4b2a6b9
-SIZE (go/devel_go-wire/wire-v1.1.0/v1.1.0.mod) = 365
-SHA256 (go/devel_go-wire/wire-v1.1.0/v1.1.0.zip) = e32b55378282c0ad9a5b46b341eb87787b04e18d536fb753f3d225fadb9f98a1
-SIZE (go/devel_go-wire/wire-v1.1.0/v1.1.0.zip) = 1050224
+TIMESTAMP = 1777880133
+SHA256 (go/devel_go-wire/wire-v1.2.0/v1.2.0.mod) = 9cad730958ee32655ffc0800f763356ce6975195acd9e85583aa211e889570d3
+SIZE (go/devel_go-wire/wire-v1.2.0/v1.2.0.mod) = 353
+SHA256 (go/devel_go-wire/wire-v1.2.0/v1.2.0.zip) = afc834bf52ef14bd572c3c3ddf1ce21e81ed9b5ce208cf28c7aa9d78a473cd7e
+SIZE (go/devel_go-wire/wire-v1.2.0/v1.2.0.zip) = 1094043

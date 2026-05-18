@@ -463,7 +463,6 @@
     SUBDIR += trayer
     SUBDIR += ulauncher
     SUBDIR += urxvt-font-size
-    SUBDIR += urxvt-perls
     SUBDIR += vdesk
     SUBDIR += viewres
     SUBDIR += virglrenderer

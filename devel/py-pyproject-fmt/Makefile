@@ -1,5 +1,5 @@
 PORTNAME=	pyproject-fmt
-PORTVERSION=	2.21.1
+PORTVERSION=	2.21.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,7 +14,7 @@ WWW=		https://pyproject-fmt.readthedocs.io/en/latest/ \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.12.6:devel/py-maturin@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.13.1:devel/py-maturin@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}toml-fmt-common>=0:devel/py-toml-fmt-common@${PY_FLAVOR}
 
 USES=		cargo python

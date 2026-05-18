@@ -1,5 +1,6 @@
 PORTNAME=	xtensor-python
 DISTVERSION=	0.29.0
+PORTREVISION=	1
 CATEGORIES=	math python
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -11,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 HPP_DEPENDS=	xtensor>0:math/xtensor \
 		pybind11>0:devel/pybind11 \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 BUILD_DEPENDS=	${HPP_DEPENDS}
 RUN_DEPENDS=	${HPP_DEPENDS}
 TEST_DEPENDS=	googletest>0:devel/googletest \

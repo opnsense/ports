@@ -1,7 +1,7 @@
 PORTNAME=	gnuradio
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.10.12.0
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	comms astro hamradio
 
 MAINTAINER=	hamradio@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://www.gnuradio.org/
 
 LICENSE=	GPLv3
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>0:devel/py-jsonschema@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyqtgraph>0:graphics/py-pyqtgraph@${PY_FLAVOR} \

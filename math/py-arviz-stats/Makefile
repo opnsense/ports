@@ -1,6 +1,7 @@
 PORTNAME=	arviz-stats
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.0
+PORTREVISION=	1
 CATEGORIES=	math python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -13,7 +14,7 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}flit-core>0:devel/py-flit-core@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.26.4:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.26.4:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.13:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}arviz-base>=1.0.0:math/py-arviz-base@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xarray-einstats>=0:devel/py-xarray-einstats@${PY_FLAVOR} \

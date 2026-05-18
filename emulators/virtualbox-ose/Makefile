@@ -1,9 +1,9 @@
 PORTNAME=	virtualbox-ose
 DISTVERSION=	6.1.50
-PORTREVISION=	19
+PORTREVISION=	20
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.virtualbox.org/virtualbox/${DISTVERSION}/:src \
-		LOCAL/bofh/emulators/virtualbox-ose:docs \
+		LOCAL/bofh/emulators/virtualbox-ose${_VER}:docs \
 		LOCAL/vvd:docs
 DISTFILES=	VirtualBox-${DISTVERSION}${EXTRACT_SUFX}:src \
 		VirtualBox-docs-${DISTVERSION}${EXTRACT_SUFX}:docs
@@ -20,6 +20,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 DEPRECATED=		Upstream EOL reaches on 2024-01-31, use emulators/virtualbox-ose${PKGNAMESUFFIX}-72 instead
 EXPIRATION_DATE=	2026-12-31
 
+BROKEN_FreeBSD_16=	clang++ from llvm11-14 (required for build) cannot compile libc++ 21
+
 ONLY_FOR_ARCHS=	amd64
 
 BUILD_DEPENDS=	gtar:archivers/gtar \
@@ -29,12 +31,12 @@ BUILD_DEPENDS=	gtar:archivers/gtar \
 		xsltproc:textproc/libxslt
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libcurl.so:ftp/curl
-RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod
+RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod${_VER}
 
 FLAVORS=	x11 nox11
 FLAVOR?=	${FLAVORS:[1]}
 _VER=		#
-${FLAVOR}_PKGNAMESUFFIX=	-${${FLAVOR:N${FLAVORS:[1]}} ${_VER}:L:ts-}
+${FLAVOR}_PKGNAMESUFFIX=	${FLAVOR:N${FLAVORS:[1]}:C|(.+)|-\1|}${_VER}
 
 USES=		compiler:c++14-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 CPE_VENDOR=	oracle

@@ -76,6 +76,7 @@
     SUBDIR += caps-lv2
     SUBDIR += caps-plugins
     SUBDIR += cardinal
+    SUBDIR += carla
     SUBDIR += cava
     SUBDIR += cd-discid
     SUBDIR += cddb-bundle
@@ -633,6 +634,7 @@
     SUBDIR += py-auditok
     SUBDIR += py-discid
     SUBDIR += py-discogs-client
+    SUBDIR += py-edge-tts
     SUBDIR += py-espeakng-loader
     SUBDIR += py-essentia
     SUBDIR += py-eyed3

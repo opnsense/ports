@@ -1,6 +1,7 @@
 PORTNAME=	ffn
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.5
+PORTREVISION=	1
 CATEGORIES=	finance python
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,12 +14,12 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}decorator>=5.0.7:devel/py-decorator@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}future>=0.15:devel/py-future@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=1:math/py-matplotlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas-datareader>=0.2:math/py-pandas-datareader@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>=0.19:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-learn>=0.15:science/py-scikit-learn@${PY_FLAVOR} \

@@ -1,6 +1,5 @@
 PORTNAME=	abinit
-DISTVERSION=	10.6.5
-PORTREVISION=	2
+DISTVERSION=	10.6.7
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 ONLY_FOR_ARCHS=	amd64 powerpc64 powerpc64le
 
 BUILD_DEPENDS=	gm4:devel/m4	\
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}graphviz>0:graphics/py-graphviz@${PY_FLAVOR}
@@ -30,7 +29,7 @@ LIB_DEPENDS=	libelpa.so:math/elpa		\
 		libnetcdff.so:science/netcdf-fortran
 RUN_DEPENDS=	atompaw:science/atompaw
 TEST_DEPENDS=	bash:shells/bash \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		libyaml>0:textproc/libyaml
 
 USES=		autoreconf:build blaslapack:netlib fortran gmake gnome localbase:ldflags	\

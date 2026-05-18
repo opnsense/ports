@@ -1,5 +1,6 @@
 PORTNAME=	spot
 DISTVERSION=	2.14.5
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	http://www.lrde.epita.fr/dload/${PORTNAME}/
 
@@ -10,7 +11,7 @@ WWW=		https://spot.lrde.epita.fr
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
 		syfco:math/hs-syfco
 

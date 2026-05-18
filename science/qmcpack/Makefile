@@ -1,7 +1,7 @@
 PORTNAME=	qmcpack
 DISTVERSIONPREFIX=	v
 DISTVERSION=	4.1.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -50,7 +50,7 @@ OPTIONS_SUB=		yes
 
 NEXUS_DESC=		Install Nexus (workflow utility) alongside QMCPACK
 NEXUS_CMAKE_BOOL=	INSTALL_NEXUS
-NEXUS_PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+NEXUS_PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pyscf>0:science/py-pyscf@${PY_FLAVOR}

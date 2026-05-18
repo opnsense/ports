@@ -1,6 +1,6 @@
 PORTNAME=	stringzilla
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.5.1
+DISTVERSION=	4.6.1
 CATEGORIES=	devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -35,5 +35,6 @@ post-install:
 	@${RM} -r ${STAGEDIR}/usr/src
 
 # some tests fail and hang, see https://github.com/ashvardanian/StringZilla/issues/281, https://github.com/ashvardanian/StringZilla/issues/282
+# https://github.com/ashvardanian/StringZilla/issues/315
 
 .include <bsd.port.mk>

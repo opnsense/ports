@@ -1,7 +1,7 @@
 PORTNAME=	NTPoly
 DISTVERSIONPREFIX=	${PORTNAME:tl}-v
 DISTVERSION=	3.1.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	math
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -12,7 +12,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	swig>0:devel/swig
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}	\
 		bash:shells/bash	\
 		${PYTHON_PKGNAMEPREFIX}mpi4py-mpich>0:net/py-mpi4py-mpich@${PY_FLAVOR}	\
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}

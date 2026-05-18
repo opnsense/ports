@@ -206,6 +206,7 @@
     SUBDIR += hashdb
     SUBDIR += hello
     SUBDIR += help2man
+    SUBDIR += hermes-agent
     SUBDIR += heyu2
     SUBDIR += hicolor-icon-theme
     SUBDIR += histring
@@ -481,6 +482,7 @@
     SUBDIR += py-evaluate
     SUBDIR += py-ezc3d
     SUBDIR += py-facenet-pytorch
+    SUBDIR += py-fal-client
     SUBDIR += py-fast-histogram
     SUBDIR += py-fastmcp
     SUBDIR += py-fastscapelib
@@ -595,6 +597,7 @@
     SUBDIR += py-sagemaker
     SUBDIR += py-sagemaker-core
     SUBDIR += py-sagemaker-mlops
+    SUBDIR += py-sagemaker-schema-inference-artifacts
     SUBDIR += py-sagemaker-serve
     SUBDIR += py-sagemaker-shim
     SUBDIR += py-sagemaker-train

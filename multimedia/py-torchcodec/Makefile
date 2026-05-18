@@ -1,12 +1,9 @@
 PORTNAME=	torchcodec
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.11.1
+DISTVERSION=	0.12.0
 CATEGORIES=	multimedia python
 #MASTER_SITES=	PYPI # no tarball
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	906a2753082f6591df841331c7713a8c30e1f7f4.patch:-p1 # https://github.com/meta-pytorch/torchcodec/pull/1193
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	PyTorch media decoding and encoding
@@ -24,7 +21,7 @@ LIB_DEPENDS=	libabsl_base.so:devel/abseil \
  		libprotobuf.so:devel/protobuf
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}torchvision>0:misc/py-torchvision@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake:indirect compiler:c++17-lang python
 USE_PYTHON=	pep517 autoplist pytest
@@ -36,7 +33,6 @@ GH_ACCOUNT=	meta-pytorch
 MAKE_ENV=	I_CONFIRM_THIS_IS_NOT_A_LICENSE_VIOLATION=1
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
-# tests as of 0.10.0: 290 failed, 910 passed, 546 skipped in 357.51s (0:05:57), see https://github.com/meta-pytorch/torchcodec/issues/1192
-# tests as of 0.11.1: 290 failed, 960 passed, 564 skipped in 327.75s (0:05:27)
+# tests as of 0.12.0: 290 failed, 1005 passed, 575 skipped, 3 warnings in 474.03s (0:07:54)
 
 .include <bsd.port.mk>

@@ -1,6 +1,7 @@
 PORTNAME=	uhd
 DISTVERSIONPREFIX=	v
 DISTVERSION=	4.9.0.1
+PORTREVISION=	1
 CATEGORIES=	comms hamradio
 DIST_SUBDIR=	${PORTNAME}
 
@@ -23,7 +24,7 @@ BUILD_DEPENDS=	\
 		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
 		rst2html:textproc/py-docutils@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}ruamel.yaml>=0:devel/py-ruamel.yaml@${PY_FLAVOR}
 
@@ -32,10 +33,6 @@ USES=		compiler:c++14-lang cmake ncurses pkgconfig \
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	EttusResearch
-
-BROKEN_FreeBSD_13_aarch64=	fails to configure: Could not find standard set_new_handler function
-BROKEN_FreeBSD_13_armv6=	fails to configure: Could not find standard set_new_handler function
-BROKEN_FreeBSD_13_armv7=	fails to configure: Could not find standard set_new_handler function
 
 CMAKE_SOURCE_PATH=	${WRKSRC}/host
 #CXXFLAGS_amd64=	-msse2 -std=c++11

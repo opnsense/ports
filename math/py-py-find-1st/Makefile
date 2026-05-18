@@ -1,6 +1,6 @@
 PORTNAME=	py-find-1st
 DISTVERSION=	1.1.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,9 +13,9 @@ WWW=		https://github.com/roebel/py_find_1st
 LICENSE=	GPLv3
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	pep517 autoplist pytest # tests are broken, see https://github.com/roebel/py_find_1st/issues/13

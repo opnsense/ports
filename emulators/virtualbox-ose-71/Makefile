@@ -31,12 +31,12 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libvorbis.so:audio/libvorbis \
 		libvorbisenc.so:audio/libvorbis \
 		libvpx.so:multimedia/libvpx
-RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod-71
+RUN_DEPENDS=	${LOCALBASE}/etc/rc.d/vboxnet:emulators/virtualbox-ose-kmod${_VER}
 
 FLAVORS=	x11 nox11
 FLAVOR?=	${FLAVORS:[1]}
-_VER=		${DISTVERSION:R:S|.||}
-${FLAVOR}_PKGNAMESUFFIX=	-${${FLAVOR:N${FLAVORS:[1]}} ${_VER}:L:ts-}
+_VER=		-${DISTVERSION:R:S|.||}
+${FLAVOR}_PKGNAMESUFFIX=	${FLAVOR:N${FLAVORS:[1]}:C|(.+)|-\1|}${_VER}
 
 USES=		compiler:c++17-lang cpe gnome iconv pkgconfig ssl tar:bzip2
 CPE_VENDOR=	oracle

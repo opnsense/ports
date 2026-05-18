@@ -1,5 +1,5 @@
 PORTNAME=	chez-scheme
-PORTVERSION=	10.3.0
+PORTVERSION=	10.4.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	lang
 MASTER_SITES=	https://github.com/cisco/ChezScheme/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/

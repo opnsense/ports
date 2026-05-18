@@ -243,7 +243,6 @@ CARGO_CRATES=	abi_stable-0.11.3 \
 		prost-build-0.14.3 \
 		prost-derive-0.14.3 \
 		prost-types-0.14.3 \
-		protobuf-src-2.1.1+27.1 \
 		psm-0.1.30 \
 		pyo3-0.28.2 \
 		pyo3-async-runtimes-0.28.0 \

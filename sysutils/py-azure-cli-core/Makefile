@@ -1,5 +1,5 @@
 PORTNAME=	azure-cli-core
-PORTVERSION=	2.85.0
+PORTVERSION=	2.86.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}argcomplete>=3.5.2:devel/py-argcomplete@${PY
 		${PYTHON_PKGNAMEPREFIX}knack>=0.11.0:devel/py-knack@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}microsoft-security-utilities-secret-masker>=1.0.0b4<1.1:devel/py-microsoft-security-utilities-secret-masker@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}msal>=1.35.1:devel/py-msal@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}msal-extensions>=1.2.0:devel/py-msal-extensions@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}msal-extensions>=1.3.1:devel/py-msal-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=20.9:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pkginfo>=1.5.0.1:sysutils/py-pkginfo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>=5.9:sysutils/py-psutil@${PY_FLAVOR} \

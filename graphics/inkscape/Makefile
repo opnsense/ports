@@ -1,6 +1,6 @@
 PORTNAME=	inkscape
 DISTVERSION=	1.4.3
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	graphics gnome
 MASTER_SITES=	https://media.inkscape.org/dl/resources/file/
 
@@ -32,7 +32,7 @@ LIB_DEPENDS=	libboost_filesystem.so:devel/boost-libs \
 		libenchant-2.so:textproc/enchant2 \
 		libepoxy.so:graphics/libepoxy \
 		lib2geom.so:math/lib2geom
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>0:math/py-numpy1@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}appdirs>0:devel/py-appdirs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cachecontrol>0:www/py-cachecontrol@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cssselect>0:www/py-cssselect@${PY_FLAVOR} \

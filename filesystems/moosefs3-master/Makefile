@@ -34,8 +34,7 @@ CONFIGURE_ARGS+=	--localstatedir=${MFS_WORKDIR} \
 			--with-default-user=${MFS_USER} \
 			--with-default-group=${MFS_GROUP}
 
-CONFLICTS=		moosefs2-* \
-			moosefs-*
+CONFLICTS=		moosefs-*
 
 .if ${MFS_COMPONENT} == cgi
 MFS_CGIDIR=		${PREFIX}/share/mfscgi

@@ -1,6 +1,7 @@
 PORTNAME=	mistral-common
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.11.0
+PORTREVISION=	1
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # tests are broken in PYPI tarball
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +16,7 @@ LICENSE=	APACHE20
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jsonschema>=4.21.1:devel/py-jsonschema@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.25:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.25:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pillow>=10.3.0:graphics/py-pillow@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.7<3.0:devel/py-pydantic2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic-extra-types>=2:devel/py-pydantic-extra-types@${PY_FLAVOR} \

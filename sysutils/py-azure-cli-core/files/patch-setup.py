@@ -1,4 +1,4 @@
---- setup.py.orig	2026-03-31 07:18:57 UTC
+--- setup.py.orig	2026-05-01 00:40:32 UTC
 +++ setup.py
 @@ -43,20 +43,20 @@ DEPENDENCIES = [
  ]
@@ -19,8 +19,8 @@
 -    'knack~=0.11.0',
 +    'knack>=0.11.0',
      'microsoft-security-utilities-secret-masker~=1.0.0b4',
--    'msal-extensions==1.2.0',
-+    'msal-extensions>=1.2.0',
+-    'msal-extensions==1.3.1',
++    'msal-extensions>=1.3.1',
      'msal[broker]==1.35.1; sys_platform == "win32"',
 -    'msal==1.35.1; sys_platform != "win32"',
 +    'msal>=1.35.1; sys_platform != "win32"',

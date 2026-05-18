@@ -1,6 +1,6 @@
 PORTNAME=	nglview
 DISTVERSION=	4.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +20,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipywidgets>=8:devel/py-ipywidgets@${PY_FLAVO
 		${PYTHON_PKGNAMEPREFIX}jupyterlab>=3:devel/py-jupyterlab@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jupyterlab-widgets>0:devel/py-jupyterlab-widgets@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}notebook>=7:www/py-notebook@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ipywidgets>0:devel/py-ipywidgets@${PY_FLAVOR}
 
 USES=		python

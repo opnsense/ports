@@ -1,5 +1,6 @@
 PORTNAME=	v_sim
 DISTVERSION=	3.9.1
+PORTREVISION=	1
 CATEGORIES=	science
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -26,7 +27,7 @@ LIB_DEPENDS=	libgdkglext-x11-1.0.so:x11-toolkits/gtkglext	\
 		libmsym.so:science/libmsym	\
 		libftgl.so:graphics/ftgl	\
 		libxc.so:science/libxc
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR}	\
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}	\
 		xcrysden:science/xcrysden	\
 		libarchive>0:archivers/libarchive	\
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR}

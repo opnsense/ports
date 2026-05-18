@@ -1,5 +1,6 @@
 PORTNAME=	agrum
 DISTVERSION=	2.3.2
+PORTREVISION=	1
 CATEGORIES=	science math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -42,7 +43,7 @@ OPENMP_CMAKE_BOOL=	USE_OPENMP
 PYTHON_CMAKE_BOOL=	BUILD_PYTHON
 PYTHON_USES=		python
 PYTHON_PLIST_SUB=	PYTHON_VER_MAJ=${PYTHON_VER:R}
-PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+PYTHON_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}matplotlib-inline>0:math/py-matplotlib-inline@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}nbconvert>0:devel/py-nbconvert@${PY_FLAVOR} \

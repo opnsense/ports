@@ -36,4 +36,6 @@ ICONV_CMAKE_BOOL=	SIMDUTF_ICONV
 
 TOOLS_CMAKE_BOOL=	SIMDUTF_TOOLS
 
+CXXFLAGS_powerpc64=	-mpower8-vector
+
 .include <bsd.port.mk>

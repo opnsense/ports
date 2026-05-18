@@ -9,10 +9,12 @@ COMMENT=	Salome Project: Multi-physics simulations: Kernel
 WWW=		https://www.salome-platform.org/ \
 		https://github.com/SalomePlatform/kernel/
 
+BROKEN=		fails to build with NumPy 2.x
+
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}omniorb>0:devel/py-omniorb \
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}

@@ -1,6 +1,6 @@
 PORTNAME=	picocrypt
 DISTVERSION=	1.49 # Missing modules.txt, generate one with `go mod vendor` and place it in ${FILESDIR}
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	security
 
 MAINTAINER=	eduardo@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/Picocrypt/Picocrypt
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/../LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64 mips64 powerpc64 powerpc64le riscv64
+ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64 powerpc64le riscv64
 ONLY_FOR_ARCHS_REASON=	upstream only supports 64-bit
 # https://github.com/HACKERALERT/Picocrypt/issues/127
 

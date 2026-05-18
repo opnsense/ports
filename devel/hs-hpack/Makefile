@@ -1,5 +1,5 @@
 PORTNAME=	hpack
-DISTVERSION=	0.39.3
+DISTVERSION=	0.39.5
 CATEGORIES=	devel haskell
 
 MAINTAINER=	haskell@FreeBSD.org

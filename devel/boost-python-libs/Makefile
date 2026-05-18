@@ -10,7 +10,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE_1_0.txt
 PATCHDIR=	${.CURDIR:H}/boost-libs/files
 
 BUILD_DEPENDS=	bjam:devel/boost-jam \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.26:math/py-numpy1@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.26:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libboost_container.so:devel/boost-libs
 

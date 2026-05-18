@@ -1,6 +1,6 @@
 PORTNAME=	nvidia-drm-kmod
 DISTVERSION?=	${NVIDIA_DISTVERSION}
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	graphics kld
 
 MAINTAINER=	x11@FreeBSD.org
@@ -15,13 +15,9 @@ USES=		metaport
 .if ${OPSYS} != FreeBSD
 IGNORE=         not supported on anything but FreeBSD (missing linuxkpi functionality)
 .else
-.  if ${OSVERSION} >= 1302000 && ${OSVERSION} < 1400097
-RUN_DEPENDS+=  ${KMODDIR}/nvidia-drm.ko:graphics/nvidia-drm-510-kmod${PKGNAMESUFFIX}
-.  elif ${OSVERSION} >= 1400097 && (${ARCH} == i386 || ${ARCH} == aarch64)
-RUN_DEPENDS+=  ${KMODDIR}/nvidia-drm.ko:graphics/nvidia-drm-510-kmod${PKGNAMESUFFIX}
-.  elif ${OSVERSION} >= 1500031 && ${ARCH} == amd64
+.  if ${OSVERSION} >= 1500031 && ${ARCH} == amd64
 RUN_DEPENDS+=	${KMODDIR}/nvidia-drm.ko:graphics/nvidia-drm-66-kmod${PKGNAMESUFFIX}
-.  elif ${OSVERSION} >= 1400508
+.  else
 RUN_DEPENDS+=  ${KMODDIR}/nvidia-drm.ko:graphics/nvidia-drm-61-kmod${PKGNAMESUFFIX}
 .  endif
 .endif

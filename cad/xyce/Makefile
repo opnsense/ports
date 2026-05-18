@@ -1,7 +1,7 @@
 PORTNAME=	xyce
 DISTVERSIONPREFIX=	Release-
 DISTVERSION=	7.10.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libblas.so:math/blas \
 		libsuitesparseconfig.so:math/suitesparse-config \
 		libumfpack.so:math/suitesparse-umfpack
 TEST_DEPENDS=	git:devel/git \
-		${PYTHON_PKGNAMEPREFIX}numpy1>=1.16:math/py-numpy1@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
