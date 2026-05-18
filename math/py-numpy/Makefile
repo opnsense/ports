@@ -54,6 +54,18 @@ NETLIB_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blas -Csetup-arg
 OPENBLAS_USES=		blaslapack:openblas
 OPENBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=openblas -Csetup-args=-Dlapack=openblas"
 
+# BEGIN OPNsense NOBLAS patching
+USES:=			${USES:Nfortran}
+OPTIONS_SINGLE_BLASLIB+=NOBLAS
+
+BLIS_USES+=		fortran
+FLEXBLAS_USES+=		fortran
+NETLIB_USES+=		fortran
+NOBLAS_DESC=		Internal NumPy fallback BLAS routines
+NOBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dallow-noblas=true"
+OPENBLAS_USES+=		fortran
+# END OPNsense NOBLAS patching
+
 post-install:
 	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
