@@ -1,5 +1,5 @@
 PORTNAME=	installer
-PORTVERSION=	1.0.0
+PORTVERSION=	1.0.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
-USE_PYTHON=	allflavors autoplist concurrent pep517
+USE_PYTHON=	allflavors autoplist concurrent pep517 pytest
 
 MAKE_ENV=	PYTHONPATH=${WRKSRC}/src
 NO_ARCH=	yes
