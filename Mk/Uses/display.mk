@@ -48,5 +48,11 @@ start-display:
 stop-display:
 	pkill -15 -F ${XVFBPIDFILE}
 
+.  else
+# DISPLAY is already defined, which means we're running in an existing session
+TEST_ENV+=		DISPLAY="${DISPLAY}"
+.    if defined(XAUTHORITY)
+TEST_ENV+=		XAUTHORITY="${XAUTHORITY}"
+.    endif
 .  endif
 .endif

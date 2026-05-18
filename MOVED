@@ -4547,7 +4547,6 @@ security/gpgme-cpp|security/gpgmepp|2025-06-24|Gpgme C++ bindings have been spli
 security/gpgme-qt@qt5|security/qgpgme@qt5|2025-06-24|Gpgme Qt5 bindings have been split into a separate project
 security/gpgme-qt@qt6|security/qgpgme@qt6|2025-06-24|Gpgme Qt6 bindings have been split into a separate project
 textproc/py-libxml2|textproc/libxml2-python|2025-06-28|Use correct Python package name
-audio/carla||2025-06-29|Remove expired port. Depends on expired audio/py-pyliblo
 audio/lmms||2025-06-29|Remove expired port. Depends on expiring audio/carla
 audio/py-pyliblo||2025-06-29|Remove expired port. Upstream is inactive for over 9 years
 japanese/anthy|japanese/anthy-unicode|2025-06-29|Has expired: Use japanese/anthy-unicode instead
@@ -5264,3 +5263,47 @@ emulators/virtualbox-ose-nox11-70|emulators/virtualbox-ose-70@nox11|2026-04-30|C
 emulators/virtualbox-ose-nox11-71|emulators/virtualbox-ose-71@nox11|2026-04-30|Converted to a flavorized port
 emulators/virtualbox-ose-nox11-72|emulators/virtualbox-ose-72@nox11|2026-04-30|Converted to a flavorized port
 databases/kuzu|databases/ladybug|2026-05-03|Upstream abandoned, project continuing under new name
+lang/elm||2026-05-04|Has expired: Depends on a deprecated compiler's version
+ports-mgmt/portsnap||2026-05-04|Has expired: portsnap infrastructure will be removed after the EOL of 13.x
+lang/ruby32||2026-05-04|Has expired: Please migrate to newer version. Ruby 3.2 is expected to reach its EoL on March 31, 2026
+lang/ghc92||2026-05-04|Has expired: Old version
+math/xgraph||2026-05-04|Has expired: Obsolete software, unmaintained upstream
+dns/samba-nsupdate||2026-05-04|Has expired: dns/samba-nsupdate has been abandoned for many years; use dns/bind-tools for DNS updates with GSS-TSIG
+astro/mymoon||2026-05-04|Has expired: mastersite disappeared
+games/flightgear-mb339-pan||2026-05-04|Has expired: Upstream is inactive for 15+ years
+x11/urxvt-perls||2026-05-04|Has expired: Upstream repository archived in 2021
+sysutils/cfengine-masterfiles322||2026-05-04|Has expired: No longer supported by upstream
+sysutils/cfengine322||2026-05-04|Has expired: No longer supported by upstream
+sysutils/cfengine321||2026-05-04|Has expired: No longer supported by upstream
+sysutils/cfengine-masterfiles321||2026-05-04|Has expired: No longer supported by upstream
+sysutils/cfengine323||2026-05-04|Has expired: No longer supported by upstream
+sysutils/cfengine-masterfiles323||2026-05-04|Has expired: No longer supported by upstream
+security/openssl111||2026-05-04|Has expired: End-of-life since 2023-09-11, see https://www.openssl.org/blog/blog/2023/09/11/eol-111/  port will be removed when FreeBSD 13 is EoL
+security/ktls_isa-l_crypto-kmod||2026-05-05|Removed, is only for FreeBSD 13
+graphics/drm-510-kmod||2026-05-05|Removed, is only for FreeBSD 13
+graphics/nvidia-drm-510-kmod||2026-05-05|Removed, is only for FreeBSD 13
+graphics/nvidia-drm-510-kmod-580||2026-05-05|Removed, is only for FreeBSD 13
+graphics/nvidia-drm-510-kmod-devel||2026-05-05|Removed, is only for FreeBSD 13
+mail/archiveopteryx-devel|mail/archiveopteryx|2026-05-06|Remove obsoleted port. Use mail/archiveopteryx instead
+devel/kyua||2026-05-07|Removed, kyua from base must be used for FreeBSD 14.x and newer
+devel/sd-mux-ctrl||2026-05-08|Has expired: Upstream project is unmaintained as the Tizen project is no longer active
+devel/py-rednose||2026-05-08|Has expired: Depends on unmaintained nosetests
+devel/py-termstyle||2026-05-09|Has expired: Upstream project appears to be abandoned
+www/p5-Catalyst-Controller-BindLex||2026-05-09|Has expired: Upstream unmaintained and declared to be dangerous to use
+editors/abiword-docs||2026-05-10|Has expired: abisource.com no longer exists
+games/linwarrior||2026-05-10|Has expired: Abandoned and obsolete, last release in 2010, not really playable
+devel/lace14|devel/lace|2026-05-12|Last user switched to devel/lace
+java/openjdk23||2026-05-12|Has expired: No longer supported by upstream
+databases/jrrd||2026-05-12|Has expired: only builds with Java 8, unmaintained, no dependencies in the ports tree, an alternative is https://github.com/OpenNMS/jrrd2
+deskutils/growl-for-linux||2026-05-12|Has expired: Obsolete software that does not compile with recent versions of GCC or Clang
+www/py-requests-cache93|www/py-requests-cache|2026-05-13|Use latest version
+lang/erlang-runtime21|lang/erlang-runtime28|2026-05-14|Has expired: no longer supported upstream, use lang/erlang >=28
+lang/erlang-runtime22|lang/erlang-runtime28|2026-05-14|Has expired: no longer supported upstream, use lang/erlang >=28
+lang/erlang-runtime23|lang/erlang-runtime28|2026-05-14|Has expired: no longer supported upstream, use lang/erlang >=28
+lang/erlang-runtime24|lang/erlang-runtime28|2026-05-14|Has expired: no longer supported upstream, use lang/erlang >=28
+lang/erlang-runtime25|lang/erlang-runtime28|2026-05-14|Has expired: no longer supported upstream, use lang/erlang >=28
+lang/erlang-runtime26|lang/erlang-runtime28|2026-05-14|Has expired: no longer supported upstream, use lang/erlang >=28
+databases/leofs||2026-05-14|Has expired: no longer maintained upstream, with no supported OTP release
+chinese/fcitx-rime||2026-05-17|Marked broken for almost a year and upstream repo is archived
+deskutils/gnome-shell-extension-audio-output-switcher||2026-05-17|Marked broken and upstream repo is archived
+deskutils/gnome-shell-extension-filesmenu||2026-05-17|Marked broken and abandoned upstream
