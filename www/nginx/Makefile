@@ -1,7 +1,7 @@
 PORTNAME=	nginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION=	0
+PORTREVISION=	2
 PORTEPOCH=	3
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	nginx-devel
 
-PORTSCOUT=	limit:^1\.2[6-7]\.[0-9]*
+PORTSCOUT=	limit:^1\.30\.[0-9]*
 
 USES=		cpe
 
@@ -321,6 +321,11 @@ post-patch-SFLOW-on:
 
 pre-configure-SMALL_LIGHT-on:
 	( cd ${WRKSRC_small_light} && ./setup )
+
+pre-configure-LUASTREAM-on:
+	@${RM} -rf ${WRKSRC_luastream}
+	@cd ${LOCALBASE}/share/nginx/modules/lua-stream-nginx-module && \
+		${COPYTREE_SHARE} . ${WRKSRC_luastream}
 
 do-configure-NJS-on:
 	( cd ${WRKSRC_njs} && ${SETENV} ${CONFIGURE_ENV} ${CONFIGURE_CMD} ${NJS_CONFIGURE_ARGS} )
