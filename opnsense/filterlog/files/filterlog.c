@@ -13,6 +13,7 @@
 
 #include <netinet/ip.h>
 
+#include <libpfctl.h>
 #include <stdlib.h>
 #include <syslog.h>
 #include <stdarg.h>
@@ -252,37 +253,32 @@ realloc_rulelabels(int nr)
 static int
 get_rulelabels(void)
 {
-	struct pfioc_rule pr;
-	u_int32_t nr, i;
+	char anchor_call[MAXPATHLEN];
+	struct pfctl_rules_info ri;
+	struct pfctl_rule rule;
+	u_int32_t nr;
 	int dev;
-
-	bzero(&pr, sizeof(pr));
-	pr.rule.action = PF_PASS;
 
 	if ((dev = open("/dev/pf", O_RDONLY)) == -1) {
 		return (1);
 	}
 
-	bzero(&pr, sizeof(pr));
-	pr.rule.action = PF_PASS;
-
-	if (ioctl(dev, DIOCGETRULES, &pr)) {
+	if (pfctl_get_rules_info(dev, &ri, PF_PASS, "")) {
 		return (1);
 	}
 
-	for (nr = pr.nr, i = 0; i < nr; i++) {
-		pr.nr = i;
-
-		if (ioctl(dev, DIOCGETRULE, &pr)) {
+	for (nr = 0; nr < ri.nr; ++nr) {
+		if (pfctl_get_rule(dev, nr, ri.ticket, "", PF_PASS,
+		    &rule, anchor_call)) {
 			return (1);
 		}
 
-		if (realloc_rulelabels(pr.rule.nr)) {
+		if (realloc_rulelabels(rule.nr)) {
 			return (1);
 		}
 
-		if (pr.rule.label[0]) {
-			rulelabels[pr.rule.nr] = strdup(pr.rule.label);
+		if (rule.label[0][0]) {
+			rulelabels[rule.nr] = strdup(rule.label[0]);
 		}
 	}
 
