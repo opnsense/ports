@@ -1,14 +1,11 @@
 PORTNAME=	cryptography
-PORTVERSION=	46.0.7
+PORTVERSION=	48.0.0
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
-
-PATCH_SITES=	https://github.com/pyca/cryptography/commit/
-PATCHFILES=	43eb178ee3aae8d0060221118437b03c23570a41.patch:-p1
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Cryptographic recipes and primitives for Python developers
@@ -45,7 +42,7 @@ CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
 
-CPE_VENDOR=	cryptography_project
+CPE_VENDOR=	cryptography.io
 
 OPTIONS_DEFINE=	SSH
 
