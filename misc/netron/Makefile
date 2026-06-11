@@ -1,7 +1,7 @@
 PORTNAME=	netron
 DISTVERSIONPREFIX=	v
-DISTVERSION=	9.0.8
-CATEGORIES=	misc python
+DISTVERSION=	9.1.1
+CATEGORIES=	misc python # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Visualizer for neural network, deep learning, machine learning models

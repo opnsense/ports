@@ -1,5 +1,6 @@
 PORTNAME=	edk2
 PORTVERSION=	g202508
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -18,7 +19,7 @@ FLAVORS=	bhyve macchiatobin fvp rpi3 rpi4 xen_x64 qemu_x64 qemu_i386
 
 USES=	dos2unix cpe gmake python:build
 CPE_VENDOR=	tianocore
-USE_GCC=	yes
+USE_GCC=	yes:build
 DOS2UNIX_FILES=	UefiCpuPkg/CpuDxe/CpuDxe.inf \
 		UefiCpuPkg/CpuDxe/CpuDxe.c \
 		UefiCpuPkg/CpuDxe/CpuPageTable.c \
@@ -52,6 +53,8 @@ GH_TUPLE=	tianocore:edk2-platforms:${PLATFORM_TAG}:platforms \
 
 # Heavily dependent on bsd.port.pre.mk definitions for lang/gcc* details:
 BINARY_ALIAS=	make=${GMAKE} \
+		ar=${AR} \
+		dtc=${LOCALBASE}/bin/dtc \
 		gcc=${LOCALBASE}/bin/${CC} \
 		g++=${LOCALBASE}/bin/${CXX} \
 		gcc-nm=${LOCALBASE}/bin/${CC:S/gcc/&-nm/} \

@@ -70,6 +70,7 @@
     SUBDIR += gcal
     SUBDIR += genius
     SUBDIR += glabels
+    SUBDIR += gitte
     SUBDIR += gnome-calendar
     SUBDIR += gnome-characters
     SUBDIR += gnome-clocks
@@ -88,13 +89,8 @@
     SUBDIR += gnome-shell-extension-hidetopbar
     SUBDIR += gnome-shell-extension-lockkeys
     SUBDIR += gnome-shell-extension-manager
-    SUBDIR += gnome-shell-extension-mediaplayer
-    SUBDIR += gnome-shell-extension-panel-osd
     SUBDIR += gnome-shell-extension-recent-items
     SUBDIR += gnome-shell-extension-simple-weather
-    SUBDIR += gnome-shell-extension-trash
-    SUBDIR += gnome-shell-extension-weather
-    SUBDIR += gnome-shell-extension-windowoverlay-icons
     SUBDIR += gnome-shell-extra-extensions
     SUBDIR += gnome-sound-recorder
     SUBDIR += gnome-todo
@@ -104,6 +100,7 @@
     SUBDIR += gnote
     SUBDIR += gnotime
     SUBDIR += gnustep-wrapper
+    SUBDIR += gnutrition
     SUBDIR += go-for-it
     SUBDIR += goesimage
     SUBDIR += gpicker
@@ -148,6 +145,7 @@
     SUBDIR += kmail
     SUBDIR += kmail-account-wizard
     SUBDIR += kodaskanna
+    SUBDIR += komodo
     SUBDIR += kongress
     SUBDIR += kontact
     SUBDIR += korganizer
@@ -261,6 +259,7 @@
     SUBDIR += rwpspread
     SUBDIR += semantik
     SUBDIR += sigi
+    SUBDIR += sigye
     SUBDIR += simpleagenda
     SUBDIR += skim
     SUBDIR += sliderule

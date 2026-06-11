@@ -1,12 +1,12 @@
 PORTNAME=	drm-515-kmod
 PORTVERSION=	${DRM_KMOD_DISTVERSION}
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	graphics kld
 
 .include "Makefile.version"
 
 MAINTAINER=	x11@FreeBSD.org
-COMMENT=	Direct Rendering Manager GPU drivers
+COMMENT=	Direct Rendering Manager (DRM) GPU drivers
 WWW=		https://github.com/freebsd/drm-kmod/
 
 LICENSE=	BSD2CLAUSE MIT GPLv2
@@ -15,8 +15,10 @@ LICENSE_COMB=	multi
 ONLY_FOR_ARCHS=	amd64 powerpc64 powerpc64le
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64 and powerpc64
 
-CONFLICTS_INSTALL=	drm-61-kmod \
-			drm-66-kmod
+CONFLICTS_INSTALL=	drm-latest-kmod \
+			drm-61-kmod \
+			drm-66-kmod \
+			drm-612-kmod
 
 USES=		kmod uidfix compiler:c++11-lang
 
@@ -35,11 +37,6 @@ IGNORE=		not supported on FreeBSD 16.0 and higher
 .endif
 .if ${OPSYS} != FreeBSD
 IGNORE=		not supported on anything but FreeBSD (missing linuxkpi functionality)
-.endif
-
-.if ${OPSYS} == FreeBSD && (${OSVERSION} >= 1500065 || \
-    (${OSVERSION} < 1500000 && ${OSVERSION} >= 1403508))
-EXTRA_PATCHES+= ${PATCHDIR}/extra-patch-linuxkpi-pci
 .endif
 
 .if ${ARCH} == "amd64"

@@ -64,7 +64,9 @@
     SUBDIR += bsdsfv
     SUBDIR += bsmtrace
     SUBDIR += bsmtrace3
+    SUBDIR += bumblebee
     SUBDIR += bzrtp
+    SUBDIR += c-siphash
     SUBDIR += ca_root_nss
     SUBDIR += caesarcipher
     SUBDIR += caldera
@@ -243,6 +245,7 @@
     SUBDIR += idea
     SUBDIR += identify
     SUBDIR += imds-filterd
+    SUBDIR += infisical-cli
     SUBDIR += intel-ipsec-mb
     SUBDIR += interactsh
     SUBDIR += ipfmeta
@@ -488,6 +491,7 @@
     SUBDIR += p5-App-ClusterSSH
     SUBDIR += p5-App-Genpass
     SUBDIR += p5-App-TLSMe
+    SUBDIR += p5-Auth-GoogleAuth
     SUBDIR += p5-Auth-YubikeyDecrypter
     SUBDIR += p5-AuthCAS
     SUBDIR += p5-Authen-Bitcard
@@ -879,6 +883,7 @@
     SUBDIR += pwdsafety
     SUBDIR += pwman
     SUBDIR += pwned-check
+    SUBDIR += py-PAM
     SUBDIR += py-SecretStorage
     SUBDIR += py-YubiOTP
     SUBDIR += py-acme
@@ -1028,6 +1033,7 @@
     SUBDIR += py-pnu-vuxml
     SUBDIR += py-policyuniverse
     SUBDIR += py-potr
+    SUBDIR += py-privleap
     SUBDIR += py-pwntools
     SUBDIR += py-pyaes
     SUBDIR += py-pyaff4
@@ -1085,6 +1091,7 @@
     SUBDIR += py-shamir-mnemonic
     SUBDIR += py-signedjson
     SUBDIR += py-signxml
+    SUBDIR += py-siphash24
     SUBDIR += py-slip10
     SUBDIR += py-social-auth-core
     SUBDIR += py-spake2
@@ -1149,6 +1156,7 @@
     SUBDIR += rubygem-android_key_attestation
     SUBDIR += rubygem-attr_encrypted
     SUBDIR += rubygem-attr_encrypted3
+    SUBDIR += rubygem-auth-sanitizer
     SUBDIR += rubygem-bcrypt
     SUBDIR += rubygem-bcrypt-ruby
     SUBDIR += rubygem-bcrypt_pbkdf

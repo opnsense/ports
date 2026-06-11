@@ -119,6 +119,7 @@
     SUBDIR += beats91
     SUBDIR += beats92
     SUBDIR += beats93
+    SUBDIR += beats94
     SUBDIR += bfs
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
@@ -134,6 +135,7 @@
     SUBDIR += bmd-plugin-hookcmd
     SUBDIR += boot-extract
     SUBDIR += bottom
+    SUBDIR += boxrun
     SUBDIR += bpytop
     SUBDIR += brasero
     SUBDIR += brename
@@ -151,6 +153,7 @@
     SUBDIR += bstack
     SUBDIR += btop
     SUBDIR += btsixad
+    SUBDIR += bttf
     SUBDIR += budgie-control-center
     SUBDIR += buildah
     SUBDIR += bulk_extractor
@@ -455,6 +458,7 @@
     SUBDIR += getssl
     SUBDIR += gh-md-toc
     SUBDIR += gigolo
+    SUBDIR += gitlab-registry
     SUBDIR += gitwatch
     SUBDIR += gkfreq
     SUBDIR += gkleds2
@@ -673,9 +677,11 @@
     SUBDIR += logstash91
     SUBDIR += logstash92
     SUBDIR += logstash93
+    SUBDIR += logstash94
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += loki
+    SUBDIR += loki3
     SUBDIR += lookat
     SUBDIR += lr
     SUBDIR += lsblk
@@ -1041,6 +1047,7 @@
     SUBDIR += py-ansible-core218
     SUBDIR += py-ansible-core219
     SUBDIR += py-ansible-core220
+    SUBDIR += py-ansible-core221
     SUBDIR += py-ansible-lint
     SUBDIR += py-ansible-runner
     SUBDIR += py-appjail-gui
@@ -1164,6 +1171,7 @@
     SUBDIR += reoback
     SUBDIR += reproduce
     SUBDIR += reptyr
+    SUBDIR += reqlog
     SUBDIR += respond
     SUBDIR += rest-server
     SUBDIR += restic
@@ -1180,6 +1188,7 @@
     SUBDIR += root-tail
     SUBDIR += rovclock
     SUBDIR += rpi-firmware
+    SUBDIR += rpi-usbboot
     SUBDIR += rset
     SUBDIR += rshim-user-space
     SUBDIR += rsnapshot

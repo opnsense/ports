@@ -25,7 +25,6 @@ include/libaudcore/ringbuf.h
 include/libaudcore/runtime.h
 include/libaudcore/templates.h
 include/libaudcore/threads.h
-include/libaudcore/tinylock.h
 include/libaudcore/tuple.h
 include/libaudcore/vfs.h
 include/libaudcore/vfs_async.h
@@ -44,17 +43,17 @@ include/libaudcore/visualizer.h
 %%GTK%%include/libaudgui/list.h
 %%GTK%%include/libaudgui/menu.h
 lib/libaudcore.so
-lib/libaudcore.so.5
-lib/libaudcore.so.5.5.0
+lib/libaudcore.so.6
+lib/libaudcore.so.6.0.0
 %%GTK%%lib/libaudgui.so
-%%GTK%%lib/libaudgui.so.6
-%%GTK%%lib/libaudgui.so.6.0.0
+%%GTK%%lib/libaudgui.so.7
+%%GTK%%lib/libaudgui.so.7.0.0
 %%QT%%lib/libaudqt.so
-%%QT%%lib/libaudqt.so.3
-%%QT%%lib/libaudqt.so.3.0.0
+%%QT%%lib/libaudqt.so.4
+%%QT%%lib/libaudqt.so.4.0.0
 lib/libaudtag.so
-lib/libaudtag.so.3
-lib/libaudtag.so.3.0.0
+lib/libaudtag.so.4
+lib/libaudtag.so.4.0.0
 libdata/pkgconfig/audacious.pc
 share/man/man1/audacious.1.gz
 share/man/man1/audtool.1.gz
@@ -87,6 +86,7 @@ share/icons/hicolor/scalable/apps/audacious.svg
 %%NLS%%share/locale/id_ID/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/it/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/ja/LC_MESSAGES/audacious.mo
+%%NLS%%share/locale/ka/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/lv/LC_MESSAGES/audacious.mo
@@ -111,4 +111,4 @@ share/icons/hicolor/scalable/apps/audacious.svg
 %%NLS%%share/locale/uz/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/audacious.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/audacious.mo
-share/metainfo/audacious.appdata.xml
+share/metainfo/audacious.metainfo.xml

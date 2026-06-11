@@ -1,10 +1,9 @@
 PORTNAME=	firefox
-DISTVERSION=	140.11.0
-PORTREVISION=	1
+DISTVERSION=	140.12.0
 PORTEPOCH=	2
 CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}esr-candidates/build2/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}esr-candidates/build1/source
 PKGNAMESUFFIX=	-esr
 DISTFILES=	${DISTNAME}esr.source${EXTRACT_SUFX}
 
@@ -56,8 +55,6 @@ post-extract:
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
-	@${REINPLACE_CMD} -e 's|wasm32-wasi|&p1|' \
-		${WRKSRC}/build/moz.configure/toolchain.configure
 
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/${MOZILLA_EXEC_NAME}.desktop ${STAGEDIR}${PREFIX}/share/applications

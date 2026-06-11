@@ -12,6 +12,7 @@
     SUBDIR += asn1c
     SUBDIR += atlast
     SUBDIR += awka
+    SUBDIR += babashka
     SUBDIR += bas2tap
     SUBDIR += basic256
     SUBDIR += bend
@@ -101,7 +102,6 @@
     SUBDIR += gcc6-aux
     SUBDIR += gforth
     SUBDIR += ghc
-    SUBDIR += ghc94
     SUBDIR += ghc96
     SUBDIR += ghc98
     SUBDIR += gir-to-d
@@ -180,6 +180,7 @@
     SUBDIR += lua52
     SUBDIR += lua53
     SUBDIR += lua54
+    SUBDIR += lua55
     SUBDIR += luajit
     SUBDIR += luajit-openresty
     SUBDIR += malbolge

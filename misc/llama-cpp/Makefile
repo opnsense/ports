@@ -1,16 +1,10 @@
 PORTNAME=	llama-cpp
 DISTVERSIONPREFIX=	b
-DISTVERSION=	9159
+DISTVERSION=	9426
 PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
-MASTER_SITES=	https://huggingface.co/buckets/ggml-org/llama-ui/resolve/${DISTVERSIONPREFIX}${DISTVERSION}/:webui
-DISTFILES=	index.html:webui \
-		bundle.js:webui \
-		bundle.css:webui \
-		loading.html:webui
-DIST_SUBDIR=	${PORTNAME}
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
-		nomic-ai-kompute-4565194_GH0.tar.gz
+DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Facebook's LLaMA model in C/C++ # '
@@ -19,19 +13,24 @@ WWW=		https://github.com/ggerganov/llama.cpp
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_armv7=	clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=278810
-BROKEN_i386=	compilation fails, see https://github.com/ggerganov/llama.cpp/issues/9545
+USES=		cmake:testing compiler:c++11-lang python:run shebangfix ssl
 
 LIB_DEPENDS=	libggml-base.so:misc/ggml
 
-USES=		cmake:testing compiler:c++11-lang python:run shebangfix
+BUILD_DEPENDS=	npm:www/npm
+FETCH_DEPENDS=	npm:www/npm \
+		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
+BROKEN_armv7=	clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=278810
+BROKEN_i386=	compilation fails, see https://github.com/ggerganov/llama.cpp/issues/9545
 
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ggerganov
 GH_PROJECT=	llama.cpp
-GH_TUPLE=	nomic-ai:kompute:4565194:kompute/kompute
+
+DISTFILES+=	llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX}
 
 SHEBANG_GLOB=	*.py
 
@@ -48,26 +47,39 @@ SUB_LIST=	USER=${USER}
 
 PLIST_SUB+=	DISTVERSION=${DISTVERSION}
 
-OPTIONS_DEFINE=		CURL EXAMPLES
-OPTIONS_DEFAULT=	CURL EXAMPLES
+OPTIONS_DEFINE=		EXAMPLES
+OPTIONS_DEFAULT=	EXAMPLES
 OPTIONS_SUB=		yes
-
-CURL_DESCR=		Use libcurl to download model from an URL
-CURL_CMAKE_BOOL=	LLAMA_CURL
-CURL_USES=		localbase
-CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 
 EXAMPLES_CMAKE_BOOL=	LLAMA_BUILD_EXAMPLES
 
 BINARY_ALIAS=	git=false \
 		python=${PYTHON_CMD} # for tests
 
+do-fetch:
+	# Fetch the main GH source tarball
+	@if ! [ -f ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		cd ${DISTDIR}/${DIST_SUBDIR} && \
+			${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+				https://codeload.github.com/${GH_ACCOUNT}/${GH_PROJECT}/tar.gz/${DISTVERSIONPREFIX}${DISTVERSION}?dummy=/${DISTNAME}${EXTRACT_SUFX} \
+				${FETCH_AFTER_ARGS}; \
+	fi
+	# Download npm dependencies for the WebUI
+	@if ! [ -f ${DISTDIR}/${DIST_SUBDIR}/llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX} ]; then \
+		${SETENV} TMPDIR=${WRKDIR} LOCALBASE=${LOCALBASE} \
+			${SH} ${FILESDIR}/fetch-ui.sh \
+			${DISTVERSION} \
+			${DISTDIR}/${DIST_SUBDIR} \
+			${DISTNAME}${EXTRACT_SUFX} \
+				${FILESDIR}; \
+	fi
+
 post-extract:
-	@${MKDIR} ${WRKSRC}/tools/server/public
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/index.html ${WRKSRC}/tools/server/public/index.html
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/bundle.js ${WRKSRC}/tools/server/public/bundle.js
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/bundle.css ${WRKSRC}/tools/server/public/bundle.css
-	${CP} ${DISTDIR}/${DIST_SUBDIR}/loading.html ${WRKSRC}/tools/server/public/loading.html
+	@${MKDIR} ${WRKSRC}/tools/ui/node_modules
+	@${TAR} -xzf ${DISTDIR}/${DIST_SUBDIR}/llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKSRC}/tools/ui/node_modules --strip-components 1
+	@cd ${WRKSRC}/tools/ui && \
+		${SETENV} HOME=${WRKSRC} npm run build
 
 post-patch: # set version in the code
 	@${REINPLACE_CMD} \

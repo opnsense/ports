@@ -1,10 +1,11 @@
 PORTNAME=	kibana
-DISTVERSION=	8.19.13
+DISTVERSION=	8.19.15
 DISTVERSIONSUFFIX=	-linux-x86_64
+PORTREVISION=	1
 CATEGORIES=	textproc www
 MASTER_SITES=	https://artifacts.elastic.co/downloads/kibana/ \
 		LOCAL/vvd/elastic
-PKGNAMESUFFIX=	8
+PKGNAMESUFFIX=	${DISTVERSION:R:R}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	elastic@FreeBSD.org
@@ -25,11 +26,11 @@ GH_TUPLE=	nodejs:nan:v${_NODE_NAN_VER}:node_nan \
 		uhop:node-re2:${_NODE_RE2_VER}:node_re2
 USE_RC_SUBR=	${PORTNAME}
 
-CONFLICTS=	${PORTNAME}9*
+CONFLICTS=	${PORTNAME}*
 
 WWWDIR=		${PREFIX}/www/${PORTNAME}${PKGNAMESUFFIX}
 
-PORTSCOUT=	limit:^8
+PORTSCOUT=	limit:^${DISTVERSION:R:R}\.
 
 SUB_FILES=	pkg-deinstall pkg-message
 SUB_LIST=	BINDIR=${PREFIX}/bin \
@@ -54,9 +55,9 @@ BINS=	kibana-encryption-keys kibana-health-gateway kibana-keystore \
 
 #######################################################################
 # Set node-nan version here
-_NODE_NAN_VER=	2.25.0
+_NODE_NAN_VER=	2.27.0
 # Set node-re version here
-_NODE_RE2_VER=	1.23.3
+_NODE_RE2_VER=	1.24.1
 #######################################################################
 
 _NODECMD=	${LOCALBASE}/bin/node --version

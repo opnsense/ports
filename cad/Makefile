@@ -125,12 +125,14 @@
     SUBDIR += py-vunit-hdl
     SUBDIR += python-gdsii
     SUBDIR += qcad
+    SUBDIR += qcadjsapi
     SUBDIR += qcsxcad
     SUBDIR += qelectrotech
     SUBDIR += qflow
     SUBDIR += qmls
     SUBDIR += qrouter
     SUBDIR += qspeakers
+    SUBDIR += qtjsapi
     SUBDIR += qucs-s
     SUBDIR += qucsator
     SUBDIR += repsnapper

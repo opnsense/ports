@@ -1,6 +1,7 @@
 PORTNAME=	gitlab-runner
 DISTVERSIONPREFIX=	v
 DISTVERSION=	18.11.3
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerx64 \
 		https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerarm
@@ -25,7 +26,9 @@ RUN_DEPENDS=	bash:shells/bash \
 		git:devel/git \
 		gitlab-analyzers-secrets>=0:security/gitlab-analyzers-secrets
 
-USES=		go:modules
+USES=		cpe go:modules
+CPE_PRODUCT=	runner
+CPE_VENDOR=	gitlab
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 USE_RC_SUBR=	gitlab_runner

@@ -1,7 +1,7 @@
 PORTNAME=	litestream
 PORTVERSION=	0.5.11
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	databases
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	module modernc.org/sqlite only supported on aarch64 and amd64
 
-USES=		go:modules
+USES=		cpe go:modules
 
 GO_MODULE=	github.com/benbjohnson/litestream
 GO_TARGET=	./cmd/litestream

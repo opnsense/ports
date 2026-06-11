@@ -1,6 +1,6 @@
 PORTNAME=	lean-ctx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.6.6
+DISTVERSION=	3.7.5
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -24,6 +24,7 @@ GH_ACCOUNT=	yvgude
 WRKSRC_SUBDIR=	rust
 
 CARGO_CRATES=	adler2-2.0.1 \
+		adobe-cmap-parser-0.4.1 \
 		aes-0.8.4 \
 		aho-corasick-1.1.4 \
 		allocator-api2-0.2.21 \
@@ -57,17 +58,21 @@ CARGO_CRATES=	adler2-2.0.1 \
 		blake3-1.8.5 \
 		block-buffer-0.10.4 \
 		block-buffer-0.12.0 \
+		block-padding-0.3.3 \
 		bstr-1.12.1 \
 		bumpalo-3.20.2 \
 		bytecount-0.6.9 \
 		bytemuck-1.25.0 \
 		byteorder-1.5.0 \
+		byteorder-lite-0.1.0 \
 		bytes-1.11.1 \
 		bzip2-0.6.1 \
 		cast-0.3.0 \
 		castaway-0.2.4 \
+		cbc-0.1.2 \
 		cc-1.2.60 \
 		cesu8-1.1.0 \
+		cff-parser-0.1.0 \
 		cfg-if-1.0.4 \
 		cfg_aliases-0.2.1 \
 		chacha20-0.10.0 \
@@ -81,14 +86,17 @@ CARGO_CRATES=	adler2-2.0.1 \
 		clap_lex-1.1.0 \
 		cmake-0.1.58 \
 		cmov-0.5.3 \
+		color_quant-1.1.0 \
 		combine-4.6.7 \
 		compact_str-0.9.0 \
+		console-0.16.3 \
 		const-oid-0.9.6 \
 		const-oid-0.10.2 \
 		constant_time_eq-0.4.2 \
 		convert_case-0.10.0 \
 		core-foundation-0.10.1 \
 		core-foundation-sys-0.8.7 \
+		core_maths-0.1.1 \
 		cpufeatures-0.2.17 \
 		cpufeatures-0.3.0 \
 		crc32fast-1.5.0 \
@@ -98,7 +106,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		crossbeam-deque-0.8.6 \
 		crossbeam-epoch-0.9.18 \
 		crossbeam-utils-0.8.21 \
-		crossterm-0.28.1 \
 		crossterm-0.29.0 \
 		crossterm_winapi-0.9.1 \
 		crunchy-0.2.4 \
@@ -111,6 +118,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		darling-0.23.0 \
 		darling_core-0.23.0 \
 		darling_macro-0.23.0 \
+		data-url-0.3.2 \
 		deadpool-0.12.3 \
 		deadpool-postgres-0.14.1 \
 		deadpool-runtime-0.1.4 \
@@ -128,13 +136,17 @@ CARGO_CRATES=	adler2-2.0.1 \
 		document-features-0.2.12 \
 		dunce-1.0.5 \
 		dyn-clone-1.0.20 \
+		ecb-0.1.2 \
 		ed25519-2.2.3 \
 		ed25519-dalek-2.2.0 \
 		either-1.15.0 \
 		email-encoding-0.4.1 \
 		email_address-0.2.9 \
+		encode_unicode-1.0.0 \
+		encoding_rs-0.8.35 \
 		equivalent-1.0.2 \
 		errno-0.3.14 \
+		euclid-0.20.14 \
 		euclid-0.22.14 \
 		fallible-iterator-0.2.0 \
 		fallible-iterator-0.3.0 \
@@ -142,19 +154,24 @@ CARGO_CRATES=	adler2-2.0.1 \
 		fancy-regex-0.11.0 \
 		fancy-regex-0.13.0 \
 		fastrand-2.4.1 \
+		fdeflate-0.3.7 \
 		fiat-crypto-0.2.9 \
 		filedescriptor-0.8.3 \
-		filetime-0.2.27 \
+		filetime-0.2.29 \
 		find-msvc-tools-0.1.9 \
 		finl_unicode-1.4.0 \
 		fixedbitset-0.4.2 \
 		flatbuffers-24.12.23 \
 		flate2-1.1.9 \
+		float-cmp-0.9.0 \
 		fluent-uri-0.1.4 \
 		fnv-1.0.7 \
 		foldhash-0.1.5 \
 		foldhash-0.2.0 \
+		fontconfig-parser-0.5.8 \
+		fontdb-0.23.0 \
 		form_urlencoded-1.2.2 \
+		fs2-0.4.3 \
 		fs_extra-1.3.0 \
 		futures-0.3.32 \
 		futures-channel-0.3.32 \
@@ -169,6 +186,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		getrandom-0.2.17 \
 		getrandom-0.3.4 \
 		getrandom-0.4.2 \
+		gif-0.14.2 \
 		glob-0.3.3 \
 		globset-0.4.18 \
 		half-2.7.1 \
@@ -204,9 +222,12 @@ CARGO_CRATES=	adler2-2.0.1 \
 		idna-1.1.0 \
 		idna_adapter-1.2.1 \
 		ignore-0.4.25 \
+		image-webp-0.2.4 \
+		imagesize-0.14.0 \
 		indexmap-2.14.0 \
 		indoc-2.0.7 \
 		inout-0.1.4 \
+		insta-1.47.2 \
 		instability-0.3.12 \
 		ipnet-2.12.0 \
 		iri-string-0.7.12 \
@@ -222,21 +243,23 @@ CARGO_CRATES=	adler2-2.0.1 \
 		js-sys-0.3.95 \
 		jsonwebtoken-10.3.0 \
 		kasuari-0.4.12 \
+		kurbo-0.13.1 \
 		lab-0.11.0 \
 		lazy_static-1.5.0 \
 		leb128fmt-0.1.0 \
 		lettre-0.11.21 \
 		libbz2-rs-sys-0.2.3 \
 		libc-0.2.185 \
+		libm-0.2.16 \
 		libredox-0.1.16 \
 		libsqlite3-sys-0.37.0 \
 		line-clipping-0.3.7 \
-		linux-raw-sys-0.4.15 \
 		linux-raw-sys-0.12.1 \
 		litemap-0.8.2 \
 		litrs-1.0.0 \
 		lock_api-0.4.14 \
 		log-0.4.29 \
+		lopdf-0.38.0 \
 		lru-0.16.4 \
 		lru-slab-0.1.2 \
 		lsp-types-0.97.0 \
@@ -258,6 +281,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		nix-0.29.0 \
 		nom-7.1.3 \
 		nom-8.0.0 \
+		nom_locate-5.0.0 \
 		nu-ansi-term-0.50.3 \
 		num-bigint-0.4.6 \
 		num-conv-0.2.1 \
@@ -279,6 +303,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		paste-1.0.15 \
 		pastey-0.2.2 \
 		pbkdf2-0.12.2 \
+		pdf-extract-0.10.0 \
 		pem-3.0.6 \
 		percent-encoding-2.3.2 \
 		pest-2.8.6 \
@@ -292,16 +317,20 @@ CARGO_CRATES=	adler2-2.0.1 \
 		phf_macros-0.11.3 \
 		phf_shared-0.11.3 \
 		phf_shared-0.13.1 \
+		pico-args-0.5.0 \
 		pin-project-lite-0.2.17 \
 		pkcs8-0.10.2 \
 		pkg-config-0.3.33 \
-		plain-0.2.3 \
 		plotters-0.3.7 \
 		plotters-backend-0.3.7 \
 		plotters-svg-0.3.7 \
+		png-0.18.1 \
+		polycool-0.4.0 \
+		pom-1.1.0 \
 		portable-atomic-1.13.1 \
 		postgres-protocol-0.6.11 \
 		postgres-types-0.2.13 \
+		postscript-0.14.1 \
 		potential_utf-0.1.5 \
 		powerfmt-0.2.0 \
 		ppmd-rust-1.4.0 \
@@ -310,6 +339,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		proc-macro2-1.0.106 \
 		proptest-1.11.0 \
 		quick-error-1.2.3 \
+		quick-error-2.0.1 \
 		quinn-0.11.9 \
 		quinn-proto-0.11.14 \
 		quinn-udp-0.5.14 \
@@ -325,6 +355,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rand_core-0.9.5 \
 		rand_core-0.10.1 \
 		rand_xorshift-0.4.0 \
+		rangemap-1.7.1 \
 		ratatui-0.30.0 \
 		ratatui-core-0.1.0 \
 		ratatui-crossterm-0.1.0 \
@@ -334,7 +365,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rayon-1.12.0 \
 		rayon-core-1.13.0 \
 		redox_syscall-0.5.18 \
-		redox_syscall-0.7.4 \
 		redox_users-0.4.6 \
 		ref-cast-1.0.25 \
 		ref-cast-impl-1.0.25 \
@@ -342,9 +372,13 @@ CARGO_CRATES=	adler2-2.0.1 \
 		regex-automata-0.4.14 \
 		regex-syntax-0.8.10 \
 		reqwest-0.13.2 \
+		resvg-0.47.0 \
+		rgb-0.8.53 \
 		ring-0.17.14 \
 		rmcp-1.5.0 \
 		rmcp-macros-1.5.0 \
+		roxmltree-0.20.0 \
+		roxmltree-0.21.1 \
 		rpassword-7.4.0 \
 		rsqlite-vfs-0.1.0 \
 		rten-0.24.0 \
@@ -361,7 +395,6 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rustc-hash-1.1.0 \
 		rustc-hash-2.1.2 \
 		rustc_version-0.4.1 \
-		rustix-0.38.44 \
 		rustix-1.1.4 \
 		rustls-0.23.39 \
 		rustls-native-certs-0.8.3 \
@@ -371,12 +404,15 @@ CARGO_CRATES=	adler2-2.0.1 \
 		rustls-webpki-0.103.13 \
 		rustversion-1.0.22 \
 		rusty-fork-0.3.1 \
+		rustybuzz-0.20.1 \
 		ryu-1.0.23 \
 		same-file-1.0.6 \
+		scc-2.4.0 \
 		schannel-0.1.29 \
 		schemars-1.2.1 \
 		schemars_derive-1.2.1 \
 		scopeguard-1.2.0 \
+		sdd-3.0.10 \
 		security-framework-3.7.0 \
 		security-framework-sys-2.17.0 \
 		semver-1.0.28 \
@@ -389,6 +425,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		serde_repr-0.1.20 \
 		serde_spanned-0.6.9 \
 		serde_urlencoded-0.7.1 \
+		serial_test-3.4.0 \
+		serial_test_derive-3.4.0 \
 		sha1-0.10.6 \
 		sha2-0.10.9 \
 		sha2-0.11.0 \
@@ -401,8 +439,10 @@ CARGO_CRATES=	adler2-2.0.1 \
 		simd-adler32-0.3.9 \
 		similar-2.7.0 \
 		simple_asn1-0.6.4 \
+		simplecss-0.2.2 \
 		siphasher-1.0.2 \
 		slab-0.4.12 \
+		slotmap-1.1.1 \
 		smallvec-1.15.1 \
 		socket2-0.6.3 \
 		spki-0.7.3 \
@@ -411,17 +451,19 @@ CARGO_CRATES=	adler2-2.0.1 \
 		stable_deref_trait-1.2.1 \
 		static_assertions-1.1.0 \
 		streaming-iterator-0.1.9 \
+		strict-num-0.1.1 \
 		stringprep-0.1.5 \
 		strsim-0.11.1 \
 		strum-0.27.2 \
 		strum_macros-0.27.2 \
 		subtle-2.6.1 \
+		svgtypes-0.16.1 \
 		syn-1.0.109 \
 		syn-2.0.117 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
 		tagptr-0.2.0 \
-		tar-0.4.45 \
+		tar-0.4.46 \
 		tempfile-3.27.0 \
 		terminfo-0.9.0 \
 		termios-0.3.3 \
@@ -438,6 +480,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		time-0.3.47 \
 		time-core-0.1.8 \
 		time-macros-0.2.27 \
+		tiny-skia-0.12.0 \
+		tiny-skia-path-0.12.0 \
 		tinystr-0.8.3 \
 		tinytemplate-1.2.1 \
 		tinyvec-1.11.0 \
@@ -482,17 +526,23 @@ CARGO_CRATES=	adler2-2.0.1 \
 		tree-sitter-typescript-0.23.2 \
 		tree-sitter-zig-1.1.2 \
 		try-lock-0.2.5 \
+		ttf-parser-0.25.1 \
+		type1-encoding-parser-0.1.1 \
 		typed-path-0.12.3 \
 		typeid-1.0.3 \
 		typenum-1.20.0 \
 		ucd-trie-0.1.7 \
 		unarray-0.1.4 \
 		unicode-bidi-0.3.18 \
+		unicode-bidi-mirroring-0.4.0 \
+		unicode-ccc-0.4.0 \
 		unicode-ident-1.0.24 \
 		unicode-normalization-0.1.25 \
 		unicode-properties-0.1.4 \
+		unicode-script-0.5.8 \
 		unicode-segmentation-1.13.2 \
 		unicode-truncate-2.0.1 \
+		unicode-vo-0.1.0 \
 		unicode-width-0.2.2 \
 		unicode-xid-0.2.6 \
 		untrusted-0.9.0 \
@@ -501,6 +551,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		ureq-proto-0.6.0 \
 		url-2.5.8 \
 		urlencoding-2.1.3 \
+		usvg-0.47.0 \
 		utf8-zero-0.8.1 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
@@ -531,6 +582,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		web-time-1.1.0 \
 		webpki-root-certs-1.0.7 \
 		webpki-roots-1.0.7 \
+		weezl-0.1.12 \
 		wezterm-bidi-0.2.3 \
 		wezterm-blob-leases-0.1.1 \
 		wezterm-color-types-0.3.0 \
@@ -598,6 +650,7 @@ CARGO_CRATES=	adler2-2.0.1 \
 		wit-parser-0.244.0 \
 		writeable-0.6.3 \
 		xattr-1.6.1 \
+		xmlwriter-0.1.0 \
 		yoke-0.8.2 \
 		yoke-derive-0.8.2 \
 		zerocopy-0.8.48 \
@@ -614,7 +667,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		zopfli-0.8.3 \
 		zstd-0.13.3 \
 		zstd-safe-7.2.4 \
-		zstd-sys-2.0.16+zstd.1.5.7
+		zstd-sys-2.0.16+zstd.1.5.7 \
+		zune-core-0.5.1 \
+		zune-jpeg-0.5.15
 
 PLIST_FILES=	bin/${PORTNAME}
 

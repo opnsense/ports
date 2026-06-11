@@ -1,11 +1,10 @@
 PORTNAME=	babi
-DISTVERSION=	1.6.1
-PORTREVISION=	1
+DISTVERSION=	1.7.0
 CATEGORIES=	editors python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	bofh@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Text Editor written in Python
 WWW=		https://github.com/asottile/babi
 

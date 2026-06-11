@@ -1,6 +1,6 @@
 PORTNAME=	numpy
 DISTVERSION=	1.26.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
 		https://numpy.org/doc/${DISTVERSION:R}/:doc
@@ -53,18 +53,6 @@ NETLIB_USES=		blaslapack:netlib
 NETLIB_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blas -Csetup-args=-Dlapack=lapack"
 OPENBLAS_USES=		blaslapack:openblas
 OPENBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=openblas -Csetup-args=-Dlapack=openblas"
-
-# BEGIN OPNsense NOBLAS patching
-USES:=			${USES:Nfortran}
-OPTIONS_SINGLE_BLASLIB+=NOBLAS
-
-BLIS_USES+=		fortran
-FLEXBLAS_USES+=		fortran
-NETLIB_USES+=		fortran
-NOBLAS_DESC=		Internal NumPy fallback BLAS routines
-NOBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dallow-noblas=true"
-OPENBLAS_USES+=		fortran
-# END OPNsense NOBLAS patching
 
 .include <bsd.port.pre.mk>
 

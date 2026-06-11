@@ -1,4 +1,4 @@
---- build/lib/electron.ts.orig	2026-03-06 23:06:10 UTC
+--- build/lib/electron.ts.orig	2026-06-03 09:29:03 UTC
 +++ build/lib/electron.ts
 @@ -204,10 +204,11 @@ export const config = {
  	winIcon: 'resources/win32/code.ico',

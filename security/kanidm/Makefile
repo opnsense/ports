@@ -1,6 +1,7 @@
 PORTNAME=	kanidm
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.10.1
+DISTVERSION=	1.10.3
+PORTREVISION=	1
 CATEGORIES=	security net
 
 # implicit-approval+: dtxdf
@@ -12,7 +13,7 @@ WWW=		https://kanidm.com \
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64 powerpc64le
 
 FLAVORS=	client server
 FLAVOR?=	${FLAVORS:[1]}

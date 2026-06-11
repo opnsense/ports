@@ -15,6 +15,7 @@
     SUBDIR += amanda-perl-wrapper
     SUBDIR += amanda-server
     SUBDIR += ansiweather
+    SUBDIR += antigravity-cli
     SUBDIR += apparix
     SUBDIR += arrow-datafusion
     SUBDIR += artikulate
@@ -427,6 +428,7 @@
     SUBDIR += php83-calendar
     SUBDIR += php84-calendar
     SUBDIR += php85-calendar
+    SUBDIR += picoclaw
     SUBDIR += pinfo
     SUBDIR += pipe
     SUBDIR += posixtestsuite
@@ -485,6 +487,7 @@
     SUBDIR += py-fal-client
     SUBDIR += py-fast-histogram
     SUBDIR += py-fastmcp
+    SUBDIR += py-fastmcp-slim
     SUBDIR += py-fastscapelib
     SUBDIR += py-files-to-prompt
     SUBDIR += py-fleep
@@ -514,6 +517,7 @@
     SUBDIR += py-langchain-core
     SUBDIR += py-langchain-google-genai
     SUBDIR += py-langchain-openai
+    SUBDIR += py-langchain-protocol
     SUBDIR += py-langchain-tests
     SUBDIR += py-langchain-text-splitters
     SUBDIR += py-langgraph
@@ -679,6 +683,7 @@
     SUBDIR += rsclock
     SUBDIR += rtfm
     SUBDIR += rubygem-dotenv
+    SUBDIR += rubygem-dotenv-gitlab
     SUBDIR += rubygem-dotenv-rails
     SUBDIR += rubygem-dotenv-rails-rails4
     SUBDIR += rubygem-dotenv-rails-rails5
@@ -781,6 +786,7 @@
     SUBDIR += vote
     SUBDIR += vxl
     SUBDIR += wacli
+    SUBDIR += warp
     SUBDIR += wavedrom
     SUBDIR += wego
     SUBDIR += whichman
@@ -809,6 +815,7 @@
     SUBDIR += xtail
     SUBDIR += xtar
     SUBDIR += ytree
+    SUBDIR += zeroclaw
     SUBDIR += zine
     SUBDIR += zoneinfo
 

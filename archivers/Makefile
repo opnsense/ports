@@ -209,6 +209,7 @@
     SUBDIR += py-patool
     SUBDIR += py-py7zr
     SUBDIR += py-pybcj
+    SUBDIR += py-pycdlib
     SUBDIR += py-pyminizip
     SUBDIR += py-pyppmd
     SUBDIR += py-python-lhafile
@@ -246,7 +247,6 @@
     SUBDIR += rubygem-rubyzip
     SUBDIR += rubygem-rubyzip-gitlab
     SUBDIR += rubygem-rubyzip13
-    SUBDIR += rubygem-rubyzip2
     SUBDIR += rubygem-snappy
     SUBDIR += rvm
     SUBDIR += rzip

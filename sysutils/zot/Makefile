@@ -1,6 +1,6 @@
 PORTNAME=	zot
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.1.16
+DISTVERSION=	2.1.17
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/project-zot/zui/releases/download/commit-${ZUI_VERSION}/:ui

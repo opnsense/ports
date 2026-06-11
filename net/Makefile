@@ -67,6 +67,7 @@
     SUBDIR += boinc-client
     SUBDIR += boinc_curses
     SUBDIR += boinctui
+    SUBDIR += bone-kmods
     SUBDIR += bounce
     SUBDIR += bredbandskollen
     SUBDIR += brynet
@@ -347,7 +348,6 @@
     SUBDIR += knc
     SUBDIR += knxd
     SUBDIR += kontactinterface
-    SUBDIR += kpeoplevcard
     SUBDIR += kpimtextedit
     SUBDIR += krakend-ce
     SUBDIR += krdc
@@ -1295,6 +1295,7 @@
     SUBDIR += rubygem-bunny
     SUBDIR += rubygem-cloudflare
     SUBDIR += rubygem-connection_pool
+    SUBDIR += rubygem-connection_pool-gitlab
     SUBDIR += rubygem-devfile
     SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-dogapi
@@ -1342,7 +1343,6 @@
     SUBDIR += rubygem-fog-vsphere
     SUBDIR += rubygem-fog-xenserver
     SUBDIR += rubygem-gitaly
-    SUBDIR += rubygem-gitaly-proto
     SUBDIR += rubygem-gitlab-fog-azure-rm
     SUBDIR += rubygem-gitlab-gkg-proto
     SUBDIR += rubygem-gitlab-kas-grpc
@@ -1516,6 +1516,7 @@
     SUBDIR += scr_ipfm
     SUBDIR += sctplib
     SUBDIR += sdl2_net
+    SUBDIR += sdl3_net
     SUBDIR += sdl_net
     SUBDIR += seaweedfs
     SUBDIR += seda

@@ -1,6 +1,6 @@
 PORTNAME?=	inn
 PORTVERSION?=	2.7.3
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	news
 MASTER_SITES=	ISC
 MASTER_SITE_SUBDIR?=	${PORTNAME}
@@ -20,7 +20,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		cpe gmake libtool perl5 uidfix
 CPE_VENDOR=	isc
-USE_RC_SUBR=	innd
+USE_RC_SUBR=	innd nnrpd
 
 .ifnmake portclippy
 VARBASE?=	/var
@@ -81,15 +81,11 @@ OPTIONS_DEFINE=		BERKELEYDB BLOCKLISTD CANLOCK DOCS EXAMPLES GNUPG \
 OPTIONS_DEFAULT=	BERKELEYDB BLOCKLISTD CANLOCK GNUPG KEYWORDS \
 			LARGE_FILES OPENSSL PYTHON SETGID_INEWS SQLITE \
 			UUCP_RNEWS
-.if ${BRANCH:U} == 2.8
-OPTIONS_DEFINE+=	EXPERIMENTAL
-.endif
 OPTIONS_SUB=		yes
 
 BERKELEYDB_DESC=	Enable BerkeleyDB (for ovdb overview method)
 BLOCKLISTD_DESC=	Enable blocklistd support
 CANLOCK_DESC=		Enable Cancel-Lock support via libcanlock
-EXPERIMENTAL_DESC=	Experimental upstream patches (ovsqlite, bloom filter)
 GNUPG_DESC=		GnuPG support (for pgpverify control message)
 KERBEROS_DESC=		Enable Kerberos v5 (for auth_krb5)
 KEYWORDS_DESC=		Automatic keyword generation support
@@ -107,7 +103,7 @@ BERKELEYDB_CONFIGURE_ON=	--with-bdb-include=${BDB_INCLUDE_DIR} \
 				--with-bdb-lib=${LOCALBASE}/lib \
 				--with-bdb=${LOCALBASE}
 
-.if ${BRANCH:U} == 2.8 && ${OSVERSION:U} >= 1500000
+.if ${BRANCH:U} == 2.8
 BLOCKLISTD_CONFIGURE_WITH=	blocklist
 .else
 BLOCKLISTD_CONFIGURE_WITH=	blacklist
@@ -162,19 +158,9 @@ TAGGED_HASH_PLIST_SUB_OFF=	WITH_TAGGED_HASH="@comment " \
 UUCP_RNEWS_RUN_DEPENDS=		uucp:net/freebsd-uucp
 UUCP_RNEWS_CONFIGURE_ENABLE=	uucp-rnews
 
-EXPERIMENTAL_EXTRA_PATCHES=	${PKGDIR}/files/pr337.patch \
-				${PKGDIR}/files/pr338.patch \
-				${PKGDIR}/files/pr339.patch \
-				${PKGDIR}/files/pr340.patch
-EXPERIMENTAL_PLIST_SUB=		EXPERIMENTAL=""
-EXPERIMENTAL_PLIST_SUB_OFF=	EXPERIMENTAL="@comment "
-
 .include <bsd.port.pre.mk>
 
 GID?=		${.MAKE.GID}
-
-post-extract-EXPERIMENTAL-on:
-	@${CP} ${PKGDIR}/files/gitignore ${WRKSRC}/.gitignore
 
 post-patch:
 	@${REINPLACE_CMD} -E 's!\$$[{(]PATHETC[})]!${EXAMPLESDIR}!g' \
@@ -182,14 +168,7 @@ post-patch:
 .if ${PORT_OPTIONS:MBERKELEYDB}
 	@${REINPLACE_CMD} -e 's!-ldb!-ldb-${BDB_VER}!' ${WRKSRC}/configure
 .endif
-.if ${BRANCH:U} == 2.8
-.  if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500000
-	@${FIND} ${WRKSRC} -type f -exec ${SED} -i '' \
-		-e 's/BLOCKLIST/BLACKLIST/g' \
-		-e 's/Blocklist/Blacklist/g' \
-		-e 's/blocklist/blacklist/g' {} +
-.  endif
-.else
+.if ${BRANCH:U} == 2.7
 .  if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1500000
 	@${FIND} ${WRKSRC} -type f -exec ${SED} -i '' \
 		-e 's/BLACKLIST/BLOCKLIST/g' \

@@ -17,7 +17,7 @@ USES=		cmake compiler:c++11-lib gettext gperf kde:6 pkgconfig qt:6 \
 USE_KDE=	activities activities-stats archive auth bookmarks codecs \
 		completion config configwidgets coreaddons crash dbusaddons \
 		dnssd doctools guiaddons i18n iconthemes itemmodels itemviews \
-		jobwidgets kcmutils kio notifications parts phonon pty service \
+		jobwidgets kcmutils kio notifications parts pty service \
 		solid sonnet syntaxhighlighting textwidgets unitconversion \
 		widgetsaddons windowsystem xmlgui \
 		ecm:build

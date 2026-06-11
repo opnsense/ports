@@ -1,5 +1,6 @@
 PORTNAME=		sogo
-PORTVERSION=		5.12.7
+PORTVERSION=		5.12.9
+PORTREVISION=	1
 CATEGORIES=		www gnustep
 MASTER_SITES=		https://packages.sogo.nu/sources/
 PKGNAMESUFFIX=		-${FLAVOR}
@@ -22,7 +23,7 @@ FLAVORS=		mysql mysqlactivesync pgsql pgsqlactivesync
 FLAVOR?=		${FLAVORS:[1]}
 
 USES=			cpe gettext-runtime gnustep objc pkgconfig shebangfix ssl
-CPE_VENDOR=		inverse
+CPE_VENDOR=		alinto
 USE_GNUSTEP=		base build
 USE_LDCONFIG=		${GNUSTEP_LOCAL_LIBRARIES}/sogo
 USE_RC_SUBR=		sogod

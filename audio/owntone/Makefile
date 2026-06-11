@@ -1,6 +1,6 @@
 PORTNAME=	owntone
 DISTVERSION=	29.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/owntone/owntone-server/releases/download/${DISTVERSION}/
 
@@ -29,7 +29,7 @@ LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 		libuuid.so:misc/libuuid
 
 USES=		tar:xz localbase libtool iconv:wchar_t pkgconfig gnome gmake \
-		gperf sqlite gnome
+		gperf sqlite gnome cpe
 USE_GNOME=	libxml2
 
 GNU_CONFIGURE=	yes
@@ -77,6 +77,9 @@ WEBINTERFACE_LIB_DEPENDS=	libwebsockets.so:net/libwebsockets
 
 NLS_USES=			gettext-runtime
 NLS_CONFIGURE_ENABLE=		nls
+
+CPE_VENDOR=			${PORTNAME}
+CPE_PRODUCT=			${PORTNAME}_server
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/owntone/owntone-sqlext.so

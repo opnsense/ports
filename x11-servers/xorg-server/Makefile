@@ -1,5 +1,5 @@
 PORTNAME=	xorg
-PORTVERSION=	21.1.22
+PORTVERSION=	21.1.23
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -100,7 +100,7 @@ PLIST_SUB+=	FONTPATHD="${FONTPATHD:S,^${PREFIX}/,,}"
 USE_GL+=	gl
 USE_XORG+=	pixman xau xdmcp xfont2 xkbfile xorgproto xshmfence xtrans
 CPE_VENDOR=	x.org
-CPE_PRODUCT=	xorg-server
+CPE_PRODUCT=	x_server
 
 .if ${FLAVOR} == xorg
 USE_GL+=	gbm

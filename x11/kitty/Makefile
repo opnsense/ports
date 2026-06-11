@@ -1,7 +1,7 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.46.2
-PORTREVISION=	2
+DISTVERSION=	0.47.1
+PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -42,7 +42,7 @@ LIB_DEPENDS=	libcairo.so:graphics/cairo \
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
 		go:modules,1.26 magick ncurses pkgconfig python shebangfix ssl \
 		tar:xz terminfo xorg
-CPE_VENDOR=	kitty_project
+CPE_VENDOR=	kovidgoyal
 
 USE_GL=		gl
 USE_XORG=	x11 xcb xcursor xi xinerama xrandr

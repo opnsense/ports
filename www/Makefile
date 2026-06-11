@@ -90,6 +90,7 @@
     SUBDIR += browsh
     SUBDIR += bugzilla2atom
     SUBDIR += buku
+    SUBDIR += bunkerweb
     SUBDIR += butterfly
     SUBDIR += c-icap
     SUBDIR += c-icap-modules
@@ -257,6 +258,7 @@
     SUBDIR += grafanactl
     SUBDIR += grails
     SUBDIR += gregarius
+    SUBDIR += grist-core
     SUBDIR += groupoffice
     SUBDIR += grr
     SUBDIR += gstreamer1-plugins-neon
@@ -302,6 +304,7 @@
     SUBDIR += ikiwiki
     SUBDIR += ilias
     SUBDIR += imaginary
+    SUBDIR += iocaine
     SUBDIR += iridium
     SUBDIR += janus
     SUBDIR += jericho-html
@@ -374,6 +377,7 @@
     SUBDIR += lua-resty-lrucache
     SUBDIR += lua-resty-session
     SUBDIR += lua-resty-session3
+    SUBDIR += lua-stream-nginx-module
     SUBDIR += luakit
     SUBDIR += luakit-devel
     SUBDIR += lubelogger
@@ -501,6 +505,7 @@
     SUBDIR += nextcloud-groupfolders
     SUBDIR += nextcloud-news
     SUBDIR += nextcloud-notes
+    SUBDIR += nextcloud-memories
     SUBDIR += nextcloud-tasks
     SUBDIR += nghttp2
     SUBDIR += nginx
@@ -508,6 +513,7 @@
     SUBDIR += nginx-devel
     SUBDIR += nginx-full
     SUBDIR += nginx-lite
+    SUBDIR += nginx-module-lua
     SUBDIR += nginx-naxsi
     SUBDIR += nginx-prometheus-exporter
     SUBDIR += nginx-ultimate-bad-bot-blocker
@@ -1508,7 +1514,6 @@
     SUBDIR += py-asgiref
     SUBDIR += py-autobahn
     SUBDIR += py-azure-common
-    SUBDIR += py-azure-storage
     SUBDIR += py-baize
     SUBDIR += py-beaker
     SUBDIR += py-beautifulsoup
@@ -1550,6 +1555,13 @@
     SUBDIR += py-dash-bootstrap-components
     SUBDIR += py-ddgs
     SUBDIR += py-dj-database-url
+    SUBDIR += py-dj42-django-picklefield
+    SUBDIR += py-dj42-django-ranged-response
+    SUBDIR += py-dj42-django-simple-captcha
+    SUBDIR += py-dj42-django-webpack-loader
+    SUBDIR += py-dj42-django_statici18n
+    SUBDIR += py-dj42-djangorestframework
+    SUBDIR += py-dj42-djangosaml2
     SUBDIR += py-dj52-channels
     SUBDIR += py-dj52-channels-redis
     SUBDIR += py-dj52-django-allauth
@@ -1583,7 +1595,6 @@
     SUBDIR += py-dj52-django-tasks
     SUBDIR += py-dj52-django-timezone-field
     SUBDIR += py-dj52-django-treebeard
-    SUBDIR += py-dj52-django-treenode
     SUBDIR += py-dj52-django-unfold
     SUBDIR += py-dj52-djangorestframework
     SUBDIR += py-dj52-djangorestframework-guardian
@@ -1698,6 +1709,7 @@
     SUBDIR += py-django-tinymce
     SUBDIR += py-django-tree-queries
     SUBDIR += py-django-treebeard
+    SUBDIR += py-django-treenode
     SUBDIR += py-django-unfold
     SUBDIR += py-django-voting
     SUBDIR += py-django-webpack-loader
@@ -1830,6 +1842,7 @@
     SUBDIR += py-html5lib-modern
     SUBDIR += py-html5rdf
     SUBDIR += py-htmldate
+    SUBDIR += py-htmltools
     SUBDIR += py-httmock
     SUBDIR += py-http-parser
     SUBDIR += py-http-sf
@@ -1905,7 +1918,6 @@
     SUBDIR += py-py-restclient
     SUBDIR += py-pygsheets
     SUBDIR += py-pyjwt
-    SUBDIR += py-pyjwt1
     SUBDIR += py-pylsqpack
     SUBDIR += py-pyocclient
     SUBDIR += py-pyramid
@@ -2027,6 +2039,8 @@
     SUBDIR += py-youtube-transcript-api
     SUBDIR += py-yt-dlp
     SUBDIR += py-yt-dlp-ejs
+    SUBDIR += py-yubal
+    SUBDIR += py-yubal-api
     SUBDIR += pydio-cells
     SUBDIR += qdecoder
     SUBDIR += qhttpengine
@@ -2047,7 +2061,6 @@
     SUBDIR += rdrview
     SUBDIR += rearx
     SUBDIR += reddsaver
-    SUBDIR += redmine51
     SUBDIR += redmine60
     SUBDIR += redmine61
     SUBDIR += rejik
@@ -2144,7 +2157,6 @@
     SUBDIR += rubygem-d3_rails
     SUBDIR += rubygem-davclient
     SUBDIR += rubygem-deckar01-task_list
-    SUBDIR += rubygem-deckar01-task_list-gitlab
     SUBDIR += rubygem-domainatrix
     SUBDIR += rubygem-dropzonejs-rails
     SUBDIR += rubygem-em-http-request
@@ -2378,6 +2390,7 @@
     SUBDIR += rubygem-rack-protection2
     SUBDIR += rubygem-rack-protection3
     SUBDIR += rubygem-rack-proxy
+    SUBDIR += rubygem-rack-proxy-gitlab
     SUBDIR += rubygem-rack-session
     SUBDIR += rubygem-rack-session-gitlab
     SUBDIR += rubygem-rack-session10
@@ -2586,7 +2599,6 @@
     SUBDIR += suitecrm
     SUBDIR += suphp
     SUBDIR += surf
-    SUBDIR += surge
     SUBDIR += swiggle
     SUBDIR += sws
     SUBDIR += tailwindcss3
@@ -2767,6 +2779,7 @@
     SUBDIR += youtube
     SUBDIR += yt-dlp
     SUBDIR += yuicompressor
+    SUBDIR += zen
     SUBDIR += zenphoto
     SUBDIR += zerowait-httpd
     SUBDIR += zgrab2

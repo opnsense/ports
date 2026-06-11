@@ -1,5 +1,5 @@
-TIMESTAMP = 1774355313
-SHA256 (go/x11_kitty/kitty-v0.46.2/v0.46.2.mod) = 246a4806fbe6e747247aa8ea61b490cc1931cdb6972733cb1477b105652385d5
-SIZE (go/x11_kitty/kitty-v0.46.2/v0.46.2.mod) = 1739
-SHA256 (go/x11_kitty/kitty-v0.46.2/v0.46.2.zip) = 83a29e80a30d3740b12fb3764815404658eecc04b674d9e5ad6d47528d40ccae
-SIZE (go/x11_kitty/kitty-v0.46.2/v0.46.2.zip) = 7853820
+TIMESTAMP = 1779982211
+SHA256 (go/x11_kitty/kitty-v0.47.1/v0.47.1.mod) = 539101dd41260cea362d1e3dd6b94a48cf4ee907808c041794f8ef185048def3
+SIZE (go/x11_kitty/kitty-v0.47.1/v0.47.1.mod) = 1797
+SHA256 (go/x11_kitty/kitty-v0.47.1/v0.47.1.zip) = 0bd3a473891df9c0ca907aba6aa2ee4c499ba0fe8a29682f51b9a8b119b205b2
+SIZE (go/x11_kitty/kitty-v0.47.1/v0.47.1.zip) = 9986809

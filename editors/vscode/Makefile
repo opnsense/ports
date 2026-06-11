@@ -1,5 +1,6 @@
 PORTNAME=	vscode
 DISTVERSION=	${VSCODE_VERSION}
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-VSCode/releases/download/${DISTVERSION}/:node_modules
 DISTFILES=	vscode-node-modules-${DISTVERSION}${EXTRACT_SUFX}:node_modules \
@@ -18,7 +19,7 @@ ONLY_FOR_ARCHS=	amd64
 EXTRACT_DEPENDS=jq:textproc/jq \
 		node${NODEJS_VERSION}>0:www/node${NODEJS_VERSION}
 BUILD_DEPENDS=	zip:archivers/zip \
-		typescript-go>=7.0.0.g20260429:lang/typescript-go \
+		typescript-go>=7.0.0.g20260506:lang/typescript-go \
 		jq:textproc/jq \
 		rg:textproc/ripgrep
 LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
@@ -58,14 +59,14 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		bash:shells/bash
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cargo desktop-file-utils display:test electron:39,build,test \
+USES=		cargo desktop-file-utils display:test electron:42,build,test \
 		gl gmake gnome gssapi:mit iconv:wchar_t jpeg localbase:ldflags \
-		nodejs:22,build pkgconfig python:build shebangfix xorg
+		nodejs:24,build pkgconfig python:build shebangfix xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
 # See ${WRKSRC}/node_modules/@github/copilot/clipboard/node_modules/@teddyzhu/clipboard/package.json for node-clipboard-rs version
-GH_TUPLE=	Teddy-Zhu:node-clipboard-rs:v0.0.5:node_clipboard_rs/node-clipboard-rs
+GH_TUPLE=	Teddy-Zhu:node-clipboard-rs:v0.0.10:node_clipboard_rs/node-clipboard-rs
 # See ${WRKSRC}/build/rspack/node_modules/@rspack/binding/package.json for rspack version
 GH_TUPLE+=	web-infra-dev:rspack:v1.7.10:rspack/rspack
 
@@ -79,8 +80,11 @@ CARGO_BUILD=	no
 CARGO_INSTALL=	no
 CARGO_TEST=	no
 
+CFLAGS+=	-Wno-error=implicit-function-declaration
+
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
+USE_CXXSTD=	c++20
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 		xrandr xrender xscrnsaver xtst
 USE_GL=		gbm gl glesv2
@@ -134,6 +138,8 @@ post-extract:
 post-patch:
 	@${REINPLACE_CMD} -E 's|^(target=").*(")$$|\1${ELECTRON_VER}\2|' \
 		${WRKSRC}/.npmrc
+	@${REINPLACE_CMD} -E "/const electronVersion/s/'[0-9]+\.[0-9]+\.[0-9]+'/'${ELECTRON_VER}'/" \
+		${WRKSRC}/build/lib/electron.ts
 	@${REINPLACE_CMD} -E 's|^(target=").*(")$$|\1${NODEJS_PORTVERSION}\2|' \
 		${WRKSRC}/remote/.npmrc
 	@${REINPLACE_CMD} -e 's/%%DISTVERSION%%/${DISTVERSION}/g' \
@@ -228,10 +234,16 @@ pre-build:
 # copy rg binary file to @vscode/ripgrep node module directory
 	@${MKDIR} ${WRKSRC}/node_modules/@vscode/ripgrep/bin \
 		${WRKSRC}/build/node_modules/@vscode/ripgrep/bin \
-		${WRKSRC}/remote/node_modules/@vscode/ripgrep/bin
+		${WRKSRC}/remote/node_modules/@vscode/ripgrep/bin \
+		${WRKSRC}/node_modules/@vscode/ripgrep-universal/bin/freebsd-${ELECTRON_ARCH} \
+		${WRKSRC}/build/node_modules/@vscode/ripgrep-universal/bin/freebsd-${ELECTRON_ARCH} \
+		${WRKSRC}/remote/node_modules/@vscode/ripgrep-universal/bin/freebsd-${ELECTRON_ARCH}
 	${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/node_modules/@vscode/ripgrep/bin
 	${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/build/node_modules/@vscode/ripgrep/bin
 	${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/remote/node_modules/@vscode/ripgrep/bin
+	${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/node_modules/@vscode/ripgrep-universal/bin/freebsd-${ELECTRON_ARCH}
+	${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/build/node_modules/@vscode/ripgrep-universal/bin/freebsd-${ELECTRON_ARCH}
+	${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/remote/node_modules/@vscode/ripgrep-universal/bin/freebsd-${ELECTRON_ARCH}
 # copy rg binary file to @github/copilot node modules directory
 	@${MKDIR} ${WRKSRC}/node_modules/@github/copilot/ripgrep/bin/freebsd-${ELECTRON_ARCH} \
 		${WRKSRC}/node_modules/@github/copilot-sdk/node_modules/@github/copilot/ripgrep/bin/freebsd-${ELECTRON_ARCH} \
@@ -344,7 +356,7 @@ build-remote-extension-host: configure pre-build
 ### targets for port maintainer(s)
 patch-package-json: extract
 # add node module for signature verification of extensions from Open VSX Registry
-	@${PATCH} -s -p0 -d ${WRKSRC} < ${FILESDIR}/patch-package.json
+	@${PATCH} -s -p0 -d ${WRKSRC} < ${PATCHDIR}/patch-package.json
 
 make-node-modules-archive: extract patch-package-json
 	@${ECHO_MSG} "===>  Fetching and installing node modules in ${WRKSRC}"

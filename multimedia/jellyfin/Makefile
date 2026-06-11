@@ -1,5 +1,5 @@
 PORTNAME=	jellyfin
-DISTVERSION=	10.11.8
+DISTVERSION=	10.11.10
 CATEGORIES=	multimedia
 EXTRACT_ONLY+=	${PORTNAME}-${PORTNAME}-${GH_TAGNAME}_GH0.tar.gz \
 		${PORTNAME}-${PORTNAME}-web-${GH_TAGNAME}_GH0.tar.gz
@@ -68,6 +68,7 @@ DISTFILES+=		${FILE_AMD64}:prefetch ${FILE_ARM64}:prefetch
 EXTRACT_ONLY+=		${FILE_AMD64}
 .elif ${ARCH} == aarch64
 EXTRACT_ONLY+=		${FILE_ARM64}
+MAKE_ENV+=		NODE_OPTIONS="--max-old-space-size=3072"
 .endif
 
 # We need NODEJS_VERSION to be expanded before assigning it

@@ -11,13 +11,14 @@ WWW=		https://w1.fi/wpa_supplicant/
 USE_GITHUB=	yes
 GH_ACCOUNT=	cschuber
 GH_PROJECT=	hostap
-GH_TAGNAME=	d255d20c87
-COMMIT_DATE=	2026.04.26
+GH_TAGNAME=	53ecc20073
+COMMIT_DATE=	2026.05.25
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/README
 
 USES=		cpe gmake pkgconfig:build readline ssl
+CPE_VENDOR=	w1.fi
 USE_LDCONFIG=	yes
 BUILD_WRKSRC=	${WRKSRC}/wpa_supplicant
 INSTALL_WRKSRC=	${WRKSRC}/src
@@ -152,8 +153,9 @@ post-patch:
 	@${CP} ${FILESDIR}/Packet32.[ch] ${FILESDIR}/ntddndis.h \
 		${WRKSRC}/src/utils
 	# Set driver(s)
-	# SAE is always required.
+	# SAE and ENC_ASSOC are always required.
 	@${ECHO_CMD} CONFIG_SAE=y >> ${CFG}
+	@${ECHO_CMD} CONFIG_ENC_ASSOC=y >> ${CFG}
 .for item in BSD NDIS WIRED ROBOSWITCH TEST NONE
 .  if ${PORT_OPTIONS:M${item}}
 	@${ECHO_CMD} CONFIG_DRIVER_${item}=y >> ${CFG}

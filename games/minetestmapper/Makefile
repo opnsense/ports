@@ -1,5 +1,5 @@
 PORTNAME=	minetestmapper
-PORTVERSION=	20220221
+PORTVERSION=	20250408
 CATEGORIES=	games graphics
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -17,7 +17,7 @@ USES=		cmake compiler:c11 pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	minetest
 
-DATADIR=	${PREFIX}/share/minetest
+DATADIR=	${PREFIX}/share/luanti
 
 PORTDOCS=	*
 

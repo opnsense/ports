@@ -213,7 +213,8 @@ LUASTREAM_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
 LUASTREAM_RUN_DEPENDS=	lua-resty-core>0:www/lua-resty-core
 LUASTREAM_CONFIGURE_ENV=LUAJIT_INC=${LOCALBASE}/include/luajit-2.1 \
 			LUAJIT_LIB=${LOCALBASE}/lib
-LUASTREAM_GH_TUPLE=	openresty:stream-lua-nginx-module:v0.0.16:luastream
+LUASTREAM_BUILD_DEPENDS=lua-stream-nginx-module>=0.0.17:www/lua-stream-nginx-module
+WRKSRC_luastream=	${WRKDIR}/lua-stream-nginx-module
 LUASTREAM_VARS=		DSO_EXTMODS+=luastream
 
 LINK_GH_TUPLE=		Taymindis:nginx-link-function:3.2.4:link
@@ -240,7 +241,7 @@ NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 NAXSI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-naxsi-libinjection__sqli_c \
 			${PATCHDIR}/extra-patch-naxsi_config
 
-NJS_GH_TUPLE=		nginx:njs:0.9.8:njs
+NJS_GH_TUPLE=		nginx:njs:0.9.9:njs
 NJS_CONFIGURE_ON=	--with-cc-opt="-I ${LOCALBASE}/include/quickjs"
 NJS_LIB_DEPENDS=	libquickjs.so:lang/quickjs \
 			libxml2.so:textproc/libxml2 \

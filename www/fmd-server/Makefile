@@ -1,7 +1,10 @@
 PORTNAME=	fmd-server
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.15.0
+PORTREVISION=	4
 CATEGORIES=	www
+MASTER_SITES=	LOCAL/mm/${PORTNAME}/:pnpmcache
+DISTFILES=	${PORTNAME}-pnpm-cache-${DISTVERSION}${EXTRACT_SUFX}:pnpmcache
 
 MAINTAINER=	mm@FreeBSD.org
 COMMENT=	FMD web server to locate and control your devices
@@ -10,14 +13,12 @@ WWW=		https://fmd-foss.org/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules nodejs:build
+USES=		go:modules nodejs:build tar:zstd
 USE_GITLAB=	yes
 USE_GITHUB=	nodefault
 GL_ACCOUNT=	fmd-foss
 GO_MODULE=	gitlab.com/fmd-foss/fmd-server
 GO_TARGET=	${GO_PKGNAME} ./ctl:fmd-server-ctl
-
-NO_PACKAGE=	downloads nodejs modules during web interface build
 
 USE_RC_SUBR=	${PORTNAME}
 
@@ -72,19 +73,25 @@ GL_TUPLE=	\
 		cznic:memory:0a6f7544739330ad95572cc272626a60176f2faf:cznic_memory/vendor/modernc.org/memory \
 		cznic:sqlite:bb6a17d8df4bb5fe2c530d512ca14e8ddfeffc47:cznic_sqlite/vendor/modernc.org/sqlite
 
-post-configure:
+pre-build:
 		@${MKDIR} ${WRKDIR}/.bin
 		@cd ${WRKSRC}/web && \
-			${SETENV} ${CONFIGURE_ENV} corepack enable --install-directory ${WRKDIR}/.bin && \
-			${SETENV} ${CONFIGURE_ENV} pnpm install
-
-pre-build:
-		@cd ${WRKSRC}/web && \
 			${SETENV} ${MAKE_ENV} corepack enable --install-directory ${WRKDIR}/.bin && \
+			${SETENV} ${CONFIGURE_ENV} pnpm install --offline && \
 			${SETENV} ${MAKE_ENV} pnpm build
 
 post-install:
 	        @${MKDIR} ${STAGEDIR}${ETCDIR}
 		${INSTALL_DATA} ${WRKSRC}/config.example.yml ${STAGEDIR}${ETCDIR}/config.yml.sample
+
+# (for maintainer) helper target to generate tarball with pnpm cache and node modules
+make-pnpm-cache: configure
+	@${MKDIR} ${WRKDIR}/.bin
+	@cd ${WRKSRC}/web && \
+		${SETENV} ${CONFIGURE_ENV} corepack enable --install-directory ${WRKDIR}/.bin && \
+		${SETENV} ${CONFIGURE_ENV} pnpm fetch
+	@cd ${WRKDIR} \
+		&& ${TAR} -c --zstd -f ${PORTNAME}-pnpm-cache-${DISTVERSION}${EXTRACT_SUFX} .cache/node pnpm \
+		&& ${ECHO} "Please upload the file: scp ${WRKDIR}/${PORTNAME}-pnpm-cache-${DISTVERSION}${EXTRACT_SUFX} mm@freefall.freebsd.org:public_distfiles/${PORTNAME}/"
 
 .include <bsd.port.mk>

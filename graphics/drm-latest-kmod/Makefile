@@ -1,12 +1,11 @@
 PORTNAME=	drm-latest-kmod
-PORTVERSION=	${DRM_KMOD_DISTVERSION}
-PORTREVISION=	1
+DISTVERSION=	${DRM_KMOD_DISTVERSION}
 CATEGORIES=	graphics kld
 
 .include "Makefile.version"
 
 MAINTAINER=	x11@FreeBSD.org
-COMMENT=	DRM drivers modules
+COMMENT=	Direct Rendering Manager (DRM) GPU drivers
 WWW=		https://github.com/freebsd/drm-kmod/
 
 LICENSE=	BSD2CLAUSE MIT GPLv2
@@ -16,7 +15,9 @@ ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64
 
 CONFLICTS_INSTALL=	drm-515-kmod \
-			drm-61-kmod
+			drm-61-kmod \
+			drm-66-kmod \
+			drm-612-kmod
 
 USES=		kmod uidfix compiler:c++11-lang
 
@@ -30,37 +31,18 @@ GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
 SUB_FILES=	pkg-message
 SUB_LIST=	PORTNAME=${PORTNAME} OPSYS=${OPSYS} OSREL=${OSREL}
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500058
-IGNORE=		not supported on older than 1500058, no kernel support
-.endif
 .if ${OPSYS} != FreeBSD
-IGNORE=		not supported on anything but FreeBSD (missing linuxkpi functionality)
-.endif
-
-.if ${ARCH} == "amd64"
-PLIST_SUB+=	AMDGPU=""
-PLIST_SUB+=	I915=""
-.elif ${ARCH} == "i386"
-PLIST_SUB+=	AMDGPU="@comment "
-PLIST_SUB+=	I915=""
-.elif ${ARCH} == "aarch64" || ${ARCH:Mpowerpc*}
-PLIST_SUB+=	AMDGPU=""
-PLIST_SUB+=	I915="@comment "
-.else
-PLIST_SUB+=	AMDGPU="@comment "
-PLIST_SUB+=	I915="@comment "
+IGNORE=         not supported on anything but FreeBSD (missing linuxkpi functionality)
+.elif ${OSVERSION} < 1500509
+IGNORE=         not supported on FreeBSD < 1500509, no kernel support
+.elif 1600000 <= ${OSVERSION} && ${OSVERSION} < 1600018
+IGNORE=         not supported on FreeBSD 16 before 1600018, no kernel support
 .endif
 
 MAKE_ENV+=	MAKEOBJDIRPREFIX=${WRKSRC}/obj
-
-.include <bsd.port.pre.mk>
-
-.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 211
-CFLAGS+=	-Wno-default-const-init-var-unsafe
-.endif
 
 pre-build:
 		${MKDIR} ${WRKSRC}/obj
 		(cd ${WRKSRC} ; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} obj)
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

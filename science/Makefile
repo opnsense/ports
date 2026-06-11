@@ -192,6 +192,7 @@
     SUBDIR += molgif
     SUBDIR += molscript
     SUBDIR += molsketch
+    SUBDIR += moltui
     SUBDIR += mopac
     SUBDIR += mp2d
     SUBDIR += mpb
@@ -401,6 +402,7 @@
     SUBDIR += py-periodictable
     SUBDIR += py-phono3py
     SUBDIR += py-phonopy
+    SUBDIR += py-plumed
     SUBDIR += py-pnetcdf
     SUBDIR += py-pupynere
     SUBDIR += py-py3Dmol

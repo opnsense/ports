@@ -1,6 +1,6 @@
 PORTNAME=	mdfried
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.20.2
+DISTVERSION=	0.22.1
 PORTREVISION=	0
 CATEGORIES=	sysutils
 
@@ -27,14 +27,5 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	benjajaja
 
 PLIST_FILES=	bin/mdfried
-PORTDOCS=	README.md assets/screenshot_1.png
-
-OPTIONS_DEFINE=	DOCS
-
-post-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}/assets
-.for f in ${PORTDOCS}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}/${f}
-.endfor
 
 .include <bsd.port.mk>

@@ -17,7 +17,7 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 USES=		cmake compiler:c++11-lang gettext kde:6 qt:6 tar:xz
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		coreaddons crash guiaddons i18n iconthemes itemviews \
-		jobwidgets kcmutils kio notifications parts phonon service \
+		jobwidgets kcmutils kio notifications parts service \
 		solid sonnet textwidgets unitconversion widgetsaddons \
 		windowsystem xmlgui \
 		ecm:build

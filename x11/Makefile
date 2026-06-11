@@ -126,7 +126,6 @@
     SUBDIR += guake
     SUBDIR += gxkb
     SUBDIR += habak
-    SUBDIR += hamclock
     SUBDIR += hhpc
     SUBDIR += histui
     SUBDIR += hs-xmobar
@@ -693,6 +692,7 @@
     SUBDIR += xwatchwin
     SUBDIR += xwayland-run
     SUBDIR += xwayland-satellite
+    SUBDIR += xwaylandvideobridge
     SUBDIR += xwd
     SUBDIR += xwininfo
     SUBDIR += xwinwrap

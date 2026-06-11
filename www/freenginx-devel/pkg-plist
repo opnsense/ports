@@ -9,6 +9,7 @@
 @sample %%ETCDIR%%/scgi_params-dist %%ETCDIR%%/scgi_params
 @sample %%ETCDIR%%/uwsgi_params-dist %%ETCDIR%%/uwsgi_params
 %%DSO%%%%AJP%%libexec/freenginx/ngx_http_ajp_module.so
+%%DSO%%%%AUTH_JWT%%libexec/freenginx/ngx_http_auth_jwt_module.so
 %%DSO%%%%ARRAYVAR%%libexec/freenginx/ngx_http_array_var_module.so
 %%DSO%%%%BROTLI%%libexec/freenginx/ngx_http_brotli_filter_module.so
 %%DSO%%%%BROTLI%%libexec/freenginx/ngx_http_brotli_static_module.so
@@ -66,12 +67,14 @@
 %%DSO%%%%LUA%%share/lua/5.1/ngx/ocsp.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/pipe.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/process.lua
+%%DSO%%%%LUA%%share/lua/5.1/ngx/proxyssl.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/re.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/req.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/resp.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/semaphore.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/ssl.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/ssl/clienthello.lua
+%%DSO%%%%LUA%%share/lua/5.1/ngx/ssl/proxysslcert.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/ssl/proxysslverify.lua
 %%DSO%%%%LUA%%share/lua/5.1/ngx/ssl/session.lua
 %%DSO%%%%LUA%%share/lua/5.1/resty/core.lua

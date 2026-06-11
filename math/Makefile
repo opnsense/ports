@@ -128,6 +128,7 @@
     SUBDIR += R-cran-prodlim
     SUBDIR += R-cran-proxy
     SUBDIR += R-cran-psych
+    SUBDIR += R-cran-psychTools
     SUBDIR += R-cran-pwr
     SUBDIR += R-cran-quadprog
     SUBDIR += R-cran-qualityTools
@@ -407,7 +408,6 @@
     SUBDIR += hpipm
     SUBDIR += hptt
     SUBDIR += hs-Agda
-    SUBDIR += hs-syfco
     SUBDIR += hsl
     SUBDIR += hydrogen
     SUBDIR += hyperdeal
@@ -584,6 +584,7 @@
     SUBDIR += octave-forge-dicom
     SUBDIR += octave-forge-divand
     SUBDIR += octave-forge-doctest
+    SUBDIR += octave-forge-dsppack
     SUBDIR += octave-forge-econometrics
     SUBDIR += octave-forge-fda
     SUBDIR += octave-forge-femoctave
@@ -633,6 +634,7 @@
     SUBDIR += octave-forge-msh
     SUBDIR += octave-forge-multicore
     SUBDIR += octave-forge-mvn
+    SUBDIR += octave-forge-mysql
     SUBDIR += octave-forge-nan
     SUBDIR += octave-forge-ncarray
     SUBDIR += octave-forge-netcdf
@@ -641,6 +643,8 @@
     SUBDIR += octave-forge-nurbs
     SUBDIR += octave-forge-oct2mat
     SUBDIR += octave-forge-octave-pool
+    SUBDIR += octave-forge-octave_boost
+    SUBDIR += octave-forge-octave_ffmpeg_free
     SUBDIR += octave-forge-octave_mermaid_js
     SUBDIR += octave-forge-octave_php_wrapper
     SUBDIR += octave-forge-octave_tar
@@ -1064,6 +1068,7 @@
     SUBDIR += py-nevergrad
     SUBDIR += py-nlopt
     SUBDIR += py-numba-stats
+    SUBDIR += py-numdifftools
     SUBDIR += py-numexpr
     SUBDIR += py-numpoly
     SUBDIR += py-numpy
@@ -1139,6 +1144,7 @@
     SUBDIR += py-simhash
     SUBDIR += py-slepc4py
     SUBDIR += py-snuggs
+    SUBDIR += py-sparsediffpy
     SUBDIR += py-spectral
     SUBDIR += py-spglm
     SUBDIR += py-spint
@@ -1269,6 +1275,7 @@
     SUBDIR += sundials
     SUBDIR += superlu
     SUBDIR += superlu-dist
+    SUBDIR += superlu-mt
     SUBDIR += symengine
     SUBDIR += symfpu
     SUBDIR += symmetrica

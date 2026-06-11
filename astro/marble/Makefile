@@ -15,7 +15,7 @@ USES=		cmake compiler:c++11-lang desktop-file-utils gettext \
 		kde:6 qt:6 shared-mime-info tar:xz xorg
 USE_KDE=	auth codecs completion config configwidgets coreaddons \
 		crash doctools i18n jobwidgets kio kirigami-addons package \
-		parts phonon plasma-workspace-wallpapers runner service solid \
+		parts plasma-workspace-wallpapers runner service solid \
 		sonnet textwidgets widgetsaddons windowsystem xmlgui \
 		ecm:build
 USE_LDCONFIG=	yes

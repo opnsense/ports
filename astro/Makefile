@@ -8,6 +8,7 @@
     SUBDIR += celestia
     SUBDIR += celestia-gtk
     SUBDIR += cfitsio
+    SUBDIR += cspice
     SUBDIR += erfa
     SUBDIR += fowsr
     SUBDIR += foxtrotgps
@@ -114,6 +115,7 @@
     SUBDIR += py-skyfield
     SUBDIR += py-skyfield-data
     SUBDIR += py-spacetrack
+    SUBDIR += py-spiceypy
     SUBDIR += py-spktype01
     SUBDIR += py-spktype21
     SUBDIR += py-sunpy

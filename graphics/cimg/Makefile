@@ -1,6 +1,6 @@
 PORTNAME=	cimg
 DISTVERSIONPREFIX=	v.
-DISTVERSION=	3.7.5
+DISTVERSION=	3.7.6
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 
@@ -87,13 +87,8 @@ NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>
 
-pre-configure-DOCS-on:
-	${REINPLACE_CMD} -e 's|make|${MAKE_CMD}|' ${BUILD_WRKSRC}/Makefile
-
-pre-configure-DOCS-off:
-	${REINPLACE_CMD} -e 's|^OPTFLAGS|#OPTFLAGS|' ${BUILD_WRKSRC}/Makefile
-
 pre-configure:
+	${REINPLACE_CMD} -e 's|make|${MAKE_CMD}|' ${BUILD_WRKSRC}/Makefile
 . if !defined(WITHOUT_FFMPEG)
 	${REINPLACE_CMD} -e 's|#FFMPEG_CFLAGS|FFMPEG_CFLAGS|'	\
 		-e 's|#FFMPEG_DEFINE|FFMPEG_DEFINE|'		\
@@ -105,6 +100,10 @@ pre-configure:
 		-e 's|XSHM_LDFLAGS = #|XSHM_LDFLAGS =|'		\
 		${BUILD_WRKSRC}/Makefile
 . endif
+
+pre-configure-DOCS-off:
+	${REINPLACE_CMD} -e 's|^OPTFLAGS|#OPTFLAGS|;s|/usr/X11R6|${LOCALBASE}|	\'
+		${BUILD_WRKSRC}/Makefile
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/CImg.h ${STAGEDIR}${PREFIX}/include
