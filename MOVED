@@ -498,7 +498,6 @@ audio/lxmusic||2021-06-26|Has expired: Uses EOL Python 2.7 via audio/xmms2
 math/gringo||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
 math/aspcud||2021-06-26|Has expired: Uses EOL Python 2.7 via math/gringo
 math/py-pyasp||2021-06-26|Has expired: Uses EOL Python 2.7 via math/gringo
-devel/viewvc|devel/viewvc-devel|2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
 chinese/sunpinyin||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
 chinese/fcitx-sunpinyin||2021-06-26|Has expired: Uses EOL Python 2.7 via chinese/sunpinyin
 www/dojo-shrinksafe||2021-06-26|Removed, deprecated upstream
@@ -3327,7 +3326,6 @@ www/py-dj42-django-allauth|www/py-django-allauth|2024-06-15|Has expired: Obsolet
 www/py-dj42-django-crispy-forms|www/py-django-crispy-forms|2024-06-15|Has expired: Obsolete, please use www/py-django-crispy-forms instead
 www/py-dj42-django-modelcluster|www/py-django-modelcluster|2024-06-15|Has expired: Obsolete, please use www/py-django-modelcluster instead
 www/py-dj42-django-extensions|www/py-django-extensions|2024-06-15|Has expired: Obsolete, please use www/py-django-extensions instead
-www/py-dj42-djangorestframework|www/py-djangorestframework|2024-06-15|Has expired: Obsolete, please use www/py-djangorestframework instead
 www/py-dj42-django-debug-toolbar|www/py-django-debug-toolbar|2024-06-15|Has expired: Obsolete, please use www/py-django-debug-toolbar instead
 devel/rubygem-ddtrace|devel/rubygem-datadog|2024-06-18|Move devel/rubygem-ddtrace to devel/rubygem-datadog
 databases/py-sqlalchemy13||2024-06-24|Has expired: Upstream makred EOL in Release Status
@@ -4989,7 +4987,6 @@ textproc/xsv-rs||2025-12-31|Has expired: Abandoned, repo archived on Apr 24, 202
 lang/spidermonkey102||2025-12-31|Has expired: Old version, no more users in the ports tree
 devel/unit-otel||2025-12-31|Has expired: Upstream repo archived on Oct 8 2025
 devel/electron36||2025-12-31|Has expired: EOLed upstream, switch to newer version
-x11/xwaylandvideobridge||2025-12-31|Has expired: Project has been discontinued
 x11/hyprland-qtutils|x11/hyprland-guiutils|2025-12-31|Has expired: Superceded by hyprland-guiutils. Use x11/hyprland-guiutils instead
 www/servlet-api||2025-12-31|Has expired: Superseded upstream by newer versions many years ago
 databases/cockroach||2025-12-31|Has expired: Current versions are fully-proprietary software, see PR 272257
@@ -5307,3 +5304,39 @@ databases/leofs||2026-05-14|Has expired: no longer maintained upstream, with no 
 chinese/fcitx-rime||2026-05-17|Marked broken for almost a year and upstream repo is archived
 deskutils/gnome-shell-extension-audio-output-switcher||2026-05-17|Marked broken and upstream repo is archived
 deskutils/gnome-shell-extension-filesmenu||2026-05-17|Marked broken and abandoned upstream
+deskutils/gnome-shell-extension-windowoverlay-icons||2026-05-18|Marked broken and deprecated upstream
+deskutils/gnome-shell-extension-weather||2026-05-18|Marked broken and abandoned upstream
+deskutils/gnome-shell-extension-trash||2026-05-18|Marked broken and abandoned upstream
+deskutils/gnome-shell-extension-panel-osd||2026-05-18|Marked broken and abandoned upstream
+deskutils/gnome-shell-extension-mediaplayer||2026-05-18|Marked broken and upstream repo is archived
+devel/rubygem-rugged17|devel/rubygem-rugged|2026-05-24|Use devel/rubygem-rugged instead
+www/rubygem-deckar01-task_list-gitlab|www/rubygem-deckar01-task_list|2026-05-24|Use www/rubygem-deckar01-task_list instead
+biology/p5-TrimGalore|biology/TrimGalore|2026-05-24|After V2.0 Trim Galore was rewrite in rust
+multimedia/mediaelch@qt5||2026-05-27|Unflavorize, remove Qt5 flavor
+multimedia/mediaelch@qt6|multimedia/mediaelch|2026-05-27|Unflavorize
+www/py-dj52-django-treenode|www/py-django-treenode|2026-05-28|Renamed after all Django consumers were switched from Django 4.2 to Django 5.2 to have a consistent naming scheme
+devel/devhelp|devel/manuals|2026-05-28|Has expired: Discontinued, use devel/manuals
+math/hs-syfco||2026-05-30|Has expired: Depends on a deprecated compiler version
+lang/ghc94||2026-05-30|Has expired: Old version
+graphics/kcolorpicker@qt5||2026-05-30|Unflavorize, remove Qt5 flavor
+graphics/kcolorpicker@qt6|graphics/kcolorpicker|2026-05-30|Unflavorize
+graphics/kimageannotator@qt5||2026-05-30|Unflavorize, remove Qt5 flavor
+graphics/kimageannotator@qt6|graphics/kimageannotator|2026-05-30|Unflavorize
+accessibility/libqaccessibilityclient@qt5||2026-05-30|Unflavorize, remove Qt5 flavor
+accessibility/libqaccessibilityclient@qt6|accessibility/libqaccessibilityclient|2026-05-30|Unflavorize
+net/kpeoplevcard||2026-05-30|Removed, not needed anymore
+shells/agsh|shells/meka|2026-05-30|Project renamed upstream
+graphics/kdiagram||2026-05-31|Removed, not needed anymore
+archivers/rubygem-rubyzip2|archivers/rubygem-rubyzip|2026-05-31|Has expired: Outdated. Upstream disappeared
+japanese/p5-2chproxy||2026-05-31|Has expired: Abandoned, it is not compatible with the current servers, migrate to proxy2ch
+www/py-azure-storage||2026-05-31|Has expired: Deprecated by upstream. Use other py-azure-storage-* ports instead
+www/py-pyjwt1|www/py-pyjwt|2026-05-31|Has expired: Obsoleted. Use www/py-pyjwt instead
+net/rubygem-gitaly-proto||2026-05-31|Has expired: gitaly-proto has been deprecated
+www/redmine51||2026-05-31|Has expired: Please migrate to newer version. Ruby 3.2 has been removed from the ports tree
+graphics/tippecanoe||2026-05-31|Broken for months
+devel/rye||2026-06-02|Has expired: Rye is no longer developed. All users should migrate to uv, the successor project from the same maintainers, which is actively maintained and much more widely used
+x11/hamclock||2026-06-02|Has expired: Upstream programmer is deceased upstream server discontinued in June
+devel/twiggy||2026-06-02|Archived upstream, no longer maintained, and has an unclear latest release number
+audio/surge-synthesizer-lv2|audio/surge-synthesizer-xt-lv2|2026-06-04|Retire older surge-synthesizer-lv2 in favor of new gen surge-synthesizer-xt-lv2
+dns/dnsmasq-devel|dns/dnsmasq|2026-06-05|Discontinued -devel port, use dns/dnsmasq instead
+www/surge|ftp/surge|2026-06-05|Switch to a more updated ftp/surge port, which was accidentally added despite www/surge being available (but outdated)

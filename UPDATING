@@ -5,6 +5,67 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20260609:
+  AFFECTS: Users of x11-wm/mango
+  AUTHOR: nivit@FreeBSD.org
+
+  Version 0.14.0 of Mango has some breaking changes:
+
+  - IPC Protocol Upgrade: The old dwl IPC protocol is now deprecated and will
+    be removed in the next version.
+  - Socket Restructuring: mmsg(1) now restricts the use of independent sockets.
+    This structural change delivers a more powerful, concise, and reliable
+    syntax, allowing you to seamlessly retrieve data for all clients, tags,
+    monitors, and messages.
+
+  As a result, you must adapt any script that uses the mmsg(1) command to
+  the new syntax.
+
+20260605:
+  AFFECTS: Users of dns/dnsmasq-devel
+  AUTHOR: mandree@FreeBSD.org
+
+  The dns/dnsmasq-devel port has been unable to keep the pace of the upstream
+  releases due project admin issues beyond its maintainer's control. At the
+  same time, dns/dnsmasq is now at the 2.93 release, thus newer than
+  dnsmasq-devel.  The -devel port is no longer useful at this time.
+
+  Users are sought to replace the dnsmasq-devel port and install dnsmasq
+  instead. The configuration including rc.conf settings are compatible,
+  so a simple "pkg install dnsmasq" or, for portmaster users,
+  "portmaster -o dns/dnsmasq dns/dnsmasq-devel" should achieve that.
+
+20260601:
+  AFFECTS: Users of security/lego
+  AUTHOR: matt@matthoran.com
+
+  To migrate from lego v4 to v5 run
+
+  $ lego migrate --path PREFIX/etc/ssl/lego
+
+  as the LEGO_USER user. This command migrates to a new file structure and
+  outputs configuration that can be used as the basis for ETCDIR/lego.yml. See
+  https://go-acme.github.io/lego/references/ref-file/index.html for more
+  details on the configuration file format.
+
+  ETCDIR/lego.sh will need to be updated as well, as the renew command has been
+  removed. The script can also be simplified when a configuration file is used.
+  See ETCDIR/lego.sh.sample for an example.
+
+20260531:
+  AFFECTS: Users of x11-wm/hyprland
+  AUTHOR: tagattie@FreeBSD.org
+
+  Starting from version 0.55.0, Hyprland supports Lua-based
+  configuration syntax. The old hyprlang-based configuration is
+  deprecated and will be supported for a few more releases. After
+  that, old configuration will be dropped. Users are encouraged to
+  migrate from the hyprlang-based configuration to the Lua-based
+  one. For more details, please visit the following URLs:
+
+  https://hypr.land/news/26_lua/
+  https://wiki.hypr.land/Configuring/
+
 20260515:
   AFFECTS: Users of net/rsync
   AUTHOR: rodrigo@FreeBSD.org
@@ -28,7 +89,7 @@ you update your ports collection, before attempting any port upgrades.
 
   To successfully migrate your world, you must relocate /var/db/minecraft
   content in /usr/local/minecraft/world, then launch 'minecraft-server'
-  as usual. 
+  as usual.
   When 'world' upgrade is finished, stop 'minecraft-server' then relocate
   your world in initial folder /var/db/minecraft-server.
 

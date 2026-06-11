@@ -109,7 +109,7 @@ WRKSRC_crate_${_crate}=	${WRKDIR}/${_wrksrc}
 
 CARGO_BUILDDEP?=	yes
 .  if ${CARGO_BUILDDEP:tl} == "yes"
-BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.95.0:lang/${RUST_DEFAULT}
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.96.0:lang/${RUST_DEFAULT}
 .  elif ${CARGO_BUILDDEP:tl} == "any-version"
 BUILD_DEPENDS+=	${RUST_DEFAULT}>=0:lang/${RUST_DEFAULT}
 .  endif
@@ -172,6 +172,7 @@ CARGO_BUILD_ARGS?=
 CARGO_INSTALL_ARGS?=
 CARGO_INSTALL_PATH?=	.
 CARGO_TEST_ARGS?=
+CARGO_TEST_AFTER_ARGS?=
 CARGO_UPDATE_ARGS?=
 
 # Use module targets ?
@@ -364,13 +365,18 @@ do-install:
 .    endfor
 .  endif
 
+.  if !empty(CARGO_TEST_AFTER_ARGS)
+_CARGO_TEST_AFTER_ARGS=	-- ${CARGO_TEST_AFTER_ARGS}
+.  endif
+
 .  if !target(do-test) && ${CARGO_TEST:tl} == "yes"
 do-test:
 	@${CARGO_CARGO_RUN} test \
 		--manifest-path ${CARGO_CARGOTOML} \
 		--verbose \
 		--verbose \
-		${CARGO_TEST_ARGS}
+		${CARGO_TEST_ARGS} \
+		${_CARGO_TEST_AFTER_ARGS}
 .  endif
 
 #

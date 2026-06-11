@@ -336,7 +336,7 @@ zoraxy:*:386:386::0:0:Zoraxy Service:/nonexistent:/usr/sbin/nologin
 goimapnotify:*:387:387::0:0:Goimapnotify Daemon:/nonexistent:/usr/sbin/nologin
 autopulse:*:388:388::0:0:Autopulse Daemon:/nonexistent:/usr/sbin/nologin
 ldap:*:389:389::0:0:OpenLDAP Server:/nonexistent:/usr/sbin/nologin
-# free: 390
+bunkerweb:*:390:390::0:0:Bunkerweb Service:/nonexistent:/usr/sbin/nologin
 # free: 391
 # free: 392
 # free: 393
@@ -496,7 +496,7 @@ ejabberd:*:543:543::0:0:ejabberd pseudo user:/var/spool/ejabberd:/bin/sh
 # free: 547
 # free: 548
 # free: 549
-# free: 550
+grist:*:550:550::0:0:Grist Daemon User:/usr/local/www/grist-core:/usr/sbin/nologin
 # free: 551
 kresd:*:552:552::0:0:Knot DNS Resolver:/nonexistent:/usr/sbin/nologin
 knot:*:553:553::0:0:Knot DNS Server:/nonexistent:/usr/sbin/nologin
@@ -518,7 +518,7 @@ polkitd:*:565:565::0:0:Polkit Daemon User:/var/empty:/usr/sbin/nologin
 # free: 568
 # free: 569
 # free: 570
-# free: 571
+ttrssd:*:571:571::0:0:ttrssd user:/nonexistent:/usr/sbin/nologin
 # free: 572
 # free: 573
 # free: 574

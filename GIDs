@@ -6,6 +6,7 @@ operator:*:5:amanda
 mail:*:6:postfix,clamav
 ftp:*:14:
 smmsp:*:25:
+audio:*:43:
 video:*:44:lightdm
 bind:*:53:
 rdfdb:*:55:
@@ -330,7 +331,7 @@ zoraxy:*:386:
 goimapnotify:*:387:
 autopulse:*:388:
 ldap:*:389:
-# free: 390
+bunkerweb:*:390:
 # free: 391
 # free: 392
 # free: 393
@@ -490,7 +491,7 @@ ejabberd:*:543:
 # free: 547
 # free: 548
 # free: 549
-# free: 550
+grist:*:550:
 # free: 551
 kresd:*:552:
 knot:*:553:
@@ -512,7 +513,7 @@ polkitd:*:565:
 # free: 568
 # free: 569
 # free: 570
-# free: 571
+ttrssd:*:571:
 # free: 572
 # free: 573
 # free: 574
