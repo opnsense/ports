@@ -4,6 +4,8 @@ PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	https://github.com/openssl/openssl/releases/download/${DISTNAME}/
 
+PKGORIGIN_KEEP=	yes
+
 MAINTAINER=	brnrd@FreeBSD.org
 COMMENT=	TLSv1.3 capable SSL and crypto library
 WWW=		https://www.openssl.org/
