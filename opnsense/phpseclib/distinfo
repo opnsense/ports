@@ -1,5 +1,5 @@
-TIMESTAMP = 1781075650
-SHA256 (phpseclib-phpseclib-3.0.53_GH0.tar.gz) = 1e629ac6fa943ec0a7b1940ebc60beb13461b97fa5f644ccaf68f7b8139bcd75
-SIZE (phpseclib-phpseclib-3.0.53_GH0.tar.gz) = 394647
+TIMESTAMP = 1781505618
+SHA256 (phpseclib-phpseclib-3.0.55_GH0.tar.gz) = 153bfae7df887dba7c2dfc9e2e6985a6bc81cc2161a750a3c3aa4b2f15a217f4
+SIZE (phpseclib-phpseclib-3.0.55_GH0.tar.gz) = 395185
 SHA256 (paragonie-constant_time_encoding-v2.6.3_GH0.tar.gz) = 62a8f7ca5ddea243551062b02a7485ff0253619c4487d2404a429bc48cd6dc1e
 SIZE (paragonie-constant_time_encoding-v2.6.3_GH0.tar.gz) = 8500
