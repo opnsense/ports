@@ -1,8 +1,7 @@
 PORTNAME=	perl
 DISTVERSION=	${PERL_VERSION}
-PORTREVISION=	1
 CATEGORIES=	lang devel perl5
-MASTER_SITES=	CPAN/../../src/5.0 CPAN/../by-authors/id/B/BO/BOOK
+MASTER_SITES=	CPAN/../../src/5.0 CPAN/../by-authors/id/S/SH/SHAY
 DIST_SUBDIR=	perl
 
 MAINTAINER=	mat@FreeBSD.org
@@ -134,8 +133,7 @@ OPTIONS_DEFAULT=	DTRACE MULTIPLICITY PERL_64BITINT
 OPTIONS_EXCLUDE=	DTRACE
 .endif
 .for a in aarch64 armv6 armv7 \
-	mips mips64 mips64el mips64elhf mips64hf mipsel mipselhf mipshf mipsn32 \
-	riscv64 riscv64sf
+	riscv64
 OPTIONS_EXCLUDE_${a}=	DTRACE
 .endfor
 OPTIONS_SUB=		yes

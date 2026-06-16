@@ -10,18 +10,18 @@
 # versitygw_enable (bool):	Set it to YES to enable versitygw.
 #				Default is "NO".
 # versitygw_user (user):	Set user to run versitygw.
-#				Default is "versitygw".
+#				Default is "www".
 # versitygw_group (group):	Set group to run versitygw.
-#				Default is "versitygw".
+#				Default is "www".
 # versitygw_options (string):	Provide additional runtime options.
 #				Default is "".
-# versitygw_readonly (file):	Disallow writes.
+# versitygw_readonly (string):	Disallow writes.
 #				Default is "yes".
 # versitygw_access_log (file):	Path for access logs.
-#				Default is "/var/log/versitgw/access.log".
+#				Default is "/var/log/versitygw/access.log".
 # versitygw_admin_log (file):	Path for admin logs.
-#				Default is "/var/log/versitgw/admin.log".
-# versitygw_listen (file):	IP:port to listen on.
+#				Default is "/var/log/versitygw/admin.log".
+# versitygw_listen (string):	IP:port to listen on.
 #				Default is "localhost:7070".
 
 . /etc/rc.subr
@@ -60,6 +60,7 @@ command_args="-f -p ${pidfile} \
 	--admin-access-log ${versitygw_admin_log} \
 	${versitygw_is_readonly} \
 	--port ${versitygw_listen} \
+	${versitygw_options} \
 	posix ${versitygw_directory}"
 
 monitor_cmd=versitygw_monitor
@@ -86,9 +87,6 @@ versitygw_startprecmd()
                 install -o ${versitygw_user} -g ${versitygw_group} /dev/null ${pidfile};
         fi
 
-        if [ ! -d ${versitygw_dir} ]; then
-                install -d -o ${versitygw_user} -g ${versitygw_group} ${versitygw_dir}
-        fi
 }
 
 run_rc_command "$1"

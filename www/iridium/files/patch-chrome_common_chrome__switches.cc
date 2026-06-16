@@ -1,17 +1,17 @@
---- chrome/common/chrome_switches.cc.orig	2026-01-16 14:21:21 UTC
+--- chrome/common/chrome_switches.cc.orig	2026-06-10 12:51:34 UTC
 +++ chrome/common/chrome_switches.cc
-@@ -952,7 +952,7 @@ const char kDebugPrint[] = "debug-print";
+@@ -923,7 +923,7 @@ const char kDebugPrint[] = "debug-print";
  #endif
  
  #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
 -    BUILDFLAG(IS_WIN)
 +    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
- const char kEnableNewAppMenuIcon[] = "enable-new-app-menu-icon";
  
  // Causes the browser to launch directly in guest mode.
-@@ -991,7 +991,7 @@ const char kGlicAlwaysShowWebActuationToggle[] =
- const char kGlicAdminRedirectPatterns[] = "glic-admin-redirect-patterns";
- #endif
+ const char kGuest[] = "guest";
+@@ -967,7 +967,7 @@ const char kGlicGuestUrlPresetStaging[] = "glic-guest-
+ const char kGlicGuestUrlPresetPreprod[] = "glic-guest-url-preset-preprod";
+ const char kGlicGuestUrlPresetProd[] = "glic-guest-url-preset-prod";
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)

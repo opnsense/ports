@@ -40,6 +40,7 @@
 %%WWWDIR%%/i18n/el.json
 %%WWWDIR%%/i18n/es.json
 %%WWWDIR%%/i18n/et.json
+%%WWWDIR%%/i18n/fa.json
 %%WWWDIR%%/i18n/fi.json
 %%WWWDIR%%/i18n/fr.json
 %%WWWDIR%%/i18n/he.json
@@ -109,11 +110,12 @@
 %%WWWDIR%%/js/pastemeta.jsonld
 %%WWWDIR%%/js/prettify.js
 %%WWWDIR%%/js/privatebin.js
-%%WWWDIR%%/js/purify-3.3.0.js
+%%WWWDIR%%/js/purify-3.4.1.js
 %%WWWDIR%%/js/showdown-2.1.0.js
 %%WWWDIR%%/js/types.jsonld
-%%WWWDIR%%/js/zlib-1.3.1-1.js
-%%WWWDIR%%/js/zlib-1.3.1.wasm
+%%WWWDIR%%/js/zlib-1.3.2.js
+%%WWWDIR%%/js/zlib-1.3.2.wasm
+%%WWWDIR%%/js/zlib.js
 %%WWWDIR%%/lib/.htaccess
 %%WWWDIR%%/lib/Configuration.php
 %%WWWDIR%%/lib/Controller.php
@@ -122,6 +124,8 @@
 %%WWWDIR%%/lib/Data/Filesystem.php
 %%WWWDIR%%/lib/Data/GoogleCloudStorage.php
 %%WWWDIR%%/lib/Data/S3Storage.php
+%%WWWDIR%%/lib/Exception/JsonException.php
+%%WWWDIR%%/lib/Exception/TranslatedException.php
 %%WWWDIR%%/lib/Filter.php
 %%WWWDIR%%/lib/FormatV2.php
 %%WWWDIR%%/lib/I18n.php

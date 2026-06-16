@@ -1,7 +1,8 @@
 PORTNAME=	Finance-Quote
-PORTVERSION=	1.67
+PORTVERSION=	1.69
 CATEGORIES=	finance perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:BPSCHUCK
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -52,5 +53,7 @@ USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 .include <bsd.port.mk>

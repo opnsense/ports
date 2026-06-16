@@ -1,6 +1,6 @@
 bin/podman-desktop
 share/applications/podman-desktop.desktop
-share/icons/hicolor/scalable/apps/icon.svg
+share/icons/hicolor/scalable/apps/podman-desktop.svg
 %%DATADIR%%/LICENSE.electron.txt
 %%DATADIR%%/LICENSES.chromium.html
 %%DATADIR%%/chrome_100_percent.pak

@@ -1,8 +1,9 @@
 PORTNAME=	xlibre-xf86-input-wacom
 PORTVERSION=	25.0.0
+PORTREVISION=	3
 CATEGORIES=	x11-drivers
 
-MAINTAINER=	b-aazbsd@proton.me
+MAINTAINER=	xlibre@FreeBSD.org
 COMMENT=	XLibre legacy Wacom tablet driver
 WWW=		https://github.com/X11Libre/xf86-input-wacom/ \
 		https://linuxwacom.github.io/
@@ -14,7 +15,7 @@ BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
 RUN_DEPENDS=	webcamd>=3.1.0.1:multimedia/webcamd
 
 USES=		gmake pathfix xorg xlibre-cat:driver
-USE_XORG=	x11 xext xinerama xrandr
+USE_XORG=	x11 xext xi xinerama xrandr
 
 LDFLAGS+=	-Wl,--as-needed # Xext
 USE_RC_SUBR=	wacom

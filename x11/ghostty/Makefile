@@ -1,7 +1,7 @@
 PORTNAME=	ghostty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.0
-PORTREVISION=	2
+DISTVERSION=	1.3.1
+PORTREVISION=	1
 CATEGORIES=	x11 wayland
 DIST_SUBDIR=	${PORTNAME}
 
@@ -13,22 +13,31 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	blueprint-compiler>0:devel/blueprint-compiler
-LIB_DEPENDS=	libgtk4-layer-shell.so:x11-toolkits/gtk4-layer-shell \
+LIB_DEPENDS=	libfreetype.so:print/freetype2 \
+		libgtk4-layer-shell.so:x11-toolkits/gtk4-layer-shell \
 		libonig.so:devel/oniguruma \
-		libsimdutf.so:converters/simdutf
+		libsimdutf.so:converters/simdutf \
+		libspirv-cross-c-shared.so:graphics/spirv-cross
 
-USES=		gettext-runtime gettext-tools gnome pkgconfig zig:014
+USES=		gettext-runtime gettext-tools gnome pkgconfig zig:015
 USE_GITHUB=	yes
 GH_ACCOUNT=	ghostty-org
 
 USE_GNOME=	glib20 gtk40 libadwaita libxml2
 
 ZIG_ARGS=	-Dapp-runtime=gtk -Dgtk-wayland=true -Dgtk-x11=true \
-		-fsys=simdutf -fno-sys=spirv-cross
+		-fsys=simdutf -fsys=spirv-cross -fsys=freetype
+
+LDFLAGS+=	-lbz2
 
 OPTIONS_DEFINE=	DOCS
+OPTIONS_SUB=	yes
 
 DOCS_BUILD_DEPENDS=	pandoc:textproc/hs-pandoc
 DOCS_ZIG_BOOL=		emit-docs
+
+post-patch-DOCS-on:
+	@${REINPLACE_CMD} 's|share/ghostty/doc|${DOCSDIR:S,^${PREFIX}/,,}|' \
+		${WRKSRC}/src/build/GhosttyDocs.zig
 
 .include <bsd.port.mk>

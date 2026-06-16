@@ -1,6 +1,6 @@
---- chrome/browser/web_applications/extensions/extension_status_utils.cc.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/web_applications/extensions/extension_status_utils.cc.orig	2026-04-15 12:07:04 UTC
 +++ chrome/browser/web_applications/extensions/extension_status_utils.cc
-@@ -94,7 +94,7 @@ bool IsExternalExtensionUninstalled(content::BrowserCo
+@@ -93,7 +93,7 @@ bool IsExternalExtensionUninstalled(content::BrowserCo
    return prefs && prefs->IsExternalExtensionUninstalled(extension_id);
  }
  

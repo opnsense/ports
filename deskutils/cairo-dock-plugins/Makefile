@@ -1,8 +1,8 @@
 PORTNAME=	cairo-dock-plugins
-DISTVERSION=	3.6.1
+DISTVERSION=	3.6.2
 CATEGORIES=	deskutils
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	Cairo-Dock-Plugins for Cairo-Dock
 WWW=		https://github.com/Cairo-Dock/cairo-dock-core/wiki/
 
@@ -110,6 +110,11 @@ post-patch:
 		${WRKSRC}/Dbus/data/cairo-dock-launcher-API-daemon.py
 	@${FIND} ${WRKSRC} -type f \( -name "*.c" -o -name "*.conf" -o -name netspeed \
 		-o -name nvidia-config -o -name "*.sh" -o -name "*.rb" \) | \
-		${XARGS} ${REINPLACE_CMD} -i.orig -e 's|/bin/bash|${LOCALBASE}/bin/bash|g; s|/usr/bin/python|${PYTHON_CMD}|g; s|/usr/bin/ruby|${LOCALBASE}/bin/ruby|g; s|/usr/share/applications|${LOCALBASE}/share/applications|g; s|/usr/share/cairo-dock|${LOCALBASE}/share/cairo-dock|g'
+		${XARGS} ${REINPLACE_CMD} -i.orig -e '\
+				s|/bin/bash|${LOCALBASE}/bin/bash|g; \
+				s|/usr/bin/python|${PYTHON_CMD}|g; \
+				s|/usr/bin/ruby|${LOCALBASE}/bin/ruby|g; \
+				s|/usr/share/applications|${LOCALBASE}/share/applications|g; \
+				s|/usr/share/cairo-dock|${LOCALBASE}/share/cairo-dock|g'
 
 .include <bsd.port.mk>

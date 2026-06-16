@@ -1,5 +1,5 @@
 PORTNAME=	dotnet
-DISTVERSION?=	${DOTNETVERSION}.12
+DISTVERSION?=	${DOTNETVERSION}.14
 PORTREVISION?=	0
 CATEGORIES=	lang devel
 MASTER_SITES=	${NO_RELEASE_JSON:Uhttps\://github.com/dotnet/dotnet/releases/download/${GH_TAGNAME}/release.json?dummy=/\:dotnetmanifest} \
@@ -22,7 +22,8 @@ BUILD_DEPENDS=	bash:shells/bash \
 		cmake:devel/cmake-core \
 		git:devel/git \
 		ggrep:textproc/gnugrep \
-		terminfo-db>0:misc/terminfo-db
+		terminfo-db>0:misc/terminfo-db \
+		${LOCALBASE}/lib/compat/libssl.so.111:misc/compat13x
 LIB_DEPENDS=	libbrotlienc.so:archivers/brotli \
 		libicuuc.so:devel/icu \
 		libinotify.so:devel/libinotify \
@@ -48,9 +49,9 @@ BOOTSTRAP_SOURCEBUILT_ARTIFACTS_DISTNAME=	Private.SourceBuilt.Artifacts.${BOOTST
 BOOTSTRAP_SDK_DISTNAME=				dotnet-sdk-${BOOTSTRAP_SDKVERSION}-freebsd-${DOTNET_ARCH}
 
 DOTNETVERSION?=		9.0
-SDKVERSION?=		${DOTNETVERSION}.113
-SDKVERSIONSUFFIX?=	-servicing.25609.3
-SDKSERVICESUFFIX?=	-servicing.25610.1
+SDKVERSION?=		${DOTNETVERSION}.115
+SDKVERSIONSUFFIX?=	-servicing.26119.9
+SDKSERVICESUFFIX?=	-servicing.26120.1
 MANIFESTSUFFIX=		${DOTNETVERSION}.100
 DOTNET_ARCH=		${ARCH:S|amd64|x64|:C|aarch64|arm64|}
 SDK_DISTNAME?=		dotnet-sdk-${SDKVERSION}-${SDK_RID}
@@ -87,10 +88,6 @@ BROKEN=		"crossgen2" exited with code 139
 
 .if ${SSL_DEFAULT} == base && ${DOTNETVERSION:R} > 8
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-base-openssl
-.endif
-
-.if ${OSVERSION} >= 1400000
-BUILD_DEPENDS+=	${LOCALBASE}/lib/compat/libssl.so.111:misc/compat13x
 .endif
 
 .if ${ARCH} == amd64

@@ -1,6 +1,6 @@
 PORTNAME=	librewolf
-DISTVERSION=	147.0.3
-LWPATCH=	-2
+DISTVERSION=	151.0.3
+LWPATCH=	-1
 DISTVERSIONSUFFIX=	${LWPATCH}.source
 PORTREVISION=	1
 CATEGORIES=	www wayland
@@ -14,7 +14,7 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
-		nss>=3.119:security/nss \
+		nss>=3.123.1:security/nss \
 		icu>=76.1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
 		harfbuzz>=10.1.0:print/harfbuzz \
@@ -27,8 +27,8 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip \
-		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
-		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasi/libc.a:devel/wasi-libc@${LLVM_VERSION} \
+		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
+		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc.a:devel/wasi-libc@${LLVM_VERSION} \
 		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
 
 USE_GECKO=	gecko
@@ -66,6 +66,7 @@ MOZ_OPTIONS=	--enable-application=browser \
 		--with-branding=browser/branding/${MOZILLA} \
 		--with-unsigned-addon-scopes=app,system \
 		--enable-bootstrap \
+		--with-l10n-base=${WRKSRC}/lw/l10n \
 		MOZ_CRASHREPORTER=0 \
 		MOZ_DATA_REPORTING=0
 

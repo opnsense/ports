@@ -2,30 +2,33 @@
 #
 # MAINTAINER: yuri@FreeBSD.org
 
-set -e
 set -o pipefail
-
 export LC_ALL=C
 
-##
-## git-diff-ports.sh: returns the list of ports with uncommitted changes in the repository
-##
-
-# check that packaged dependencies are installed
-
+# ----- Dependency check ----------------------------------------------
 for dep in git; do
-	if ! which -s $dep; then
+	if ! command -v "$dep" >/dev/null 2>&1; then
 		echo "error: the '$dep' dependency is missing"
-		if [ $dep = "git" ]; then
-			echo "... please install the 'git' package"
-		fi
 		exit 1
 	fi
 done
 
+# ----- Repository check -----------------------------------------------
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1 || \
+   ! [ -f "$(git rev-parse --show-toplevel)/Mk/bsd.port.mk" ]; then
+	echo "error: not a FreeBSD ports repository"
+	exit 1
+fi
 
-# MAIN
+# ----- Main logic -------------------------------------------------------
+# Output the list of ports with uncommitted changes.  If no ports are
+# changed the script exits cleanly with no output.
 
 git diff HEAD "$@" |
-	awk -F / '/^diff/ && $2 !~ /[[:upper:]]/ && $3 !~ /^Makefile/ { print $2 "/" $3 }' |
-	sort -u
+	grep '^diff ' |
+	grep -v Mk |
+	sed -E 's|diff --git a/||; s| .*||; s|([^/]+/[^/]+).*|\1|' |
+	sort |
+	uniq || true
+
+exit 0

@@ -1,5 +1,5 @@
 PORTNAME=	valkey
-DISTVERSION=	9.0.2
+DISTVERSION=	9.1.0
 CATEGORIES=	databases
 
 MAINTAINER=	bofh@freebsd.org
@@ -9,7 +9,7 @@ WWW=		https://valkey.io/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake pkgconfig tcl:test
+USES=		cpe gmake pkgconfig tcl:test
 USE_GITHUB=	yes
 GH_ACCOUNT=	valkey-io
 USE_RC_SUBR=	valkey valkeysentinel
@@ -49,6 +49,8 @@ TLS_MAKE_ENV=		BUILD_TLS=yes
 VALKEY_DBDIR?=	/var/db/valkey
 VALKEY_RUNDIR?=	/var/run/valkey
 VALKEY_LOGDIR?=	/var/log/valkey
+
+CPE_VENDOR=	lfprojects
 
 post-build:
 	${SED} ${SUB_LIST:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} \

@@ -126,7 +126,6 @@
     SUBDIR += guake
     SUBDIR += gxkb
     SUBDIR += habak
-    SUBDIR += hamclock
     SUBDIR += hhpc
     SUBDIR += histui
     SUBDIR += hs-xmobar
@@ -140,6 +139,7 @@
     SUBDIR += hyprls
     SUBDIR += hyprpaper
     SUBDIR += hyprpicker
+    SUBDIR += hyprshutdown
     SUBDIR += hyprviz
     SUBDIR += i3bar-river
     SUBDIR += i3blocks
@@ -251,6 +251,7 @@
     SUBDIR += linux-nvidia-libs-340
     SUBDIR += linux-nvidia-libs-390
     SUBDIR += linux-nvidia-libs-470
+    SUBDIR += linux-nvidia-libs-580
     SUBDIR += linux-nvidia-libs-devel
     SUBDIR += linux-rl9-libxkbcommon
     SUBDIR += linux-rl9-pixman
@@ -292,7 +293,6 @@
     SUBDIR += mkcomposecache
     SUBDIR += mlterm
     SUBDIR += mons
-    SUBDIR += mrxvt
     SUBDIR += mxascii
     SUBDIR += mxico
     SUBDIR += nezd
@@ -303,12 +303,14 @@
     SUBDIR += nvidia-driver-340
     SUBDIR += nvidia-driver-390
     SUBDIR += nvidia-driver-470
+    SUBDIR += nvidia-driver-580
     SUBDIR += nvidia-driver-devel
     SUBDIR += nvidia-kmod
     SUBDIR += nvidia-kmod-304
     SUBDIR += nvidia-kmod-340
     SUBDIR += nvidia-kmod-390
     SUBDIR += nvidia-kmod-470
+    SUBDIR += nvidia-kmod-580
     SUBDIR += nvidia-kmod-devel
     SUBDIR += nvidia-settings
     SUBDIR += nvidia-xconfig
@@ -342,6 +344,7 @@
     SUBDIR += plasma6-kglobalacceld
     SUBDIR += plasma6-kscreen
     SUBDIR += plasma6-kwayland
+    SUBDIR += plasma6-kwayland-integration
     SUBDIR += plasma6-layer-shell-qt
     SUBDIR += plasma6-libkscreen
     SUBDIR += plasma6-libplasma
@@ -459,7 +462,6 @@
     SUBDIR += trayer
     SUBDIR += ulauncher
     SUBDIR += urxvt-font-size
-    SUBDIR += urxvt-perls
     SUBDIR += vdesk
     SUBDIR += viewres
     SUBDIR += virglrenderer
@@ -469,6 +471,7 @@
     SUBDIR += wallutils
     SUBDIR += wapanel
     SUBDIR += watershot
+    SUBDIR += waveterm
     SUBDIR += way-displays
     SUBDIR += waybar
     SUBDIR += waycheck
@@ -487,6 +490,7 @@
     SUBDIR += wf-shell
     SUBDIR += windowtolayer
     SUBDIR += wl-clipboard
+    SUBDIR += wl-find-cursor
     SUBDIR += wl-kbptr
     SUBDIR += wl-mirror
     SUBDIR += wleave
@@ -688,6 +692,7 @@
     SUBDIR += xwatchwin
     SUBDIR += xwayland-run
     SUBDIR += xwayland-satellite
+    SUBDIR += xwaylandvideobridge
     SUBDIR += xwd
     SUBDIR += xwininfo
     SUBDIR += xwinwrap

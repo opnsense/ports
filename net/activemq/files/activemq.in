@@ -11,10 +11,10 @@
 # activemq_enable (bool):   Set to NO by default.
 #               Set it to YES to enable activemq.
 #
-# activemq_user (username): Set to activemq by default.
+# activemq_user (username): Set to %%AMQUSER%% by default.
 #               Set it to required username.
 #
-# activemq_group (group):   Set to activemq by default.
+# activemq_group (group):   Set to %%AMQGROUP%% by default.
 #               Set it to required group.
 #
 # activemq_classpath (path):   Set to %%DATADIR%% by default.
@@ -53,8 +53,8 @@ load_rc_config $name
 
 # Set defaults
 : ${activemq_enable:=NO}
-: ${activemq_user:=activemq}
-: ${activemq_group:=activemq}
+: ${activemq_user:=%%AMQUSER%%}
+: ${activemq_group:=%%AMQGROUP%%}
 : ${activemq_classpath:=%%ETCDIR%%}
 : ${activemq_conf:=%%ETCDIR%%}
 : ${activemq_data:=/var/db/activemq}

@@ -1,9 +1,9 @@
 PORTNAME=	pmix
-DISTVERSION=	5.0.9
+DISTVERSION=	5.0.10
 CATEGORIES=	net parallel devel
 MASTER_SITES=	https://github.com/openpmix/openpmix/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	Process Management Interface for Exascale (PMIx)
 WWW=		https://openpmix.org/
 

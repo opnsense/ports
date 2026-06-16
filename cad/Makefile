@@ -1,6 +1,7 @@
     COMMENT = CAD tools
 
     SUBDIR += Clipper2
+    SUBDIR += OrcaSlicer
     SUBDIR += PrusaSlicer
     SUBDIR += abc
     SUBDIR += admesh
@@ -124,15 +125,18 @@
     SUBDIR += py-vunit-hdl
     SUBDIR += python-gdsii
     SUBDIR += qcad
+    SUBDIR += qcadjsapi
     SUBDIR += qcsxcad
     SUBDIR += qelectrotech
     SUBDIR += qflow
     SUBDIR += qmls
     SUBDIR += qrouter
     SUBDIR += qspeakers
+    SUBDIR += qtjsapi
     SUBDIR += qucs-s
     SUBDIR += qucsator
     SUBDIR += repsnapper
+    SUBDIR += route-rnd
     SUBDIR += rubygem-gdsii
     SUBDIR += sch-rnd
     SUBDIR += scotch

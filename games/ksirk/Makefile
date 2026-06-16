@@ -10,7 +10,7 @@ LIB_DEPENDS=	libqca-qt6.so:devel/qca@qt6
 
 USES=		cmake compiler:c++11-lang gettext kde:6 qt:6 tar:xz
 USE_KDE=	attica auth codecs completion config configwidgets coreaddons \
-		crash i18n iconthemes kio libkdegames newstuff phonon service \
+		crash i18n iconthemes kio libkdegames newstuff service \
 		wallet widgetsaddons xmlgui \
 		ecm:build
 USE_QT=		base declarative

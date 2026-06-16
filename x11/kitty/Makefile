@@ -1,7 +1,7 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.45.0
-PORTREVISION=	3
+DISTVERSION=	0.47.1
+PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}furo>0:textproc/py-furo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinx-inline-tabs>0:textproc/py-sphinx-inline-tabs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sphinxext-opengraph>0:textproc/py-sphinxext-opengraph@${PY_FLAVOR} \
-		nerd-fonts>=3.1.1:x11-fonts/nerd-fonts \
+		nerd-fonts-symbols>=3.1.1:x11-fonts/nerd-fonts-symbols \
 		roboto-fonts-ttf>=2.134:x11-fonts/roboto-fonts-ttf \
 		simde>=0.7.6:devel/simde \
 		sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
@@ -38,10 +38,11 @@ LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libxkbcommon.so:x11/libxkbcommon \
 		libxxhash.so:devel/xxhash
 
+# ncursesw and tinfo >= 6.1 seem to be needed
 USES=		compiler:c11 cpe desktop-file-utils gettext-runtime gl gmake \
-		go:modules magick pkgconfig python shebangfix ssl tar:xz \
-		terminfo xorg
-CPE_VENDOR=	kitty_project
+		go:modules,1.26 magick ncurses pkgconfig python shebangfix ssl \
+		tar:xz terminfo xorg
+CPE_VENDOR=	kovidgoyal
 
 USE_GL=		gl
 USE_XORG=	x11 xcb xcursor xi xinerama xrandr
@@ -82,13 +83,6 @@ CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8
 
 .if ${ARCH:Mriscv64*}
 MAKE_ENV+=	KITTY_NO_LTO=1
-.endif
-
-# ncursesw and tinfo >= 6.1 seem to be neededd
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1400035
-USES+=		ncurses:port
-.else
-USES+=		ncurses
 .endif
 
 # PR291485

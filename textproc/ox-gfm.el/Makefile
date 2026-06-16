@@ -10,7 +10,6 @@ WWW=		https://github.com/larstvei/ox-gfm
 LICENSE=	GPLv3+
 
 USES=			emacs
-EMACS_NO_DEPENDS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	larstvei

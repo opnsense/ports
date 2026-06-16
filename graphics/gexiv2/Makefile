@@ -26,7 +26,7 @@ PLIST_SUB=	SOVERSION=${PORTVERSION:C/^0./2./}
 OPTIONS_DEFINE=		DOCS
 OPTIONS_SUB=		yes
 DOCS_BUILD_DEPENDS=	gtkdoc-scan:textproc/gtk-doc
-DOCS_CONFIGURE_ON=	-Dgtk_doc=true
+DOCS_MESON_ON=	-Dgtk_doc=true
 
 PORTSCOUT=	limitw:1,even
 

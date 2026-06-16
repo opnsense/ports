@@ -15,8 +15,7 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2
 
 USES=		cpe localbase meson pkgconfig python:build \
 		shebangfix tar:xz
-CPE_VENDOR=	d-bus_project
-CPE_PRODUCT=	d-bus
+CPE_VENDOR=	freedesktop
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	dbus
 SHEBANG_FILES=	tools/GetAllMatchRules.py \
@@ -79,10 +78,4 @@ post-install:
 		${MV} ${file} ${file}.sample
 .endfor
 
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 1400000
-MESON_ARGS+=	-Db_lundef=false
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

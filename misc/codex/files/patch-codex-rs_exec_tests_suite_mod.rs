@@ -1,8 +1,8 @@
---- codex-rs/exec/tests/suite/mod.rs.orig	2025-11-21 18:00:38 UTC
+--- codex-rs/exec/tests/suite/mod.rs.orig	2026-04-11 01:58:04 UTC
 +++ codex-rs/exec/tests/suite/mod.rs
-@@ -5,5 +5,6 @@ mod resume;
- mod originator;
+@@ -8,5 +8,6 @@ mod resume;
  mod output_schema;
+ mod prompt_stdin;
  mod resume;
 +#[cfg(not(target_os = "freebsd"))]
  mod sandbox;

@@ -6,6 +6,8 @@ PKGNAMESUFFIX=	${PYTHON_BASESUFFIX}${THREADFLAG}
 DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
+PATCH_SITES=	https://github.com/python/cpython/commit/
+
 MAINTAINER=	python@FreeBSD.org
 COMMENT=	Interpreted object-oriented programming language
 WWW=		https://www.python.org/
@@ -52,7 +54,6 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 OPTIONS_DEFINE=		DEBUG IPV6 LIBMPDEC LTO NLS PYMALLOC
 OPTIONS_DEFAULT=	LIBMPDEC LTO PYMALLOC
 OPTIONS_EXCLUDE_riscv64=	LTO
-OPTIONS_EXCLUDE_powerpc64le=	LTO
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_GROUP=		EXPERIMENTAL
@@ -86,7 +87,7 @@ LTO_CONFIGURE_ON=	--with-lto
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
 # Upstream Issue: https://bugs.python.org/issue6299
-NLS_USES=		gettext
+NLS_USES=		gettext-runtime
 NLS_CPPFLAGS=		-I${LOCALBASE}/include
 NLS_LIBS=		-L${LOCALBASE}/lib -lintl
 NLS_CONFIGURE_ENV_OFF=	ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no
@@ -113,7 +114,9 @@ BUILD_DEPENDS+=	python${PYTHON_DEFAULT}:lang/python${PYTHON_DEFAULT:S/.//g}
 
 .if !empty(ABIFLAGS) || !empty(THREADFLAG)
 PLIST_FILES+=	bin/python${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS} \
-		bin/python${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}-config
+		bin/python${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}-config \
+		libdata/pkgconfig/python-${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}-embed.pc \
+		libdata/pkgconfig/python-${PYTHON_BASEVER}${THREADFLAG}${ABIFLAGS}.pc
 .endif
 
 # See https://bugs.freebsd.org/115940 and https://bugs.freebsd.org/193650

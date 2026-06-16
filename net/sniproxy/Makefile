@@ -1,14 +1,7 @@
 PORTNAME=	sniproxy
-DISTVERSION=	0.6.1
+DISTVERSION=	0.7.0
 PORTREVISION=	2
 CATEGORIES=	net
-
-PATCH_SITES=	https://github.com/dlundquist/sniproxy/commit/
-PATCHFILES=	62e621f050f79eb78598b1296a089ef88a19ea91.diff:-p1 \
-		0e556bf0b9151e65575b3980b72f34331e5b6ab4.diff:-p1 \
-		7fdd86c054a21f7ac62343010de20f28645b14d2.diff:-p1 \
-		85e980261b9dfc0172fbc38f7bb24b291e859cee.diff:-p1 \
-		2d9965388712faa6ef74f7229f38e3a177904bae.diff:-p1
 
 MAINTAINER=	krion@FreeBSD.org
 COMMENT=	Proxy that routes based on TLS server name extension
@@ -23,22 +16,18 @@ LIB_DEPENDS=	libev.so:devel/libev \
 
 USES=		autoreconf localbase pkgconfig
 
-SUB_FILES=	pkg-message
-USE_RC_SUBR=	sniproxy
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	dlundquist
-
-GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+USE_RC_SUBR=	sniproxy
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--enable-dns
 
-PLIST_FILES=	share/man/man5/sniproxy.conf.5.gz \
-		share/man/man8/sniproxy.8.gz \
+SUB_FILES=	pkg-message
+PLIST_FILES=	"@sample etc/sniproxy.conf.sample" \
 		sbin/sniproxy \
-		"@sample etc/sniproxy.conf.sample"
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/var/tmp/|/var/run/|' ${WRKSRC}/${PORTNAME}.conf
+		share/man/man5/sniproxy.conf.5.gz \
+		share/man/man8/sniproxy.8.gz
 
 post-install::
 	${INSTALL_DATA} ${WRKSRC}/sniproxy.conf ${STAGEDIR}${PREFIX}/etc/sniproxy.conf.sample

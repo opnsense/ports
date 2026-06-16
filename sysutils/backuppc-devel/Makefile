@@ -1,6 +1,6 @@
 PORTNAME=	backuppc
 DISTVERSION=	4.4.1.20231111
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
 
@@ -23,8 +23,6 @@ BROKEN=		fails to build under qemu: uncaught target signal 11 (Segmetation fault
 .endif
 
 CONFLICTS_INSTALL=	backuppc backuppc4
-
-CPE_VENDOR=	craig_barratt
 
 USE_GITHUB=	yes
 GH_TAGNAME=	174e707

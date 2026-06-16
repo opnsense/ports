@@ -1,5 +1,5 @@
 PORTNAME=	cudatext
-PORTVERSION=	1.232.0.1
+PORTVERSION=	1.234.4.0
 CATEGORIES=	editors
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
 
@@ -9,7 +9,7 @@ WWW=		https://uvviewsoft.com/
 
 LICENSE=	MPL20
 
-ONLY_FOR_ARCHS=	aarch64 amd64 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64 powerpc64le
 
 USES=		desktop-file-utils dos2unix fpc gnome lazarus:flavors python xorg
 USE_XORG=	x11
@@ -19,11 +19,11 @@ GH_PROJECT=	CudaText
 GH_TUPLE=	bgrabitmap:bgrabitmap:6ada359:bgrabitmap/bgrabitmap \
 		Alexey-T:EncConv:8caaa6b:encconv/encconv \
 		Alexey-T:ATBinHex-Lazarus:ac03d54:atbinhex/atbinhex \
-		Alexey-T:ATFlatControls:c408ee1:atflatcontrols/atflatcontrols  \
-		Alexey-T:ATSynEdit:4d56b49:atsynedit/atsynedit \
+		Alexey-T:ATFlatControls:11594c7:atflatcontrols/atflatcontrols  \
+		Alexey-T:ATSynEdit:0d75ed4:atsynedit/atsynedit \
 		Alexey-T:ATSynEdit_Cmp:c24f441:atsyneditcmp/atsyneditcmp \
-		Alexey-T:EControl:a50f653:econtrol/econtrol \
-		Alexey-T:ATSynEdit_Ex:a980d3b:atsyneditex/atsyneditex \
+		Alexey-T:EControl:847ce66:econtrol/econtrol \
+		Alexey-T:ATSynEdit_Ex:c7f37a1:atsyneditex/atsyneditex \
 		Alexey-T:Python-for-Lazarus:fda3fdb:python4lazarus/python4lazarus \
 		Alexey-T:Emmet-Pascal:df69312:emmet/emmet \
 		Alexey-T:UniqueInstance:753f823:uniqueinstance/uniqueinstance

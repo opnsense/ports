@@ -1,13 +1,9 @@
 PORTNAME?=	libxml2
-DISTVERSION=	2.15.1
-PORTREVISION=	1
+DISTVERSION=	2.15.3
 CATEGORIES?=	textproc gnome
 MASTER_SITES=	GNOME
 DISTNAME=	libxml2-${DISTVERSION}
 DIST_SUBDIR=	gnome
-
-PATCH_SITES=	https://gitlab.gnome.org/GNOME/libxml2/-/commit/
-PATCHFILES=	0e50b31902cdb1eb242eb361c123e9e033b2af87.patch:-p1
 
 MAINTAINER=	desktop@FreeBSD.org
 COMMENT?=	XML parser library for GNOME
@@ -55,14 +51,8 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_LIBDIR}/site-packages/libxml2mod${PYTHON_SOABI}.so
 .endif
 
-# To (manually) generate man pages, during every update:
-# - install textproc/libxslt and textproc/docbook-xsl
-# - xml2-config.1 is already present
-# - in ${WRKSRC}/doc, run `xsltproc --nonet --novalid --param man.output.quietly 1 -o xmlcatalog.1 ${LOCALBASE}/share/xsl/docbook/manpages/docbook.xsl xmlcatalog.xml`
-# - repeat for xmllint.1
-# - copy results into ${FILESDIR}
-# - ${INSTALL_MAN} into ${STAGEDIR} as below
 post-install-MANPAGES-on:
-	${INSTALL_MAN} ${FILESDIR}/*.1 ${STAGEDIR}${MANDIRS}/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${MANDIRS}/man1
+	${INSTALL_MAN} ${WRKSRC}/dist-doc/*.1 ${STAGEDIR}${MANDIRS}/man1
 
 .include <bsd.port.mk>

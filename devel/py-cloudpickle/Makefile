@@ -1,5 +1,6 @@
 PORTNAME=	cloudpickle
 PORTVERSION=	3.1.2
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/cloudpipe/cloudpickle/releases/download/v${PORTVERSION}/

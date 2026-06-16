@@ -1,5 +1,5 @@
 PORTNAME=	nginx
-PORTREVISION=	2
+PORTREVISION=	1
 PKGNAMESUFFIX=	-full
 
 MAINTAINER=	joneum@FreeBSD.org
@@ -40,5 +40,7 @@ OPTIONS_DEFAULT=DSO DEBUG DEBUGLOG FILE_AIO GOOGLE_PERFTOOLS \
 # There's no chance to choose GSSAPI_RADIO via dialog while package building.
 OPTIONS_DEFAULT+=	GSSAPI_MIT
 .endif
+
+OPTIONS_EXCLUDE_aarch64=GOOGLE_PERFTOOLS # devel/google-perftools does not build on aarch64
 
 .include "${MASTERDIR}/Makefile"

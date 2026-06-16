@@ -1,6 +1,6 @@
 PORTNAME=	gitui
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.28.0	# After update, `make patch` and `make cargo-crates > Makefile.crates` to avoid fetching vendored openssl-src
+DISTVERSION=	0.28.1	# After update, `make patch` and `make cargo-crates > Makefile.crates` to avoid fetching vendored openssl-src
 PORTREVISION=	2
 CATEGORIES=	devel
 

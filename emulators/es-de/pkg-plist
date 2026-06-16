@@ -4,12 +4,15 @@ share/applications/org.es_de.frontend.desktop
 %%PORTDOCS%%%%DOCSDIR%%/ANDROID-DEV.md
 %%PORTDOCS%%%%DOCSDIR%%/ANDROID.md
 %%PORTDOCS%%%%DOCSDIR%%/CHANGELOG.md
+%%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTING.md
 %%PORTDOCS%%%%DOCSDIR%%/CREDITS.md
 %%PORTDOCS%%%%DOCSDIR%%/FAQ-ANDROID.md
 %%PORTDOCS%%%%DOCSDIR%%/FAQ.md
 %%PORTDOCS%%%%DOCSDIR%%/HAIKU.md
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL-DEV.md
 %%PORTDOCS%%%%DOCSDIR%%/INSTALL.md
+%%PORTDOCS%%%%DOCSDIR%%/LINUX-AARCH64-DEV.md
+%%PORTDOCS%%%%DOCSDIR%%/LINUX-AARCH64.md
 %%PORTDOCS%%%%DOCSDIR%%/README.md
 %%PORTDOCS%%%%DOCSDIR%%/ROADMAP.md
 %%PORTDOCS%%%%DOCSDIR%%/THEMES-DEV.md
@@ -63,6 +66,7 @@ share/applications/org.es_de.frontend.desktop
 %%DATADIR%%/licenses/rlottie
 %%DATADIR%%/licenses/slate-es-de
 %%DATADIR%%/licenses/ubuntu-font-licence-1.0
+%%DATADIR%%/licenses/zstd
 %%DATADIR%%/resources/MAME/mamebioses.xml
 %%DATADIR%%/resources/MAME/mamedevices.xml
 %%DATADIR%%/resources/MAME/mamenames.xml
@@ -250,6 +254,7 @@ share/applications/org.es_de.frontend.desktop
 %%DATADIR%%/resources/locale/ru_RU/LC_MESSAGES/ru_RU.mo
 %%DATADIR%%/resources/locale/sr_RS/LC_MESSAGES/sr_RS.mo
 %%DATADIR%%/resources/locale/sv_SE/LC_MESSAGES/sv_SE.mo
+%%DATADIR%%/resources/locale/vi_VN/LC_MESSAGES/vi_VN.mo
 %%DATADIR%%/resources/locale/zh_CN/LC_MESSAGES/zh_CN.mo
 %%DATADIR%%/resources/locale/zh_TW/LC_MESSAGES/zh_TW.mo
 %%DATADIR%%/resources/shaders/glsl/blur_horizontal.glsl
@@ -276,6 +281,9 @@ share/applications/org.es_de.frontend.desktop
 %%DATADIR%%/resources/systems/linux/es_find_rules.xml
 %%DATADIR%%/resources/systems/linux/es_import_rules.xml
 %%DATADIR%%/resources/systems/linux/es_systems.xml
+%%DATADIR%%/resources/systems/linuxarm/es_find_rules.xml
+%%DATADIR%%/resources/systems/linuxarm/es_import_rules.xml
+%%DATADIR%%/resources/systems/linuxarm/es_systems.xml
 %%DATADIR%%/resources/systems/macos/es_find_rules.xml
 %%DATADIR%%/resources/systems/macos/es_import_rules.xml
 %%DATADIR%%/resources/systems/macos/es_systems.xml
@@ -723,6 +731,7 @@ share/applications/org.es_de.frontend.desktop
 %%DATADIR%%/themes/linear-es-de/system/metadata/3do.xml
 %%DATADIR%%/themes/linear-es-de/system/metadata/README.md
 %%DATADIR%%/themes/linear-es-de/system/metadata/_default.xml
+%%DATADIR%%/themes/linear-es-de/system/metadata/_labels.xml
 %%DATADIR%%/themes/linear-es-de/system/metadata/adam.xml
 %%DATADIR%%/themes/linear-es-de/system/metadata/ags.xml
 %%DATADIR%%/themes/linear-es-de/system/metadata/amiga.xml

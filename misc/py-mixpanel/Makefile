@@ -5,7 +5,7 @@ MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	mixpanel-${PORTVERSION}
 
-MAINTAINER=	dch@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python client library for Mixpanel Analytics API
 WWW=		https://mixpanel.com/help/reference/python \
 		https://github.com/mixpanel/mixpanel-python

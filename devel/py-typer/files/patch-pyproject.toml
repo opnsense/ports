@@ -1,4 +1,4 @@
---- pyproject.toml.orig	2025-12-19 16:48:42 UTC
+--- pyproject.toml.orig	2026-04-30 19:32:15 UTC
 +++ pyproject.toml
 @@ -6,10 +6,7 @@ name = "typer"
  

@@ -2,7 +2,7 @@ PORTNAME=	fnt
 DISTVERSION=	1.9.1
 CATEGORIES=	x11-fonts sysutils
 
-MAINTAINER=	nxjoseph@protonmail.com
+MAINTAINER=	nxjoseph@FreeBSD.org
 COMMENT=	Missing font manager for UNIX
 WWW=		https://github.com/alexmyczko/fnt
 

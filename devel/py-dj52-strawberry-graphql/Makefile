@@ -1,5 +1,5 @@
 PORTNAME=	strawberry-graphql
-DISTVERSION=	0.288.2
+DISTVERSION=	0.315.3
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -12,8 +12,11 @@ WWW=		https://github.com/strawberry-graphql/strawberry
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=1.6:devel/py-poetry-core@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cross-web>=0.4.0:www/py-cross-web@${PY_FLAVOR} \
+DEPRECATED=	Obsolete, please use devel/py-strawberry-graphql instead
+EXPIRATION_DATE=2026-06-30
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uv-build>=0.10.10<0.12:devel/py-uv-build@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cross-web>=0.6.0:www/py-cross-web@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}graphql-core>=3.2.0<3.4.0:devel/py-graphql-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=23:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-dateutil>=2.7.0:devel/py-python-dateutil@${PY_FLAVOR} \
@@ -26,14 +29,14 @@ CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}*${PORTNAME}
 
 NO_ARCH=	yes
 
-OPTIONS_DEFINE=		AIOHTTP ASGI CHANNELS CLI DEBUG DEBUG-SERVER DJANGO \
+OPTIONS_DEFINE=		AIOHTTP APOLLO-FEDERATION ASGI CHANNELS CLI DEBUG DJANGO \
 			FASTAPI FLASK OPENTELEMETRY PYDANTIC
 
 AIOHTTP_DESC=		Basic AIOHTTP integration
+APOLLO-FEDERATION_DESC=	Apollo Federation GraphQL support
 ASGI_DESC=		Basic ASGI integration
 CHANNELS_DESC=		Support for Django Channels
 CLI_DESC=		Support for CLI commands
-DEBUG-SERVER_DESC=	Enable debug server
 DEBUG_DESC=		Generate verbose debug information
 DJANGO_DESC=		Basic Django integration
 FASTAPI_DESC=		Support for FastAPI in conjunction with GraphQLRouter
@@ -42,22 +45,15 @@ OPENTELEMETRY_DESC=	Generate Open Telemetry compatible tracing information
 PYDANTIC_DESC=		Support for Pydantic models
 
 AIOHTTP_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}aiohttp>=3.7.4<4:www/py-aiohttp@${PY_FLAVOR}
+APOLLO-FEDERATION_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}protobuf>=3.20:devel/py-protobuf@${PY_FLAVOR}
 ASGI_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}multipart>=0.0.7:devel/py-multipart@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}starlette>=0.18.0:www/py-starlette@${PY_FLAVOR}
-CHANNELS_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}asgiref>=3.2<4:www/py-asgiref@${PY_FLAVOR} \
+CHANNELS_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}asgiref>=3.2:www/py-asgiref@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}dj52-channels>=3.0.5:www/py-dj52-channels@${PY_FLAVOR}
 CLI_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}libcst>0:devel/py-libcst@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}pygments>=2.3<3:textproc/py-pygments@${PY_FLAVOR} \
+				${PYTHON_PKGNAMEPREFIX}pygments>=2.3:textproc/py-pygments@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}rich>=12.0.0:textproc/py-rich@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}typer>=0.12.4:devel/py-typer@${PY_FLAVOR}
-DEBUG-SERVER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libcst>0:devel/py-libcst@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}multipart>=0.0.7:devel/py-multipart@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}pygments>=2.3<3:textproc/py-pygments@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}rich>=12.0.0:textproc/py-rich@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}starlette>=0.18.0:www/py-starlette@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}typer>=0.12.4:devel/py-typer@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}uvicorn>=0.11.6:www/py-uvicorn@${PY_FLAVOR} \
-				${PYTHON_PKGNAMEPREFIX}websockets>=15.0.1<16:devel/py-websockets@${PY_FLAVOR}
 DEBUG_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}libcst>0:devel/py-libcst@${PY_FLAVOR} \
 				${PYTHON_PKGNAMEPREFIX}rich>=12.0.0:textproc/py-rich@${PY_FLAVOR}
 # NB: www/py-channels (via CHANNELS) options depends on www/py-djangoXX, which

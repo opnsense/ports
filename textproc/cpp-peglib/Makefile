@@ -1,6 +1,6 @@
 PORTNAME=	cpp-peglib
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.1
+DISTVERSION=	1.11.0
 CATEGORIES=	textproc devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,10 +18,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	yhirose
 
 CMAKE_OFF=	BUILD_TESTS
-CMAKE_TESTING_ON=	BUILD_TESTS # tests fail to link, see https://github.com/yhirose/cpp-peglib/issues/281#issuecomment-1869064489
+CMAKE_TESTING_ON=	BUILD_TESTS
 
 NO_ARCH=	yes
 
 PLIST_FILES=	include/peglib.h
+
+# tests as of 1.11.0: 100% tests passed, 0 tests failed out of 453
+# many tests are skipped: https://github.com/yhirose/cpp-peglib/issues/341
 
 .include <bsd.port.mk>

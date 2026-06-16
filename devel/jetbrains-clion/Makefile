@@ -1,5 +1,5 @@
 PORTNAME=	clion
-DISTVERSION=	2025.2.2
+DISTVERSION=	2026.1.2
 CATEGORIES=	devel
 MASTER_SITES=	https://download-cdn.jetbrains.com/cpp/ \
 		https://packages.jetbrains.team/files/p/clion/ports/2025.2/freebsd/clang/:clang
@@ -41,8 +41,6 @@ USES=		cpe java python:run shebangfix
 CPE_VENDOR=	jetbrains
 JAVA_VERSION=	21+
 
-SHEBANG_FILES=	plugins/python-ce/helpers/typeshed/scripts/generate_proto_stubs.sh
-
 DATADIR=	${PREFIX}/share/jetbrains/${PORTNAME}
 
 EXTRACT_AFTER_ARGS+=	--exclude clion-*/jbr
@@ -62,6 +60,10 @@ PLIST_SUB+=	ARCH=${ARCH} \
 		PTY4J_ARCH=${_PTY4J_ARCH} \
 		SQLITE_ARCH=${_SQLITE_ARCH}
 
+post-patch:
+	${REINPLACE_CMD} -E '1s/^.{6}//' \
+		${WRKSRC}/plugins/plugin-classpath.txt
+
 do-install:
 # Linux/Windows/OS X only so remove them
 	@${RM} -r \
@@ -69,7 +71,7 @@ do-install:
 		${WRKSRC}/bin/clion \
 		${WRKSRC}/bin/cmake/linux \
 		${WRKSRC}/bin/fsnotifier \
-		${WRKSRC}/bin/gdb/linux \
+		${WRKSRC}/bin/gdb \
 		${WRKSRC}/bin/lldb/linux \
 		${WRKSRC}/bin/ninja \
 		${WRKSRC}/bin/remote-dev-server \
@@ -85,14 +87,17 @@ do-install:
 		${WRKSRC}/plugins/clion-radler \
 		${WRKSRC}/plugins/cwm-plugin \
 		${WRKSRC}/plugins/gateway-plugin/lib/remote-dev-workers \
+		${WRKSRC}/plugins/nativeDebug-plugin/bin/lldb \
+		${WRKSRC}/plugins/nativeDebug-plugin/lldb \
 		${WRKSRC}/plugins/python-ce/helpers/testResources/data/generator3 \
 		${WRKSRC}/plugins/remote-dev-server \
+		${WRKSRC}/plugins/serial-monitor \
 		${WRKSRC}/plugins/station-plugin/toolbox
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	@(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR} \
-		"! -name *\.bak ! -name *\.so ! -name *\.dll ! -name *\.dylib ! -name *\.pdb ! -name *\.sh ! -name *\.exe")
+		"! -name *\.bak ! -name *\.dll ! -name *\.dylib ! -name *\.exe ! -name *\.orig ! -name *\.pdb ! -name *\.sh ! -name *\.so")
 	@(cd ${WRKSRC}/bin && ${COPYTREE_BIN} . ${STAGEDIR}${DATADIR}/bin/ \
-		"-name *\.sh -o -name *\.py")
+		"-name *\.py -o -name *\.sh")
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	${INSTALL_MAN} ${FILESDIR}/${PORTNAME}.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications/

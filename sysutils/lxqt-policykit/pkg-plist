@@ -25,6 +25,7 @@ etc/xdg/autostart/lxqt-policykit-agent.desktop
 %%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_ja.qm
 %%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_ka.qm
 %%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_kab.qm
+%%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_kk.qm
 %%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_ko.qm
 %%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_lg.qm
 %%LXQT_TRANSLATIONS%%/lxqt-policykit-agent/lxqt-policykit-agent_lt.qm

@@ -1,3 +1,3 @@
-TIMESTAMP = 1768625679
-SHA256 (ovsdbapp-2.15.0.tar.gz) = e2bded5a50b8001e4a88749f9e3bb04ef8ec0e66349b4a5035b917d682ddc72f
-SIZE (ovsdbapp-2.15.0.tar.gz) = 128636
+TIMESTAMP = 1777252702
+SHA256 (ovsdbapp-2.17.0.tar.gz) = cc07eb25bce3cf80d4b21fdf62272a4689b164caa2312ac6c7b566e3a69e934a
+SIZE (ovsdbapp-2.17.0.tar.gz) = 133484

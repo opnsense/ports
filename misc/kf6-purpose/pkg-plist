@@ -38,6 +38,10 @@ lib/libexec/kf6/purposeprocess
 %%QT_PLUGINDIR%%/kf6/purpose/youtubeplugin.so
 %%QT_QMLDIR%%/org/kde/purpose/AlternativesView.qml
 %%QT_QMLDIR%%/org/kde/purpose/JobView.qml
+%%QT_QMLDIR%%/org/kde/purpose/accountshelper/accountshelper.qmltypes
+%%QT_QMLDIR%%/org/kde/purpose/accountshelper/kde-qmlmodule.version
+%%QT_QMLDIR%%/org/kde/purpose/accountshelper/libaccountshelper.so
+%%QT_QMLDIR%%/org/kde/purpose/accountshelper/qmldir
 %%QT_QMLDIR%%/org/kde/purpose/kde-qmlmodule.version
 %%QT_QMLDIR%%/org/kde/purpose/kdeconnect/kde-qmlmodule.version
 %%QT_QMLDIR%%/org/kde/purpose/kdeconnect/kdeconnectQml.qmltypes
@@ -406,6 +410,7 @@ share/locale/is/LC_MESSAGES/purpose6_kdeconnect.mo
 share/locale/is/LC_MESSAGES/purpose6_kdeconnectsms.mo
 share/locale/is/LC_MESSAGES/purpose6_nextcloud.mo
 share/locale/is/LC_MESSAGES/purpose6_pastebin.mo
+share/locale/is/LC_MESSAGES/purpose6_phabricator.mo
 share/locale/is/LC_MESSAGES/purpose6_reviewboard.mo
 share/locale/is/LC_MESSAGES/purpose6_saveas.mo
 share/locale/is/LC_MESSAGES/purpose6_youtube.mo

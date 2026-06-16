@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/passwords/password_bubble_view_base.cc.orig	2026-01-16 14:21:21 UTC
+--- chrome/browser/ui/views/passwords/password_bubble_view_base.cc.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/ui/views/passwords/password_bubble_view_base.cc
-@@ -42,7 +42,7 @@
+@@ -44,7 +44,7 @@
  #include "ui/base/metadata/metadata_impl_macros.h"
  #include "ui/views/controls/button/button.h"
  
@@ -9,7 +9,7 @@
  #include "chrome/browser/ui/views/passwords/password_relaunch_chrome_view.h"
  #endif
  
-@@ -159,7 +159,7 @@ PasswordBubbleViewBase* PasswordBubbleViewBase::Create
+@@ -161,7 +161,7 @@ PasswordBubbleViewBase* PasswordBubbleViewBase::Create
    } else if (model_state ==
               password_manager::ui::NOTIFY_RECEIVED_SHARED_CREDENTIALS) {
      view = new SharedPasswordsNotificationView(web_contents, anchor_view);

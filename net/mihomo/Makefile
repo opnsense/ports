@@ -1,11 +1,10 @@
 PORTNAME=	mihomo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.19.19
-PORTREVISION=	1
+DISTVERSION=	1.19.27
 CATEGORIES=	net
 
 MAINTAINER=	yuri@FreeBSD.org
-COMMENT=	Rule-based tunnel in Go
+COMMENT=	Simple Python Pydantic model for Honkai
 WWW=		https://github.com/MetaCubeX/mihomo/tree/Alpha
 
 LICENSE=	MIT

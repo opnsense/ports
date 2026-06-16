@@ -2,7 +2,7 @@ PORTNAME=	qimgv
 PORTVERSION=	1.03.g20260119
 CATEGORIES=	graphics
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	Fast and easy to use image viewer
 WWW=		https://github.com/easymodo/qimgv
 

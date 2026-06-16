@@ -1,6 +1,6 @@
---- sql/database.cc.orig	2026-01-16 13:40:34 UTC
+--- sql/database.cc.orig	2026-06-05 13:45:06 UTC
 +++ sql/database.cc
-@@ -110,7 +110,7 @@ bool FilePathIsFixedSSD(const base::FilePath& path) {
+@@ -113,7 +113,7 @@ bool FilePathIsFixedSSD(const base::FilePath& path) {
  
    return !drive_info->has_seek_penalty.value_or(false)
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

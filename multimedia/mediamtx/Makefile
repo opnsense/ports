@@ -1,9 +1,8 @@
 PORTNAME=	mediamtx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.15.6
-PORTREVISION=	2
+DISTVERSION=	1.19.0
 CATEGORIES=	multimedia net
-MASTER_SITES+=	https://github.com/video-dev/hls.js/releases/download/v1.6.15/:hlsjs
+MASTER_SITES+=	https://github.com/video-dev/hls.js/releases/download/v1.6.16/:hlsjs
 DISTFILES+=	release.zip:hlsjs
 
 MAINTAINER=	diizzy@FreeBSD.org
@@ -13,7 +12,7 @@ WWW=		https://github.com/bluenviron/mediamtx
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25+,modules
+USES=		go:1.26+,modules
 GO_MODULE=	github.com/bluenviron/mediamtx
 
 USE_RC_SUBR=	mediamtx
@@ -21,7 +20,6 @@ USE_RC_SUBR=	mediamtx
 USERS=		mediamtx
 GROUPS=		mediamtx
 
-SUB_FILES=	pkg-message
 SUB_LIST=	USER=${USERS} GROUP=${GROUPS}
 
 post-extract:

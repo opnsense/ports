@@ -1,11 +1,12 @@
 PORTNAME=	postgrest
 DISTVERSIONPREFIX=	v
-DISTVERSION=	14.2
+DISTVERSION=	14.12
 CATEGORIES=	www databases haskell
 
 MAINTAINER=	haskell@FreeBSD.org
 COMMENT=	PostgREST create a REST API to an existing Postgres database
-WWW=		https://postgrest.org/
+WWW=		https://postgrest.org/ \
+		https://github.com/PostgREST/postgrest/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -39,12 +40,6 @@ PLIST_SUB=	ETCDIR=${ETCDIR} \
 		POSTGREST_GROUP=${POSTGREST_GROUP} \
 		POSTGREST_USER=${POSTGREST_USER}
 
-# This file includes the USE_CABAL. To regenerate it it's required to run:
-# 1) make cabal-extract
-# 2) make cabal-configure
-# 3) make make-use-cabal && paste the USE_CABAL section to Makefile.modules
-.include "Makefile.modules"
-
 POSTGREST_GROUP?=	postgrest
 POSTGREST_USER?=	postgrest
 
@@ -53,7 +48,7 @@ do-install:
 	${INSTALL_DATA} ${WRKDIR}/default.conf \
 		${STAGEDIR}${ETCDIR}/default.conf.sample
 	${INSTALL_PROGRAM} \
-		$$(find ${WRKSRC}/dist-newstyle -name ${PORTNAME} -type f -perm +111) \
+		$$(${FIND} ${WRKSRC}/dist-newstyle -name ${PORTNAME} -type f -perm +111) \
 		${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
 
 .include <bsd.port.mk>

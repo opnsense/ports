@@ -1,0 +1,31 @@
+-- https://github.com/mhekkel/libmcfp/issues/5
+
+--- CMakeLists.txt.orig	2026-06-05 13:03:22 UTC
++++ CMakeLists.txt
+@@ -15,7 +15,7 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cm
+ 
+ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+ 
+-include(CPM)
++#include(CPM)
+ include(CMakePackageConfigHelpers)
+ include(CTest)
+ include(GNUInstallDirs)
+@@ -35,7 +35,7 @@ try_compile(STD_CHARCONV_COMPILING
+ try_compile(STD_CHARCONV_COMPILING
+     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/cmake/test-charconv.cpp)
+ 
+-if(NOT STD_CHARCONV_COMPILING)
++if(FALSE AND NOT STD_CHARCONV_COMPILING)
+     message(NOTICE "mcfp: Using fast_float for std::from_chars")
+     CPMFindPackage(
+         NAME FastFloat
+@@ -59,7 +59,7 @@ target_compile_features(mcfp PUBLIC cxx_std_23)
+ 
+ target_compile_features(mcfp PUBLIC cxx_std_23)
+ 
+-if(NOT STD_CHARCONV_COMPILING)
++if(FALSE AND NOT STD_CHARCONV_COMPILING)
+     target_include_directories(mcfp PRIVATE $<TARGET_PROPERTY:FastFloat::fast_float,INTERFACE_INCLUDE_DIRECTORIES>)
+ endif()
+ 

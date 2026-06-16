@@ -1,7 +1,7 @@
 PORTNAME=	typeshare
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.13.3
-PORTREVISION=	3
+DISTVERSION=	1.13.4
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -45,7 +45,7 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		cool_asserts-2.0.3 \
 		core-foundation-sys-0.8.7 \
 		crossbeam-0.8.4 \
-		crossbeam-channel-0.5.13 \
+		crossbeam-channel-0.5.15 \
 		crossbeam-deque-0.8.5 \
 		crossbeam-epoch-0.9.18 \
 		crossbeam-queue-0.3.11 \
@@ -55,7 +55,7 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		equivalent-1.0.1 \
 		errno-0.3.9 \
 		expect-test-1.5.0 \
-		flexi_logger-0.30.2 \
+		flexi_logger-0.31.2 \
 		globset-0.4.15 \
 		hashbrown-0.15.2 \
 		heck-0.5.0 \
@@ -88,16 +88,17 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		serde-1.0.214 \
 		serde_derive-1.0.214 \
 		serde_json-1.0.132 \
-		serde_spanned-0.6.8 \
+		serde_spanned-1.0.0 \
 		shlex-1.3.0 \
 		strsim-0.11.1 \
 		syn-2.0.98 \
 		terminal_size-0.4.0 \
 		thiserror-2.0.12 \
 		thiserror-impl-2.0.12 \
-		toml-0.8.19 \
-		toml_datetime-0.6.8 \
-		toml_edit-0.22.22 \
+		toml-0.9.4 \
+		toml_datetime-0.7.0 \
+		toml_parser-1.0.1 \
+		toml_writer-1.0.2 \
 		topological-sort-0.2.2 \
 		unicase-2.8.0 \
 		unicode-ident-1.0.13 \
@@ -123,7 +124,7 @@ CARGO_CRATES=	aho-corasick-1.1.3 \
 		windows_x86_64_gnu-0.52.6 \
 		windows_x86_64_gnullvm-0.52.6 \
 		windows_x86_64_msvc-0.52.6 \
-		winnow-0.6.20
+		winnow-0.7.12
 
 PLIST_FILES=	bin/${PORTNAME}
 

@@ -1,10 +1,12 @@
 PORTNAME=	nix
 DISTVERSION=	2.32.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
-PATCH_SITES=	https://github.com/NixOS/nix/commit/2636f50dd41fe357ec64430aeeb772328ab2d7cb.patch?dummy=/
-PATCHFILES=	nix-fix-build-with-mdbook-update.patch:-p1
+PATCH_SITES=	https://github.com/NixOS/nix/commit/
+PATCHFILES=	2636f50dd41fe357ec64430aeeb772328ab2d7cb.patch:-p1 # nix-fix-build-with-mdbook-update.patch
+PATCHFILES+=	342faaa1fa0aa3accc3027081b66c7c2ca36670b.patch:-p1 # fix build fix lowdown 3
+
 
 MAINTAINER=	ashish@FreeBSD.org
 COMMENT=	Purely functional package manager

@@ -1,7 +1,8 @@
 PORTNAME=	libtickit
-PORTVERSION=	0.4.5
+PORTVERSION=	0.4.6
 CATEGORIES=	devel
-MASTER_SITES=	https://launchpad.net/libtickit/trunk/v${PORTVERSION:R}/+download/
+MASTER_SITES=	https://www.leonerd.org.uk/code/libtickit/ \
+		https://launchpad.net/libtickit/trunk/v${PORTVERSION:R}/+download/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Terminal Interface Construction Kit

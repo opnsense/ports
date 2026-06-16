@@ -97,6 +97,7 @@
     SUBDIR += lrzsz
     SUBDIR += lysdr
     SUBDIR += mbelib
+    SUBDIR += meshcore-cli
     SUBDIR += mgetty+sendfax
     SUBDIR += minicom
     SUBDIR += morse
@@ -143,6 +144,7 @@
     SUBDIR += py-libimobiledevice
     SUBDIR += py-libscrc
     SUBDIR += py-libusbsio
+    SUBDIR += py-meshcore
     SUBDIR += py-nkdfu
     SUBDIR += py-pylink-square
     SUBDIR += py-pymodbus

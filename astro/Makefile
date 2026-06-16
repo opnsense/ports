@@ -8,6 +8,7 @@
     SUBDIR += celestia
     SUBDIR += celestia-gtk
     SUBDIR += cfitsio
+    SUBDIR += cspice
     SUBDIR += erfa
     SUBDIR += fowsr
     SUBDIR += foxtrotgps
@@ -40,7 +41,6 @@
     SUBDIR += merkaartor
     SUBDIR += mkgmap
     SUBDIR += mkgmap-splitter
-    SUBDIR += mymoon
     SUBDIR += nightfall
     SUBDIR += opencpn
     SUBDIR += openuniverse
@@ -82,6 +82,7 @@
     SUBDIR += phoon
     SUBDIR += pngphoon
     SUBDIR += pp3
+    SUBDIR += py-alerce
     SUBDIR += py-astlib
     SUBDIR += py-astral
     SUBDIR += py-astroML
@@ -114,6 +115,7 @@
     SUBDIR += py-skyfield
     SUBDIR += py-skyfield-data
     SUBDIR += py-spacetrack
+    SUBDIR += py-spiceypy
     SUBDIR += py-spktype01
     SUBDIR += py-spktype21
     SUBDIR += py-sunpy

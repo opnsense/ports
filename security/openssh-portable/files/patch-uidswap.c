@@ -34,7 +34,7 @@ index 6ed3024d0180..0143f4994611 100644
  #include <errno.h>
  #include <pwd.h>
  #include <string.h>
-@@ -121,8 +124,20 @@ temporarily_use_uid(struct passwd *pw)
+@@ -121,8 +125,20 @@ temporarily_use_uid(struct passwd *pw)
  		fatal("setgroups: %.100s", strerror(errno));
  #ifndef SAVED_IDS_WORK_WITH_SETEUID
  	/* Propagate the privileged gid to all of our gids. */

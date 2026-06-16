@@ -1,6 +1,6 @@
 PORTNAME=	andwatch
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.0
+DISTVERSION=	2.4.0
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dennypage@me.com
@@ -8,8 +8,6 @@ COMMENT=	ANDwatch - Arp and Neighbor Discovery monitor
 WWW=		https://github.com/dennypage/andwatch
 
 LICENSE=	BSD2CLAUSE
-
-BROKEN_FreeBSD_13=	Does not build
 
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3 \
 		libcurl.so:ftp/curl

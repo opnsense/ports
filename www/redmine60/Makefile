@@ -1,5 +1,5 @@
 PORTNAME=	redmine
-PORTVERSION=	6.0.8
+PORTVERSION=	6.0.9
 CATEGORIES=	www
 MASTER_SITES=	https://www.redmine.org/releases/
 PKGNAMESUFFIX=	60
@@ -85,7 +85,7 @@ PUMA_RUN_DEPENDS=	rubygem-puma>=6.5.0:www/rubygem-puma \
 			rubygem-rb-kqueue>=0.2:devel/rubygem-rb-kqueue
 PUMA_SUB_LIST=		WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
 PUMA_VARS=		USE_RC_SUBR=redmine
-RMAGIC_RUN_DEPENDS=	rubygem-mini_magick4>=4.11.0:graphics/rubygem-mini_magick4
+RMAGIC_RUN_DEPENDS=	rubygem-mini_magick>=5.0.1:graphics/rubygem-mini_magick
 SQLITE_RUN_DEPENDS=	rubygem-sqlite3>=1.7.0:databases/rubygem-sqlite3
 
 .include <bsd.port.options.mk>

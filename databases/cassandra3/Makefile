@@ -1,6 +1,6 @@
 PORTNAME=	cassandra
 DISTVERSION=	3.11.14
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	databases java
 MASTER_SITES=	LOCAL/fernape:repo
 PKGNAMESUFFIX=	3
@@ -12,6 +12,9 @@ WWW=		https://cassandra.apache.org/
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+DEPRECATED=		Cassandra 3.x is no longer maintained upstream, superseded by databases/cassandra4
+EXPIRATION_DATE=	2026-07-31
 
 RUN_DEPENDS=	snappyjava>=0:archivers/snappy-java
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \

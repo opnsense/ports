@@ -1,6 +1,6 @@
---- third_party/fmt/include/fmt/format.h.orig	2025-08-06 17:08:03 UTC
+--- third_party/fmt/include/fmt/format.h.orig	2026-03-23 18:40:46 UTC
 +++ third_party/fmt/include/fmt/format.h
-@@ -44,6 +44,7 @@
+@@ -52,6 +52,7 @@
  #  include <cmath>    // std::signbit
  #  include <cstddef>  // std::byte
  #  include <cstdint>  // uint32_t

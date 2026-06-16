@@ -1,5 +1,6 @@
 PORTNAME=	paritwine
 DISTVERSION=	0.2.2
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	https://www.multiprecision.org/downloads/
 

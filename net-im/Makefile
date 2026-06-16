@@ -88,6 +88,7 @@
     SUBDIR += p5-Net-XMPP2
     SUBDIR += p5-Protocol-XMPP
     SUBDIR += p5-SOAP-Transport-JABBER
+    SUBDIR += parla
     SUBDIR += pecl-stomp2
     SUBDIR += pidgin
     SUBDIR += pidgin-bot-sentry
@@ -173,6 +174,7 @@
     SUBDIR += tuba
     SUBDIR += twirssi
     SUBDIR += uTox
+    SUBDIR += vesktop
     SUBDIR += vqcc-gtk
     SUBDIR += xmpp-client
     SUBDIR += yume

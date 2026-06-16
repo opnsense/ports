@@ -1,7 +1,7 @@
 PORTNAME=	emacs-libvterm
 DISTVERSION=	g20251119
+PORTREVISION=	1
 CATEGORIES=	misc elisp
-PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
 MAINTAINER=	tslight@pm.me
 COMMENT=	Emacs libvterm integration
@@ -16,6 +16,8 @@ USES=		cmake:noninja emacs
 USE_GITHUB=	yes
 GH_ACCOUNT=	akermu
 GH_TAGNAME=	a01a2894a1c1e81a39527835a9169e35b7ec5dec
+
+CONFLICTS_INSTALL=	emacs-libvterm-emacs_*
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}/etc

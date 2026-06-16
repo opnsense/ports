@@ -1,7 +1,7 @@
 PORTNAME=	hashcat
 PORTVERSION=	7.1.2
 DISTVERSIONPREFIX=	v
-PORTREVISION=	5
+PORTREVISION=	10
 PORTEPOCH=	1
 CATEGORIES=	security
 
@@ -50,5 +50,11 @@ OPTIONS_DEFAULT=	BRAIN
 BRAIN_DESC=		Build Hashcat Brain
 BRAIN_MAKE_ARGS_OFF=	ENABLE_BRAIN=0
 BRAIN_CFLAGS=		-DWITH_BRAIN -Ideps/git/xxHash
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == arm64
+BUILD_DEPENDS+=	sse2neon>=1:devel/sse2neon
+.endif
 
 .include <bsd.port.mk>

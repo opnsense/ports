@@ -1,6 +1,7 @@
 PORTNAME=	fresh
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.99
+DISTVERSION=	0.3.6
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	lwhsu@FreeBSD.org
@@ -19,6 +20,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	sinelaw
 
 WRKSRC_SUBDIR=	crates/fresh-editor
+CARGO_VENDOR_DIR=	${WRKDIR}/cargo-crates
 
 PLIST_FILES=	bin/fresh
 

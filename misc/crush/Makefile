@@ -1,7 +1,6 @@
 PORTNAME=	crush
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.39.1
-PORTREVISION=	1
+DISTVERSION=	0.76.0
 CATEGORIES=	misc devel
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -13,10 +12,10 @@ LICENSE_NAME=	Functional Source License, Version 1.1, MIT Future License
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 LICENSE_PERMS=	dist-mirror pkg-mirror auto-accept
 
-USES=		go:1.25+,modules
+USES=		go:1.26+,modules
 
 GO_MODULE=	github.com/charmbracelet/crush
-GO_BUILDFLAGS=	-ldflags '-s -w -X github.com/charmbracelet/crush/internal/version.Version=${DISTVERSION}'
+GO_LDFLAGS=	-w -X github.com/charmbracelet/crush/internal/version.Version=${DISTVERSION}
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	README.md

@@ -6,6 +6,6 @@ MAN=
 
 WARNS=	3
 
-LDADD+=	-lsbuf -lpcap
+LDADD+=	-lsbuf -lpcap ${LIBS} -lpfctl
 
 .include <bsd.prog.mk>

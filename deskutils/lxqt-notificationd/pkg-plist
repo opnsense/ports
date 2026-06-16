@@ -25,6 +25,7 @@ share/applications/lxqt-config-notificationd.desktop
 %%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_it.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_ja.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_ka.qm
+%%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_kk.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_ko.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_lg.qm
 %%LXQT_TRANSLATIONS%%/lxqt-config-notificationd/lxqt-config-notificationd_lt.qm

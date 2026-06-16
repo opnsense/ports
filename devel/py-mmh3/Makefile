@@ -1,12 +1,13 @@
 PORTNAME=	mmh3
-PORTVERSION=	5.2.0
+PORTVERSION=	5.2.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Python extension for MurmurHash3, a set of fast and robust hash functions
-WWW=		https://github.com/hajimes/mmh3
+WWW=		https://mmh3.readthedocs.io/en/latest/ \
+		https://github.com/hajimes/mmh3
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

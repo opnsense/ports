@@ -1,7 +1,10 @@
 PORTNAME=	llama-cpp
 DISTVERSIONPREFIX=	b
-DISTVERSION=	7709
+DISTVERSION=	9426
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
+DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Facebook's LLaMA model in C/C++ # '
@@ -10,21 +13,29 @@ WWW=		https://github.com/ggerganov/llama.cpp
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USES=		cmake:testing compiler:c++11-lang python:run shebangfix ssl
+
+LIB_DEPENDS=	libggml-base.so:misc/ggml
+
+BUILD_DEPENDS=	npm:www/npm
+FETCH_DEPENDS=	npm:www/npm \
+		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
+
 BROKEN_armv7=	clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=278810
 BROKEN_i386=	compilation fails, see https://github.com/ggerganov/llama.cpp/issues/9545
 
-USES=		cmake:testing compiler:c++11-lang python:run shebangfix
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ggerganov
 GH_PROJECT=	llama.cpp
-GH_TUPLE=	nomic-ai:kompute:4565194:kompute/kompute
+
+DISTFILES+=	llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX}
 
 SHEBANG_GLOB=	*.py
 
-CMAKE_ON=	BUILD_SHARED_LIBS
-		#LLAMA_USE_SYSTEM_GGML
+CMAKE_ON=	BUILD_SHARED_LIBS \
+		LLAMA_USE_SYSTEM_GGML
 CMAKE_OFF=	GGML_NATIVE \
 		FREEBSD_ALLOW_ADVANCED_CPU_FEATURES \
 		LLAMA_BUILD_TESTS
@@ -34,24 +45,41 @@ CMAKE_TESTING_ON=	LLAMA_BUILD_TESTS
 USER=		nobody
 SUB_LIST=	USER=${USER}
 
-OPTIONS_DEFINE=		CURL EXAMPLES VULKAN
-OPTIONS_DEFAULT=	CURL VULKAN
-OPTIONS_SUB=		yes
+PLIST_SUB+=	DISTVERSION=${DISTVERSION}
 
-CURL_DESCR=		Use libcurl to download model from an URL
-CURL_CMAKE_BOOL=	LLAMA_CURL
-CURL_USES=		localbase
-CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
+OPTIONS_DEFINE=		EXAMPLES
+OPTIONS_DEFAULT=	EXAMPLES
+OPTIONS_SUB=		yes
 
 EXAMPLES_CMAKE_BOOL=	LLAMA_BUILD_EXAMPLES
 
-VULKAN_CMAKE_BOOL=	GGML_VULKAN
-VULKAN_BUILD_DEPENDS=	glslc:graphics/shaderc \
-			vulkan-headers>0:graphics/vulkan-headers
-VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
-
 BINARY_ALIAS=	git=false \
 		python=${PYTHON_CMD} # for tests
+
+do-fetch:
+	# Fetch the main GH source tarball
+	@if ! [ -f ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}${EXTRACT_SUFX} ]; then \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR}; \
+		cd ${DISTDIR}/${DIST_SUBDIR} && \
+			${SETENV} ${FETCH_ENV} ${FETCH_CMD} ${FETCH_BEFORE_ARGS} \
+				https://codeload.github.com/${GH_ACCOUNT}/${GH_PROJECT}/tar.gz/${DISTVERSIONPREFIX}${DISTVERSION}?dummy=/${DISTNAME}${EXTRACT_SUFX} \
+				${FETCH_AFTER_ARGS}; \
+	fi
+	# Download npm dependencies for the WebUI
+	@if ! [ -f ${DISTDIR}/${DIST_SUBDIR}/llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX} ]; then \
+		${SETENV} TMPDIR=${WRKDIR} LOCALBASE=${LOCALBASE} \
+			${SH} ${FILESDIR}/fetch-ui.sh \
+			${DISTVERSION} \
+			${DISTDIR}/${DIST_SUBDIR} \
+			${DISTNAME}${EXTRACT_SUFX} \
+				${FILESDIR}; \
+	fi
+
+post-extract:
+	@${MKDIR} ${WRKSRC}/tools/ui/node_modules
+	@${TAR} -xzf ${DISTDIR}/${DIST_SUBDIR}/llama-ui-npm-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKSRC}/tools/ui/node_modules --strip-components 1
+	@cd ${WRKSRC}/tools/ui && \
+		${SETENV} HOME=${WRKSRC} npm run build
 
 post-patch: # set version in the code
 	@${REINPLACE_CMD} \

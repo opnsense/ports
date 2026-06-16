@@ -1,11 +1,7 @@
 PORTNAME=	libplacebo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	7.351.0
-PORTREVISION=	2
+DISTVERSION=	7.360.1
 CATEGORIES=	graphics
-
-PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
-PATCHFILES+=	12509c0f1ee8.patch:-p1 # https://code.videolan.org/videolan/libplacebo/-/merge_requests/727
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Reusable library for GPU-accelerated video/image rendering
@@ -20,9 +16,10 @@ USE_GITLAB=	yes
 USE_LDCONFIG=	yes
 GL_SITE=	https://code.videolan.org
 GL_ACCOUNT=	videolan
-GH_TUPLE=	fastfloat:fast_float:v5.2.0:fast_float/3rdparty/fast_float
+GH_TUPLE=	fastfloat:fast_float:v8.2.2:fast_float/3rdparty/fast_float
 MESON_DISABLED=	d3d11 libdovi
 MESON_FALSE=	demos
+MESON_ARGS=	-Dvulkan-sdk="${LOCALBASE}"
 
 OPTIONS_DEFINE=	LCMS2 LIBUNWIND OPENGL TEST VULKAN XXHASH
 OPTIONS_DEFAULT=LCMS2 LIBUNWIND OPENGL SHADERC XXHASH
@@ -44,7 +41,7 @@ LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
 LIBUNWIND_MESON_ENABLED=	unwind
 
 OPENGL_USE=		GITHUB=nodefault
-OPENGL_GH_TUPLE=	Dav1dde:glad:v2.0.4:glad/3rdparty/glad
+OPENGL_GH_TUPLE=	Dav1dde:glad:v2.0.8:glad/3rdparty/glad
 OPENGL_MESON_ENABLED=	opengl
 
 SHADERC_DESC=		libshaderc SPIR-V compiler
@@ -69,7 +66,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/share,${PREFIX}/share,' \
 		${WRKSRC}/src/vulkan/utils_gen.py
 # https://github.com/mesonbuild/meson/issues/7746
-	@${REINPLACE_CMD} "s,static:,dirs: '${LOCALBASE}/lib'\, &," \
+	@${REINPLACE_CMD} "/find.*glslang.*static/s/)/, dirs: vulkan_lib_dirs)/" \
 		${WRKSRC}/src/glsl/meson.build
 # Extract (snapshot) version from port version instead of meson.build
 	@${REINPLACE_CMD} -e "s/'git'/'${FALSE}'/" \

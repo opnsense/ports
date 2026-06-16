@@ -1,6 +1,5 @@
 PORTNAME=	peft
-DISTVERSION=	0.17.1
-PORTREVISION=	1
+DISTVERSION=	0.19.1
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}accelerate>=0.21.0:misc/py-accelerate@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}huggingface-hub>=0.25.0:misc/py-huggingface-hub@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.17:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=20.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytorch>=1.13.0:misc/py-pytorch@${PY_FLAVOR} \
@@ -36,9 +35,18 @@ USES=		python
 USE_PYTHON=	distutils autoplist pytest
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	-p no:relaxed
+
+post-patch:
+	@${TOUCH} ${WRKSRC}/tests/__init__.py
 
 NO_ARCH=	yes
 
-# tests fail to run, see https://github.com/huggingface/peft/issues/2789
+# tests as of 0.19.0:
+# Results (885.15s):
+#      70278 passed
+#       3362 skipped
+#         10 xfailed
+#      18751 warnings
 
 .include <bsd.port.mk>

@@ -1,4 +1,4 @@
---- chrome/browser/enterprise/browser_management/browser_management_service.cc.orig	2025-10-02 04:28:32 UTC
+--- chrome/browser/enterprise/browser_management/browser_management_service.cc.orig	2026-06-04 10:12:25 UTC
 +++ chrome/browser/enterprise/browser_management/browser_management_service.cc
 @@ -50,7 +50,7 @@ GetManagementStatusProviders(Profile* profile) {
  

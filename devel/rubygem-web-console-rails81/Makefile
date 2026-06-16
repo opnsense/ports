@@ -1,5 +1,5 @@
 PORTNAME=	web-console
-PORTVERSION=	4.2.1
+PORTVERSION=	4.3.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	-rails81
@@ -11,10 +11,9 @@ WWW=		https://github.com/rails/web-console
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/MIT-LICENSE
 
-RUN_DEPENDS=	rubygem-activemodel81>=6.0.0:databases/rubygem-activemodel81 \
-		rubygem-actionview81>=6.0.0:devel/rubygem-actionview81 \
+RUN_DEPENDS=	rubygem-actionview81>=8.0.0:devel/rubygem-actionview81 \
 		rubygem-bindex>=0.4.0:devel/rubygem-bindex \
-		rubygem-railties81>=6.0.0:www/rubygem-railties81
+		rubygem-railties81>=8.0.0:www/rubygem-railties81
 
 USES=		cpe gem
 

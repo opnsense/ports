@@ -1,7 +1,7 @@
 PORTNAME=	renterd
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.7.1
-PORTREVISION=	3
+PORTREVISION=	8
 CATEGORIES=	net-p2p
 
 MAINTAINER=	bruno@tinkerbox.org
@@ -11,7 +11,7 @@ WWW=		https://sia.tech/renterd
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NOT_FOR_ARCHS=	armv6 armv7 i386 mips powerpc powerpcspe
+NOT_FOR_ARCHS=	armv6 armv7 i386 powerpc powerpcspe
 NOT_FOR_ARCHS_REASON=	requires 64-bit architecture
 
 USES=		go:1.24+,modules

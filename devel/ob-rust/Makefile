@@ -13,7 +13,6 @@ RUN_DEPENDS=	${PREFIX}/${EMACS_SITE_LISPDIR}/rust-mode.el:devel/rust-mode \
 		rust-script:devel/rust-script
 
 USES=			emacs
-EMACS_NO_DEPENDS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	micanzhang

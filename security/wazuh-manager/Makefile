@@ -1,9 +1,9 @@
 PORTNAME=	wazuh
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.14.2
+DISTVERSION=	4.14.5
 PORTREVISION=	1
 CATEGORIES=	security
-MASTER_SITES=	https://packages.wazuh.com/deps/48/libraries/sources/:wazuh_sources \
+MASTER_SITES=	https://packages.wazuh.com/deps/51/libraries/sources/:wazuh_sources \
 		LOCAL/acm/${PORTNAME}/:wazuh_cache
 PKGNAMESUFFIX=	-manager
 DISTFILES=	${EXTERNAL_DISTFILES} \
@@ -38,7 +38,7 @@ USES=		cpe dos2unix gmake perl5 python:3.11 readline shebangfix sqlite:3 uidfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	alonsobsd
 GH_PROJECT=	wazuh-freebsd
-GH_TAGNAME=	e3b7f4ccbb4cf0004ca58b1e56e4fe2d1b7474a7
+GH_TAGNAME=	22e254c6366d51a38792163162dd019a45a00c55
 
 USE_RC_SUBR=	${PORTNAME}${PKGNAMESUFFIX}
 
@@ -46,8 +46,8 @@ MAKE_ARGS+=	TARGET=server INSTALLDIR=${WAZUHPREFIX} INSTALL_SHARED="${INSTALL_LI
 
 DOS2UNIX_FILES=	${WRKSRC}/api/api/configuration/api.yaml
 
-# WITH_CCACHE_BUILD=	yes
-# CCACHE_DIR=		/zdata/ccache
+#WITH_CCACHE_BUILD=	yes
+#CCACHE_DIR=		/zdata/ccache
 
 WAZUH_CACHEFILE=	${PORTNAME}-cache-any-${DISTVERSION}${EXTRACT_SUFX}
 
@@ -56,7 +56,7 @@ EXTERNAL_DISTFILES=	audit-userspace.tar.gz:wazuh_sources \
 			bzip2.tar.gz:wazuh_sources \
 			cJSON.tar.gz:wazuh_sources \
 			cpp-httplib.tar.gz:wazuh_sources \
-			cpython-3.11.14.tar.gz:wazuh_cache \
+			cpython-3.11.15.tar.gz:wazuh_cache \
 			curl.tar.gz:wazuh_sources \
 			flatbuffers.tar.gz:wazuh_sources \
 			googletest.tar.gz:wazuh_sources \
@@ -84,7 +84,6 @@ OPTIONS_DEFINE=	INOTIFY PRELUDE ZEROMQ
 OPTIONS_GROUP_DATABASE=	MYSQL PGSQL
 OPTIONS_GROUP=		DATABASE
 
-INOTIFY_LIB_DEPENDS=	libinotify.so:devel/libinotify
 PRELUDE_LIB_DEPENDS=	libprelude.so:security/libprelude
 ZEROMQ_LIB_DEPENDS=	libczmq.so:net/czmq
 
@@ -94,8 +93,9 @@ ZEROMQ_DESC=	ZeroMQ support
 
 ZEROMQ_MAKE_ENV=	USE_ZEROMQ=yes
 PRELUDE_MAKE_ENV=	USE_PRELUDE=yes
-INOTIFY_MAKE_ENV=	USE_INOTIFY=yes
-INOTIFY_USES=	pkgconfig
+INOTIFY_MAKE_ENV=	USE_INOTIFY=yes \
+			INOTIFY_LIB=${INOTIFY_LIB}
+INOTIFY_USES=	pkgconfig inotify
 PGSQL_MAKE_ARGS=DATABASE=pgsql
 PGSQL_USES=	pgsql
 MYSQL_MAKE_ARGS=DATABASE=mysql
@@ -146,8 +146,8 @@ WAZUHMOD770=	/etc/decoders /etc/lists /etc/lists/amazon /etc/lists/malicious-ioc
 
 WAZUHPREFIX=	/var/ossec
 
-WZPYTHONWHEELS=	cffi-1.15.1-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
-		cryptography-44.0.1-cp37-abi3-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
+WZPYTHONWHEELS=	cffi-2.0.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
+		cryptography-46.0.6-cp311-abi3-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		greenlet-2.0.2-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		grpcio-1.69.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		lazy_object_proxy-1.10.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
@@ -155,7 +155,7 @@ WZPYTHONWHEELS=	cffi-1.15.1-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		multidict-5.2.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		numpy-1.26.4-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		psutil-5.9.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
-		pyarrow-21.0.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
+		pyarrow-24.0.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		pyyaml-6.0.1-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		rpds_py-0.15.2-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl \
 		uvloop-0.17.0-cp311-cp311-${FBSD_VERSION_BASE}_${ARCH_BASE}.whl
@@ -166,31 +166,23 @@ FBSD_RELEASE=	freebsd_${UNAME_r:S/./_/g:S/-/_/g}
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "aarch64" && ${OSVERSION} < 1400000
-IGNORE=		FreeBSD ${OSVERSION} ${ARCH} is not supported
-.endif
-
 .if ${ARCH} == "aarch64"
 FBSD14_PATCH_LEVEL=	_p5
+FBSD15_PATCH_LEVEL=	_p9
 .endif
 
 .if ${ARCH} != "aarch64"
-FBSD13_PATCH_LEVEL=	_p6
 FBSD14_PATCH_LEVEL=	_p5
+FBSD15_PATCH_LEVEL=	_p9
 .endif
 
-.if ${OSVERSION} >= 1300139 && ${OSVERSION} < 1400000
-FBSD_VERSION_BASE=freebsd_13_5_release${FBSD13_PATCH_LEVEL}
-FBSD_MAJOR_VERSION=13
-WAZUH_CACHENAME=${PORTNAME}-cache-fbsd13-${ARCH}-${DISTVERSION}
-DISTFILES+=	${WAZUH_CACHENAME}${EXTRACT_SUFX}:wazuh_cache
-.elif ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
-FBSD_VERSION_BASE=freebsd_14_3_release${FBSD14_PATCH_LEVEL}
+.if ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
+FBSD_VERSION_BASE=freebsd_14_4_release${FBSD14_PATCH_LEVEL}
 FBSD_MAJOR_VERSION=14
 WAZUH_CACHENAME=${PORTNAME}-cache-fbsd14-${ARCH}-${DISTVERSION}
 DISTFILES+=	${WAZUH_CACHENAME}${EXTRACT_SUFX}:wazuh_cache
 .elif ${OSVERSION} >= 1500000 && ${OSVERSION} < 1600000
-FBSD_VERSION_BASE=freebsd_15_0_release
+FBSD_VERSION_BASE=freebsd_15_0_release${FBSD15_PATCH_LEVEL}
 FBSD_MAJOR_VERSION=15
 WAZUH_CACHENAME=${PORTNAME}-cache-fbsd15-${ARCH}-${DISTVERSION}
 DISTFILES+=     ${WAZUH_CACHENAME}${EXTRACT_SUFX}:wazuh_cache

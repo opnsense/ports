@@ -1,7 +1,7 @@
 PORTNAME=	zellij
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.43.1
-PORTREVISION=	5
+DISTVERSION=	0.44.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -18,10 +18,11 @@ BUILD_DEPENDS=	${LOCALBASE}/llvm${LLVM_DEFAULT}/lib/libclang.so:devel/llvm${LLVM
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libzstd.so:archivers/zstd
 
-USES=		cargo ssl
+USES=		cargo sqlite ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	zellij-org
+CARGO_ENV=	LIBSQLITE3_SYS_USE_PKG_CONFIG=yes
 
 PLIST_FILES=	bin/zellij
 

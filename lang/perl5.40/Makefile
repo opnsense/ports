@@ -1,6 +1,5 @@
 PORTNAME=	perl
 DISTVERSION=	${PERL_VERSION}
-PORTREVISION=	2
 CATEGORIES=	lang devel perl5
 MASTER_SITES=	https://cpan.metacpan.org/authors/id/S/SH/SHAY/ CPAN/../../src/5.0
 DIST_SUBDIR=	perl
@@ -132,8 +131,7 @@ OPTIONS_DEFAULT=	DTRACE MULTIPLICITY PERL_64BITINT THREADS
 OPTIONS_EXCLUDE=	DTRACE
 .endif
 .for a in aarch64 armv6 armv7 \
-	mips mips64 mips64el mips64elhf mips64hf mipsel mipselhf mipshf mipsn32 \
-	riscv64 riscv64sf
+	riscv64
 OPTIONS_EXCLUDE_${a}=	DTRACE
 .endfor
 OPTIONS_SUB=		yes

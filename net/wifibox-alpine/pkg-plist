@@ -22,7 +22,6 @@ share/wifibox/vmlinuz
 /var/run/wifibox/appliance/spool/cron/crontabs
 /var/run/wifibox/appliance/spool/mail
 %%APP_ACCESS_POINT%%%%UDS_PASSTHRU%%@dir /var/run/hostapd
-@dir /var/run/wifibox/appliance/cache/apk
 @dir /var/run/wifibox/appliance/cache/misc
 @dir /var/run/wifibox/appliance/cache
 @dir /var/run/wifibox/appliance/empty

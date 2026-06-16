@@ -27,7 +27,6 @@
     SUBDIR += ah-tty
     SUBDIR += aimage
     SUBDIR += aird
-    SUBDIR += alfio
     SUBDIR += alloy
     SUBDIR += am-utils
     SUBDIR += amazon-ssm-agent
@@ -38,7 +37,6 @@
     SUBDIR += anacron
     SUBDIR += and
     SUBDIR += android-file-transfer
-    SUBDIR += android-file-transfer-qt5
     SUBDIR += android-ota-payload-extractor
     SUBDIR += angrysearch
     SUBDIR += ansible
@@ -47,6 +45,7 @@
     SUBDIR += ansible-sshjail
     SUBDIR += ansible-sysrc
     SUBDIR += anvil
+    SUBDIR += aoostar-rs
     SUBDIR += apachetop
     SUBDIR += apcctrl
     SUBDIR += apcpwr
@@ -117,10 +116,15 @@
     SUBDIR += bchunk
     SUBDIR += beadm
     SUBDIR += beats8
+    SUBDIR += beats91
+    SUBDIR += beats92
+    SUBDIR += beats93
+    SUBDIR += beats94
     SUBDIR += bfs
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
     SUBDIR += bhyvemgr
+    SUBDIR += bin
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
@@ -131,6 +135,7 @@
     SUBDIR += bmd-plugin-hookcmd
     SUBDIR += boot-extract
     SUBDIR += bottom
+    SUBDIR += boxrun
     SUBDIR += bpytop
     SUBDIR += brasero
     SUBDIR += brename
@@ -148,6 +153,7 @@
     SUBDIR += bstack
     SUBDIR += btop
     SUBDIR += btsixad
+    SUBDIR += bttf
     SUBDIR += budgie-control-center
     SUBDIR += buildah
     SUBDIR += bulk_extractor
@@ -181,16 +187,10 @@
     SUBDIR += cfengine-masterfiles
     SUBDIR += cfengine-masterfiles-devel
     SUBDIR += cfengine-masterfiles-lts
-    SUBDIR += cfengine-masterfiles321
-    SUBDIR += cfengine-masterfiles322
-    SUBDIR += cfengine-masterfiles323
     SUBDIR += cfengine-masterfiles324
     SUBDIR += cfengine-masterfiles325
     SUBDIR += cfengine-masterfiles326
     SUBDIR += cfengine-masterfiles327
-    SUBDIR += cfengine321
-    SUBDIR += cfengine322
-    SUBDIR += cfengine323
     SUBDIR += cfengine324
     SUBDIR += cfengine325
     SUBDIR += cfengine326
@@ -363,6 +363,7 @@
     SUBDIR += envconsul
     SUBDIR += epazote
     SUBDIR += erdtree
+    SUBDIR += erldash
     SUBDIR += etcmerge
     SUBDIR += ethname
     SUBDIR += evhz
@@ -401,6 +402,7 @@
     SUBDIR += finfo
     SUBDIR += firstboot-cloudsetup
     SUBDIR += firstboot-freebsd-update
+    SUBDIR += firstboot-pkg-upgrade
     SUBDIR += firstboot-pkgs
     SUBDIR += flasher
     SUBDIR += flashrom
@@ -456,6 +458,7 @@
     SUBDIR += getssl
     SUBDIR += gh-md-toc
     SUBDIR += gigolo
+    SUBDIR += gitlab-registry
     SUBDIR += gitwatch
     SUBDIR += gkfreq
     SUBDIR += gkleds2
@@ -513,6 +516,7 @@
     SUBDIR += hid-tools
     SUBDIR += highlnk
     SUBDIR += hilite
+    SUBDIR += hl
     SUBDIR += host-setup
     SUBDIR += hostctl
     SUBDIR += hourglass
@@ -533,6 +537,7 @@
     SUBDIR += imgurbash2
     SUBDIR += immortal
     SUBDIR += incron
+    SUBDIR += incus-client
     SUBDIR += infracost
     SUBDIR += initool
     SUBDIR += inotify-tools
@@ -671,9 +676,12 @@
     SUBDIR += logstash8
     SUBDIR += logstash91
     SUBDIR += logstash92
+    SUBDIR += logstash93
+    SUBDIR += logstash94
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += loki
+    SUBDIR += loki3
     SUBDIR += lookat
     SUBDIR += lr
     SUBDIR += lsblk
@@ -750,6 +758,7 @@
     SUBDIR += moreutils
     SUBDIR += most
     SUBDIR += mountsmb2
+    SUBDIR += mpifileutils
     SUBDIR += mping
     SUBDIR += mprocs
     SUBDIR += mptd
@@ -805,6 +814,7 @@
     SUBDIR += nvimpager
     SUBDIR += nvme-cli
     SUBDIR += nvramtool
+    SUBDIR += nvtop
     SUBDIR += oak
     SUBDIR += obliterate
     SUBDIR += oc
@@ -825,6 +835,7 @@
     SUBDIR += openvox-agent8
     SUBDIR += openvox-server8
     SUBDIR += osinfo-db-tools
+    SUBDIR += osquery
     SUBDIR += p5-App-Regather
     SUBDIR += p5-App-RunCron
     SUBDIR += p5-App-ZFSCurses
@@ -1015,6 +1026,7 @@
     SUBDIR += procmap
     SUBDIR += procs
     SUBDIR += progress
+    SUBDIR += prokshy
     SUBDIR += pslist
     SUBDIR += psmisc
     SUBDIR += pstack
@@ -1032,14 +1044,15 @@
     SUBDIR += pxattr
     SUBDIR += py-ansible-compat
     SUBDIR += py-ansible-core
+    SUBDIR += py-ansible-core218
     SUBDIR += py-ansible-core219
     SUBDIR += py-ansible-core220
+    SUBDIR += py-ansible-core221
     SUBDIR += py-ansible-lint
     SUBDIR += py-ansible-runner
     SUBDIR += py-appjail-gui
     SUBDIR += py-azure-cli
     SUBDIR += py-azure-cli-acr
-    SUBDIR += py-azure-cli-base
     SUBDIR += py-azure-cli-core
     SUBDIR += py-azure-cli-telemetry
     SUBDIR += py-bitrot
@@ -1051,7 +1064,9 @@
     SUBDIR += py-cron-descriptor
     SUBDIR += py-croniter
     SUBDIR += py-croniter2
+    SUBDIR += py-dbuild
     SUBDIR += py-debian-inspector
+    SUBDIR += py-dex
     SUBDIR += py-dict-toolbox
     SUBDIR += py-diffoscope
     SUBDIR += py-director
@@ -1067,6 +1082,7 @@
     SUBDIR += py-focker
     SUBDIR += py-glances
     SUBDIR += py-google-compute-engine
+    SUBDIR += py-greaseweazle
     SUBDIR += py-hared
     SUBDIR += py-hcloud
     SUBDIR += py-healthchecks
@@ -1074,7 +1090,6 @@
     SUBDIR += py-howdoi
     SUBDIR += py-hpilo
     SUBDIR += py-iowait
-    SUBDIR += py-ioztat
     SUBDIR += py-jailconf
     SUBDIR += py-keep
     SUBDIR += py-kubernetes
@@ -1156,6 +1171,7 @@
     SUBDIR += reoback
     SUBDIR += reproduce
     SUBDIR += reptyr
+    SUBDIR += reqlog
     SUBDIR += respond
     SUBDIR += rest-server
     SUBDIR += restic
@@ -1172,6 +1188,7 @@
     SUBDIR += root-tail
     SUBDIR += rovclock
     SUBDIR += rpi-firmware
+    SUBDIR += rpi-usbboot
     SUBDIR += rset
     SUBDIR += rshim-user-space
     SUBDIR += rsnapshot
@@ -1183,7 +1200,9 @@
     SUBDIR += rubygem-backup
     SUBDIR += rubygem-bolt
     SUBDIR += rubygem-bosh-gen
+    SUBDIR += rubygem-bundle-audit
     SUBDIR += rubygem-bundler
+    SUBDIR += rubygem-bundler-audit
     SUBDIR += rubygem-bundler_ext
     SUBDIR += rubygem-capistrano
     SUBDIR += rubygem-capistrano-ext
@@ -1192,9 +1211,11 @@
     SUBDIR += rubygem-chef-bin
     SUBDIR += rubygem-chef-cleanroom
     SUBDIR += rubygem-chef-config
+    SUBDIR += rubygem-chef-config18
     SUBDIR += rubygem-chef-licensing
     SUBDIR += rubygem-chef-telemetry
     SUBDIR += rubygem-chef-utils
+    SUBDIR += rubygem-chef-utils18
     SUBDIR += rubygem-chef-vault
     SUBDIR += rubygem-chef-winrm
     SUBDIR += rubygem-chef-winrm-elevated
@@ -1276,6 +1297,7 @@
     SUBDIR += rubygem-winrm-elevated-gitlab
     SUBDIR += rubygem-winrm-gitlab
     SUBDIR += rubygem-yell
+    SUBDIR += rucola
     SUBDIR += runas
     SUBDIR += rundeck
     SUBDIR += runiq
@@ -1286,10 +1308,12 @@
     SUBDIR += rush
     SUBDIR += rust-coreutils
     SUBDIR += rust-findutils
+    SUBDIR += rustic
     SUBDIR += rw
     SUBDIR += rw-tui
     SUBDIR += s-tui
     SUBDIR += s6
+    SUBDIR += s6-frontend
     SUBDIR += s6-rc
     SUBDIR += safe-rm
     SUBDIR += safecat
@@ -1366,6 +1390,7 @@
     SUBDIR += stalepid
     SUBDIR += stepsync
     SUBDIR += storcli
+    SUBDIR += storcli2
     SUBDIR += stow
     SUBDIR += stowES
     SUBDIR += stress
@@ -1377,6 +1402,7 @@
     SUBDIR += swapusage
     SUBDIR += sweeper
     SUBDIR += swtpm
+    SUBDIR += sylve
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
@@ -1399,6 +1425,7 @@
     SUBDIR += tarsnap-gui
     SUBDIR += tarsnap-periodic
     SUBDIR += tartarus
+    SUBDIR += taws
     SUBDIR += tbku
     SUBDIR += tclsyslog
     SUBDIR += tcplist
@@ -1425,8 +1452,6 @@
     SUBDIR += tldr
     SUBDIR += tlsdate
     SUBDIR += tm
-    SUBDIR += tmate
-    SUBDIR += tmate-ssh-server
     SUBDIR += tmpreaper
     SUBDIR += tmpwatch
     SUBDIR += tmux
@@ -1538,6 +1563,7 @@
     SUBDIR += uif2iso
     SUBDIR += unetbootin
     SUBDIR += uniutils
+    SUBDIR += unixexec
     SUBDIR += unquote
     SUBDIR += unstow
     SUBDIR += upower
@@ -1587,6 +1613,7 @@
     SUBDIR += wait_on
     SUBDIR += waitforssh
     SUBDIR += walk
+    SUBDIR += wander
     SUBDIR += watchcat
     SUBDIR += watchfolder
     SUBDIR += watchman

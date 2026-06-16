@@ -1,6 +1,6 @@
 PORTNAME=	yosys
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.61
+DISTVERSION=	0.66
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -60,6 +60,8 @@ post-patch:
 		${WRKSRC}/Makefile
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/yosys
+.for f in yosys yosys-filterlib
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/$f
+.endfor
 
 .include <bsd.port.mk>

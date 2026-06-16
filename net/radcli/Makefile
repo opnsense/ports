@@ -1,5 +1,5 @@
 PORTNAME=	radcli
-PORTVERSION=	1.4.0
+PORTVERSION=	1.5.1
 MASTER_SITES=	https://github.com/radcli/radcli/releases/download/${PORTVERSION}/
 CATEGORIES=	net
 

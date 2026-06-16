@@ -1,9 +1,9 @@
 PORTNAME=	prrte
-DISTVERSION=	3.0.12
+DISTVERSION=	3.0.13
 CATEGORIES=	net parallel sysutils
 MASTER_SITES=	https://github.com/openpmix/prrte/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	PMIx Reference RunTime Environment (PRRTE)
 WWW=		https://docs.prrte.org/
 
@@ -22,7 +22,8 @@ USES=		compiler:c11 cpe gmake libtool localbase:ldflags \
 USE_PERL5=	build
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-hwloc=${LOCALBASE} \
+CONFIGURE_ARGS=	--disable-static \
+		--with-hwloc=${LOCALBASE} \
 		--with-libevent=${LOCALBASE} \
 		--with-pmix=${LOCALBASE}
 USE_LDCONFIG=	yes

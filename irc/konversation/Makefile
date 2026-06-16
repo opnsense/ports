@@ -16,7 +16,7 @@ USES=		cmake compiler:c++11-lang cpe desktop-file-utils gettext kde:6 \
 USE_KDE=	archive attica auth bookmarks codecs completion config \
 		configwidgets coreaddons crash dbusaddons doctools globalaccel \
 		i18n iconthemes idletime itemviews jobwidgets kio newstuff \
-		notifications notifyconfig parts phonon service solid sonnet \
+		notifications notifyconfig parts service solid sonnet \
 		statusnotifieritem textwidgets wallet widgetsaddons \
 		windowsystem xmlgui \
 		ecm:build

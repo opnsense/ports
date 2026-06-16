@@ -1,6 +1,8 @@
---- configure.ac.orig	2025-11-17 08:11:32.054205000 -0800
-+++ configure.ac	2025-11-17 08:19:12.634169000 -0800
-@@ -509,13 +509,6 @@
+diff -u configure.ac.orig configure.ac
+index 8919d01..9f454f9 100644
+--- configure.ac.orig
++++ configure.ac
+@@ -531,13 +531,6 @@ AS_IF([test -n "`${PROBE_OS_GROUP} nogroup`" && test -z "`${PROBE_OS_GROUP} \"${
  	[RUN_AS_GROUP="nogroup"]
  )
  
@@ -14,7 +16,15 @@
  dnl NOTE: NUT legacy default, keep as is for least surprise
  dnl Distributions are however welcome to specify the option to use tmpfs
  AS_CASE([${target_os}],
-@@ -2844,7 +2837,7 @@
+@@ -1965,7 +1958,6 @@ AC_CHECK_DECLS(uu_lock, [
+ 	AC_DEFINE(HAVE_UU_LOCK, 1, [Use uu_lock for locking (FreeBSD)])
+ 	SERLIBS="-lutil"
+ 	dnl put in some better defaults for FreeBSD
+-	RUN_AS_USER="uucp"
+ ], [
+ 	SERLIBS=""
+ ], [
+@@ -2940,7 +2932,7 @@ NUT_CHECK_LIBGLIB
  
  dnl A Python GUI client application for the sysadmin desktop
  dnl (not necessarily on the NUT server itself):
@@ -23,7 +33,7 @@
  NUT_ARG_WITH([pynut], [install the PyNUT module files (yes, no, app, auto)], [auto])
  dnl Note: we did NUT_CHECK_PYTHON2 NUT_CHECK_PYTHON3 etc above,
  dnl and if at all possible, we generate the files from .in templates
-@@ -3534,7 +3527,7 @@
+@@ -3675,7 +3667,7 @@ if test x"${nut_with_nut_monitor}" != xno ; then
      dnl Can we satisfy any NUT-Monitor installation request?
      if test -n "${nut_with_nut_monitor_py2gtk2}${nut_with_nut_monitor_py3qt5}${nut_with_nut_monitor_py3qt6}" ; then
          case "${nut_with_nut_monitor}" in

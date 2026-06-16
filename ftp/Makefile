@@ -22,7 +22,6 @@
     SUBDIR += ftpfind
     SUBDIR += ftplib
     SUBDIR += ftpproxy
-    SUBDIR += ftpsesame
     SUBDIR += ftpsync
     SUBDIR += gftp
     SUBDIR += gnustep-ftp
@@ -80,6 +79,7 @@
     SUBDIR += sftpgo
     SUBDIR += smbftpd
     SUBDIR += spegla
+    SUBDIR += surge
     SUBDIR += termscp
     SUBDIR += tftp-hpa
     SUBDIR += tnftp

@@ -1,16 +1,16 @@
---- chrome/browser/ui/ui_features.h.orig	2026-01-16 14:21:21 UTC
+--- chrome/browser/ui/ui_features.h.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/ui/ui_features.h
-@@ -24,7 +24,7 @@ BASE_DECLARE_FEATURE(kAllowEyeDropperWGCScreenCapture)
+@@ -23,7 +23,7 @@ BASE_DECLARE_FEATURE(kAllowEyeDropperWGCScreenCapture)
  
  BASE_DECLARE_FEATURE(kCreateNewTabGroupAppMenuTopLevel);
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ BASE_DECLARE_FEATURE(kDseIntegrity);
  BASE_DECLARE_FEATURE(kFewerUpdateConfirmations);
  #endif
- 
-@@ -55,7 +55,7 @@ enum class PdfInfoBarTrigger { kPdfLoad = 0, kStartup 
- BASE_DECLARE_FEATURE_PARAM(PdfInfoBarTrigger, kPdfInfoBarTrigger);
+@@ -64,7 +64,7 @@ BASE_DECLARE_FEATURE_PARAM(int,
+ BASE_DECLARE_FEATURE_PARAM(int, kSeparateDefaultAndPinPromptMessageVersion);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
  
 -#if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
@@ -18,7 +18,7 @@
  // When enabled, user may see the session restore UI flow.
  BASE_DECLARE_FEATURE(kSessionRestoreInfobar);
  
-@@ -368,7 +368,7 @@ BASE_DECLARE_FEATURE(kViewsFirstRunDialog);
+@@ -243,7 +243,7 @@ BASE_DECLARE_FEATURE(kManagedProfileRequiredInterstiti
  BASE_DECLARE_FEATURE(kViewsJSAppModalDialog);
  #endif
  

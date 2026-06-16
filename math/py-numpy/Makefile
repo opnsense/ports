@@ -1,113 +1,87 @@
 PORTNAME=	numpy
-PORTVERSION=	1.26.4
-PORTREVISION=	12
+DISTVERSION=	2.4.6
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
-		https://numpy.org/doc/1.26/:doc
+		https://numpy.org/doc/${DISTVERSION:R}/:doc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	numpy-${PORTVERSION}${EXTRACT_SUFX} \
-		numpy-html.zip:doc
-DIST_SUBDIR=	numpy-${PORTVERSION:R}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		${PORTNAME}-html.zip:doc
+DIST_SUBDIR=	${PORTNAME}-${DISTVERSION:R}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	python@FreeBSD.org
-COMMENT=	The New Numeric Extension to Python
+COMMENT=	Fundamental package for array computing in Python
 WWW=		https://www.numpy.org/
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}meson-python>=0:devel/meson-python@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.24.1:devel/py-hypothesis@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest>=6.2.5:devel/py-pytest@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.2.0:devel/py-typing-extensions@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}meson-python>=0.18.0,1:devel/meson-python@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=5.3.0:devel/py-hypothesis@${PY_FLAVOR}
 
-USES=		compiler:c11 cpe pkgconfig python shebangfix
-USE_PYTHON=	autoplist concurrent cython pep517
+USES=		compiler:c++17-lang cpe fortran pkgconfig python:3.11+ shebangfix
+USE_PYTHON=	autoplist concurrent cython pep517 pytest
 
-GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e \
-		s/libgfortran.so//
-PYDISTUTILS_CONFIGUREARGS=	${PYFARGS}
-PYDISTUTILS_BUILDARGS=	${PYFARGS}
+PEP517_BUILD_CONFIG_SETTING=	-Csetup-args=-Dallow-noblas=false \
+				-Csetup-args=-Dcpu-baseline-detect=disabled
 
-LDFLAGS+=	-s
-PIE_UNSAFE=	yes
-
-PORTSCOUT=	limit:^1\.
-
+WITHOUT_FBSD10_FIX=	yes
+SHEBANG_GLOB=	*.py
+BINARY_ALIAS=	cython=cython-${PYTHON_VER}
 PORTDOCS=	*
 
-OPTIONS_DEFINE=		DOCS FORTRAN SUITESPARSE
-OPTIONS_DEFAULT=	FORTRAN OPENBLAS SUITESPARSE
-OPTIONS_SINGLE=		BLASLIB
-OPTIONS_SINGLE_BLASLIB=	ATLAS NETLIB NOBLAS OPENBLAS
-NOBLAS_DESC=		Internal NumPy fallback BLAS routines (slow!)
-SUITESPARSE_DESC=	Use AMD and UMFPACK in SuiteSparse
+CONFLICTS_INSTALL=	py*-numpy1
 
-ATLAS_IMPLIES=			FORTRAN
-ATLAS_USES=			blaslapack:atlas
-ATLAS_VARS=			BLASLIBS="ptf77blas, ptcblas" \
-				BLASNAME=atlas \
-				LAPACKLIBS=alapack \
-				LIBRARIES=atlas_libs
-FORTRAN_USES=			fortran
-FORTRAN_VARS=			PYFARGS=--fcompiler=gnu95
-NETLIB_IMPLIES=			FORTRAN
-NETLIB_LIB_DEPENDS=		libcblas.so:math/cblas
-NETLIB_USES=			blaslapack:netlib
-NETLIB_VARS=			BLASLIBS="blas, cblas" \
-				BLASNAME=atlas \
-				LAPACKLIBS=lapack \
-				LIBRARIES=atlas_libs
-NOBLAS_MAKE_ENV=		NPY_LAPACK_ORDER= \
-				PY_BLAS_ORDER=
-OPENBLAS_IMPLIES=		FORTRAN
-OPENBLAS_USES=			blaslapack:openblas
-OPENBLAS_VARS=			BLASLIBS="openblas, gfortran" \
-				BLASNAME=openblas \
-				LAPACKLIBS="openblas, gfortran" \
-				LIBRARIES=libraries
-SUITESPARSE_IMPLIES=		FORTRAN
-SUITESPARSE_LIB_DEPENDS=	libumfpack.so:math/suitesparse-umfpack
+TEST_WRKSRC=	${WRKDIR}
+TEST_ARGS=	--pyargs numpy
 
-SHEBANG_FILES=	numpy/f2py/crackfortran.py numpy/f2py/f2py2e.py \
-		numpy/f2py/rules.py numpy/testing/print_coercion_tables.py \
-		numpy/testing/setup.py
+OPTIONS_DEFINE=		DOCS
+OPTIONS_SINGLE=		BLASLIB SIMD
+OPTIONS_SINGLE_BLASLIB=	BLIS FLEXIBLAS NETLIB OPENBLAS
+OPTIONS_SINGLE_SIMD=	MIN NATIVE NONE
+OPTIONS_DEFAULT=	MIN OPENBLAS
 
-post-extract:
-	@${TOUCH} ${WRKSRC}/numpy/f2py/tests/src/temp
-	@${TOUCH} ${WRKSRC}/numpy/random/_examples/temp
-	@${TOUCH} ${WRKSRC}/numpy/core/tests/examples/temp
+BLIS_DESC=		BLIS BLAS-like implementation
+FLEXIBLAS_DESC=		FlexiBLAS BLAS implementation
+MIN_DESC=		Minimum recommended CPU features ${MIN_DESC_${ARCH}}
+MIN_DESC_amd64=		(x86-64-v2 microarchitecture)
+MIN_DESC_i386=		(x86-64-v2 microarchitecture)
+NONE_DESC=		Dispatched optimizations only (not recommended except old CPUs)
 
-pre-configure:
-	@${REINPLACE_CMD} -e 's|%%FC%%|${FC}|' ${WRKSRC}/numpy/distutils/fcompiler/gnu.py
-	@${CP} ${FILESDIR}/site.cfg ${WRKSRC}/site.cfg
+BLIS_USES=		blaslapack:blis
+BLIS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blis -Csetup-args=-Dlapack=flame"
+BLIS_BROKEN=		math/libflame does not provide a pkg-config file
+FLEXIBLAS_USES=		blaslapack:flexiblas
+FLEXIBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=flexiblas -Csetup-args=-Dlapack=flexiblas"
+MIN_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dcpu-baseline=min"
+NATIVE_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dcpu-baseline=native"
+NONE_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dcpu-baseline=none"
+NETLIB_LIB_DEPENDS=	libcblas.so:math/cblas
+NETLIB_USES=		blaslapack:netlib
+NETLIB_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blas -Csetup-args=-Dlapack=lapack"
+OPENBLAS_USES=		blaslapack:openblas
+OPENBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=openblas -Csetup-args=-Dlapack=openblas"
 
-pre-configure-FORTRAN-on:
-	@${REINPLACE_CMD} -e "s|%%GCCLIBDIR%%|$$(${GCCLIBDIR_CMDS})|" ${WRKSRC}/site.cfg ${WRKSRC}/numpy/distutils/system_info.py
+# BEGIN OPNsense NOBLAS patching
+USES:=			${USES:Nfortran}
+OPTIONS_SINGLE_BLASLIB+=NOBLAS
 
-pre-configure-NOBLAS-off:
-	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
-		-e 's|%%BLASLIBS%%|${BLASLIBS}|; s|%%BLASNAME%%|${BLASNAME}|' \
-		-e 's|%%LAPACKLIBS%%|${LAPACKLIBS}|; s|%%LIBRARIES%%|${LIBRARIES}|' \
-			${WRKSRC}/site.cfg
-
-pre-configure-SUITESPARSE-off:
-	@${REINPLACE_CMD} -e 's|:%%LOCALBASE%%/include/suitesparse||' ${WRKSRC}/site.cfg
-
-do-configure:
+BLIS_USES+=		fortran
+FLEXBLAS_USES+=		fortran
+NETLIB_USES+=		fortran
+NOBLAS_DESC=		Internal NumPy fallback BLAS routines
+NOBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dallow-noblas=true"
+OPENBLAS_USES+=		fortran
+# END OPNsense NOBLAS patching
 
 post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' | ${XARGS} ${STRIP_CMD}
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${UNZIP_NATIVE_CMD} -qo ${DISTDIR}/${DIST_SUBDIR}/numpy-html.zip -d ${STAGEDIR}${DOCSDIR}
 	@${RM} ${STAGEDIR}${DOCSDIR}/.buildinfo
-
-do-test:
-	@cd ${WRKSRC} && ${PYTHON_CMD} runtests.py
 
 .include <bsd.port.mk>

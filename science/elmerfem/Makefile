@@ -1,6 +1,6 @@
 PORTNAME=	elmerfem
 DISTVERSIONPREFIX=	release-
-DISTVERSION=	26.1
+DISTVERSION=	26.2.1
 PORTREVISION=	1
 CATEGORIES=	science
 
@@ -13,7 +13,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libhdf5.so:science/hdf5 \
 		libmetis.so:math/metis \
 		libnetcdf.so:science/netcdf \
-		libparpack.so:math/arpack-ng \
+		libparpack.so:math/arpack-ng@mpich \
 		libcholmod.so:math/suitesparse-cholmod \
 	        libumfpack.so:math/suitesparse-umfpack
 
@@ -26,6 +26,7 @@ USE_LDCONFIG=	${PREFIX}/lib/elmersolver
 CMAKE_ARGS=	-DELMER_FEM_REVISION:STRING=${GH_TAGNAME}
 
 ALL_TARGET=	# empty
+TESTING_UNSAFE=	yes
 
 CMAKE_ARGS+=	-DHAVE_INTTYPES_H:BOOL=ON	\
 		-DEXTERNAL_ARPACK:BOOL=ON	\
@@ -73,6 +74,8 @@ _LIBSTAGEDIR=	${STAGEDIR}/${PREFIX}/lib/elmersolver
 _PYVERSION=	${PYTHON_VER}${PYTHON_ABIVER}
 _QT5_LIBS=	buildtools:build core declarative gui network opengl \
 		printsupport qmake:build script sql svg widgets xml
+
+SUB_FILES=	pkg-message
 
 .include <../../math/vtk9/Makefile.version>
 .include <bsd.port.pre.mk>

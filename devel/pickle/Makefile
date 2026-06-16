@@ -1,5 +1,6 @@
 PORTNAME=	pickle
 DISTVERSION=	5.01
+PORTREVISION=	7
 CATEGORIES=	devel
 MASTER_SITES=	LOCAL/bofh/devel/${PORTNAME}
 
@@ -12,12 +13,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BROKEN_armv6=		invokes x86 assembler
 BROKEN_armv7=		invokes x86 assembler
-BROKEN_mips=		invokes x86 assembler
-BROKEN_mips64=		invokes x86 assembler
 
 USES=		gmake tar:tgz
 
 ALL_TARGET=	freebsd
+
+CFLAGS+=	-Wno-gnu-line-marker
+
+WRKSRC=	${WRKDIR}/${PORTNAME}
 
 PLIST_FILES=	${BIN_SYMLINKS} \
 		bin/${PORTNAME}
@@ -28,12 +31,10 @@ BIN_SYMLINKS=	bin/n14 \
 		bin/p14 \
 		bin/p16
 
-WRKSRC=	${WRKDIR}/${PORTNAME}
-
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
-USES+=		llvm:max=14
+USES+=		llvm
 .endif
 
 post-patch:

@@ -1,5 +1,5 @@
 PORTNAME=	Mail-Box
-PORTVERSION=	4.01
+PORTVERSION=	4.02
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MARKOV
@@ -17,7 +17,7 @@ RUN_DEPENDS=	p5-Devel-GlobalDestruction>=0.09:devel/p5-Devel-GlobalDestruction \
 		p5-File-Remove>=0.20:devel/p5-File-Remove \
 		p5-IO-Stringy>=0:devel/p5-IO-Stringy \
 		p5-Log-Report>=1.42:devel/p5-Log-Report \
-		p5-Mail-Message>=4.00:mail/p5-Mail-Message \
+		p5-Mail-Message>=4.05:mail/p5-Mail-Message \
 		p5-Mail-Transport>=4.00:mail/p5-Mail-Transport \
 		p5-Object-Realize-Later>=4.00:devel/p5-Object-Realize-Later \
 		p5-String-Print>=1.01:textproc/p5-String-Print \

@@ -1,6 +1,6 @@
---- ui/base/test/ui_controls.h.orig	2025-12-10 15:04:57 UTC
+--- ui/base/test/ui_controls.h.orig	2026-04-15 12:07:04 UTC
 +++ ui/base/test/ui_controls.h
-@@ -191,7 +191,7 @@ bool SendTouchEventsNotifyWhenDone(int action,
+@@ -196,7 +196,7 @@ bool SendTouchEventsNotifyWhenDone(int action,
                                     base::OnceClosure task);
  #endif
  

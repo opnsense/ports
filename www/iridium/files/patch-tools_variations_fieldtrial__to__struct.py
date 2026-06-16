@@ -1,6 +1,6 @@
---- tools/variations/fieldtrial_to_struct.py.orig	2025-12-10 15:04:57 UTC
+--- tools/variations/fieldtrial_to_struct.py.orig	2026-04-15 12:07:04 UTC
 +++ tools/variations/fieldtrial_to_struct.py
-@@ -41,6 +41,8 @@ _platforms = [
+@@ -31,6 +31,8 @@ _platforms = [
      'linux',
      'mac',
      'windows',

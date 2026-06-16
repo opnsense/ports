@@ -1,7 +1,7 @@
 PORTNAME=	elinks
-DISTVERSIONPREFIX=	v
-DISTVERSION=	0.19.0
+DISTVERSION=	0.19.1
 CATEGORIES=	www
+MASTER_SITES=	https://github.com/rkd77/${PORTNAME}/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	jailbird@fdf.net
 COMMENT=	Links text WWW browser with enhancements
@@ -14,9 +14,7 @@ BUILD_DEPENDS=	xmlto:textproc/xmlto
 LIB_DEPENDS=	libidn2.so:dns/libidn2
 
 USES=		bison:alias cpe gettext-runtime gmake iconv localbase:ldflags \
-		meson perl5 pkgconfig python:build shebangfix ssl
-USE_GITHUB=	yes
-GH_ACCOUNT=	rkd77
+		meson perl5 pkgconfig python:build shebangfix ssl tar:xz
 
 SHEBANG_FILES=	doc/tools/asciidoc/asciidoc.py doc/tools/help2xml \
 		src/protocol/ftp/test-ftp-parser
@@ -88,7 +86,7 @@ LIBEVENT_MESON_TRUE=	libevent
 
 LOCAL_CGI_MESON_TRUE=	cgi
 
-LUA_USES=	lua:52-53
+LUA_USES=	lua:52+
 LUA_MESON_ON=	-Dluapkg=lua-${LUA_VER}
 
 MUJS_LIB_DEPENDS=	libmujs.so:lang/mujs

@@ -1,5 +1,6 @@
 PORTNAME=	petsc4py
 DISTVERSION=	3.22.4
+PORTREVISION=	3
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,9 +14,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 
 BROKEN_armv7=	compilation fails: LLVM ERROR: out of memory
 
-BUILD_DEPENDS=	${PYNUMPY}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 LIB_DEPENDS=	libpetsc.so:science/PETSc
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist cython distutils pytest # tests fail to run, see https://gitlab.com/petsc/petsc/-/issues/1301

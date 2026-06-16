@@ -1,5 +1,5 @@
 PORTNAME=	freetds
-DISTVERSION=	1.5.244
+DISTVERSION=	1.5.385
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.freetds.org/files/current/
@@ -14,7 +14,7 @@ LICENSE=	LGPL20
 LICENSE_FILE=	${WRKSRC}/COPYING_LIB.txt
 
 USES=		compiler:c11 cpe gettext-tools gmake iconv \
-	libtool:keepla localbase:ldflags pkgconfig tar:bzip2
+	libtool:keepla localbase:ldflags pkgconfig readline tar:bzip2
 USE_LDCONFIG=	yes
 
 HAS_CONFIGURE=	yes

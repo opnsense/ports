@@ -1,6 +1,6 @@
 PORTNAME=	pitivi
 DISTVERSION=	2023.03
-PORTREVISION=	2
+PORTREVISION=	5
 CATEGORIES=	multimedia
 MASTER_SITES=	GNOME
 
@@ -13,11 +13,11 @@ LICENSE=	LGPL21+
 BUILD_DEPENDS=	gst-validate-launcher:devel/gstreamer1-devtools \
 		itstool:textproc/itstool
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gstreamer1>=1.14.0:multimedia/py-gstreamer1@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pycairo>=0:graphics/py-pycairo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=1.4:math/py-matplotlib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
-		${PYNUMPY}
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cpe desktop-file-utils gettext-tools gnome gstreamer meson \
 		pkgconfig python shared-mime-info shebangfix tar:xz

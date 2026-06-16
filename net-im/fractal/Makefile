@@ -1,6 +1,6 @@
 PORTNAME=	fractal
 DISTVERSION=	4.4.2
-PORTREVISION=	27
+PORTREVISION=	30
 CATEGORIES=	net-im
 MASTER_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/archive/${DISTVERSION}/
 # XXX USES=cargo omits the default source archive by default
@@ -12,8 +12,6 @@ WWW=		https://gitlab.gnome.org/GNOME/fractal
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
-
-BROKEN=		Fails to build, error: failed to select a version for the requirement `syn = "^2"`
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgmp.so:math/gmp \

@@ -2,7 +2,7 @@
 
 OPTIONS_GROUP+=	THIRDPARTYGRP
 # External modules (arrayvar MUST appear after devel_kit for build-dep)
-OPTIONS_GROUP_THIRDPARTYGRP=	AJP BROTLI CACHE_PURGE \
+OPTIONS_GROUP_THIRDPARTYGRP=	AJP AUTH_JWT BROTLI CACHE_PURGE \
 	DEVEL_KIT ARRAYVAR DRIZZLE DYNAMIC_UPSTREAM ECHO ENCRYPTSESSION \
 	FIPS_CHECK FORMINPUT GRIDFS HEADERS_MORE HTTP_ACCEPT_LANGUAGE HTTP_AUTH_DIGEST \
 	HTTP_AUTH_JWT HTTP_AUTH_KRB5 HTTP_AUTH_LDAP HTTP_AUTH_PAM HTTP_DAV_EXT \
@@ -22,18 +22,27 @@ ARRAYVAR_GH_TUPLE=	openresty:array-var-nginx-module:v0.06:arrayvar
 ARRAYVAR_IMPLIES=	DEVEL_KIT
 ARRAYVAR_VARS=		DSO_EXTMODS+=arrayvar
 
+AUTH_JWT_VERSION=	0.13.1
+AUTH_JWT_GH_TUPLE=	kjdev:nginx-auth-jwt:${AUTH_JWT_VERSION}:auth_jwt \
+			kjdev:nxe-json:0.5.0:nxe_json \
+			kjdev:nxe-jwx:0.1.0:nxe_jwx
+AUTH_JWT_LIB_DEPENDS=	libjansson.so:devel/jansson
+AUTH_JWT_PREVENTS=	HTTP_AUTH_JWT
+AUTH_JWT_PREVENTS_MSG=	choose auth_jwt or http_auth_jwt module
+AUTH_JWT_VARS=		DSO_EXTMODS+=auth_jwt
+
 BROTLI_GH_TUPLE=	google:ngx_brotli:a71f931:brotli
 BROTLI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_brotli_filter_config
 BROTLI_LIB_DEPENDS=	libbrotlicommon.so:archivers/brotli
 BROTLI_VARS=		DSO_EXTMODS+=brotli
 
-CACHE_PURGE_GH_TUPLE=	nginx-modules:ngx_cache_purge:2.5.5:cache_purge
+CACHE_PURGE_GH_TUPLE=	nginx-modules:ngx_cache_purge:3.0.2:cache_purge
 CACHE_PURGE_VARS=	DSO_EXTMODS+=cache_purge
 
-ECHO_GH_TUPLE=		openresty:echo-nginx-module:b0f344b:echo
+ECHO_GH_TUPLE=		openresty:echo-nginx-module:ebed47c:echo
 ECHO_VARS=		DSO_EXTMODS+=echo
 
-DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:c631276:drizzle
+DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:3b4cb3d:drizzle
 DRIZZLE_CONFIGURE_ENV=	LIBDRIZZLE_INC=${LOCALBASE}/include \
 			LIBDRIZZLE_LIB=${LOCALBASE}/lib
 DRIZZLE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-openresty-drizzle-nginx-module-config
@@ -48,7 +57,7 @@ DEVEL_KIT_GH_TUPLE=		vision5:ngx_devel_kit:v0.3.4:devel_kit
 DEVEL_KIT_USES=			iconv
 DEVEL_KIT_VARS=			FIRST_DSO_EXTMODS+=devel_kit
 
-ENCRYPTSESSION_GH_TUPLE=	openresty:encrypted-session-nginx-module:7ffe4ec:encryptsession
+ENCRYPTSESSION_GH_TUPLE=	openresty:encrypted-session-nginx-module:1ba049b:encryptsession
 ENCRYPTSESSION_IMPLIES=		DEVEL_KIT
 ENCRYPTSESSION_VARS=		DSO_EXTMODS+=encryptsession
 
@@ -73,11 +82,13 @@ HTTP_ACCEPT_LANGUAGE_VARS=	DSO_EXTMODS+=accept_language
 HTTP_AUTH_DIGEST_GH_TUPLE=	atomx:nginx-http-auth-digest:ac91c88:auth_digest
 HTTP_AUTH_DIGEST_VARS=		DSO_EXTMODS+=auth_digest
 
-HTTP_AUTH_JWT_GH_TUPLE=		TeslaGov:ngx-http-auth-jwt-module:2.4.0:auth_jwt
+HTTP_AUTH_JWT_GH_TUPLE=		TeslaGov:ngx-http-auth-jwt-module:2.4.0:http_auth_jwt
+HTTP_AUTH_JWT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_auth_jwt_module.c
 HTTP_AUTH_JWT_LIB_DEPENDS=	libjansson.so:devel/jansson \
 				libjwt.so:www/libjwt
-HTTP_AUTH_JWT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_auth_jwt_module.c
-HTTP_AUTH_JWT_VARS=		DSO_EXTMODS+=auth_jwt
+HTTP_AUTH_JWT_PREVENTS=		AUTH_JWT
+HTTP_AUTH_JWT_PREVENTS_MSG=	choose auth_jwt or http_auth_jwt module
+HTTP_AUTH_JWT_VARS=		DSO_EXTMODS+=http_auth_jwt
 
 HTTP_AUTH_KRB5_GH_TUPLE=	stnoonan:spnego-http-auth-nginx-module:v1.1.3:auth_krb5
 HTTP_AUTH_KRB5_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-spnego-http-auth-nginx-module-config
@@ -136,7 +147,7 @@ HTTP_NOTICE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_notice_module.c \
 				${PATCHDIR}/extra-patch-nginx-notice-config
 HTTP_NOTICE_VARS=		DSO_EXTMODS+=notice
 
-HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.3.7:push
+HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.3.8:push
 HTTP_PUSH_VARS=			DSO_EXTMODS+=push
 
 HTTP_PUSH_STREAM_GH_TUPLE=	wandenberg:nginx-push-stream-module:0.6.0:pushstream
@@ -195,18 +206,18 @@ KEYVAL_VARS=		DSO_EXTMODS+=keyval
 LET_GH_TUPLE=		baysao:nginx-let-module:c1f23aa:let
 LET_VARS=		DSO_EXTMODS+=let
 
-LUA_GH_TUPLE=		openresty:lua-nginx-module:de02114:lua \
-			openresty:lua-resty-core:0b61f61:luarc \
-			openresty:lua-resty-lrucache:1759068:luarl
+LUA_GH_TUPLE=		openresty:lua-nginx-module:4b21d8f:lua \
+			openresty:lua-resty-core:9f8dc05:luarc \
+			openresty:lua-resty-lrucache:1c7cf6b:luarl
 LUA_CONFIGURE_ENV=	LUAJIT_INC=${LOCALBASE}/include/luajit-2.1 \
 			LUAJIT_LIB=${LOCALBASE}/lib
 LUA_IMPLIES=		DEVEL_KIT
 LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
 LUA_VARS=		DSO_EXTMODS+=lua
 
-LUASTREAM_GH_TUPLE=	openresty:stream-lua-nginx-module:92c351a:luastream \
-			openresty:lua-resty-core:0b61f61:luarc \
-			openresty:lua-resty-lrucache:1759068:luarl
+LUASTREAM_GH_TUPLE=	openresty:stream-lua-nginx-module:6f3335c:luastream \
+			openresty:lua-resty-core:9f8dc05:luarc \
+			openresty:lua-resty-lrucache:1c7cf6b:luarl
 LUASTREAM_CONFIGURE_ENV=LUAJIT_INC=${LOCALBASE}/include/luajit-2.1 \
 			LUAJIT_LIB=${LOCALBASE}/lib
 LUASTREAM_IMPLIES=	DEVEL_KIT
@@ -217,7 +228,7 @@ LINK_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-link-function-config \
 			${PATCHDIR}/extra-patch-ngx_link_func_module.c
 LINK_VARS=		DSO_EXTMODS+=link
 
-MEMC_GH_TUPLE=		openresty:memc-nginx-module:v0.20:memc
+MEMC_GH_TUPLE=		openresty:memc-nginx-module:8c0e680:memc
 MEMC_VARS=		DSO_EXTMODS+=memc
 
 MODSECURITY3_GH_TUPLE=		owasp-modsecurity:ModSecurity-nginx:b94f2d3:modsecurity3
@@ -237,7 +248,7 @@ NAXSI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-naxsi-libinjection__sqli_c \
 			${PATCHDIR}/extra-patch-naxsi_config
 NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 
-NJS_GH_TUPLE=		nginx:njs:0.9.5:njs
+NJS_GH_TUPLE=		nginx:njs:0.9.9:njs
 NJS_CFLAGS=		-I ${LOCALBASE}/include/quickjs
 NJS_CONFIGURE_ARGS=	--cc-opt="${CFLAGS}" --ld-opt="${LDFLAGS}" --with-quickjs
 NJS_IMPLIES=		HTTP STREAM
@@ -246,7 +257,7 @@ NJS_LIB_DEPENDS=	libquickjs.so:lang/quickjs \
 			libxslt.so:textproc/libxslt
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
 
-OTEL_GH_TUPLE=		osokin:nginx-otel:51273ec:otel
+OTEL_GH_TUPLE=		osokin:nginx-otel:ed35139:otel
 OTEL_BUILD_DEPENDS=	${LOCALBASE}/include/opentelemetry/proto/common/v1/common.proto:devel/opentelemetry-proto
 OTEL_CONFIGURE_ENV=	NGX_OTEL_PROTO_DIR=${PREFIX}/include
 OTEL_LIB_DEPENDS=	libabsl_base.so:devel/abseil \
@@ -257,7 +268,7 @@ OTEL_LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 			libre2.so:devel/re2
 OTEL_VARS=		DSO_EXTMODS+=otel OTEL_SUBDIR=/
 
-PASSENGER_NGINX_VER=	6.0.27
+PASSENGER_NGINX_VER=	6.1.4
 PASSENGER_MASTER_SITES=	https://s3.amazonaws.com/phusion-passenger/releases/:passenger
 PASSENGER_DISTFILES=	passenger-${PASSENGER_NGINX_VER}.tar.gz:passenger
 PASSENGER_BUILD_DEPENDS=${LOCALBASE}/bin/rake:devel/rubygem-rake
@@ -278,6 +289,7 @@ POSTGRES_USES=		pgsql
 POSTGRES_VARS=		DSO_EXTMODS+=postgres
 
 RDS_CSV_GH_TUPLE=	openresty:rds-csv-nginx-module:761b0e2:rdscsv
+RDS_CSV_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-rds-csv-nginx-module-config
 RDS_CSV_VARS=		DSO_EXTMODS+=rdscsv
 
 RDS_JSON_GH_TUPLE=	openresty:rds-json-nginx-module:8af0517:rdsjson
@@ -289,7 +301,7 @@ REDIS2_VARS=		DSO_EXTMODS+=redis2
 RTMP_GH_TUPLE=		arut:nginx-rtmp-module:6c7719d:rtmp
 RTMP_VARS=		DSO_EXTMODS+=rtmp
 
-SET_MISC_GH_TUPLE=	openresty:set-misc-nginx-module:eb223c9:setmisc
+SET_MISC_GH_TUPLE=	openresty:set-misc-nginx-module:35365f2:setmisc
 SET_MISC_IMPLIES=	DEVEL_KIT
 SET_MISC_VARS=		DSO_EXTMODS+=setmisc
 
@@ -304,7 +316,7 @@ SHIBBOLETH_VARS=	DSO_EXTMODS+=shibboleth
 SLOWFS_CACHE_GH_TUPLE=	baysao:ngx_slowfs_cache:d011a18:slowfs_cache
 SLOWFS_CACHE_VARS=	DSO_EXTMODS+=slowfs_cache
 
-SRCACHE_GH_TUPLE=	openresty:srcache-nginx-module:bcdcfdc:srcache
+SRCACHE_GH_TUPLE=	openresty:srcache-nginx-module:ca5945a:srcache
 SRCACHE_VARS=		DSO_EXTMODS+=srcache
 
 STS_GH_TUPLE=		vozlt:nginx-module-sts:3c10d42:sts
@@ -317,7 +329,7 @@ VOD_LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
 VOD_USES=		iconv
 VOD_VARS=		DSO_EXTMODS+=vod
 
-VTS_GH_TUPLE=		vozlt:nginx-module-vts:37d319f:vts
+VTS_GH_TUPLE=		vozlt:nginx-module-vts:d421ab0:vts
 VTS_VARS=		DSO_EXTMODS+=vts
 
 XSS_GH_TUPLE=		openresty:xss-nginx-module:0e77f38:xss
@@ -326,7 +338,7 @@ XSS_VARS=		DSO_EXTMODS+=xss
 WEBSOCKIFY_GH_TUPLE=	tg123:websockify-nginx-module:c11bc9a:websockify
 WEBSOCKIFY_VARS=	DSO_EXTMODS+=websockify
 
-ZSTD_GH_TUPLE=		tokers:zstd-nginx-module:f4ba115:zstd
+ZSTD_GH_TUPLE=		tokers:zstd-nginx-module:057a7d3:zstd
 ZSTD_CONFIGURE_ENV=	ZSTD_INC=${LOCALBASE}/include \
 			ZSTD_LIB=${LOCALBASE}/lib
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd

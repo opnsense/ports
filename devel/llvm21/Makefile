@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	21.1.8
-PORTREVISION=	0
+PORTREVISION=	2
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION}/
 #MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/
@@ -74,8 +74,6 @@ CMAKE_ARGS+=	-DLLVM_PARALLEL_LINK_JOBS=1
 CMAKE_ARGS+=	-DLLVM_ENABLE_Z3_SOLVER=OFF
 CMAKE_ARGS+=	-DLLVM_ENABLE_LIBXML2=OFF
 CMAKE_ARGS+=	-DLLVM_ENABLE_LIBEDIT=OFF
-# LLVM likes to pick up ${LOCALBASE}/lib/libtinfo.so.*
-CMAKE_ARGS+=	-DLLVM_ENABLE_TERMINFO=OFF
 CMAKE_ARGS+=	-DLLVM_VERSION_SUFFIX=
 
 OPTIONS_DEFINE=	BE_AMDGPU BE_WASM CLANG COMPILER_RT DOCS LLD STATIC_LIBS
@@ -197,6 +195,7 @@ LLDB_CMAKE_ON= \
 	-DCURSES_CURSES_LIBRARY=/usr/lib/libcurses.so \
 	-DCURSES_FORM_LIBRARY=/usr/lib/libform.so \
 	-DCURSES_NCURSES_LIBRARY=/usr/lib/libncurses.so \
+	-DLLDB_ENABLE_LIBXML2=OFF \
 	-DPANEL_LIBRARIES=/usr/lib/libpanel.so
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_IMPLIES=		CLANG
@@ -363,7 +362,7 @@ CMAKE_ARGS+=	-DLLVM_ENABLE_RUNTIMES="${LLVM_ENABLE_RUNTIMES:ts;}"
 .include "${.CURDIR}/Makefile.COMMANDS"
 .include "${.CURDIR}/Makefile.MAN1SRCS"
 
-_FREEBSD_BACKENDS=	AArch64 ARM Mips PowerPC RISCV Sparc X86
+_FREEBSD_BACKENDS=	AArch64 ARM PowerPC RISCV Sparc X86
 FREEBSD_BACKENDS=	${_FREEBSD_BACKENDS}
 .if ${ARCH} == amd64
 _NATIVE_BACKENDS=	X86
@@ -373,8 +372,6 @@ _NATIVE_BACKENDS=	AArch64 ARM
 _NATIVE_BACKENDS=	ARM
 .elif ${ARCH} == i386
 _NATIVE_BACKENDS=	X86
-.elif ${ARCH:Mmips*}
-_NATIVE_BACKENDS=	Mips
 .elif ${ARCH:Mpowerpc*}
 _NATIVE_BACKENDS=	PowerPC
 .elif ${ARCH:Mriscv*}
@@ -390,7 +387,7 @@ FREEBSD_BACKENDS+=	WebAssembly
 NATIVE_BACKENDS+=	WebAssembly
 .endif
 STANDARD_BACKENDS=	${_FREEBSD_BACKENDS} AMDGPU AVR BPF Hexagon Lanai \
-			LoongArch MSP430 NVPTX SPIRV SystemZ VE WebAssembly \
+			LoongArch Mips MSP430 NVPTX SPIRV SystemZ VE WebAssembly \
 			XCore
 _BE_LIBS_COMMON=	CodeGen Desc Info
 _BE_LIBS_AArch64=	AsmParser Disassembler Utils

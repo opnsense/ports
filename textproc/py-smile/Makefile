@@ -1,11 +1,11 @@
 PORTNAME=	smile
-DISTVERSION=	2.11.0
+DISTVERSION=	2.12.3
 CATEGORIES=	textproc python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	tagattie@FreeBSD.org
 COMMENT=	Emoji picker
-WWW=		https://mijorus.it/projects/smile/
+WWW=		https://smile.mijorus.it/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING

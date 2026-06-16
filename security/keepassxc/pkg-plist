@@ -61,6 +61,7 @@ share/icons/hicolor/scalable/mimetypes/application-x-keepassxc.svg
 %%DATADIR%%/translations/keepassxc_th.qm
 %%DATADIR%%/translations/keepassxc_tr.qm
 %%DATADIR%%/translations/keepassxc_uk.qm
+%%DATADIR%%/translations/keepassxc_vi.qm
 %%DATADIR%%/translations/keepassxc_zh_CN.qm
 %%DATADIR%%/translations/keepassxc_zh_TW.qm
 %%DATADIR%%/wordlists/eff_large.wordlist

@@ -1,5 +1,5 @@
 PORTNAME=	asterisk
-DISTVERSION=	20.18.1
+DISTVERSION=	20.19.0
 CATEGORIES=	net
 MASTER_SITES=	https://downloads.asterisk.org/pub/telephony/%SUBDIR%/:DEFAULT,g729
 MASTER_SITE_SUBDIR=	asterisk/ \
@@ -145,7 +145,12 @@ LUA_CONFIGURE_WITH=	lua
 LUA_CFLAGS=		-I${LUA_INCDIR}
 LUA_LDFLAGS=		-L${LUA_LIBDIR}
 
+MP3PLAYER_MASTER_SITES=	LOCAL/vvd:mp3
+MP3PLAYER_DISTFILES=	${PORTNAME}-mp3-204${EXTRACT_SUFX}:mp3
+MP3PLAYER_EXTRACT_ONLY=	${PORTNAME}-mp3-204${EXTRACT_SUFX}
 MP3PLAYER_RUN_DEPENDS=	mpg123:audio/mpg123
+MP3PLAYER_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-addons_mp3_interface.c
+MP3PLAYER_VARS=		WRKSRC_MP3=${WRKDIR}/${PORTNAME}-mp3-204
 
 MYSQL_LIB_DEPENDS=	libzstd.so:archivers/zstd \
 			libunwind.so:devel/libunwind
@@ -218,17 +223,17 @@ ASTERISK_MOH_G729_SOUNDS=	asterisk-moh-opsound-g729-2.03.tar.gz
 ASTERISK_USER=	asterisk
 ASTERISK_GROUP=	asterisk
 
-PJSIP_VERSION=	2.15.1
+PJSIP_VERSION=	2.16
 
 .include <bsd.port.options.mk>
 
 .include <bsd.port.pre.mk>
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500026
-EXTRA_PATCHES=	${PATCHDIR}/extra-patch-third-party_pjproject_Makefile
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-third-party_pjproject_Makefile
 .endif
 
-.if (${OPSYS} == FreeBSD && ${OSVERSION} >= 1400092 && ${SSL_DEFAULT} == base) || \
+.if (${OPSYS} == FreeBSD && ${SSL_DEFAULT} == base) || \
 	${SSL_DEFAULT:Mopenssl3*}
 LIB_DEPENDS+=	libgnutls.so:security/gnutls
 CFLAGS+=	-DOPENSSL_API_COMPAT=0x10100000L
@@ -274,6 +279,9 @@ post-extract-G729-on:
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/${ASTERISK_CORE_G729_SOUNDS} ${WRKSRC}/sounds
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/${ASTERISK_MOH_G729_SOUNDS} ${WRKSRC}/sounds
 
+post-extract-MP3PLAYER-on:
+	${MV} ${WRKSRC_MP3} ${WRKSRC}/addons/mp3
+
 post-extract-OPUS-on:
 	${CP} ${WRKSRC_opus}/include/asterisk/* ${WRKSRC}/include/asterisk
 	${CP} ${WRKSRC_opus}/codecs/* ${WRKSRC}/codecs
@@ -311,6 +319,9 @@ post-configure-GEOLOCATION-off:
 
 post-configure-MACRO-on:
 	@cd ${WRKSRC} && ./menuselect/menuselect --enable app_macro menuselect.makeopts
+
+post-configure-MP3PLAYER-on:
+	@cd ${WRKSRC} && ./menuselect/menuselect --enable format_mp3 menuselect.makeopts
 
 post-configure-MYSQL-on:
 	@cd ${WRKSRC} && ./menuselect/menuselect --enable res_config_mysql menuselect.makeopts

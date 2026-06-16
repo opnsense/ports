@@ -1,5 +1,6 @@
 PORTNAME=	scikit-umfpack
 DISTVERSION=	0.4.2
+PORTREVISION=	2
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,22 +15,22 @@ LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}meson-python>0:devel/meson-python@${PY_FLAVOR} \
-		${PYNUMPY} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		swig:devel/swig
 LIB_DEPENDS=	libamd.so:math/suitesparse-amd \
 		libcblas.so:math/cblas \
 		libopenblas.so:math/openblas \
 		libumfpack.so:math/suitesparse-umfpack
-RUN_DEPENDS=	${PYNUMPY} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR}
 
-USES=		fortran localbase:ldflags python
-USE_PYTHON=	pep517 cython3 autoplist pytest
+USES=		fortran localbase:ldflags pkgconfig python
+USE_PYTHON=	pep517 cython autoplist pytest
 PEP517_BUILD_CONFIG_SETTING=	"-Cbuild-dir=_build"
 
-CFLAGS+=	-I/usr/local/include/suitesparse
-CXXFLAGS+=	-I/usr/local/include/suitesparse
+CFLAGS+=	-I${LOCALBASE}/include/suitesparse
+CXXFLAGS+=	-I${LOCALBASE}/include/suitesparse
 
 post-patch:
 	${REINPLACE_CMD} \

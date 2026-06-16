@@ -1,8 +1,8 @@
 PORTNAME=	mame
-DISTVERSION=	0.284
+DISTVERSION=	0.288
 CATEGORIES=	emulators games
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	MAME: a multi-purpose emulation framework
 WWW=		https://mamedev.org/
 
@@ -34,11 +34,10 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 
 USES=		compiler:c++17-lang gmake jpeg llvm:min=16 localbase \
 		pkgconfig python:build sdl sqlite:3 xorg
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	mamedev
 GH_TAGNAME=	${PORTNAME}${DISTVERSION:S/.//}
-USE_SDL=	sdl2
+USE_SDL=	sdl2 ttf2
 USE_XORG=	x11 xext xi xinerama xrender
 
 MAKEFILE=	makefile
@@ -107,7 +106,7 @@ SSE2_DESC=			Build with Streaming SIMD Extensions 2
 TOOLS_DESC=			Tools for archiving, development, and multimedia
 
 DEBUG_MAKE_ENV=				DEBUG=1 \
-					OPTIMIZE=g \
+					SYMBOLS=1 \
 					STRIP_SYMBOLS=0
 DEBUG_MAKE_ENV_OFF=			STRIP_SYMBOLS=1
 # Attempt to avoid address space exhaustion during linking, specifically
@@ -140,8 +139,7 @@ OPENMP_MAKE_ENV=			OPENMP=1
 OPENMP_MAKE_ENV_OFF=			OPENMP=0
 QTDEBUGGER_USES=			qt:6
 QTDEBUGGER_USE=				QT=base,tools:build
-QTDEBUGGER_MAKE_ENV=			QT_HOME="${PREFIX}" \
-					USE_QTDEBUG=1
+QTDEBUGGER_MAKE_ENV=			USE_QTDEBUG=1
 QTDEBUGGER_MAKE_ENV_OFF=		USE_QTDEBUG=0
 SIZE_OPTIMIZED_CFLAGS_MAKE_ENV=		OPTIMIZE=s
 SIZE_OPTIMIZED_CFLAGS_CXXFLAGS=		-Os
@@ -179,8 +177,7 @@ _EMULATORS_MAKE_ENV=	EMULATOR=1 \
 			USE_SYSTEM_LIB_PORTMIDI=1
 _EMULATORS_RUN_DEPENDS=	liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
 _EMULATORS_USES=	gl
-_EMULATORS_USE=		GL=gl \
-			SDL=ttf2
+_EMULATORS_USE=		GL=gl
 _TOOLS_COMMANDS=	-depth 1 -type f -and -not -type d -and -not -name \
 			${PORTNAME}* -perm -o=+x
 _TOOLS_MANUALS=		-name *.1 -depth 1 -type f -and -not -type d -and -not \
@@ -199,9 +196,9 @@ EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-3rdparty_lzma_C_AesOpt.c
 # Compiling with -pg (PROFILE) causes the linker to run out of memory on i386,
 # build with less profiling data:
 .if ${ARCH:Mi386}
-DEBUG_MAKE_ENV=		PROFILER=1
+DEBUG_MAKE_ENV+=	PROFILER=1
 .else
-DEBUG_MAKE_ENV=		PROFILE=1
+DEBUG_MAKE_ENV+=	PROFILE=1
 .endif
 
 .if empty(PORT_OPTIONS:MMAME) && empty(PORT_OPTIONS:MMAMENL) && \

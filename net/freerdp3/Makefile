@@ -1,17 +1,10 @@
 PORTNAME=	freerdp
-DISTVERSION=	3.22.0
+DISTVERSION=	3.26.0
 CATEGORIES=	net comms
 MASTER_SITES=	https://pub.freerdp.com/releases/:freerdp \
 		https://github.com/FreeRDP/FreeRDP/releases/download/${DISTVERSION}/:freerdp
 PKGNAMESUFFIX=	3
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:freerdp
-
-PATCH_SITES=	https://github.com/FreeRDP/FreeRDP/commit/
-PATCHFILES=	df87645e4977a9d3943828fec5fc0ba54ed57222.patch:-p1 \
-		031597d172245198ff0ab7640d43eab1f1bc6863.patch:-p1 \
-		c3c6e694e7ad3f461015c8bbef82d0ad5fe2770e.patch:-p1 \
-		1825fa82142ac12214217020151032f7c25fc7f5.patch:-p1 \
-		5c7aae27d0417b42b4806c2a5c583ca39dd9ef1e.patch:-p1
 
 MAINTAINER=	vvd@FreeBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
@@ -66,10 +59,11 @@ OPTIONS_DEFAULT_armv7=		SIMD
 OPTIONS_GROUP=			CLIPBOARD_IMAGE REQUIRE_JSON
 OPTIONS_GROUP_CLIPBOARD_IMAGE=	JPEG_CB PNG WEBP
 OPTIONS_GROUP_REQUIRE_JSON=	AAD KEYBOARD_LAYOUT TIMEZONE_FILE
-OPTIONS_RADIO=			GSSAPI JSON SCALE
+OPTIONS_RADIO=			GSSAPI JSON
 OPTIONS_RADIO_GSSAPI=		GSSAPI_HEIMDAL GSSAPI_MIT
 OPTIONS_RADIO_JSON=		CJSON JANSSON JSON_C
-OPTIONS_RADIO_SCALE=		CAIRO SWSCALE
+OPTIONS_SINGLE=			SCALE
+OPTIONS_SINGLE_SCALE=		CAIRO SWSCALE
 OPTIONS_SUB=			yes
 
 AAD_DESC=		Compile with support for Azure AD authentication (require SDL and WEBVIEW)
@@ -84,7 +78,7 @@ KEYBOARD_LAYOUT_DESC=	Use keyboard definitions from JSON file
 OPENH264_DESC=		H.264 video codec support via OpenH264
 PCSC_DESC=		Smart card support (smart card device redirection)
 PKCS11_DESC=		Use security/pkcs11-helper
-RDPECAM_DESC=		RDP webcam redirection (require FFMPEG and SWSCALE)
+RDPECAM_DESC=		RDP webcam redirection (require FFMPEG + CAIRO or SWSCALE)
 REQUIRE_JSON_DESC=	Options that require JSON
 SDL2_DESC=		Build FreeRDP SDL 2 client
 SDL3_DESC=		Build FreeRDP SDL 3 client
@@ -175,7 +169,7 @@ PNG_CMAKE_BOOL=		WINPR_UTILS_IMAGE_PNG
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	WITH_PULSE
 
-RDPECAM_IMPLIES=	FFMPEG SWSCALE
+RDPECAM_IMPLIES=	FFMPEG
 RDPECAM_BUILD_DEPENDS=	${LOCALBASE}/include/linux/uvcvideo.h:multimedia/v4l_compat \
 			${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 RDPECAM_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l \
@@ -253,7 +247,7 @@ CMAKE_OFF+=	WITH_AAD WITH_WINPR_JSON
 PLIST_SUB+=	JSON="@comment "
 .endif
 
-post-patch:
+post-patch-GSM-on:
 	@${REINPLACE_CMD} -e 's|gsm/gsm.h|gsm.h|' \
 		${WRKSRC}/cmake/FindGSM.cmake \
 		${WRKSRC}/libfreerdp/codec/dsp.c

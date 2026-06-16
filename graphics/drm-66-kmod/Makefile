@@ -1,12 +1,12 @@
 PORTNAME=	drm-66-kmod
 PORTVERSION=	${DRM_KMOD_DISTVERSION}
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	graphics kld
 
 .include "Makefile.version"
 
 MAINTAINER=	x11@FreeBSD.org
-COMMENT=	Direct Rendering Manager GPU drivers
+COMMENT=	Direct Rendering Manager (DRM) GPU drivers
 WWW=		https://github.com/freebsd/drm-kmod/
 
 LICENSE=	BSD2CLAUSE MIT GPLv2
@@ -15,9 +15,10 @@ LICENSE_COMB=	multi
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	the new KMS components are only supported on amd64
 
-CONFLICTS_INSTALL=	drm-510-kmod \
+CONFLICTS_INSTALL=	drm-latest-kmod \
 			drm-515-kmod \
-			drm-61-kmod
+			drm-61-kmod \
+			drm-612-kmod
 
 USES=		kmod uidfix compiler:c++11-lang
 
@@ -31,7 +32,7 @@ GH_TAGNAME=	${DRM_KMOD_GH_TAGNAME}
 SUB_FILES=	pkg-message
 SUB_LIST=	PORTNAME=${PORTNAME} OPSYS=${OPSYS} OSREL=${OSREL}
 
-.if ${OPSYS} == FreeBSD && !( ${OSVERSION} >= 1500031 )
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500031
 IGNORE=		not supported on older than 1500031, no kernel support
 .endif
 .if ${OPSYS} != FreeBSD

@@ -23,6 +23,7 @@
     SUBDIR += alsa-sndio
     SUBDIR += alsa-utils
     SUBDIR += alure
+    SUBDIR += amarok
     SUBDIR += amb-plugins
     SUBDIR += amberol
     SUBDIR += ampache
@@ -61,6 +62,7 @@
     SUBDIR += bjumblr-lv2
     SUBDIR += bliss
     SUBDIR += blop
+    SUBDIR += blucli
     SUBDIR += boca
     SUBDIR += boops-lv2
     SUBDIR += bristol
@@ -74,6 +76,7 @@
     SUBDIR += caps-lv2
     SUBDIR += caps-plugins
     SUBDIR += cardinal
+    SUBDIR += carla
     SUBDIR += cava
     SUBDIR += cd-discid
     SUBDIR += cddb-bundle
@@ -357,7 +360,6 @@
     SUBDIR += libid3tag
     SUBDIR += libinstpatch
     SUBDIR += libkcddb
-    SUBDIR += libkcompactdisc
     SUBDIR += libkeyfinder
     SUBDIR += liblastfm
     SUBDIR += liblo
@@ -445,6 +447,7 @@
     SUBDIR += madronalib
     SUBDIR += malint
     SUBDIR += mamba
+    SUBDIR += maolan
     SUBDIR += mate-media
     SUBDIR += mclk-lv2
     SUBDIR += mda-lv2
@@ -514,6 +517,7 @@
     SUBDIR += ncspot
     SUBDIR += netease-music-tui
     SUBDIR += neuralrack-lv2
+    SUBDIR += noctavox
     SUBDIR += noise-repellent-lv2
     SUBDIR += noise-suppression-for-voice-lv2
     SUBDIR += normalize
@@ -630,6 +634,8 @@
     SUBDIR += py-auditok
     SUBDIR += py-discid
     SUBDIR += py-discogs-client
+    SUBDIR += py-edge-tts
+    SUBDIR += py-espeakng-loader
     SUBDIR += py-essentia
     SUBDIR += py-eyed3
     SUBDIR += py-fmoo-audiotools
@@ -683,6 +689,7 @@
     SUBDIR += qtractor
     SUBDIR += quimup
     SUBDIR += qxgedit
+    SUBDIR += radiotrope
     SUBDIR += ratatouille-lv2
     SUBDIR += raul
     SUBDIR += rawrec
@@ -709,6 +716,7 @@
     SUBDIR += rubygem-ruby-ogginfo
     SUBDIR += rubygem-ruby-shout
     SUBDIR += s3mod
+    SUBDIR += sag
     SUBDIR += samplv1-lv2
     SUBDIR += sayonara
     SUBDIR += sbagen
@@ -740,6 +748,7 @@
     SUBDIR += somafm-cli
     SUBDIR += sonata
     SUBDIR += songrec
+    SUBDIR += songsee
     SUBDIR += sonic-visualiser
     SUBDIR += sonicradio
     SUBDIR += sonivox
@@ -779,7 +788,6 @@
     SUBDIR += subtui
     SUBDIR += suil
     SUBDIR += supercollider
-    SUBDIR += surge-synthesizer-lv2
     SUBDIR += surge-synthesizer-xt-lv2
     SUBDIR += swh-lv2
     SUBDIR += swhplugins
@@ -846,6 +854,7 @@
     SUBDIR += wasabi
     SUBDIR += wavbreaker
     SUBDIR += wavegain
+    SUBDIR += waves
     SUBDIR += wavetral
     SUBDIR += wavpack
     SUBDIR += wavplay

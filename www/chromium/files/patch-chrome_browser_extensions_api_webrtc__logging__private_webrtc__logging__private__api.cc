@@ -1,4 +1,4 @@
---- chrome/browser/extensions/api/webrtc_logging_private/webrtc_logging_private_api.cc.orig	2025-08-07 06:57:29 UTC
+--- chrome/browser/extensions/api/webrtc_logging_private/webrtc_logging_private_api.cc.orig	2026-06-04 10:12:25 UTC
 +++ chrome/browser/extensions/api/webrtc_logging_private/webrtc_logging_private_api.cc
 @@ -28,7 +28,7 @@
  #include "extensions/browser/process_manager.h"
@@ -18,7 +18,7 @@
    if (extension) {
      enabled_by_permissions =
          extension->permissions_data()->active_permissions().HasAPIPermission(
-@@ -580,7 +580,7 @@ void WebrtcLoggingPrivateStartEventLoggingFunction::Fi
+@@ -563,7 +563,7 @@ void WebrtcLoggingPrivateStartEventLoggingFunction::Fi
  
  ExtensionFunction::ResponseAction
  WebrtcLoggingPrivateGetLogsDirectoryFunction::Run() {

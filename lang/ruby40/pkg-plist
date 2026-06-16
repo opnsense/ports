@@ -797,7 +797,6 @@ libdata/pkgconfig/ruby-%%RUBY_VER%%.pc
 %%NO_CAPIDOCS%%%%NO_DOCS%%%%RDOC%%@dir %%RUBY_DOCDIR%%
 %%PORTDOCS%%%%RUBY_DOCDIR%%/COPYING
 %%PORTDOCS%%%%RUBY_DOCDIR%%/COPYING.ja
-%%PORTDOCS%%%%RUBY_DOCDIR%%/ChangeLog/ChangeLog
 %%PORTDOCS%%%%RUBY_DOCDIR%%/ChangeLog/ChangeLog-0.06_to_0.52
 %%PORTDOCS%%%%RUBY_DOCDIR%%/ChangeLog/ChangeLog-0.50_to_0.60
 %%PORTDOCS%%%%RUBY_DOCDIR%%/ChangeLog/ChangeLog-0.60_to_1.1
@@ -2815,9 +2814,11 @@ share/man/man1/ruby%%RUBY_SUFFIX%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BasicSpecification/version-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/bundle_config_version-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/bundle_update_bundler_version-c.ri
-%%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/bundler_config_file-c.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/bundler_global_config_file-c.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/bundler_local_config_file-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/bundler_version-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/cdesc-BundlerVersionFinder.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/gemfile_path-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/lockfile_contents-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/lockfile_version-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/BundlerVersionFinder/prioritize%21-c.ri
@@ -3066,6 +3067,8 @@ share/man/man1/ruby%%RUBY_SUFFIX%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SignoutCommand/cdesc-SignoutCommand.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SignoutCommand/execute-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SignoutCommand/new-c.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SourcesCommand/build_new_source-i.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SourcesCommand/build_source-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SourcesCommand/cdesc-SourcesCommand.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SourcesCommand/check_typo_squatting-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Commands/SourcesCommand/config_file_name-i.ri
@@ -4404,6 +4407,7 @@ share/man/man1/ruby%%RUBY_SUFFIX%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/find_in_unresolved-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/find_in_unresolved_tree-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/find_inactive_by_path-c.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/find_unloaded_by_path-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/for_cache-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/from_yaml-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Specification/gems_dir-i.ri
@@ -4488,6 +4492,7 @@ share/man/man1/ruby%%RUBY_SUFFIX%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_array_attributes-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_attribute_present-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_authors_field-i.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_executable-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_for_resolution-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_lazy_metadata-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationPolicy/validate_licenses-i.ri
@@ -4521,6 +4526,7 @@ share/man/man1/ruby%%RUBY_SUFFIX%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/find_all_by_name-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/find_by_path-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/find_inactive_by_path-i.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/find_unloaded_by_path-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/from_path-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/installed_stubs-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/SpecificationRecord/latest_spec_for-i.ri
@@ -4688,6 +4694,7 @@ share/man/man1/ruby%%RUBY_SUFFIX%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Version/bump-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Version/canonical_segments-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Version/cdesc-Version.ri
+%%RDOC%%%%RUBY_RIDIR%%/Gem/Version/compute_sort_key-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Version/correct%3f-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Version/create-c.ri
 %%RDOC%%%%RUBY_RIDIR%%/Gem/Version/eql%3f-i.ri

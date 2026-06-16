@@ -587,6 +587,8 @@ share/man/man1/re2zig.1.gz
 %%DATADIR%%/stdlib/python
 %%DATADIR%%/stdlib/rust
 %%DATADIR%%/stdlib/swift
+%%DATADIR%%/stdlib/unicode_blocks.re
 %%DATADIR%%/stdlib/unicode_categories.re
+%%DATADIR%%/stdlib/unicode_properties.re
 %%DATADIR%%/stdlib/v
 %%DATADIR%%/stdlib/zig

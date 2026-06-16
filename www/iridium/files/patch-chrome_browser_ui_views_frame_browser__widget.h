@@ -1,4 +1,4 @@
---- chrome/browser/ui/views/frame/browser_widget.h.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/ui/views/frame/browser_widget.h.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/ui/views/frame/browser_widget.h
 @@ -65,7 +65,7 @@ class BrowserWidget : public views::Widget,
  

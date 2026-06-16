@@ -1,9 +1,9 @@
 PORTNAME=	vulkan-loader
-DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.336
+DISTVERSIONPREFIX=	vulkan-sdk-
+DISTVERSION=	1.4.350.0
 CATEGORIES=	graphics devel
 
-MAINTAINER=	atanubiswas484@gmail.com
+MAINTAINER=	olivier@FreeBSD.org
 COMMENT=	Driver loader for the Vulkan graphics API
 WWW=		https://github.com/KhronosGroup/Vulkan-Loader
 
@@ -19,7 +19,7 @@ GH_PROJECT=	Vulkan-Loader
 USE_LDCONFIG=	yes
 CMAKE_ON=	CMAKE_SKIP_RPATH
 CMAKE_OFF=	BUILD_TESTS
-PLIST_SUB=	VERSION=${DISTVERSION:C/-.*//}
+PLIST_SUB=	VERSION=${DISTVERSION:C/\.[0-9]+$//}
 
 OPTIONS_DEFINE=		WAYLAND XCB XLIB
 OPTIONS_DEFAULT=	WAYLAND XCB XLIB

@@ -1,5 +1,5 @@
 PORTNAME=	django-debug-toolbar
-PORTVERSION=	6.2.0
+PORTVERSION=	6.3.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -12,6 +12,9 @@ WWW=		https://django-debug-toolbar.readthedocs.io/en/latest/ \
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Obsolete, please use www/py-django-debug-toolbar instead
+EXPIRATION_DATE=2026-06-30
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django52>=4.2.9:www/py-django52@${PY_FLAVOR} \

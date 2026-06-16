@@ -1,6 +1,6 @@
 PORTNAME=	obspy
-PORTVERSION=	1.4.2
-PORTREVISION=	3
+PORTVERSION=	1.5.0
+PORTREVISION=	1
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +11,10 @@ WWW=		https://www.obspy.org/
 
 LICENSE=	LGPL3
 
-BUILD_DEPENDS=	${PYNUMPY} \
+DEPRECATED=	Depends on expired databases/py-sqlalchemy10
+EXPIRATION_DATE=2026-08-31
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scipy>=1.7.0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}future>=0.12.4:devel/py-future@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>=3.3.0:math/py-matplotlib@${PY_FLAVOR} \

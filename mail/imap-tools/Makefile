@@ -1,5 +1,5 @@
 PORTNAME=	imap-tools
-DISTVERSION=	1.8.0
+DISTVERSION=	1.11.0
 PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	CRATESIO
@@ -13,7 +13,7 @@ LICENSE=	MIT
 
 USES=		cargo
 
-CARGO_FEATURES=	--no-default-features rustls
+CARGO_FEATURES=	json
 
 PLIST_FILES=	bin/imap-tools
 

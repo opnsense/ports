@@ -1,5 +1,5 @@
 PORTNAME=	liberasurecode
-DISTVERSION=	1.7.1
+DISTVERSION=	1.8.0
 CATEGORIES=	devel
 
 MAINTAINER=	fuz@FreeBSD.org

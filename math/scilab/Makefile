@@ -1,6 +1,6 @@
 PORTNAME=	scilab
 DISTVERSION=	6.1.1
-PORTREVISION=	25
+PORTREVISION=	28
 CATEGORIES=	math cad java
 MASTER_SITES=	https://www.scilab.org/download/${DISTVERSION}/
 DISTFILES=	${DISTNAME}-src${EXTRACT_SUFX}
@@ -14,10 +14,12 @@ LICENSE_COMB=	dual
 LICENSE_FILE_GPLv2=	${WRKSRC}/COPYING
 LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/COPYING-BSD
 
+NO_SHLIB_REQUIRES_GLOB=	libjava.so
+
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libcurl.so:ftp/curl \
 		libhdf5.so:science/hdf5 \
-		libarpack.so:math/arpack-ng \
+		libarpack.so:math/arpack-ng@mpich \
 		libfftw3.so:math/fftw3 \
 		libmatio.so:math/matio \
 		libamd.so:math/suitesparse-amd \

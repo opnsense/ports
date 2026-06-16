@@ -1,5 +1,5 @@
 PORTNAME=	graphene1
-PORTVERSION=	4.3.4
+PORTVERSION=	4.3.6
 CATEGORIES=	graphics rubygems
 MASTER_SITES=	RG
 

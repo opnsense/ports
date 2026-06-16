@@ -1,7 +1,7 @@
 PORTNAME=	gitlab-elasticsearch-indexer
-PORTVERSION=	5.12.2
-DISTVERSIONPREFIX=	v
+PORTVERSION=	5.14.8
 PORTREVISION=	1
+DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -12,11 +12,13 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	git>=2.38.1:devel/git \
-		gitlab-code-parser>=0.20.1:textproc/gitlab-code-parser
+		gitlab-code-parser>=0.22.0:textproc/gitlab-code-parser
 LIB_DEPENDS=	libicui18n.so:devel/icu \
 		libicuuc.so:devel/icu \
 		libparser_c_bindings.so:textproc/gitlab-code-parser
 #RUN_DEPENDS=	p5-Image-ExifTool>=0:graphics/p5-Image-ExifTool
+
+NO_SHLIB_REQUIRES_GLOB=	libparser_c_bindings.so
 
 USES=		gmake go:modules,no_targets pkgconfig
 

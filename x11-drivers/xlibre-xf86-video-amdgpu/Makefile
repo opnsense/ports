@@ -1,8 +1,9 @@
 PORTNAME=	xlibre-xf86-video-amdgpu
-PORTVERSION=	25.0.1
+PORTVERSION=	25.0.3
+PORTREVISION=	4
 CATEGORIES=	x11-drivers
 
-MAINTAINER=	b-aazbsd@proton.me
+MAINTAINER=	xlibre@FreeBSD.org
 COMMENT=	XLibre amdgpu display driver
 WWW=		https://github.com/X11Libre/xf86-video-amdgpu/
 
@@ -13,7 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64le
 ONLY_FOR_ARCHS_REASON=	KMS is required and currently only available on x86/arm64/powerpc64le
 
-LIB_DEPENDS=	libdrm_amdgpu.so:graphics/libdrm
+LIB_DEPENDS=	libpciaccess.so:devel/libpciaccess \
+		libdrm_amdgpu.so:graphics/libdrm
 
 USES=		gl tar:xz xlibre-cat:driver
 USE_GL=		gbm
@@ -23,5 +25,8 @@ CONFIGURE_ARGS+=--disable-udev
 PLIST_FILES=	${MODULEDIR}/drivers/amdgpu_drv.so \
 		share/man/man4/amdgpu.4x.gz \
 		share/X11/xorg.conf.d/10-amdgpu.conf
+
+post-patch:
+	${REINPLACE_CMD} -e 's|--variable=video_drivers_dir`|--variable=moduledir`/drivers|g' ${WRKSRC}/configure.ac
 
 .include <bsd.port.mk>

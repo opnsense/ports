@@ -1,8 +1,8 @@
 - eliminate the need to use git
 
---- cmake/SetupSpheral.cmake.orig	2025-07-23 20:11:18 UTC
+--- cmake/SetupSpheral.cmake.orig	2026-04-01 07:49:10 UTC
 +++ cmake/SetupSpheral.cmake
-@@ -27,8 +27,8 @@ include(Compilers)
+@@ -28,8 +28,8 @@ include(Compilers)
  #-------------------------------------------------------------------------------
  
  # Need to define Python paths here as BLT finds it's own Python package.

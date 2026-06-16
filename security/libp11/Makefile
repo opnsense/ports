@@ -1,5 +1,5 @@
 PORTNAME=	libp11
-DISTVERSION=	0.4.17
+DISTVERSION=	0.4.18
 CATEGORIES=	security devel
 MASTER_SITES=	https://github.com/OpenSC/${PORTNAME}/releases/download/${PORTNAME}-${DISTVERSION}/
 
@@ -33,15 +33,6 @@ CONFIGURE_ENV=	LTLIB_CFLAGS="-I${LOCALBASE}/include" \
 CONFIGURE_ARGS=	--with-enginesdir=${PREFIX}/lib/engines \
 		--with-modulesdir=${PREFIX}/lib/ossl-modules \
 		--enable-static-engine
-
-.include <bsd.port.options.mk>
-
-.if ${SSL_DEFAULT} == "base" && ${OPSYS} == FreeBSD && ${OSREL:R} < 14
-PLIST_SUB+=		PROVIDERS="@comment "
-.else
-PLIST_SUB+=		PROVIDERS=""
-.endif
-
 
 INSTALL_TARGET=	install-strip
 

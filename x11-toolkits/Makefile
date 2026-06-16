@@ -212,6 +212,7 @@
     SUBDIR += qt5-virtualkeyboard
     SUBDIR += qt5-widgets
     SUBDIR += qt5pas
+    SUBDIR += qt6-canvaspainter
     SUBDIR += qt6-charts
     SUBDIR += qt6-datavis3d
     SUBDIR += qt6-declarative
@@ -242,7 +243,6 @@
     SUBDIR += rubygem-vte3
     SUBDIR += rubygem-vte4
     SUBDIR += scenefx04
-    SUBDIR += scintilla
     SUBDIR += sdl2_pango
     SUBDIR += sdl_pango
     SUBDIR += skinlf

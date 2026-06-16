@@ -11,7 +11,6 @@ WWW=		https://github.com/rust-lang/
 LICENSE=	APACHE20
 
 USES=			emacs
-EMACS_NO_DEPENDS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	rust-lang

@@ -1,8 +1,7 @@
 PORTNAME=	tsduck
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.43
-DISTVERSIONSUFFIX=	-4549
-PORTREVISION=	2
+DISTVERSION=	3.44
+DISTVERSIONSUFFIX=	-4676
 CATEGORIES=	multimedia
 
 MAINTAINER=	thierry@lelegard.fr
@@ -11,10 +10,7 @@ WWW=		https://tsduck.io
 
 LICENSE=	BSD2CLAUSE
 
-BROKEN_FreeBSD_13=	requires OpenSSL 3.0
-
 BUILD_DEPENDS=	bash:shells/bash \
-		bootstrap-openjdk11>0:java/bootstrap-openjdk11 \
 		coreutils>0:sysutils/coreutils \
 		dos2unix:converters/unix2dos \
 		gnugrep>0:textproc/gnugrep \
@@ -29,7 +25,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		librist.so:multimedia/librist \
 		libsrt.so:www/srt
 
-USES=		dos2unix gmake libedit python shebangfix ssl
+USES=		dos2unix gmake java:build libedit python shebangfix ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	tsduck
 
@@ -43,11 +39,6 @@ BINARY_ALIAS=	python=${PYTHON_CMD}
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS}
-ALL_TARGET+=	docs-html
-.endif
+DOCS_VARS=	ALL_TARGET+=docs-html
 
 .include <bsd.port.mk>

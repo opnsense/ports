@@ -1,5 +1,5 @@
 PORTNAME=	netatalk
-PORTVERSION=	4.4.1
+PORTVERSION=	4.4.3
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/netatalk-${PORTVERSION:S/./-/g}/
 PKGNAMESUFFIX=	4
@@ -21,7 +21,6 @@ USE_GNOME=	libxslt:build
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	netatalk
 #INSTALL_TARGET=install-strip
-CPE_VENDOR=	netatalk_project
 
 MESON_ARGS=		-Dwith-libgcrypt-path=${LOCALBASE} \
 			-Dwith-bdb-path=${LOCALBASE} \

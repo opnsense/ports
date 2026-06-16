@@ -1,5 +1,5 @@
 PORTNAME=	fwupd
-DISTVERSION=	2.0.19
+DISTVERSION=	2.1.4
 CATEGORIES=	sysutils
 
 MAINTAINER=	decke@FreeBSD.org
@@ -7,10 +7,7 @@ COMMENT=	Update firmware automatically, safely, and reliably
 
 LICENSE=	LGPL21
 
-BROKEN_FreeBSD_13=	requires at least FreeBSD 14
-
 BUILD_DEPENDS=	blkid:filesystems/libblkid \
-		flashrom>0:sysutils/flashrom \
 		help2man:misc/help2man \
 		${LOCALBASE}/libdata/pkgconfig/fwupd-efi.pc:sysutils/fwupd-efi \
 		noto-sans>0:x11-fonts/noto-sans \
@@ -21,24 +18,22 @@ BUILD_DEPENDS=	blkid:filesystems/libblkid \
 LIB_DEPENDS=	libcbor.so:devel/libcbor \
 		libcurl.so:ftp/curl \
 		libdrm.so:graphics/libdrm \
-		libefiboot.so:devel/efivar \
 		libelf.so:devel/libelf \
 		libgcab-1.0.so:archivers/gcab \
 		libgnutls.so:security/gnutls \
 		libgpg-error.so:security/libgpg-error \
 		libgpgme.so:security/gpgme \
 		libgusb.so:devel/libgusb \
-		libjcat.so:textproc/libjcat \
 		libjson-glib-1.0.so:devel/json-glib \
 		libprotobuf-c.so:devel/protobuf-c \
 		libxmlb.so:textproc/libxmlb
 RUN_DEPENDS=	blkid:filesystems/libblkid \
+		bsdisks:sysutils/bsdisks \
 		dbus-daemon:devel/dbus \
-		flashrom>0:sysutils/flashrom \
 		${LOCALBASE}/libdata/pkgconfig/fwupd-efi.pc:sysutils/fwupd-efi \
 		valgrind>0:devel/valgrind
 
-USES=		cmake:indirect gettext gnome libarchive meson pkgconfig python readline shebangfix sqlite vala:build
+USES=		cmake:indirect gettext gnome inotify libarchive meson pkgconfig python readline shebangfix sqlite vala:build
 USE_GITHUB=	yes
 USE_GNOME=	glib20 introspection:build
 USE_LDCONFIG=	yes
@@ -55,18 +50,13 @@ TEST_MESON_TRUE=	tests
 SHEBANG_GLOB=	*.py
 
 MESON_ARGS+=	-Dlibmnl=disabled \
+		-Dlogind=disabled \
 		-Dpolkit=disabled \
 		-Dsystemd=disabled \
 		-Dpassim=disabled \
+		-Dhsi=disabled \
 		-Dumockdev_tests=disabled \
 		-Dplugin_modem_manager=disabled \
 		-Dpython=${PYTHON_CMD}
-
-.include <bsd.port.options.mk>
-
-# FreeBSD 14.x needs extra libinotify dependency
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1500000
-LIB_DEPENDS+=	libinotify.so:devel/libinotify
-.endif
 
 .include <bsd.port.mk>

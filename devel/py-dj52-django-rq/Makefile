@@ -1,5 +1,5 @@
 PORTNAME=	django-rq
-PORTVERSION=	3.2.2
+PORTVERSION=	4.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -11,6 +11,9 @@ WWW=		https://github.com/rq/django-rq
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+DEPRECATED=	Obsolete, please use devel/py-django-rq instead
+EXPIRATION_DATE=2026-06-30
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>=0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django52>=4.2:www/py-django52@${PY_FLAVOR} \
@@ -24,9 +27,9 @@ NO_ARCH=	yes
 
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}*django-rq
 
-OPTIONS_DEFINE=	SENTRY
-SENTRY_DESC=	Sentry support
+OPTIONS_DEFINE=	PROMETHEUS
+PROMETHEUS_DESC=	Prometheus support
 
-SENTRY_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sentry-sdk>=1.0.0:devel/py-sentry-sdk@${PY_FLAVOR}
+PROMETHEUS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}prometheus-client>=0.4.0:net-mgmt/py-prometheus-client@${PY_FLAVOR}
 
 .include <bsd.port.mk>

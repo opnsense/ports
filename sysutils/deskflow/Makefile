@@ -1,6 +1,6 @@
 PORTNAME=	deskflow
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.25.0
+DISTVERSION=	1.26.0
 CATEGORIES=	sysutils
 
 PATCH_SITES=	https://github.com/deskflow/deskflow/commit/
@@ -11,8 +11,6 @@ WWW=		https://deskflow.org/
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_FreeBSD_13=	requires OpenSSL 3.0
 
 BUILD_DEPENDS=	googletest>0:devel/googletest \
 		help2man:misc/help2man

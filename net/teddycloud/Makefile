@@ -1,6 +1,6 @@
 PORTNAME=	teddycloud
 DISTVERSIONPREFIX=	tc_v
-DISTVERSION=	0.6.7
+DISTVERSION=	0.6.8
 CATEGORIES=	net
 # Get the latest commit hashes here: https://github.com/toniebox-reverse-engineering/tonies-json/commits/release/
 # NOTE: remove the existing tonies.json and tonieboxes.json from DISTDIR before you do a `make makesum`
@@ -20,7 +20,6 @@ NOT_FOR_ARCHS_REASON=	32bit targets do not build due to type issues. Upstream li
 
 BUILD_DEPENDS=	curl:ftp/curl \
 		protoc-c:devel/protobuf-c
-
 LIB_DEPENDS=	libcjson.so:devel/libcjson \
 		libogg.so:audio/libogg \
 		libopus.so:audio/opus
@@ -43,22 +42,26 @@ GH_TAGNAME=	tcw_v${DISTVERSION}:teddycloud_web \
 		v2.4.4:cyclone_common,cyclone_crypto,cyclone_ssl,cyclone_tcp
 
 USE_RC_SUBR=	teddycloudd
-MAKE_ENV+=	CONFIG_RUNTIME_BASE_PATH=${PREFIX}/etc/teddycloud \
-		RUNTIME_BASE_PATH=${PREFIX}/share/teddycloud \
+MAKE_ENV+=	CONFIG_RUNTIME_BASE_PATH=${ETCDIR}\
+		RUNTIME_BASE_PATH=${DATADIR} \
 		NO_SANITIZERS=1 \
 		GIT_DIRTY=0 \
-		GIT_BUILD_TIME="2026-01-11 11:47:28 +0000" \
-		GIT_SHORT_SHA=5b59a82 \
-		GIT_SHA=5b59a82ae6c2fd8d8501ea0fe1da2e775fb8eff0 \
+		GIT_BUILD_TIME="2026-03-31 06:31:59 +0000" \
+		GIT_SHORT_SHA=312d500 \
+		GIT_SHA=312d500402d0a386441b11bb620141cdae2006d6 \
 		GIT_TAG=tc_v${DISTVERSION} \
 		WEB_GIT_DIRTY=0 \
-		WEB_GIT_BUILD_TIME="2026-01-11 12:46:00 +0100" \
-		WEB_GIT_SHORT_SHA=fa6babd \
-		WEB_GIT_SHA=fa6babd8487afba90e391f23714d8435574562a5 \
+		WEB_GIT_BUILD_TIME="2026-03-30 10:17:35 +0200" \
+		WEB_GIT_SHORT_SHA=50d2c4e \
+		WEB_GIT_SHA=50d2c4e768a4d8c0686c45db63abb156a3a25a5f \
 		WEB_GIT_TAG=tcw_v${DISTVERSION}
 # This did reliably fail due to some unknown deps when using parallel build
 MAKE_JOBS_UNSAFE=	yes
 ALL_TARGET=	preinstall
+
+CFLAGS+=	-I${LOCALBASE}/include/cjson
+
+SUB_FILES=	pkg-message
 
 pre-install:
 	@${CP} ${DISTFILES:M*\:toniesjson:C/\:.*//:S,^,${_DISTDIR}/,} ${WRKSRC}/install/pre/config/

@@ -1,6 +1,5 @@
 PORTNAME=	news
-PORTVERSION=	27.2.0
-PORTREVISION=	4
+PORTVERSION=	28.6.0
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 DISTNAME=	${PORTNAME}
@@ -12,10 +11,12 @@ WWW=		https://apps.nextcloud.com/apps/news
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-NEXTCLOUD_RUN_DEPENDS=	31
+NEXTCLOUD_RUN_DEPENDS=	32
 
-USES=		nextcloud php:flavors
+USES=		cpe nextcloud php:flavors
 
 GH_ACCOUNT=	nextcloud
+
+CPE_VENDOR=	nextcloud
 
 .include <bsd.port.mk>

@@ -25,6 +25,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libinotify.so:devel/libinotify \
 		liblz4.so:archivers/liblz4 \
 		libmbedtls.so:security/mbedtls3 \
+		libssh2.so:security/libssh2 \
 		libzstd.so:archivers/zstd
 
 USES=		cmake desktop-file-utils gl gnome pkgconfig python xorg

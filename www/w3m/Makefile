@@ -1,6 +1,7 @@
 PORTNAME=	w3m
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.5.6
+PORTREVISION?=	1
 CATEGORIES+=	www
 MASTER_SITES=	https://git.sr.ht/~rkta/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
@@ -12,8 +13,6 @@ LICENSE=	w3m
 LICENSE_NAME=	w3m
 LICENSE_FILE=	${WRKSRC}/doc/README
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-
-BROKEN_mips64=		fails to build: qemu: uncaught target signal 11 (Segmentation fault) - core dumped
 
 LIB_DEPENDS=	libgc.so:devel/boehm-gc
 

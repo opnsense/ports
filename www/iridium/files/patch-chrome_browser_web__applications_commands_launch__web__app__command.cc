@@ -1,6 +1,6 @@
---- chrome/browser/web_applications/commands/launch_web_app_command.cc.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/web_applications/commands/launch_web_app_command.cc.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/web_applications/commands/launch_web_app_command.cc
-@@ -101,7 +101,7 @@ void LaunchWebAppCommand::StartWithLock(std::unique_pt
+@@ -111,7 +111,7 @@ void LaunchWebAppCommand::StartWithLock(std::unique_pt
      // OsIntegrationTestOverride can use the xdg install command to detect
      // install.
      SynchronizeOsOptions options;

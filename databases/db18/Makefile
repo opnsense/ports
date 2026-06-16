@@ -1,5 +1,6 @@
 PORTNAME=	db18
 PORTVERSION=	18.1.40
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	https://github.com/yasuhirokimura/${PORTNAME}/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX?=
@@ -19,9 +20,9 @@ LICENSE_FILE_UPL10=	${WRKSRC}/../EXAMPLES-LICENSE
 LICENSE_FILE=	${WRKSRC}/../LICENSE
 LICENSE_PERMS_UPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-BROKEN_mips64=	no usable MUTEX implementation, assy works only for MIPS32, POSIX mutexes are unshared
-
-USES=		gmake libtool ssl
+USES=		cpe gmake libtool ssl
+CPE_PRODUCT=	berkeley_db
+CPE_VENDOR=	oracle
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=		yes

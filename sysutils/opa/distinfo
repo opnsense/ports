@@ -1,5 +1,5 @@
-TIMESTAMP = 1762415779
-SHA256 (go/sysutils_opa/opa-v1.10.1/v1.10.1.mod) = 1781f97dac5cd5e9315565c8f6ae1778af62397e710d0686c8ff94feca6358e8
-SIZE (go/sysutils_opa/opa-v1.10.1/v1.10.1.mod) = 6001
-SHA256 (go/sysutils_opa/opa-v1.10.1/v1.10.1.zip) = 3cc27036c293cf33f7f692d9d6df51cdb5dabeb4bccb0dc8309939fc28398469
-SIZE (go/sysutils_opa/opa-v1.10.1/v1.10.1.zip) = 22932870
+TIMESTAMP = 1780978607
+SHA256 (go/sysutils_opa/opa-v1.17.1/v1.17.1.mod) = cddbbf59cb3cf608fd06a06bd8d89550909e2b06c58eac3bad6e7960b609ad5e
+SIZE (go/sysutils_opa/opa-v1.17.1/v1.17.1.mod) = 5993
+SHA256 (go/sysutils_opa/opa-v1.17.1/v1.17.1.zip) = 6a20b70d7453866b7b3d8048c7dcde064a6e5342d446d581e1513b0da64060e4
+SIZE (go/sysutils_opa/opa-v1.17.1/v1.17.1.zip) = 24490528

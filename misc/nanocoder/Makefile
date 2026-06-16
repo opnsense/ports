@@ -1,6 +1,8 @@
 PORTNAME=	nanocoder
-DISTVERSION=	1.17.3
+DISTVERSION=	1.27.0
 CATEGORIES=	misc # machine-learning
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Local-first coding agent running in your terminal
@@ -9,7 +11,8 @@ WWW=		https://github.com/Nano-Collective/nanocoder
 LICENSE=	MIT
 
 FETCH_DEPENDS=	npm:www/npm \
-		jq:textproc/jq
+		jq:textproc/jq \
+		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 BUILD_DEPENDS=	npm:www/npm
 
 USES=		nodejs:run
@@ -18,21 +21,17 @@ PACKAGE_NAME=	@nanocollective/nanocoder
 
 FETCH_SCRIPT=	${PORTSDIR}/Tools/scripts/npmjs-fetch-with-dependencies.sh
 
-NO_ARCH=	yes
+NO_BUILD=	yes
 
 do-fetch:
 	@if ! [ -f ${DISTDIR}/${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} ]; then \
 		${MKDIR} ${DISTDIR} && \
 		${ECHO} "====> Fetching ${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}" && \
-		${SETENV} TMPDIR=${WRKDIR} ${FETCH_SCRIPT} \
+		${SETENV} TMPDIR=${WRKDIR} LOCALBASE=${LOCALBASE} ${FETCH_SCRIPT} \
 			${PACKAGE_NAME} ${DISTVERSION} \
 			${FILESDIR}/package-lock.json \
 			${DISTDIR}/${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}; \
 	fi
-
-do-build:
-	@cd ${WRKSRC} && \
-		npm rebuild --nodedir=${LOCALBASE}
 
 do-install:
 	# install files

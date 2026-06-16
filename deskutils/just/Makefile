@@ -1,6 +1,5 @@
 PORTNAME=	just
-DISTVERSION=	1.46.0
-PORTREVISION=	1
+DISTVERSION=	1.52.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,140 +18,162 @@ GH_ACCOUNT=	casey
 
 CARGO_CRATES=	aho-corasick-1.1.4 \
 		android_system_properties-0.1.5 \
-		ansi_term-0.12.1 \
-		anstream-0.6.21 \
-		anstyle-1.0.13 \
-		anstyle-parse-0.2.7 \
+		anstream-1.0.0 \
+		anstyle-1.0.14 \
+		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
+		anyhow-1.0.102 \
 		arrayref-0.3.9 \
 		arrayvec-0.7.6 \
-		autocfg-1.5.0 \
-		bitflags-2.10.0 \
-		blake3-1.8.2 \
+		autocfg-1.5.1 \
+		bitflags-2.13.0 \
+		blake3-1.8.5 \
 		block-buffer-0.10.4 \
 		block2-0.6.2 \
 		bstr-1.12.1 \
-		bumpalo-3.19.1 \
+		bumpalo-3.20.3 \
+		bytecount-0.6.9 \
 		camino-1.2.2 \
-		cc-1.2.51 \
+		cc-1.2.63 \
 		cfg-if-1.0.4 \
 		cfg_aliases-0.2.1 \
-		chrono-0.4.42 \
-		clap-4.5.53 \
-		clap_builder-4.5.53 \
-		clap_complete-4.5.48 \
-		clap_derive-4.5.49 \
-		clap_lex-0.7.6 \
-		clap_mangen-0.2.31 \
-		colorchoice-1.0.4 \
-		constant_time_eq-0.3.1 \
+		chacha20-0.10.0 \
+		chrono-0.4.45 \
+		clap-4.6.1 \
+		clap_builder-4.6.0 \
+		clap_complete-4.6.5 \
+		clap_derive-4.6.1 \
+		clap_lex-1.1.0 \
+		clap_mangen-0.3.0 \
+		colorchoice-1.0.5 \
+		constant_time_eq-0.4.2 \
 		core-foundation-sys-0.8.7 \
 		cpufeatures-0.2.17 \
+		cpufeatures-0.3.0 \
 		crossbeam-deque-0.8.6 \
 		crossbeam-epoch-0.9.18 \
 		crossbeam-utils-0.8.21 \
 		crypto-common-0.1.7 \
-		ctrlc-3.5.1 \
-		derive-where-1.6.0 \
+		ctrlc-3.5.2 \
 		diff-0.1.13 \
 		digest-0.10.7 \
 		dirs-6.0.0 \
 		dirs-sys-0.5.0 \
-		dispatch2-0.3.0 \
+		dispatch2-0.3.1 \
 		dotenvy-0.15.7 \
-		edit-distance-2.2.2 \
-		env_home-0.1.0 \
+		equivalent-1.0.2 \
 		errno-0.3.14 \
-		executable-path-1.0.0 \
-		fastrand-2.3.0 \
-		find-msvc-tools-0.1.6 \
+		fastrand-2.4.1 \
+		find-msvc-tools-0.1.9 \
+		fnv-1.0.7 \
+		foldhash-0.1.5 \
+		futures-core-0.3.32 \
+		futures-task-0.3.32 \
+		futures-util-0.3.32 \
 		generic-array-0.14.7 \
 		getopts-0.2.24 \
-		getrandom-0.2.16 \
-		getrandom-0.3.4 \
+		getrandom-0.2.17 \
+		getrandom-0.4.2 \
+		hashbrown-0.15.5 \
+		hashbrown-0.17.1 \
 		heck-0.5.0 \
 		hermit-abi-0.5.2 \
-		iana-time-zone-0.1.64 \
+		iana-time-zone-0.1.65 \
 		iana-time-zone-haiku-0.1.2 \
+		id-arena-2.3.0 \
+		indexmap-2.14.0 \
 		is_executable-1.0.5 \
 		is_terminal_polyfill-1.70.2 \
-		itoa-1.0.17 \
-		js-sys-0.3.83 \
+		itoa-1.0.18 \
+		js-sys-0.3.100 \
+		leb128fmt-0.1.0 \
 		lexiclean-0.0.1 \
-		libc-0.2.178 \
-		libredox-0.1.12 \
-		linux-raw-sys-0.11.0 \
-		log-0.4.29 \
-		memchr-2.7.6 \
-		memmap2-0.9.9 \
-		nix-0.30.1 \
+		libc-0.2.186 \
+		libredox-0.1.17 \
+		linux-raw-sys-0.12.1 \
+		log-0.4.32 \
+		memchr-2.8.1 \
+		memmap2-0.9.10 \
+		nix-0.31.3 \
+		nu-ansi-term-0.50.3 \
 		num-traits-0.2.19 \
 		num_cpus-1.17.0 \
-		objc2-0.6.3 \
+		objc2-0.6.4 \
 		objc2-encode-4.1.0 \
-		once_cell-1.21.3 \
+		once_cell-1.21.4 \
 		once_cell_polyfill-1.70.2 \
 		option-ext-0.2.0 \
+		papergrid-0.14.0 \
 		percent-encoding-2.3.2 \
-		ppv-lite86-0.2.21 \
+		pin-project-lite-0.2.17 \
 		pretty_assertions-1.4.1 \
-		proc-macro2-1.0.104 \
+		prettyplease-0.2.37 \
+		proc-macro-error-attr2-2.0.0 \
+		proc-macro-error2-2.0.1 \
+		proc-macro2-1.0.106 \
 		pulldown-cmark-0.9.6 \
 		pulldown-cmark-to-cmark-10.0.4 \
-		quote-1.0.42 \
-		r-efi-5.3.0 \
-		rand-0.9.2 \
-		rand_chacha-0.9.0 \
-		rand_core-0.9.3 \
+		quote-1.0.45 \
+		r-efi-6.0.0 \
+		rand-0.10.1 \
+		rand_core-0.10.1 \
 		rayon-core-1.13.0 \
 		redox_users-0.5.2 \
-		regex-1.12.2 \
-		regex-automata-0.4.13 \
-		regex-syntax-0.8.8 \
-		roff-0.2.2 \
-		rustix-1.1.3 \
+		regex-1.12.3 \
+		regex-automata-0.4.14 \
+		regex-syntax-0.8.10 \
+		roff-1.1.1 \
+		rustix-1.1.4 \
 		rustversion-1.0.22 \
-		semver-1.0.27 \
+		ryu-1.0.23 \
+		semver-1.0.28 \
 		serde-1.0.228 \
 		serde_core-1.0.228 \
 		serde_derive-1.0.228 \
-		serde_json-1.0.148 \
+		serde_json-1.0.150 \
+		serde_yaml-0.9.34+deprecated \
 		sha2-0.10.9 \
-		shellexpand-3.1.1 \
+		shellexpand-3.1.2 \
 		shlex-1.3.0 \
-		similar-2.7.0 \
-		snafu-0.8.9 \
-		snafu-derive-0.8.9 \
+		shlex-2.0.1 \
+		similar-3.1.1 \
+		slab-0.4.12 \
+		snafu-0.9.1 \
+		snafu-derive-0.9.1 \
 		strsim-0.11.1 \
-		strum-0.27.2 \
-		strum_macros-0.27.2 \
-		syn-2.0.112 \
-		target-2.1.0 \
-		tempfile-3.24.0 \
+		strum-0.28.0 \
+		strum_macros-0.28.0 \
+		syn-2.0.117 \
+		tabled-0.18.0 \
+		tabled_derive-0.10.0 \
+		tempfile-3.27.0 \
 		temptree-0.2.0 \
-		terminal_size-0.4.3 \
-		thiserror-2.0.17 \
-		thiserror-impl-2.0.17 \
+		terminal_size-0.4.4 \
+		thiserror-2.0.18 \
+		thiserror-impl-2.0.18 \
 		typed-arena-2.0.2 \
-		typenum-1.19.0 \
-		unicase-2.8.1 \
-		unicode-ident-1.0.22 \
-		unicode-segmentation-1.12.0 \
+		typenum-1.20.1 \
+		unicase-2.9.0 \
+		unicode-ident-1.0.24 \
+		unicode-segmentation-1.13.3 \
 		unicode-width-0.2.2 \
+		unicode-xid-0.2.6 \
+		unsafe-libyaml-0.2.11 \
 		utf8parse-0.2.2 \
-		uuid-1.19.0 \
+		uuid-1.23.2 \
 		version_check-0.9.5 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
 		wasip2-1.0.1+wasi-0.2.4 \
-		wasm-bindgen-0.2.106 \
-		wasm-bindgen-macro-0.2.106 \
-		wasm-bindgen-macro-support-0.2.106 \
-		wasm-bindgen-shared-0.2.106 \
-		which-8.0.0 \
-		winapi-0.3.9 \
-		winapi-i686-pc-windows-gnu-0.4.0 \
-		winapi-x86_64-pc-windows-gnu-0.4.0 \
+		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
+		wasm-bindgen-0.2.123 \
+		wasm-bindgen-macro-0.2.123 \
+		wasm-bindgen-macro-support-0.2.123 \
+		wasm-bindgen-shared-0.2.123 \
+		wasm-encoder-0.244.0 \
+		wasm-metadata-0.244.0 \
+		wasmparser-0.244.0 \
+		which-8.0.3 \
 		windows-core-0.62.2 \
 		windows-implement-0.60.2 \
 		windows-interface-0.59.3 \
@@ -170,12 +191,15 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		windows_x86_64_gnu-0.53.1 \
 		windows_x86_64_gnullvm-0.53.1 \
 		windows_x86_64_msvc-0.53.1 \
-		winsafe-0.0.19 \
 		wit-bindgen-0.46.0 \
+		wit-bindgen-0.51.0 \
+		wit-bindgen-core-0.51.0 \
+		wit-bindgen-rust-0.51.0 \
+		wit-bindgen-rust-macro-0.51.0 \
+		wit-component-0.244.0 \
+		wit-parser-0.244.0 \
 		yansi-1.0.1 \
-		zerocopy-0.8.31 \
-		zerocopy-derive-0.8.31 \
-		zmij-1.0.7
+		zmij-1.0.21
 PLIST_FILES=	bin/${PORTNAME}
 
 OPTIONS_DEFINE=		COMPLETIONS

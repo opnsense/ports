@@ -287,7 +287,7 @@ bin/teddycloud
 %%DATADIR%%/data/www/web/assets/ZA-DsWnrAmj.js
 %%DATADIR%%/data/www/web/assets/ZM-CdkX6WZ3.js
 %%DATADIR%%/data/www/web/assets/ZW-B1PpRcC0.js
-%%DATADIR%%/data/www/web/assets/browser-ponyfill-touFzT30.js
+%%DATADIR%%/data/www/web/assets/browser-ponyfill-BheGAKqy.js
 %%DATADIR%%/data/www/web/assets/cc3200-B-jSkbsy.jpg
 %%DATADIR%%/data/www/web/assets/cc3200_debugPort-CUfuhKbo.jpg
 %%DATADIR%%/data/www/web/assets/cc3200_installCfwFlashUpload-D3jB7q0q.png
@@ -313,8 +313,8 @@ bin/teddycloud
 %%DATADIR%%/data/www/web/assets/esp32s2-NL0-Ytlx.js
 %%DATADIR%%/data/www/web/assets/esp32s3-wh7ZIwIl.js
 %%DATADIR%%/data/www/web/assets/esp8266-DjSL4SI8.js
-%%DATADIR%%/data/www/web/assets/index-ChpkR0Rj.js
-%%DATADIR%%/data/www/web/assets/index-zRaEDlqF.css
+%%DATADIR%%/data/www/web/assets/index-DkJUiIwA.css
+%%DATADIR%%/data/www/web/assets/index-DmtT6wdd.js
 %%DATADIR%%/data/www/web/assets/logo-aw46LCqE.png
 %%DATADIR%%/data/www/web/assets/openTB_step1_1-4vwQGflo.png
 %%DATADIR%%/data/www/web/assets/openTB_step1_2-DIZc5DI4.png
@@ -334,8 +334,10 @@ bin/teddycloud
 %%DATADIR%%/data/www/web/assets/stub_flasher_32s2-DLJQYVPj.js
 %%DATADIR%%/data/www/web/assets/stub_flasher_32s3-B0-qH3ON.js
 %%DATADIR%%/data/www/web/assets/stub_flasher_8266-Bxnk_IeY.js
-%%DATADIR%%/data/www/web/assets/tb-esp32-uart-BDPWj6EB.png
-%%DATADIR%%/data/www/web/assets/tb-esp32-uart-clamp-D_86EMpu.png
+%%DATADIR%%/data/www/web/assets/tb-esp32-uart-CHoWstoN.png
+%%DATADIR%%/data/www/web/assets/tb-esp32-uart-clamp-BFu61mq3.png
+%%DATADIR%%/data/www/web/assets/tb2_pcb-Bq8sz-dX.png
+%%DATADIR%%/data/www/web/assets/tb2_pcb_preview-B7uVqVQW.png
 %%DATADIR%%/data/www/web/assets/uart_3v3-5V_jumper_black-BW2kS97B.jpg
 %%DATADIR%%/data/www/web/assets/uart_3v3-5V_jumper_switch-Cl7yHFlu.jpg
 %%DATADIR%%/data/www/web/assets/uart_3v3-5V_jumper_yellow-d4JFD7jo.jpg

@@ -1,14 +1,14 @@
---- src/app.rs.orig	2025-12-22 19:47:14 UTC
+--- src/app.rs.orig	2026-03-27 17:06:32 UTC
 +++ src/app.rs
-@@ -91,6 +91,7 @@ pub enum Message {
-     MediaPlayer(modules::media_player::Message),
-     OutputEvent((OutputEvent, WlOutput)),
-     CloseAllMenus,
+@@ -93,6 +93,7 @@ pub enum Message {
+     ResumeFromSleep,
+     None,
+     ToggleVisibility,
 +    DelayedSync,
  }
  
  impl App {
-@@ -378,21 +379,24 @@ impl App {
+@@ -373,14 +374,11 @@ impl App {
                  }
              },
              Message::OutputEvent((event, wl_output)) => match event {
@@ -27,11 +27,13 @@
                          self.theme.bar_style,
                          &self.general_config.outputs,
                          self.theme.bar_position,
+@@ -388,7 +386,14 @@ impl App {
                          name,
                          wl_output,
                          self.theme.scale_factor,
 -                    )
 +                    );
++
 +                    let delay_task = Task::perform(
 +                        async { tokio::time::sleep(std::time::Duration::from_millis(1000)).await },
 +                        move |_| Message::DelayedSync,
@@ -41,10 +43,10 @@
                  }
                  iced::event::wayland::OutputEvent::Removed => {
                      info!("Output destroyed");
-@@ -416,6 +420,15 @@ impl App {
-                 } else {
-                     Task::none()
-                 }
+@@ -440,6 +445,16 @@ impl App {
+                         iced::platform_specific::shell::commands::layer_surface::set_exclusive_zone(info.id, height as i32)
+                     })
+                 }).collect::<Vec<_>>())
 +            }
 +            Message::DelayedSync => {
 +                info!("Delayed sync executed");
@@ -52,6 +54,7 @@
 +                    self.theme.bar_style,
 +                    &self.general_config.outputs,
 +                    self.theme.bar_position,
++                    self.general_config.layer,
 +                    self.theme.scale_factor,
 +                )
              }

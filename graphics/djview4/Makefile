@@ -3,7 +3,7 @@ DISTVERSION=	4.12.3
 CATEGORIES=	graphics
 MASTER_SITES=	SF/djvu/DjView/${DISTVERSION:R}
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Standalone Djvu viewer and plugin based on Qt toolkit
 WWW=		https://djvu.sourceforge.net/djview4.html
 

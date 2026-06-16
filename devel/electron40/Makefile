@@ -1,15 +1,19 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
+PORTREVISION=	1
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
-MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/:chromium \
+MASTER_SITES=	https://github.com/tagattie/FreeBSD-Electron/releases/download/v40.8.0/:chromium \
 		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio
 PKGNAMESUFFIX=	${ELECTRON_VER_MAJOR}
-DISTFILES=	chromium-${CHROMIUM_VER}-lite${EXTRACT_SUFX}:chromium \
+DISTFILES=	chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.0:chromium \
+		chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.1:chromium \
+		chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.2:chromium \
 		pulseaudio-${PULSEV}.tar.gz:pulseaudio
 DIST_SUBDIR=	${PORTNAME}
+EXTRACT_ONLY=	${DISTFILES:C/:[^:]+$//:C/chromium-${CHROMIUM_VER}${EXTRACT_SUFX}\.[0-9]//}
 
 MAINTAINER=	tagattie@FreeBSD.org
 COMMENT=	Build cross-platform desktop apps with JavaScript, HTML, and CSS
@@ -26,7 +30,8 @@ FETCH_DEPENDS=	git:devel/git \
 		npm${NODEJS_SUFFIX}>0:www/npm${NODEJS_SUFFIX}
 PATCH_DEPENDS=	git:devel/git \
 		jq:textproc/jq
-BUILD_DEPENDS=	gperf:devel/gperf \
+BUILD_DEPENDS=	esbuild:devel/esbuild \
+		gperf:devel/gperf \
 		bindgen:devel/rust-bindgen-cli \
 		yasm:devel/yasm \
 		${LOCALBASE}/libdata/pkgconfig/dri.pc:graphics/mesa-dri \
@@ -77,7 +82,8 @@ GH_TUPLE=	nodejs:node:v${NODE_VER}:node \
 		Squirrel:Squirrel.Mac:${SQUIRREL_MAC_VER}:squirrel_mac \
 		ReactiveCocoa:ReactiveObjC:${REACTIVEOBJC_VER}:reactiveobjc \
 		Mantle:Mantle:${MANTLE_VER}:mantle \
-		EngFlow:reclient-configs:${ENGFLOW_RECLIENT_CONFIGS_VER}:reclient_configs
+		EngFlow:reclient-configs:${ENGFLOW_RECLIENT_CONFIGS_VER}:reclient_configs \
+		evanw:esbuild:v${ESBUILD_VER}:esbuild
 USE_GL=		gbm gl glesv2
 USE_GNOME=	atk cairo gdkpixbuf gtk30 libxml2 libxslt pango
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xrandr \
@@ -170,7 +176,6 @@ CODECS_VARS_OFF=	GN_ARGS+=proprietary_codecs=false \
 CUPS_LIB_DEPENDS=	libcups.so:print/cups
 CUPS_VARS=		GN_ARGS+=use_cups=true
 CUPS_VARS_OFF=		GN_ARGS+=use_cups=false
-DEBUG_BUILD_DEPENDS=	esbuild:devel/esbuild
 DEBUG_MAKE_ENV=		ELECTRON_OUT_DIR=Debug
 DEBUG_MAKE_ENV_OFF=	ELECTRON_OUT_DIR=Release
 DEBUG_VARS=		BUILDTYPE=Debug \
@@ -211,9 +216,9 @@ SNDIO_VARS=		GN_ARGS+=use_sndio=true
 SNDIO_VARS_OFF=		GN_ARGS+=use_sndio=false
 
 # See ${WRKSRC}/electron/DEPS for CHROMIUM_VER
-CHROMIUM_VER=			144.0.7559.111
+CHROMIUM_VER=			144.0.7559.236
 # See ${WRKSRC}/electron/DEPS for NODE_VER
-NODE_VER=			24.11.1
+NODE_VER=			24.15.0
 # See ${WRKSRC}/electron/DEPS for NAN_VER
 NAN_VER=			675cefebca42410733da8a454c8d9391fcebfbc2
 # See ${WRKSRC}/electron/DEPS for SQUIRREL_MAC_VER
@@ -224,6 +229,8 @@ REACTIVEOBJC_VER=		74ab5baccc6f7202c8ac69a8d1e152c29dc1ea76
 MANTLE_VER=			78d3966b3c331292ea29ec38661b25df0a245948
 # See ${WRKSRC}/electron/DEPS for ENGFLOW_RECLIENT_CONFIGS_VER
 ENGFLOW_RECLIENT_CONFIGS_VER=	955335c30a752e9ef7bff375baab5e0819b6c00d
+# Keep in sync with devel/esbuild
+ESBUILD_VER=			0.28.0
 
 .include "Makefile.version"
 .include <bsd.port.pre.mk>
@@ -291,6 +298,15 @@ pre-everything::
 	@${ECHO_MSG} "and around ${WANTSPACE} of free disk space."
 	@${ECHO_MSG}
 
+pre-extract:
+# Chromium source tarball is splitted into multiple fragments. Concatenate them
+# into a single one and manually extract it into WRKDIR.
+	@${CAT} ${DISTDIR}/${DIST_SUBDIR}/chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.? > \
+		${WRKSRC:H}/chromium-${CHROMIUM_VER}${EXTRACT_SUFX}
+	@cd ${WRKSRC:H} && \
+	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
+		chromium-${CHROMIUM_VER}${EXTRACT_SUFX} ${EXTRACT_AFTER_ARGS}
+
 post-extract:
 # Move extracted sources to appropriate locations
 	${MV} ${WRKSRC:H}/chromium-${CHROMIUM_VER} ${WRKSRC}
@@ -307,8 +323,12 @@ post-extract:
 		${WRKSRC}/third_party/squirrel.mac/vendor/Mantle
 	${MV} ${WRKSRC:H}/${GH_PROJECT_reclient_configs}-${ENGFLOW_RECLIENT_CONFIGS_VER} \
 		${WRKSRC}/third_party/engflow-reclient-configs
+	${MV} ${WRKSRC:H}/${GH_PROJECT_esbuild}-${ESBUILD_VER} \
+		${WRKSRC}/esbuild
 
 pre-patch:
+	${REINPLACE_CMD} -e 's|src/third_party/angle/src|src/third_party/angle|' \
+		${WRKSRC}/electron/patches/config.json
 	${SH} ${FILESDIR}/apply-electron-patches.sh ${WRKSRC}
 	# ${FIND} ${WRKSRC} -type f -name '*.orig' -print -delete
 	# ${FIND} ${WRKSRC} -type f -name '*~' -print -delete
@@ -339,12 +359,12 @@ pre-configure:
 		${WRKSRC}/build/rust/rust_bindgen_generator.gni
 
 do-configure:
-	@( \
-		echo "#ifndef GPU_WEBGPU_DAWN_COMMIT_HASH_H_" ;\
-		echo "#define GPU_WEBGPU_DAWN_COMMIT_HASH_H_" ;\
-		echo "#define DAWN_COMMIT_HASH \"$$(cat ${WRKSRC}/gpu/webgpu/DAWN_VERSION)\"" ;\
-		echo "#endif  // GPU_WEBGPU_DAWN_COMMIT_HASH_H_" \
-	) > ${WRKSRC}/gpu/webgpu/dawn_commit_hash.h
+	cd ${WRKSRC}/esbuild && \
+		${LOCALBASE}/bin/node scripts/esbuild.js \
+			${LOCALBASE}/bin/esbuild --neutral && \
+		${RM} -r ${WRKSRC}/third_party/devtools-frontend/src/node_modules/esbuild && \
+		${LN} -sf ${WRKSRC}/esbuild/npm/esbuild \
+			${WRKSRC}/third_party/devtools-frontend/src/node_modules/esbuild \
 	# GN generator bootstrapping and generating ninja files
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} CC=${CC} CXX=${CXX} LD=${CXX} \
 		READELF=${READELF} AR=${AR} NM=${NM} ${PYTHON_CMD} \
@@ -358,6 +378,9 @@ do-configure:
 	# Setup nodejs dependency
 	@${MKDIR} ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin
 	${LN} -sf ${LOCALBASE}/bin/node ${WRKSRC}/third_party/node/freebsd/node-freebsd/bin/node
+
+	# Setup esbuild dependency
+	${LN} -sf ${LOCALBASE}/bin/esbuild ${WRKSRC}/third_party/devtools-frontend/src/third_party/esbuild/esbuild
 
 	# Setup buildtools/freebsd
 	@${MKDIR} ${WRKSRC}/buildtools/freebsd

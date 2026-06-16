@@ -15,11 +15,12 @@
      nq->ipfw_sinlen=sizeof(nq->ipfw_sin);
      memset(&nq->ipfw_sin, 0, nq->ipfw_sinlen);
      nq->ipfw_sin.sin_family = PF_INET;
-@@ -570,6 +578,10 @@ TmEcode IPFWSetVerdict(ThreadVars *tv, IPFWThreadVars 
+@@ -570,6 +578,11 @@ TmEcode IPFWSetVerdict(ThreadVars *tv, IPFWThreadVars 
                      SCReturnInt(TM_ECODE_FAILED);
                  case EHOSTDOWN:
                  case ENETDOWN:
 +#ifdef PF_DIVERT
++                case EACCES:
 +                case EHOSTUNREACH:
 +                case ENETUNREACH:
 +#endif

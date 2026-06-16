@@ -2,7 +2,6 @@
 
     SUBDIR += 2bsd-vi
     SUBDIR += abiword
-    SUBDIR += abiword-docs
     SUBDIR += ad
     SUBDIR += aee
     SUBDIR += aewan
@@ -25,6 +24,7 @@
     SUBDIR += cooledit
     SUBDIR += cpeditor
     SUBDIR += cream
+    SUBDIR += croft
     SUBDIR += cudatext
     SUBDIR += deforaos-editor
     SUBDIR += dhex
@@ -58,15 +58,18 @@
     SUBDIR += gnome-text-editor
     SUBDIR += gobby
     SUBDIR += gomate
+    SUBDIR += gram
     SUBDIR += gummi
     SUBDIR += helix
     SUBDIR += heme
+    SUBDIR += hexapoda
     SUBDIR += hexcurse
     SUBDIR += hexedit
     SUBDIR += hexer
     SUBDIR += hexpert
     SUBDIR += hnb
     SUBDIR += hte
+    SUBDIR += hxavi
     SUBDIR += imhex
     SUBDIR += jed
     SUBDIR += jedit
@@ -207,6 +210,7 @@
     SUBDIR += marginalia.el
     SUBDIR += marker
     SUBDIR += markmywords
+    SUBDIR += marknote
     SUBDIR += mg
     SUBDIR += mickey
     SUBDIR += micro
@@ -296,7 +300,6 @@
     SUBDIR += vscode
     SUBDIR += web-mode
     SUBDIR += with-editor
-    SUBDIR += wordgrinder
     SUBDIR += wxhexeditor
     SUBDIR += xcoral
     SUBDIR += xed

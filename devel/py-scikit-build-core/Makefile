@@ -1,5 +1,5 @@
 PORTNAME=	scikit-build-core
-DISTVERSION=	0.11.6
+DISTVERSION=	0.12.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +20,7 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR}
 RUN_DEPENDS=	${PY_EXCEPTIONGROUP} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=23.2:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pathspec>=0.10.1:devel/py-pathspec@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pathspec>=0.12.0:devel/py-pathspec@${PY_FLAVOR} \
 		${PY_TOMLI}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}build>=0.8:devel/py-build@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cattrs>=22.2.0:devel/py-cattrs@${PY_FLAVOR} \
@@ -46,6 +46,6 @@ TEST_ENV=	${MAKE_ENV} \
 
 NO_ARCH=	yes
 
-# tests as of 0.11.6: 2 failed, 460 passed, 5 skipped, 4 xfailed, 1 warning in 1152.80s (0:19:12), see https://github.com/scikit-build/scikit-build-core/issues/1159
+# tests as of 0.12.2: 7 failed, 548 passed, 18 skipped, 10 xfailed, 16 errors in 198.39s (0:03:18), see https://github.com/scikit-build/scikit-build-core/issues/1298
 
 .include <bsd.port.mk>

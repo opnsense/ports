@@ -1,5 +1,6 @@
 PORTNAME=	octave-forge-mboct-fem-pkg
-DISTVERSION=	0.2.2
+DISTVERSION=	0.2.3
+PORTREVISION=	2
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org
@@ -9,7 +10,7 @@ WWW=		https://packages.octave.org/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
-USES=		octave autoreconf compiler:gcc-c++11-lib
+USES=		octave autoreconf
 
 LIB_DEPENDS+=	libgtest.so:devel/googletest \
 		libmetis.so:math/metis \

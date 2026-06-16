@@ -38,7 +38,6 @@ EMACS_DESC=	Emacs plugin
 VIM_DESC=	Vim plugin
 
 EMACS_USES=	emacs
-EMACS_NO_DEPENDS=	yes
 
 post-extract:
 	${RM} -r ${WRKSRC}/bundles/stdcompat/stdcompat-current

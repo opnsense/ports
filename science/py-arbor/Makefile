@@ -1,6 +1,6 @@
 PORTNAME=	arbor
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.11.0
+DISTVERSION=	0.12.1
 CATEGORIES=	science
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,11 +12,10 @@ WWW=		https://arbor-sim.org/ \
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/../LICENSE
 
-BUILD_DEPENDS=	gmake:devel/gmake \
-		pybind11>0:devel/pybind11 \
+BUILD_DEPENDS=	pybind11>0:devel/pybind11 \
 		nlohmann-json>0:devel/nlohmann-json
 LIB_DEPENDS=	libarbor.so:science/arbor
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 
 USES=		cmake compiler:c++17-lang localbase:ldflags python
 USE_PYTHON=	flavors unittest # tests fail to run, see https://github.com/arbor-sim/arbor/issues/2395
@@ -35,8 +34,6 @@ CXXFLAGS+=	-D_LIBCPP_HARDENING_MODE=_LIBCPP_HARDENING_MODE_NONE # prevent harden
 TEST_WRKSRC=	${WRKSRC}/test/unit_distributed
 TEST_ENV=	${MAKE_ENV} \
 		PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
-
-BINARY_ALIAS=	make=${GMAKE}
 
 post-patch:
 	@${ECHO} ${DISTVERSION} > ${WRKSRC}/VERSION

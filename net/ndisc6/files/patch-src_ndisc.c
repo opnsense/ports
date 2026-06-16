@@ -1,12 +1,21 @@
 --- src/ndisc.c.orig	2023-11-10 15:28:07 UTC
 +++ src/ndisc.c
-@@ -451,7 +451,7 @@ parsednssl (const uint8_t *opt)
+@@ -451,7 +451,7 @@ static int
  parsednssl (const uint8_t *opt)
  {
  	const uint8_t *base;
 -	uint8_t optlen = opt[1];
 +	uint16_t optlen = opt[1];
  	if (optlen < 2)
+ 		return -1;
+ 
+@@ -511,7 +511,7 @@ parsepref64 (const uint8_t *opt)
+ 		return -1;
+ 
+ 	memcpy(&pref64, opt + 4, 12);
+-	pref64.s6_addr32[3] = 0;
++	memset(&pref64.s6_addr[12], 0, 4);
+ 	if (inet_ntop (AF_INET6, &pref64, str, sizeof (str)) == NULL)
  		return -1;
  
 @@ -559,7 +559,7 @@ parseadv (const uint8_t *buf, size_t len, const struct

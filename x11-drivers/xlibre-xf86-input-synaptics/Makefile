@@ -1,8 +1,9 @@
 PORTNAME=	xlibre-xf86-input-synaptics
 PORTVERSION=	25.0.0
+PORTREVISION=	3
 CATEGORIES=	x11-drivers
 
-MAINTAINER=	b-aazbsd@proton.me
+MAINTAINER=	xlibre@FreeBSD.org
 COMMENT=	XLibre synaptics input driver
 WWW=		https://github.com/X11Libre/xf86-input-synaptics/
 
@@ -10,7 +11,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		pathfix xorg xlibre-cat:driver
-USE_XORG=	x11 xtst
+USE_XORG=	x11 xi xtst
 
 OPTIONS_DEFINE=	EVDEV
 OPTIONS_DEFAULT=EVDEV

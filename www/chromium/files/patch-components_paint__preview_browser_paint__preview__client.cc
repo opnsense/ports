@@ -1,4 +1,4 @@
---- components/paint_preview/browser/paint_preview_client.cc.orig	2025-10-30 15:44:36 UTC
+--- components/paint_preview/browser/paint_preview_client.cc.orig	2026-05-07 17:02:56 UTC
 +++ components/paint_preview/browser/paint_preview_client.cc
 @@ -464,8 +464,8 @@ void PaintPreviewClient::CapturePaintPreview(
    metadata->set_version(kPaintPreviewVersion);

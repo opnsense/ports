@@ -1,8 +1,8 @@
---- chrome/browser/policy/policy_value_and_status_aggregator.cc.orig	2025-04-04 08:52:13 UTC
+--- chrome/browser/policy/policy_value_and_status_aggregator.cc.orig	2026-06-04 10:12:25 UTC
 +++ chrome/browser/policy/policy_value_and_status_aggregator.cc
-@@ -49,7 +49,7 @@
+@@ -53,7 +53,7 @@
  #include "chrome/browser/policy/value_provider/extension_policies_value_provider.h"
- #endif  // BUILDFLAG(ENABLE_EXTENSIONS)
+ #endif  // BUILDFLAG(ENABLE_EXTENSIONS_CORE)
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

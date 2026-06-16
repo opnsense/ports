@@ -1,6 +1,6 @@
---- chrome/browser/ui/webui/signin/profile_picker_handler.cc.orig	2026-01-14 08:33:23 UTC
+--- chrome/browser/ui/webui/signin/profile_picker_handler.cc.orig	2026-04-09 06:05:42 UTC
 +++ chrome/browser/ui/webui/signin/profile_picker_handler.cc
-@@ -174,7 +174,7 @@ base::Value::Dict CreateProfileState(const ProfileAttr
+@@ -178,7 +178,7 @@ base::DictValue CreateProfileState(const ProfileAttrib
        IDS_PROFILE_PICKER_PROFILE_CARD_LABEL, local_profile_name);
    if (entry->GetIsManaged() == signin::Tribool::kTrue) {
      profile_entry.Set("avatarBadge", "cr:domain");

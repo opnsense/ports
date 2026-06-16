@@ -5876,7 +5876,7 @@ gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/tgmath.h
 %%NOARM%%gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/tsxldtrkintrin.h
 %%NOARM%%gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/uintrintrin.h
 gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/unwind.h
-gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/usermsrintrin.h
+%%NOARM%%gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/usermsrintrin.h
 %%NOARM%%gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/vaesintrin.h
 gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/varargs.h
 %%NOARM%%gnat14/lib/gcc/%%CONFTRGT%%/%%VER%%/include/vpclmulqdqintrin.h

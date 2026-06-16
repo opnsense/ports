@@ -1,6 +1,6 @@
---- setup.py.orig	2026-01-24 08:17:11 UTC
+--- setup.py.orig	2026-05-13 17:40:38 UTC
 +++ setup.py
-@@ -286,7 +286,7 @@ from typing import Any, ClassVar, IO
+@@ -285,7 +285,7 @@ from typing import Any, ClassVar, IO
  from pathlib import Path
  from typing import Any, ClassVar, IO
  
@@ -9,7 +9,7 @@
  import setuptools.command.build_ext
  import setuptools.command.sdist
  import setuptools.errors
-@@ -1429,29 +1429,37 @@ class concat_license_files:
+@@ -1425,30 +1425,37 @@ class concat_license_files:
          self.f1.write_text(self.bsd_text, encoding="utf-8")
  
  
@@ -38,7 +38,8 @@
 +            super().write_wheelfile(*args, **kwargs)
  
 -        if BUILD_LIBTORCH_WHL:
--            assert self.bdist_dir is not None
+-            if self.bdist_dir is None:
+-                raise AssertionError("self.bdist_dir must not be None")
 -            bdist_dir = Path(self.bdist_dir)
 -            # Remove extraneneous files in the libtorch wheel
 -            for file in itertools.chain(
@@ -67,7 +68,7 @@
  
  
  class clean(Command):
-@@ -1640,11 +1648,12 @@ def configure_extension_build() -> tuple[
+@@ -1623,11 +1630,12 @@ def configure_extension_build() -> tuple[
      ext_modules.append(C)
  
      cmdclass = {

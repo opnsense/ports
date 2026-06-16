@@ -1,5 +1,6 @@
 PORTNAME=	xmlsec
 DISTVERSION=	3.0.5
+PORTREVISION=	2
 CATEGORIES=	security java
 MASTER_SITES=	https://repo1.maven.org/maven2/org/apache/santuario/xmlsec/${DISTVERSION}/
 DISTFILES=	${PORTNAME}-${PORTVERSION}.jar
@@ -13,7 +14,7 @@ LICENSE=	APACHE20
 RUN_DEPENDS=	${JAVALIBDIR}/commons-logging.jar:java/apache-commons-logging
 
 USES=		cpe java:run
-CPE_PRODUCT=	xml_security_for_java
+CPE_PRODUCT=	santuario_xml_security_for_java
 CPE_VENDOR=	apache
 
 NO_BUILD=	yes

@@ -1,6 +1,6 @@
 PORTNAME=	trivy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.69.1
+DISTVERSION=	0.71.0
 PORTREVISION=	1
 CATEGORIES=	security
 
@@ -11,7 +11,8 @@ WWW=		https://github.com/aquasecurity/trivy
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_i386=	not supported, see https://github.com/aquasecurity/trivy/pull/9102
+ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS_REASON=	module modernc.org/sqlite only supported on aarch64 and amd64
 
 USES=		go:modules
 

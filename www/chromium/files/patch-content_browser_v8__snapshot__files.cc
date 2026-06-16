@@ -1,6 +1,6 @@
---- content/browser/v8_snapshot_files.cc.orig	2025-10-30 15:44:36 UTC
+--- content/browser/v8_snapshot_files.cc.orig	2026-04-09 06:05:42 UTC
 +++ content/browser/v8_snapshot_files.cc
-@@ -36,7 +36,7 @@ void registerContextSnapshotAndroid(
+@@ -41,7 +41,7 @@ void registerContextSnapshotAndroid(
  std::map<std::string, std::variant<base::FilePath, base::ScopedFD>>
  GetV8SnapshotFilesToPreload(base::CommandLine& process_command_line) {
    std::map<std::string, std::variant<base::FilePath, base::ScopedFD>> files;

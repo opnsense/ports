@@ -1,7 +1,6 @@
 PORTNAME=	mongo-c-driver
 # Note: devel/mongo-cxx-driver requires specific versions of this port
-DISTVERSION=	1.30.4
-PORTREVISION=	1
+DISTVERSION=	1.30.8
 CATEGORIES=	devel
 
 MAINTAINER=	ports@bsdserwis.com
@@ -17,6 +16,7 @@ LIB_DEPENDS=	libbson-1.0.so:devel/libbson \
 
 USES=		cmake cpe pathfix pkgconfig python:env
 CPE_VENDOR=	mongodb
+CPE_PRODUCT=	c_driver
 PATHFIX_WRKSRC=	${WRKSRC}/src/libmongoc
 USE_GITHUB=	yes
 GH_ACCOUNT=	mongodb
@@ -86,7 +86,7 @@ ZSTD_CMAKE_OFF=		-DENABLE_ZSTD=OFF
 CMAKE_ARGS+=	-DENABLE_SSL=LIBRESSL
 .endif
 CMAKE_ARGS+=	-DENABLE_SSL=OPENSSL
-.if ( ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400092 && ${SSL_DEFAULT} == base ) || ${SSL_DEFAULT:Mopenssl3*}
+.if ( ${OPSYS} == FreeBSD && ${SSL_DEFAULT} == base ) || ${SSL_DEFAULT:Mopenssl3*}
 CFLAGS+=	-DOPENSSL_API_COMPAT=0x30000000L
 .endif
 .endif

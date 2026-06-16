@@ -1,11 +1,11 @@
 PORTNAME=	playwright
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.55.0
+DISTVERSION=	1.58.0
 CATEGORIES=	www python
 #MASTER_SITES=	PYPI # no tarball
-MASTER_SITES+=	https://playwright.azureedge.net/builds/driver/next/:driver # zip archive with JS scripts called "driver" are bundled with the Python module
+MASTER_SITES+=	https://cdn.playwright.dev/builds/driver/:driver # zip archive with JS scripts called "driver" are bundled with the Python module
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	playwright-${DISTVERSION}-beta-1756314050000-linux.zip:driver
+DISTFILES=	playwright-${DISTVERSION}-linux.zip:driver
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} # do not extract the JS scripts archive
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -56,7 +56,7 @@ TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
 post-patch: # replace URL in JS scripts with DISTDIR
 	@${REINPLACE_CMD} \
-		-e 's|url = "https://playwright.azureedge.net/builds/driver/"|url = "file://${DISTDIR}/"|' \
+		-e 's|url = "https://cdn.playwright.dev/builds/driver/"|url = "file://${DISTDIR}/"|' \
 		${WRKSRC}/setup.py
 
 post-install:

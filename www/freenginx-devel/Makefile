@@ -1,7 +1,7 @@
 PORTNAME=	freenginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION=	16
+PORTREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	https://freenginx.org/download/ \
 		LOCAL/osa
@@ -17,7 +17,7 @@ LICENSE_FILE?=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	nginx
 
-PORTSCOUT=	limit:^1\.29\.[0-9]*
+PORTSCOUT=	limit:^1\.31\.[0-9]*
 
 USES=		cpe compiler:env localbase:ldflags
 
@@ -256,6 +256,11 @@ pre-everything::
 	@${ECHO_MSG} "This port install Passenger module only"
 .endif
 	@${ECHO_MSG}
+
+post-extract-AUTH_JWT-on:
+	@${RMDIR} ${WRKSRC_auth_jwt}/nxe-json ${WRKSRC_auth_jwt}/nxe-jwx
+	@${LN} -s ${WRKSRC_nxe_json} ${WRKSRC_auth_jwt}/nxe-json
+	@${LN} -s ${WRKSRC_nxe_jwx} ${WRKSRC_auth_jwt}/nxe-jwx
 
 post-extract-NAXSI-on:
 	@${RMDIR} ${WRKSRC_naxsi}/naxsi_src/libinjection

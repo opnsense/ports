@@ -1,8 +1,7 @@
 PORTNAME=	lcalc
-DISTVERSION=	2.1.1
-PORTREVISION=	1
+DISTVERSION=	2.2.1
 CATEGORIES=	math
-MASTER_SITES=	https://gitlab.com/-/project/12934202/uploads/487082fc3449dea93e9b85904a589742/
+MASTER_SITES=	https://gitlab.com/-/project/12934202/uploads/0bcf82cdd02412faf9ec0cf80e656610/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	L-function c++ class library and the CLI program lcalc

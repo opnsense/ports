@@ -1,5 +1,5 @@
 PORTNAME=	deptry
-PORTVERSION=	0.24.0
+PORTVERSION=	0.25.1
 PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
@@ -9,7 +9,7 @@ DISTFILES=	deptry-${PORTVERSION}${EXTRACT_SUFX}
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	CLI utility to check for unused, missing and transitive dependencies
 WWW=		https://deptry.com/ \
-		https://github.com/fpgmaas/deptry
+		https://github.com/osprey-oss/deptry
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

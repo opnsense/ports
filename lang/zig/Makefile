@@ -1,5 +1,5 @@
 PORTNAME=	zig
-DISTVERSION=	0.15.2
+DISTVERSION=	0.16.0
 CATEGORIES=	lang
 MASTER_SITES=	https://ziglang.org/download/${DISTVERSION}/ \
 		https://ziglang.org/builds/
@@ -13,7 +13,7 @@ WWW=		https://ziglang.org/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64le
 ONLY_FOR_ARCHS_REASON=	not yet supported
 
 BUILD_DEPENDS=	llvm${_LLVM_VER}>=0:devel/llvm${_LLVM_VER}
@@ -37,7 +37,7 @@ STATIC_CMAKE_BOOL=	ZIG_STATIC
 STATIC_LDFLAGS=		-licudata -licuuc -llzma -lm -lmd -lxml2 -lz -lzstd
 STATIC_LIB_DEPENDS+=	libxml2.so:textproc/libxml2
 
-_LLVM_VER=	20
+_LLVM_VER=	21
 _ZIG_BIN=	${STAGEDIR}${PREFIX}/bin/zig
 
 post-configure-STATIC-on:

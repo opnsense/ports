@@ -1,5 +1,6 @@
 PORTNAME=	mailfromd
 PORTVERSION=	9.1
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://download.gnu.org.ua/pub/release/${PORTNAME}/ \
 		http://download.gnu.org.ua/pub/alpha/${PORTNAME}/
@@ -21,7 +22,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-syslog-async
 CONFIGURE_ENV=	DEFAULT_STATE_DIR="${DATABASEDIR}" \
 		DEFAULT_SOCKET="unix:${MFD_RUN_DIR}/${PORTNAME}.sock" \
-		DEFAULT_USER=mailnull
+		DEFAULT_USER=mailnull \
+		ac_cv_prog_EMACS=no
 USE_RC_SUBR=	calloutd ${PORTNAME}
 TEST_TARGET=	check
 
@@ -46,8 +48,7 @@ BDB_DESC=		Berkeley DB v4.8 (last working one) support
 DB_DESC=		Database configuration
 
 EMACS_DESC=		Install Emacs Lisp *-mode files
-EMACS_CONFIGURE_ENV_OFF=ac_cv_prog_EMACS=no
-EMACS_USES=		emacs:build
+EMACS_USES=		emacs
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
@@ -70,5 +71,9 @@ post-install:
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+
+post-install-EMACS-on:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
+	${INSTALL_DATA} ${WRKSRC}/elisp/*.el ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
 
 .include <bsd.port.mk>

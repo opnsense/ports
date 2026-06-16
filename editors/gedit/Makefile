@@ -1,5 +1,6 @@
 PORTNAME=	gedit
-DISTVERSION=	48.2
+DISTVERSION=	50.0
+PORTREVISION=	1
 CATEGORIES=	editors gnome
 DIST_SUBDIR=	gnome
 
@@ -9,8 +10,6 @@ WWW=		https://gitlab.gnome.org/World/gedit/gedit
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-PORTSCOUT=	limit:^48\.
 
 BUILD_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas \
 		itstool:textproc/itstool
@@ -23,18 +22,13 @@ LIB_DEPENDS=	libgspell-1.so:textproc/gspell \
 
 USES=		compiler:c11 cpe desktop-file-utils gettext gnome localbase \
 		meson pkgconfig tar:xz vala:build
-USE_CSTD=	c11
-USE_GNOME=	glib20 gtk30 introspection
-USE_LDCONFIG=	yes
-PLIST_SUB=	VERSION=${DISTVERSION}
-MESON_ARGS=	-Dgtk_doc=false
 CPE_VENDOR=	gnome
-
+USE_CSTD=	c11
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World/gedit
 GL_TUPLE=	GNOME:libgd:3cccf992:libgd/subprojects/libgd
-
+USE_GNOME=	glib20 gtk30 introspection
 GLIB_SCHEMAS=	org.gnome.gedit.enums.xml \
 		org.gnome.gedit.gschema.xml \
 		org.gnome.gedit.plugins.filebrowser.enums.xml \
@@ -42,5 +36,8 @@ GLIB_SCHEMAS=	org.gnome.gedit.enums.xml \
 		org.gnome.gedit.plugins.spell.gschema.xml \
 		org.gnome.gedit.plugins.time.enums.xml \
 		org.gnome.gedit.plugins.time.gschema.xml
+
+MESON_ARGS=	-Dgtk_doc=false
+PLIST_SUB=	VERSION=50
 
 .include <bsd.port.mk>

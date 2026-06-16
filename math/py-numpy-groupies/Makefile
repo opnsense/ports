@@ -1,5 +1,5 @@
 PORTNAME=	numpy-groupies
-DISTVERSION=	0.11.2
+DISTVERSION=	0.11.3
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numba>0:devel/py-numba@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
@@ -27,6 +27,6 @@ NO_ARCH=	yes
 do-test:
 	@cd ${WRKSRC} && pytest
 
-# tests as of 0.11.2: 815 passed, 83 skipped in 489.20s (0:08:09)
+# tests as of 0.11.3: 815 passed, 83 skipped in 43.69s
 
 .include <bsd.port.mk>

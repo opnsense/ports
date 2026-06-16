@@ -1,8 +1,8 @@
 PORTNAME=	wazuh
-DISTVERSION=	4.14.2
+DISTVERSION=	4.14.5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
-MASTER_SITES=	https://packages.wazuh.com/deps/48/libraries/sources/:wazuh_sources
+MASTER_SITES=	https://packages.wazuh.com/deps/51/libraries/sources/:wazuh_sources
 PKGNAMESUFFIX=	-agent
 DISTFILES=	${EXTERNAL_DISTFILES}
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
@@ -23,7 +23,7 @@ USES=		cmake:indirect cpe gmake perl5 readline shebangfix sqlite:3 uidfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	alonsobsd
 GH_PROJECT=	wazuh-freebsd
-GH_TAGNAME=	e3b7f4ccbb4cf0004ca58b1e56e4fe2d1b7474a7
+GH_TAGNAME=	22e254c6366d51a38792163162dd019a45a00c55
 
 USE_RC_SUBR=	${PORTNAME}${PKGNAMESUFFIX}
 
@@ -51,7 +51,6 @@ EXTERNAL_DISTFILES=	cJSON.tar.gz:wazuh_sources \
 OPTIONS_DEFAULT=	INOTIFY
 OPTIONS_DEFINE=		INOTIFY PRELUDE ZEROMQ
 
-INOTIFY_LIB_DEPENDS=	libinotify.so:devel/libinotify
 PRELUDE_LIB_DEPENDS=	libprelude.so:security/libprelude
 ZEROMQ_LIB_DEPENDS=	libczmq.so:net/czmq
 
@@ -61,8 +60,9 @@ ZEROMQ_DESC=	ZeroMQ support
 
 ZEROMQ_MAKE_ENV=	USE_ZEROMQ=yes
 PRELUDE_MAKE_ENV=	USE_PRELUDE=yes
-INOTIFY_MAKE_ENV=	USE_INOTIFY=yes
-INOTIFY_USES=	pkgconfig
+INOTIFY_MAKE_ENV=	USE_INOTIFY=yes \
+			INOTIFY_LIB=${INOTIFY_LIB}
+INOTIFY_USES=	pkgconfig inotify
 
 WAZUH_USER=	wazuh
 WAZUH_GROUP=	wazuh
@@ -102,9 +102,7 @@ MAKE_ENV+=	OSSL_TARGET=BSD-riscv64
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 1300139 && ${OSVERSION} < 1400000
-FBSD_MAJOR_VERSION=13
-.elif ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
+.if ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
 FBSD_MAJOR_VERSION=14
 .elif ${OSVERSION} >= 1500000 && ${OSVERSION} < 1600000
 FBSD_MAJOR_VERSION=15

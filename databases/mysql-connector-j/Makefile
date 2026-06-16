@@ -1,5 +1,5 @@
 PORTNAME=	mysql-connector-j
-PORTVERSION=	9.5.0
+PORTVERSION=	9.7.0
 CATEGORIES=	databases java
 MASTER_SITES=	MYSQL/Connector-J
 
@@ -16,7 +16,7 @@ RUN_DEPENDS=	${JAVALIBDIR}/slf4j-api.jar:devel/slf4j \
 
 USES=		cpe java
 CPE_VENDOR=	oracle
-CPE_PRODUCT=	mysql_connector_j
+CPE_PRODUCT=	mysql_connector/j
 
 NO_ARCH=	yes
 NO_BUILD=	yes

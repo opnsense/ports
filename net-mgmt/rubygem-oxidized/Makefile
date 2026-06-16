@@ -1,6 +1,5 @@
 PORTNAME=	oxidized
-DISTVERSION=	0.35.0
-PORTREVISION=	1
+DISTVERSION=	0.36.0
 CATEGORIES=	net-mgmt rubygems
 MASTER_SITES=	RG
 
@@ -15,7 +14,6 @@ RUN_DEPENDS=	rubygem-asetus>=0.4<1:devel/rubygem-asetus \
 		rubygem-ed25519>=1.2<2:security/rubygem-ed25519 \
 		rubygem-net-ftp>=0.2:ftp/rubygem-net-ftp \
 		rubygem-net-http-digest_auth>=1.4<2:www/rubygem-net-http-digest_auth \
-		rubygem-net-scp>=4.1:security/rubygem-net-scp \
 		rubygem-net-ssh>=7.3,2<8,2:security/rubygem-net-ssh \
 		rubygem-net-telnet>=0.2<1:security/rubygem-net-telnet \
 		rubygem-psych>=5.0<6:textproc/rubygem-psych \

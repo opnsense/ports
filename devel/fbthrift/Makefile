@@ -1,6 +1,6 @@
 PORTNAME=	fbthrift
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2026.02.09.00
+DISTVERSION=	2026.06.08.00
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -30,7 +30,9 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libxxhash.so:devel/xxhash \
 		libzstd.so:archivers/zstd
 
-USES=		bison cmake:testing compiler:c++17-lang ssl
+USES=		bison cmake:testing compiler:c++17-lang cpe ssl
+CPE_PRODUCT=	thrift
+CPE_VENDOR=	facebook
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
@@ -45,6 +47,6 @@ CXXFLAGS+=	-DGLOG_USE_GLOG_EXPORT
 post-install: # https://github.com/facebook/fbthrift/issues/393
 	@${FIND} ${STAGEDIR}${PREFIX}/include -type d -empty -delete
 
-# tests as of 2025.11.03.00: 100% tests passed, 0 tests failed out of 306
+# tests as of 2026.06.01.00: 100% tests passed, 0 tests failed out of 308
 
 .include <bsd.port.mk>

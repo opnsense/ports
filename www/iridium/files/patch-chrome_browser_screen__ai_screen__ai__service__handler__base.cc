@@ -1,4 +1,4 @@
---- chrome/browser/screen_ai/screen_ai_service_handler_base.cc.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/screen_ai/screen_ai_service_handler_base.cc.orig	2026-05-11 13:57:04 UTC
 +++ chrome/browser/screen_ai/screen_ai_service_handler_base.cc
 @@ -253,7 +253,7 @@ void ScreenAIServiceHandlerBase::LaunchIfNotRunning() 
    base::FilePath binary_path = state_instance->get_component_binary_path();

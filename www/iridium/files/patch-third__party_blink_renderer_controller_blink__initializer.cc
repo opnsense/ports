@@ -1,7 +1,7 @@
---- third_party/blink/renderer/controller/blink_initializer.cc.orig	2025-12-10 15:04:57 UTC
+--- third_party/blink/renderer/controller/blink_initializer.cc.orig	2026-04-15 12:07:04 UTC
 +++ third_party/blink/renderer/controller/blink_initializer.cc
-@@ -83,12 +83,12 @@
- #include "third_party/blink/renderer/controller/private_memory_footprint_provider.h"
+@@ -85,12 +85,12 @@
+ #include "third_party/blink/renderer/controller/user_level_memory_pressure_signal_generator.h"
  #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
@@ -13,9 +13,9 @@
 -    BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_WIN)
 +    BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
  #include "third_party/blink/renderer/controller/highest_pmf_reporter.h"
- #include "third_party/blink/renderer/controller/user_level_memory_pressure_signal_generator.h"
  #endif
-@@ -261,7 +261,7 @@ void BlinkInitializer::RegisterInterfaces(mojo::Binder
+ 
+@@ -257,7 +257,7 @@ void BlinkInitializer::RegisterInterfaces(mojo::Binder
        main_thread_task_runner);
  #endif
  

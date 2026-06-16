@@ -1,15 +1,15 @@
---- v8/BUILD.gn.orig	2026-01-14 08:33:23 UTC
+--- v8/BUILD.gn.orig	2026-06-04 10:12:25 UTC
 +++ v8/BUILD.gn
-@@ -999,6 +999,8 @@ external_v8_defines = [
+@@ -1045,6 +1045,8 @@ external_v8_defines = [
    "V8_TARGET_OS_MACOS",
    "V8_TARGET_OS_WIN",
    "V8_TARGET_OS_CHROMEOS",
 +  "V8_TARGET_OS_OPENBSD",
 +  "V8_TARGET_OS_FREEBSD",
- ]
- 
- enabled_external_v8_defines = [
-@@ -1079,6 +1081,12 @@ if (target_os == "android") {
+   "V8_TARGET_ARCH_ARM64",
+   "V8_TARGET_ARCH_PPC64",
+   "V8_TARGET_ARCH_MIPS64",
+@@ -1129,6 +1131,12 @@ if (target_os == "android") {
  } else if (target_os == "chromeos") {
    enabled_external_v8_defines += [ "V8_HAVE_TARGET_OS" ]
    enabled_external_v8_defines += [ "V8_TARGET_OS_CHROMEOS" ]
@@ -21,16 +21,27 @@
 +  enabled_external_v8_defines += [ "V8_TARGET_OS_FREEBSD" ]
  }
  
- disabled_external_v8_defines = external_v8_defines - enabled_external_v8_defines
-@@ -1810,7 +1818,6 @@ config("strict_warnings") {
+ # Some V8_TARGET_ARCH_ defines that affect Api constants (see usages of
+@@ -1796,7 +1804,7 @@ config("toolchain") {
+ 
+   if (is_clang) {
+     cflags += [ "-Wunreachable-code" ]
+-    if (v8_current_cpu != "ppc64" && v8_current_cpu != "s390x") {
++    if (v8_current_cpu != "ppc64" && v8_current_cpu != "s390x" && !is_bsd) {
+       cflags += [ "-Wlifetime-safety-permissive" ]
      }
-     cflags += [
-       "-Wmissing-field-initializers",
--      "-Wunnecessary-virtual-specifier",
-     ]
+ 
+@@ -1899,9 +1907,6 @@ config("strict_warnings") {
+       cflags += [ "-Wshorten-64-to-32" ]
+     }
+     cflags += [ "-Wmissing-field-initializers" ]
+-    if (v8_current_cpu != "ppc64" && v8_current_cpu != "s390x") {
+-      cflags += [ "-Wunnecessary-virtual-specifier" ]
+-    }
    }
  }
-@@ -2657,6 +2664,12 @@ template("run_mksnapshot") {
+ 
+@@ -2822,6 +2827,12 @@ template("run_mksnapshot") {
        if (!v8_enable_builtins_profiling && v8_enable_builtins_reordering) {
          args += [ "--reorder-builtins" ]
        }
@@ -43,7 +54,7 @@
      }
  
      # This is needed to distinguish between generating code for the simulator
-@@ -6934,7 +6947,7 @@ v8_component("v8_libbase") {
+@@ -7263,7 +7274,7 @@ v8_component("v8_libbase") {
      }
    }
  
@@ -52,7 +63,7 @@
      sources += [
        "src/base/debug/stack_trace_posix.cc",
        "src/base/platform/platform-linux.cc",
-@@ -6945,6 +6958,18 @@ v8_component("v8_libbase") {
+@@ -7274,6 +7285,18 @@ v8_component("v8_libbase") {
        "dl",
        "rt",
      ]

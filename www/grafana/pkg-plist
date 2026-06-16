@@ -1,6 +1,4 @@
 bin/grafana
-bin/grafana-cli
-bin/grafana-server
 @sample %%ETCDIR%%/grafana.ini.sample
 @sample %%ETCDIR%%/ldap.toml.sample
 %%DATADIR%%/conf/defaults.ini

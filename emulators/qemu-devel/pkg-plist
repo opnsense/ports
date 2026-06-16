@@ -18,7 +18,6 @@ bin/qemu-system-i386
 %%NO_X86_TARGETS%%bin/qemu-system-loongarch64
 %%NO_X86_TARGETS%%bin/qemu-system-m68k
 %%NO_X86_TARGETS%%bin/qemu-system-microblaze
-%%NO_X86_TARGETS%%bin/qemu-system-microblazeel
 %%NO_X86_TARGETS%%bin/qemu-system-mips
 %%NO_X86_TARGETS%%bin/qemu-system-mips64
 %%NO_X86_TARGETS%%bin/qemu-system-mips64el
@@ -47,13 +46,14 @@ lib/libfdt.a
 libdata/pkgconfig/libfdt.pc
 share/man/man1/qemu.1.gz
 share/man/man1/qemu-img.1.gz
+share/man/man1/qemu-storage-daemon.1.gz
+share/man/man1/qemu-vnc.1.gz
 share/man/man7/qemu-block-drivers.7.gz
 share/man/man7/qemu-cpu-models.7.gz
+share/man/man7/qemu-qmp-ref.7.gz
+share/man/man7/qemu-storage-daemon-qmp-ref.7.gz
 share/man/man8/qemu-nbd.8.gz
 share/man/man8/qemu-pr-helper.8.gz
-share/man/man7/qemu-qmp-ref.7.gz
-share/man/man1/qemu-storage-daemon.1.gz
-share/man/man7/qemu-storage-daemon-qmp-ref.7.gz
 @sample etc/qemu-ifup.sample
 @sample etc/qemu-ifdown.sample
 %%DATADIR%%/QEMU,tcx.bin
@@ -133,10 +133,8 @@ share/man/man7/qemu-storage-daemon-qmp-ref.7.gz
 %%DATADIR%%/keymaps/sv
 %%DATADIR%%/keymaps/th
 %%DATADIR%%/keymaps/tr
-%%DATADIR%%/linuxboot.bin
 %%LINUXBOOT_DMA%%%%DATADIR%%/linuxboot_dma.bin
 %%DATADIR%%/multiboot_dma.bin
-%%DATADIR%%/multiboot.bin
 %%DATADIR%%/npcm7xx_bootrom.bin
 %%DATADIR%%/npcm8xx_bootrom.bin
 %%DATADIR%%/openbios-ppc

@@ -3,7 +3,7 @@ DISTVERSION=	4.5.2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://github.com/appneta/${PORTNAME}/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	Tool to replay saved packet capture files
 WWW=		https://github.com/appneta/tcpreplay
 

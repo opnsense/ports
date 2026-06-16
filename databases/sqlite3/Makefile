@@ -1,9 +1,8 @@
 PORTNAME=	sqlite3
-DISTVERSION=	3.50.4
+DISTVERSION=	3.53.1
 # SECURITY WARNING: when updating this port, also file vuxml entry
 # for ports/databases/linux-c7-sqlite3 (but mind it has a different EPOCH)
 # and coordinate with ports/emulators/linux_base which also ships sqlite3.
-PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.sqlite.org/${_YEAR}/ https://www2.sqlite.org/${_YEAR}/ https://www3.sqlite.org/${_YEAR}/
@@ -12,7 +11,7 @@ PKGNAMEPREFIX=	tcl-
 .endif
 DISTNAME=	sqlite-src-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
-MAINTAINER=	pavelivolkov@gmail.com
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	SQL database engine in a C library
 .if ${FLAVOR:U} == icu
 COMMENT+=	(ICU flavor)
@@ -36,7 +35,7 @@ icu_PKGNAMESUFFIX=	-${FLAVOR}	# databases/p5-DBD-SQLite with ICU support
 tcl_PKGNAMESUFFIX=	-${FLAVOR}	# lang/tcl* support
 .endif
 
-USES=	libtool ncurses zip
+USES=	cpe libtool ncurses zip
 USE_LDCONFIG=	yes
 
 HAS_CONFIGURE=	yes
@@ -51,6 +50,8 @@ ALL_TARGET=	sqldiff
 INSTALL_TARGET=	tcl_install
 .endif
 TEST_TARGET=	test
+
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 # The default numeric file permissions for newly created database files under unix.
 # If not specified, the default is 0644 which means that the files is globally
@@ -223,10 +224,13 @@ UPDATE_LIMIT_CONFIGURE_ON=	--update-limit
 URI_CPPFLAGS=	-DSQLITE_USE_URI=1
 URI_AUTHORITY_CPPFLAGS=	-DSQLITE_ALLOW_URI_AUTHORITY=1
 
+CPE_VENDOR=	sqlite
+CPE_PRODUCT=	sqlite
+
 .include <bsd.port.options.mk>
 
 # _YEAR=	${%Y:L:gmtime} - do not work with the version from the previous year
-_YEAR=	2025
+_YEAR=	2026
 
 # Recommended options
 # https://sqlite.org/compile.html#strict_subtype
@@ -294,13 +298,12 @@ post-install-STRIP-on:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sqlite3 ${STAGEDIR}${PREFIX}/lib/libsqlite3.so
 .endif
 .if ${PORT_OPTIONS:MTCL}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/tcl${TCL_VER}/sqlite3/libtclsqlite3.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/tcl${TCL_VER}/sqlite${PORTVERSION}/libsqlite${PORTVERSION}.so
 .endif
 
 post-install-TCL-on:
 	${INSTALL_PROGRAM} ${WRKSRC}/sqlite3_analyzer ${STAGEDIR}${PREFIX}/bin
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/man/mann
-	${INSTALL_MAN} ${WRKSRC}/autoconf/tea/doc/sqlite3.n ${STAGEDIR}${PREFIX}/share/man/mann/sqlite3.tcl${TCL_VER:S/.//g}.n
 .if ${PORT_OPTIONS:MEXAMPLES}
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${WRKDIR}/${SUB_FILES} ${WRKSRC}/contrib/sqlitecon.tcl ${STAGEDIR}${EXAMPLESDIR}

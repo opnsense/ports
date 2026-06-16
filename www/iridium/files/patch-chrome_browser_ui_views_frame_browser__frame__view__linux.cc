@@ -1,4 +1,4 @@
---- chrome/browser/ui/views/frame/browser_frame_view_linux.cc.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/ui/views/frame/browser_frame_view_linux.cc.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/ui/views/frame/browser_frame_view_linux.cc
 @@ -71,7 +71,7 @@ gfx::ShadowValues BrowserFrameViewLinux::GetShadowValu
  

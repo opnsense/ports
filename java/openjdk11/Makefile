@@ -53,7 +53,7 @@ MAKE_ENV=	LANG="C" \
 		CXX=${CXX} \
 		CPP=${CPP} \
 		LOG=cmdlines \
-		MAKEFLAGS=""
+		MAKEFLAGS="CONF_CHECK=ignore"
 
 JDK_ARCH=	${ARCH:S/amd64/x86_64/:C/armv.*/arm/:S/i386/x86/:S/powerpc/ppc/}
 BOOTSTRAPJDKFILE=	openjdk11-11.0.29+7.1.${JDK_ARCH}.tar.xz
@@ -132,11 +132,6 @@ ALL_TARGET=		images
 JDK_BUILD_TYPE=		release
 
 .include <bsd.port.pre.mk>
-
-# portsfallout.com shows flapping builds on 13.5 and 14.2
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1403000
-MAKE_JOBS_UNSAFE=	yes
-.endif
 
 .if !${PORT_OPTIONS:MCUPS}
 MASTER_SITES+=	https://codeload.github.com/OpenPrinting/cups/tar.gz/v${CUPS_INC_VER}?dummy=/:cups

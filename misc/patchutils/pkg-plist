@@ -7,10 +7,14 @@ bin/fixcvsdiff
 bin/flipdiff
 bin/gitdiff
 bin/gitdiffview
+bin/gitshow
+bin/gitshowview
 bin/grepdiff
 bin/interdiff
 bin/lsdiff
+bin/move-to-front
 bin/patchview
+bin/patchview-wrapper
 bin/recountdiff
 bin/rediff
 bin/splitdiff
@@ -29,7 +33,6 @@ share/bash-completion/completions/gitdiffview
 share/bash-completion/completions/grepdiff
 share/bash-completion/completions/interdiff
 share/bash-completion/completions/lsdiff
-share/bash-completion/completions/patchutils
 share/bash-completion/completions/patchview
 share/bash-completion/completions/recountdiff
 share/bash-completion/completions/rediff
@@ -44,6 +47,10 @@ share/bash-completion/completions/unwrapdiff
 %%MANPAGES%%share/man/man1/filterdiff.1.gz
 %%MANPAGES%%share/man/man1/fixcvsdiff.1.gz
 %%MANPAGES%%share/man/man1/flipdiff.1.gz
+%%MANPAGES%%share/man/man1/gitdiff.1.gz
+%%MANPAGES%%share/man/man1/gitdiffview.1.gz
+%%MANPAGES%%share/man/man1/gitshow.1.gz
+%%MANPAGES%%share/man/man1/gitshowview.1.gz
 %%MANPAGES%%share/man/man1/grepdiff.1.gz
 %%MANPAGES%%share/man/man1/interdiff.1.gz
 %%MANPAGES%%share/man/man1/lsdiff.1.gz
@@ -51,4 +58,6 @@ share/bash-completion/completions/unwrapdiff
 %%MANPAGES%%share/man/man1/recountdiff.1.gz
 %%MANPAGES%%share/man/man1/rediff.1.gz
 %%MANPAGES%%share/man/man1/splitdiff.1.gz
+%%MANPAGES%%share/man/man1/svndiff.1.gz
+%%MANPAGES%%share/man/man1/svndiffview.1.gz
 %%MANPAGES%%share/man/man1/unwrapdiff.1.gz

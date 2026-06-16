@@ -1,5 +1,6 @@
 PORTNAME=	xstream
 PORTVERSION=	1.4.21
+PORTREVISION=	2
 CATEGORIES=	textproc java
 MASTER_SITES=	https://repo1.maven.org/maven2/com/thoughtworks/xstream/xstream-distribution/${PORTVERSION}/
 DISTFILES=	${PORTNAME}-distribution-${PORTVERSION}-bin${EXTRACT_SUFX}
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 OPTIONS_DEFINE=	DOCS
 
 USES=		cpe java zip
-CPE_VENDOR=	${PORTNAME}_project
+CPE_VENDOR=	x-stream
 
 NO_BUILD=	yes
 NO_ARCH=	yes

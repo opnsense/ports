@@ -1,3 +1,3 @@
-TIMESTAMP = 1768777777
-SHA256 (rabbitmq-server-generic-unix-4.2.2.tar.xz) = 441e35f9c5204407e332a4dc94170751bacd9eb73f37c83425a99a28ea49a02f
-SIZE (rabbitmq-server-generic-unix-4.2.2.tar.xz) = 22838884
+TIMESTAMP = 1780000000
+SHA256 (rabbitmq-server-generic-unix-4.3.1.tar.xz) = fc65179276a5e929258caab98d5ad1f1b10b51ccc56a128c50a00ed06e518103
+SIZE (rabbitmq-server-generic-unix-4.3.1.tar.xz) = 23415096

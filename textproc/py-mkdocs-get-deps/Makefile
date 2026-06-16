@@ -1,6 +1,5 @@
 PORTNAME=	mkdocs-get-deps
-DISTVERSION=	0.2.0
-PORTREVISION=	1
+DISTVERSION=	0.2.2
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -8,7 +7,7 @@ DISTNAME=	mkdocs_get_deps-${DISTVERSION}
 
 MAINTAINER=	kai@FreeBSD.org
 COMMENT=	MkDocs extension that lists all dependencies according to a mkdocs.yml
-WWW=		https://github.com/mkdocs/get-deps
+WWW=		https://github.com/oprypin/mkdocs-get-deps
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md

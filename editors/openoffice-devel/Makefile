@@ -1,6 +1,6 @@
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION1}.${AOOVERSION2}.${TIMESTAMP}
-PORTREVISION=	0
+PORTREVISION=	3
 PORTEPOCH=	4
 CATEGORIES=	editors java
 MASTER_SITES=	https://dist.apache.org/repos/dist/dev/openoffice/${AOOVERSION}-${AOORC}-${TIMESTAMP}/source/ \
@@ -120,6 +120,10 @@ USE_PERL5=	build
 USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
 		xinerama xrandr xrender xt
 
+# ftp/curl uses OpenSSL by default. However, curl 8.18.0 drops OpenSSL 1.x support
+# which is used in FreeBSD 13 base system. Therefore, we change the curl defaults to
+# wolfSSL instead.
+BROKEN_FreeBSD_13=	OpenOffice requires ftp/curl to be built with OpenSSL
 CONFLICTS_INSTALL=	apache-openoffice-4*
 
 AOOVERSION1=	4

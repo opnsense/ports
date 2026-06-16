@@ -1,5 +1,5 @@
 PORTNAME=	qucs-s
-DISTVERSION=	25.2.0
+DISTVERSION=	26.1.1
 CATEGORIES=	cad
 MASTER_SITES=	https://github.com/ra3xdh/qucs_s/releases/download/${DISTVERSION}/
 

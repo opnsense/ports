@@ -6,6 +6,9 @@ COMMENT=	Multithreaded SQL database (client)
 
 LICENSE+=	LGPL21
 
+DEPRECATED=	EOLed upstream, switch to newer version
+EXPIRATION_DATE=2026-12-31
+
 MASTERDIR=	${.CURDIR}/../mysql80-server
 
 PKGMESSAGE=	${.CURDIR}/pkg-message
@@ -16,6 +19,8 @@ CONFLICTS_INSTALL=	mysql8[1-9]-client \
 			mysql[0-79][0-9]-client \
 			mariadb[0-9][0-9]-client \
 			percona[0-9][0-9]-client
+
+CPE_PRODUCT=	mysql
 
 CMAKE_ARGS+=	-DWITHOUT_SERVER=1 -DINSTALL_SUPPORTFILESDIR=0
 

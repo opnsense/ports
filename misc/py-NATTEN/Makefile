@@ -1,6 +1,6 @@
 PORTNAME=	NATTEN
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.21.5
+DISTVERSION=	0.21.6
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,13 +20,14 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>=2.0.0:misc/py-pytorch@${PY_FLAVOR}
 
-USES=		localbase python
-USE_PYTHON=	pep517 autoplist pytest
+USES=		localbase python pytest
+USE_PYTHON=	pep517 autoplist
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	SHI-Labs
 GH_PROJECT=	NATTEN
 
+PYTEST_ARGS=	-p no:ruff -p no:checkdocs
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
 NO_ARCH=	yes # no arch w/out CUDA
@@ -39,6 +40,6 @@ post-install:
 		${STAGEDIR}${PYTHON_SITELIBDIR}/cmake_install.cmake \
 		${STAGEDIR}${PYTHON_SITELIBDIR}/Makefile
 
-# tests as of 0.21.0: 1 passed, 55 skipped, 1 warning in 14.76s
+# tests as of 0.21.6: 20 passed, 97 skipped, 3 warnings in 6.64s
 
 .include <bsd.port.mk>

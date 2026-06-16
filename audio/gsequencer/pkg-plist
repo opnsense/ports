@@ -2,6 +2,7 @@ bin/gsequencer
 bin/midi2xml
 include/ags/ags_api_config.h
 include/ags/audio/ags_acceleration.h
+include/ags/audio/ags_amplifier10_util.h
 include/ags/audio/ags_amplifier_util.h
 include/ags/audio/ags_audio.h
 include/ags/audio/ags_audio_application_context.h
@@ -39,6 +40,7 @@ include/ags/audio/ags_linear_interpolate_util.h
 include/ags/audio/ags_low_pass_filter_util.h
 include/ags/audio/ags_marker.h
 include/ags/audio/ags_midi.h
+include/ags/audio/ags_modular_synth_util.h
 include/ags/audio/ags_noise_util.h
 include/ags/audio/ags_notation.h
 include/ags/audio/ags_note.h
@@ -190,6 +192,12 @@ include/ags/audio/fx/ags_fx_lv2_audio_signal.h
 include/ags/audio/fx/ags_fx_lv2_channel.h
 include/ags/audio/fx/ags_fx_lv2_channel_processor.h
 include/ags/audio/fx/ags_fx_lv2_recycling.h
+include/ags/audio/fx/ags_fx_modular_synth_audio.h
+include/ags/audio/fx/ags_fx_modular_synth_audio_processor.h
+include/ags/audio/fx/ags_fx_modular_synth_audio_signal.h
+include/ags/audio/fx/ags_fx_modular_synth_channel.h
+include/ags/audio/fx/ags_fx_modular_synth_channel_processor.h
+include/ags/audio/fx/ags_fx_modular_synth_recycling.h
 include/ags/audio/fx/ags_fx_notation_audio.h
 include/ags/audio/fx/ags_fx_notation_audio_processor.h
 include/ags/audio/fx/ags_fx_notation_audio_signal.h
@@ -576,6 +584,7 @@ share/icons/hicolor/scalable/apps/gsequencer.svg
 share/locale/de/LC_MESSAGES/gsequencer.mo
 share/locale/fr/LC_MESSAGES/gsequencer.mo
 share/locale/it/LC_MESSAGES/gsequencer.mo
+share/locale/ka/LC_MESSAGES/gsequencer.mo
 share/locale/pl/LC_MESSAGES/gsequencer.mo
 share/man/man1/gsequencer.1.gz
 share/man/man1/midi2xml.1.gz

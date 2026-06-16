@@ -1,7 +1,7 @@
---- extensions/renderer/bindings/api_binding_util.cc.orig	2025-11-01 06:40:37 UTC
+--- extensions/renderer/bindings/api_binding_util.cc.orig	2026-04-15 11:25:12 UTC
 +++ extensions/renderer/bindings/api_binding_util.cc
-@@ -128,7 +128,7 @@ void InvalidateContext(v8::Local<v8::Context> context)
- std::string GetPlatformString() {
+@@ -142,7 +142,7 @@ void InvalidateContext(v8::Local<v8::Context> context)
+ std::string_view GetPlatformString() {
  #if BUILDFLAG(IS_CHROMEOS)
    return "chromeos";
 -#elif BUILDFLAG(IS_LINUX)

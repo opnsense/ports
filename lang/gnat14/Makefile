@@ -24,8 +24,8 @@ USE_BINUTILS=	yes
 USE_LDCONFIG=	${_TARGLIB}
 
 GNU_CONFIGURE=		yes
-GNU_CONFIGURE_PREFIX=	${_PKG_PREFIX}
 GNU_CONFIGURE_MANPREFIX=	${_PKG_PREFIX}/share
+GNU_CONFIGURE_PREFIX=	${_PKG_PREFIX}
 CONFIGURE_ARGS=		--disable-bootstrap \
 			--disable-libgomp \
 			--disable-libmudflap \
@@ -49,14 +49,17 @@ CONFIGURE_TARGET=	${_GNAT_ARCH}-portbld-${_PLATFORM}
 
 MAKE_ENV+=	PATH=${_TOOLCHAIN_PATHS}
 INSTALL_TARGET=	install-strip
+
+PIE_UNSAFE=	yes
+
 MANDIRS=	${_PKG_PREFIX}/share/man
 BINARY_ALIAS=	make=${GMAKE}
+
 WRKSRC=		${WRKDIR}/gcc-${DISTVERSION}
+
 PLIST_SUB=	ASSET_FILE=${_ASSET_FILE} \
 		CONFTRGT=${CONFIGURE_TARGET} \
 		VER=${DISTVERSION}
-
-PIE_UNSAFE=	yes
 
 OPTIONS_DEFINE=			ASSETS NLS
 .if exists(/usr/lib32/libc.so)
@@ -65,7 +68,7 @@ OPTIONS_DEFINE_powerpc64+=	MULTILIB
 .endif
 OPTIONS_RADIO=			BOOTSTRAP
 OPTIONS_RADIO_BOOTSTRAP=	GNAT13 PREVASSET
-OPTIONS_DEFAULT=		PREVASSET
+OPTIONS_DEFAULT=		${"${_OSVERARCH:M1600*aarch64}" != "":?GNAT13:PREVASSET}
 .if defined(PACKAGE_BUILDING)
 OPTIONS_DEFAULT+=		ASSETS
 .endif
@@ -100,20 +103,29 @@ _GCC_VER=		${DISTVERSION:R:R}
 _GNATBIND=		${_GNAT13_PATH}/gnatbind
 _GNATMAKE=		${_GNAT13_PATH}/gnatmake
 _GNAT_ARCH=		${ARCH:S/amd64/x86_64/}
+_OSVERARCH=		${OSVERSION}${ARCH}
 _OS_LABEL4VERS=		[${OPSYS}${_GNAT_ARCH:S/amd//:S/x86_//:S/aarch/\/ARM/:S/i386/32/}]
 _PHASE_FILE=		${WRKSRC}/gcc/DEV-PHASE
 _PKG_PREFIX=		${PREFIX}/${PORTNAME}
 _PLATFORM=		${OPSYS:tl}${OSREL}
+_PREV_ASSET_FILE=	gnat-${_GNAT_ARCH}-${OPSYS:tl}.${_PREV_ASSET_OSREL}-${_PREV_ASSET_VER}${_PREV_ASSET_REV}
+_PREV_ASSET_OSREL=	${OSREL:R}
+_PREV_ASSET_REV=
 _REV_FILE=		${WRKSRC}/gcc/REVISION
 _TARGLIB=		${_PKG_PREFIX}/lib ${_PKG_PREFIX}/lib/gcc${_GCC_VER}
 _TOOLCHAIN_PATHS=	/sbin:/bin:/usr/sbin:/usr/bin:${_GNAT13_PATH}:${PREFIX}/bin:${LOCALBASE}/bin
 
-.include <bsd.port.options.mk>
+.include <bsd.port.pre.mk>
 
-_PREV_ASSET_OSREL=	${OSREL:R}
-_PREV_ASSET_VER=	13.2.0	# To be updated when assets for 14 will be available
-_PREV_ASSET_REV=
-_PREV_ASSET_FILE=	gnat-${_GNAT_ARCH}-${OPSYS:tl}.${_PREV_ASSET_OSREL}-${_PREV_ASSET_VER}${_PREV_ASSET_REV}
+.if ${UID} != 0
+BINMODE=	755
+.endif
+
+.if ${ARCH} == aarch64 && ${_PREV_ASSET_OSREL} == 13
+_PREV_ASSET_VER=	13.2.0 # To be updated when assets for 14 will be available
+.else
+_PREV_ASSET_VER=	14.2.0
+.endif
 
 .if ${ARCH} == i386 || ${ARCH} == aarch64
 LIB_DIR_32=	""
@@ -129,7 +141,6 @@ PLIST_SUB+=	32BITS=""
 .  endif
 .endif
 .if ${ARCH} == aarch64
-EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 PLIST_SUB+=	ARM="" \
 		NOARM="@comment "
 .else
@@ -138,7 +149,7 @@ PLIST_SUB+=	ARM="@comment " \
 .endif
 
 pre-configure:
-	${FIND} ${WRKSRC}/gcc/config -name "*freebsd.h" | \
+	${FIND} ${WRKSRC}/gcc/config -name "*freebsd.h" -o -name "*freebsd64.h" | \
 		${XARGS} ${REINPLACE_CMD} -e 's|!static:[[:blank:]]|!static: --hash-style=gnu -rpath ${PREFIX}/gnat${_GCC_VER}/lib |'
 	${ECHO} "-=> GNAT ${_OS_LABEL4VERS}" > ${_REV_FILE}
 	${ECHO} "release" > ${_PHASE_FILE}
@@ -168,4 +179,4 @@ post-stage-ASSETS-on:
 		>> ${PKGMESSAGE}
 	${ECHO_CMD} "(and adjust distinfo)" >> ${PKGMESSAGE}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

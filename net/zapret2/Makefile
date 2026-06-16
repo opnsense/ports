@@ -1,11 +1,11 @@
 PORTNAME=	zapret2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.1
+DISTVERSION=	1.0.1
 CATEGORIES=	net
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	DPI (Deep Packet Interderence) bypass (Gen 2)
-WWW=		https://github.com/bol-van/zapret
+WWW=		https://github.com/bol-van/zapret2
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/docs/LICENSE.txt

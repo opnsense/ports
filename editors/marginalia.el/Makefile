@@ -1,8 +1,6 @@
 PORTNAME=	marginalia.el
-DISTVERSION=	2.4
-PORTREVISION=	1
+DISTVERSION=	2.9
 CATEGORIES=	editors elisp
-PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
 MAINTAINER=	pat@patmaddox.com
 COMMENT=	Marginalia in the Emacs minibuffer
@@ -11,23 +9,23 @@ WWW=		https://github.com/minad/marginalia
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=30.1.0.0:misc/compat.el@${EMACS_FLAVOR}
+RUN_DEPENDS=	compat.el>=30.1.0.0:misc/compat.el
 
 USES=		emacs
 USE_GITHUB=	yes
 GH_ACCOUNT=	minad
 GH_PROJECT=	marginalia
 
+CONFLICTS_INSTALL=	marginalia.el-emacs_*
+
 NO_ARCH=	yes
+NO_BUILD=	yes
 
 OPTIONS_DEFINE=	DOCS
 
-do-build:
-	${EMACS_CMD} -q --batch -f batch-byte-compile ${WRKSRC}/marginalia.el
-
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
-	${INSTALL_DATA} ${WRKSRC}/marginalia.el ${WRKSRC}/marginalia.elc \
+	${INSTALL_DATA} ${WRKSRC}/marginalia.el \
 		${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
 
 post-install-DOCS-on:

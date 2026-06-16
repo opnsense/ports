@@ -1,5 +1,6 @@
 PORTNAME=	horizon
-PORTVERSION=	25.5.1
+PORTVERSION=	25.7.3
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,8 +19,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=6.0.0:devel/py-pbr@${PY_FLAVOR} \
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=2.6.0:devel/py-babel@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}django_compressor>=4.4:www/py-django_compressor@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}django-debreach>=1.4.2:www/py-django-debreach@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}django42>=4.2<4.3:www/py-django42@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}enmerkar>=0.7.1:www/py-enmerkar@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}django52>=4.2:www/py-django52@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}futurist>=1.2.0:devel/py-futurist@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}keystoneauth1>=4.3.1:devel/py-keystoneauth1@${PY_FLAVOR} \
@@ -57,7 +57,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Babel>=2.6.0:devel/py-babel@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xstatic-bootstrap-scss>=3.3.7.1:devel/py-xstatic-bootstrap-scss@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xstatic-bootswatch>=3.3.7.0:devel/py-xstatic-bootswatch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xstatic-d3>=3.5.17.0:devel/py-xstatic-d3@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}xstatic-font-awesome>=4.7.0.0:devel/py-xstatic-font-awesome@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}xstatic-font-awesome>=6.2.1.2:devel/py-xstatic-font-awesome@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xstatic-hogan>=2.0.0.2:devel/py-xstatic-hogan@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xstatic-jasmine>=2.4.1.1:devel/py-xstatic-jasmine@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xstatic-jquery>=3.5.1.1:devel/py-xstatic-jquery@${PY_FLAVOR} \

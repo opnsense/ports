@@ -1,5 +1,5 @@
 PORTNAME=	rge
-PORTVERSION=	20260112
+PORTVERSION=	20260222
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 PKGNAMEPREFIX=	realtek-
@@ -11,14 +11,12 @@ WWW=		https://github.com/erikarn/if_rge_freebsd
 
 LICENSE=	BSD2CLAUSE
 
-IGNORE_FreeBSD_13=	Does not build on FreeBSD <=13
-
 USES=		kmod tar:tgz uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	erikarn
 GH_PROJECT=	if_rge_freebsd
-GH_TAGNAME=	dcd8dd7
+GH_TAGNAME=	3170b35
 
 WRKSRC_SUBDIR=	src
 

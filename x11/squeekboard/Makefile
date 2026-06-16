@@ -1,7 +1,7 @@
 PORTNAME=	squeekboard
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.43.1
-PORTREVISION=	12
+PORTREVISION=	15
 CATEGORIES=	x11 wayland
 
 PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
@@ -13,8 +13,6 @@ WWW=		https://gitlab.gnome.org/World/Phosh/squeekboard
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN_FreeBSD_13_powerpc64=	fails to link: ld: error: undefined symbol: eekboard_context_service_get_overlay
 
 BUILD_DEPENDS=	wayland-protocols>=1.12:graphics/wayland-protocols
 LIB_DEPENDS=	libfeedback-0.0.so:accessibility/feedbackd \

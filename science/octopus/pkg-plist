@@ -1387,6 +1387,10 @@ share/man/man1/octopus.1.gz
 %%DATADIR%%/testsuite/functionals/22-vdw_d3_stress.test
 %%DATADIR%%/testsuite/functionals/23-xc_lrx.inp
 %%DATADIR%%/testsuite/functionals/23-xc_lrx.test
+%%DATADIR%%/testsuite/functionals/24-xc.hyb_gga.test
+%%DATADIR%%/testsuite/functionals/24-xc.hyb_gga_xc_cam_b3lyp.inp
+%%DATADIR%%/testsuite/functionals/24-xc.hyb_gga_xc_hse06.inp
+%%DATADIR%%/testsuite/functionals/24-xc.hyb_gga_xc_wb97x_d.inp
 %%DATADIR%%/testsuite/lda_u/01-nio.01-U5-gs.inp
 %%DATADIR%%/testsuite/lda_u/01-nio.02-unocc.inp
 %%DATADIR%%/testsuite/lda_u/01-nio.test
@@ -1793,6 +1797,7 @@ share/man/man1/octopus.1.gz
 %%DATADIR%%/testsuite/periodic_systems/23-hybrids.02-ace_accel.inp
 %%DATADIR%%/testsuite/periodic_systems/23-hybrids.03-Si_pbe0.inp
 %%DATADIR%%/testsuite/periodic_systems/23-hybrids.04-parstates.inp
+%%DATADIR%%/testsuite/periodic_systems/23-hybrids.05-Si_hse06.inp
 %%DATADIR%%/testsuite/periodic_systems/23-hybrids.test
 %%DATADIR%%/testsuite/periodic_systems/24-hartree_fock_1D.01-gs.inp
 %%DATADIR%%/testsuite/periodic_systems/24-hartree_fock_1D.02-noACE.inp

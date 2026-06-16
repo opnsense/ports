@@ -1,8 +1,8 @@
 PORTNAME=	xlibre-xf86-video-ati
-PORTVERSION=	25.0.0
+PORTVERSION=	25.0.1
 CATEGORIES=	x11-drivers
 
-MAINTAINER=	b-aazbsd@proton.me
+MAINTAINER=	xlibre@FreeBSD.org
 COMMENT=	XLibre ati display driver
 WWW=		https://github.com/X11Libre/xf86-video-ati/
 

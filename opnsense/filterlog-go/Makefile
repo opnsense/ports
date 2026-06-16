@@ -1,16 +1,16 @@
 PORTNAME=	opnsense-filterlog
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.8.0
+DISTVERSION=	0.10.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	me@allddd.onl
-COMMENT=	TUI for viewing and analysing OPNsense firewall logs
+COMMENT=	command-line tool and terminal-based viewer for OPNsense firewall logs
 WWW=		https://gitlab.com/allddd/opnsense-filterlog
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25,modules
+USES=		go:1.26,modules
 CGO_ENABLED=	0
 GO_MODULE=	gitlab.com/allddd/opnsense-filterlog
 GO_TARGET=	.:${PREFIX}/sbin/${PORTNAME}

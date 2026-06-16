@@ -10,6 +10,9 @@ WWW=		https://github.com/phpvirtualbox/phpvirtualbox/
 
 LICENSE=	GPLv3
 
+DEPRECATED=		Upstream EOL reaches on 2026-04-21, use www/phpvirtualbox-72 instead
+EXPIRATION_DATE=	2026-12-31
+
 USES=		php:flavors
 USE_GITHUB=	yes
 USE_PHP=	session simplexml soap xml

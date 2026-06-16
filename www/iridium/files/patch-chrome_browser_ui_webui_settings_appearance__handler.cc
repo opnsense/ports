@@ -1,6 +1,6 @@
---- chrome/browser/ui/webui/settings/appearance_handler.cc.orig	2025-12-10 15:04:57 UTC
+--- chrome/browser/ui/webui/settings/appearance_handler.cc.orig	2026-05-11 13:57:04 UTC
 +++ chrome/browser/ui/webui/settings/appearance_handler.cc
-@@ -33,7 +33,7 @@ void AppearanceHandler::RegisterMessages() {
+@@ -35,7 +35,7 @@ void AppearanceHandler::RegisterMessages() {
        "useDefaultTheme",
        base::BindRepeating(&AppearanceHandler::HandleUseTheme,
                            base::Unretained(this), ui::SystemTheme::kDefault));

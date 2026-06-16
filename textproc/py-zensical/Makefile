@@ -1,5 +1,6 @@
 PORTNAME=	zensical
-DISTVERSION=	0.0.21
+DISTVERSION=	0.0.43
+PORTREVISION=	1
 CATEGORIES=	textproc python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,13 +15,14 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.8<2.0:devel/py-maturin@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>=8.1.7:devel/py-click@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>=8.1.8:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}deepmerge>=1.1.1:devel/py-deepmerge@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Jinja2>=3.1:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}markdown>=3.7:textproc/py-markdown@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pygments>=2.16:textproc/py-pygments@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pymdown-extensions>=10.15:textproc/py-pymdown-extensions@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pygments>=2.20:textproc/py-pygments@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pymdown-extensions>=10.21.2:textproc/py-pymdown-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=6.0.2:devel/py-pyyaml@${PY_FLAVOR} \
-		${PY_TOMLI}
+		${PYTHON_PKGNAMEPREFIX}tomli>=2.4.0:textproc/py-tomli@${PY_FLAVOR}
 
 USES=		cargo python
 USE_PYTHON=	autoplist concurrent pep517

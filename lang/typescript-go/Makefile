@@ -1,6 +1,6 @@
 PORTNAME=	typescript-go
-PORTVERSION=	7.0.0.g20260114
-PORTREVISION=	2
+PORTVERSION=	7.0.0.g20260506
+PORTREVISION=	1
 CATEGORIES=	lang
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -11,13 +11,13 @@ WWW=		https://www.typescriptlang.org/ \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25+,modules
+USES=		go:1.26+,modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
 GH_PROJECT=	typescript-go
-GH_TAGNAME=	f5bcdfc02e6527b774418a26ee817c4397da8546
-GH_TUPLE=	microsoft:TypeScript:9e8eaa1746b0d09c3cd29048126ef9cf24f29c03:typescript/_submodules/TypeScript
+GH_TAGNAME=	ee4225a856389fc94c8ce4a5fd9af771dbbc2c0b
+GH_TUPLE=	microsoft:TypeScript:c3bd12d888b86f676718b16e64d7d2abcb423514:typescript/_submodules/TypeScript
 
 GO_MOD_DIST=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${GH_TAGNAME}/
 GO_MODULE=	github.com/${GH_ACCOUNT}/${GH_PROJECT}

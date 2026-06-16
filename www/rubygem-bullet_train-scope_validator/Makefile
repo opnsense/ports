@@ -1,5 +1,5 @@
 PORTNAME=	bullet_train-scope_validator
-PORTVERSION=	1.38.0
+PORTVERSION=	1.45.1
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -10,7 +10,7 @@ WWW=		https://github.com/bullet-train-co/bullet_train-core/tree/main/bullet_trai
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	rubygem-rails81>=6.0.0:www/rubygem-rails81
+RUN_DEPENDS=	rubygem-rails81>=7.0.0:www/rubygem-rails81
 
 USES=		gem
 

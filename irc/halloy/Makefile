@@ -1,5 +1,5 @@
 PORTNAME=	halloy
-DISTVERSION=	2026.1.1
+DISTVERSION=	2026.7.2
 CATEGORIES=	irc
 
 MAINTAINER=	pokeysquirrel@gmail.com
@@ -12,11 +12,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libzstd.so:archivers/zstd
 
-USES=		cargo desktop-file-utils ssl xorg
-USE_XORG=	xcb
-
+USES=		cargo desktop-file-utils xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	squidowl
+USE_XORG=	xcb
 
 post-install:
 	${INSTALL_DATA} ${FILESDIR}/halloy.desktop ${STAGEDIR}${DESKTOPDIR}

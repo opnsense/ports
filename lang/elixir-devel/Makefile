@@ -1,6 +1,6 @@
 PORTNAME=	elixir
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.19.5
+DISTVERSION=	1.20.1
 CATEGORIES=	lang
 MASTER_SITES+=	https://github.com/elixir-lang/elixir/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}/:doc
 PKGNAMESUFFIX=	-devel
@@ -13,7 +13,7 @@ WWW=		https://elixir-lang.org/
 
 LICENSE=	APACHE20
 
-BUILD_DEPENDS=	erlang-runtime${ERLANG_VER}>0:lang/erlang-runtime${ERLANG_VER}
+BUILD_DEPENDS=	erlang-runtime${_ERLANG_VER}>0:lang/erlang-runtime${_ERLANG_VER}
 
 USES=		gmake
 
@@ -22,7 +22,7 @@ GH_ACCOUNT=	elixir-lang
 
 USE_LOCALE=	en_US.UTF-8
 MAKE_ENV+=	MAN_PREFIX=${PREFIX}/share/man \
-		PATH="${LOCALBASE}/lib/erlang${ERLANG_VER}/bin:${PATH}"
+		PATH="${LOCALBASE}/lib/erlang${_ERLANG_VER}/bin:${PATH}"
 ALL_TARGET=	# empty
 
 CONFLICTS=	elixir # bin/elixir bin/elixirc bin/iex
@@ -30,10 +30,12 @@ CONFLICTS=	elixir # bin/elixir bin/elixirc bin/iex
 REINPLACE_ARGS=	-i ""
 NO_ARCH=	yes
 
+PORTSCOUT=	limit:^[0-9rcv.-]+$ ## accept release candidates & version numbers
+
 OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
 
-ERLANG_VER?=	28
+_ERLANG_VER?=	29
 
 .include <bsd.port.options.mk>
 

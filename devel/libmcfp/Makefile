@@ -1,6 +1,6 @@
 PORTNAME=	libmcfp
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.2
+DISTVERSION=	2.0.2
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -8,12 +8,12 @@ COMMENT=	C++ header only library to parse command line arguments
 WWW=		https://github.com/mhekkel/libmcfp
 
 LICENSE=	BSD2CLAUSE
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BUILD_DEPENDS=	fast_float>0:math/fast_float
 TEST_DEPENDS=	catch2>0:devel/catch2 \
 		${LOCALBASE}/include/boost/test/included/unit_test.hpp:devel/boost-libs
 
-USES=		cmake:testing localbase
+USES=		cmake:testing localbase llvm:build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mhekkel

@@ -1,6 +1,6 @@
 PORTNAME=	backuppc
 DISTVERSION=	4.4.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/backuppc/backuppc/releases/download/${PORTVERSION}/ \
 		SF
@@ -24,8 +24,6 @@ RUN_DEPENDS=	p5-CGI>0:www/p5-CGI \
 USES=		cpe perl5
 
 CONFLICTS_INSTALL=	backuppc backuppc-devel
-
-CPE_VENDOR=	craig_barratt
 
 NO_BUILD=	yes
 NO_ARCH=	yes

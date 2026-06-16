@@ -1,5 +1,6 @@
 PORTNAME=	podman-desktop
 PORTVERSION=	1.25.0
+PORTREVISION=	13
 DISTVERSIONSUFFIX=-x64
 CATEGORIES=	deskutils
 MASTER_SITES=	https://github.com/arrowd/podman-desktop/releases/download/v${PORTVERSION}/ \
@@ -33,6 +34,8 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/podman-desktop ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${PATCHDIR}/podman-desktop.desktop ${STAGEDIR}${DESKTOPDIR}/podman-desktop.desktop
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
-	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/icon.svg ${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/
+	${INSTALL_DATA} \
+		${DISTDIR}/${DIST_SUBDIR}/icon.svg \
+		${STAGEDIR}${PREFIX}/share/icons/hicolor/scalable/apps/podman-desktop.svg
 
 .include <bsd.port.mk>

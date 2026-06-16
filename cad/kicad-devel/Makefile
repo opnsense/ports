@@ -1,6 +1,6 @@
 PORTNAME=	kicad
 DISTVERSION=	r${GIT_SRC_DATE}
-PORTREVISION=	2
+PORTREVISION=	4
 #PORTREVISION=	1
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-devel
@@ -12,6 +12,7 @@ WWW=		http://kicad-pcb.org/
 
 LICENSE=	GPLv3
 
+BROKEN_aarch64=		Fails to compile: use of undeclared identifier builtin_ia32_emms
 BROKEN_i386=    doesn't buld on pkg builder
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/git:devel/git \
@@ -36,16 +37,16 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 
 CONFLICTS_INSTALL=	kicad # bin/_cvpcb.kiface
 
-BROKEN_aarch64=		Fails to compile: use of undeclared identifier builtin_ia32_emms
-
 OPTIONS_DEFINE=	DOCS
 
 PLIST_SUB=	OPSYS=${OPSYS}	\
 		DESKTOPDIR=${DESKTOPDIR:S|^${PREFIX}/||}
 
-USES=		cmake:noninja compiler:c++20-lang desktop-file-utils gl \
+USES=		cmake:noninja compiler:c++20-lang cpe desktop-file-utils gl \
 		gettext gnome pkgconfig python shared-mime-info shebangfix ssl \
 		tar:bzip2 xorg 
+CPE_VENDOR=	kicad
+CPE_PRODUCT=	eda
 USE_GITLAB=	yes
 GL_ACCOUNT=	kicad/code
 GL_PROJECT=	kicad
@@ -58,7 +59,7 @@ USE_XORG+=	ice pixman x11 xext
 BINS=		cvpcb eeschema gerbview kicad pcbnew
 EXTRAS2RM=	linux-non_unicode linux wings3d LINUX.README	\
 		contrib_makefiles.txt running_kicad_under_W98.txt
-SHEBANG_FILES=	pcbnew/python/plugins/touch_slider_wizard.py
+SHEBANG_FILES=	pcbnew/python/wizards/qfp/qfp.py
 #CXXFLAGS+=	--std=c++14 -I${WRKSRC} -I${WRKSRC}/include -I${LOCALBASE}/include
 CXXFLAGS+=	-g -DBOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED # error: "Boost.Stacktrace requires `_Unwind_Backtrace` function. Define `_GNU_SOURCE` macro or `BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED` if _Unwind_Backtrace is available without `_GNU_SOURCE`."
 # -undefined dynamic_lookup

@@ -1,6 +1,6 @@
 PORTNAME=	xdg-desktop-portal-wlr
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.8.1
+DISTVERSION=	0.8.2
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -29,12 +29,6 @@ MESON_ARGS=	-Dsd-bus-provider=basu
 PLIST_FILES=	libexec/${PORTNAME} \
 		share/dbus-1/services/org.freedesktop.impl.portal.desktop.wlr.service \
 		share/xdg-desktop-portal/portals/wlr.portal
-
-# XXX Drop after FreeBSD 13.5 EOL around 2026-04-30
-# https://cgit.freebsd.org/src/commit/?id=af93fea71038
-.if !exists(/usr/include/sys/timerfd.h)
-LIB_DEPENDS+=	libepoll-shim.so:devel/libepoll-shim
-.endif
 
 OPTIONS_DEFINE=	MANPAGES
 OPTIONS_DEFAULT=MANPAGES

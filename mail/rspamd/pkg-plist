@@ -1,3 +1,4 @@
+bin/mapstats
 bin/rspamadm
 bin/rspamadm-%%RSPAMDVERSION%%
 bin/rspamc
@@ -23,6 +24,7 @@ etc/newsyslog.conf.d/rspamd.newsyslog.conf
 %%ETCDIR%%/maps.d/mime_types.inc
 %%ETCDIR%%/maps.d/redirectors.inc
 %%ETCDIR%%/maps.d/spf_dkim_whitelist.inc
+%%ETCDIR%%/maps.d/suspicious_tlds.inc
 %%ETCDIR%%/maps.d/surbl-whitelist.inc
 %%ETCDIR%%/metrics.conf
 %%ETCDIR%%/modules.conf
@@ -62,6 +64,7 @@ etc/newsyslog.conf.d/rspamd.newsyslog.conf
 %%ETCDIR%%/modules.d/multimap.conf
 %%ETCDIR%%/modules.d/mx_check.conf
 %%ETCDIR%%/modules.d/neural.conf
+%%ETCDIR%%/modules.d/neural_autolearn.conf
 %%ETCDIR%%/modules.d/once_received.conf
 %%ETCDIR%%/modules.d/p0f.conf
 %%ETCDIR%%/modules.d/phishing.conf
@@ -78,6 +81,7 @@ etc/newsyslog.conf.d/rspamd.newsyslog.conf
 %%ETCDIR%%/modules.d/surbl.conf
 %%ETCDIR%%/modules.d/trie.conf
 %%ETCDIR%%/modules.d/url_redirector.conf
+%%ETCDIR%%/modules.d/url_suspect.conf
 %%ETCDIR%%/modules.d/whitelist.conf
 %%ETCDIR%%/modules.local.d/module.conf.example
 %%ETCDIR%%/options.inc
@@ -96,11 +100,14 @@ etc/newsyslog.conf.d/rspamd.newsyslog.conf
 %%ETCDIR%%/scores.d/statistics_group.conf
 %%ETCDIR%%/scores.d/subject_group.conf
 %%ETCDIR%%/scores.d/surbl_group.conf
+%%ETCDIR%%/scores.d/url_suspect_group.conf
 %%ETCDIR%%/scores.d/whitelist_group.conf
 %%ETCDIR%%/settings.conf
 %%ETCDIR%%/statistic.conf
 %%ETCDIR%%/worker-controller.inc
 %%ETCDIR%%/worker-fuzzy.inc
+%%HYPERSCAN%%%%ETCDIR%%/worker-hs_helper.conf
+%%HYPERSCAN%%%%ETCDIR%%/worker-hs_helper.inc
 %%ETCDIR%%/worker-normal.inc
 %%ETCDIR%%/worker-proxy.inc
 lib/rspamd/librspamd-actrie.so
@@ -189,7 +196,10 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/lua_ffi/spf.lua
 %%DATADIR%%/lualib/lua_fuzzy.lua
 %%DATADIR%%/lualib/lua_fuzzy_html.lua
+%%DATADIR%%/lualib/lua_fuzzy_redis.lua
+%%DATADIR%%/lualib/lua_hs_cache.lua
 %%DATADIR%%/lualib/lua_lexer.lua
+%%DATADIR%%/lualib/lua_log_utils.lua
 %%DATADIR%%/lualib/lua_magic/heuristics.lua
 %%DATADIR%%/lualib/lua_magic/init.lua
 %%DATADIR%%/lualib/lua_magic/patterns.lua
@@ -199,6 +209,8 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/lua_meta.lua
 %%DATADIR%%/lualib/lua_mime.lua
 %%DATADIR%%/lualib/lua_mime_types.lua
+%%DATADIR%%/lualib/lua_neural_external.lua
+%%DATADIR%%/lualib/lua_neural_learn.lua
 %%DATADIR%%/lualib/lua_redis.lua
 %%DATADIR%%/lualib/lua_scanners/avast.lua
 %%DATADIR%%/lualib/lua_scanners/clamav.lua
@@ -226,17 +238,25 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/lua_selectors/maps.lua
 %%DATADIR%%/lualib/lua_selectors/transforms.lua
 %%DATADIR%%/lualib/lua_settings.lua
+%%DATADIR%%/lualib/lua_shape/core.lua
+%%DATADIR%%/lualib/lua_shape/docs.lua
+%%DATADIR%%/lualib/lua_shape/jsonschema.lua
+%%DATADIR%%/lualib/lua_shape/plugin_schema.lua
+%%DATADIR%%/lualib/lua_shape/registry.lua
 %%DATADIR%%/lualib/lua_smtp.lua
 %%DATADIR%%/lualib/lua_stat.lua
 %%DATADIR%%/lualib/lua_tcp_sync.lua
+%%DATADIR%%/lualib/lua_url_filter.lua
 %%DATADIR%%/lualib/lua_urls_compose.lua
 %%DATADIR%%/lualib/lua_util.lua
 %%DATADIR%%/lualib/lua_verdict.lua
 %%DATADIR%%/lualib/lupa.lua
 %%DATADIR%%/lualib/plugins/dmarc.lua
 %%DATADIR%%/lualib/plugins/neural.lua
+%%DATADIR%%/lualib/plugins/neural/providers/fasttext_embed.lua
 %%DATADIR%%/lualib/plugins/neural/providers/llm.lua
 %%DATADIR%%/lualib/plugins/neural/providers/symbols.lua
+%%DATADIR%%/lualib/plugins/neural/providers/text_hash.lua
 %%DATADIR%%/lualib/plugins/ratelimit.lua
 %%DATADIR%%/lualib/plugins/rbl.lua
 %%DATADIR%%/lualib/plugins_stats.lua
@@ -245,6 +265,7 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/redis_scripts/bayes_classify.lua
 %%DATADIR%%/lualib/redis_scripts/bayes_learn.lua
 %%DATADIR%%/lualib/redis_scripts/bayes_stat.lua
+%%DATADIR%%/lualib/redis_scripts/fuzzy_update.lua
 %%DATADIR%%/lualib/redis_scripts/neural_maybe_invalidate.lua
 %%DATADIR%%/lualib/redis_scripts/neural_maybe_lock.lua
 %%DATADIR%%/lualib/redis_scripts/neural_save_unlock.lua
@@ -252,10 +273,12 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/redis_scripts/ratelimit_check.lua
 %%DATADIR%%/lualib/redis_scripts/ratelimit_cleanup_pending.lua
 %%DATADIR%%/lualib/redis_scripts/ratelimit_update.lua
+%%DATADIR%%/lualib/rspamadm/autolearnstats.lua
 %%DATADIR%%/lualib/rspamadm/classifier_test.lua
 %%DATADIR%%/lualib/rspamadm/clickhouse.lua
 %%DATADIR%%/lualib/rspamadm/configgraph.lua
 %%DATADIR%%/lualib/rspamadm/confighelp.lua
+%%DATADIR%%/lualib/rspamadm/confighelp_plugins.lua
 %%DATADIR%%/lualib/rspamadm/configwizard.lua
 %%DATADIR%%/lualib/rspamadm/cookie.lua
 %%DATADIR%%/lualib/rspamadm/corpus_test.lua
@@ -267,7 +290,10 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/rspamadm/fuzzy_stat.lua
 %%DATADIR%%/lualib/rspamadm/grep.lua
 %%DATADIR%%/lualib/rspamadm/keypair.lua
+%%DATADIR%%/lualib/rspamadm/logstats.lua
+%%DATADIR%%/lualib/rspamadm/mapstats.lua
 %%DATADIR%%/lualib/rspamadm/mime.lua
+%%DATADIR%%/lualib/rspamadm/neural_export.lua
 %%DATADIR%%/lualib/rspamadm/neural_test.lua
 %%DATADIR%%/lualib/rspamadm/publicsuffix.lua
 %%DATADIR%%/lualib/rspamadm/ratelimit.lua
@@ -276,7 +302,6 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/lualib/rspamadm/statistics_dump.lua
 %%DATADIR%%/lualib/rspamadm/template.lua
 %%DATADIR%%/lualib/rspamadm/vault.lua
-%%DATADIR%%/lualib/tableshape.lua
 %%DATADIR%%/plugins/aliases.lua
 %%DATADIR%%/plugins/antivirus.lua
 %%DATADIR%%/plugins/arc.lua
@@ -329,6 +354,7 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/plugins/spf.lua
 %%DATADIR%%/plugins/trie.lua
 %%DATADIR%%/plugins/url_redirector.lua
+%%DATADIR%%/plugins/url_suspect.lua
 %%DATADIR%%/plugins/whitelist.lua
 %%DATADIR%%/rules/archives.lua
 %%DATADIR%%/rules/bitcoin.lua
@@ -353,7 +379,6 @@ share/man/man8/rspamd.8.gz
 %%DATADIR%%/rules/regexp/urls.lua
 %%DATADIR%%/rules/rspamd.lua
 %%DATADIR%%/rules/subject_checks.lua
-%%DATADIR%%/www/README.md
 %%DATADIR%%/www/apple-touch-icon.png
 %%DATADIR%%/www/browserconfig.xml
 %%DATADIR%%/www/css/FooTable.FontAwesome.css

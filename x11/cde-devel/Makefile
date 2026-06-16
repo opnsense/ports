@@ -1,5 +1,6 @@
 PORTNAME=	cde
 PORTVERSION=	${COMMIT_DATE}
+PORTREVISION=	1
 CATEGORIES=	x11
 .if !defined(MASTERDIR)
 PKGNAMESUFFIX=	-devel
@@ -12,8 +13,8 @@ WWW=		https://sourceforge.net/p/cdesktopenv/wiki/Home/
 USE_GITHUB=	yes
 GH_ACCOUNT=	cschuber
 GH_PROJECT=	cdesktopenv-code
-GH_TAGNAME=	f0154141b
-COMMIT_DATE=	2026.01.09
+GH_TAGNAME=	be657291e
+COMMIT_DATE=	2026.05.17
 
 LICENSE=	LGPL21
 
@@ -62,7 +63,7 @@ MAKE_ARGS+=	PERL=${PERL} "LOCAL_LDFLAGS=${LDFLAGS}"
 MAKE_JOBS_UNSAFE=yes
 MAKE_ENV=	MALLOC_CONF=junk:false
 SUB_FILES=	pkg-message
-CFLAGS+=	-Wno-register -Wno-incompatible-function-pointer-types \
+CFLAGS+=	-O -Wno-register -Wno-incompatible-function-pointer-types \
 		-Wno-implicit-function-declaration
 LDFLAGS+=	-z muldefs #--allow-multiple-definition
 

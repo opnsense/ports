@@ -163,12 +163,12 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # IGNORE_${ARCH} - Port should be ignored on ${ARCH}.
 # IGNORE_${OPSYS} - Port should be ignored on ${OPSYS}.
 # IGNORE_${OPSYS}_${OSREL:R} -  Port should be ignored on a single
-#				  release of ${OPSYS}, e.g IGNORE_FreeBSD_13
-#				  would affect all point releases of FreeBSD 13.
+#				  release of ${OPSYS}, e.g IGNORE_FreeBSD_14
+#				  would affect all point releases of FreeBSD 14.
 # IGNORE_${OPSYS}_${OSREL:R}_${ARCH} -  Port should be ignored on a
 #				  single release of ${OPSYS} and specific architecture,
-#				  e.g IGNORE_FreeBSD_13_i386 would affect all point
-#				  releases of FreeBSD 13 in i386.
+#				  e.g IGNORE_FreeBSD_14_i386 would affect all point
+#				  releases of FreeBSD 14 in i386.
 # BROKEN		- Port is believed to be broken.  Package builds can
 # 				  still be attempted using TRYBROKEN to test this
 #				  assumption.
@@ -179,13 +179,13 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  can still be attempted using TRYBROKEN to
 #				  test this assumption.
 # BROKEN_${OPSYS}_${OSREL:R} -  Port is believed to be broken on a single
-#				  release of ${OPSYS}, e.g BROKEN_FreeBSD_13
-#				  would affect all point releases of FreeBSD 13
+#				  release of ${OPSYS}, e.g BROKEN_FreeBSD_14
+#				  would affect all point releases of FreeBSD 14
 #				  unless TRYBROKEN is also set.
 # BROKEN_${OPSYS}_${OSREL:R}_${ARCH} -  Port is believed to be broken on a
 #				  single release of ${OPSYS} and specific architecture,
-#				  e.g BROKEN_FreeBSD_13 would affect all point
-#				  releases of FreeBSD 13 in i386
+#				  e.g BROKEN_FreeBSD_14 would affect all point
+#				  releases of FreeBSD 14 in i386
 #				  unless TRYBROKEN is also set.
 # DEPRECATED	- Port is deprecated to install. Advisory only.
 # EXPIRATION_DATE
@@ -680,6 +680,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #
 # For extract:
 #
+# EXTRACT_ENV	- Environment to pass to ${EXTRACT_CMD}
 # EXTRACT_CMD	- Command for extracting archive
 #				  Default: ${TAR}
 # EXTRACT_BEFORE_ARGS
@@ -1165,7 +1166,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .    endif
 _EXPORTED_VARS+=	OSVERSION
 
-.    if ${OPSYS} == FreeBSD && (${OSVERSION} < 1305000 || (${OSVERSION} >= 1400000 && ${OSVERSION} < 1403000))
+.    if ${OPSYS} == FreeBSD && ${OSVERSION} < 1403000
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
 .      if defined(ALLOW_UNSUPPORTED_SYSTEM)
@@ -1847,7 +1848,7 @@ PKG_DEPENDS+=	${LOCALBASE}/sbin/pkg:${PKG_ORIGIN}
 .include "${PORTSDIR}/Mk/bsd.gcc.mk"
 .    endif
 
-.    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
+.    if defined(LLD_UNSAFE)
 LDFLAGS+=	-fuse-ld=bfd
 BINARY_ALIAS+=	ld=${LD}
 USE_BINUTILS=	yes
@@ -1856,15 +1857,15 @@ USE_BINUTILS=	yes
 .    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
-	READELF SIZE STRINGS
+	READELF SIZE STRINGS STRIP_CMD
 BINUTILS_NO_MAKE_ENV?=
 .      for b in ${BINUTILS}
-${b}=	${LOCALBASE}/bin/${b:C/PP/++/:tl}
+${b}=	${LOCALBASE}/bin/${b:C/PP/++/:C/_CMD//:tl}
 .        if defined(GNU_CONFIGURE) || defined(BINUTILS_CONFIGURE)
-CONFIGURE_ENV+=	${b}="${${b}}"
+CONFIGURE_ENV+=	${b:C/_CMD//}="${${b}}"
 .        endif
 .        if ${BINUTILS_NO_MAKE_ENV:M${b}} == ""
-MAKE_ENV+=	${b}="${${b}}"
+MAKE_ENV+=	${b:C/_CMD//}="${${b}}"
 .        endif
 .      endfor
 .    endif
@@ -2143,6 +2144,7 @@ PATCH_DIST_ARGS+=	--suffix .orig
 TAR?=	/usr/bin/tar
 
 # EXTRACT_SUFX is defined in .pre.mk section
+EXTRACT_ENV?=	LC_ALL=C.UTF-8
 EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
@@ -2213,11 +2215,7 @@ PKG_SUFX=	.pkg
 .    if defined(PKG_NOCOMPRESS)
 PKG_COMPRESSION_FORMAT?=	tar
 .    else
-.      if ${OSVERSION} > 1400000
 PKG_COMPRESSION_FORMAT?=	tzst
-.      else
-PKG_COMPRESSION_FORMAT?=	txz
-.      endif
 .    endif
 
 # where pkg(8) stores its data
@@ -3213,7 +3211,8 @@ clean-wrkdir:
 .    if !target(do-extract)
 do-extract: ${EXTRACT_WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
-		if ! (cd ${EXTRACT_WRKDIR} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
+		if ! (cd ${EXTRACT_WRKDIR} && ${EXTRACT_ENV} ${EXTRACT_CMD} \
+		    ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
 		then \
 			${ECHO_MSG} "===>  Failed to extract \"${_DISTDIR}/$$file\"."; \
 			exit 1; \
@@ -3459,7 +3458,7 @@ ${_PLIST}.${sp}: ${TMPPLIST}
 
 ${WRKDIR_PKGFILE${_SP.${sp}}}:	${_PLIST}.${sp} create-manifest ${WRKDIR}/pkg
 	@echo "===>   Building ${PKGNAME${_SP.${sp}}}"
-	@if ! ${SETENV} ${PKG_ENV} ${PKG_CREATE} ${PKG_CREATE_ARGS} -m ${METADIR}.${sp} -p ${_PLIST}.${sp} -o ${WRKDIR}/pkg ${PKGNAME}; then \
+	@if ! ${SETENV} ${PKG_ENV} ${PKG_CREATE} ${PKG_CREATE_ARGS} -T${MAKE_JOBS_NUMBER} -m ${METADIR}.${sp} -p ${_PLIST}.${sp} -o ${WRKDIR}/pkg ${PKGNAME}; then \
 		cd ${.CURDIR} && eval ${MAKE} delete-package >/dev/null; \
 		exit 1; \
 	fi

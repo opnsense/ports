@@ -1,7 +1,6 @@
 PORTNAME=	gau2grid
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.0.7
-PORTREVISION=	2
+DISTVERSION=	2.0.9
 CATEGORIES=	math python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,9 +11,9 @@ WWW=		https://github.com/dgasmith/gau2grid
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYNUMPY} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		cmake:devel/cmake-core
-RUN_DEPENDS=	${PYNUMPY}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
 USES=		cmake compiler:c11 python
@@ -31,6 +30,7 @@ NATIVE_CMAKE_BOOL=	ENABLE_XHOST
 
 post-install:
 	@${RM} -r ${STAGEDIR}${PYTHON_SITELIBDIR}/gau2grid/__pycache__
+	@${RM} ${STAGEDIR}${PYTHON_SITELIBDIR}/gau2grid/LICENSE
 	@${RM} -r ${STAGEDIR}${LOCALBASE}//lib/usr # LICENSE is installed under there
 
 do-test:

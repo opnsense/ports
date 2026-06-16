@@ -85,6 +85,7 @@
     SUBDIR += blend2d
     SUBDIR += blender
     SUBDIR += blender-doc
+    SUBDIR += blender4
     SUBDIR += bmeps
     SUBDIR += bmp2html
     SUBDIR += bonzomatic
@@ -122,6 +123,7 @@
     SUBDIR += converseen
     SUBDIR += corrupter
     SUBDIR += cptutils
+    SUBDIR += crucible
     SUBDIR += crw
     SUBDIR += ctl
     SUBDIR += curator
@@ -153,9 +155,10 @@
     SUBDIR += drawing
     SUBDIR += drawio
     SUBDIR += drawpile
-    SUBDIR += drm-510-kmod
+    SUBDIR += drawy
     SUBDIR += drm-515-kmod
     SUBDIR += drm-61-kmod
+    SUBDIR += drm-612-kmod
     SUBDIR += drm-66-kmod
     SUBDIR += drm-kmod
     SUBDIR += drm-latest-kmod
@@ -169,6 +172,7 @@
     SUBDIR += ebsynth
     SUBDIR += edje_viewer
     SUBDIR += egl-wayland
+    SUBDIR += egl-wayland2
     SUBDIR += egl-x11
     SUBDIR += eglexternalplatform
     SUBDIR += elastix
@@ -345,6 +349,7 @@
     SUBDIR += gwenview
     SUBDIR += h3
     SUBDIR += halftone
+    SUBDIR += hdr_histogram
     SUBDIR += hdr_tools
     SUBDIR += heimer
     SUBDIR += hiptext
@@ -372,8 +377,6 @@
     SUBDIR += imageworsener
     SUBDIR += imc
     SUBDIR += imlib2
-    SUBDIR += imlib2-jxl
-    SUBDIR += imlib2-webp
     SUBDIR += imlib2_loaders
     SUBDIR += impressive
     SUBDIR += imv
@@ -409,7 +412,6 @@
     SUBDIR += kdegraphics-mobipocket
     SUBDIR += kdegraphics-svgpart
     SUBDIR += kdegraphics-thumbnailers
-    SUBDIR += kdiagram
     SUBDIR += kdiagram-qt6
     SUBDIR += kealib
     SUBDIR += kf5-kimageformats
@@ -497,6 +499,7 @@
     SUBDIR += libjxl
     SUBDIR += libjxr
     SUBDIR += libkdcraw
+    SUBDIR += libkdcraw-qt5
     SUBDIR += libkexiv2
     SUBDIR += libksane
     SUBDIR += libliftoff
@@ -575,7 +578,7 @@
     SUBDIR += linux-rl9-vulkan
     SUBDIR += linux-rl9-wayland
     SUBDIR += lua-gd
-    SUBDIR += luminance-qt5
+    SUBDIR += lua-qrencode
     SUBDIR += lunasvg
     SUBDIR += lux
     SUBDIR += lximage-qt
@@ -608,6 +611,7 @@
     SUBDIR += milton
     SUBDIR += minder
     SUBDIR += mirtk
+    SUBDIR += mmdr
     SUBDIR += movit
     SUBDIR += mozjpeg
     SUBDIR += mscgen
@@ -630,17 +634,23 @@
     SUBDIR += npretty
     SUBDIR += nsxiv
     SUBDIR += nurbs++
-    SUBDIR += nvidia-drm-510-kmod
-    SUBDIR += nvidia-drm-510-kmod-devel
     SUBDIR += nvidia-drm-515-kmod
+    SUBDIR += nvidia-drm-515-kmod-580
     SUBDIR += nvidia-drm-515-kmod-devel
     SUBDIR += nvidia-drm-61-kmod
+    SUBDIR += nvidia-drm-61-kmod-580
     SUBDIR += nvidia-drm-61-kmod-devel
     SUBDIR += nvidia-drm-66-kmod
+    SUBDIR += nvidia-drm-66-kmod-580
     SUBDIR += nvidia-drm-66-kmod-devel
+    SUBDIR += nvidia-drm-612-kmod
+    SUBDIR += nvidia-drm-612-kmod-580
+    SUBDIR += nvidia-drm-612-kmod-devel
     SUBDIR += nvidia-drm-kmod
+    SUBDIR += nvidia-drm-kmod-580
     SUBDIR += nvidia-drm-kmod-devel
     SUBDIR += nvidia-drm-latest-kmod
+    SUBDIR += nvidia-drm-latest-kmod-580
     SUBDIR += nvidia-drm-latest-kmod-devel
     SUBDIR += nvidia-texture-tools
     SUBDIR += ocaml-cairo
@@ -654,6 +664,7 @@
     SUBDIR += oidn
     SUBDIR += okular
     SUBDIR += open3d
+    SUBDIR += openboard
     SUBDIR += opencollada
     SUBDIR += opencolorio
     SUBDIR += opencolorio-tools
@@ -681,9 +692,11 @@
     SUBDIR += openshadinglanguage
     SUBDIR += openslide
     SUBDIR += opensubdiv
+    SUBDIR += openusd
     SUBDIR += openvkl
     SUBDIR += openxr
     SUBDIR += optar
+    SUBDIR += optiimage
     SUBDIR += optipng
     SUBDIR += osg
     SUBDIR += ospray
@@ -851,6 +864,7 @@
     SUBDIR += pinta
     SUBDIR += pixd
     SUBDIR += pixelize
+    SUBDIR += pixelmosh
     SUBDIR += pixie
     SUBDIR += plantuml
     SUBDIR += plasma-kmod
@@ -907,7 +921,6 @@
     SUBDIR += py-blockdiag
     SUBDIR += py-blockdiagcontrib-cisco
     SUBDIR += py-box2d-py
-    SUBDIR += py-cairo
     SUBDIR += py-cairocffi
     SUBDIR += py-cairosvg
     SUBDIR += py-cartopy
@@ -926,6 +939,7 @@
     SUBDIR += py-djvulibre
     SUBDIR += py-easyocr
     SUBDIR += py-exifread
+    SUBDIR += py-exiv2
     SUBDIR += py-f3d
     SUBDIR += py-face_recognition
     SUBDIR += py-face_recognition_models
@@ -958,6 +972,8 @@
     SUBDIR += py-imagesize
     SUBDIR += py-img2pdf
     SUBDIR += py-imutils
+    SUBDIR += py-kornia
+    SUBDIR += py-kornia-rs
     SUBDIR += py-leather
     SUBDIR += py-lerc
     SUBDIR += py-mapclassify
@@ -972,7 +988,9 @@
     SUBDIR += py-napari-console
     SUBDIR += py-napari-plugin-engine
     SUBDIR += py-nwdiag
+    SUBDIR += py-olmocr
     SUBDIR += py-opencolorio
+    SUBDIR += py-opencv-python-headless
     SUBDIR += py-openimageio
     SUBDIR += py-openshadinglanguage
     SUBDIR += py-openslide-python
@@ -991,8 +1009,10 @@
     SUBDIR += py-pointpats
     SUBDIR += py-projpicker
     SUBDIR += py-proplot
+    SUBDIR += py-pycairo
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
+    SUBDIR += py-pydeck
     SUBDIR += py-pydot
     SUBDIR += py-pydotplus
     SUBDIR += py-pyepsg
@@ -1010,6 +1030,7 @@
     SUBDIR += py-pymaging-png
     SUBDIR += py-pyocr
     SUBDIR += py-pyogrio
+    SUBDIR += py-pypdfium2
     SUBDIR += py-pypillowfight
     SUBDIR += py-pyproj
     SUBDIR += py-pyqrcode
@@ -1057,6 +1078,7 @@
     SUBDIR += py-vecrec
     SUBDIR += py-vispy
     SUBDIR += py-visvis
+    SUBDIR += py-vulkan
     SUBDIR += py-wand
     SUBDIR += py-webcolors
     SUBDIR += py-willow
@@ -1196,6 +1218,7 @@
     SUBDIR += skanpage
     SUBDIR += skia
     SUBDIR += spirv-cross
+    SUBDIR += spirv-headers
     SUBDIR += spirv-tools
     SUBDIR += springgraph
     SUBDIR += squish
@@ -1224,7 +1247,6 @@
     SUBDIR += timg
     SUBDIR += tintfu
     SUBDIR += tinyows
-    SUBDIR += tippecanoe
     SUBDIR += tkpng
     SUBDIR += togl
     SUBDIR += tslib
@@ -1247,6 +1269,7 @@
     SUBDIR += vips
     SUBDIR += visprint
     SUBDIR += viu
+    SUBDIR += vkrunner
     SUBDIR += volpack
     SUBDIR += vp
     SUBDIR += vpaint

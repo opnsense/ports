@@ -1,7 +1,9 @@
 PORTNAME=	h5py
-PORTVERSION=	3.15.1
+PORTVERSION=	3.16.0
+PORTREVISION=	1
 CATEGORIES=	science python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/h5py/h5py/releases/download/${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -13,6 +15,7 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/licenses/license.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=1.25.0,1<3,1:math/py-numpy@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>=23.0:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pkgconfig>=1.5.5,1:devel/py-pkgconfig@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}

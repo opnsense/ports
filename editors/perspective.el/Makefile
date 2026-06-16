@@ -1,8 +1,7 @@
 PORTNAME=	perspective.el
 DISTVERSION=	2.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors elisp
-PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
 MAINTAINER=	pat@patmaddox.com
 COMMENT=	Perspectives for Emacs
@@ -17,16 +16,16 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	nex3
 GH_PROJECT=	perspective-el
 
+CONFLICTS_INSTALL=	perspective.el-emacs_*
+
 NO_ARCH=	yes
+NO_BUILD=	yes
 
 OPTIONS_DEFINE=	DOCS
 
-do-build:
-	${EMACS_CMD} -q --batch -f batch-byte-compile ${WRKSRC}/perspective.el
-
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
-	${INSTALL_DATA} ${WRKSRC}/perspective.el ${WRKSRC}/perspective.elc \
+	${INSTALL_DATA} ${WRKSRC}/perspective.el  \
 		${STAGEDIR}${PREFIX}/${EMACS_SITE_LISPDIR}
 
 post-install-DOCS-on:

@@ -117,6 +117,9 @@
 #	distutils	- Use distutils as do-configure, do-build and
 #			  do-install targets. implies flavors.
 #
+#			  Deprecated in favour of pep517, functionality to be
+#			  removed in a future setuptools.
+#
 #	pep517		- Follow the PEP-517 standard to build and install wheels
 #			  as do-build and do-install targets. implies flavors.
 #
@@ -317,7 +320,6 @@
 #
 # PY_SETUPTOOLS			- setuptools port based on USE_PYTHON=distutils
 # PYGAME			- pygame port
-# PYNUMPY			- NumPy port
 # PY_MERCURIAL			- mercurial port, PKGNAME varies based on default
 #				  Python version
 # PY_BOOST			- Boost Python libraries port
@@ -339,7 +341,7 @@ ZEROREGS_UNSAFE=	yes
 # What Python version and what Python interpreters are currently supported?
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-_PYTHON_VERSIONS=		3.11 3.12 3.13 3.13t 3.14 3.10 2.7 # preferred first
+_PYTHON_VERSIONS=		3.11 3.12 3.13 3.13t 3.14 3.15 3.10 2.7 # preferred first
 _PYTHON_PORTBRANCH=		3.11		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE}/bin/python
 _PYTHON_RELPORTDIR=		lang/python
@@ -630,7 +632,7 @@ _PYTHONPKGLIST=	${WRKDIR}/.PLIST.pymodtmp
 
 # cryptography* support
 .  if ${PYCRYPTOGRAPHY_DEFAULT} == rust
-CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=46.0.4,1<47,1:security/py-cryptography@${PY_FLAVOR}
+CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography>=48.0.0,1<49,1:security/py-cryptography@${PY_FLAVOR}
 .  else
 CRYPTOGRAPHY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-legacy>=3.4.8_3,1:security/py-cryptography-legacy@${PY_FLAVOR}
 .  endif
@@ -709,6 +711,7 @@ _CURRENTPORT:=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools44>0:devel/py-setuptools44@${PY_FLAVOR}
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools44>0:devel/py-setuptools44@${PY_FLAVOR}
 .    else
+DEV_WARNING+=		"USE_PYTHON=distutils is deprecated, setup.py as a command line tool is deprecated and the ability to use it as such will be removed in a future setuptools. As setup.py is still a valid configuration file for setuptools, please migrate to USE_PYTHON=pep517 with setuptools in BUILD_DEPENDS."
 BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}setuptools>=63.1.0:devel/py-setuptools@${PY_FLAVOR}
 .    endif
 .  endif
@@ -849,7 +852,6 @@ CMAKE_ARGS+=	-DPython${PYTHON_MAJOR_VER}_EXECUTABLE:FILEPATH="${PYTHON_CMD}"
 
 # Python 3rd-party modules
 PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:devel/py-game@${PY_FLAVOR}
-PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16,1<1.27,1:math/py-numpy@${PY_FLAVOR}
 
 .  if defined(_PYTHON_FEATURE_DISTUTILS)
 .    if ${PYTHON_MAJOR_VER} < 3
@@ -869,7 +871,7 @@ PY_BACKPORTS.ZSTD=	${PYTHON_PKGNAMEPREFIX}backports.zstd>=1.0.0:devel/py-backpor
 
 .  if ${PYTHON_REL} < 31100
 PY_EXCEPTIONGROUP=	${PYTHON_PKGNAMEPREFIX}exceptiongroup>=1.1.1:devel/py-exceptiongroup@${PY_FLAVOR}
-PY_TOMLI=		${PYTHON_PKGNAMEPREFIX}tomli>=2.3<3:textproc/py-tomli@${PY_FLAVOR}
+PY_TOMLI=		${PYTHON_PKGNAMEPREFIX}tomli>=2.4<3:textproc/py-tomli@${PY_FLAVOR}
 PY_TYPING_EXTENSIONS=	${PYTHON_PKGNAMEPREFIX}typing-extensions>0:devel/py-typing-extensions@${PY_FLAVOR}
 .  endif
 

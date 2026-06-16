@@ -10,8 +10,8 @@ WWW=		https://w1.fi/hostapd/
 USE_GITHUB=	yes
 GH_ACCOUNT=	cschuber
 GH_PROJECT=	hostap
-GH_TAGNAME=	46e71c4104
-COMMIT_DATE=	2026.01.26
+GH_TAGNAME=	53ecc20073
+COMMIT_DATE=	2026.05.25
 
 LICENSE=	BSD3CLAUSE
 
@@ -39,6 +39,7 @@ post-patch:
 	@${ECHO_CMD} 'CONFIG_DNET_PCAP=y' >> ${WRKSRC}/hostapd/.config
 	@${ECHO_CMD} 'CONFIG_IEEE80211BE=y' >> ${WRKSRC}/hostapd/.config
 	@${ECHO_CMD} 'CONFIG_IEEE80211AC=y' >> ${WRKSRC}/hostapd/.config
+	@${ECHO_CMD} 'CONFIG_SAE=y' >> ${WRKSRC}/hostapd/.config
 	@${ECHO_CMD} 'NEED_AP_MLME=y' >> ${WRKSRC}/hostapd/.config
 
 do-install:

@@ -1,6 +1,6 @@
---- torch/csrc/distributed/c10d/ProcessGroupGloo.cpp.orig	2026-01-21 17:09:02 UTC
+--- torch/csrc/distributed/c10d/ProcessGroupGloo.cpp.orig	2026-03-23 18:40:49 UTC
 +++ torch/csrc/distributed/c10d/ProcessGroupGloo.cpp
-@@ -32,6 +32,10 @@
+@@ -33,6 +33,10 @@
  #include <gloo/rendezvous/context.h>
  #include <gloo/rendezvous/prefix_store.h>
  
@@ -11,7 +11,7 @@
  namespace c10d {
  
  namespace {
-@@ -488,7 +492,7 @@ std::shared_ptr<::gloo::transport::Device> ProcessGrou
+@@ -501,7 +505,7 @@ std::shared_ptr<::gloo::transport::Device> ProcessGrou
    return ::c10d::GlooDeviceFactory::makeDeviceForHostname(hostname, lazyInit);
  }
  

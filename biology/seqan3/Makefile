@@ -1,7 +1,7 @@
 PORTNAME=	seqan3
-DISTVERSION=	3.4.0
+DISTVERSION=	3.4.2
 CATEGORIES=	biology devel math
-MASTER_SITES=	https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.0/:cpm
+MASTER_SITES=	https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.1/:cpm
 DISTFILES=	CPM.cmake:cpm
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
@@ -33,6 +33,10 @@ TEST_WRKSRC=	${WRKSRC}/.test
 
 NO_ARCH=	yes
 
+xpost-patch:
+	# remove CPM.cmake: it triggers undesirable logic in cmake scripts
+	@${RM} ${WRKSRC}/cmake/CPM.cmake
+
 post-install:
 	@${RM} -r ${STAGEDIR}${DOCSDIR}
 
@@ -41,5 +45,7 @@ do-test:
 		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -DFETCHCONTENT_FULLY_DISCONNECTED=OFF ${WRKSRC}/test/unit && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} && \
 		ctest
+
+# tests as of 3.4.2: 96% tests passed, 14 tests failed out of 315: some tests fail wuth SIGILL, see https://github.com/seqan/seqan3/issues/3415, other tests also fail, see https://github.com/seqan/seqan3/issues/3416
 
 .include <bsd.port.mk>

@@ -5,6 +5,407 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20260609:
+  AFFECTS: Users of x11-wm/mango
+  AUTHOR: nivit@FreeBSD.org
+
+  Version 0.14.0 of Mango has some breaking changes:
+
+  - IPC Protocol Upgrade: The old dwl IPC protocol is now deprecated and will
+    be removed in the next version.
+  - Socket Restructuring: mmsg(1) now restricts the use of independent sockets.
+    This structural change delivers a more powerful, concise, and reliable
+    syntax, allowing you to seamlessly retrieve data for all clients, tags,
+    monitors, and messages.
+
+  As a result, you must adapt any script that uses the mmsg(1) command to
+  the new syntax.
+
+20260605:
+  AFFECTS: Users of dns/dnsmasq-devel
+  AUTHOR: mandree@FreeBSD.org
+
+  The dns/dnsmasq-devel port has been unable to keep the pace of the upstream
+  releases due project admin issues beyond its maintainer's control. At the
+  same time, dns/dnsmasq is now at the 2.93 release, thus newer than
+  dnsmasq-devel.  The -devel port is no longer useful at this time.
+
+  Users are sought to replace the dnsmasq-devel port and install dnsmasq
+  instead. The configuration including rc.conf settings are compatible,
+  so a simple "pkg install dnsmasq" or, for portmaster users,
+  "portmaster -o dns/dnsmasq dns/dnsmasq-devel" should achieve that.
+
+20260601:
+  AFFECTS: Users of security/lego
+  AUTHOR: matt@matthoran.com
+
+  To migrate from lego v4 to v5 run
+
+  $ lego migrate --path PREFIX/etc/ssl/lego
+
+  as the LEGO_USER user. This command migrates to a new file structure and
+  outputs configuration that can be used as the basis for ETCDIR/lego.yml. See
+  https://go-acme.github.io/lego/references/ref-file/index.html for more
+  details on the configuration file format.
+
+  ETCDIR/lego.sh will need to be updated as well, as the renew command has been
+  removed. The script can also be simplified when a configuration file is used.
+  See ETCDIR/lego.sh.sample for an example.
+
+20260531:
+  AFFECTS: Users of x11-wm/hyprland
+  AUTHOR: tagattie@FreeBSD.org
+
+  Starting from version 0.55.0, Hyprland supports Lua-based
+  configuration syntax. The old hyprlang-based configuration is
+  deprecated and will be supported for a few more releases. After
+  that, old configuration will be dropped. Users are encouraged to
+  migrate from the hyprlang-based configuration to the Lua-based
+  one. For more details, please visit the following URLs:
+
+  https://hypr.land/news/26_lua/
+  https://wiki.hypr.land/Configuring/
+
+20260515:
+  AFFECTS: Users of net/rsync
+  AUTHOR: rodrigo@FreeBSD.org
+
+  Since rsync 3.4.2, the rsync project removed support for the unmaintained
+  rsync-patches archive. As a consequence options such as File system flags
+  (--fileflags) are not available anymore in default build.
+
+20260510:
+  AFFECTS: Users of games/minecraft-server
+  AUTHOR: freebsd.tug890@passmail.net
+
+  The file structure of how worlds and their data are stored have been
+  changed since new 26.1 version.
+  If you upgrade from a version older than 26.1 (v1.21.11 for example),
+  you can get the following error during wold upgrade:
+  "
+  net.minecraft.util.filefix.virtualfilesystem.exception.CowFSSymlinkException:
+  Cannot build copy-on-write file system when symlink is present: ./world
+  "
+
+  To successfully migrate your world, you must relocate /var/db/minecraft
+  content in /usr/local/minecraft/world, then launch 'minecraft-server'
+  as usual.
+  When 'world' upgrade is finished, stop 'minecraft-server' then relocate
+  your world in initial folder /var/db/minecraft-server.
+
+  Approximate list of commands:
+  # service minecraft stop
+  # mv /usr/local/minecraft/world /usr/local/minecraft/world.bak
+  # mv /var/db/minecraft-server /usr/local/minecraft/world
+  # service minecraft start
+  Wait until the conversion is complete.
+  # service minecraft stop
+  # mv /usr/local/minecraft/world /var/db/minecraft-server
+  # /usr/local/minecraft/world.bak /usr/local/minecraft/world
+  # service minecraft start
+  Enjoy!
+
+20260508:
+  AFFECTS: users of shells/bash-completion
+  AUTHOR: michaelo@FreeBSD.org
+
+  Port does not depend on shells/bash{,-static} anymore. Install the port
+  directly. See PR 292138 and 292501 for details.
+
+20260425:
+  AFFECTS: Users of security/openssh-portable
+  AUTHOR: bdrewery@FreeBSD.org
+
+  Some defaults have changed to match src.
+
+  - X11Forwarding default has changed from "yes" to "no".
+  - PermitRootLogin default has changed from "prohibit-password" to "no".
+
+20260418:
+  AFFECTS: Users of net/rsync and net/rsync@python
+  AUTHOR: rodrigo@FreeBSD.org
+
+  Revert the introduction of two net/rsync flavours, the default  without
+  the rrsync script and the python flavour with rrsync and python as a dependency.
+  Restore the previous setup with a single net/rsync package that includes
+  the rrsync script but does not depend on Python.
+  Users who require the rrsync script must install Python separately,
+  as indicated in the install message.
+
+20260412:
+  AFFECTS: Users of sysutils/ansible
+  AUTHOR: cy@FreeBSD.org
+
+  An overhaul of the templating system and a new feature called Data Tagging
+  may affect existing roles resulting in problematic behaviours. Users should
+  review the Ansible 12 Porting Guide at
+  https://docs.ansible.com/projects/ansible/devel/porting_guides/porting_guide_12.html
+
+20260412:
+  AFFECTS: Users of sysutils/py-ansible-core
+  AUTHOR: cy@FreeBSD.org
+
+  A number of behavioural changes may affect existing playbooks and roles.
+  Users are encouraged to review the Ansible-core 2.19 Porting Guide at
+  https://docs.ansible.com/ansible/latest/porting_guides/porting_guide_core_2.19.html
+
+20260411:
+  AFFECTS: users of elisp (*-emacs_*) packages
+  AUTHOR: jrm@FreeBSD.org
+
+  Packages for different flavors of elisp ports have been removed.  For
+  example, the old and new packages for devel/tablist are:
+  |-------------------------+---------|
+  | Before                  | After   |
+  |-------------------------+---------|
+  | tablist                 | tablist |
+  | tablist-emacs_canna     |         |
+  | tablist-emacs_devel_nox |         |
+  | tablist-emacs_devel     |         |
+  | tablist-emacs_nox       |         |
+  | tablist-emacs_wayland   |         |
+  |-------------------------+---------|
+
+  If you have any -emacs_* packages installed, simply running `pkg upgrade`
+  will not upgrade and replace them with the new package.  Run these commands
+  under /bin/sh with superuser privileges before upgrading.
+
+  for i in $(pkg query -g %n *-emacs_*); do
+    if [ "$i" != "notmuch-emacs_*" ]; then
+      nn=$(echo "$i" | sed -e 's/-emacs_[a-z_]*//')
+    else
+      nn=$(echo "$i" | sed -e 's/-emacs_[a-z_]*/-emacs/')
+    fi
+    pkg set -yn "$i":"$nn"
+  done
+
+  If you are building ports in an unclean environment, you may have to specify
+  the Emacs build flavor to avoid conflicts.  For example, if you have the
+  default flavor of editors/emacs installed, add the following to
+  /etc/make.conf:
+
+  DEFAULT_VERSIONS+=emacs=full
+
+  Possible values are: full, canna, nox, wayland, devel_full, and devel_nox.
+  Values prefixed with devel_ select editors/emacs-devel; others select
+  editors/emacs.  The default is nox.
+
+20260401:
+  AFFECTS: users of security/openvpn
+  AUTHOR: mandree@FreeBSD.org
+
+  The openvpn 2.7 port update no longer installs the openvpn-client.up
+  and openvpn-client.down scripts into libexec/, but instead a
+  dns-updown script into libexec/openvpn/.
+  Review your configuration, and the openvpn man page for --dns-updown.
+
+20260329:
+  AFFECTS: users of java/openjdk25 and java/openjdk26 with the jre flavor
+  AUTHOR: jrm@FreeBSD.org
+
+  The openjdk-jre packages for versions 25 and 26 have been renamed.  Users with
+  the old package names installed should run the following /bin/sh script with
+  superuser privileges before upgrading.
+
+  jre=$(pkg query -g %n-%v "*openjdk-jre-25*" "*openjdk-jre-26*")
+  if echo "$jre" | grep -q "\-25"; then
+      on=$(pkg query -g %n "*openjdk-jre-25*")
+      nn="openjdk25-jre"
+  elif echo "$jre" | grep -q "\-26"; then
+      on=$(pkg query -g %n "*openjdk-jre-26*")
+      nn="openjdk26-jre"
+  fi
+  if [ -n "$nn" ]; then
+      pkg set -yn "$on":"$nn"
+  fi
+
+20260327:
+  AFFECTS: users of x11/nvidia-{driver, kmod}
+  AUTHOR: junchoon@dec.sakura.ne.jp
+
+  x11/nvidia-driver and x11/nvidia-kmod are upgraded to latest
+  Production Branch [PB] of upstream driver package.
+
+  Just as -devel variant upgraded 20260103, this version drops
+  support for a bunch of old (pre-Turing generations of
+  architecture) GPUs.
+
+  You can find still supported GPUs below.
+    https://us.download.nvidia.com/XFree86/FreeBSD-x86_64/595.58.03/README/supportedchips.html
+
+  So anyone using related ports
+    x11/nvidia-kmod
+    x11/nvidia-driver
+    graphics/nvidia-drm-{510|515|61|66|latest}-kmod
+    x11/linux-nvidia-libs
+  with dropped GPUs needs to switch to newly added legacy 580 ports.
+    x11/nvidia-kmod-580
+    x11/nvidia-driver-580
+    graphics/nvidia-drm-{510|515|61|66|latest}-kmod-580
+    x11/linux-nvidia-libs-580
+
+  Deinstalling master ports above and reinstalling -580 variant of
+  ports above would do the right things.
+
+  If any of above hesitates to upgrade with version conflicts
+  of graphics/eglexternalplatform, upgrade it first and retrying
+  failed ones should help.
+
+20260326:
+  AFFECTS: users of databases/mysql80-(server|client)
+  AUTHOR: joneum@FreeBSD.org
+
+  The default MySQL version has been updated from 8.0 to 8.4.
+
+  If you compile your own ports you may keep 8.0 as the default version by
+  adding the following lines to your /etc/make.conf file:
+
+  #
+  # Keep MySQL 8.0 as default version
+  #
+  DEFAULT_VERSIONS+=mysql=8.0
+
+  If you wish to update to the new default version, you need to first stop any
+  running server instance. Then, you will need to follow these steps, depending
+  on installed packages.
+
+  # pkg set -o databases/mysql80-client:databases/mysql84-client
+  # pkg set -o databases/mysql80-server:databases/mysql84-server
+  # pkg upgrade
+
+20260325:
+  AFFECTS: users of math/coq
+  AUTHOR: jrm@FreeBSD.org
+
+  Upstream no longer installs Emacs lisp, so the Emacs flavors have been
+  removed.  In order for a `pkg upgrade` to install new versions of coq,
+  any installed package for a non-default flavor must be renamed.  Do
+  this by running the commands below under /bin/sh with superuser
+  privileges:
+
+  on=$(pkg query -g %n coq-emacs_*)
+  nn=$(pkg query -g %n g coq-emacs_* | sed -e 's/-emacs_[a-z_]*//')
+  pkg set -n "$on":"$nn"
+
+20260304:
+  AFFECTS: users of net-mgmt/netbox
+  AUTHOR: kai@FreeBSD.org
+
+  1. With the NetBox 4.5 release Python 3.10 and 3.11 are officially no
+     longer supported.  The whole code can still be compiled without any
+     problems using Python 3.11, which is the current default version in
+     the ports tree.
+
+     Therefore, the minimum version for Python doesn't need to be raised
+     for the time being, but this may change at any time as soon as
+     backward-incompatible changes to the code lands into upstream for the
+     next release.
+
+     Thus, no further action is required at this time. However, it's still
+     recommended to switch to Python 3.12 or newer in the near future.
+
+  2. Please also check the pkg-message and the changelogs for further info.
+
+20260325:
+  AFFECTS: Users of net-mgmt/ping_exporter
+  AUTHOR: ivy@FreeBSD.org
+
+  The format of ping_exporter's configuration file has changed.
+  Refer to https://github.com/czerwonk/ping_exporter/releases/tag/v1.2.0
+  for upstream documentation on how to migrate.
+
+20260301:
+  AFFECTS: users of databases/postgresql* and other software using PostgreSQL to run
+  AUTHOR: kbowling@FreeBSD.org
+
+  The default version of PostgreSQL has been switched from 17 to 18.
+  The upgrade procedure can use up twice the space the databases
+  currently needs. If you have a big amount of stored data take a
+  closer look at the manpage of pg_upgrade for avoidance and/or
+  speedup of the upgrade.
+
+  The upgrade instructions consider a basic usage and do not match
+  complex scenarios like replication, sharding, or similar.
+
+  Upgrade instructions:
+
+  First stop your PostgreSQL, create PostgreSQL-binaries and backup your data.
+  If you have another Version of PostgreSQL installed, for example 17, your
+  files are named according to this.
+
+  # service postgresql stop
+  # pkg create postgresql17-server postgresql17-contrib
+  # mkdir /tmp/pg-upgrade
+  # tar xf postgresql17-server-17.9.pkg -C /tmp/pg-upgrade
+  # tar xf postgresql17-contrib-17.9.pkg -C /tmp/pg-upgrade
+  # pkg delete -f databases/postgresql17-server databases/postgresql17-contrib databases/postgresql17-client
+
+  Now update PostgreSQL:
+
+    pkg user:
+    # pkg install databases/postgresql18-server databases/postgresql18-contrib
+    # pkg upgrade
+
+    Portmaster users:
+    # portmaster databases/postgresql18-server databases/postgresql18-contrib
+    # portmaster -a
+
+    Portupgrade users:
+    # portinstall databases/postgresql18-server databases/postgresql18-contrib
+    # portupgrade -a
+
+  After installing the new PostgreSQL version you need to convert
+  all your databases to new version:
+
+  # su -l postgres -c "/usr/local/bin/initdb --encoding=utf-8 --lc-collate=C --no-data-checksums -D /var/db/postgres/data18 -U postgres"
+  # su -l postgres -c "pg_upgrade -b /tmp/pg-upgrade/usr/local/bin/ -d /var/db/postgres/data17/ -B /usr/local/bin/ -D /var/db/postgres/data18/ -U postgres "
+
+  Now the migration is finished. You can start PostgreSQL again with:
+
+  # service postgresql start
+
+  ATTENTION:
+  1) If you use non-default initdb options, you have to adjust the initdb-command accordingly
+  2) The initdb in the upgrade procedure uses '--no-data-checksums' to enable
+  pg_upgrade from before this change.  You should review the documentation and
+  decide whether you want to then enable checksums with pg_checksums.  Future
+  upgrade instructions for PostgreSQL 19 and later will assume a default
+  initdb, and therefore that checksums are enabled.
+
+20260226:
+  AFFECTS: users of sysutils/symon
+  AUTHOR: jamie@catflap.org
+
+  The old WITHOUT_SYMON and WITHOUT_SYMUX knobs have been replaced with the
+  port options SYMON and SYMUX. The legacy "WITHOUT_RRD" knob has been retired.
+
+20260226:
+  AFFECTS: users of java/openjdk*
+  AUTHOR: ronald@FreeBSD.org
+
+  Version JAVA_DEFAULT is updated from 8 to 21.
+  No specific action should be needed, just a heads-up to test before
+  deploying to production as this is quite a big step in versions.
+
+20260225:
+  AFFECTS: users of net-im/gotosocial
+  AUTHOR: tilde@ultros.pro
+
+  net-im/gotosocial has been updated to 0.21.0
+
+  New configuration options have been added and the upgrade involves
+  lengthy database migrations which must not be interrupted.
+
+  Upgrade procedure:
+
+  1. # service gotosocial stop
+  2. Backup database
+  3. # pkg upgrade gotosocial
+  4. Merge new options from etc/gotosocial/config.yaml.sample
+  5. # service gotosocial start (do not interrupt database migrations!)
+
+  See details at https://codeberg.org/superseriousbusiness/gotosocial/releases/tag/v0.21.0
+
 20260206:
   AFFECTS: users of devel/freebsd-git-devtools
   AUTHOR: jrm@FreeBSD.org

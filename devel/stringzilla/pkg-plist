@@ -22,10 +22,14 @@ include/stringzillas/types.cuh
 include/stringzillas/types.hpp
 lib/libstringzilla_bare.so
 lib/libstringzilla_bare.so.1
-lib/libstringzilla_bare.so.4.5.1
+lib/libstringzilla_bare.so.4.6.1
 lib/libstringzilla_shared.so
 lib/libstringzilla_shared.so.1
-lib/libstringzilla_shared.so.4.5.1
+lib/libstringzilla_shared.so.4.6.1
 lib/libstringzillas_cpus_shared.so
 lib/libstringzillas_cpus_shared.so.1
-lib/libstringzillas_cpus_shared.so.4.5.1
+lib/libstringzillas_cpus_shared.so.4.6.1
+%%DATADIR%%/src/stringzilla.c
+%%DATADIR%%/src/stringzillas.cpp
+%%DATADIR%%/src/stringzillas.cu
+%%DATADIR%%/src/stringzillas.cuh

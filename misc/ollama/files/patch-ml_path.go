@@ -1,11 +1,14 @@
---- ml/path.go.orig	2025-11-29 01:38:34.298472000 -0800
-+++ ml/path.go	2025-11-29 01:39:10.084873000 -0800
-@@ -27,7 +27,7 @@
- 	switch runtime.GOOS {
- 	case "windows":
- 		libPath = filepath.Join(filepath.Dir(exe), "lib", "ollama")
--	case "linux":
-+	case "linux", "freebsd":
- 		libPath = filepath.Join(filepath.Dir(exe), "..", "lib", "ollama")
- 	case "darwin":
- 		libPath = filepath.Dir(exe)
+-- Add FreeBSD to the list of OS cases that look for lib/ollama helpers.
+-- Without this, FreeBSD falls through to the default case and may not
+-- find the llama-server binary at the expected path.
+--- ml/path.go.orig	2026-06-02 21:19:57 UTC
++++ ml/path.go
+@@ -82,7 +82,7 @@ func libOllamaPathCandidates(search libOllamaPathSearc
+ 			// Local dist output and standard installs keep helpers under lib/ollama.
+ 			add(filepath.Join(exeDir, "lib", "ollama"))
+ 			add(filepath.Join(exeDir, "..", "lib", "ollama"))
+-		case "linux":
++		case "linux", "freebsd":
+ 			add(filepath.Join(exeDir, "..", "lib", "ollama"))
+ 			add(filepath.Join(exeDir, "lib", "ollama"))
+ 		case "windows":

@@ -1,5 +1,6 @@
 PORTNAME=	obs-multi-rtmp
-DISTVERSION=	0.7.3.2
+DISTVERSION=	0.7.4
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 MAINTAINER=	freebsd@sysctl.cz
@@ -20,6 +21,10 @@ USE_QT=		base
 
 CMAKE_ON=	ENABLE_QT
 CMAKE_OFF=	CMAKE_COMPILE_WARNING_AS_ERROR
+
+post-patch:
+	${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|' \
+		${WRKSRC}/CMakeLists.txt
 
 do-install:
 	${MKDIR} \

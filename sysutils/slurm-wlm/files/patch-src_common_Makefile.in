@@ -1,0 +1,44 @@
+--- src/common/Makefile.in.orig	2026-06-09 20:26:02 UTC
++++ src/common/Makefile.in
+@@ -181,7 +181,7 @@ am_libcommon_la_OBJECTS = assoc_mgr.lo atomic.lo bitst
+ 	setproctitle.lo sluid.lo slurm_errno.lo slurm_opt.lo \
+ 	slurm_protocol_api.lo slurm_protocol_defs.lo \
+ 	slurm_protocol_pack.lo slurm_protocol_socket.lo \
+-	slurm_protocol_util.lo slurm_resolv.lo slurm_resource_info.lo \
++	slurm_protocol_util.lo slurm_resolv.lo slurm_sockaddr.lo slurm_resource_info.lo \
+ 	slurm_rlimits_info.lo slurm_step_layout.lo slurm_time.lo \
+ 	slurmdb_defs.lo slurmdb_pack.lo slurmdbd_defs.lo \
+ 	slurmdbd_pack.lo spank.lo state_save.lo step_ctx.lo \
+@@ -743,6 +743,8 @@ libcommon_la_SOURCES = \
+ 	slurm_protocol_util.h			\
+ 	slurm_resolv.c				\
+ 	slurm_resolv.h				\
++	slurm_sockaddr.c			\
++	slurm_sockaddr.h			\
+ 	slurm_resource_info.c			\
+ 	slurm_resource_info.h			\
+ 	slurm_rlimits_info.c			\
+@@ -957,6 +959,7 @@ distclean-compile:
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_protocol_socket.Plo@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_protocol_util.Plo@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_resolv.Plo@am__quote@ # am--include-marker
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_sockaddr.Plo@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_resource_info.Plo@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_rlimits_info.Plo@am__quote@ # am--include-marker
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/slurm_step_layout.Plo@am__quote@ # am--include-marker
+@@ -1195,6 +1198,7 @@ distclean: distclean-am
+ 	-rm -f ./$(DEPDIR)/slurm_protocol_socket.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_protocol_util.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_resolv.Plo
++	-rm -f ./$(DEPDIR)/slurm_sockaddr.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_resource_info.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_rlimits_info.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_step_layout.Plo
+@@ -1353,6 +1357,7 @@ maintainer-clean: maintainer-clean-am
+ 	-rm -f ./$(DEPDIR)/slurm_protocol_socket.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_protocol_util.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_resolv.Plo
++	-rm -f ./$(DEPDIR)/slurm_sockaddr.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_resource_info.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_rlimits_info.Plo
+ 	-rm -f ./$(DEPDIR)/slurm_step_layout.Plo

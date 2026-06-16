@@ -1,8 +1,8 @@
 PORTNAME=	c-lightning
 # To build from an arbitrary git commit comment PORTVERSION and PORTREVISION (if present)
-PORTVERSION=	25.12.1
+PORTVERSION=	26.04.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	3
 # and uncomment the following two lines (use for example -git-HEAD or -git-f8d8348c)
 #PORTVERSION=	0
 #PKGNAMESUFFIX=	-git-f8d8348c
@@ -18,6 +18,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 		gsed:textproc/gsed \
 		lowdown:textproc/lowdown \
 		jq:textproc/jq \
+		${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}mako>=1.0.14:textproc/py-mako@${PY_FLAVOR}
 LIB_DEPENDS=	libsodium.so:security/libsodium
 RUN_DEPENDS=	bitcoin-cli:net-p2p/bitcoin-utils

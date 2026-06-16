@@ -5,7 +5,7 @@ PORTREVISION=	${GITLAB_PORTREVISION} # modify it in www/gitlab/Makefile.common
 CATEGORIES=	devel
 
 PATCH_SITES=	https://gitlab.com/gitlab-org/gitaly/-/merge_requests/
-PATCHFILES+=	8309.patch:-p1 # https://gitlab.com/gitlab-org/gitaly/-/merge_requests/8309, Fix build on i386 system
+#PATCHFILES+=	8309.patch:-p1 # https://gitlab.com/gitlab-org/gitaly/-/merge_requests/8309, Fix build on i386 system
 MAINTAINER=	mfechner@FreeBSD.org
 COMMENT=	Smart reverse proxy for GitLab
 WWW=		https://gitlab.com/gitlab-org/gitaly
@@ -13,8 +13,11 @@ WWW=		https://gitlab.com/gitlab-org/gitaly
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_i386=	Platform i386 is not supported upstream, see https://gitlab.com/gitlab-org/gitaly/-/merge_requests/8309
+
 BUILD_DEPENDS=	bash>0:shells/bash \
 		${LOCALBASE}/bin/cmake:devel/cmake-core \
+		meson:devel/meson \
 		pcre2>0:devel/pcre2 \
 		http-parser>0:www/http-parser
 LIB_DEPENDS=	libcurl.so:ftp/curl \
@@ -32,7 +35,7 @@ GL_TUPLE=	gitlab-org:git:v${GITLAB_GIT_VERSION}:git_dep/_build/deps/git-v${GITLA
 		gitlab-org:git:${GITLAB_GIT_PREV_VERSION}:git_prev_dep/_build/deps/git-prev
 
 GO_MOD_DIST=	gitlab
-GO_MODULE=	gitlab.com/gitlab-org/gitaly/v18
+GO_MODULE=	gitlab.com/gitlab-org/gitaly/v19
 
 MAKE_ENV=	GOFLAGS="${GO_BUILDFLAGS}"
 # make sure to pass go build options into make process

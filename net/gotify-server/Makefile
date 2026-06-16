@@ -1,7 +1,7 @@
 PORTNAME=	gotify-server
-PORTVERSION=	2.7.3
+PORTVERSION=	2.9.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	5
+PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/mfechner/freebsd-net-gotify-server/raw/refs/heads/main/:yarn_cache
 DISTNAME=	server
@@ -13,10 +13,11 @@ WWW=		https://github.com/gotify/server
 
 LICENSE=	MIT
 
-BROKEN_i386=	Build does not succeed (timeout in poudriere)
+ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS_REASON=	Npm cache only for amd64 generated
 
 BUILD_DEPENDS=	yarn${NODEJS_SUFFIX}>=1.10.0:www/yarn${NODEJS_SUFFIX} \
-		
+
 USES=		go:modules nodejs:build
 USE_RC_SUBR=	gotify_server
 GO_MODULE=	github.com/gotify/server/v2
@@ -30,11 +31,7 @@ GO_BUILDFLAGS=	-buildmode=pie -modcacherw \
 		-X 'main.BuildDate=${_BUILD_DATE}' \
 		-X 'main.Mode=prod'"
 
-.include <bsd.port.pre.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400000
-MAKE_ENV+=	 NODE_OPTIONS=--openssl-legacy-provider
-.endif
+MAKE_ENV+=	NODE_OPTIONS=--openssl-legacy-provider
 
 USERS=		gotify
 GROUPS=		gotify
@@ -44,7 +41,7 @@ PLIST_FILES=	bin/gotify-server
 post-patch:
 	# setup yarnrc for offline node_modules installatio
 	@${ECHO_CMD} 'yarn-offline-mirror "${WRKDIR}/yarn-offline-cache"' >> ${WRKSRC}/ui/.yarnrc
-	
+
 pre-build:
 	@cd ${WRKSRC}/ui && ${SETENV} ${MAKE_ENV} HOME=${WRKDIR} PUPPETEER_SKIP_DOWNLOAD=true yarn install --offline
 	@cd ${WRKSRC}/ui && ${SETENV} ${MAKE_ENV} yarn build
@@ -82,5 +79,6 @@ make-yarn-cache: patch
 	cd ${WRKSRC}/ui && ${SETENV} ${MAKE_ENV} PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn --frozen-lockfile --ignore-scripts
 	cd ${WRKDIR} && ${TAR} -czf ${PORTNAME}-yarn-offline-cache-${DISTVERSION}${EXTRACT_SUFX} yarn-offline-cache
 	@${ECHO_CMD} upload ${PORTNAME}-yarn-offline-cache-${DISTVERSION}${EXTRACT_SUFX}
+	#@${ECHO_CMD} scp work/gotify-server-yarn-offline-cache-*.tar.gz mfechner@freefall.freebsd.org:public_distfiles/
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -65,6 +65,8 @@ share/locale/zh_TW/LC_MESSAGES/smile.mo
 %%DATADIR%%/smile/assets/style.css
 %%DATADIR%%/smile/components/CustomPopover.py
 %%DATADIR%%/smile/components/CustomTagEntry.py
+%%DATADIR%%/smile/components/EmojiButton.py
+%%DATADIR%%/smile/components/EmojiItem.py
 %%DATADIR%%/smile/components/SkintoneSelector.py
 %%DATADIR%%/smile/components/UpdateDialog.py
 %%DATADIR%%/smile/components/UrlRow.py
@@ -73,7 +75,6 @@ share/locale/zh_TW/LC_MESSAGES/smile.mo
 %%DATADIR%%/smile/lib/emoji_history.py
 %%DATADIR%%/smile/lib/localized_tags.py
 %%DATADIR%%/smile/lib/user_config.py
-%%DATADIR%%/smile/lib/widget_utils.py
 %%DATADIR%%/smile/main.py
 %%DATADIR%%/smile/smile.gresource
 %%DATADIR%%/smile/smile.gresource.xml

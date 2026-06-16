@@ -1,17 +1,17 @@
 PORTNAME=	gdu
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.32.0
+DISTVERSION=	5.36.1
 PORTREVISION=	2
 CATEGORIES=	sysutils
 
-MAINTAINER=	lcook@FreeBSD.org
+MAINTAINER=	diizzy@FreeBSD.org
 COMMENT=	Disk usage analyzer with console interface written in Go
 WWW=		https://github.com/dundee/gdu
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-USES=		go:modules
+USES=		go:1.25+,modules
 
 GO_MODULE=	github.com/dundee/${PORTNAME}/${DISTVERSIONFULL:R:R}
 GO_TARGET=	./cmd/${PORTNAME}

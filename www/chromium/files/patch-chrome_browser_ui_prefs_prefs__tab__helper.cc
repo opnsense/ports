@@ -1,6 +1,6 @@
---- chrome/browser/ui/prefs/prefs_tab_helper.cc.orig	2026-01-14 08:33:23 UTC
+--- chrome/browser/ui/prefs/prefs_tab_helper.cc.orig	2026-06-04 10:12:25 UTC
 +++ chrome/browser/ui/prefs/prefs_tab_helper.cc
-@@ -65,7 +65,7 @@
+@@ -66,7 +66,7 @@
  #endif
  
  #if BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || \
@@ -9,3 +9,12 @@
  // If a font name in prefs default values starts with a comma, consider it's a
  // comma-separated font list and resolve it to the first available font.
  #define PREFS_FONT_LIST 1
+@@ -153,7 +153,7 @@ constexpr auto kFontDefaults = std::to_array<FontDefau
+     {prefs::kWebKitFantasyFontFamily, IDS_FANTASY_FONT_FAMILY},
+     {prefs::kWebKitMathFontFamily, IDS_MATH_FONT_FAMILY},
+ #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || \
+-    BUILDFLAG(IS_LINUX) || BUILDFLAG(ENABLE_DESKTOP_ANDROID_EXTENSIONS)
++    BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD) || BUILDFLAG(ENABLE_DESKTOP_ANDROID_EXTENSIONS)
+     {prefs::kWebKitStandardFontFamilyJapanese,
+      IDS_STANDARD_FONT_FAMILY_JAPANESE},
+     {prefs::kWebKitFixedFontFamilyJapanese, IDS_FIXED_FONT_FAMILY_JAPANESE},

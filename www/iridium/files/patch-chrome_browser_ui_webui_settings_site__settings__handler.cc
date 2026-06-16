@@ -1,6 +1,6 @@
---- chrome/browser/ui/webui/settings/site_settings_handler.cc.orig	2026-01-16 14:21:21 UTC
+--- chrome/browser/ui/webui/settings/site_settings_handler.cc.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/ui/webui/settings/site_settings_handler.cc
-@@ -124,7 +124,7 @@
+@@ -126,7 +126,7 @@
  #include "url/url_constants.h"
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -10,7 +10,7 @@
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
          // BUILDFLAG(IS_CHROMEOS)
 @@ -2087,7 +2087,7 @@ void SiteSettingsHandler::SendZoomLevels() {
-   base::Value::List zoom_levels_exceptions;
+   base::ListValue zoom_levels_exceptions;
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS)

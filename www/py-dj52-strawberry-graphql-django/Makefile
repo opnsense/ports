@@ -1,5 +1,5 @@
 PORTNAME=	strawberry-graphql-django
-DISTVERSION=	0.73.0
+DISTVERSION=	0.84.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -12,10 +12,13 @@ WWW=		https://github.com/strawberry-graphql/strawberry-django
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=     Obsolete, please use www/py-strawberry-graphql-django instead
+EXPIRATION_DATE=2026-06-30
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django52>=4.2:www/py-django52@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django52>=5.2:www/py-django52@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}asgiref>=3.8:www/py-asgiref@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}dj52-strawberry-graphql>=0.288.0:devel/py-dj52-strawberry-graphql@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}dj52-strawberry-graphql>=0.310.1:devel/py-dj52-strawberry-graphql@${PY_FLAVOR}
 
 USES=		python
 USE_PYTHON=	autoplist pep517

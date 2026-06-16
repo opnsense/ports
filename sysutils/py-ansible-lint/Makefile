@@ -1,11 +1,11 @@
 PORTNAME=	ansible-lint
-PORTVERSION=	6.17.1
-PORTREVISION=	2
+PORTVERSION=	26.4.0
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTFILES=	ansible_lint-${PORTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER=	matthew@FreeBSD.org
+MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Checks playbooks for sub-optimal practices and behaviour
 WWW=		https://github.com/willthames/ansible-lint
 
@@ -48,6 +48,8 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage_enable_subprocess>=0:devel/py-cove
 
 USES=		python
 USE_PYTHON=	autoplist concurrent pep517 pytest
+
+WRKSRC=		${WRKDIR}/ansible_lint-${PORTVERSION}
 
 TEST_ENV=	LC_ALL=C.UTF-8 PYTHONPATH=${WRKSRC}/src TMPDIR=${WRKDIR}/
 NO_ARCH=	yes

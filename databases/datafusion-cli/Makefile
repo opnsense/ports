@@ -1,5 +1,6 @@
 PORTNAME=	datafusion
-PORTVERSION=	52.1.0
+PORTVERSION=	53.1.0
+PORTREVISION=	2
 CATEGORIES=	databases
 PKGNAMESUFFIX=	-cli
 
@@ -11,6 +12,10 @@ WWW=		https://datafusion.apache.org/user-guide/cli/ \
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+BROKEN_i386=	rustc-LLVM ERROR: out of memory
+
+BUILD_DEPENDS=	protoc:devel/protobuf
 
 USES=		cargo llvm
 

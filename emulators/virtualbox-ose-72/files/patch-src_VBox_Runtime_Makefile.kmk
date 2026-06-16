@@ -1,4 +1,4 @@
---- src/VBox/Runtime/Makefile.kmk.orig	2025-08-28 22:09:24 UTC
+--- src/VBox/Runtime/Makefile.kmk.orig	2026-04-18 10:21:06 UTC
 +++ src/VBox/Runtime/Makefile.kmk
 @@ -233,6 +233,9 @@ $(IPRT_OUT_DIR)/oiddb.h.ts +| $(IPRT_OUT_DIR)/oiddb.h:
  	$(QUIET)$(oiddb2c_1_TARGET) "$@" $(filter %.cfg,$^)
@@ -10,7 +10,7 @@
  
  #
  # Unicode Specification reader used to regenerate unidata-*.cpp.
-@@ -1516,6 +1519,7 @@ RuntimeBaseR3_SOURCES.freebsd = \
+@@ -1523,6 +1526,7 @@ RuntimeBaseR3_SOURCES.freebsd = \
  	generic/RTProcDaemonize-generic.cpp \
  	generic/RTProcIsRunningByName-generic.cpp \
  	generic/RTThreadGetNativeState-generic.cpp \
@@ -18,11 +18,11 @@
  	r3/freebsd/fileaio-freebsd.cpp \
  	r3/freebsd/RTFileQuerySectorSize-freebsd.cpp \
  	r3/freebsd/mp-freebsd.cpp \
-@@ -3072,6 +3076,8 @@ VBoxRT_LDFLAGS.win             = /MANIFEST \
- 	/delayload:ole32.dll \
+@@ -3090,6 +3094,8 @@ VBoxRT_LDFLAGS.win             = /MANIFEST \
  	/delayload:oleaut32.dll \
- 	/delayload:advapi32.dll
-+VBoxRT_LDFLAGS.freebsd          = \
+ 	/delayload:advapi32.dll \
+ 	/delayload:mpr.dll
++VBoxRT_LDFLAGS.freebsd		= \
 +	-Wl,--allow-multiple-definition
  
  if1of (VBoxRT, $(DLLS))

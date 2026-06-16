@@ -1,5 +1,5 @@
 PORTNAME=	airbrussh
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 

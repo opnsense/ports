@@ -1,6 +1,6 @@
-TIMESTAMP = 1759637867
-SHA256 (mapnik-mapnik-v4.1.3_GH0.tar.gz) = 04a39a878fb60204853adf79a9e5be803609c6eab180d6403d67fc8b4691fa9f
-SIZE (mapnik-mapnik-v4.1.3_GH0.tar.gz) = 13264597
+TIMESTAMP = 1774982775
+SHA256 (mapnik-mapnik-v4.2.2_GH0.tar.gz) = 631136738aee04aa1476084fcb0df2604759cceffb1963c27ec0eef1b3c42c7c
+SIZE (mapnik-mapnik-v4.2.2_GH0.tar.gz) = 13270783
 SHA256 (catchorg-Catch2-v2.13.10_GH0.tar.gz) = d54a712b7b1d7708bc7a819a8e6e47b2fde9536f487b89ccbca295072a7d9943
 SIZE (catchorg-Catch2-v2.13.10_GH0.tar.gz) = 662225
 SHA256 (mapbox-geometry.hpp-c83a2ab_GH0.tar.gz) = 676c7490fa7cdba26f45fc6b3932dc04bec110f75d660493a7c31d5b0d86e923

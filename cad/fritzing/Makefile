@@ -2,7 +2,7 @@ PORTNAME=	fritzing
 PORTVERSION=	1.0.6
 CATEGORIES=	cad
 
-MAINTAINER=	kenrap@kennethraplee.com
+MAINTAINER=	kenrap@FreeBSD.org
 COMMENT=	CAD for printed circuit boards
 WWW=		https://fritzing.org/
 
@@ -37,7 +37,7 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} -e '/CONFIG += debug_and_release/d' ${WRKSRC}/phoenix.pro
 	${REINPLACE_CMD} -e 's|QT_MOST=.*|QT_MOST=${QT6_VERSION}|' ${WRKSRC}/phoenix.pro
-	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${FILESDIR}/pri_quazipdetect.pri > ${WRKSRC}/pri/quazipdetect.pri
+	${CP} ${FILESDIR}/pri_quazipdetect.pri ${WRKSRC}/pri/quazipdetect.pri
 	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${FILESDIR}/pri_spicedetect.pri > ${WRKSRC}/pri/spicedetect.pri
 	${SED} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${FILESDIR}/pri_clipper1detect.pri > ${WRKSRC}/pri/clipper1detect.pri
 
@@ -50,10 +50,4 @@ post-install:
 		-f  ${STAGEDIR}${DATADIR} \
 		-platform offscreen
 
-.include <bsd.port.pre.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1400000 && ${SSL_DEFAULT} == "base"
-IGNORE=		Requires OpenSSL >= 3
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -1,3 +1,5 @@
-opnsense-filterlog is a terminal-based viewer for OPNsense firewall logs.
-It works similarly to a pager like less, but with filtering/searching
-capabilities built specifically for firewall logs.
+opnsense-filterlog is a command-line tool and terminal-based viewer for
+analyzing OPNsense firewall logs. It can be used either as an interactive TUI
+or to output log entries in JSON format for automation, etc. Both CLI and TUI
+support filtering using a tcpdump-like syntax with field- and time-based
+filters, logical operators, and grouping.

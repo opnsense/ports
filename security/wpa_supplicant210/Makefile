@@ -9,10 +9,14 @@ MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Supplicant (client) for WPA/802.1x protocols
 WWW=		https://w1.fi/wpa_supplicant/
 
+DEPRECATED=	Unsupported by upstream
+EXPIRATION_DATE=2026-12-31
+
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/README
 
 USES=		cpe gmake pkgconfig:build readline ssl
+CPE_VENDOR=	w1.fi
 BUILD_WRKSRC=	${WRKSRC}/wpa_supplicant
 INSTALL_WRKSRC=	${WRKSRC}/src
 CFLAGS+=	${CPPFLAGS} # USES=readline only augments CPPFLAGS and LDFLAGS

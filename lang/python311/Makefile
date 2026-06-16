@@ -8,13 +8,8 @@ DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
 PATCH_SITES=	https://github.com/python/cpython/commit/
-PATCHFILES=	a46c10ec9d4050ab67b8a932e0859a2ea60c3cb8.patch:-p1 \
-		afc40bdd3dd71f343fd9016f6d8eebbacbd6587c.patch:-p1 \
-		842ce19a0c0b58d61591e8f6a708c38db1fb94e4.patch:-p1 \
-		e9970f077240c7c670e8a6fc6662f2b30d3b6ad0.patch:-p1 \
-		3f396ca9d7bbe2a50ea6b8c9b27c0082884d9f80.patch:-p1 \
-		b1869ff648bbee0717221d09e6deff46617f3e85.patch:-p1 \
-		e4846a93ac07a8ae9aa18203af0dd13d6e7a6995.patch:-p1
+PATCHFILES=	ceac1efc66516ac387eef2c9a0ce671895b44f03.patch:-p1 \
+		96fc5048605863c7b6fd6289643feb0e97edd96c.patch:-p1
 
 MAINTAINER=	python@FreeBSD.org
 COMMENT=	Interpreted object-oriented programming language
@@ -83,7 +78,7 @@ LTO_CONFIGURE_ON=	--with-lto
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
 # Upstream Issue: https://bugs.python.org/issue6299
-NLS_USES=		gettext
+NLS_USES=		gettext-runtime
 NLS_CPPFLAGS=		-I${LOCALBASE}/include
 NLS_LIBS=		-L${LOCALBASE}/lib -lintl
 NLS_CONFIGURE_ENV_OFF=	ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no

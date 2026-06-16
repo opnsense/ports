@@ -1,4 +1,4 @@
---- extensions/shell/browser/shell_browser_main_parts.cc.orig	2025-09-10 13:22:16 UTC
+--- extensions/shell/browser/shell_browser_main_parts.cc.orig	2026-04-15 11:25:12 UTC
 +++ extensions/shell/browser/shell_browser_main_parts.cc
 @@ -126,7 +126,7 @@ void ShellBrowserMainParts::PostCreateMainMessageLoop(
        switches::kAppShellAllowRoaming)) {
@@ -7,5 +7,5 @@
 -#elif BUILDFLAG(IS_LINUX)
 +#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    // app_shell doesn't need GTK, so the fake input method context can work.
-   // See crbug.com/381852 and revision fb69f142.
+   // See crbug.com/40369323 and revision fb69f142.
    // TODO(michaelpg): Verify this works for target environments.

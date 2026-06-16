@@ -1,6 +1,6 @@
---- content/browser/renderer_host/render_widget_host_view_aura.h.orig	2026-01-14 08:33:23 UTC
+--- content/browser/renderer_host/render_widget_host_view_aura.h.orig	2026-06-04 10:12:25 UTC
 +++ content/browser/renderer_host/render_widget_host_view_aura.h
-@@ -290,7 +290,7 @@ class CONTENT_EXPORT RenderWidgetHostViewAura
+@@ -291,7 +291,7 @@ class CONTENT_EXPORT RenderWidgetHostViewAura
    ukm::SourceId GetClientSourceForMetrics() const override;
    bool ShouldDoLearning() override;
  

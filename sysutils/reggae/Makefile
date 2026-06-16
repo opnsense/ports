@@ -1,5 +1,5 @@
 PORTNAME=	reggae
-DISTVERSION=	0.5.1
+DISTVERSION=	0.5.3
 CATEGORIES=	sysutils
 
 MAINTAINER=	meka@tilda.center
@@ -9,10 +9,9 @@ WWW=		https://github.com/cbsd/reggae
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		sudo
 USE_GITHUB=	yes
 GH_ACCOUNT=	cbsd
-USE_RC_SUBR=	reggae reggae_pf
+USE_RC_SUBR=	reggae_pf
 
 NO_ARCH=	yes
 

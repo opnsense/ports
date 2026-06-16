@@ -3,9 +3,9 @@
 @@ -37,7 +37,7 @@ dependencies = [
  ]
  dependencies = [
-   "awkward >=2.5.1",
--  "dask >=2023.04.0,<2025.4.0",
-+  "dask >=2023.04.0",
+   "awkward >=2.8.12",
+-  "dask >=2023.4.0,<2025.4.0",
++  "dask >=2023.4.0",
    "cachetools",
    "typing_extensions >=4.8.0",
  ]

@@ -39,7 +39,6 @@
     SUBDIR += dnsjava
     SUBDIR += dnsjit
     SUBDIR += dnsmasq
-    SUBDIR += dnsmasq-devel
     SUBDIR += dnsmax-perl
     SUBDIR += dnsperf
     SUBDIR += dnsproxy
@@ -86,6 +85,7 @@
     SUBDIR += kf6-kdnssd
     SUBDIR += knock
     SUBDIR += knot-resolver
+    SUBDIR += knot-resolver6
     SUBDIR += knot3
     SUBDIR += ldapdns
     SUBDIR += ldns
@@ -228,7 +228,7 @@
     SUBDIR += rubygem-validates_hostname
     SUBDIR += rubygem-validates_hostname-gitlab
     SUBDIR += rubygem-zonefile
-    SUBDIR += samba-nsupdate
+    SUBDIR += s6-dns
     SUBDIR += scavenge
     SUBDIR += sleuth
     SUBDIR += subfinder

@@ -6,6 +6,7 @@
 %%DATADIR%%/NetDNS2/Cache/Redis.php
 %%DATADIR%%/NetDNS2/Cache/Shm.php
 %%DATADIR%%/NetDNS2/Client.php
+%%DATADIR%%/NetDNS2/DNSSEC/Validator.php
 %%DATADIR%%/NetDNS2/Data.php
 %%DATADIR%%/NetDNS2/Data/Domain.php
 %%DATADIR%%/NetDNS2/Data/IPv4.php
@@ -40,6 +41,7 @@
 %%DATADIR%%/NetDNS2/RR/ANY.php
 %%DATADIR%%/NetDNS2/RR/APL.php
 %%DATADIR%%/NetDNS2/RR/AVC.php
+%%DATADIR%%/NetDNS2/RR/BRID.php
 %%DATADIR%%/NetDNS2/RR/CAA.php
 %%DATADIR%%/NetDNS2/RR/CDNSKEY.php
 %%DATADIR%%/NetDNS2/RR/CDS.php
@@ -56,6 +58,7 @@
 %%DATADIR%%/NetDNS2/RR/EUI48.php
 %%DATADIR%%/NetDNS2/RR/EUI64.php
 %%DATADIR%%/NetDNS2/RR/GPOS.php
+%%DATADIR%%/NetDNS2/RR/HHIT.php
 %%DATADIR%%/NetDNS2/RR/HINFO.php
 %%DATADIR%%/NetDNS2/RR/HIP.php
 %%DATADIR%%/NetDNS2/RR/HTTPS.php

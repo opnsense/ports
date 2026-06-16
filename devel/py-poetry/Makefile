@@ -1,5 +1,6 @@
 PORTNAME=	poetry
-PORTVERSION=	2.3.1
+PORTVERSION=	2.4.1
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/python-poetry/poetry/releases/download/${PORTVERSION}/
@@ -17,16 +18,16 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}poetry-core>=2.0:devel/py-poetry-core@${PY
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}build>=1.2.1<2.0.0:devel/py-build@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cachecontrol>=0.14.0<0.15.0:www/py-cachecontrol@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cleo>=2.1.0<3.0.0:devel/py-cleo@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}dulwich>=0.25.0<0.26.0:devel/py-dulwich@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}dulwich>=0.25.0<2:devel/py-dulwich@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fastjsonschema>=2.18.0<3.0.0:devel/py-fastjsonschema@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}findpython>=0.6.2<0.8.0:devel/py-findpython@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}installer>=0.7.0<0.8.0:devel/py-installer@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}findpython>=0.6.2<0.9.0:devel/py-findpython@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}installer>=0.7.0<2.0.0:devel/py-installer@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}keyring>=25.1.0,1<26.0.0,1:security/py-keyring@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=24.2:devel/py-packaging@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pbs-installer>=2025.6.10:devel/py-pbs-installer@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pkginfo>=1.12<2.0:sysutils/py-pkginfo@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}platformdirs>=3.0.0<5:devel/py-platformdirs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}poetry-core>=${PORTVERSION:R}.0<${PORTVERSION:R}.0_99:devel/py-poetry-core@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}poetry-core>=${PORTVERSION:R}.0:devel/py-poetry-core@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyproject-hooks>=1.0.0<2.0.0:devel/py-pyproject-hooks@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.26<3.0:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests-toolbelt>=1.0.0<2.0.0:www/py-requests-toolbelt@${PY_FLAVOR} \
@@ -44,7 +45,8 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=7.2.0:devel/py-coverage@${PY_FLAV
 		${PYTHON_PKGNAMEPREFIX}pytest-xdist>=3.1,1:devel/py-pytest-xdist@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}responses>=0.25.8:devel/py-responses@${PY_FLAVOR}
 
-USES=		python
+USES=		cpe python
+CPE_VENDOR=	python-poetry
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
 BINARY_ALIAS=	git=false

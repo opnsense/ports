@@ -1,7 +1,6 @@
 PORTNAME=	hidden-lake
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.1
-PORTREVISION=	5
+DISTVERSION=	1.11.2
 CATEGORIES=	security net-p2p
 
 MAINTAINER=	alven@FreeBSD.org
@@ -15,27 +14,27 @@ USES=		go:modules
 
 GO_MODULE=	github.com/number571/hidden-lake
 GO_TARGET=	./cmd/hla/hla-http:hla-http \
+		./cmd/hla/hla-https:hla-https \
+		./cmd/hla/hla-meshtastic:hla-meshtastic \
 		./cmd/hla/hla-tcp:hla-tcp \
 		./cmd/hlc:hlc \
 		./cmd/hlk:hlk \
 		./cmd/hls/hls-filesharer:hls-filesharer \
 		./cmd/hls/hls-messenger:hls-messenger \
-		./cmd/hls/hls-pinger:hls-pinger \
-		./cmd/hls/hls-remoter:hls-remoter
+		./cmd/hls/hls-pinger:hls-pinger
 
 TEST_TARGET=	test-run
 
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
+OPTIONS_SUB=	yes
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/*.md  ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/docs/*.pdf ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC}/docs && ${INSTALL_DATA} *.md *.pdf *.svg ${STAGEDIR}${DOCSDIR}
 
 post-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
+	cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>

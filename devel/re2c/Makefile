@@ -1,7 +1,7 @@
 PORTNAME=	re2c
-PORTVERSION=	4.4
+PORTVERSION=	4.5.1
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/skvadrik/re2c/releases/download/${DISTVERSION}/
+MASTER_SITES=	https://github.com/skvadrik/re2c/releases/download/${PORTVERSION}/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Lexer generator for C, C++ and Go with a focus on generating fast code

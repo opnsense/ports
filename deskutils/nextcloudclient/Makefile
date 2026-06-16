@@ -1,5 +1,5 @@
 PORTNAME=	nextcloudclient
-PORTVERSION=	4.0.6
+PORTVERSION=	33.0.5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	deskutils
 
@@ -11,13 +11,16 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	inkscape:graphics/inkscape
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
+		libkdsingleapplication-qt6.so:devel/kdsingleapplication \
 		libqt6keychain.so:security/qtkeychain@qt6 \
 		libxkbcommon.so:x11/libxkbcommon \
 		libp11.so:security/libp11
 
-USES=		cmake:noninja compiler:c++20-lang desktop-file-utils gl gmake \
+USES=		cmake:noninja compiler:c++20-lang cpe desktop-file-utils gl gmake \
 		gnome iconv kde:6 localbase:ldflags pkgconfig qt:6 shared-mime-info \
 		sqlite ssl
+CPE_PRODUCT=	desktop
+CPE_VENDOR=	nextcloud
 USE_CXXSTD=	c++20
 USE_GL=		opengl
 USE_KDE=	archive ecm:build
@@ -73,9 +76,5 @@ post-patch-GUIADDONS-off:
 
 pre-configure:
 	@(cd ${WRKSRC} && ${CP} -f sync-exclude.lst sync-exclude.lst.sample)
-
-post-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKSRC}/sync-exclude.lst ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.post.mk>

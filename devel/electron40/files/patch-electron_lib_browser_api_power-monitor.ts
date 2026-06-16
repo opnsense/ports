@@ -1,7 +1,7 @@
---- electron/lib/browser/api/power-monitor.ts.orig	2023-08-14 18:19:06 UTC
+--- electron/lib/browser/api/power-monitor.ts.orig	2026-05-08 13:55:13 UTC
 +++ electron/lib/browser/api/power-monitor.ts
-@@ -17,7 +17,7 @@ class PowerMonitor extends EventEmitter {
-       const pm = createPowerMonitor();
+@@ -18,7 +18,7 @@ class PowerMonitor extends EventEmitter implements Ele
+       pm = createPowerMonitor();
        pm.emit = this.emit.bind(this);
  
 -      if (process.platform === 'linux') {

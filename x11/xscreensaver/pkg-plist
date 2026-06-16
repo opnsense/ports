@@ -16,6 +16,7 @@ bin/xscreensaver-hacks/atunnel
 bin/xscreensaver-hacks/barcode
 bin/xscreensaver-hacks/batteredplanet
 bin/xscreensaver-hacks/beats
+bin/xscreensaver-hacks/bestill
 bin/xscreensaver-hacks/binaryhorizon
 bin/xscreensaver-hacks/binaryring
 bin/xscreensaver-hacks/blaster
@@ -30,6 +31,7 @@ bin/xscreensaver-hacks/boxfit
 bin/xscreensaver-hacks/braid
 bin/xscreensaver-hacks/bsod
 bin/xscreensaver-hacks/bubble3d
+bin/xscreensaver-hacks/bubblecolors
 bin/xscreensaver-hacks/bumps
 bin/xscreensaver-hacks/cage
 bin/xscreensaver-hacks/carousel
@@ -56,6 +58,7 @@ bin/xscreensaver-hacks/cubocteversion
 bin/xscreensaver-hacks/cwaves
 bin/xscreensaver-hacks/cynosure
 bin/xscreensaver-hacks/dangerball
+bin/xscreensaver-hacks/darktransit
 bin/xscreensaver-hacks/decayscreen
 bin/xscreensaver-hacks/deco
 bin/xscreensaver-hacks/deepstars
@@ -64,7 +67,9 @@ bin/xscreensaver-hacks/demon
 bin/xscreensaver-hacks/discoball
 bin/xscreensaver-hacks/discrete
 bin/xscreensaver-hacks/distort
+bin/xscreensaver-hacks/downfall
 bin/xscreensaver-hacks/drift
+bin/xscreensaver-hacks/driftclouds
 bin/xscreensaver-hacks/droste
 bin/xscreensaver-hacks/dumpsterfire
 bin/xscreensaver-hacks/dymaxionmap
@@ -112,6 +117,7 @@ bin/xscreensaver-hacks/glschool
 bin/xscreensaver-hacks/glslideshow
 bin/xscreensaver-hacks/glsnake
 bin/xscreensaver-hacks/gltext
+bin/xscreensaver-hacks/goldenapollian
 bin/xscreensaver-hacks/goop
 bin/xscreensaver-hacks/grav
 bin/xscreensaver-hacks/gravitywell
@@ -177,6 +183,7 @@ bin/xscreensaver-hacks/neontriangulator
 bin/xscreensaver-hacks/nerverot
 bin/xscreensaver-hacks/noof
 bin/xscreensaver-hacks/noseguy
+bin/xscreensaver-hacks/noxfire
 bin/xscreensaver-hacks/pacman
 bin/xscreensaver-hacks/papercube
 bin/xscreensaver-hacks/pedal
@@ -195,6 +202,7 @@ bin/xscreensaver-hacks/polyominoes
 bin/xscreensaver-hacks/polytopes
 bin/xscreensaver-hacks/pong
 bin/xscreensaver-hacks/popsquares
+bin/xscreensaver-hacks/prococean
 bin/xscreensaver-hacks/projectiveplane
 bin/xscreensaver-hacks/protophore
 bin/xscreensaver-hacks/providence
@@ -206,6 +214,7 @@ bin/xscreensaver-hacks/queens
 bin/xscreensaver-hacks/raverhoop
 bin/xscreensaver-hacks/razzledazzle
 bin/xscreensaver-hacks/rdbomb
+bin/xscreensaver-hacks/rigrekt
 bin/xscreensaver-hacks/ripples
 bin/xscreensaver-hacks/rocks
 bin/xscreensaver-hacks/romanboy
@@ -252,12 +261,15 @@ bin/xscreensaver-hacks/tessellimage
 bin/xscreensaver-hacks/timetunnel
 bin/xscreensaver-hacks/topblock
 bin/xscreensaver-hacks/topologica
+bin/xscreensaver-hacks/trainmandala
 bin/xscreensaver-hacks/triangle
+bin/xscreensaver-hacks/trizm
 bin/xscreensaver-hacks/tronbit
 bin/xscreensaver-hacks/truchet
 bin/xscreensaver-hacks/truchetzoom
 bin/xscreensaver-hacks/twang
 bin/xscreensaver-hacks/unicrud
+bin/xscreensaver-hacks/universeball
 bin/xscreensaver-hacks/unknownpleasures
 bin/xscreensaver-hacks/vermiculate
 bin/xscreensaver-hacks/vfeedback
@@ -269,6 +281,7 @@ bin/xscreensaver-hacks/webcollage
 bin/xscreensaver-hacks/webcollage-helper
 bin/xscreensaver-hacks/whirlwindwarp
 bin/xscreensaver-hacks/winduprobot
+bin/xscreensaver-hacks/worldpieces
 bin/xscreensaver-hacks/wormhole
 bin/xscreensaver-hacks/xanalogtv
 bin/xscreensaver-hacks/xflame
@@ -341,6 +354,7 @@ share/man/man6/atunnel.6.gz
 share/man/man6/barcode.6.gz
 share/man/man6/batteredplanet.6.gz
 share/man/man6/beats.6.gz
+share/man/man6/bestill.6.gz
 share/man/man6/binaryhorizon.6.gz
 share/man/man6/binaryring.6.gz
 share/man/man6/blaster.6.gz
@@ -355,6 +369,7 @@ share/man/man6/boxfit.6.gz
 share/man/man6/braid.6.gz
 share/man/man6/bsod.6.gz
 share/man/man6/bubble3d.6.gz
+share/man/man6/bubblecolors.6.gz
 share/man/man6/bumps.6.gz
 share/man/man6/cage.6.gz
 share/man/man6/carousel.6.gz
@@ -381,6 +396,7 @@ share/man/man6/cubocteversion.6.gz
 share/man/man6/cwaves.6.gz
 share/man/man6/cynosure.6.gz
 share/man/man6/dangerball.6.gz
+share/man/man6/darktransit.6.gz
 share/man/man6/decayscreen.6.gz
 share/man/man6/deco.6.gz
 share/man/man6/deepstars.6.gz
@@ -389,7 +405,9 @@ share/man/man6/demon.6.gz
 share/man/man6/discoball.6.gz
 share/man/man6/discrete.6.gz
 share/man/man6/distort.6.gz
+share/man/man6/downfall.6.gz
 share/man/man6/drift.6.gz
+share/man/man6/driftclouds.6.gz
 share/man/man6/droste.6.gz
 share/man/man6/dymaxionmap.6.gz
 share/man/man6/elementalring.6.gz
@@ -436,6 +454,7 @@ share/man/man6/glschool.6.gz
 share/man/man6/glslideshow.6.gz
 share/man/man6/glsnake.6.gz
 share/man/man6/gltext.6.gz
+share/man/man6/goldenapollian.6.gz
 share/man/man6/goop.6.gz
 share/man/man6/grav.6.gz
 share/man/man6/gravitywell.6.gz
@@ -499,6 +518,7 @@ share/man/man6/neontriangulator.6.gz
 share/man/man6/nerverot.6.gz
 share/man/man6/noof.6.gz
 share/man/man6/noseguy.6.gz
+share/man/man6/noxfire.6.gz
 share/man/man6/pacman.6.gz
 share/man/man6/papercube.6.gz
 share/man/man6/pedal.6.gz
@@ -517,6 +537,7 @@ share/man/man6/polyominoes.6.gz
 share/man/man6/polytopes.6.gz
 share/man/man6/pong.6.gz
 share/man/man6/popsquares.6.gz
+share/man/man6/prococean.6.gz
 share/man/man6/projectiveplane.6.gz
 share/man/man6/protophore.6.gz
 share/man/man6/providence.6.gz
@@ -528,6 +549,7 @@ share/man/man6/queens.6.gz
 share/man/man6/raverhoop.6.gz
 share/man/man6/razzledazzle.6.gz
 share/man/man6/rdbomb.6.gz
+share/man/man6/rigrekt.6.gz
 share/man/man6/ripples.6.gz
 share/man/man6/rocks.6.gz
 share/man/man6/romanboy.6.gz
@@ -574,12 +596,15 @@ share/man/man6/tessellimage.6.gz
 share/man/man6/timetunnel.6.gz
 share/man/man6/topblock.6.gz
 share/man/man6/topologica.6.gz
+share/man/man6/trainmandala.6.gz
 share/man/man6/triangle.6.gz
+share/man/man6/trizm.6.gz
 share/man/man6/tronbit.6.gz
 share/man/man6/truchet.6.gz
 share/man/man6/truchetzoom.6.gz
 share/man/man6/twang.6.gz
 share/man/man6/unicrud.6.gz
+share/man/man6/universeball.6.gz
 share/man/man6/unknownpleasures.6.gz
 share/man/man6/vermiculate.6.gz
 share/man/man6/vfeedback.6.gz
@@ -590,6 +615,7 @@ share/man/man6/wander.6.gz
 share/man/man6/webcollage.6.gz
 share/man/man6/whirlwindwarp.6.gz
 share/man/man6/winduprobot.6.gz
+share/man/man6/worldpieces.6.gz
 share/man/man6/wormhole.6.gz
 share/man/man6/xanalogtv.6.gz
 share/man/man6/xflame.6.gz
@@ -625,6 +651,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/barcode.xml
 %%DATADIR%%/config/batteredplanet.xml
 %%DATADIR%%/config/beats.xml
+%%DATADIR%%/config/bestill.xml
 %%DATADIR%%/config/binaryhorizon.xml
 %%DATADIR%%/config/binaryring.xml
 %%DATADIR%%/config/blaster.xml
@@ -639,6 +666,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/braid.xml
 %%DATADIR%%/config/bsod.xml
 %%DATADIR%%/config/bubble3d.xml
+%%DATADIR%%/config/bubblecolors.xml
 %%DATADIR%%/config/bumps.xml
 %%DATADIR%%/config/cage.xml
 %%DATADIR%%/config/carousel.xml
@@ -665,6 +693,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/cwaves.xml
 %%DATADIR%%/config/cynosure.xml
 %%DATADIR%%/config/dangerball.xml
+%%DATADIR%%/config/darktransit.xml
 %%DATADIR%%/config/decayscreen.xml
 %%DATADIR%%/config/deco.xml
 %%DATADIR%%/config/deepstars.xml
@@ -673,7 +702,9 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/discoball.xml
 %%DATADIR%%/config/discrete.xml
 %%DATADIR%%/config/distort.xml
+%%DATADIR%%/config/downfall.xml
 %%DATADIR%%/config/drift.xml
+%%DATADIR%%/config/driftclouds.xml
 %%DATADIR%%/config/droste.xml
 %%DATADIR%%/config/dumpsterfire.xml
 %%DATADIR%%/config/dymaxionmap.xml
@@ -721,6 +752,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/glslideshow.xml
 %%DATADIR%%/config/glsnake.xml
 %%DATADIR%%/config/gltext.xml
+%%DATADIR%%/config/goldenapollian.xml
 %%DATADIR%%/config/goop.xml
 %%DATADIR%%/config/grav.xml
 %%DATADIR%%/config/gravitywell.xml
@@ -785,6 +817,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/nerverot.xml
 %%DATADIR%%/config/noof.xml
 %%DATADIR%%/config/noseguy.xml
+%%DATADIR%%/config/noxfire.xml
 %%DATADIR%%/config/pacman.xml
 %%DATADIR%%/config/papercube.xml
 %%DATADIR%%/config/pedal.xml
@@ -803,6 +836,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/polytopes.xml
 %%DATADIR%%/config/pong.xml
 %%DATADIR%%/config/popsquares.xml
+%%DATADIR%%/config/prococean.xml
 %%DATADIR%%/config/projectiveplane.xml
 %%DATADIR%%/config/protophore.xml
 %%DATADIR%%/config/providence.xml
@@ -814,6 +848,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/raverhoop.xml
 %%DATADIR%%/config/razzledazzle.xml
 %%DATADIR%%/config/rdbomb.xml
+%%DATADIR%%/config/rigrekt.xml
 %%DATADIR%%/config/ripples.xml
 %%DATADIR%%/config/rocks.xml
 %%DATADIR%%/config/romanboy.xml
@@ -860,12 +895,15 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/timetunnel.xml
 %%DATADIR%%/config/topblock.xml
 %%DATADIR%%/config/topologica.xml
+%%DATADIR%%/config/trainmandala.xml
 %%DATADIR%%/config/triangle.xml
+%%DATADIR%%/config/trizm.xml
 %%DATADIR%%/config/tronbit.xml
 %%DATADIR%%/config/truchet.xml
 %%DATADIR%%/config/truchetzoom.xml
 %%DATADIR%%/config/twang.xml
 %%DATADIR%%/config/unicrud.xml
+%%DATADIR%%/config/universeball.xml
 %%DATADIR%%/config/unknownpleasures.xml
 %%DATADIR%%/config/vermiculate.xml
 %%DATADIR%%/config/vfeedback.xml
@@ -876,6 +914,7 @@ share/pixmaps/xscreensaver.png
 %%DATADIR%%/config/webcollage.xml
 %%DATADIR%%/config/whirlwindwarp.xml
 %%DATADIR%%/config/winduprobot.xml
+%%DATADIR%%/config/worldpieces.xml
 %%DATADIR%%/config/wormhole.xml
 %%DATADIR%%/config/xanalogtv.xml
 %%DATADIR%%/config/xaos.xml

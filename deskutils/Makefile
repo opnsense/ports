@@ -70,6 +70,7 @@
     SUBDIR += gcal
     SUBDIR += genius
     SUBDIR += glabels
+    SUBDIR += gitte
     SUBDIR += gnome-calendar
     SUBDIR += gnome-characters
     SUBDIR += gnome-clocks
@@ -82,21 +83,14 @@
     SUBDIR += gnome-planner
     SUBDIR += gnome-pomodoro
     SUBDIR += gnome-screenshot
-    SUBDIR += gnome-shell-extension-audio-output-switcher
     SUBDIR += gnome-shell-extension-coverflow
     SUBDIR += gnome-shell-extension-dashtodock
     SUBDIR += gnome-shell-extension-dashtopanel
-    SUBDIR += gnome-shell-extension-filesmenu
     SUBDIR += gnome-shell-extension-hidetopbar
     SUBDIR += gnome-shell-extension-lockkeys
     SUBDIR += gnome-shell-extension-manager
-    SUBDIR += gnome-shell-extension-mediaplayer
-    SUBDIR += gnome-shell-extension-panel-osd
     SUBDIR += gnome-shell-extension-recent-items
     SUBDIR += gnome-shell-extension-simple-weather
-    SUBDIR += gnome-shell-extension-trash
-    SUBDIR += gnome-shell-extension-weather
-    SUBDIR += gnome-shell-extension-windowoverlay-icons
     SUBDIR += gnome-shell-extra-extensions
     SUBDIR += gnome-sound-recorder
     SUBDIR += gnome-todo
@@ -106,12 +100,12 @@
     SUBDIR += gnote
     SUBDIR += gnotime
     SUBDIR += gnustep-wrapper
+    SUBDIR += gnutrition
     SUBDIR += go-for-it
     SUBDIR += goesimage
     SUBDIR += gpicker
     SUBDIR += grantlee-editor
     SUBDIR += grantleetheme
-    SUBDIR += growl-for-linux
     SUBDIR += gsimplecal
     SUBDIR += gtimer
     SUBDIR += gucharmap
@@ -132,6 +126,7 @@
     SUBDIR += itinerary
     SUBDIR += jjclient
     SUBDIR += jlj
+    SUBDIR += joplin-desktop
     SUBDIR += jot
     SUBDIR += just
     SUBDIR += kaddressbook
@@ -150,6 +145,7 @@
     SUBDIR += kmail
     SUBDIR += kmail-account-wizard
     SUBDIR += kodaskanna
+    SUBDIR += komodo
     SUBDIR += kongress
     SUBDIR += kontact
     SUBDIR += korganizer
@@ -235,10 +231,11 @@
     SUBDIR += py-i3-gnome-pomodoro
     SUBDIR += py-khal
     SUBDIR += py-khard
-    SUBDIR += py-paperless
+    SUBDIR += py-mss
     SUBDIR += py-paperless-ngx
     SUBDIR += py-py3status
     SUBDIR += py-pystash
+    SUBDIR += py-qmd
     SUBDIR += py-send2trash
     SUBDIR += py-taskw
     SUBDIR += py-term-background
@@ -248,6 +245,7 @@
     SUBDIR += py-vobject
     SUBDIR += py-vorta
     SUBDIR += qlipper
+    SUBDIR += qmd
     SUBDIR += qmediamanager
     SUBDIR += qownnotes
     SUBDIR += qtfeedback
@@ -261,6 +259,7 @@
     SUBDIR += rwpspread
     SUBDIR += semantik
     SUBDIR += sigi
+    SUBDIR += sigye
     SUBDIR += simpleagenda
     SUBDIR += skim
     SUBDIR += sliderule
@@ -306,6 +305,8 @@
     SUBDIR += xdg-desktop-portal
     SUBDIR += xdg-desktop-portal-lxqt
     SUBDIR += xdg-terminal-exec
+    SUBDIR += xdgctl
+    SUBDIR += xdpi
     SUBDIR += xfce4-generic-slider
     SUBDIR += xfce4-notes-plugin
     SUBDIR += xfce4-notifyd

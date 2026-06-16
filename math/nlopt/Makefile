@@ -1,7 +1,6 @@
 PORTNAME=	nlopt
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.10.0
-PORTREVISION=	1
+DISTVERSION=	2.11.0
 CATEGORIES=	math
 
 MAINTAINER=	rhurlin@FreeBSD.org
@@ -19,10 +18,10 @@ BROKEN_armv7=	fails to package: Unable to access file site-packages/_nlopt.a:No 
 FLAVORS=	full minimal
 FLAVOR?=	${FLAVORS:[1]}
 
-full_BUILD_DEPENDS=		${PYNUMPY} \
+full_BUILD_DEPENDS=		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 				swig:devel/swig
 full_LIB_DEPENDS=		liboctave.so:math/octave
-full_RUN_DEPENDS=		${PYNUMPY}
+full_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR}
 full_CONFLICTS_INSTALL=		${PORTNAME}-minimal
 minimal_PKGNAMESUFFIX=		-minimal
 minimal_CONFLICTS_INSTALL=	${PORTNAME}
@@ -32,7 +31,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	stevengj
 USE_LDCONFIG=	yes
 
-# 'make test': 100% tests passed, 0 tests failed out of 83
+# 'make FLAVOR=full    test': 100% tests passed, 0 tests failed out of 84
+# 'make FLAVOR=minimal test': 100% tests passed, 0 tests failed out of 77
 CMAKE_TESTING_ON=	NLOPT_TESTS
 
 .if ${FLAVOR} == full

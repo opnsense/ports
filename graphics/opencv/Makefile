@@ -1,5 +1,6 @@
 PORTNAME=	opencv
 DISTVERSION=	4.13.0
+PORTREVISION=	7
 CATEGORIES=	graphics
 
 MAINTAINER=	desktop@FreeBSD.org

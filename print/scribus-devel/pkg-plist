@@ -28,11 +28,11 @@ lib/cmake/qt6advanceddocking/adsTargets.cmake
 lib/cmake/qt6advanceddocking/qt6advanceddockingConfig.cmake
 lib/cmake/qt6advanceddocking/qt6advanceddockingConfigVersion.cmake
 lib/libqt6advanceddocking_static.a
-lib/scribus/plugins/gettext/libMARKDOWNimplugin.so
 lib/scribus/plugins/gettext/libcsvim.so
 lib/scribus/plugins/gettext/libdocim.so
 lib/scribus/plugins/gettext/libdocximplugin.so
 lib/scribus/plugins/gettext/libhtmlim.so
+lib/scribus/plugins/gettext/libmarkdownimplugin.so
 lib/scribus/plugins/gettext/libodtimplugin.so
 lib/scribus/plugins/gettext/libpdbim.so
 lib/scribus/plugins/gettext/librtfimplugin.so
@@ -2416,6 +2416,7 @@ share/pixmaps/scribus.png
 %%DATADIR%%/loremipsum/sk.xml
 %%DATADIR%%/loremipsum/sl.xml
 %%DATADIR%%/plugins/barcode.ps
+%%DATADIR%%/plugins/barcode_ui.json
 %%DATADIR%%/plugins/collectionsdb.xml
 %%DATADIR%%/plugins/scribus-short-words.rc
 %%DATADIR%%/profiles/GenericCMYK.icm
@@ -2698,7 +2699,10 @@ share/pixmaps/scribus.png
 %%DATADIR%%/translations/scribus.en_US.qm
 %%DATADIR%%/translations/scribus.eo.qm
 %%DATADIR%%/translations/scribus.es_AR.qm
+%%DATADIR%%/translations/scribus.es_CO.qm
 %%DATADIR%%/translations/scribus.es_ES.qm
+%%DATADIR%%/translations/scribus.es_MX.qm
+%%DATADIR%%/translations/scribus.es_VE.qm
 %%DATADIR%%/translations/scribus.et.qm
 %%DATADIR%%/translations/scribus.eu.qm
 %%DATADIR%%/translations/scribus.fa_IR.qm
@@ -2709,6 +2713,7 @@ share/pixmaps/scribus.png
 %%DATADIR%%/translations/scribus.hi_IN.qm
 %%DATADIR%%/translations/scribus.hr_HR.qm
 %%DATADIR%%/translations/scribus.hu.qm
+%%DATADIR%%/translations/scribus.ia.qm
 %%DATADIR%%/translations/scribus.id.qm
 %%DATADIR%%/translations/scribus.it.qm
 %%DATADIR%%/translations/scribus.ja.qm
@@ -2724,6 +2729,8 @@ share/pixmaps/scribus.png
 %%DATADIR%%/translations/scribus.nl.qm
 %%DATADIR%%/translations/scribus.nn_NO.qm
 %%DATADIR%%/translations/scribus.oc.qm
+%%DATADIR%%/translations/scribus.pa.qm
+%%DATADIR%%/translations/scribus.pa_IN.qm
 %%DATADIR%%/translations/scribus.pl_PL.qm
 %%DATADIR%%/translations/scribus.pms.qm
 %%DATADIR%%/translations/scribus.pt_BR.qm
@@ -2742,6 +2749,7 @@ share/pixmaps/scribus.png
 %%DATADIR%%/translations/scribus.te.qm
 %%DATADIR%%/translations/scribus.th_TH.qm
 %%DATADIR%%/translations/scribus.tr.qm
+%%DATADIR%%/translations/scribus.tt.qm
 %%DATADIR%%/translations/scribus.uk.qm
 %%DATADIR%%/translations/scribus.zh_CN.qm
 %%DATADIR%%/translations/scribus.zh_TW.qm

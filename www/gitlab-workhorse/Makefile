@@ -11,6 +11,8 @@ WWW=		https://gitlab.com/gitlab-org/gitlab/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/../LICENSE
 
+BROKEN_i386=	Platform i386 is not supported upstream
+
 BUILD_DEPENDS=	git>=2.42.0:devel/git
 RUN_DEPENDS=	p5-Image-ExifTool>=0:graphics/p5-Image-ExifTool
 

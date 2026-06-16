@@ -1,29 +1,31 @@
---- content/common/features.h.orig	2026-01-14 08:33:23 UTC
+--- content/common/features.h.orig	2026-06-04 10:12:25 UTC
 +++ content/common/features.h
-@@ -67,7 +67,7 @@ CONTENT_EXPORT BASE_DECLARE_FEATURE(kCommittedOriginTr
- CONTENT_EXPORT BASE_DECLARE_FEATURE(kCopyFromSurfaceAlwaysCallCallback);
- CONTENT_EXPORT BASE_DECLARE_FEATURE(kCriticalClientHint);
+@@ -82,7 +82,7 @@ CONTENT_EXPORT BASE_DECLARE_FEATURE(
  CONTENT_EXPORT BASE_DECLARE_FEATURE(kDocumentPolicyNegotiation);
+ CONTENT_EXPORT BASE_DECLARE_FEATURE(kDumpOnOriginHeaderMismatch);
+ CONTENT_EXPORT BASE_DECLARE_FEATURE(kDumpOnUnexpectedOriginHeader);
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  CONTENT_EXPORT BASE_DECLARE_FEATURE(kEnableDevToolsJsErrorReporting);
  #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  CONTENT_EXPORT BASE_DECLARE_FEATURE(kEnforceSameDocumentOriginInvariants);
-@@ -106,7 +106,7 @@ enum class FontDataServiceTypefaceType {
+@@ -121,8 +121,8 @@ enum class FontDataServiceTypefaceType {
  CONTENT_EXPORT BASE_DECLARE_FEATURE_PARAM(FontDataServiceTypefaceType,
                                            kFontDataServiceTypefaceType);
  #endif  // BUILDFLAG(IS_WIN)
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
 -#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  CONTENT_EXPORT BASE_DECLARE_FEATURE(kFontDataServiceLinux);
- enum class FontDataServiceTypefaceType {
-   kFreetype,
-@@ -116,7 +116,7 @@ CONTENT_EXPORT BASE_DECLARE_FEATURE_PARAM(FontDataServ
+ #else
+ CONTENT_EXPORT BASE_DECLARE_FEATURE(kFontDataServiceChromeOS);
+@@ -135,7 +135,7 @@ CONTENT_EXPORT BASE_DECLARE_FEATURE_PARAM(FontDataServ
                                            kFontDataServiceTypefaceType);
- #endif  // BUILDFLAG(IS_LINUX)
+ #endif  // BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
  
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  bool IsFontDataServiceEnabled();
  #endif
  

@@ -9,8 +9,8 @@
     SUBDIR += alertmanager
     SUBDIR += andwatch
     SUBDIR += ap-utils
-    SUBDIR += argus3
-    SUBDIR += argus3-clients
+    SUBDIR += argus
+    SUBDIR += argus-clients
     SUBDIR += arpscan
     SUBDIR += arpwatch
     SUBDIR += arts++
@@ -105,6 +105,7 @@
     SUBDIR += icingaweb2-module-incubator
     SUBDIR += icingaweb2-module-jira
     SUBDIR += icingaweb2-module-map
+    SUBDIR += icingaweb2-module-monitoring
     SUBDIR += icingaweb2-module-pdfexport
     SUBDIR += icingaweb2-module-reactbundle
     SUBDIR += icingaweb2-module-reporting
@@ -128,6 +129,7 @@
     SUBDIR += irrtoolset
     SUBDIR += isic
     SUBDIR += jnettop
+    SUBDIR += junos_exporter
     SUBDIR += kapacitor
     SUBDIR += kf6-networkmanager-qt
     SUBDIR += kismet

@@ -1,6 +1,6 @@
 PORTNAME=	zot
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.1.14
+DISTVERSION=	2.1.17
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/project-zot/zui/releases/download/commit-${ZUI_VERSION}/:ui
@@ -19,7 +19,7 @@ USES=		go:1.25+,modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	project-zot
 
-ZUI_VERSION=	7dfa6bf
+ZUI_VERSION=	9333420
 
 GO_MODULE=	zotproject.dev/zot
 GO_MOD_DIST=	https://raw.githubusercontent.com/project-zot/zot/refs/tags/v${DISTVERSION}/

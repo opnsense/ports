@@ -1,5 +1,6 @@
 PORTNAME=	cargo-about
-DISTVERSION=	0.8.4
+DISTVERSION=	0.9.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,6 +13,8 @@ LICENSE_COMB=	dual
 LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
 
+BROKEN_i386=		ld: error: undefined symbol: __atomic_load
+
 BUILD_DEPENDS=	rust>1.85:lang/rust
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 
@@ -23,6 +26,7 @@ GH_ACCOUNT=	EmbarkStudios
 RUSTFLAGS=	${ARCH:S/i386/YES/:C/^[a-z].*//:S/YES/-C target-feature=+sse,+sse2/} # add sse sse2 target-features only on i386
 
 CARGO_BUILDDEP=	no
+CARGO_FEATURES=	cli
 
 PLIST_FILES=	bin/${PORTNAME}
 

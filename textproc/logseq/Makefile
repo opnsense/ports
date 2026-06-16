@@ -1,6 +1,6 @@
 PORTNAME=	logseq
 PORTVERSION=	0.10.15
-PORTREVISION=	2
+PORTREVISION=	5
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/logseq/logseq/releases/download/${PORTVERSION}/ \
 		LOCAL/arrowd/:node_modules
@@ -14,6 +14,9 @@ WWW=		https://logseq.com
 
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Depends on expired devel/electron38
+EXPIRATION_DATE=2026-08-31
 
 ONLY_FOR_ARCHS=	amd64
 

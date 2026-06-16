@@ -8,11 +8,11 @@ etc/ufw/applications.d/kdeconnect
 etc/xdg/autostart/org.kde.kdeconnect.daemon.desktop
 lib/libkdeconnectcore.so.%%KDE_APPLICATIONS_VERSION_SHORT%%
 lib/libkdeconnectcore.so.%%KDE_APPLICATIONS_SHLIB_VER%%
-lib/libkdeconnectinterfaces.a
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_battery.so
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_clipboard.so
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_connectivity_report.so
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_contacts.so
+%%QT_PLUGINDIR%%/kdeconnect/kdeconnect_digitizer.so
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_findmyphone.so
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_findthisdevice.so
 %%QT_PLUGINDIR%%/kdeconnect/kdeconnect_lockdevice.so
@@ -49,6 +49,7 @@ lib/libkdeconnectinterfaces.a
 %%QT_QMLDIR%%/org/kde/kdeconnect/private/findthisdevice/libkdeconnect_findthisdevice_qmlhelper.so
 %%QT_QMLDIR%%/org/kde/kdeconnect/private/findthisdevice/qmldir
 %%QT_QMLDIR%%/org/kde/kdeconnect/qmldir
+lib/udev/rules.d/40-kdeconnect-uinput.rules
 share/Thunar/sendto/kdeconnect-thunar.desktop
 share/applications/org.kde.kdeconnect.app.desktop
 share/applications/org.kde.kdeconnect.daemon.desktop
@@ -99,6 +100,7 @@ share/icons/hicolor/scalable/apps/kdeconnectindicator.svg
 share/icons/hicolor/scalable/apps/kdeconnectindicatordark.svg
 share/kdeconnect/kdeconnect_clipboard_config.qml
 share/kdeconnect/kdeconnect_pausemusic_config.qml
+share/kdeconnect/kdeconnect_presenter_config.qml
 share/kdeconnect/kdeconnect_runcommand_config.qml
 share/kdeconnect/kdeconnect_sendnotifications_config.qml
 share/kdeconnect/kdeconnect_share_config.qml
@@ -330,9 +332,18 @@ share/locale/fr/LC_MESSAGES/kdeconnect-plugins.mo
 share/locale/fr/LC_MESSAGES/kdeconnect-sms.mo
 share/locale/fr/LC_MESSAGES/kdeconnect-urlhandler.mo
 share/locale/fr/LC_MESSAGES/plasma_applet_org.kde.kdeconnect.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-app.mo
 share/locale/ga/LC_MESSAGES/kdeconnect-cli.mo
 share/locale/ga/LC_MESSAGES/kdeconnect-core.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-fileitemaction.mo
 share/locale/ga/LC_MESSAGES/kdeconnect-indicator.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-interfaces.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-kded.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-kio.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-nautilus-extension.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-plugins.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-sms.mo
+share/locale/ga/LC_MESSAGES/kdeconnect-urlhandler.mo
 share/locale/ga/LC_MESSAGES/plasma_applet_org.kde.kdeconnect.mo
 share/locale/gl/LC_MESSAGES/kdeconnect-app.mo
 share/locale/gl/LC_MESSAGES/kdeconnect-cli.mo
@@ -524,6 +535,8 @@ share/locale/ml/LC_MESSAGES/kdeconnect-plugins.mo
 share/locale/ml/LC_MESSAGES/kdeconnect-sms.mo
 share/locale/ml/LC_MESSAGES/kdeconnect-urlhandler.mo
 share/locale/ml/LC_MESSAGES/plasma_applet_org.kde.kdeconnect.mo
+share/locale/nb/LC_MESSAGES/kdeconnect-app.mo
+share/locale/nb/LC_MESSAGES/kdeconnect-core.mo
 share/locale/nl/LC_MESSAGES/kdeconnect-app.mo
 share/locale/nl/LC_MESSAGES/kdeconnect-cli.mo
 share/locale/nl/LC_MESSAGES/kdeconnect-core.mo

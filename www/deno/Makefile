@@ -1,6 +1,6 @@
 PORTNAME=	deno
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.6.6
+DISTVERSION=	2.7.14
 PORTREVISION=	1
 CATEGORIES=	www
 
@@ -13,11 +13,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 BROKEN_i386=	cargo:warning=c/freebsd.c:31:10: error: conflicting types for 'get_cpu_speed'
 
-BUILD_DEPENDS=	gn:devel/gn \
+BUILD_DEPENDS=	bindgen:devel/rust-bindgen-cli \
+		gn:devel/gn \
 		protoc:devel/protobuf
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libffi.so:devel/libffi \
 		liblcms2.so:graphics/lcms2 \
+		libonig.so:devel/oniguruma \
 		libzstd.so:archivers/zstd
 
 USES=		cargo cpe gmake gnome llvm:min=21,build ninja:build pkgconfig:build python:build
@@ -51,15 +53,13 @@ CARGO_ENV+=	V8_FROM_SOURCE=1 \
 		use_glib=false \
 		v8_enable_cet_ibt=true"
 
-RUSTFLAGS+=	"-L${LOCALBASE}/lib"
-
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/denort
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-DENO_CORE_ICUDATA_V=	0.74.0
-V8_CARGO_V=		142.2.0
+DENO_CORE_ICUDATA_V=	0.77.0
+V8_CARGO_V=		147.4.0
 
 V8_DISTDIR=	${CARGO_VENDOR_DIR}/v8-${V8_CARGO_V}
 V8_BPGO_DIR=	${V8_DISTDIR}/v8/tools/builtins-pgo
@@ -74,15 +74,15 @@ post-patch:
 		${WRKSRC}/cli/tools/jupyter/install.rs \
 		${WRKSRC}/ext/os/lib.rs \
 		${WRKSRC}/tests/unit_node/process_test.ts
-	${REINPLACE_CMD} "s|WRKDIR|${WRKDIR}|" \
-		${WRKSRC}/tests/util/server/src/lib.rs
+	${REINPLACE_CMD} -e "s|%%CC%%|${CC}|" -e "s|%%CXX%%|${CXX}|" \
+		${WRKSRC}/cargo-crates/v8-${V8_CARGO_V}/build/toolchain/gcc_toolchain.gni
 	${REINPLACE_CMD} "s|linux|freebsd|g" \
-		${WRKSRC}/tests/ffi/tests/ffi_callback_errors.ts \
-		${WRKSRC}/tests/ffi/tests/test.js \
-		${WRKSRC}/tests/ffi/tests/bench.js \
-		${WRKSRC}/tests/ffi/tests/event_loop_integration.ts \
-		${WRKSRC}/tests/ffi/tests/thread_safe_test_worker.js \
-		${WRKSRC}/tests/ffi/tests/thread_safe_test.js \
+		${WRKSRC}/tests/ffi/testdata/ffi_callback_errors.ts \
+		${WRKSRC}/tests/ffi/testdata/test.js \
+		${WRKSRC}/tests/ffi/testdata/bench.js \
+		${WRKSRC}/tests/ffi/testdata/event_loop_integration.ts \
+		${WRKSRC}/tests/ffi/testdata/thread_safe_test_worker.js \
+		${WRKSRC}/tests/ffi/testdata/thread_safe_test.js \
 		${WRKSRC}/tests/integration/cache_tests.rs \
 		${WRKSRC}/tests/napi/common.js \
 		${WRKSRC}/tests/unit/build_test.ts \

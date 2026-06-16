@@ -1,5 +1,5 @@
 PORTNAME=	dnscap
-PORTVERSION=	2.5.1
+PORTVERSION=	2.5.2
 PORTEPOCH=	1
 CATEGORIES=	dns
 MASTER_SITES=	https://www.dns-oarc.net/files/dnscap/ \

@@ -1,15 +1,15 @@
---- electron/spec/api-desktop-capturer-spec.ts.orig	2025-07-02 10:12:01 UTC
+--- electron/spec/api-desktop-capturer-spec.ts.orig	2026-05-08 13:55:13 UTC
 +++ electron/spec/api-desktop-capturer-spec.ts
-@@ -9,7 +9,7 @@ function getSourceTypes (): ('window' | 'screen')[] {
+@@ -9,7 +9,7 @@ function getSourceTypes(): ('window' | 'screen')[] {
  import { closeAllWindows } from './lib/window-helpers';
  
- function getSourceTypes (): ('window' | 'screen')[] {
+ function getSourceTypes(): ('window' | 'screen')[] {
 -  if (process.platform === 'linux') {
 +  if (process.platform === 'linux' || process.platform === 'freebsd') {
      return ['screen'];
    }
    return ['window', 'screen'];
-@@ -35,7 +35,7 @@ ifdescribe(!process.arch.includes('arm') && process.pl
+@@ -35,7 +35,7 @@ describe('desktopCapturer', () => {
    });
  
    // Linux doesn't return any window sources.
@@ -18,7 +18,7 @@
      const promise1 = desktopCapturer.getSources({ types: ['window'] });
      await expect(promise1).to.eventually.be.fulfilled();
  
-@@ -44,7 +44,7 @@ ifdescribe(!process.arch.includes('arm') && process.pl
+@@ -44,7 +44,7 @@ describe('desktopCapturer', () => {
    });
  
    // Linux doesn't return any window sources.
@@ -27,7 +27,7 @@
      const w2 = new BrowserWindow({ width: 200, height: 200 });
      await w2.loadURL('about:blank');
  
-@@ -56,7 +56,7 @@ ifdescribe(!process.arch.includes('arm') && process.pl
+@@ -56,7 +56,7 @@ describe('desktopCapturer', () => {
      }
    });
  
@@ -36,7 +36,7 @@
      const displays = screen.getAllDisplays();
      const sources = await desktopCapturer.getSources({ types: ['screen'] });
      expect(sources).to.be.an('array').of.length(displays.length);
-@@ -99,7 +99,7 @@ ifdescribe(!process.arch.includes('arm') && process.pl
+@@ -103,7 +103,7 @@ describe('desktopCapturer', () => {
    });
  
    // Linux doesn't return any window sources.
@@ -45,7 +45,7 @@
      const w2 = new BrowserWindow({ show: false, width: 100, height: 100, webPreferences: { contextIsolation: false } });
      const wShown = once(w2, 'show');
      const wFocused = once(w2, 'focus');
-@@ -123,7 +123,7 @@ ifdescribe(!process.arch.includes('arm') && process.pl
+@@ -127,7 +127,7 @@ describe('desktopCapturer', () => {
    });
  
    // Linux doesn't return any window sources.
@@ -54,7 +54,7 @@
      const w2 = new BrowserWindow({ show: false, width: 100, height: 100, webPreferences: { contextIsolation: false } });
      const wShown = once(w2, 'show');
      const wFocused = once(w2, 'focus');
-@@ -169,7 +169,7 @@ ifdescribe(!process.arch.includes('arm') && process.pl
+@@ -173,7 +173,7 @@ describe('desktopCapturer', () => {
    });
  
    // Linux doesn't return any window sources.
@@ -63,3 +63,12 @@
      // DesktopCapturer.getSources() is guaranteed to return in the correct
      // z-order from foreground to background.
      const MAX_WIN = 4;
+@@ -259,7 +259,7 @@ describe('desktopCapturer', () => {
+   });
+ 
+   // Linux doesn't return any window sources.
+-  ifdescribe(process.platform !== 'linux')('fetchWindowIcons', function () {
++  ifdescribe(process.platform !== 'linux' && process.platform !== 'freebsd')('fetchWindowIcons', function () {
+     // Tests are sequentially dependent
+     this.bail(true);
+     let w: BrowserWindow;

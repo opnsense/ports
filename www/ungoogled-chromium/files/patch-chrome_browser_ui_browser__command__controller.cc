@@ -1,6 +1,6 @@
---- chrome/browser/ui/browser_command_controller.cc.orig	2026-01-16 13:40:34 UTC
+--- chrome/browser/ui/browser_command_controller.cc.orig	2026-06-05 13:45:06 UTC
 +++ chrome/browser/ui/browser_command_controller.cc
-@@ -133,7 +133,7 @@
+@@ -159,7 +159,7 @@
  #include "components/user_manager/user_manager.h"
  #endif
  
@@ -9,7 +9,7 @@
  #include "ui/base/ime/text_edit_commands.h"
  #include "ui/base/ime/text_input_flags.h"
  #include "ui/linux/linux_ui.h"
-@@ -143,7 +143,7 @@
+@@ -169,7 +169,7 @@
  #include "ui/ozone/public/ozone_platform.h"
  #endif
  
@@ -18,7 +18,7 @@
  #include "chrome/browser/ui/shortcuts/desktop_shortcuts_utils.h"
  #endif  // BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_WIN)
  
-@@ -390,7 +390,7 @@ bool BrowserCommandController::IsReservedCommandOrKey(
+@@ -463,7 +463,7 @@ bool BrowserCommandController::IsReservedCommandOrKey(
  #endif
    }
  
@@ -27,7 +27,7 @@
    // If this key was registered by the user as a content editing hotkey, then
    // it is not reserved.
    auto* linux_ui = ui::LinuxUi::instance();
-@@ -693,7 +693,7 @@ bool BrowserCommandController::ExecuteCommandWithDispo
+@@ -778,7 +778,7 @@ bool BrowserCommandController::ExecuteCommandWithDispo
        break;
  #endif
  
@@ -36,7 +36,7 @@
      case IDC_MINIMIZE_WINDOW:
        browser_->window()->Minimize();
        break;
-@@ -932,7 +932,7 @@ bool BrowserCommandController::ExecuteCommandWithDispo
+@@ -1018,7 +1018,7 @@ bool BrowserCommandController::ExecuteCommandWithDispo
        break;
      case IDC_CREATE_SHORTCUT:
        base::RecordAction(base::UserMetricsAction("CreateShortcut"));
@@ -45,7 +45,7 @@
        chrome::CreateDesktopShortcutForActiveWebContents(browser_);
  #else
        web_app::CreateWebAppFromCurrentWebContents(
-@@ -1112,7 +1112,7 @@ bool BrowserCommandController::ExecuteCommandWithDispo
+@@ -1215,7 +1215,7 @@ bool BrowserCommandController::ExecuteCommandWithDispo
  #endif  // BUILDFLAG(GOOGLE_CHROME_BRANDING)
      case IDC_CHROME_WHATS_NEW:
  #if BUILDFLAG(GOOGLE_CHROME_BRANDING) && \
@@ -54,7 +54,7 @@
        ShowChromeWhatsNew(browser_);
        break;
  #else
-@@ -1501,7 +1501,7 @@ void BrowserCommandController::InitCommandState() {
+@@ -1615,7 +1615,7 @@ void BrowserCommandController::InitCommandState() {
    command_updater_.UpdateCommandEnabled(IDC_VISIT_DESKTOP_OF_LRU_USER_4, true);
    command_updater_.UpdateCommandEnabled(IDC_VISIT_DESKTOP_OF_LRU_USER_5, true);
  #endif
@@ -63,7 +63,7 @@
    command_updater_.UpdateCommandEnabled(IDC_MINIMIZE_WINDOW, true);
    command_updater_.UpdateCommandEnabled(IDC_MAXIMIZE_WINDOW, true);
    command_updater_.UpdateCommandEnabled(IDC_RESTORE_WINDOW, true);
-@@ -1889,7 +1889,7 @@ void BrowserCommandController::UpdateCommandsForTabSta
+@@ -2000,7 +2000,7 @@ void BrowserCommandController::UpdateCommandsForTabSta
    bool can_create_web_app = web_app::CanCreateWebApp(browser_);
    command_updater_.UpdateCommandEnabled(IDC_INSTALL_PWA, can_create_web_app);
  

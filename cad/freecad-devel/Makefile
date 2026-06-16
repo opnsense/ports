@@ -1,6 +1,6 @@
 PORTNAME=	FreeCAD
 DISTVERSION=	r${GIT_SRC_DATE}
-#PORTREVISION=	1
+PORTREVISION=	1
 CATEGORIES=	cad
 PKGNAMESUFFIX=  -devel
 
@@ -19,6 +19,7 @@ BUILD_DEPENDS=	doxygen:devel/doxygen \
 		${PYTHON_PKGNAMEPREFIX}pyside6-tools>0:devel/pyside6-tools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pivy>0:graphics/py-pivy@${PY_FLAVOR} \
 		${PYTHON_SITELIBDIR}/matplotlib/__init__.py:math/py-matplotlib@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lark>0:devel/py-lark@${PY_FLAVOR} \
 		swig:devel/swig
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
@@ -65,8 +66,6 @@ USE_LDCONFIG=	yes
 
 CPE_VENDOR=	freecad_project
 
-VTK_VER=	9.5
-
 DOS2UNIX_GLOB=	*.txt *.h *.cpp *.py *.qss *.csv *.pov *.stp *.ui *.wrl *.WRL
 SHEBANG_FILES=	src/Tools/freecad-thumbnailer.in
 
@@ -83,6 +82,8 @@ CMAKE_ARGS+=	-DOCC_INCLUDE_DIR="${LOCALBASE}/include/OpenCASCADE" \
 		-DBUILD_ASSEMBLY="ON" \
 		-DBUILD_DESIGNER_PLUGIN="ON" \
 		-DBUILD_FLAT_MESH="ON" \
+		-DBUILD_TEST="OFF" \
+		-DENABLE_DEVELOPER_TESTS="OFF" \
 		-DBUILD_VR="OFF" \
 		-DFREECAD_USE_EXTERNAL_FMT="ON" \
 		-DFREECAD_CREATE_MAC_APP="OFF" \
@@ -144,4 +145,5 @@ post-install:
 	# ${INSTALL_SCRIPT} ${WRKSRC}/src/Tools/freecad-thumbnailer \
 	# 	${STAGEDIR}${PREFIX}/bin/freecad-thumbnailer
 
+.include <../../math/vtk9/Makefile.version>
 .include <bsd.port.mk>

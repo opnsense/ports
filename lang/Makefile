@@ -8,17 +8,21 @@
     SUBDIR += antimony
     SUBDIR += apache-commons-jelly
     SUBDIR += asm-lsp
+    SUBDIR += asmc
     SUBDIR += asn1c
     SUBDIR += atlast
     SUBDIR += awka
+    SUBDIR += babashka
     SUBDIR += bas2tap
     SUBDIR += basic256
     SUBDIR += bend
     SUBDIR += bsh
+    SUBDIR += bun
     SUBDIR += bwbasic
     SUBDIR += c
     SUBDIR += cairo
     SUBDIR += cbmbasic
+    SUBDIR += cbqn
     SUBDIR += ccl
     SUBDIR += ceylon
     SUBDIR += cfortran
@@ -57,21 +61,15 @@
     SUBDIR += elixir-devel
     SUBDIR += elixir-mode.el
     SUBDIR += elk
-    SUBDIR += elm
     SUBDIR += emacs-lisp-intro
     SUBDIR += emilua
     SUBDIR += erlang
     SUBDIR += erlang-doc
     SUBDIR += erlang-java
     SUBDIR += erlang-man
-    SUBDIR += erlang-runtime21
-    SUBDIR += erlang-runtime22
-    SUBDIR += erlang-runtime23
-    SUBDIR += erlang-runtime24
-    SUBDIR += erlang-runtime25
-    SUBDIR += erlang-runtime26
     SUBDIR += erlang-runtime27
     SUBDIR += erlang-runtime28
+    SUBDIR += erlang-runtime29
     SUBDIR += erlang-wx
     SUBDIR += execline
     SUBDIR += expect
@@ -98,12 +96,12 @@
     SUBDIR += gcc14-devel
     SUBDIR += gcc15
     SUBDIR += gcc15-devel
+    SUBDIR += gcc16
     SUBDIR += gcc16-devel
+    SUBDIR += gcc17-devel
     SUBDIR += gcc6-aux
     SUBDIR += gforth
     SUBDIR += ghc
-    SUBDIR += ghc92
-    SUBDIR += ghc94
     SUBDIR += ghc96
     SUBDIR += ghc98
     SUBDIR += gir-to-d
@@ -123,9 +121,8 @@
     SUBDIR += gnu-cobol
     SUBDIR += gnustep-base
     SUBDIR += go
-    SUBDIR += go-devel
-    SUBDIR += go124
     SUBDIR += go125
+    SUBDIR += go126
     SUBDIR += gomacro
     SUBDIR += gprolog
     SUBDIR += gptscript
@@ -183,6 +180,7 @@
     SUBDIR += lua52
     SUBDIR += lua53
     SUBDIR += lua54
+    SUBDIR += lua55
     SUBDIR += luajit
     SUBDIR += luajit-openresty
     SUBDIR += malbolge
@@ -212,6 +210,7 @@
     SUBDIR += neocmakelsp
     SUBDIR += nesasm
     SUBDIR += newlisp
+    SUBDIR += nickel
     SUBDIR += nickle
     SUBDIR += nim
     SUBDIR += njs
@@ -308,6 +307,7 @@
     SUBDIR += python313
     SUBDIR += python313t
     SUBDIR += python314
+    SUBDIR += python315
     SUBDIR += qmasm
     SUBDIR += quickjs
     SUBDIR += quickjs-ng
@@ -324,7 +324,6 @@
     SUBDIR += rhino
     SUBDIR += rizin
     SUBDIR += rizin-cutter
-    SUBDIR += ruby32
     SUBDIR += ruby33
     SUBDIR += ruby34
     SUBDIR += ruby40
@@ -397,5 +396,6 @@
     SUBDIR += zephir
     SUBDIR += zig
     SUBDIR += zig014
+    SUBDIR += zig015
 
 .include <bsd.port.subdir.mk>

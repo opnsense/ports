@@ -1,6 +1,6 @@
 PORTNAME=	subtitlecomposer
 DISTVERSION=	0.8.2
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	multimedia kde
 MASTER_SITES=	KDE/stable/${PORTNAME}
 
@@ -26,6 +26,8 @@ USE_KDE=	codecs config configwidgets coreaddons i18n \
 USE_QT=		5compat base declarative \
 		tools:build
 USE_XORG=	x11
+
+LDFLAGS_i386=	-Wl,-znotext
 
 # Requires PocketSphinx-5prealpha
 SPHINX_DESC=	Speech recognition via PocketSphinx

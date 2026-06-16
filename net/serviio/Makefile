@@ -1,5 +1,5 @@
 PORTNAME=	serviio
-PORTVERSION=	2.4
+PORTVERSION=	2.5
 PORTREVISION=	0
 CATEGORIES=	net multimedia java www
 MASTER_SITES=	https://download.serviio.org/releases/

@@ -1,4 +1,4 @@
---- src/vs/base/common/platform.ts.orig	2025-08-06 20:09:28 UTC
+--- src/vs/base/common/platform.ts.orig	2026-05-12 20:17:22 UTC
 +++ src/vs/base/common/platform.ts
 @@ -74,7 +74,7 @@ if (typeof nodeProcess === 'object') {
  if (typeof nodeProcess === 'object') {

@@ -53,7 +53,7 @@ $portdir = '.';
 
 # version variables
 my $major = 2;
-my $minor = 23;
+my $minor = 24;
 my $micro = 0;
 
 # default setting - for FreeBSD
@@ -177,12 +177,22 @@ my @varlist =  qw(
 );
 
 my %makevar;
+our @wrkdirs = ('work');
 my $i = 0;
 for (split(/\n/, get_makevar(@varlist))) {
 	$_ =~ s/\0//;
 	print "OK: makevar: $varlist[$i] = $_\n" if ($verbose);
 	$makevar{$varlist[$i]} = $_;
 	$i++;
+}
+
+if ($makevar{FLAVORS}) {
+	my $makeenv_save = $makeenv;
+	for (split(/\s+/, $makevar{FLAVORS})) {
+		$makeenv .= " FLAVOR=$_";
+		push @wrkdirs, basename(get_makevar('WRKDIR'));
+		$makeenv = $makeenv_save;
+	}
 }
 
 #
@@ -330,12 +340,7 @@ if ($committer) {
 
 		print "OK: checking the file name of $fullname.\n" if ($verbose);
 
-		if ($fullname eq 'work') {
-			&perror("FATAL", $fullname, -1, "be sure to cleanup the working directory ".
-					"before committing the port.");
-
-			$File::Find::prune = 1;
-		} elsif (-l) {
+		if (-l) {
 			&perror("WARN", $fullname, -1, "this is a symlink. ".
 					"Please remove it.");
 		} elsif (-z) {
@@ -378,6 +383,14 @@ if ($committer) {
 				&perror("FATAL", "", -1, "$fullname not under git.")
 					unless (eval { /$ENV{'PL_GIT_IGNORE'}/, 1 } &&
 						/$ENV{'PL_GIT_IGNORE'}/);
+			}
+		} elsif (-d) {
+			for my $wd (@wrkdirs) {
+				if ($fullname eq $wd) {
+					&perror("FATAL", $fullname, -1, "be sure to cleanup the working directory ".
+						"before committing the port.");
+					$File::Find::prune = 1;
+				}
 			}
 		}
 	}

@@ -1,5 +1,5 @@
 PORTNAME=	snazy
-DISTVERSION=	0.58.1
+DISTVERSION=	0.59.0
 PORTREVISION=	2
 CATEGORIES=	devel
 
@@ -14,105 +14,106 @@ USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	chmouel
 
-CARGO_CRATES=	aho-corasick-1.1.3 \
-		android-tzdata-0.1.1 \
+CARGO_CRATES=	aho-corasick-1.1.4 \
 		android_system_properties-0.1.5 \
-		anstream-0.6.19 \
-		anstyle-1.0.11 \
-		anstyle-parse-0.2.7 \
-		anstyle-query-1.1.3 \
-		anstyle-wincon-3.0.9 \
+		anstream-1.0.0 \
+		anstyle-1.0.14 \
+		anstyle-parse-1.0.0 \
+		anstyle-query-1.1.5 \
+		anstyle-wincon-3.0.11 \
+		anyhow-1.0.102 \
 		autocfg-1.5.0 \
-		bitflags-2.9.1 \
-		bumpalo-3.19.0 \
-		cc-1.2.31 \
-		cfg-if-1.0.1 \
-		chrono-0.4.41 \
+		bitflags-2.11.0 \
+		bumpalo-3.20.2 \
+		cc-1.2.58 \
+		cfg-if-1.0.4 \
+		chrono-0.4.44 \
 		chrono-tz-0.10.4 \
-		clap-4.5.42 \
-		clap_builder-4.5.42 \
-		clap_complete-4.5.55 \
-		clap_derive-4.5.41 \
-		clap_lex-0.7.5 \
+		clap-4.6.0 \
+		clap_builder-4.6.0 \
+		clap_complete-4.6.0 \
+		clap_derive-4.6.0 \
+		clap_lex-1.1.0 \
 		color-print-0.3.7 \
 		color-print-proc-macro-0.3.7 \
-		colorchoice-1.0.4 \
+		colorchoice-1.0.5 \
 		core-foundation-sys-0.8.7 \
-		errno-0.3.13 \
+		equivalent-1.0.2 \
+		errno-0.3.14 \
 		fastrand-2.3.0 \
-		getrandom-0.3.3 \
+		find-msvc-tools-0.1.9 \
+		foldhash-0.1.5 \
+		getrandom-0.4.2 \
+		hashbrown-0.15.5 \
+		hashbrown-0.16.1 \
 		heck-0.5.0 \
 		hermit-abi-0.5.2 \
-		iana-time-zone-0.1.63 \
+		iana-time-zone-0.1.65 \
 		iana-time-zone-haiku-0.1.2 \
-		is-terminal-0.4.16 \
-		is_terminal_polyfill-1.70.1 \
-		itoa-1.0.15 \
-		js-sys-0.3.77 \
-		libc-0.2.174 \
-		linux-raw-sys-0.9.4 \
-		log-0.4.27 \
-		memchr-2.7.5 \
+		id-arena-2.3.0 \
+		indexmap-2.13.0 \
+		is-terminal-0.4.17 \
+		is_terminal_polyfill-1.70.2 \
+		itoa-1.0.18 \
+		js-sys-0.3.94 \
+		leb128fmt-0.1.0 \
+		libc-0.2.184 \
+		linux-raw-sys-0.12.1 \
+		log-0.4.29 \
+		memchr-2.8.0 \
 		minimal-lexical-0.2.1 \
 		nom-7.1.3 \
 		num-traits-0.2.19 \
-		once_cell-1.21.3 \
-		once_cell_polyfill-1.70.1 \
+		once_cell-1.21.4 \
+		once_cell_polyfill-1.70.2 \
 		phf-0.12.1 \
 		phf_shared-0.12.1 \
-		proc-macro2-1.0.95 \
-		quote-1.0.40 \
-		r-efi-5.3.0 \
-		regex-1.11.1 \
-		regex-automata-0.4.9 \
-		regex-syntax-0.8.5 \
-		rustix-1.0.8 \
-		rustversion-1.0.21 \
-		ryu-1.0.20 \
-		serde-1.0.219 \
-		serde_derive-1.0.219 \
-		serde_json-1.0.142 \
+		prettyplease-0.2.37 \
+		proc-macro2-1.0.106 \
+		quote-1.0.45 \
+		r-efi-6.0.0 \
+		regex-1.12.3 \
+		regex-automata-0.4.14 \
+		regex-syntax-0.8.10 \
+		rustix-1.1.4 \
+		rustversion-1.0.22 \
+		semver-1.0.27 \
+		serde-1.0.228 \
+		serde_core-1.0.228 \
+		serde_derive-1.0.228 \
+		serde_json-1.0.149 \
 		shlex-1.3.0 \
-		siphasher-1.0.1 \
+		siphasher-1.0.2 \
 		strsim-0.11.1 \
-		syn-2.0.104 \
-		tempfile-3.20.0 \
-		unicode-ident-1.0.18 \
+		syn-2.0.117 \
+		tempfile-3.27.0 \
+		unicode-ident-1.0.24 \
+		unicode-xid-0.2.6 \
 		utf8parse-0.2.2 \
-		wasi-0.14.2+wasi-0.2.4 \
-		wasm-bindgen-0.2.100 \
-		wasm-bindgen-backend-0.2.100 \
-		wasm-bindgen-macro-0.2.100 \
-		wasm-bindgen-macro-support-0.2.100 \
-		wasm-bindgen-shared-0.2.100 \
-		windows-core-0.61.2 \
-		windows-implement-0.60.0 \
-		windows-interface-0.59.1 \
-		windows-link-0.1.3 \
-		windows-result-0.3.4 \
-		windows-strings-0.4.2 \
-		windows-sys-0.59.0 \
-		windows-sys-0.60.2 \
-		windows-targets-0.52.6 \
-		windows-targets-0.53.3 \
-		windows_aarch64_gnullvm-0.52.6 \
-		windows_aarch64_gnullvm-0.53.0 \
-		windows_aarch64_msvc-0.52.6 \
-		windows_aarch64_msvc-0.53.0 \
-		windows_i686_gnu-0.52.6 \
-		windows_i686_gnu-0.53.0 \
-		windows_i686_gnullvm-0.52.6 \
-		windows_i686_gnullvm-0.53.0 \
-		windows_i686_msvc-0.52.6 \
-		windows_i686_msvc-0.53.0 \
-		windows_x86_64_gnu-0.52.6 \
-		windows_x86_64_gnu-0.53.0 \
-		windows_x86_64_gnullvm-0.52.6 \
-		windows_x86_64_gnullvm-0.53.0 \
-		windows_x86_64_msvc-0.52.6 \
-		windows_x86_64_msvc-0.53.0 \
-		wit-bindgen-rt-0.39.0 \
-		yansi-1.0.1
+		wasip2-1.0.2+wasi-0.2.9 \
+		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
+		wasm-bindgen-0.2.117 \
+		wasm-bindgen-macro-0.2.117 \
+		wasm-bindgen-macro-support-0.2.117 \
+		wasm-bindgen-shared-0.2.117 \
+		wasm-encoder-0.244.0 \
+		wasm-metadata-0.244.0 \
+		wasmparser-0.244.0 \
+		windows-core-0.62.2 \
+		windows-implement-0.60.2 \
+		windows-interface-0.59.3 \
+		windows-link-0.2.1 \
+		windows-result-0.4.1 \
+		windows-strings-0.5.1 \
+		windows-sys-0.61.2 \
+		wit-bindgen-0.51.0 \
+		wit-bindgen-core-0.51.0 \
+		wit-bindgen-rust-0.51.0 \
+		wit-bindgen-rust-macro-0.51.0 \
+		wit-component-0.244.0 \
+		wit-parser-0.244.0 \
+		yansi-1.0.1 \
+		zmij-1.0.21
 
 PLIST_FILES=	bin/${PORTNAME}
 

@@ -1,8 +1,8 @@
 PORTNAME=	treesheets
-DISTVERSION=	2942
+DISTVERSION=	3048
 CATEGORIES=	deskutils
 
-MAINTAINER=	eduardo@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Free form data organizer
 WWW=		https://strlen.com/treesheets/
 
@@ -13,7 +13,7 @@ USES=		cmake desktop-file-utils shared-mime-info
 USE_GITHUB=	yes
 GH_ACCOUNT=	aardappel
 USE_WX=		3.2
-GH_TUPLE=	aardappel:lobster:v2025.4:external/lobster-src
+GH_TUPLE=	aardappel:lobster:v2026.1:external/lobster-src
 
 PORTDATA=	images scripts
 PORTDOCS=	docs readme-ko.html readme-zh_CN.html readme.html

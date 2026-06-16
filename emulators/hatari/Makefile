@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	2.6.1
 CATEGORIES=	emulators
 
-MAINTAINER=	laurent.chardon@gmail.com
+MAINTAINER=	laurent@FreeBSD.org
 COMMENT=	Atari ST emulator
 WWW=		https://hatari.tuxfamily.org/
 

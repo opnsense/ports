@@ -91,7 +91,7 @@ KDE_PLASMA5_VERSION?=		5.27.12
 KDE_PLASMA5_BRANCH?=		stable
 
 # Current KDE Plasma desktop.
-KDE_PLASMA6_VERSION?=		6.5.5
+KDE_PLASMA6_VERSION?=		6.6.5
 KDE_PLASMA6_BRANCH?=		stable
 
 # Legacy KDE frameworks (Qt5 based).
@@ -99,13 +99,16 @@ KDE_FRAMEWORKS5_VERSION?=	5.116.0
 KDE_FRAMEWORKS5_BRANCH?=	stable
 
 # Current KDE Frameworks (Qt6 based).
-KDE_FRAMEWORKS6_VERSION?=	6.22.0
+KDE_FRAMEWORKS6_VERSION?=	6.26.0
 KDE_FRAMEWORKS6_BRANCH?=	stable
 
-# Current KDE applications. Update _${PORTNAME}_PROJECT_VERSION for the following ports:
-# devel/kdevelop, games/libkdegames, games/libkmahjongg, graphics/kgraphviewer
-KDE_APPLICATIONS6_VERSION?=	25.12.1
-KDE_APPLICATIONS6_SHLIB_VER?=	6.6.1
+# Current KDE applications.
+# On major update:
+# - check and update if needed _${PORTNAME}_PROJECT_VERSION for the following ports:
+#   audio/audiocd-kio, devel/kdevelop, games/libkdegames, games/libkmahjongg, graphics/kgraphviewer
+# - bump SHLIB_VER for editors/calligra.
+KDE_APPLICATIONS6_VERSION?=	26.04.2
+KDE_APPLICATIONS6_SHLIB_VER?=	6.7.2
 # G as in KDE Gear, and as in "don't make the variable name longer than required".
 KDE_APPLICATIONS6_SHLIB_G_VER?=	${KDE_APPLICATIONS6_VERSION}
 KDE_APPLICATIONS6_BRANCH?=	stable
@@ -335,9 +338,8 @@ _USE_PLASMA6_ALL=	activities activities-stats activitymanagerd \
 _USE_PLASMA_ALL=	${_USE_PLASMA${_KDE_VERSION}_ALL}
 
 # List of frequently used components of the KDE Gears distribution.
-_USE_GEAR5_ALL=		libkdcraw
 _USE_GEAR6_ALL=		baloo-widgets kosm kpublictransport \
-			libkcddb libkcompactdisc libkdcraw \
+			libkcddb libkdcraw \
 			libkdegames libkeduvocdocument libkexiv2 \
 			libksane marble okular
 _USE_GEAR_ALL=		${_USE_GEAR${_KDE_VERSION}_ALL}
@@ -972,13 +974,8 @@ kde-baloo-widgets_LIB=		libKF${_KDE_VERSION}BalooWidgets.so
 kde-libkcddb_PORT=		audio/libkcddb
 kde-libkcddb_LIB=		libKCddb${_KDE_VERSION}.so
 
-kde-libkcompactdisc_PORT=	audio/libkcompactdisc
-kde-libkcompactdisc_LIB=	libKF${_KDE_VERSION}CompactDisc.so
-
-kde-libkdcraw_PORT=		graphics/libkdcraw@qt${_KDE_VERSION}
-kde-libkdcraw_LIB5=		libKF${_KDE_VERSION}KDcraw.so
-kde-libkdcraw_LIB6=		libKDcrawQt${_KDE_VERSION}.so
-kde-libkdcraw_LIB=		${kde-libkdcraw_LIB${_KDE_VERSION}}
+kde-libkdcraw_PORT=		graphics/libkdcraw
+kde-libkdcraw_LIB=		libKDcrawQt6.so
 
 kde-libkdegames_PORT=		games/libkdegames
 kde-libkdegames_LIB=		libKDEGames${_KDE_VERSION}.so

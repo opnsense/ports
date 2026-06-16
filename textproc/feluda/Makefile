@@ -1,11 +1,11 @@
 PORTNAME=	feluda
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.11.0 # Cargo.lock patched: `make patch cargo-crates`
+DISTVERSION=	1.13.0 # Cargo.lock patched: `make patch cargo-crates`
 PORTREVISION=	1
-CATEGORIES=	textproc
+CATEGORIES=	textproc devel
 
-MAINTAINER=	nxjoseph@protonmail.com
-COMMENT=	Detect license usage restrictions in your project
+MAINTAINER=	nxjoseph@FreeBSD.org
+COMMENT=	Detect license usage restrictions in a project
 WWW=		https://github.com/anistark/feluda
 
 LICENSE=	MIT
@@ -23,6 +23,6 @@ GH_ACCOUNT=	anistark
 # first to not fetch openssl-src tarball and later to remove git2 ossl vendored feature.
 CARGO_ENV=	OPENSSL_NO_VENDOR=1
 
-PLIST_FILES=	bin/${PORTNAME}
+PLIST_FILES=	bin/feluda
 
 .include <bsd.port.mk>

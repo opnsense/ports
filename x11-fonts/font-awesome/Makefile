@@ -1,5 +1,5 @@
 PORTNAME=	font-awesome
-DISTVERSION=	7.0.1
+DISTVERSION=	7.2.0
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://use.fontawesome.com/releases/v${DISTVERSION}/ \
 		https://github.com/FortAwesome/Font-Awesome/releases/download/${DISTVERSION}/

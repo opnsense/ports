@@ -1,6 +1,6 @@
 {
   "name": "teams-for-linux",
-  "version": "2.7.2",
+  "version": "2.10.0",
   "main": "app/index.js",
   "description": "Unofficial client for Microsoft Teams for Linux",
   "homepage": "https://github.com/IsmaelMartinez/teams-for-linux",
@@ -21,11 +21,15 @@
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
     "lint": "eslint **/*.js",
+    "test:unit": "node --test 'tests/unit/*.test.js'",
     "test:e2e": "playwright test",
+    "test:authenticated": "playwright test --config playwright.authenticated.config.js",
+    "cross-distro": "cd tests/cross-distro && ./run.sh",
+    "cross-distro:list": "cd tests/cross-distro && ./run.sh --list",
+    "cross-distro:smoke": "cd tests/cross-distro && ./scripts/smoke-check.sh",
     "prestart": "npm ci",
     "start": "electron ./app --trace-warnings",
     "start:dev": "electron ./app --trace-warnings --no-sandbox",
-    "release:prepare": "node scripts/release-prepare.mjs",
     "generate-release-info": "node scripts/generateReleaseInfo.js",
     "generate-ipc-docs": "node scripts/generateIpcDocs.js",
     "prebuild": "npm run generate-release-info",
@@ -48,26 +52,28 @@
     "release": "electron-builder"
   },
   "dependencies": {
-    "@homebridge/dbus-native": "0.7.2",
-    "electron-log": "^5.4.3",
-    "electron-positioner": "^4.1.0",
-    "electron-store": "8.2.0",
+    "@homebridge/dbus-native": "0.7.5",
+    "cbor-x": "^1.6.4",
+    "electron-log": "^5.4.4",
+    "electron-store": "11.0.2",
+    "electron-updater": "^6.8.3",
     "electron-window-state": "5.0.3",
-    "lodash": "^4.17.23",
-    "mqtt": "^5.14.1",
-    "node-sound": "^0.0.8",
+    "mqtt": "^5.15.1",
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@electron/fuses": "^2.0.0",
-    "@eslint/js": "^9.39.2",
-    "@playwright/test": "^1.58.0",
-    "electron": "^39.3.0",
-    "electron-builder": "^26.6.0",
-    "eslint": "^9.39.2",
-    "globals": "^17.1.0",
+    "@electron/fuses": "^2.1.1",
+    "@eslint/js": "^10.0.1",
+    "electron": "41.6.1",
+    "@playwright/test": "1.60.0",
+    "electron-builder": "^26.8.1",
+    "eslint": "^10.4.0",
+    "globals": "^17.6.0",
     "http-server": "^14.1.1",
     "xml2js": "^0.6.2"
+  },
+  "overrides": {
+    "follow-redirects": "^1.16.0"
   },
   "build": {
     "appId": "teams-for-linux",
@@ -92,6 +98,9 @@
       "executableName": "teams-for-linux",
       "synopsis": "Teams for Linux",
       "description": "Unofficial Microsoft Teams client for Linux using Electron. It uses the Web App and wraps it as a standalone application using Electron.",
+      "executableArgs": [
+        "--ozone-platform=x11"
+      ],
       "desktop": {
         "entry": {
           "Name": "Teams for Linux",

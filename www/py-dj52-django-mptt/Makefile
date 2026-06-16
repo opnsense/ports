@@ -1,5 +1,5 @@
 PORTNAME=	django-mptt
-DISTVERSION=	0.17.0
+DISTVERSION=	0.18.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -11,6 +11,9 @@ WWW=		https://github.com/django-mptt/django-mptt
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=     Obsolete, please use www/py-django-mptt instead
+EXPIRATION_DATE=2026-06-30
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django52>=4.2:www/py-django52@${PY_FLAVOR}\

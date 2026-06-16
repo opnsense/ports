@@ -1,6 +1,7 @@
 PORTNAME=	tredis
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.1
+DISTVERSION=	1.2.0
+PORTREVISION=	2
 CATEGORIES=	databases
 
 MAINTAINER=	olgeni@FreeBSD.org
@@ -33,16 +34,16 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		bitflags-2.10.0 \
 		block-buffer-0.10.4 \
 		bumpalo-3.19.1 \
-		bytemuck-1.24.0 \
+		bytemuck-1.25.0 \
 		bytes-1.11.0 \
 		castaway-0.2.4 \
-		cc-1.2.52 \
+		cc-1.2.55 \
 		cfg-if-1.0.4 \
 		cfg_aliases-0.2.1 \
-		chrono-0.4.42 \
-		clap-4.5.54 \
-		clap_builder-4.5.54 \
-		clap_derive-4.5.49 \
+		chrono-0.4.43 \
+		clap-4.5.56 \
+		clap_builder-4.5.56 \
+		clap_derive-4.5.55 \
 		clap_lex-0.7.7 \
 		colorchoice-1.0.4 \
 		combine-4.6.7 \
@@ -70,11 +71,11 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		either-1.15.0 \
 		equivalent-1.0.2 \
 		errno-0.3.14 \
-		euclid-0.22.11 \
+		euclid-0.22.13 \
 		fancy-regex-0.11.0 \
 		fastrand-2.3.0 \
 		filedescriptor-0.8.3 \
-		find-msvc-tools-0.1.7 \
+		find-msvc-tools-0.1.9 \
 		finl_unicode-1.4.0 \
 		fixedbitset-0.4.2 \
 		fnv-1.0.7 \
@@ -98,7 +99,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		heck-0.5.0 \
 		hex-0.4.3 \
 		hostname-0.4.2 \
-		iana-time-zone-0.1.64 \
+		iana-time-zone-0.1.65 \
 		iana-time-zone-haiku-0.1.2 \
 		icu_collections-2.1.1 \
 		icu_locale_core-2.1.1 \
@@ -114,10 +115,9 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		indoc-2.0.7 \
 		instability-0.3.11 \
 		is_terminal_polyfill-1.70.2 \
-		itertools-0.13.0 \
 		itertools-0.14.0 \
 		itoa-1.0.17 \
-		js-sys-0.3.83 \
+		js-sys-0.3.85 \
 		kasuari-0.4.11 \
 		lab-0.11.0 \
 		lazy_static-1.5.0 \
@@ -140,7 +140,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		nix-0.29.0 \
 		nom-7.1.3 \
 		num-bigint-0.4.6 \
-		num-conv-0.1.0 \
+		num-conv-0.2.0 \
 		num-derive-0.4.2 \
 		num-integer-0.1.46 \
 		num-traits-0.2.19 \
@@ -150,7 +150,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		openssl-0.10.75 \
 		openssl-macros-0.1.1 \
 		openssl-probe-0.1.6 \
-		openssl-src-300.5.4+3.5.4 \
+		openssl-src-300.5.5+3.5.5 \
 		openssl-sys-0.9.111 \
 		option-ext-0.2.0 \
 		ordered-float-4.6.0 \
@@ -169,11 +169,11 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		pin-project-lite-0.2.16 \
 		pin-utils-0.1.0 \
 		pkg-config-0.3.32 \
-		portable-atomic-1.13.0 \
+		portable-atomic-1.13.1 \
 		potential_utf-0.1.4 \
 		powerfmt-0.2.0 \
-		proc-macro2-1.0.105 \
-		quote-1.0.43 \
+		proc-macro2-1.0.106 \
+		quote-1.0.44 \
 		r-efi-5.3.0 \
 		rand-0.8.5 \
 		rand_core-0.6.4 \
@@ -183,7 +183,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		ratatui-macros-0.7.0 \
 		ratatui-termwiz-0.1.0 \
 		ratatui-widgets-0.3.0 \
-		redis-1.0.2 \
+		redis-1.0.3 \
 		redox_syscall-0.5.18 \
 		redox_users-0.5.2 \
 		regex-1.12.2 \
@@ -209,10 +209,10 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		signal-hook-0.3.18 \
 		signal-hook-mio-0.2.5 \
 		signal-hook-registry-1.4.8 \
-		siphasher-1.0.1 \
-		slab-0.4.11 \
+		siphasher-1.0.2 \
+		slab-0.4.12 \
 		smallvec-1.15.1 \
-		socket2-0.6.1 \
+		socket2-0.6.2 \
 		stable_deref_trait-1.2.1 \
 		static_assertions-1.1.0 \
 		strsim-0.11.1 \
@@ -226,11 +226,11 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		termios-0.3.3 \
 		termwiz-0.23.3 \
 		thiserror-1.0.69 \
-		thiserror-2.0.17 \
+		thiserror-2.0.18 \
 		thiserror-impl-1.0.69 \
-		thiserror-impl-2.0.17 \
-		time-0.3.44 \
-		time-core-0.1.6 \
+		thiserror-impl-2.0.18 \
+		time-0.3.46 \
+		time-core-0.1.8 \
 		tinystr-0.8.2 \
 		tokio-1.49.0 \
 		tokio-macros-2.6.0 \
@@ -240,22 +240,22 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		ucd-trie-0.1.7 \
 		unicode-ident-1.0.22 \
 		unicode-segmentation-1.12.0 \
-		unicode-truncate-2.0.0 \
+		unicode-truncate-2.0.1 \
 		unicode-width-0.2.2 \
 		unsafe-libyaml-0.2.11 \
 		url-2.5.8 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
-		uuid-1.19.0 \
+		uuid-1.20.0 \
 		vcpkg-0.2.15 \
 		version_check-0.9.5 \
 		vtparse-0.6.2 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
-		wasip2-1.0.1+wasi-0.2.4 \
-		wasm-bindgen-0.2.106 \
-		wasm-bindgen-macro-0.2.106 \
-		wasm-bindgen-macro-support-0.2.106 \
-		wasm-bindgen-shared-0.2.106 \
+		wasip2-1.0.2+wasi-0.2.9 \
+		wasm-bindgen-0.2.108 \
+		wasm-bindgen-macro-0.2.108 \
+		wasm-bindgen-macro-support-0.2.108 \
+		wasm-bindgen-shared-0.2.108 \
 		wezterm-bidi-0.2.3 \
 		wezterm-blob-leases-0.1.1 \
 		wezterm-color-types-0.3.0 \
@@ -282,7 +282,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		windows_x86_64_gnu-0.53.1 \
 		windows_x86_64_gnullvm-0.53.1 \
 		windows_x86_64_msvc-0.53.1 \
-		wit-bindgen-0.46.0 \
+		wit-bindgen-0.51.0 \
 		writeable-0.6.2 \
 		xxhash-rust-0.8.15 \
 		yoke-0.8.1 \
@@ -292,7 +292,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		zerotrie-0.2.3 \
 		zerovec-0.11.5 \
 		zerovec-derive-0.11.2 \
-		zmij-1.0.13
+		zmij-1.0.19
 
 CARGO_ENV=	OPENSSL_NO_VENDOR=1
 

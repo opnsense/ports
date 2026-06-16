@@ -1,5 +1,6 @@
 PORTNAME=	nmap
-DISTVERSION=	7.98
+DISTVERSION=	7.99
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://nmap.org/dist/ \
 		LOCAL/ohauer
@@ -59,14 +60,15 @@ CONFIGURE_ARGS+=--without-localdirs \
 		--without-zenmap \
 		--without-ndiff \
 		--with-liblua=included \
-		--without-nmap-update
-
-
+		--without-nmap-update \
+		--with-libpcre=${LOCALBASE}
 
 .include <bsd.port.options.mk>
 
-.if defined(SSL_DEFAULT) && ${SSL_DEFAULT} == libressl
-BROKEN=	error: OpenSSL-1.1.1 is the minimum supported version. LibreSSL is not supported
+.if defined(SSL_DEFAULT)
+.if ${SSL_DEFAULT} == libressl
+BROKEN=	error: OpenSSL-3.0.0 is the minimum supported version. LibreSSL is not supported
+.endif
 .endif
 
 .if exists(/usr/lib/libibverbs.a)

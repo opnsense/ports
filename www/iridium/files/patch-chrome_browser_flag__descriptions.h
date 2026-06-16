@@ -1,8 +1,8 @@
---- chrome/browser/flag_descriptions.h.orig	2026-01-22 10:29:00 UTC
+--- chrome/browser/flag_descriptions.h.orig	2026-06-10 12:51:34 UTC
 +++ chrome/browser/flag_descriptions.h
-@@ -8623,6 +8623,18 @@ inline constexpr char kHandleMdmErrorsForDasherAccount
- inline constexpr char kHandleMdmErrorsForDasherAccountsDescription[] =
-     "Enables the mdm error handling feature for dasher accounts";
+@@ -8582,6 +8582,18 @@ inline constexpr char kAndroidEntraSsoDescription[] =
+     "Enables native support for Entra SSO on Android provided by selected "
+     "Authentication Brokers.";
  
 +#if BUILDFLAG(IS_BSD)
 +inline constexpr char kAudioBackendName[] =

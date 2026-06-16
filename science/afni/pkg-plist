@@ -596,6 +596,7 @@ bin/find_variance_lines.tcsh
 bin/float_scan
 bin/from3d
 bin/gen_cluster_table
+bin/gen_cluster_table.py
 bin/gen_epi_review.py
 bin/gen_group_command.py
 bin/gen_ss_review_scripts.py
@@ -866,6 +867,8 @@ lib/afni/plug_zeropad.so
 %%PYTHON_SITELIBDIR%%/afnipy/lib_cbar_pbar.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_cbar_tool.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_cdiflist.py
+%%PYTHON_SITELIBDIR%%/afnipy/lib_cluster_rois.py
+%%PYTHON_SITELIBDIR%%/afnipy/lib_cluster_table.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_csv.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_decay_timing.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_dti_sundry.py
@@ -876,6 +879,7 @@ lib/afni/plug_zeropad.so
 %%PYTHON_SITELIBDIR%%/afnipy/lib_gssrt.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_gtkyd.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_info_dict.py
+%%PYTHON_SITELIBDIR%%/afnipy/lib_info_items.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_mat2d_base.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_mat2d_plot.py
 %%PYTHON_SITELIBDIR%%/afnipy/lib_mat2d_tableize.py
@@ -1051,6 +1055,7 @@ lib/afni/plug_zeropad.so
 %%DATADIR%%/funstuff/face_dan_dickstein.jpg
 %%DATADIR%%/funstuff/face_dante.jpg
 %%DATADIR%%/funstuff/face_dario.jpg
+%%DATADIR%%/funstuff/face_darwin.jpg
 %%DATADIR%%/funstuff/face_dave_jangraw.jpg
 %%DATADIR%%/funstuff/face_daveperlman.jpg
 %%DATADIR%%/funstuff/face_davepitcher.jpg
@@ -1208,7 +1213,6 @@ lib/afni/plug_zeropad.so
 %%DATADIR%%/funstuff/face_les_petits_beauchamps.jpg
 %%DATADIR%%/funstuff/face_lfrank.jpg
 %%DATADIR%%/funstuff/face_lin_zhu.jpg
-%%DATADIR%%/funstuff/face_lincoln1.jpg
 %%DATADIR%%/funstuff/face_lincoln2.jpg
 %%DATADIR%%/funstuff/face_lindachao.jpg
 %%DATADIR%%/funstuff/face_lindathede.jpg
@@ -1352,7 +1356,6 @@ lib/afni/plug_zeropad.so
 %%DATADIR%%/funstuff/face_rwcoxI.jpg
 %%DATADIR%%/funstuff/face_rwcoxJ.jpg
 %%DATADIR%%/funstuff/face_rwcoxK.jpg
-%%DATADIR%%/funstuff/face_will_e.jpg
 %%DATADIR%%/funstuff/face_rwcoxL.jpg
 %%DATADIR%%/funstuff/face_rwcoxM.jpg
 %%DATADIR%%/funstuff/face_rwcoxN.jpg
@@ -1429,8 +1432,10 @@ lib/afni/plug_zeropad.so
 %%DATADIR%%/funstuff/face_wapostman2.jpg
 %%DATADIR%%/funstuff/face_watercubestud.jpg
 %%DATADIR%%/funstuff/face_wendyhasenkamp.jpg
+%%DATADIR%%/funstuff/face_will_e.jpg
 %%DATADIR%%/funstuff/face_wmluh.jpg
 %%DATADIR%%/funstuff/face_wpostman.jpg
+%%DATADIR%%/funstuff/face_x2zhang.jpg
 %%DATADIR%%/funstuff/face_xinianzuo.jpg
 %%DATADIR%%/funstuff/face_xue_zhang.jpg
 %%DATADIR%%/funstuff/face_xzhang.jpg

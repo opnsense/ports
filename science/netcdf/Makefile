@@ -1,5 +1,5 @@
 PORTNAME=	netcdf
-PORTVERSION=	4.9.3
+PORTVERSION=	4.10.0
 DISTVERSIONPREFIX=	c-
 CATEGORIES=	science
 MASTER_SITES=	https://downloads.unidata.ucar.edu/netcdf-c/${PORTVERSION}/ \

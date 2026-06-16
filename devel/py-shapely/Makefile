@@ -1,5 +1,6 @@
 PORTNAME=	shapely
 PORTVERSION=	2.1.2
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/shapely/shapely/releases/download/${PORTVERSION}/

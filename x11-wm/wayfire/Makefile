@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.10.1
 CATEGORIES=	x11-wm wayland
 
-MAINTAINER=	nxjoseph@protonmail.com
+MAINTAINER=	nxjoseph@FreeBSD.org
 COMMENT=	3D Wayland compositor
 WWW=		https://wayfire.org/
 

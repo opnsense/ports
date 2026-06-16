@@ -1,6 +1,6 @@
---- cc/base/features.cc.orig	2025-12-10 15:04:57 UTC
+--- cc/base/features.cc.orig	2026-05-11 13:57:04 UTC
 +++ cc/base/features.cc
-@@ -42,7 +42,7 @@ const base::FeatureParam<int> kDeferImplInvalidationFr
+@@ -33,7 +33,7 @@ const base::FeatureParam<int> kDeferImplInvalidationFr
  // Note that kUseDMSAAForTiles only controls vulkan launch on android. We will
  // be using a separate flag to control the launch on GL.
  BASE_FEATURE(kUseDMSAAForTiles,

@@ -170,6 +170,7 @@ libdata/pkgconfig/fish.pc
 %%DATADIR%%/completions/clang++.fish
 %%DATADIR%%/completions/clang.fish
 %%DATADIR%%/completions/clasp.fish
+%%DATADIR%%/completions/claude.fish
 %%DATADIR%%/completions/clean.fish
 %%DATADIR%%/completions/cleanmgr.fish
 %%DATADIR%%/completions/climate.fish
@@ -266,6 +267,7 @@ libdata/pkgconfig/fish.pc
 %%DATADIR%%/completions/downgrade.fish
 %%DATADIR%%/completions/dpkg-reconfigure.fish
 %%DATADIR%%/completions/dpkg.fish
+%%DATADIR%%/completions/dput.fish
 %%DATADIR%%/completions/dropdb.fish
 %%DATADIR%%/completions/dscacheutil.fish
 %%DATADIR%%/completions/du.fish
@@ -440,6 +442,7 @@ libdata/pkgconfig/fish.pc
 %%DATADIR%%/completions/ifdown.fish
 %%DATADIR%%/completions/iftop.fish
 %%DATADIR%%/completions/ifup.fish
+%%DATADIR%%/completions/ijq.fish
 %%DATADIR%%/completions/ikdasm.fish
 %%DATADIR%%/completions/ilasm.fish
 %%DATADIR%%/completions/import.fish
@@ -877,6 +880,7 @@ libdata/pkgconfig/fish.pc
 %%DATADIR%%/completions/test.fish
 %%DATADIR%%/completions/tex-fmt.fish
 %%DATADIR%%/completions/tex.fish
+%%DATADIR%%/completions/tflint.fish
 %%DATADIR%%/completions/tig.fish
 %%DATADIR%%/completions/time.fish
 %%DATADIR%%/completions/timedatectl.fish
@@ -1347,6 +1351,9 @@ libdata/pkgconfig/fish.pc
 %%DATADIR%%/themes/base16-default.theme
 %%DATADIR%%/themes/base16-eighties.theme
 %%DATADIR%%/themes/bay-cruise.theme
+%%DATADIR%%/themes/catppuccin-frappe.theme
+%%DATADIR%%/themes/catppuccin-macchiato.theme
+%%DATADIR%%/themes/catppuccin-mocha.theme
 %%DATADIR%%/themes/coolbeans.theme
 %%DATADIR%%/themes/default-rgb.theme
 %%DATADIR%%/themes/default.theme

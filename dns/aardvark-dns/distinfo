@@ -1,4 +1,4 @@
-TIMESTAMP = 1763355566
+TIMESTAMP = 1775743913
 SHA256 (rust/crates/android_system_properties-0.1.5.crate) = 819e7219dbd41043ac279b19830f2efc897156490d7fd6ea916720117ee66311
 SIZE (rust/crates/android_system_properties-0.1.5.crate) = 5243
 SHA256 (rust/crates/anstream-0.6.21.crate) = 43d5b281e737544384e969a5ccad3f1cdd24b48086a0fc1b2a5262a26b8f4f4a
@@ -347,5 +347,5 @@ SHA256 (rust/crates/zerovec-0.11.5.crate) = 6c28719294829477f525be0186d13efa9a3c
 SIZE (rust/crates/zerovec-0.11.5.crate) = 119620
 SHA256 (rust/crates/zerovec-derive-0.11.2.crate) = eadce39539ca5cb3985590102671f2567e659fca9666581ad3411d59207951f3
 SIZE (rust/crates/zerovec-derive-0.11.2.crate) = 21421
-SHA256 (containers-aardvark-dns-v1.17.0_GH0.tar.gz) = 42556bf547c435a8f0ccb586b4f5000da3106a58c26f82e22d9db81ee5bd7eb2
-SIZE (containers-aardvark-dns-v1.17.0_GH0.tar.gz) = 67984
+SHA256 (containers-aardvark-dns-v1.17.1_GH0.tar.gz) = 25b39bfad079a03862825b2f9db8b71b82fc80aad5552a9c76ea912edc9b889e
+SIZE (containers-aardvark-dns-v1.17.1_GH0.tar.gz) = 68355

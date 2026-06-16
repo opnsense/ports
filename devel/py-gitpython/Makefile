@@ -1,5 +1,5 @@
 PORTNAME=	gitpython
-PORTVERSION=	3.1.46
+PORTVERSION=	3.1.50
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,7 +24,8 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=0:devel/py-coverage@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}pytest-mock>=0:devel/py-pytest-mock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-sugar>=0:devel/py-pytest-sugar@${PY_FLAVOR} \
 
-USES=		python
+USES=		cpe python
+CPE_VENDOR=	gitpython_project
 USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes

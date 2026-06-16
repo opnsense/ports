@@ -14,6 +14,7 @@
     "@electron/typescript-definitions": "^9.1.2",
     "@octokit/rest": "^20.1.2",
     "@primer/octicons": "^10.0.0",
+    "@sentry/cli": "1.72.0",
     "@types/minimist": "^1.2.5",
     "@types/node": "^22.7.7",
     "@types/semver": "^7.5.8",
@@ -57,7 +58,8 @@
     "url": "^0.11.4",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4",
-    "wrapper-webpack-plugin": "^2.2.0"
+    "wrapper-webpack-plugin": "^2.2.0",
+    "yaml": "^2.8.1"
   },
   "private": true,
   "scripts": {
@@ -131,12 +133,17 @@
     "DEPS": [
       "node script/gen-hunspell-filenames.js",
       "node script/gen-libc++-filenames.js"
+    ],
+    ".github/workflows/pipeline-segment-electron-build.yml": [
+      "node script/copy-pipeline-segment-publish.js",
+      "git add .github/workflows/pipeline-segment-electron-publish.yml"
     ]
   },
   "resolutions": {
     "dbus-native/xml2js": "0.5.0",
     "abstract-socket": "github:deepak1556/node-abstractsocket#928cc591decd12aff7dad96449da8afc29832c19",
-    "minimist@npm:~0.0.1": "0.2.4"
+    "minimist@npm:~0.0.1": "0.2.4",
+    "put": "npm:@nornagon/put@0.0.8"
   },
   "packageManager": "yarn@4.12.0",
   "workspaces": [
@@ -144,6 +151,9 @@
     "spec/fixtures/native-addon/*"
   ],
   "dependenciesMeta": {
+    "@sentry/cli": {
+      "built": true
+    },
     "abstract-socket": {
       "built": true
     }

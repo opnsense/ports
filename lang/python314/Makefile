@@ -1,5 +1,5 @@
 PORTNAME=	python
-DISTVERSION=	${PYTHON_DISTVERSION}
+DISTVERSION=	${PYTHON_DISTVERSION}  # see Makefile.version
 PORTREVISION=	0
 CATEGORIES=	lang python
 MASTER_SITES=	PYTHON/ftp/python/${DISTVERSION:C/[a-z].*//}
@@ -7,13 +7,14 @@ PKGNAMESUFFIX=	${PYTHON_SUFFIX}
 DISTNAME=	Python-${DISTVERSION}
 DIST_SUBDIR=	python
 
-MAINTAINER=	mandree@FreeBSD.org
+MAINTAINER=	python@FreeBSD.org
 COMMENT=	Interpreted object-oriented programming language
 WWW=		https://www.python.org/
 
 LICENSE=	PSFL
 
-LIB_DEPENDS=	libffi.so:devel/libffi \
+LIB_DEPENDS=	libexpat.so:textproc/expat2 \
+		libffi.so:devel/libffi \
 		libzstd.so:archivers/zstd
 
 USES=		compiler:c11 cpe ncurses pathfix pkgconfig readline \
@@ -33,7 +34,7 @@ PYTHON_VERSION=		python${PYTHON_VER}
 PYTHON_SUFFIX=		${PYTHON_VER:S/.//g}
 
 DISABLED_EXTENSIONS=	 _gdbm _sqlite3 _tkinter
-CONFIGURE_ARGS+=	--enable-shared --without-ensurepip
+CONFIGURE_ARGS+=	--enable-shared --without-ensurepip --with-system-expat
 CONFIGURE_ENV+=		OPT="" # Null out OPT to respect user CFLAGS and remove optimizations
 
 INSTALL_TARGET=		altinstall						# Don't want cloberring of unprefixed files
@@ -57,13 +58,14 @@ PLIST_SUB=		ABI=${ABIFLAGS} \
 
 OPTIONS_DEFINE=		DEBUG IPV6 LIBMPDEC LTO NLS PYMALLOC
 OPTIONS_DEFAULT=	LIBMPDEC LTO PYMALLOC
-OPTIONS_EXCLUDE_powerpc64=	LTO
 OPTIONS_EXCLUDE_riscv64=	LTO
 OPTIONS_RADIO=		HASH
 OPTIONS_RADIO_HASH=	FNV SIPHASH
 OPTIONS_SUB=		yes
 
 LIBMPDEC_DESC=		Use libmpdec from ports instead of bundled version
+LTO_DESC=		Use Link-Time Optimization with -flto=thin
+LTOFULL_DESC=		Use -flto=full (not =thin) (faster build at more CPU time)
 NLS_DESC=		Enable gettext support for the locale module
 PYMALLOC_DESC=		Enable specialized mallocs
 
@@ -80,12 +82,12 @@ IPV6_CONFIGURE_ENABLE=	ipv6
 LIBMPDEC_CONFIGURE_ON=	--with-system-libmpdec
 LIBMPDEC_LIB_DEPENDS=	libmpdec.so:math/mpdecimal
 
-LTO_CONFIGURE_ON=	--with-lto
+LTO_CONFIGURE_ON=	--with-lto=full
 
 # Use CPPFLAGS over CFLAGS due to -I ordering, causing elementtree and pyexpat
 # to break in Python 2.7, or preprocessor complaints in Python >= 3.3
 # Upstream Issue: https://bugs.python.org/issue6299
-NLS_USES=		gettext
+NLS_USES=		gettext-runtime
 NLS_CPPFLAGS=		-I${LOCALBASE}/include
 NLS_LIBS=		-L${LOCALBASE}/lib -lintl
 NLS_CONFIGURE_ENV_OFF=	ac_cv_lib_intl_textdomain=no ac_cv_header_libintl_h=no
@@ -104,10 +106,6 @@ PLIST_FILES+=	bin/python${PYTHON_VER}${ABIFLAGS} \
 		bin/python${PYTHON_VER}${ABIFLAGS}-config \
 		libdata/pkgconfig/python-${PYTHON_VER}${ABIFLAGS}.pc \
 		libdata/pkgconfig/python-${PYTHON_VER}${ABIFLAGS}-embed.pc
-.endif
-
-.if ${ARCH} == sparc64
-CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
 .endif
 
 # See https://bugs.freebsd.org/115940 and https://bugs.freebsd.org/193650
@@ -130,7 +128,6 @@ post-patch:
 # disable the detection of includes and library from e2fsprogs-libuuid,
 # which introduces hidden dependency and breaks build
 	@${REINPLACE_CMD} -e 's|uuid/uuid.h|ignore_&|' ${WRKSRC}/configure
-
 # disable detection of multiarch as it breaks with clang >= 13, which adds a
 # major.minor version number in -print-multiarch output, confusing Python
 	@${REINPLACE_CMD} -e 's|^\( *MULTIARCH=\).*--print-multiarch.*|\1|' ${WRKSRC}/configure
@@ -139,6 +136,8 @@ post-patch:
 .  for _module in ${DISABLED_EXTENSIONS}
 		@${ECHO_CMD} ${_module} >> ${WRKSRC}/Modules/Setup.local
 .  endfor
+# Strip Expat module
+	${RM} -R ${WRKSRC}/Modules/expat
 
 post-install:
 .if ! ${PORT_OPTIONS:MDEBUG}
@@ -180,9 +179,18 @@ sigstore-verify: ${_sigstorebundle} checksum
 
 pre-test:
 	@${ECHO_CMD} "=== NOTE: the py314-* gdbm, sqlite3, tkinter modules must be rebuilt before the test ==="
+.if ${PORT_OPTIONS:MDEBUG}
+	@${ECHO_CMD} "=== NOTE: The test_ssl test is known to fail with DEBUG option enabled ==="
+.endif
+.if empty(PORT_OPTIONS:MIPV6)
+	@${ECHO_CMD} "=== NOTE: Some asynch tests require IPV6 support enabled, expect some test failures ==="
+.endif
+.if empty(PORT_OPTIONS:MPYMALLOC)
+	@${ECHO_CMD} "=== NOTE: Some tests depend on PYMALLOC option enabled, expect some test failures ==="
+.endif
 	sleep 5
 
 post-clean:
-	${RM} ${_sigstorebundle}
+	@${RM} ${_sigstorebundle}
 
 .include <bsd.port.mk>

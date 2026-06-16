@@ -1,6 +1,5 @@
 PORTNAME=	slurm
-DISTVERSION=	25.11.0
-PORTREVISION=	1
+DISTVERSION=	26.05.1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://download.schedmd.com/slurm/
 PKGNAMESUFFIX=	-wlm
@@ -12,7 +11,7 @@ WWW=		https://slurm.schedmd.com/
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-NOT_FOR_ARCHS=		armv6 armv7 i386 mips powerpc powerpcspe
+NOT_FOR_ARCHS=		armv6 armv7 i386 powerpc powerpcspe
 NOT_FOR_ARCHS_REASON=	32-bit support is deprecated
 
 LIB_DEPENDS=	libhttp_parser.so:www/http-parser \
@@ -50,6 +49,7 @@ TEST_TARGET=	check
 
 CFLAGS+=	-I${WRKSRC}/slurm
 LDFLAGS+=	-lsysinfo -lprocstat -fcommon
+TESTING_UNSAFE=	yes
 
 SUB_FILES=	pkg-message
 
@@ -60,7 +60,7 @@ PLIST_SUB=	GROUPS=${GROUPS} \
 		USERS=${USERS}
 PORTDOCS=	*
 
-OPTIONS_DEFINE=		CURL DOCS GUI HDF5 HWLOC IPMI
+OPTIONS_DEFINE=		CURL DOCS GUI HDF5 HWLOC IPMI S2N
 OPTIONS_DEFAULT=	HDF5 HWLOC
 OPTIONS_SUB=		yes
 
@@ -69,6 +69,7 @@ GUI_DESC=	Build sview GUI config tool
 HDF5_DESC=	Job profiling using HDF5
 HWLOC_DESC=	Portable hardware locality
 IPMI_DESC=	IPMI energy consumption accounting
+S2N_DESC=	Build tls_s2n TLS plugin
 
 CURL_LIB_DEPENDS=	libcurl.so:ftp/curl
 CURL_CONFIGURE_WITH=	libcurl
@@ -78,7 +79,7 @@ DOCS_BUILD_DEPENDS=	man2html:textproc/man2html
 GUI_BUILD_DEPENDS=	itstool:textproc/itstool
 GUI_USES=		gnome
 GUI_USE=		GNOME=cairo,gdkpixbuf,glib20,gtk20,pango
-GUI_CONFIGURE_ENABLE=	glibtest gtktest x11
+GUI_CONFIGURE_ENABLE=	sview
 
 HDF5_LIB_DEPENDS=	libhdf5.so:science/hdf5 \
 			libhdf5_hl.so:science/hdf5
@@ -94,6 +95,9 @@ IPMI_LIB_DEPENDS=	libfreeipmi.so:sysutils/freeipmi \
 			libipmimonitoring.so:sysutils/freeipmi
 IPMI_CONFIGURE_WITH=	freeipmi
 
+S2N_LIB_DEPENDS=	libs2n.so:security/s2n-tls
+S2N_CONFIGURE_WITH=	s2n=${LOCALBASE}
+
 _ARCH=	${ARCH:S|aarch64|aarch64elf|:S|amd64|elf_amd64|:S|powerpc64le|elf64lppc|:S|powerpc64|elf64ppc|:S|riscv64|elf64lriscv|}
 
 # SLURM's configure enables interactive jobs if pty.h exists.  Replacing
@@ -106,7 +110,7 @@ pre-configure:
 	(cd ${WRKSRC} && \
 		${GREP} -RIl '"/proc' src | ${XARGS} ${REINPLACE_CMD} \
 			-e 's|"/proc|"/compat/linux/proc|g' \
-			 -e 's|(/proc)|(/compat/linux/proc)|g')
+			-e 's|(/proc)|(/compat/linux/proc)|g')
 	@if ${WHICH} sbatch > /dev/null; then \
 		${ECHO_CMD} "********************************************"; \
 		${ECHO_CMD} "Build may fail while slurm-wlm is installed."; \
@@ -120,11 +124,6 @@ pre-configure:
 		${XARGS} ${REINPLACE_CMD} -e 's|$$(LD) -r -o|$$(LD) -r -m ${_ARCH} -o|'
 	${FIND} ${WRKSRC} -name Makefile.in | ${XARGS} \
 		${REINPLACE_CMD} -e 's|htmldir = \$${datadir.*$$|htmldir = @htmldir@|'
-
-# Hack around nonfunctional --disable-gtktest flag
-pre-configure-GUI-off:
-	 ${REINPLACE_CMD} -e 's|min_gtk_version=.*|min_gtk_version=2000.0.0|' \
-		${WRKSRC}/configure
 
 post-install:
 	@${MKDIR} ${STAGEDIR}/var/spool/slurmctld \

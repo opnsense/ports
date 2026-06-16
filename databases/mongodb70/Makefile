@@ -1,7 +1,7 @@
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
-DISTVERSION=	7.0.28
-PORTREVISION=	1
+DISTVERSION=	7.0.34
+PORTREVISION=	2
 CATEGORIES=	databases net
 PKGNAMESUFFIX=	${DISTVERSION:R:S/.//}
 
@@ -50,7 +50,7 @@ USES+=		gmake pkgconfig
 CPE_PRODUCT=	mongodb
 
 # mozjs tag comes from ${WRKSRC}/src/third_party/mozjs/get-sources.sh
-MOZJS_TAG=	5acd3be6c9563ad3e7ca6182285c69a38de47bab
+MOZJS_TAG=	692674d55f1c4acfae4316efab0f79cd67250341
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mongodb mongodb-forks:mozjs
@@ -151,6 +151,7 @@ MOZJS_ARCH=	${ARCH}
 post-extract:
 # Verify we downloaded the proper mozjs git tag.
 	${SH} -xc "test \"X`grep -E '^LIB_GIT_REVISION=' ${MOZJS_WRKSRC}/get-sources.sh`\" = \"XLIB_GIT_REVISION=${MOZJS_TAG}\""
+	${PATCH} -d ${WRKDIR}/spidermonkey-${MOZJS_TAG} -p1 < ${PATCHDIR}/d497aa4f770ca02f6083e93b94996a8fe32c2ff4.patch
 
 post-patch:
 # fix build with python-3.11

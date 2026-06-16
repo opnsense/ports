@@ -1,4 +1,4 @@
---- chrome/browser/regional_capabilities/regional_capabilities_service_factory.cc.orig	2025-09-10 13:22:16 UTC
+--- chrome/browser/regional_capabilities/regional_capabilities_service_factory.cc.orig	2026-04-15 11:25:12 UTC
 +++ chrome/browser/regional_capabilities/regional_capabilities_service_factory.cc
 @@ -21,7 +21,7 @@
  #include "chrome/browser/regional_capabilities/regional_capabilities_service_client_chromeos.h"
@@ -9,12 +9,21 @@
  #include "chrome/browser/regional_capabilities/regional_capabilities_service_client_linux.h"
  #endif
  
-@@ -72,7 +72,7 @@ RegionalCapabilitiesServiceFactory::BuildServiceInstan
+@@ -36,7 +36,7 @@ CreateRegionalCapabilitiesServiceClient() {
  #elif BUILDFLAG(IS_CHROMEOS)
-       std::make_unique<RegionalCapabilitiesServiceClientChromeOS>(
-           g_browser_process->variations_service());
+   return std::make_unique<RegionalCapabilitiesServiceClientChromeOS>(
+       g_browser_process->variations_service());
 -#elif BUILDFLAG(IS_LINUX)
 +#elif BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-       std::make_unique<RegionalCapabilitiesServiceClientLinux>(
-           g_browser_process->variations_service());
+   return std::make_unique<RegionalCapabilitiesServiceClientLinux>(
+       g_browser_process->variations_service());
  #else
+@@ -61,7 +61,7 @@ RegionalCapabilitiesServiceFactory::GetInstance() {
+   return instance.get();
+ }
+ 
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ // static
+ bool RegionalCapabilitiesServiceFactory::
+     IsInSearchEngineChoiceScreenRegionForSystemProfile(Profile* profile) {

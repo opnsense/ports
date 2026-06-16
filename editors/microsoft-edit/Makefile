@@ -1,7 +1,7 @@
 PORTNAME=	microsoft-edit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.0
-PORTREVISION=	7
+DISTVERSION=	2.0.0
+PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	nobutaka@FreeBSD.org
@@ -25,6 +25,10 @@ OPTIONS_DEFINE=		DOCS
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+
+do-install:
+	# workaround for error: found a virtual manifest at `xx` instead of a package manifest
+	${INSTALL_PROGRAM} ${WRKDIR}/target/release/edit ${STAGEDIR}${PREFIX}/bin
 
 post-install:
 	${RLN} ${STAGEDIR}${PREFIX}/bin/edit ${STAGEDIR}${PREFIX}/bin/msedit

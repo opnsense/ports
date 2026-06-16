@@ -1,6 +1,6 @@
---- third_party/sqlite/src/amalgamation_dev/sqlite3.c.orig	2025-10-02 04:28:32 UTC
+--- third_party/sqlite/src/amalgamation_dev/sqlite3.c.orig	2026-05-07 17:02:56 UTC
 +++ third_party/sqlite/src/amalgamation_dev/sqlite3.c
-@@ -14554,7 +14554,7 @@ struct fts5_api {
+@@ -14770,7 +14770,7 @@ struct fts5_api {
  ** But _XOPEN_SOURCE define causes problems for Mac OS X, so omit
  ** it.
  */

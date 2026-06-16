@@ -4,7 +4,7 @@ PORTREVISION=	16
 CATEGORIES=	astro
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSION}
 
-MAINTAINER=	mew14930xvi@inbox.lv
+MAINTAINER=	mce@FreeBSD.org
 COMMENT=	OpenGL Solar System simulator for X Window System
 WWW=		https://openuniverse.sourceforge.net/
 
@@ -17,13 +17,6 @@ USE_GL=		gl glu glut
 USE_XORG=	ice sm x11 xext xi xmu xorgproto
 
 GNU_CONFIGURE=	yes
-
-.include <bsd.port.pre.mk>
-
-.if ${OPSYS}_${OSREL:R} == FreeBSD_13
-LIBS+=		-lcompat
-.else
 LIBS+=		-lutil
-.endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

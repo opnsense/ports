@@ -1,9 +1,9 @@
 PORTNAME=	mozo
-PORTVERSION=	1.28.0
-PORTREVISION=	1
+DISTVERSION=	1.28.0
+PORTREVISION=	3
 CATEGORIES=	deskutils mate
-MASTER_SITES=	MATE
-DIST_SUBDIR=	mate
+MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/v${DISTVERSION}/
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Editor for the freedesktop.org menu specification
@@ -16,13 +16,15 @@ RUN_DEPENDS=	${LOCALBASE}/bin/mate-desktop-item-edit:x11/mate-panel
 
 USES=		gettext-tools gmake gnome localbase mate pkgconfig \
 		python tar:xz
+USE_GITHUB=	nodefault
+GH_ACCOUNT=	mate-desktop
 USE_GNOME=	gtk30 intltool pygobject3
 USE_MATE=	menus
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 NO_ARCH=	yes
 
-PORTSCOUT=	limitw:1,even
+PORTSCOUT=	site:https://github.com/mate-desktop/mozo/releases/ limitw:1,even
 
 NLS_USES=	gettext
 OPTIONS_DEFINE=	NLS

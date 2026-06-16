@@ -1,6 +1,5 @@
 PORTNAME=	octopus
-DISTVERSION=	16.0
-PORTREVISION=	1
+DISTVERSION=	16.3
 CATEGORIES=	science # chemistry
 MASTER_SITES=	https://octopus-code.org/download/${DISTVERSION}/
 
@@ -13,7 +12,7 @@ LICENSE=	GPLv2
 BROKEN_aarch64=	fails to build: Cannot find an intrinsic module named 'ieee_arithmetic'
 
 BUILD_DEPENDS=	bash:shells/bash
-LIB_DEPENDS=	libarpack.so:math/arpack-ng \
+LIB_DEPENDS=	libarpack.so:math/arpack-ng@mpich \
 		libblas.so:math/blas \
 		libfftw3.so:math/fftw3 \
 		libfontconfig.so:x11-fonts/fontconfig \

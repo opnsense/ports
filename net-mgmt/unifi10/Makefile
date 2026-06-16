@@ -1,6 +1,5 @@
 PORTNAME=	unifi10
-PORTVERSION=	10.0.160
-PORTREVISION?=	0
+PORTVERSION=	10.4.57
 CATEGORIES=	net-mgmt java
 MASTER_SITES=	http://dl.ubnt.com/unifi/%SUBDIR%/:unifi \
 		https://repo1.maven.org/maven2/%SUBDIR%/:jax
@@ -26,7 +25,7 @@ externaldb_PKGNAMESUFFIX=	-externaldb
 USES=		cpe java
 CPE_VENDOR=	ui
 CPE_PRODUCT=	unifi_controller
-JAVA_VERSION=	17
+JAVA_VERSION=	25
 USE_RC_SUBR=	unifi
 
 CONFLICTS_INSTALL=	unifi9

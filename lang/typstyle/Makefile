@@ -1,6 +1,6 @@
 PORTNAME=	typstyle
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.14.0
+DISTVERSION=	0.14.4
 PORTREVISION=	3
 CATEGORIES=	lang
 
@@ -410,9 +410,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		typst-render-0.14.0 \
 		typst-shim-0.14.0-rc1 \
 		typst-svg-0.14.0 \
-		typst-syntax-0.14.0 \
-		typst-timing-0.14.0 \
-		typst-utils-0.14.0 \
+		typst-syntax-0.14.2 \
+		typst-timing-0.14.2 \
+		typst-utils-0.14.2 \
 		unic-langid-0.9.6 \
 		unic-langid-impl-0.9.6 \
 		unic-langid-macros-0.9.6 \

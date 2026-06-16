@@ -391,6 +391,7 @@
 %%WWWDIR%%/app/partials/configuration.tags.tab.php
 %%WWWDIR%%/app/partials/configuration.valuemap.php
 %%WWWDIR%%/app/partials/graph.edit.graph.tab.php
+%%WWWDIR%%/app/partials/host.interface.selector.php
 %%WWWDIR%%/app/partials/hostmacros.inherited.list.html.php
 %%WWWDIR%%/app/partials/hostmacros.list.html.php
 %%WWWDIR%%/app/partials/item.edit.item.tab.php
@@ -398,6 +399,7 @@
 %%WWWDIR%%/app/partials/item.list.filter.php
 %%WWWDIR%%/app/partials/js/configuration.tags.tab.js.php
 %%WWWDIR%%/app/partials/js/configuration.valuemap.js.php
+%%WWWDIR%%/app/partials/js/host.interface.selector.js.php
 %%WWWDIR%%/app/partials/js/scheduledreport.formgrid.js.php
 %%WWWDIR%%/app/partials/js/scheduledreport.subscription.js.php
 %%WWWDIR%%/app/partials/js/user.edit.media.tab.js.php
@@ -1296,6 +1298,7 @@
 %%WWWDIR%%/include/classes/user/CProfile.php
 %%WWWDIR%%/include/classes/user/CProvisioning.php
 %%WWWDIR%%/include/classes/user/CWebUser.php
+%%WWWDIR%%/include/classes/validators/CAbsoluteTimeValidator.php
 %%WWWDIR%%/include/classes/validators/CActionCondValidator.php
 %%WWWDIR%%/include/classes/validators/CApiInputValidator.php
 %%WWWDIR%%/include/classes/validators/CCalcFormulaValidator.php
@@ -1736,6 +1739,7 @@
 %%WWWDIR%%/vendor/firebase/php-jwt/src/JWTExceptionWithPayloadInterface.php
 %%WWWDIR%%/vendor/firebase/php-jwt/src/Key.php
 %%WWWDIR%%/vendor/firebase/php-jwt/src/SignatureInvalidException.php
+%%WWWDIR%%/vendor/onelogin/php-saml/.github/workflows/php-package.yml
 %%WWWDIR%%/vendor/onelogin/php-saml/CHANGELOG
 %%WWWDIR%%/vendor/onelogin/php-saml/LICENSE
 %%WWWDIR%%/vendor/onelogin/php-saml/README.md
@@ -1802,10 +1806,12 @@
 %%WWWDIR%%/vendor/pragmarx/google2fa/src/Support/Base32.php
 %%WWWDIR%%/vendor/pragmarx/google2fa/src/Support/Constants.php
 %%WWWDIR%%/vendor/pragmarx/google2fa/src/Support/QRCode.php
+%%WWWDIR%%/vendor/robrichards/xmlseclibs/.github/workflows/ci.yml
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/CHANGELOG.txt
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/LICENSE
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/README.md
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/composer.json
+%%WWWDIR%%/vendor/robrichards/xmlseclibs/phpunit.xml
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/src/Utils/XPath.php
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/src/XMLSecEnc.php
 %%WWWDIR%%/vendor/robrichards/xmlseclibs/src/XMLSecurityDSig.php

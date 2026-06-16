@@ -7,24 +7,25 @@
 # Usage:	USES=xlibre-cat:category[,buildsystem]
 #
 # 		category is one of:
-# 		* driver   depends on xorgproto at least
+# 		* driver   Depends on xorgproto at least
+# 		* server   Sets the upstream for X servers, nothing much.
 #
-# 		Bleow are the old freedesktop.org categories and their comments
-# 		XLibre only hosts the driver category and the xserver, these
-# 		categoryes are disabled now, but kept in a commented state for
-#		if they be added to XLibre in the future.
+# 		Below are the old freedesktop.org categories and their comments.
+# 		XLibre only hosts the driver category and the server. These
+# 		categories are disabled now, but kept in a commented state for
+#		if they get added to XLibre in the future.
 #
 # 		* app      Installs applications, no shared libraries.
 # 		* data     Installs only data.
-# 		* doc      no particular notes
-# 		* font     don't install .pc file
+# 		* doc      No particular notes.
+# 		* font     Don't install .pc file.
 # 		* lib      various dependencies, install .pc file, needs
-# 		           pathfix
-# 		* proto    install .pc file, needs pathfix, most only needed at
+# 		           pathfix.
+# 		* proto    Install .pc file, needs pathfix, most only needed at
 # 		           build time.
-# 		* util     no particular notes
+# 		* util     No particular notes.
 #
-# 		These categories has to match upstream categories.  Don't invent
+# 		These categories have to match upstream categories. Don't invent
 # 		your own.
 #
 # 		builsystem is one of:
@@ -84,11 +85,7 @@ _XLIBRE_BUILDSYS=		autotools
 EXTRACT_SUFX?=		.tar.bz2
 .  endif
 
-DIST_SUBDIR=	xlibre/${_XLIBRE_CAT}
-# Do not set the DIST_SUBDIR to xlibre for XLibre flavors of 3rd party ports.
-.  if !empty(PKGNAMEPREFIX) && ${PKGNAMEPREFIX} == xlibre- && ${_XLIBRE_CAT} == driver
-DIST_SUBDIR=	xorg/${_XLIBRE_CAT}
-.  endif
+DIST_SUBDIR?=	xlibre/${_XLIBRE_CAT}
 
 .  if ${_XLIBRE_BUILDSYS} == meson
 .include "${USESDIR}/meson.mk"
@@ -99,45 +96,37 @@ GNU_CONFIGURE=		yes
 IGNORE=		unknown build system specified via xlibre-cat:${xlibre-cat_ARGS:ts,}
 .  endif
 
-# Set up things for fetching from XLibre GitHub.
-# This can be overridden using normal GH_* macros in the ports Makefile.
-# We make a best guess for GH_PROJECT.
+# Set up variables for fetching from XLibre GitHub.
+# These can be overridden using normal GH_* macros in the port's Makefile.
+# We are just making a best guess for these variables.
 USE_GITHUB?=		yes
 GH_ACCOUNT?=		X11Libre
 
-# Do not do the bellow for XLibre flavors of 3rd party ports.
-.  if empty(PKGNAMEPREFIX) || ${PKGNAMEPREFIX} != xlibre-
-# Set the GitHub upstream.
-.    if ${_XLIBRE_CAT} == driver
+.  if ${_XLIBRE_CAT} == driver
 # Removes the xlibre- suffix from the PORTNAME
-GH_PROJECT?=		${PORTNAME:tl:C/xlibre-//}
+GH_PROJECT?=	${PORTNAME:tl:C/xlibre-//}
 GH_TAGNAME?=	${PORTNAME}-${PORTVERSION}
-.    elif ${_XLIBRE_CAT} == server
-GH_PROJECT?=		xserver
+.  elif ${_XLIBRE_CAT} == server
+GH_PROJECT?=	xserver
 GH_TAGNAME?=	xlibre-xserver-${PORTVERSION}
-.    else
-GH_PROJECT?=		${PORTNAME:tl}
-.    endif
-# Add conflicts between X.Org and XLibre variants of X drivers:
-CONFLICTS=	${PORTNAME:tl:C/xlibre-//}
 .  endif
 
 .  if ${_XLIBRE_BUILDSYS} == meson
 # Set up meson stuff here
 .  else
-# Things from GitHub doesn't come with pre-generated configure, add dependency
+# Repos from GitHub don't come with pre-generated configure, add dependency
 # on autoreconf and run it, if we're using autotools.
 .include "${USESDIR}/autoreconf.mk"
 .  endif
 
 #
-# All xlibre ports needs pkgconfig to build, but some ports look for pkgconfig
+# All XLibre ports needs pkgconfig to build, but some ports look for pkgconfig
 # and then continue the build.
 #
 .include "${USESDIR}/pkgconfig.mk"
 
 #
-# All xlibre ports need xorg-macros except for the server.
+# All XLibre ports need xorg-macros except for the servers.
 #
 .  if ${PORTNAME} != xorg-macros && ${_XLIBRE_CAT} != server
 USE_XLIBRE+=      xlibre-macros
@@ -152,14 +141,16 @@ USE_XLIBRE+=      xlibre-macros
 #.  elif ${_XLIBRE_CAT} == driver
 
 .  if ${_XLIBRE_CAT} == driver
-.include "../../x11-servers/xlibre-server/Makefile.version"
-MODULEDIR=lib/xorg/modules/xlibre-${XLIBRE_MJR_VER}
 USE_XLIBRE+=	xlibre-server
-USE_XORG+=	xi xorgproto
+USE_XORG+=	xorgproto
 CFLAGS+=	-Werror=uninitialized
+
+# Sets the XLibre module directory based on server version.
+.include "../../x11-servers/xlibre-server/Makefile.version"
+MODULEDIR=	lib/xorg/modules/xlibre-${XLIBRE_MJR_VER}
 PLIST_SUB+=	MODULEDIR=${MODULEDIR}
 .    if ${_XLIBRE_BUILDSYS} == meson
-# Put special stuff for meson here
+# Put special stuff for driver meson here
 .    else
 CONFIGURE_ENV+=	PKG_CONFIG_PATH=${PREFIX}/libdata/pkgconfig/ \
 		DRIVER_MAN_SUFFIX=4x DRIVER_MAN_DIR='$$(mandir)/man4'
@@ -168,6 +159,9 @@ libtool_ARGS?=	# empty
 .include "${USESDIR}/libtool.mk"
 INSTALL_TARGET=	install-strip
 .    endif
+
+# Add conflicts between X.Org and XLibre variants of X drivers:
+CONFLICTS=	${PORTNAME:tl:C/xlibre-//}
 
 .  elif ${_XLIBRE_CAT} == server
 # For common flags across servers.

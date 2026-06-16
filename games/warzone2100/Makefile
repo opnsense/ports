@@ -1,5 +1,5 @@
 PORTNAME=	warzone2100
-DISTVERSION=	4.6.2
+DISTVERSION=	4.6.3
 PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	https://github.com/Warzone2100/warzone2100/releases/download/${DISTVERSION}/
@@ -9,6 +9,8 @@ DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Innovative 3D real-time strategy game
 WWW=		https://wz2100.net/
+
+BROKEN=		Fails to build, error: no member named 'eVkColorspaceSrgbNonlinear' in 'vk::ColorSpaceKHR'
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING

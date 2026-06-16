@@ -1,5 +1,6 @@
 PORTNAME=	commonmarker
-PORTVERSION=	2.6.3
+PORTVERSION=	2.8.2
+PORTREVISION=	1
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 DISTFILES=	${DISTNAME}.gem
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-rb_sys>=0.9<1:lang/rubygem-rb_sys
 
-USES=		cargo gem gmake llvm:build
+USES=		cargo gem gmake llvm
 
 CARGO_BUILD=	no
 CARGO_INSTALL=	no

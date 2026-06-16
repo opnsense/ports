@@ -1,6 +1,6 @@
 PORTNAME=	carapace
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.6.1
+DISTVERSION=	1.7.0
 PORTREVISION=	1
 CATEGORIES=	shells
 
@@ -11,11 +11,11 @@ WWW=		https://carapace.sh/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.26+,modules
 
 GO_MODULE=	github.com/carapace-sh/carapace-bin
 GO_TARGET=	./cmd/carapace
-GO_BUILDFLAGS=	-ldflags "-s -w -X main.version=${DISTVERSION}"
+GO_LDFLAGS=	-w -X main.version=${DISTVERSION}
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	README.md

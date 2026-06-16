@@ -1,5 +1,5 @@
 PORTNAME=	quasi88
-DISTVERSION=	0.7.3
+DISTVERSION=	0.7.4
 CATEGORIES=	emulators
 MASTER_SITES=	http://www.eonet.ne.jp/~showtime/quasi88/release/
 

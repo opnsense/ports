@@ -1,5 +1,5 @@
 PORTNAME=	php82
-DISTVERSION=	8.2.30
+DISTVERSION=	8.2.31
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -10,6 +10,9 @@ COMMENT=	PHP Scripting Language (8.2.X branch)
 WWW=		https://www.php.net/
 
 LICENSE=	PHP301
+
+DEPRECATED=		Upstream EOL reaches on 2026-12-31
+EXPIRATION_DATE=		2026-12-31
 
 USES+=		compiler:c11 cpe gnome localbase pkgconfig tar:xz
 CPE_PRODUCT=	php
@@ -47,9 +50,6 @@ OPTIONS_EXCLUDE_aarch64=	DTRACE
 # dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
 OPTIONS_EXCLUDE_armv6=	DTRACE
 OPTIONS_EXCLUDE_armv7=	DTRACE
-# Bug 197128:  No ASM code for MIPS/MIPS64, disable FPM
-OPTIONS_EXCLUDE_mips=	DTRACE FPM
-OPTIONS_EXCLUDE_mips64=	DTRACE FPM
 OPTIONS_EXCLUDE_riscv64=	DTRACE
 NO_OPTIONS_SORT=	yes
 OPTIONS_SUB=			yes

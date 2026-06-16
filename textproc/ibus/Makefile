@@ -1,5 +1,5 @@
 PORTNAME=	ibus
-DISTVERSION=	1.5.33
+DISTVERSION=	1.5.34
 CATEGORIES=	textproc
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -40,8 +40,7 @@ TEST_WRKSRC=	${WRKSRC}/src/tests
 
 OPTIONS_DEFINE=		APPINDICATOR DCONF DOCS EMOJI ENGINE GINTRO GTK2 GTK3 \
 			GTK4 NLS TESTS VAPI WAYLAND XIM
-OPTIONS_DEFAULT=	APPINDICATOR DCONF EMOJI ENGINE GINTRO GTK3 GTK4 VAPI \
-			WAYLAND XIM
+OPTIONS_DEFAULT=	DCONF EMOJI ENGINE GINTRO GTK3 GTK4 VAPI WAYLAND XIM
 NO_OPTIONS_SORT=	yes
 OPTIONS_SUB=		yes
 
@@ -65,7 +64,7 @@ DCONF_CONFIGURE_ENABLE=		dconf
 DCONF_VARS=			GLIB_SCHEMAS=org.freedesktop.ibus.gschema.xml
 DOCS_BUILD_DEPENDS=		gtkdocize:textproc/gtk-doc
 DOCS_CONFIGURE_ENABLE=		gtk-doc-html
-EMOJI_BUILD_DEPENDS=		cldr-emoji-annotation>0:misc/cldr-emoji-annotation \
+EMOJI_BUILD_DEPENDS=		CLDR>=48.2:textproc/CLDR \
 				json-glib>=0:devel/json-glib \
 				unicode-emoji>0:misc/unicode-emoji
 EMOJI_CONFIGURE_ON=		--with-emoji-annotation-dir=${LOCALBASE}/share/unicode/cldr/common/annotations \

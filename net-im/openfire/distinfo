@@ -1,5 +1,5 @@
-TIMESTAMP = 1767343581
-SHA256 (openfire-5.0.3-deps.tar.zst) = 7016876b77c81c01eff052a182e5f76b991df9bfa245f561a996d6264ad36831
-SIZE (openfire-5.0.3-deps.tar.zst) = 172855513
-SHA256 (igniterealtime-Openfire-v5.0.3_GH0.tar.gz) = 8fb538b04b3a437216499f4b2b4071d843822c1f870c4bb9dc198509ff32e3fa
-SIZE (igniterealtime-Openfire-v5.0.3_GH0.tar.gz) = 9749172
+TIMESTAMP = 1778963851
+SHA256 (igniterealtime-Openfire-v5.0.5_GH0.tar.gz) = c22163d922c8df41dfed6969fbbe32ea71ae1d3c8a551d825c1711bece003bfa
+SIZE (igniterealtime-Openfire-v5.0.5_GH0.tar.gz) = 9755069
+SHA256 (n1dr00-openfire-deps-5.0.5_GH0.tar.gz) = 7c850db12d3aaa8cf91cb86ebedbd95590d052d1a07ef517eb2b076904138200
+SIZE (n1dr00-openfire-deps-5.0.5_GH0.tar.gz) = 141557407

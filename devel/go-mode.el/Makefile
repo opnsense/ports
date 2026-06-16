@@ -11,7 +11,6 @@ WWW=		https://github.com/dominikh/go-mode.el
 LICENSE=	BSD3CLAUSE
 
 USES=			emacs
-EMACS_NO_DEPENDS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dominikh

@@ -77,7 +77,7 @@ ELF_FEATURES+=	+wxneeded:dist/bin/${MOZILLA} +wxneeded:dist/bin/${MOZILLA}-bin
 BUNDLE_LIBS=	yes
 
 BUILD_DEPENDS+=	rust-cbindgen>=0.29.1:devel/rust-cbindgen \
-				${RUST_DEFAULT}>=1.93.0:lang/${RUST_DEFAULT}
+				${RUST_DEFAULT}>=1.96.0:lang/${RUST_DEFAULT}
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm
 RUN_DEPENDS+=	${LOCALBASE}/lib/libpci.so:devel/libpci
 LIB_DEPENDS+=	libepoll-shim.so:devel/libepoll-shim
@@ -207,11 +207,6 @@ MOZ_EXPORT+=	MOZ_OPTIMIZE_FLAGS="${CFLAGS:M-O*}"
 MOZ_OPTIONS+=	--enable-optimize
 .    else
 MOZ_OPTIONS+=	--disable-optimize
-.      if ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
-# ld 2.17 barfs on Stylo built with -C opt-level=0
-USE_BINUTILS=	yes
-LDFLAGS+=		-B${LOCALBASE}/bin
-.      endif
 .    endif
 
 .    if ${PORT_OPTIONS:MCANBERRA}
@@ -368,6 +363,11 @@ gecko-post-patch:
 # Disable vendor checksums like lang/rust
 	@${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
 		${MOZSRC}/third_party/rust/*/.cargo-checksum.json
+# Thunderbird has rust crates in the comm dir
+	@if [ -d ${MOZSRC}/comm/third_party/rust ] ; then \
+		${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
+			${MOZSRC}/comm/third_party/rust/*/.cargo-checksum.json; \
+	fi
 
 pre-configure-script:
 # Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
