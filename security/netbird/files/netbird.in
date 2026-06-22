@@ -39,6 +39,7 @@ command="/usr/sbin/daemon"
 daemon_args="-P ${pidfile} -r -t \"${name}: daemon\""
 command_args="${daemon_args} %%PREFIX%%/bin/netbird service run --config ${netbird_config} --log-level ${netbird_loglevel} --daemon-addr unix://${netbird_socket} --log-file ${netbird_logfile}"
 start_precmd="${name}_start_precmd"
+start_postcmd="${name}_start_postcmd"
 stop_postcmd="${name}_stop_postcmd"
 
 netbird_start_precmd() {
@@ -49,6 +50,17 @@ netbird_start_precmd() {
         if ! /sbin/ifconfig ${netbird_tun_dev} | fgrep -qw PID; then
             logger -s -t netbird "Found orphaned tunnel interface ${netbird_tun_dev}, destroying"
             /sbin/ifconfig ${netbird_tun_dev} destroy
+        fi
+    fi
+}
+
+netbird_start_postcmd() {
+    # If CARP is enabled and we're not MASTER, ensure connection is down
+    # This prevents HA sync from reactivating the connection on BACKUP
+    if [ -x /usr/local/opnsense/scripts/netbird/carp_check.php ]; then
+        if ! /usr/local/opnsense/scripts/netbird/carp_check.php > /dev/null 2>&1; then
+            logger -s -t netbird "CARP BACKUP detected, ensuring connection is down"
+            /usr/local/bin/netbird down > /dev/null 2>&1 || true
         fi
     fi
 }
