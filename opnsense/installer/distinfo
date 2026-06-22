@@ -1,3 +1,5 @@
-TIMESTAMP = 1771862828
+TIMESTAMP = 1782114459
 SHA256 (opnsense-installer-25.1-9061457_GH0.tar.gz) = 50cba6f0ae7c0239a04599fb59cfaad75df3bc3abe21d49618fd97bb8a5e0ca0
 SIZE (opnsense-installer-25.1-9061457_GH0.tar.gz) = 24676
+SHA256 (opnsense-installer-26.7.d-e3b3e5f_GH0.tar.gz) = d089eb6aac9354d8d7e9388b489947c2378bf69cc3a286dd9ed85c4d77740d29
+SIZE (opnsense-installer-26.7.d-e3b3e5f_GH0.tar.gz) = 24518

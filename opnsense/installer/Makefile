@@ -1,6 +1,10 @@
 PORTNAME=	installer
+.if "${PRODUCT_ABI}" == "26.7"
+PORTVERSION=	26.7.d
+.else
 PORTVERSION=	25.1
 PORTREVISION=	2
+.endif
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
@@ -18,6 +22,10 @@ NO_BUILD=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	${CATEGORIES:[1]}
+.if "${PRODUCT_ABI}" == "26.7"
+GH_TAGNAME=	e3b3e5f
+.else
 GH_TAGNAME=	9061457
+.endif
 
 .include <bsd.port.mk>
