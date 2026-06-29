@@ -1,6 +1,7 @@
     COMMENT = Networking tools
 
     SUBDIR += 3proxy
+    SUBDIR += 389-ds-base
     SUBDIR += 44bsd-rdist
     SUBDIR += 6tunnel
     SUBDIR += R-cran-pingr
@@ -21,7 +22,6 @@
     SUBDIR += amnezia-tools
     SUBDIR += amneziawg-go
     SUBDIR += amqpcat
-    SUBDIR += aoe
     SUBDIR += apache-commons-net
     SUBDIR += apinger
     SUBDIR += aprsc
@@ -68,6 +68,7 @@
     SUBDIR += boinc_curses
     SUBDIR += boinctui
     SUBDIR += bone-kmods
+    SUBDIR += bone-utils
     SUBDIR += bounce
     SUBDIR += bredbandskollen
     SUBDIR += brynet
@@ -248,6 +249,7 @@
     SUBDIR += haproxy26
     SUBDIR += haproxy28
     SUBDIR += haproxy30
+    SUBDIR += haproxy32
     SUBDIR += haproxy33
     SUBDIR += hblock
     SUBDIR += hexinject
@@ -996,12 +998,12 @@
     SUBDIR += pear-XML_RPC
     SUBDIR += pear-XML_RPC2
     SUBDIR += pecl-amqp
-    SUBDIR += pecl-oauth2
     SUBDIR += pecl-radius
     SUBDIR += pecl-rdkafka
     SUBDIR += pecl-smbclient
     SUBDIR += pecl-xmlrpc
     SUBDIR += pen
+    SUBDIR += php-oauth
     SUBDIR += php82-ldap
     SUBDIR += php82-soap
     SUBDIR += php82-sockets
@@ -1519,9 +1521,7 @@
     SUBDIR += sdl3_net
     SUBDIR += sdl_net
     SUBDIR += seaweedfs
-    SUBDIR += seda
     SUBDIR += self-service-password
-    SUBDIR += sems
     SUBDIR += sendemail
     SUBDIR += sendme
     SUBDIR += sendsms
@@ -1615,6 +1615,7 @@
     SUBDIR += td-system-tools
     SUBDIR += tdetect
     SUBDIR += teddycloud
+    SUBDIR += telemt
     SUBDIR += termshark
     SUBDIR += tftpgrab
     SUBDIR += throttled
@@ -1644,6 +1645,7 @@
     SUBDIR += tsclient
     SUBDIR += tsctp
     SUBDIR += tsocks
+    SUBDIR += ttl
     SUBDIR += tunneller
     SUBDIR += turnserver
     SUBDIR += u6rd

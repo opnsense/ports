@@ -122,6 +122,7 @@
     SUBDIR += crowdsec-firewall-bouncer
     SUBDIR += cryptlib
     SUBDIR += cryptopp
+    SUBDIR += cryptopp-modern
     SUBDIR += ct-submit
     SUBDIR += cvechecker
     SUBDIR += cvm
@@ -431,6 +432,7 @@
     SUBDIR += obfs4proxy-tor
     SUBDIR += ocaml-cryptgps
     SUBDIR += ocaml-cryptokit
+    SUBDIR += ocaml-digestif
     SUBDIR += ocaml-lwt_ssl
     SUBDIR += ocaml-ssl
     SUBDIR += oidentd
@@ -639,6 +641,7 @@
     SUBDIR += p5-Crypt-Sodium
     SUBDIR += p5-Crypt-Solitaire
     SUBDIR += p5-Crypt-SysRandom
+    SUBDIR += p5-Crypt-SysRandom-XS
     SUBDIR += p5-Crypt-TEA
     SUBDIR += p5-Crypt-T_e_a
     SUBDIR += p5-Crypt-Tea_JS
@@ -1188,6 +1191,7 @@
     SUBDIR += rubygem-encryptor
     SUBDIR += rubygem-ezcrypto
     SUBDIR += rubygem-gitlab-cloud-connector
+    SUBDIR += rubygem-gitlab-glaz
     SUBDIR += rubygem-gitlab-secret_detection
     SUBDIR += rubygem-googleauth
     SUBDIR += rubygem-googleauth-gitlab

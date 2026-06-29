@@ -1,5 +1,5 @@
-TIMESTAMP = 1776323455
-SHA256 (claude-code-2.1.110.tar.gz) = e7e97dae077e283870c2bafeba1db8460532dddfd8ec60c84f34deae651be62f
-SIZE (claude-code-2.1.110.tar.gz) = 18163520
-SHA256 (audio-capture-bb370f75235254da2c3d34f6168fc4a9902d9090.tar.gz) = d6a4e0ff2666efd60efd4259c0e29d6878975cc6f41a2171ff5a12b75e6ef7c6
-SIZE (audio-capture-bb370f75235254da2c3d34f6168fc4a9902d9090.tar.gz) = 26840618
+TIMESTAMP = 1782626828
+SHA256 (claude-code-2.1.195/linux-x64/claude) = 8323e70125063147a4478b957745d835a87e5e72ffd25b838ea9a841c03e6a37
+SIZE (claude-code-2.1.195/linux-x64/claude) = 244276024
+SHA256 (claude-code-2.1.195/linux-arm64/claude) = b02279999058dc80a0e1c5d39463d1545a178615492f84139aac8d61214a7e9a
+SIZE (claude-code-2.1.195/linux-arm64/claude) = 241154800

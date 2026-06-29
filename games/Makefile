@@ -144,7 +144,6 @@
     SUBDIR += cave9
     SUBDIR += cavezofphear
     SUBDIR += cdogs-sdl
-    SUBDIR += cgoban
     SUBDIR += chapping
     SUBDIR += chessx
     SUBDIR += chocolate-doom
@@ -187,6 +186,7 @@
     SUBDIR += dangen
     SUBDIR += darkplaces
     SUBDIR += defendguin
+    SUBDIR += dethrace
     SUBDIR += devd-controller-rules
     SUBDIR += devilutionX
     SUBDIR += dhewm3
@@ -1018,7 +1018,6 @@
     SUBDIR += untahris
     SUBDIR += uqm
     SUBDIR += urbanterror-data
-    SUBDIR += valyriatear
     SUBDIR += vamos
     SUBDIR += vanilla-conquer
     SUBDIR += vavoom

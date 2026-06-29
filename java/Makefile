@@ -12,7 +12,6 @@
     SUBDIR += apache-commons-lang3
     SUBDIR += apache-commons-logging
     SUBDIR += apache-commons-pool
-    SUBDIR += aparapi
     SUBDIR += avis
     SUBDIR += berkeley-db
     SUBDIR += bluej
@@ -84,7 +83,6 @@
     SUBDIR += openjdk17-jre
     SUBDIR += openjdk21
     SUBDIR += openjdk21-jre
-    SUBDIR += openjdk24
     SUBDIR += openjdk25
     SUBDIR += openjdk26
     SUBDIR += openjdk8

@@ -1,10 +1,10 @@
-TIMESTAMP = 1781078615
-SHA256 (chromium-149.0.7827.102-lite.tar.xz) = 19cce3a8b933a943054d2f02814a11c80056e90731ce3246b4e93a8acc200d00
-SIZE (chromium-149.0.7827.102-lite.tar.xz) = 1610505564
+TIMESTAMP = 1782293541
+SHA256 (chromium-149.0.7827.196-lite.tar.xz) = 12e869e2b4d9b54c698dcf6d5cffcd59bc6f109d2882476f95f3686078228ec2
+SIZE (chromium-149.0.7827.196-lite.tar.xz) = 1609724644
 SHA256 (pulseaudio-16.1.tar.gz) = 027266c62f2a84422ac45fa721a649508f0f1628fb1fd9242315ac54ce2d7c92
 SIZE (pulseaudio-16.1.tar.gz) = 2763111
-SHA256 (chromium-149.0.7827.102-testdata.tar.xz) = cacdd3c2b6639bcfb1aead9224e6685a93cda65f77b6d7a2b8eb4e32efe9902f
-SIZE (chromium-149.0.7827.102-testdata.tar.xz) = 1314793180
+SHA256 (chromium-149.0.7827.196-testdata.tar.xz) = 91f0dca60cfdf0693286d7ea75f0708a8281012d380d7b535b7c45a797a5e227
+SIZE (chromium-149.0.7827.196-testdata.tar.xz) = 1314788584
 SHA256 (rust/crates/Inflector-0.11.4.crate) = fe438c63458706e03479442743baae6c88256498e6431708f6dfc520a26515d3
 SIZE (rust/crates/Inflector-0.11.4.crate) = 17438
 SHA256 (rust/crates/ahash-0.8.11.crate) = e89da841a80418a9b391ebaea17f5c112ffaaa96f621d2c285b5174da76b9011

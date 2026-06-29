@@ -1,6 +1,5 @@
 PORTNAME=	vscode
 DISTVERSION=	${VSCODE_VERSION}
-PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-VSCode/releases/download/${DISTVERSION}/:node_modules
 DISTFILES=	vscode-node-modules-${DISTVERSION}${EXTRACT_SUFX}:node_modules \
@@ -19,7 +18,7 @@ ONLY_FOR_ARCHS=	amd64
 EXTRACT_DEPENDS=jq:textproc/jq \
 		node${NODEJS_VERSION}>0:www/node${NODEJS_VERSION}
 BUILD_DEPENDS=	zip:archivers/zip \
-		typescript-go>=7.0.0.g20260506:lang/typescript-go \
+		typescript-go>=7.0.0.g20260609:lang/typescript-go \
 		jq:textproc/jq \
 		rg:textproc/ripgrep
 LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
@@ -61,7 +60,7 @@ TEST_DEPENDS=	bash:shells/bash
 
 USES=		cargo desktop-file-utils display:test electron:42,build,test \
 		gl gmake gnome gssapi:mit iconv:wchar_t jpeg localbase:ldflags \
-		nodejs:24,build pkgconfig python:build shebangfix xorg
+		nodejs:24,build npm:npm pkgconfig python:build shebangfix xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
@@ -89,7 +88,6 @@ USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 		xrandr xrender xscrnsaver xtst
 USE_GL=		gbm gl glesv2
 USE_GNOME=	atk cairo pango gdkpixbuf gtk30 libxml2 libxslt
-USE_ELECTRON=	npm:npm
 
 SHEBANG_REGEX=	./(extensions|node_modules|resources|scripts|src)/.*(\.(pl|py|sh)|makeBlacker|makeFF)$$
 PATHFIX_FILES=	src/vs/workbench/contrib/debug/node/terminals.ts
@@ -335,28 +333,12 @@ do-test:
 # UI smoke tests
 	cd ${WRKSRC} && ${SETENV} ${TEST_ENV} npm run smoketest
 
-build-remote-extension-host: configure pre-build
-# setup download cache for node
-	@${MKDIR} ${WRKSRC}/.build/node/v${NODEJS_PORTVERSION}/linux-${ELECTRON_ARCH}
-	@${CP} ${LOCALBASE}/bin/node ${WRKSRC}/.build/node/v${NODEJS_PORTVERSION}/linux-${ELECTRON_ARCH}
-# build vscode remote extension host
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
-		npm_config_runtime=node \
-		npm_config_target=${NODEJS_PORTVERSION} \
-		npm_config_nodedir=${LOCALBASE} \
-		npm --userconfig=${WRKSRC}/remote/.npmrc run gulp vscode-reh-linux-${ELECTRON_ARCH}-min
-	@${MKDIR} ${WRKDIR}/vscode-reh/bin/${SOURCE_COMMIT_HASH}
-	${TAR} -cf - -C ${WRKDIR}/vscode-reh-linux-${ELECTRON_ARCH} . | \
-		${TAR} -xf - -C ${WRKDIR}/vscode-reh/bin/${SOURCE_COMMIT_HASH}
-	@${FIND} ${WRKDIR}/vscode-reh -type f -exec ${FILE} {} ';' | \
-		${GREP} 'ELF.*FreeBSD' | ${AWK} -F ': ' '{print $$1}' | ${XARGS} ${STRIP_CMD}
-	${TAR} -czf ${WRKDIR}/vscode-reh-${DISTVERSION}-${OPSYS:tl}${OSREL:R}-${ARCH}.tar.gz -C ${WRKDIR}/vscode-reh .
-	# cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm run gulp vscode-reh-web-linux-${ELECTRON_ARCH}-min
-
 ### targets for port maintainer(s)
 patch-package-json: extract
 # add node module for signature verification of extensions from Open VSX Registry
-	@${PATCH} -s -p0 -d ${WRKSRC} < ${PATCHDIR}/patch-package.json
+.for patch in patch-package.json patch-remote_package.json
+	@${PATCH} -s -p0 -d ${WRKSRC} < ${PATCHDIR}/${patch}
+.endfor
 
 make-node-modules-archive: extract patch-package-json
 	@${ECHO_MSG} "===>  Fetching and installing node modules in ${WRKSRC}"

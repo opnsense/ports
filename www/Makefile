@@ -124,6 +124,7 @@
     SUBDIR += closure-compiler
     SUBDIR += cntlm
     SUBDIR += cobalt
+    SUBDIR += code-server
     SUBDIR += codeberg-pages-server
     SUBDIR += codeigniter
     SUBDIR += colly
@@ -158,6 +159,7 @@
     SUBDIR += dolibarr19
     SUBDIR += dolibarr20
     SUBDIR += dolibarr21
+    SUBDIR += dolibarr22
     SUBDIR += domoticz
     SUBDIR += domoticz-devel
     SUBDIR += dooble
@@ -503,9 +505,9 @@
     SUBDIR += nextcloud-deck
     SUBDIR += nextcloud-forms
     SUBDIR += nextcloud-groupfolders
+    SUBDIR += nextcloud-memories
     SUBDIR += nextcloud-news
     SUBDIR += nextcloud-notes
-    SUBDIR += nextcloud-memories
     SUBDIR += nextcloud-tasks
     SUBDIR += nghttp2
     SUBDIR += nginx
@@ -1604,7 +1606,28 @@
     SUBDIR += py-dj52-laces
     SUBDIR += py-dj52-social-auth-app-django
     SUBDIR += py-dj52-strawberry-graphql-django
+    SUBDIR += py-dj60-channels
+    SUBDIR += py-dj60-django-auth-ldap
+    SUBDIR += py-dj60-django-choices-field
+    SUBDIR += py-dj60-django-cors-headers
+    SUBDIR += py-dj60-django-debug-toolbar
+    SUBDIR += py-dj60-django-filter
+    SUBDIR += py-dj60-django-htmx
+    SUBDIR += py-dj60-django-js-asset
+    SUBDIR += py-dj60-django-mptt
+    SUBDIR += py-dj60-django-prometheus
+    SUBDIR += py-dj60-django-redis
+    SUBDIR += py-dj60-django-rich
+    SUBDIR += py-dj60-django-storages
     SUBDIR += py-dj60-django-stubs-ext
+    SUBDIR += py-dj60-django-tables2
+    SUBDIR += py-dj60-django-taggit
+    SUBDIR += py-dj60-django-timezone-field
+    SUBDIR += py-dj60-djangorestframework
+    SUBDIR += py-dj60-drf-spectacular
+    SUBDIR += py-dj60-drf-spectacular-sidecar
+    SUBDIR += py-dj60-social-auth-app-django
+    SUBDIR += py-dj60-strawberry-graphql-django
     SUBDIR += py-django-admin-rangefilter
     SUBDIR += py-django-advanced-filters
     SUBDIR += py-django-allauth
@@ -1848,6 +1871,7 @@
     SUBDIR += py-http-sf
     SUBDIR += py-httpbin
     SUBDIR += py-httpcore
+    SUBDIR += py-httpcore2
     SUBDIR += py-httpie
     SUBDIR += py-httplib2
     SUBDIR += py-httpretty
@@ -1859,6 +1883,7 @@
     SUBDIR += py-httpx-socks
     SUBDIR += py-httpx-sse
     SUBDIR += py-httpx-ws
+    SUBDIR += py-httpx2
     SUBDIR += py-httpx_gssapi
     SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
@@ -1878,6 +1903,7 @@
     SUBDIR += py-limits
     SUBDIR += py-litestar
     SUBDIR += py-livereload
+    SUBDIR += py-ll-xist
     SUBDIR += py-mailman-hyperkitty
     SUBDIR += py-mechanicalsoup
     SUBDIR += py-mechanize
@@ -1949,6 +1975,7 @@
     SUBDIR += py-requests-gssapi
     SUBDIR += py-requests-mock
     SUBDIR += py-requests-oauthlib
+    SUBDIR += py-requests-ratelimiter
     SUBDIR += py-requests-toolbelt
     SUBDIR += py-requests-unixsocket
     SUBDIR += py-requests-wsgi-adapter
@@ -2761,7 +2788,6 @@
     SUBDIR += xcaddy
     SUBDIR += xfce4-smartbookmark-plugin
     SUBDIR += xh
-    SUBDIR += xist
     SUBDIR += xoops
     SUBDIR += xsp
     SUBDIR += xurls

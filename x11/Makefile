@@ -68,6 +68,7 @@
     SUBDIR += dmenu
     SUBDIR += dmenu2
     SUBDIR += docker-tray
+    SUBDIR += dragon-drop
     SUBDIR += dsbautostart
     SUBDIR += dsbxinput
     SUBDIR += dwlb
@@ -447,7 +448,6 @@
     SUBDIR += sxmo-wayout
     SUBDIR += sxpc
     SUBDIR += tabbed
-    SUBDIR += taiga
     SUBDIR += tecla
     SUBDIR += temperature.app
     SUBDIR += terminal.app

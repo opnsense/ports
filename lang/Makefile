@@ -37,7 +37,6 @@
     SUBDIR += clisp
     SUBDIR += clojure
     SUBDIR += clojure-mode.el
-    SUBDIR += clover
     SUBDIR += cocor
     SUBDIR += coffeescript
     SUBDIR += colm
@@ -111,6 +110,7 @@
     SUBDIR += gnat12
     SUBDIR += gnat13
     SUBDIR += gnat14
+    SUBDIR += gnat15
     SUBDIR += gnatcross-binutils-aarch64
     SUBDIR += gnatcross-sysroot-aarch64
     SUBDIR += gnatdroid-binutils
@@ -307,6 +307,7 @@
     SUBDIR += python313
     SUBDIR += python313t
     SUBDIR += python314
+    SUBDIR += python314t
     SUBDIR += python315
     SUBDIR += qmasm
     SUBDIR += quickjs
@@ -367,6 +368,7 @@
     SUBDIR += squirrel
     SUBDIR += starlark-rust
     SUBDIR += swift510
+    SUBDIR += swift6
     SUBDIR += swipl
     SUBDIR += tauthon
     SUBDIR += tcbasic

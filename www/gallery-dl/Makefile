@@ -1,5 +1,5 @@
 PORTNAME=	gallery-dl
-DISTVERSION=	1.32.2
+DISTVERSION=	1.32.4
 CATEGORIES=	www
 MASTER_SITES=	PYPI \
 		https://github.com/mikf/${PORTNAME}/releases/download/v${DISTVERSION}/

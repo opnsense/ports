@@ -149,7 +149,6 @@
     SUBDIR += bsdinfo
     SUBDIR += bsdisks
     SUBDIR += bsdsensors
-    SUBDIR += bsdstats
     SUBDIR += bstack
     SUBDIR += btop
     SUBDIR += btsixad
@@ -308,11 +307,13 @@
     SUBDIR += dmg2img
     SUBDIR += dmidecode
     SUBDIR += dnf
-    SUBDIR += docker
+    SUBDIR += docker-buildx
+    SUBDIR += docker-cli
     SUBDIR += docker-compose
     SUBDIR += docker-credential-pass
     SUBDIR += docker-machine
     SUBDIR += docker-registry
+    SUBDIR += dockerbox
     SUBDIR += doctl
     SUBDIR += doinkd
     SUBDIR += downtimed
@@ -631,6 +632,7 @@
     SUBDIR += lcdproc
     SUBDIR += ldap-account-manager
     SUBDIR += ldapvi
+    SUBDIR += leaf
     SUBDIR += ledit
     SUBDIR += less
     SUBDIR += lfm
@@ -739,7 +741,6 @@
     SUBDIR += minipro
     SUBDIR += minirsyslogd
     SUBDIR += mise
-    SUBDIR += mixer
     SUBDIR += mkdesktop
     SUBDIR += mkfwimage
     SUBDIR += mkjail
@@ -1042,6 +1043,7 @@
     SUBDIR += pwol
     SUBDIR += pwsafe
     SUBDIR += pxattr
+    SUBDIR += py-GPUtil
     SUBDIR += py-ansible-compat
     SUBDIR += py-ansible-core
     SUBDIR += py-ansible-core218
@@ -1064,6 +1066,7 @@
     SUBDIR += py-cron-descriptor
     SUBDIR += py-croniter
     SUBDIR += py-croniter2
+    SUBDIR += py-datalad
     SUBDIR += py-dbuild
     SUBDIR += py-debian-inspector
     SUBDIR += py-dex
@@ -1314,6 +1317,7 @@
     SUBDIR += s-tui
     SUBDIR += s6
     SUBDIR += s6-frontend
+    SUBDIR += s6-portable-utils
     SUBDIR += s6-rc
     SUBDIR += safe-rm
     SUBDIR += safecat

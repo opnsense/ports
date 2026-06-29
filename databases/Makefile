@@ -38,6 +38,7 @@
     SUBDIR += cegobridge
     SUBDIR += clickhouse
     SUBDIR += clickhouse-cpp
+    SUBDIR += clickhouse-devel
     SUBDIR += closql
     SUBDIR += couchdb3
     SUBDIR += courier-authlib-mysql
@@ -96,6 +97,7 @@
     SUBDIR += heidisql
     SUBDIR += hiredis
     SUBDIR += hsqldb
+    SUBDIR += iceberg-rust
     SUBDIR += immudb
     SUBDIR += imposm3
     SUBDIR += influxdb
@@ -220,6 +222,7 @@
     SUBDIR += neo4j
     SUBDIR += ocaml-dbm
     SUBDIR += ocaml-mysql
+    SUBDIR += ocaml-pgocaml
     SUBDIR += ocaml-sqlite3
     SUBDIR += octosql
     SUBDIR += odbc-cpp-wrapper
@@ -740,6 +743,7 @@
     SUBDIR += pxtools
     SUBDIR += py-Elixir
     SUBDIR += py-PyGreSQL
+    SUBDIR += py-PyHive
     SUBDIR += py-Pyrseas
     SUBDIR += py-aesqlapius
     SUBDIR += py-agate-sql
@@ -752,7 +756,6 @@
     SUBDIR += py-aiosqlite
     SUBDIR += py-alembic
     SUBDIR += py-anysqlite
-    SUBDIR += py-apache-arrow
     SUBDIR += py-apsw
     SUBDIR += py-apswutils
     SUBDIR += py-asyncmy
@@ -798,6 +801,7 @@
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
     SUBDIR += py-mysqlclient
+    SUBDIR += py-oracledb
     SUBDIR += py-ormar
     SUBDIR += py-oxyde
     SUBDIR += py-oxyde-core
@@ -825,6 +829,8 @@
     SUBDIR += py-psycopg2cffi
     SUBDIR += py-pum
     SUBDIR += py-pyarrow
+    SUBDIR += py-pyarrow-stubs
+    SUBDIR += py-pyiceberg
     SUBDIR += py-pylibmc
     SUBDIR += py-pymemcache
     SUBDIR += py-pymongo
@@ -1158,6 +1164,7 @@
     SUBDIR += tredis
     SUBDIR += trilogy
     SUBDIR += tuning-primer
+    SUBDIR += turso
     SUBDIR += twemproxy
     SUBDIR += unixODBC
     SUBDIR += usql

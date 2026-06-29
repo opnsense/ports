@@ -1,5 +1,5 @@
 PORTNAME=	salt
-PORTVERSION=	3006.25
+PORTVERSION=	3006.26
 PORTEPOCH=	1
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
@@ -133,4 +133,10 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/conf/master ${STAGEDIR}${ETCDIR}/master.sample
 	${INSTALL_DATA} ${WRKSRC}/conf/minion ${STAGEDIR}${ETCDIR}/minion.sample
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} >= 31200
+BROKEN=		does not work with Python 3.12 or newer, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=296290
+.endif
+
+.include <bsd.port.post.mk>

@@ -69,8 +69,8 @@
     SUBDIR += ganttproject
     SUBDIR += gcal
     SUBDIR += genius
-    SUBDIR += glabels
     SUBDIR += gitte
+    SUBDIR += glabels
     SUBDIR += gnome-calendar
     SUBDIR += gnome-characters
     SUBDIR += gnome-clocks
@@ -289,6 +289,7 @@
     SUBDIR += tpb
     SUBDIR += treeline
     SUBDIR += treesheets
+    SUBDIR += uchmviewer
     SUBDIR += ultralist
     SUBDIR += virt-manager
     SUBDIR += vit

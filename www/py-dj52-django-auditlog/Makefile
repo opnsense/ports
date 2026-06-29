@@ -1,5 +1,5 @@
 PORTNAME=	django-auditlog
-PORTVERSION=	3.4.0
+PORTVERSION=	3.4.1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}dj52-
@@ -12,7 +12,7 @@ WWW=		https://github.com/jazzband/django-auditlog
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-DEPRECATED=	Obsolete, please use www/py-django-auditlog instead
+DEPRECATED=	Obsolete, please use www/py-django-allauth instead
 EXPIRATION_DATE=2026-06-30
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

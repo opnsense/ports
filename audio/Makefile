@@ -196,7 +196,6 @@
     SUBDIR += fossmixer
     SUBDIR += freac
     SUBDIR += freealut
-    SUBDIR += freebsd-13-mixer
     SUBDIR += freedesktop-sound-theme
     SUBDIR += freepats
     SUBDIR += ft2-clone
@@ -383,6 +382,7 @@
     SUBDIR += libopenshot-audio
     SUBDIR += libopusenc
     SUBDIR += libremidi
+    SUBDIR += libresidfp
     SUBDIR += libsamplerate
     SUBDIR += libshout
     SUBDIR += libsidplay
@@ -601,6 +601,7 @@
     SUBDIR += piper-phonemize
     SUBDIR += pipewire-module-xrdp
     SUBDIR += pipewire-spa-oss
+    SUBDIR += pipewire-spa-oss-ng
     SUBDIR += pithos
     SUBDIR += plasma6-kpipewire
     SUBDIR += plasma6-ocean-sound-theme
