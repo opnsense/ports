@@ -1,4 +1,4 @@
---- src/source-ipfw.c.orig	2026-01-09 15:27:36 UTC
+--- src/source-ipfw.c.orig	2026-05-19 06:59:36 UTC
 +++ src/source-ipfw.c
 @@ -360,6 +360,14 @@ TmEcode ReceiveIPFWThreadInit(ThreadVars *tv, const vo
          SCReturnInt(TM_ECODE_FAILED);
@@ -15,7 +15,7 @@
      nq->ipfw_sinlen=sizeof(nq->ipfw_sin);
      memset(&nq->ipfw_sin, 0, nq->ipfw_sinlen);
      nq->ipfw_sin.sin_family = PF_INET;
-@@ -570,6 +578,11 @@ TmEcode IPFWSetVerdict(ThreadVars *tv, IPFWThreadVars 
+@@ -570,6 +578,12 @@ TmEcode IPFWSetVerdict(ThreadVars *tv, IPFWThreadVars 
                      SCReturnInt(TM_ECODE_FAILED);
                  case EHOSTDOWN:
                  case ENETDOWN:
@@ -23,6 +23,7 @@
 +                case EACCES:
 +                case EHOSTUNREACH:
 +                case ENETUNREACH:
++                case ENOBUFS:
 +#endif
                      break;
              }
