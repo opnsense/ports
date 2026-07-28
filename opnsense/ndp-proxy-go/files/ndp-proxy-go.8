@@ -1,6 +1,6 @@
 .\" Copyright (c) 2025 Cedrik Pischem
 .\" SPDX-License-Identifier: BSD-2-Clause
-.Dd December 19, 2025
+.Dd July 28, 2026
 .Dt NDP-PROXY-GO 8
 .Os
 .Sh NAME
@@ -20,6 +20,8 @@
 .Op Fl -pf-qps Ar n
 .Op Fl -pcap-timeout Ar duration
 .Op Fl -pf Ns = Ns Ar interface : Ns Ar table
+.Op Fl -static-prefix Ar prefix
+.Op Fl -static-router Ar address
 .Ar upstream
 .Ar downstream ...
 .Sh DESCRIPTION
@@ -71,6 +73,10 @@ This option may be specified multiple times.
 If
 .Ar interface
 is omitted, the mapping applies globally to all interfaces.
+.It Fl -static-prefix Ar prefix
+Manually trust an IPv6 prefix (repeatable).
+.It Fl -static-router Ar address
+Manually trust an upstream IPv6 link-local router address (repeatable).
 .El
 .Sh EXAMPLES
 Single upstream with multiple downstream interfaces:
