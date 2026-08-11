@@ -1,6 +1,6 @@
 PORTNAME=	opnsense-filterlog
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.10.0
+DISTVERSION=	0.11.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	me@allddd.onl
