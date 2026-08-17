@@ -1,19 +1,17 @@
 PORTNAME=	libXScrnSaver
-PORTVERSION=	1.2.4
-PORTREVISION=	1
+DISTVERSION=	1.2.5
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
-COMMENT=	The XScrnSaver library
-WWW=		https://www.freedesktop.org/wiki/Software/xlibs/
+COMMENT=	X11 Screen Saver extension client library
+WWW=		https://gitlab.freedesktop.org/xorg/lib/libxscrnsaver
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-EXTRACT_SUFX=	.tar.xz
-USES=		xorg xorg-cat:lib
+USES=		tar:xz xorg xorg-cat:lib
 USE_XORG=	x11 xext xorgproto
 
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
+INSTALL_TARGET=	install-strip
 
 .include <bsd.port.mk>

@@ -1,2 +1,6 @@
-This package contains libXScrnSaver, the X11 Screen Saver extension
-client library.
+The X Window System provides support for changing the image on a
+display screen after a user-settable period of inactivity. However, no
+interfaces are provided for the user to control the image that is
+drawn. This extension allows an external `screen saver' client to
+detect when the alternate image is to be displayed and to provide the
+graphics.
