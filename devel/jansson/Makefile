@@ -1,7 +1,12 @@
 PORTNAME=	jansson
 DISTVERSION=	2.15.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/akheron/${PORTNAME}/releases/download/v${DISTVERSION}/
+
+PATCH_SITES=	https://github.com/akheron/jansson/commit/
+PATCHFILES=	c9e39c0154f7cdb2de6c33b8c4640a669fea0b58.patch:-p1 \
+		fb012a005573435af7fef8d37df39c06b3c37c65.patch:-p1
 
 MAINTAINER=	vanilla@FreeBSD.org
 COMMENT=	C library for encoding, decoding, and manipulating JSON data
