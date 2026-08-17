@@ -1,8 +1,10 @@
 PORTNAME=	esbuild
 DISTVERSIONPREFIX=	v
+# DO NOT UPDATE WITHOUT THIS BEING DONE
 # post to phabricator & chromium@ before committing so they can update
-DISTVERSION=	0.28.0
-PORTREVISION=	2
+DISTVERSION=	0.28.1 # post to phabricator & chromium@ before committing so they can update
+PORTREVISION=	1
+# post to phabricator & chromium@ before committing so they can update
 CATEGORIES=	devel www
 
 MAINTAINER=	dch@FreeBSD.org
