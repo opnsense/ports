@@ -1,7 +1,7 @@
 PORTNAME=	inko
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.20.0
-PORTREVISION=	2
+DISTVERSION=	0.21.1
+PORTREVISION=	1
 CATEGORIES=	lang devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -28,7 +28,7 @@ MAKE_ENV=	LLVM_SYS_181_PREFIX=${LLVM_PREFIX} \
 
 CARGO_CRATES=	addr2line-0.25.1 \
 		adler2-2.0.1 \
-		anyhow-1.0.102 \
+		anyhow-1.0.103 \
 		arrayref-0.3.9 \
 		arrayvec-0.7.6 \
 		atomic-wait-1.1.0 \
@@ -97,7 +97,7 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		rustls-pki-types-1.14.0 \
 		rustls-platform-verifier-0.6.2 \
 		rustls-platform-verifier-android-0.1.1 \
-		rustls-webpki-0.103.12 \
+		rustls-webpki-0.103.13 \
 		same-file-1.0.6 \
 		schannel-0.1.29 \
 		security-framework-3.7.0 \

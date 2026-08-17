@@ -1,0 +1,29 @@
+--- pyproject.toml.orig	2026-07-17 21:05:19 UTC
++++ pyproject.toml
+@@ -8,18 +8,18 @@ dependencies = [
+ ]
+ requires-python = ">=3.10, <3.14"
+ dependencies = [
+-    "appdirs~=1.4.4",
++    "appdirs>=1.4.4",
+     "cryptography>=42.0",
+-    "httpx~=0.28.1",
++    "httpx>=0.28.1",
+     "packaging>=23.0",
+-    "portalocker~=2.7.0",
++    "portalocker>=2.7.0",
+     "pyjwt>=2.13.0,<3",
+-    "pydantic>=2.11.9,<2.13",
++    "pydantic>=2.11.9",
+     "rich>=13.7.1",
+-    "opentelemetry-api~=1.42.0",
+-    "opentelemetry-sdk~=1.42.0",
+-    "opentelemetry-exporter-otlp-proto-http~=1.42.0",
+-    "tomli~=2.0.2",
++    "opentelemetry-api>=1.42.0",
++    "opentelemetry-sdk>=1.42.0",
++    "opentelemetry-exporter-otlp-proto-http>=1.42.0",
++    "tomli>=2.0.2",
+ ]
+ 
+ [project.urls]

@@ -1,4 +1,4 @@
---- src/ucs/vfs/fuse/vfs_fuse.c.orig	2026-02-04 09:52:46 UTC
+--- src/ucs/vfs/fuse/vfs_fuse.c.orig	2026-07-27 15:46:30 UTC
 +++ src/ucs/vfs/fuse/vfs_fuse.c
 @@ -37,6 +37,7 @@ static struct {
  
@@ -36,6 +36,15 @@
  static void ucs_vfs_enum_dir_cb(const char *name, void *arg)
  {
      ucs_vfs_enum_dir_context_t *ctx = arg;
+@@ -300,7 +306,7 @@ static ucs_status_t ucs_vfs_fuse_wait_for_path(const c
+      * deleted explicitly or implicitly */
+     ucs_vfs_fuse_context.watch_desc = inotify_add_watch(
+             ucs_vfs_fuse_context.inotify_fd, watch_dirname,
+-            IN_CREATE | IN_IGNORED);
++            IN_CREATE);
+     if (ucs_vfs_fuse_context.watch_desc < 0) {
+         ucs_error("inotify_add_watch(%s) failed: %m", watch_dirname);
+         status = UCS_ERR_IO_ERROR;
 @@ -492,10 +498,10 @@ static void ucs_fuse_thread_stop()
  
  static void ucs_fuse_thread_stop()

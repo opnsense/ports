@@ -1,11 +1,11 @@
---- pyproject.toml.orig	2024-09-30 20:12:15 UTC
+--- pyproject.toml.orig	2026-07-20 00:01:42 UTC
 +++ pyproject.toml
-@@ -1,7 +1,7 @@
+@@ -3,7 +3,7 @@
  # SPDX-License-Identifier: Apache-2.0
  
  [build-system]
--requires = ["setuptools>=64", "protobuf>=3.20.2", "cmake"]
-+requires = ["setuptools", "protobuf>=3.20.2"]
- build-backend = "setuptools.build_meta"
+-requires = ["scikit-build-core>=0.11", "protobuf==4.25.1"]
++requires = ["scikit-build-core>=0.11", "protobuf>=4.25.1"]
+ build-backend = "scikit_build_core.build"
  
  [project]

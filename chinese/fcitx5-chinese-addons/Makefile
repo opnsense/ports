@@ -1,5 +1,5 @@
 PORTNAME=	fcitx5-chinese-addons
-DISTVERSION=	5.1.11
+DISTVERSION=	5.1.13
 PORTREVISION=	1
 CATEGORIES=	chinese textproc
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/${PORTNAME}/ \
@@ -9,7 +9,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 		${PY_TABLE_TAR}:py_table
 DIST_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	khng@FreeBSD.org
+MAINTAINER=	lwhsu@FreeBSD.org
 COMMENT=	Pinyin and table input method support for Fcitx5
 WWW=		https://github.com/fcitx/fcitx5-chinese-addons
 
@@ -25,7 +25,7 @@ LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
 		libopencc.so:chinese/opencc
 RUN_DEPENDS=	fcitx5-lua>0:textproc/fcitx5-lua
 
-USES=		cmake compiler:c++17-lang gettext kde:5 localbase pkgconfig \
+USES=		cmake compiler:c++17-lang gettext kde localbase pkgconfig \
 		tar:zst
 
 OPTIONS_DEFINE=		GUI
@@ -39,7 +39,7 @@ GUI_USE=	qt=base,webengine
 GUI_LIB_DEPENDS=	libFcitx5Qt6DBusAddons.so:textproc/fcitx5-qt@qt6
 GUI_CMAKE_ON=	-DUSE_WEBKIT:BOOL=false
 
-USE_KDE=	ecm
+USE_KDE=	ecm:build
 
 CMAKE_ON=	ENABLE_OPENCC
 CMAKE_OFF=	ENABLE_TEST

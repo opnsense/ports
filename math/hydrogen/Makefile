@@ -31,6 +31,8 @@ CMAKE_OFF=	Hydrogen_ENABLE_TESTING
 CMAKE_TESTING_ON=	Hydrogen_ENABLE_TESTING
 CMAKE_TESTING_TARGET=	test
 
+CXXFLAGS+=		-Wno-invalid-specialization # workaround for error: 'is_floating_point' cannot be specialized
+
 OPTIONS_SINGLE=		MPI
 OPTIONS_SINGLE_MPI=	MPICH OPENMPI
 OPTIONS_DEFAULT=	MPICH # should be same as in misc/lbann

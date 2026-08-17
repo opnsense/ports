@@ -92,6 +92,7 @@ share/pixmaps/sigil.png
 %%DATADIR%%/python3lib/opf3data.py
 %%DATADIR%%/python3lib/opf_id_parser.py
 %%DATADIR%%/python3lib/opf_newparser.py
+%%DATADIR%%/python3lib/redirect_imports.py
 %%DATADIR%%/python3lib/repomanager.py
 %%DATADIR%%/python3lib/sanitycheck.py
 %%DATADIR%%/python3lib/sdifflibparser.py
@@ -297,6 +298,7 @@ share/pixmaps/sigil.png
 %%DATADIR%%/python3lib/xmlsanitycheck.py
 %%DATADIR%%/translations/sigil_ar.qm
 %%DATADIR%%/translations/sigil_ca.qm
+%%DATADIR%%/translations/sigil_cs.qm
 %%DATADIR%%/translations/sigil_de.qm
 %%DATADIR%%/translations/sigil_en.qm
 %%DATADIR%%/translations/sigil_es.qm

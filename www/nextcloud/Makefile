@@ -1,6 +1,5 @@
 PORTNAME=	nextcloud
-PORTVERSION=	34.0.1
-PORTREVISION=	1
+PORTVERSION=	34.0.3
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/nextcloud-releases/server/releases/download/v${PORTVERSION}/ \
 		https://download.nextcloud.com/server/releases/
@@ -35,7 +34,7 @@ OPTIONS_GROUP=		CACHING
 OPTIONS_GROUP_CACHING=	APCU OPCACHE REDIS
 OPTIONS_MULTI=		DB
 OPTIONS_MULTI_DB=	MYSQL PGSQL SQLITE
-OPTIONS_DEFAULT=	APCU EXIF INTL LDAP MYSQL OPCACHE SYSVSEM
+OPTIONS_DEFAULT=	APCU EXIF INTL LDAP MYSQL OPCACHE PGSQL SYSVSEM
 OPTIONS_SUB=		yes
 
 APCU_DESC=	Local data caching using APCu (recommended)
@@ -76,6 +75,7 @@ post-patch:
 	@${RM} ${WRKSRC}/config/config.documented.php.* \
 		 ${WRKSRC}/updater/updater.phar
 	@${MV} ${WRKSRC}/apps ${WRKSRC}/apps-pkg
+	@${FIND} ${WRKSRC} -name '*.orig' -delete
 
 do-install:
 	@${MKDIR} -m 0755 ${STAGEDIR}${WWWDIR}

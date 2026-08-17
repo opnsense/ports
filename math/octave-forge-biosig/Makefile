@@ -1,6 +1,5 @@
 PORTNAME=	octave-forge-biosig
-DISTVERSION=	3.9.5
-PORTREVISION=	2
+DISTVERSION=	3.9.7
 CATEGORIES=	math
 MASTER_SITES=	https://sourceforge.net/projects/biosig/files/Biosig%20for%20Octave/
 DISTNAME=	biosig4octave-${DISTVERSION}.src

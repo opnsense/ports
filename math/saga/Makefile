@@ -1,5 +1,5 @@
 PORTNAME=	saga
-PORTVERSION=	9.12.6
+PORTVERSION=	9.13.0
 CATEGORIES=	math
 MASTER_SITES=	SF/saga-gis/SAGA%20-%20${PORTVERSION:C/([0-9]).*/\1/1}/SAGA%20-%20${PORTVERSION}
 MAINTAINER=	rhurlin@FreeBSD.org
@@ -35,11 +35,15 @@ DOS2UNIX_GLOB=	*.cpp *.h *.txt
 USE_LDCONFIG=	yes
 USE_WX=		3.2+
 
-GIT_TAGNAME=	91d7f8160
+GIT_TAGNAME=	93deb68dd
 
+# We do not follow the SAGA developers approach of installing
+# the 'SAGA Processing Provider' Plugin as a QGIS kernel plugin
+# in /usr/local/share/qgis/plugins/saga_provider
 CMAKE_ARGS=	-DSVM_INCLUDE:PATH=${LOCALBASE}/include/svm.h \
-		-DWITH_TOOLS_PDAL:BOOL=TRUE
+		-DINSTALL_QGIS_PLUGIN:PATH="" -DWITH_TOOLS_PDAL:BOOL=TRUE
 CMAKE_ON=	CMAKE_VERBOSE_MAKEFILE
+CMAKE_ON+=	WITH_CLOUD_STORAGE
 CMAKE_ON+=	WITH_DEV_TOOLS
 CMAKE_ON+=	WITH_EXCERCISES
 CMAKE_ON+=	WITH_EXIV2
@@ -104,6 +108,7 @@ post-install:
 	${RM} -R ${STAGEDIR}${DATADIR}/classification
 	${RM} -R ${STAGEDIR}${DATADIR}/color_ramps
 	${RM} -R ${STAGEDIR}${DATADIR}/templates/template4saga-tools/my_tool_library/Makefile.bak
+	${RM} -R ${STAGEDIR}${DATADIR}/saga4qgis  # doubles
 # library helper files are not needed and cripple some math/qgis extensions
 	@${RM} ${STAGEDIR}${PREFIX}/lib/saga/*.la
 

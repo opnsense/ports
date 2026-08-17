@@ -1,7 +1,7 @@
 PORTNAME=	writefreely
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.16.0
-PORTREVISION=	13
+DISTVERSION=	0.17.2
+PORTREVISION=	1
 CATEGORIES=	www textproc
 
 MAINTAINER=	fuz@FreeBSD.org
@@ -19,6 +19,7 @@ GO_MODULE=	github.com/writefreely/writefreely
 GO_TARGET=	./cmd/writefreely
 
 SUB_FILES=	config.ini.sample pkg-message
+SUB_LIST=	PORTVERSION=${PORTVERSION}
 USERS=		writefreely
 GROUPS=		writefreely
 
@@ -32,7 +33,7 @@ CSS_DIST_DESC=			Use pre-generated stylesheets
 CSS_LESSC_DESC=			Generate stylesheets with lessc (requires npm)
 CSS_DIST_MASTER_SITES=		LOCAL/fuz:css
 CSS_DIST_DISTFILES=		writefreely-css-${DISTVERSION}.tar.gz:css
-CSS_LESSC_BUILD_DEPENDS=	npm:www/npm
+CSS_LESSC_USES=			npm:npm,build
 CSS_LESSC_VARS=			LEGAL_PACKAGE=yes \
 				NO_PACKAGE="uses www/npm to fetch files at build time (option CSS_LESSC)"
 DOCS_GH_TUPLE=			writefreely:documentation:v${DISTVERSION}:docs
@@ -44,8 +45,8 @@ SQLITE3_VARS=			GO_BUILDFLAGS+=-tags=sqlite
 ${WRKDIR}/npm/bin/lessc:
 	@${ECHO_MSG} "=> downloading the lessc utility with NPM"
 	${MKDIR} ${WRKDIR}/npm
-	npm -C ${WRKDIR}/npm -g install less@3.5.3
-	npm -C ${WRKDIR}/npm -g install less-plugin-clean-css
+	${SETENVI} ${MAKE_ENV} ${NPM_CMDNAME} -C ${WRKDIR}/npm -g install less@3.5.3
+	${SETENVI} ${MAKE_ENV} ${NPM_CMDNAME} -C ${WRKDIR}/npm -g install less-plugin-clean-css
 
 # Packaging node.js applications is a PITA, so supply pre-generated CSS files as
 # a custom distfile using lessc, a node.js application.

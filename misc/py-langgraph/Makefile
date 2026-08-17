@@ -1,5 +1,5 @@
 PORTNAME=	langgraph
-DISTVERSION=	1.2.7
+DISTVERSION=	1.2.9
 CATEGORIES=	misc python # machine-learning
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}httpx>=0:www/py-httpx@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}langgraph-checkpoint>=0:misc/py-langgraph-checkpoint@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}langgraph-prebuilt>=0:misc/py-langgraph-prebuilt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}langgraph-sdk>=0:misc/py-langgraph-sdk@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}py-spy>0:devel/py-spy \
+		${PYTHON_PKGNAMEPREFIX}py-spy>0:devel/py-spy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pycryptodome>=0:security/py-pycryptodome@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyperf>=0:devel/py-pyperf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-cov>=0:devel/py-pytest-cov@${PY_FLAVOR} \
@@ -45,7 +45,8 @@ NO_ARCH=	yes
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 
-# tests as of 1.2.6: not run - fails with ModuleNotFoundError: langgraph.cache.sqlite
+# tests as of 1.2.9: not run - fails to install test dependency py-spy (devel/py-spy
+# has no FLAVORS) and with ModuleNotFoundError: langgraph.cache.sqlite
 # (langgraph-checkpoint-sqlite, langgraph-checkpoint-postgres, langgraph-cli and
 # psycopg-binary are not ported)
 

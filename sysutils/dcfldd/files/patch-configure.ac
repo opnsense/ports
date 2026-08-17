@@ -1,0 +1,17 @@
+--- configure.ac.orig	2026-07-19 08:42:01 UTC
++++ configure.ac
+@@ -62,14 +62,6 @@ AS_IF([test "x$enable_runtime_endian_check" != "xno"],
+     AC_DEFINE([RUNTIME_ENDIAN], 1, [Define whether to check for endianness during runtime])
+ ])
+ 
+-if test "x$with_bash_completion" == "xyes"; then
+-    PKG_CHECK_MODULES([BASH_COMPLETION], [bash-completion >= 2.0],
+-        [BASH_COMPLETION_DIR="`$PKG_CONFIG --variable=completionsdir bash-completion`"],
+-        [BASH_COMPLETION_DIR="$datadir/bash-completion/completions"])
+-else
+-    BASH_COMPLETION_DIR="$with_bash_completion"
+-fi
+-
+ AC_CHECK_DECLS([strtol, strtoul, strtoumax, strndup])
+ 
+ AC_SUBST([BASH_COMPLETION_DIR])

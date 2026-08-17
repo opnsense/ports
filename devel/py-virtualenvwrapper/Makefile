@@ -1,6 +1,5 @@
 PORTNAME=	virtualenvwrapper
-PORTVERSION=	4.8.4
-PORTREVISION=	2
+PORTVERSION=	6.1.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -9,52 +8,51 @@ MAINTAINER=	nivit@FreeBSD.org
 COMMENT=	Enhancements to virtualenv
 WWW=		https://virtualenvwrapper.readthedocs.io/
 
-BROKEN=		outdated, does not support modern Python stack
-DEPRECATED=	Fails to build with sphinx-9.0.4, does not support Python 3.12
-EXPIRATION_DATE=	2026-07-31
-
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>0:devel/py-pbr@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}stevedore>0:devel/py-stevedore@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=6.2:devel/py-setuptools-scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash \
+		${PYTHON_PKGNAMEPREFIX}stevedore>0:devel/py-stevedore@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}virtualenv>0:devel/py-virtualenv@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}virtualenv-clone>0:devel/py-virtualenv-clone@${PY_FLAVOR}
 
-# Actually 2.6-2.7,3.3-3.6
+# Actually 3.8-3.12
 USES=		python
-USE_PYTHON=	autoplist concurrent distutils
+USE_PYTHON=	autoplist concurrent pep517
 
 OPTIONS_DEFINE=	DOCS
 
-DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>=0,1:textproc/py-sphinx@${PY_FLAVOR} \
-			${PYTHON_PKGNAMEPREFIX}sphinxcontrib-bitbucket>=1.0:textproc/py-sphinxcontrib-bitbucket@${PY_FLAVOR}
-DOCS_VARS=		PYDISTUTILS_BUILD_TARGET+=build_sphinx \
-			PYDISTUTILS_BUILDARGS="-a -E"
 
+DOCS_MAKE_ENV=	PYTHONPATH=${WRKSRC}
+PLIST_FILES=	share/man/man1/virtualenvwrapper.1.gz
 PORTDOCS=	*
 
 NO_ARCH=	yes
 
 post-patch:
-	${REINPLACE_CMD} \
-		-e 's|$$(command \\which python)|${PYTHON_CMD}|1' \
-		-e 's|="virtualenv"|="virtualenv${UNIQUE_SUFFIX}"|1' \
-		-e 's|="virtualenv-clone"|="virtualenv-clone${UNIQUE_SUFFIX}"|1' \
-		${WRKSRC}/${PORTNAME}.sh
-	${REINPLACE_CMD} \
-		-e 's|which virtualenvwrapper.sh|which ${PORTNAME}.sh${UNIQUE_SUFFIX}|' \
-		${WRKSRC}/${PORTNAME}_lazy.sh
+	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
+		${WRKSRC}/tox.ini
 
-post-patch-DOCS-on:
-	@${REINPLACE_CMD} -e 's|python setup.py|${PYTHON_CMD} setup.py|' \
-		${WRKSRC}/docs/source/conf.py
+post-build:
+	cd ${WRKSRC}/docs && ${SETENVI} ${MAKE_ENV} \
+		${BSDMAKE} SPHINX_BUILD=${LOCALBASE}/bin/sphinx-build${UNIQUE_SUFFIX} man
 
 post-build-DOCS-on:
-	@${RM} ${WRKSRC}/docs/build/html/.buildinfo
+	cd ${WRKSRC}/docs && ${SETENVI} ${MAKE_ENV} \
+		${BSDMAKE} SPHINX_BUILD=${LOCALBASE}/bin/sphinx-build${UNIQUE_SUFFIX} html
+
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/docs/build/man/virtualenvwrapper.1 \
+		${STAGEDIR}${PREFIX}/share/man/man1
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@cd ${WRKSRC}/docs/build/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}
+	@cd ${WRKSRC}/docs/build/html && \
+		${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} \
+		"-not ( -name .buildinfo )"
 
 .include <bsd.port.mk>

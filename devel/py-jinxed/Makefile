@@ -1,5 +1,5 @@
 PORTNAME=	jinxed
-DISTVERSION=	2.0.4
+DISTVERSION=	2.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,6 +25,6 @@ do-test:
 
 NO_ARCH=	yes
 
-# tests as of 2.0.4: 209 passed in 0.81s
+# tests as of 2.1.0: 210 passed in 0.21s
 
 .include <bsd.port.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	grok-build
-DISTVERSION=	0.2.101
+DISTVERSION=	1.0.0
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	${GROK_URL_BASE:S|$|:amd64|} \
 		${GROK_URL_BASE:S|$|:aarch64|}
@@ -14,6 +14,7 @@ WWW=		https://x.ai/
 
 ONLY_FOR_ARCHS=		aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	is a Linux binary with a limited platform support
+BROKEN_FreeBSD_14=	fails with os error 22, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=296863
 
 USES=		linux:rl9
 USE_LINUX=	base

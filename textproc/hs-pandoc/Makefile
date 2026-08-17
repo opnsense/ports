@@ -1,5 +1,5 @@
 PORTNAME=	pandoc
-DISTVERSION=	3.10
+DISTVERSION=	3.10.2
 CATEGORIES=	textproc haskell
 
 MAINTAINER=	haskell@FreeBSD.org
@@ -11,6 +11,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING.md
 
 USES=		cabal cpe
 
+CABAL_FLAGS=		lua repl
 CABAL_WRAPPER_SCRIPTS=	${CABAL_EXECUTABLES}
 
 OPTIONS_DEFINE=	EMBED_DATA
@@ -29,11 +30,6 @@ HACKAGE_DISTNAME=	pandoc-cli-${DISTVERSION}
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${ARCH} == i386
-# compiler goes out of memory
-BUILD_ARGS+=	--disable-optimization
-.endif
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/man/pandoc.1 ${STAGEDIR}${MANDIRS}/man1

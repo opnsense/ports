@@ -25,6 +25,7 @@
     SUBDIR += R-cran-webshot
     SUBDIR += R-cran-webutils
     SUBDIR += SNIP
+    SUBDIR += SpectrumKNX
     SUBDIR += UniversalFeedCreator
     SUBDIR += access-log-exporter
     SUBDIR += adguardhome
@@ -105,7 +106,6 @@
     SUBDIR += castget
     SUBDIR += cgi-lib
     SUBDIR += cgi-lib.pl
-    SUBDIR += cgicc
     SUBDIR += cgiwrap
     SUBDIR += chawan
     SUBDIR += checkbot
@@ -153,9 +153,6 @@
     SUBDIR += dojo
     SUBDIR += dokuwiki
     SUBDIR += dolibarr
-    SUBDIR += dolibarr16
-    SUBDIR += dolibarr17
-    SUBDIR += dolibarr18
     SUBDIR += dolibarr19
     SUBDIR += dolibarr20
     SUBDIR += dolibarr21
@@ -214,12 +211,18 @@
     SUBDIR += forgejo
     SUBDIR += forgejo-lts
     SUBDIR += forgejo15
+    SUBDIR += forgejo16
     SUBDIR += formication
     SUBDIR += foswiki
     SUBDIR += free-sa-devel
+    SUBDIR += freeipa-auth-gssapi
     SUBDIR += freenginx
     SUBDIR += freenginx-acme
+    SUBDIR += freenginx-acme-module
     SUBDIR += freenginx-devel
+    SUBDIR += freeunit
+    SUBDIR += freeunit-php
+    SUBDIR += freeunit-python
     SUBDIR += fswiki
     SUBDIR += fusionpbx
     SUBDIR += g-cows
@@ -246,6 +249,7 @@
     SUBDIR += glpi
     SUBDIR += gnome-user-share
     SUBDIR += go-anubis
+    SUBDIR += go-away
     SUBDIR += go-www
     SUBDIR += gobuffalo
     SUBDIR += gohugo
@@ -293,7 +297,9 @@
     SUBDIR += http_post
     SUBDIR += httpasyncclient
     SUBDIR += httpclient
+    SUBDIR += httpclient5
     SUBDIR += httpcore
+    SUBDIR += httpcore5
     SUBDIR += httptunnel
     SUBDIR += httpx
     SUBDIR += httrack
@@ -304,9 +310,12 @@
     SUBDIR += ikiwiki
     SUBDIR += ilias
     SUBDIR += imaginary
+    SUBDIR += immich
+    SUBDIR += immich-ml
     SUBDIR += iocaine
     SUBDIR += iridium
     SUBDIR += janus
+    SUBDIR += jcef
     SUBDIR += jericho-html
     SUBDIR += jesred
     SUBDIR += jetty10
@@ -316,6 +325,7 @@
     SUBDIR += jmeter
     SUBDIR += joomla4
     SUBDIR += joomla5
+    SUBDIR += joomla6
     SUBDIR += jwt-cli
     SUBDIR += kamal-proxy
     SUBDIR += kanboard
@@ -377,7 +387,6 @@
     SUBDIR += lua-resty-lrucache
     SUBDIR += lua-resty-session
     SUBDIR += lua-resty-session3
-    SUBDIR += lua-stream-nginx-module
     SUBDIR += luakit
     SUBDIR += luakit-devel
     SUBDIR += lubelogger
@@ -398,7 +407,6 @@
     SUBDIR += mattermost-webapp
     SUBDIR += mcp-server-browserbase
     SUBDIR += mediawiki143
-    SUBDIR += mediawiki144
     SUBDIR += mediawiki145
     SUBDIR += mediawiki146
     SUBDIR += mergelog
@@ -446,6 +454,7 @@
     SUBDIR += mod_jk
     SUBDIR += mod_limitipconn2
     SUBDIR += mod_log_sql
+    SUBDIR += mod_lookup_identity
     SUBDIR += mod_maxminddb
     SUBDIR += mod_memcache
     SUBDIR += mod_memcache_block
@@ -505,9 +514,12 @@
     SUBDIR += nextcloud-deck
     SUBDIR += nextcloud-forms
     SUBDIR += nextcloud-groupfolders
+    SUBDIR += nextcloud-impersonate
+    SUBDIR += nextcloud-keeweb
     SUBDIR += nextcloud-memories
     SUBDIR += nextcloud-news
     SUBDIR += nextcloud-notes
+    SUBDIR += nextcloud-previewgenerator
     SUBDIR += nextcloud-tasks
     SUBDIR += nghttp2
     SUBDIR += nginx
@@ -516,6 +528,7 @@
     SUBDIR += nginx-full
     SUBDIR += nginx-lite
     SUBDIR += nginx-module-lua
+    SUBDIR += nginx-module-lua-stream
     SUBDIR += nginx-naxsi
     SUBDIR += nginx-prometheus-exporter
     SUBDIR += nginx-ultimate-bad-bot-blocker
@@ -576,7 +589,6 @@
     SUBDIR += p5-Apache-Config-Preproc
     SUBDIR += p5-Apache-ConfigFile
     SUBDIR += p5-Apache-ConfigParser
-    SUBDIR += p5-Apache-DB
     SUBDIR += p5-Apache-DBI
     SUBDIR += p5-Apache-Defaults
     SUBDIR += p5-Apache-Htgroup
@@ -1443,7 +1455,6 @@
     SUBDIR += pear-UDDI
     SUBDIR += pear-XML_GRDDL
     SUBDIR += pear-twig
-    SUBDIR += pecl-solr
     SUBDIR += pecl-yaf
     SUBDIR += pecl-yar
     SUBDIR += peersuite
@@ -1453,6 +1464,7 @@
     SUBDIR += phalcon
     SUBDIR += php-google-api-php-client
     SUBDIR += php-http
+    SUBDIR += php-solr
     SUBDIR += php82-opcache
     SUBDIR += php82-session
     SUBDIR += php82-tidy
@@ -1482,6 +1494,7 @@
     SUBDIR += pmwiki
     SUBDIR += pnews
     SUBDIR += pocket-id
+    SUBDIR += pocketbase
     SUBDIR += podcastamatic
     SUBDIR += pomerium
     SUBDIR += pomerium-envoy-custom
@@ -1529,6 +1542,7 @@
     SUBDIR += py-bokeh
     SUBDIR += py-bootstrap-flask
     SUBDIR += py-boto3
+    SUBDIR += py-boto3-stubs
     SUBDIR += py-botocore-stubs
     SUBDIR += py-bottle
     SUBDIR += py-bottle-cork
@@ -1609,7 +1623,6 @@
     SUBDIR += py-django-classy-tags
     SUBDIR += py-django-cms
     SUBDIR += py-django-compression-middleware
-    SUBDIR += py-django-configurations
     SUBDIR += py-django-configurator
     SUBDIR += py-django-constance
     SUBDIR += py-django-contact-form
@@ -1699,6 +1712,7 @@
     SUBDIR += py-django42
     SUBDIR += py-django52
     SUBDIR += py-django60
+    SUBDIR += py-django61
     SUBDIR += py-django_compressor
     SUBDIR += py-django_statici18n
     SUBDIR += py-djangocms-admin-style
@@ -1745,7 +1759,6 @@
     SUBDIR += py-flask-jwt
     SUBDIR += py-flask-jwt-extended
     SUBDIR += py-flask-limiter
-    SUBDIR += py-flask-limiter3
     SUBDIR += py-flask-login
     SUBDIR += py-flask-marshmallow
     SUBDIR += py-flask-migrate
@@ -1817,6 +1830,7 @@
     SUBDIR += py-h2
     SUBDIR += py-habanero
     SUBDIR += py-hdfs
+    SUBDIR += py-hf-transfer
     SUBDIR += py-horizon
     SUBDIR += py-hpack
     SUBDIR += py-hstspreload

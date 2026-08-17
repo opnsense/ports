@@ -1,5 +1,5 @@
 PORTNAME=	lazarus
-DISTVERSION=	4.99.20260616
+DISTVERSION=	4.99.20260720
 PKGNAMESUFFIX?=  -gtk2-devel
 PORTREVISION?=	0
 CATEGORIES=	editors devel
@@ -9,7 +9,8 @@ MAINTAINER?=	acm@FreeBSD.org
 COMMENT?=	Portable Delphi-like IDE for the FreePascal compiler (GTK2 devel)
 WWW=		https://www.lazarus-ide.org/
 
-CONFLICTS?=	lazarus-gtk2 lazarus-qt5 lazarus-qt5-devel lazarus-qt6-devel
+CONFLICTS?=	lazarus-gtk2 lazarus-gtk3-devel lazarus-qt5 lazarus-qt5-devel \
+		lazarus-qt6 lazarus-qt6-devel
 
 BUILD_DEPENDS?=	${LOCALBASE}/bin/as:devel/binutils
 RUN_DEPENDS?=	${LOCALBASE}/bin/as:devel/binutils \
@@ -21,7 +22,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64 i386 powerpc64 powerpc64le
 USE_GITLAB=	yes
 GL_ACCOUNT=	freepascal.org/lazarus
 GL_PROJECT=	${PORTNAME}
-GL_COMMIT=	23198b43aef1a5c18150a0db4832628704eb5f0c
+GL_COMMIT=	b26082c60f2bda04a6c9bd5dd09157392f22e877
 
 USES=		desktop-file-utils fpc:run gettext gmake iconv shared-mime-info xorg
 USE_XORG=	x11

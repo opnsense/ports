@@ -46,9 +46,4 @@ VSCODE_NODE_MODULES=	. \
 			extensions/vscode-colorize-tests \
 			extensions/vscode-test-resolver \
 			remote \
-			remote/web \
-			test/automation \
-			test/integration/browser \
-			test/mcp \
-			test/monaco \
-			test/smoke
+			remote/web

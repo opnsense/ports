@@ -124,6 +124,7 @@
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
     SUBDIR += bhyvemgr
+    SUBDIR += bhyvemgrd
     SUBDIR += bin
     SUBDIR += biosfont
     SUBDIR += bkpupsd
@@ -360,6 +361,7 @@
     SUBDIR += eksctl
     SUBDIR += elephant
     SUBDIR += elfx86exts
+    SUBDIR += elio
     SUBDIR += endian
     SUBDIR += enteruser
     SUBDIR += entr
@@ -488,6 +490,8 @@
     SUBDIR += gomplate
     SUBDIR += gonzo
     SUBDIR += google-compute-engine-oslogin
+    SUBDIR += google-guest-agent
+    SUBDIR += goreman
     SUBDIR += gotop
     SUBDIR += govmomi
     SUBDIR += gpart
@@ -550,6 +554,8 @@
     SUBDIR += intel-nvmupdate-100g
     SUBDIR += intel-nvmupdate-10g
     SUBDIR += intel-nvmupdate-40g
+    SUBDIR += intel-nvmupdate-e610
+    SUBDIR += intel-nvmupdate-e830
     SUBDIR += intel-pcm
     SUBDIR += intel-undervolt
     SUBDIR += inxi
@@ -636,6 +642,7 @@
     SUBDIR += ldap-account-manager
     SUBDIR += ldapvi
     SUBDIR += leaf
+    SUBDIR += leaves
     SUBDIR += ledit
     SUBDIR += less
     SUBDIR += lfm
@@ -712,6 +719,7 @@
     SUBDIR += mac_rtprio
     SUBDIR += mackerel-agent
     SUBDIR += magicrescue
+    SUBDIR += magika
     SUBDIR += manck
     SUBDIR += mapchan
     SUBDIR += mapdir
@@ -822,6 +830,7 @@
     SUBDIR += obliterate
     SUBDIR += oc
     SUBDIR += ocijail
+    SUBDIR += oddjob
     SUBDIR += odo
     SUBDIR += ohmu
     SUBDIR += omnibackup
@@ -1100,6 +1109,7 @@
     SUBDIR += py-kubernetes
     SUBDIR += py-leviathan
     SUBDIR += py-liquidctl
+    SUBDIR += py-magika
     SUBDIR += py-mitogen
     SUBDIR += py-mqttwarn
     SUBDIR += py-nagiosplugin
@@ -1114,6 +1124,7 @@
     SUBDIR += py-psutil
     SUBDIR += py-ptyprocess
     SUBDIR += py-puremagic
+    SUBDIR += py-py-consul
     SUBDIR += py-py-cpuinfo
     SUBDIR += py-pyinfra
     SUBDIR += py-python-bareos

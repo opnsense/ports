@@ -1,7 +1,7 @@
 PORTNAME=	rdkit
 DISTVERSIONPREFIX=	Release_
 DISTVERSION=	2025_09_2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	science
 MASTER_SITES=	https://github.com/schrodinger/maeparser/archive/:maeparser \
 		https://github.com/schrodinger/coordgenlibs/archive/:coordgen \
@@ -25,6 +25,7 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/license.txt
 
 BROKEN_FreeBSD_16_amd64=	clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272652
+BROKEN_FreeBSD_16_aarch64=	clang crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272652
 
 BUILD_DEPENDS=	catch>0:devel/catch \
 		flex:textproc/flex

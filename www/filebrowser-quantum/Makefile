@@ -1,6 +1,6 @@
 PORTNAME=	filebrowser-quantum
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.0
+DISTVERSION=	1.5.0
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www
@@ -20,7 +20,7 @@ LICENSE=	APACHE20
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	module modernc.org/sqlite only supported on aarch64 and amd64
 
-USES=		go:1.25+,modules
+USES=		go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	gtsteffaniak
 GH_PROJECT=	filebrowser
@@ -50,7 +50,7 @@ FFMPEG_RUN_DEPENDS=	ffmpeg>=0:multimedia/ffmpeg
 
 # Run 'git checkout ${DISTVERSIONPREFIX}${DISTVERSION}-${FILEBROWSER_QUANTUM_CHANNEL} && git rev-parse HEAD'
 # in the FileBrowser Quantum repository to get the value of GITID.
-GITID=		4072e46
+GITID=		79552f8
 
 FILEBROWSER_QUANTUM_USER=	www
 FILEBROWSER_QUANTUM_GROUP=	${FILEBROWSER_QUANTUM_USER}
@@ -66,5 +66,7 @@ post-install:
 	@${MKDIR} ${STAGEDIR}/var/db/${PORTNAME}
 	@${MKDIR} ${STAGEDIR}${WWWDIR}
 	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.yaml ${STAGEDIR}${PREFIX}/etc/${PORTNAME}.yaml.sample
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf.sample
 
 .include <bsd.port.mk>

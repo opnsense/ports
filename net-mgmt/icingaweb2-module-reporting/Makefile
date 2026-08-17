@@ -1,6 +1,6 @@
 PORTNAME=	icingaweb2-module-reporting
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.5
+DISTVERSION=	1.1.0
 PORTREVISION=	0
 CATEGORIES=	net-mgmt www
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -10,7 +10,7 @@ COMMENT=	Reporting module for Icinga Web 2
 WWW=		https://github.com/Icinga/icingaweb2-module-reporting
 
 LICENSE=	GPLv2
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 RUN_DEPENDS=	icingaweb2${PHP_PKGNAMESUFFIX}>=2.12.1:net-mgmt/icingaweb2@${PHP_FLAVOR} \
 		icingaweb2-module-reactbundle${PHP_PKGNAMESUFFIX}>=0.9.0:net-mgmt/icingaweb2-module-reactbundle@${PHP_FLAVOR} \

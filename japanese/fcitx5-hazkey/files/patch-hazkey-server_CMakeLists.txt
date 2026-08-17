@@ -1,11 +1,36 @@
 --- hazkey-server/CMakeLists.txt.orig	2026-02-08 10:07:38 UTC
 +++ hazkey-server/CMakeLists.txt
-@@ -57,7 +57,7 @@ if(HAZKEY_SERVER_STATIC_SWIFT_STDLIB AND NOT SWIFT_DYN
+@@ -31,6 +31,15 @@ set(HAZKEY_SERVER_LIBLLAMA_BINDIR "${CMAKE_BINARY_DIR}
+ # TODO: check path reliability
+ set(HAZKEY_SERVER_LIBLLAMA_BINDIR "${CMAKE_BINARY_DIR}/bin" CACHE PATH "Llama.cpp library directory" )
+ 
++string(TOLOWER ${CMAKE_SYSTEM_NAME} SYSTEM_NAME_LOWER)
++set(FREEBSD_CLANG_21_OR_GREATER FALSE)
++if(CMAKE_SYSTEM_NAME STREQUAL "FreeBSD")
++    if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND
++       CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL "21.0")
++        set(FREEBSD_CLANG_21_OR_GREATER TRUE)
++    endif()
++endif()
++
+ # --- hazkey-server --- #
+ 
+ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+@@ -57,7 +66,7 @@ if(HAZKEY_SERVER_STATIC_SWIFT_STDLIB AND NOT SWIFT_DYN
              get_filename_component(SWIFT_BIN_DIR "${SWIFT_REAL_PATH}" DIRECTORY)
              get_filename_component(SWIFT_BASE_DIR "${SWIFT_BIN_DIR}" DIRECTORY)
  
 -            set(SWIFT_DYNAMIC_LIB_PATH "${SWIFT_BASE_DIR}/lib/swift/linux")
-+            set(SWIFT_DYNAMIC_LIB_PATH "${SWIFT_BASE_DIR}/lib/swift/freebsd")
++            set(SWIFT_DYNAMIC_LIB_PATH "${SWIFT_BASE_DIR}/lib/swift/${SYSTEM_NAME_LOWER}")
              message(STATUS "Detected Swift dynamic library path: ${SWIFT_DYNAMIC_LIB_PATH}")
          else()
              message(WARNING "Unexpected swift path structure: ${SWIFT_REAL_PATH}")
+@@ -78,6 +87,8 @@ add_custom_target(build_hazkey_server ALL
+         "-DSWIFT_WORK_DIR=${CMAKE_CURRENT_SOURCE_DIR}"
+         "-DHAZKEY_SERVER_ZENZAI_TRAIT=${HAZKEY_SERVER_ZENZAI_TRAIT}"
+         "-DLIBLLAMA_DIR=${HAZKEY_SERVER_LIBLLAMA_BINDIR}"
++        "-DCMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME}"
++        "-DFREEBSD_CLANG_21_OR_GREATER=${FREEBSD_CLANG_21_OR_GREATER}"
+         -P "${CMAKE_CURRENT_SOURCE_DIR}/build_swift.cmake"
+     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+     COMMENT "Building hazkey-server"

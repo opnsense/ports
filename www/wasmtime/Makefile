@@ -1,7 +1,7 @@
 PORTNAME=	wasmtime
 DISTVERSIONPREFIX=	v
-DISTVERSION=	46.0.1
-PORTREVISION=	1
+DISTVERSION=	47.0.3
+PORTREVISION=	0
 CATEGORIES=	www
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -26,14 +26,13 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		alloca-0.4.0 \
 		allocator-api2-0.2.20 \
 		ambient-authority-0.0.2 \
-		android_system_properties-0.1.5 \
 		anes-0.1.6 \
 		anstream-0.6.21 \
 		anstyle-1.0.13 \
 		anstyle-parse-0.2.7 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
-		anyhow-1.0.102 \
+		anyhow-1.0.103 \
 		arbitrary-1.4.2 \
 		arbtest-0.3.2 \
 		async-task-4.7.1 \
@@ -58,11 +57,9 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		bzip2-0.4.4 \
 		bzip2-sys-0.1.11+1.0.8 \
 		camino-1.1.4 \
-		cap-fs-ext-3.4.5 \
-		cap-net-ext-3.4.5 \
-		cap-primitives-3.4.5 \
-		cap-std-3.4.5 \
-		cap-time-ext-3.4.5 \
+		cap-fs-ext-4.0.2 \
+		cap-primitives-4.0.2 \
+		cap-std-4.0.2 \
 		capstone-0.14.0 \
 		capstone-sys-0.18.0 \
 		cargo-platform-0.1.2 \
@@ -88,7 +85,7 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		constant_time_eq-0.1.5 \
 		core-foundation-0.9.4 \
 		core-foundation-sys-0.8.6 \
-		cpp_demangle-0.4.3 \
+		cpp_demangle-0.5.1 \
 		cpufeatures-0.2.7 \
 		cpufeatures-0.3.0 \
 		crc32fast-1.3.2 \
@@ -109,7 +106,7 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		dirs-sys-next-0.1.2 \
 		displaydoc-0.2.5 \
 		dlmalloc-0.2.4 \
-		easy-smt-0.2.2 \
+		easy-smt-0.3.2 \
 		egg-0.6.0 \
 		either-1.13.0 \
 		embedded-io-0.4.0 \
@@ -124,7 +121,6 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		fallible-iterator-0.3.0 \
 		fastrand-1.9.0 \
 		fastrand-2.3.0 \
-		fd-lock-4.0.4 \
 		file-per-thread-logger-0.2.0 \
 		filecheck-0.5.0 \
 		filetime-0.2.16 \
@@ -168,7 +164,6 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		hashbrown-0.15.2 \
 		hashbrown-0.16.1 \
 		hashbrown-0.17.0 \
-		heck-0.4.1 \
 		heck-0.5.0 \
 		hermit-abi-0.5.2 \
 		hmac-0.12.1 \
@@ -180,8 +175,6 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		httpdate-1.0.2 \
 		humantime-2.1.0 \
 		hyper-1.9.0 \
-		iana-time-zone-0.1.61 \
-		iana-time-zone-haiku-0.1.2 \
 		icu_collections-1.5.0 \
 		icu_locid-1.5.0 \
 		icu_locid_transform-1.5.0 \
@@ -199,8 +192,9 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		indexmap-2.14.0 \
 		inout-0.1.3 \
 		instant-0.1.13 \
-		io-extras-0.18.4 \
+		io-extras-0.19.0 \
 		io-lifetimes-2.0.3 \
+		io-lifetimes-3.0.1 \
 		ipnet-2.5.0 \
 		is-terminal-0.4.17 \
 		is_terminal_polyfill-1.70.1 \
@@ -210,8 +204,7 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		ittapi-0.4.0 \
 		ittapi-sys-0.4.0 \
 		jobserver-0.1.32 \
-		js-sys-0.3.74 \
-		json-from-wast-0.251.0 \
+		json-from-wast-0.252.0 \
 		lazy_static-1.4.0 \
 		leb128-0.2.5 \
 		leb128fmt-0.1.0 \
@@ -222,7 +215,6 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		libtest-mimic-0.8.1 \
 		linux-raw-sys-0.4.14 \
 		linux-raw-sys-0.12.1 \
-		listenfd-1.0.0 \
 		litemap-0.7.4 \
 		log-0.4.28 \
 		logos-0.14.2 \
@@ -237,16 +229,17 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		maybe-owned-0.3.4 \
 		memchr-2.7.6 \
 		memfd-0.6.5 \
-		memmap2-0.2.3 \
+		memmap2-0.9.11 \
 		minimal-lexical-0.2.1 \
 		miniz_oxide-0.8.9 \
 		mio-1.2.0 \
-		mutatis-0.4.0 \
-		mutatis-derive-0.4.0 \
+		mutatis-0.5.2 \
+		mutatis-derive-0.5.2 \
 		native-tls-0.2.14 \
 		ndarray-0.15.6 \
 		nom-7.1.3 \
 		nu-ansi-term-0.50.3 \
+		num-bigint-0.4.6 \
 		num-complex-0.4.6 \
 		num-conv-0.2.1 \
 		num-integer-0.1.46 \
@@ -277,6 +270,10 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		pbkdf2-0.11.0 \
 		pem-rfc7468-0.7.0 \
 		percent-encoding-2.3.2 \
+		pest-2.8.6 \
+		pest_derive-2.8.6 \
+		pest_generator-2.8.6 \
+		pest_meta-2.8.6 \
 		petgraph-0.6.5 \
 		pin-project-lite-0.2.14 \
 		pin-utils-0.1.0 \
@@ -343,7 +340,7 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		shuffling-allocator-1.1.2 \
 		signal-hook-registry-1.4.1 \
 		simd-adler32-0.3.7 \
-		similar-2.7.0 \
+		similar-3.1.1 \
 		slab-0.4.11 \
 		smallvec-1.15.1 \
 		smallvec-2.0.0-alpha.10 \
@@ -355,16 +352,12 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		static_assertions-1.1.0 \
 		string-interner-0.19.0 \
 		strsim-0.11.1 \
-		strum-0.24.1 \
-		strum_macros-0.24.3 \
 		subtle-2.5.0 \
 		symbolic_expressions-5.0.3 \
-		syn-1.0.92 \
 		syn-2.0.106 \
 		synstructure-0.13.1 \
-		system-interface-0.27.3 \
 		tar-0.4.46 \
-		target-lexicon-0.13.3 \
+		target-lexicon-0.13.5 \
 		tch-0.17.0 \
 		tempfile-3.27.0 \
 		termcolor-1.4.1 \
@@ -398,8 +391,9 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		tracing-subscriber-0.3.20 \
 		try-lock-0.2.4 \
 		typenum-1.15.0 \
+		ucd-trie-0.1.7 \
 		unarray-0.1.4 \
-		unicode-ident-1.0.19 \
+		unicode-ident-1.0.24 \
 		unicode-segmentation-1.11.0 \
 		unicode-width-0.1.9 \
 		unicode-width-0.2.0 \
@@ -428,35 +422,30 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		wasip1-1.0.0 \
 		wasip2-1.0.0+wasi-0.2.4 \
 		wasip3-0.4.0+wasi-0.3.0-rc-2026-01-06 \
-		wasm-bindgen-0.2.97 \
-		wasm-bindgen-backend-0.2.97 \
-		wasm-bindgen-macro-0.2.97 \
-		wasm-bindgen-macro-support-0.2.97 \
-		wasm-bindgen-shared-0.2.97 \
-		wasm-compose-0.251.0 \
+		wasm-compose-0.252.0 \
 		wasm-encoder-0.244.0 \
-		wasm-encoder-0.247.0 \
 		wasm-encoder-0.251.0 \
+		wasm-encoder-0.252.0 \
 		wasm-metadata-0.244.0 \
-		wasm-metadata-0.247.0 \
 		wasm-metadata-0.251.0 \
-		wasm-mutate-0.251.0 \
-		wasm-smith-0.251.0 \
-		wasm-wave-0.251.0 \
+		wasm-metadata-0.252.0 \
+		wasm-mutate-0.252.0 \
+		wasm-smith-0.252.0 \
+		wasm-wave-0.252.0 \
 		wasmi-1.0.8 \
 		wasmi_collections-1.0.8 \
 		wasmi_core-1.0.8 \
 		wasmi_ir-1.0.8 \
 		wasmparser-0.228.0 \
 		wasmparser-0.244.0 \
-		wasmparser-0.247.0 \
 		wasmparser-0.251.0 \
-		wasmprinter-0.251.0 \
+		wasmparser-0.252.0 \
+		wasmprinter-0.252.0 \
 		wast-35.0.2 \
-		wast-251.0.0 \
-		wat-1.251.0 \
+		wast-252.0.0 \
+		wat-1.252.0 \
 		webpki-root-certs-1.0.4 \
-		webpki-roots-0.26.1 \
+		webpki-roots-1.0.7 \
 		which-6.0.3 \
 		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
@@ -483,20 +472,20 @@ CARGO_CRATES=	addr2line-0.25.1 \
 		winx-0.36.4 \
 		wit-bindgen-0.45.1 \
 		wit-bindgen-0.51.0 \
-		wit-bindgen-0.57.0 \
+		wit-bindgen-0.58.0 \
 		wit-bindgen-core-0.51.0 \
-		wit-bindgen-core-0.57.0 \
+		wit-bindgen-core-0.58.0 \
 		wit-bindgen-rt-0.33.0 \
 		wit-bindgen-rust-0.51.0 \
-		wit-bindgen-rust-0.57.0 \
+		wit-bindgen-rust-0.58.0 \
 		wit-bindgen-rust-macro-0.51.0 \
-		wit-bindgen-rust-macro-0.57.0 \
+		wit-bindgen-rust-macro-0.58.0 \
 		wit-component-0.244.0 \
-		wit-component-0.247.0 \
 		wit-component-0.251.0 \
+		wit-component-0.252.0 \
 		wit-parser-0.244.0 \
-		wit-parser-0.247.0 \
 		wit-parser-0.251.0 \
+		wit-parser-0.252.0 \
 		witx-0.9.1 \
 		write16-1.0.0 \
 		writeable-0.5.5 \

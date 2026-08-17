@@ -1,5 +1,5 @@
 PORTNAME=	ruff
-DISTVERSION=	0.15.21
+DISTVERSION=	0.16.2
 CATEGORIES=	devel python
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,6 +10,8 @@ WWW=		https://astral.sh/ \
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	rustc-LLVM ERROR: out of memory
 
 BUILD_DEPENDS=	gmake:devel/gmake
 LIB_DEPENDS=	libzstd.so:archivers/zstd

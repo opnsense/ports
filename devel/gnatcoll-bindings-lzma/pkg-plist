@@ -1,0 +1,16 @@
+include/gnatcoll-bindings/lzma/gnatcoll-coders-lzma-thin.ads
+include/gnatcoll-bindings/lzma/gnatcoll-coders-lzma.adb
+include/gnatcoll-bindings/lzma/gnatcoll-coders-lzma.ads
+lib/gnatcoll-bindings/lzma/relocatable/libgnatcoll_lzma.so
+lib/gnatcoll-bindings/lzma/relocatable/libgnatcoll_lzma.so.%%SO_VERSION%%
+lib/gnatcoll-bindings/lzma/static-pic/libgnatcoll_lzma.a
+lib/gnatcoll-bindings/lzma/static/libgnatcoll_lzma.a
+lib/libgnatcoll_lzma.so
+lib/libgnatcoll_lzma.so.%%SO_VERSION%%
+libdata/gnatcoll-bindings/lzma/relocatable/gnatcoll-coders-lzma-thin.ali
+libdata/gnatcoll-bindings/lzma/relocatable/gnatcoll-coders-lzma.ali
+libdata/gnatcoll-bindings/lzma/static-pic/gnatcoll-coders-lzma-thin.ali
+libdata/gnatcoll-bindings/lzma/static-pic/gnatcoll-coders-lzma.ali
+libdata/gnatcoll-bindings/lzma/static/gnatcoll-coders-lzma-thin.ali
+libdata/gnatcoll-bindings/lzma/static/gnatcoll-coders-lzma.ali
+share/gpr/gnatcoll_lzma.gpr

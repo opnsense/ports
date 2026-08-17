@@ -1,5 +1,5 @@
 PORTNAME=	girara
-DISTVERSION=	2026.07.07
+DISTVERSION=	2026.07.18
 CATEGORIES=	x11-toolkits graphics
 MASTER_SITES=	https://pwmt.org/projects/girara/download/
 

@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2025-05-20 11:17:10 UTC
+--- CMakeLists.txt.orig	2026-05-06 22:31:54 UTC
 +++ CMakeLists.txt
-@@ -908,6 +908,8 @@ OCCT_INCLUDE_CMAKE_FILE ("adm/cmake/occt_defs_flags")
+@@ -977,6 +977,8 @@ OCCT_INCLUDE_CMAKE_FILE ("adm/cmake/occt_defs_flags")
  # include original list of definitions and flags
  OCCT_INCLUDE_CMAKE_FILE ("adm/cmake/occt_defs_flags")
  
@@ -9,7 +9,7 @@
  foreach (OCCT_3RDPARTY_LIST ${OCCT_3RDPARTY_CMAKE_LIST})
    OCCT_INCLUDE_CMAKE_FILE (${OCCT_3RDPARTY_LIST})
  endforeach()
-@@ -1101,7 +1103,7 @@ endif()
+@@ -1143,7 +1145,7 @@ endif()
  endif()
  
  # validating custom.bat/sh for changes
@@ -18,7 +18,28 @@
    file (READ "${INSTALL_DIR}/${INSTALL_DIR_SCRIPT}/custom.${SCRIPT_EXT}" CUSTOM_CONTENT)
    string(FIND "${CUSTOM_CONTENT}" "${ADDITIONAL_CUSTOM_CONTENT}" pos)
    if (pos EQUAL -1)
-@@ -1340,7 +1342,7 @@ install (CODE "string (TOLOWER \"\${CMAKE_INSTALL_CONF
+@@ -1219,13 +1221,13 @@ else()
+     set \"CSF_OCCTTestsPath=%CASROOT%/${INSTALL_DIR_TESTS}\"
+     set \"CSF_OCCTDocPath=%CASROOT%/${INSTALL_DIR_DOC}\"")
+   else()
+-    set (OCCT_CUSTOM_BIN_LIB_PATHS "export CSF_OCCTBinPath=\"\${CASROOT}/${INSTALL_DIR_BIN}\"
+-    export CSF_OCCTLibPath=\"\${CASROOT}/${INSTALL_DIR_LIB}\"")
+-    set (OCCT_CUSTOM_ADDITIONAL_PATHS "export CSF_OCCTIncludePath=\"\${CASROOT}/${INSTALL_DIR_INCLUDE}\"
+-    export CSF_OCCTResourcePath=\"\${CASROOT}/${INSTALL_DIR_RESOURCE}\"
+-    export CSF_OCCTDataPath=\"\${CASROOT}/${INSTALL_DIR_DATA}\"
+-    export CSF_OCCTTestsPath=\"\${CASROOT}/${INSTALL_DIR_TESTS}\"
+-    export CSF_OCCTDocPath=\"\${CASROOT}/${INSTALL_DIR_DOC}\"")
++    set (OCCT_CUSTOM_BIN_LIB_PATHS "export CSF_OCCTBinPath=\"\${INSTALL_DIR_BIN}\"
++    export CSF_OCCTLibPath=\"\${INSTALL_DIR_LIB}\"")
++    set (OCCT_CUSTOM_ADDITIONAL_PATHS "export CSF_OCCTIncludePath=\"\${INSTALL_DIR_INCLUDE}\"
++    export CSF_OCCTResourcePath=\"\${INSTALL_DIR_RESOURCE}\"
++    export CSF_OCCTDataPath=\"\${INSTALL_DIR_DATA}\"
++    export CSF_OCCTTestsPath=\"\${INSTALL_DIR_TESTS}\"
++    export CSF_OCCTDocPath=\"\${INSTALL_DIR_DOC}\"")
+   endif()
+ endif()
+ 
+@@ -1427,7 +1429,7 @@ install (CODE "string (TOLOWER \"\${CMAKE_INSTALL_CONF
  endforeach()
  # install OpenCASCADE config file with compile definitions and C/C++ flags ONLY for current configuration
  install (CODE "string (TOLOWER \"\${CMAKE_INSTALL_CONFIG_NAME}\" CMAKE_INSTALL_CONFIG_NAME_LOWER)")

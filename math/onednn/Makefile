@@ -1,6 +1,6 @@
 PORTNAME=	onednn
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.12.2
+DISTVERSION=	3.13
 CATEGORIES=	math # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -26,7 +26,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	oneapi-src
 GH_PROJECT=	oneDNN
 
-CMAKE_OFF=	DNNL_BUILD_TESTS DNNL_BUILD_EXAMPLES
+CMAKE_OFF=	BUILD_TESTS BUILD_EXAMPLES
 
 OPTIONS_DEFAULT=		SIMD_DEFAULT OPENMP
 OPTIONS_SINGLE=			SIMD CPU_RUNTIME
@@ -80,10 +80,10 @@ post-install:
 do-test: # 1 test fails, see https://github.com/oneapi-src/oneDNN/issues/2011
 	@${REINPLACE_CMD} 's| /bin/bash | ${LOCALBASE}/bin/bash |' ${WRKSRC}/tests/CMakeLists.txt
 	@cd ${BUILD_WRKSRC} && \
-		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -DDNNL_BUILD_TESTS=ON ${CMAKE_SOURCE_PATH} && \
+		${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS} -DBUILD_TESTS=ON ${CMAKE_SOURCE_PATH} && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${ALL_TARGET} && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} test
 
-# tests as of 3.12.1: 100% tests passed, 0 tests failed out of 175
+# tests as of 3.13: 100% tests passed, 0 tests failed out of 236
 
 .include <bsd.port.mk>

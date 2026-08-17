@@ -3,6 +3,9 @@
 %%MANPAGES%%share/man/man1/glab-alias-set.1.gz
 %%MANPAGES%%share/man/man1/glab-alias.1.gz
 %%MANPAGES%%share/man/man1/glab-api.1.gz
+%%MANPAGES%%share/man/man1/glab-artifact-registry-get-token.1.gz
+%%MANPAGES%%share/man/man1/glab-artifact-registry-status.1.gz
+%%MANPAGES%%share/man/man1/glab-artifact-registry.1.gz
 %%MANPAGES%%share/man/man1/glab-attestation-verify.1.gz
 %%MANPAGES%%share/man/man1/glab-attestation.1.gz
 %%MANPAGES%%share/man/man1/glab-auth-configure-docker.1.gz
@@ -60,6 +63,9 @@
 %%MANPAGES%%share/man/man1/glab-container-registry-tag-view.1.gz
 %%MANPAGES%%share/man/man1/glab-container-registry-tag.1.gz
 %%MANPAGES%%share/man/man1/glab-container-registry.1.gz
+%%MANPAGES%%share/man/man1/glab-dependency-firewall-ci-summary.1.gz
+%%MANPAGES%%share/man/man1/glab-dependency-firewall-configure.1.gz
+%%MANPAGES%%share/man/man1/glab-dependency-firewall.1.gz
 %%MANPAGES%%share/man/man1/glab-deploy-key-add.1.gz
 %%MANPAGES%%share/man/man1/glab-deploy-key-delete.1.gz
 %%MANPAGES%%share/man/man1/glab-deploy-key-get.1.gz
@@ -225,6 +231,7 @@
 %%MANPAGES%%share/man/man1/glab-securefile-get.1.gz
 %%MANPAGES%%share/man/man1/glab-securefile-list.1.gz
 %%MANPAGES%%share/man/man1/glab-securefile-remove.1.gz
+%%MANPAGES%%share/man/man1/glab-securefile-update.1.gz
 %%MANPAGES%%share/man/man1/glab-securefile.1.gz
 %%MANPAGES%%share/man/man1/glab-security-config-disable.1.gz
 %%MANPAGES%%share/man/man1/glab-security-config-enable.1.gz
@@ -269,6 +276,7 @@
 %%MANPAGES%%share/man/man1/glab-variable-delete.1.gz
 %%MANPAGES%%share/man/man1/glab-variable-export.1.gz
 %%MANPAGES%%share/man/man1/glab-variable-get.1.gz
+%%MANPAGES%%share/man/man1/glab-variable-import.1.gz
 %%MANPAGES%%share/man/man1/glab-variable-list.1.gz
 %%MANPAGES%%share/man/man1/glab-variable-set.1.gz
 %%MANPAGES%%share/man/man1/glab-variable-update.1.gz

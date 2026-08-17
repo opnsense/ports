@@ -57,9 +57,6 @@ bin/writefreely
 %%WWWDIR%%/static/fonts/Lora-Regular.ttf
 %%WWWDIR%%/static/fonts/Lora-Regular.woff
 %%WWWDIR%%/static/fonts/Lora-Regular.woff2
-%%WWWDIR%%/static/fonts/MaterialIcons-Regular.eot
-%%WWWDIR%%/static/fonts/MaterialIcons-Regular.svg
-%%WWWDIR%%/static/fonts/MaterialIcons-Regular.ttf
 %%WWWDIR%%/static/fonts/MaterialIcons-Regular.woff
 %%WWWDIR%%/static/fonts/MaterialIcons-Regular.woff2
 %%WWWDIR%%/static/fonts/open-sans-v13-latin-700.eot
@@ -122,6 +119,8 @@ bin/writefreely
 %%WWWDIR%%/static/img/ic_info_dark@2x.png
 %%WWWDIR%%/static/img/ic_list@2x.png
 %%WWWDIR%%/static/img/ic_list_dark@2x.png
+%%WWWDIR%%/static/img/ic_preview@2x.png
+%%WWWDIR%%/static/img/ic_preview_dark@2x.png
 %%WWWDIR%%/static/img/ic_send@2x.png
 %%WWWDIR%%/static/img/ic_send_dark@2x.png
 %%WWWDIR%%/static/img/mark/gitea.png

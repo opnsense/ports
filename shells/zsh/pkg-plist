@@ -344,6 +344,7 @@ bin/zsh-%%ZSH_VER%%
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_mat
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_mat2
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_mdadm
+%%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_namei
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_mii-tool
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_modutils
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Linux/_mondo
@@ -414,6 +415,7 @@ bin/zsh-%%ZSH_VER%%
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Solaris/_zoneadm
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Solaris/_zones
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix.zwc
+%%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_age
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_7zip
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_a2ps
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_aap
@@ -571,6 +573,7 @@ bin/zsh-%%ZSH_VER%%
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_gnu_generic
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_gnupod
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_gnutls
+%%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_hardlink
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_go
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_gpg
 %%DATADIR%%/%%ZSH_VER%%/functions/Completion/Unix/_gphoto2

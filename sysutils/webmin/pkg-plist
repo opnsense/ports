@@ -88,6 +88,7 @@ lib/webmin/acl/lang/cs.auto
 lib/webmin/acl/lang/da
 lib/webmin/acl/lang/da.auto
 lib/webmin/acl/lang/de
+lib/webmin/acl/lang/de.auto
 lib/webmin/acl/lang/de.neutral
 lib/webmin/acl/lang/el
 lib/webmin/acl/lang/el.auto
@@ -3506,6 +3507,7 @@ lib/webmin/blue-theme/gray-theme-lib.pl
 lib/webmin/blue-theme/grub/images/chain.gif
 lib/webmin/blue-theme/grub/images/icon.gif
 lib/webmin/blue-theme/grub/images/kernel.gif
+lib/webmin/blue-theme/grub2/images/icon.gif
 lib/webmin/blue-theme/heartbeat/images/auth.gif
 lib/webmin/blue-theme/heartbeat/images/conf.gif
 lib/webmin/blue-theme/heartbeat/images/icon.gif
@@ -3645,6 +3647,7 @@ lib/webmin/blue-theme/iscsi-target/images/targets.gif
 lib/webmin/blue-theme/iscsi-target/images/timeout.gif
 lib/webmin/blue-theme/jabber/images/icon.gif
 lib/webmin/blue-theme/jsample/images/icon.gif
+lib/webmin/blue-theme/kea-dhcp/images/icon.gif
 lib/webmin/blue-theme/krb5/images/icon.gif
 lib/webmin/blue-theme/lang/ar.auto
 lib/webmin/blue-theme/lang/bg.auto
@@ -6072,6 +6075,7 @@ lib/webmin/custom/module.info.zh_TW
 lib/webmin/custom/module.info.zh_TW.auto
 lib/webmin/custom/prefs.info
 lib/webmin/custom/run.cgi
+lib/webmin/custom/safeacl
 lib/webmin/custom/save.cgi
 lib/webmin/custom/save_cmd.cgi
 lib/webmin/custom/save_file.cgi
@@ -8905,6 +8909,7 @@ lib/webmin/gray-theme/gray-theme-lib.pl
 lib/webmin/gray-theme/grub/images/chain.gif
 lib/webmin/gray-theme/grub/images/icon.gif
 lib/webmin/gray-theme/grub/images/kernel.gif
+lib/webmin/gray-theme/grub2/images/icon.gif
 lib/webmin/gray-theme/heartbeat/images/auth.gif
 lib/webmin/gray-theme/heartbeat/images/conf.gif
 lib/webmin/gray-theme/heartbeat/images/icon.gif
@@ -9044,6 +9049,7 @@ lib/webmin/gray-theme/iscsi-target/images/targets.gif
 lib/webmin/gray-theme/iscsi-target/images/timeout.gif
 lib/webmin/gray-theme/jabber/images/icon.gif
 lib/webmin/gray-theme/jsample/images/icon.gif
+lib/webmin/gray-theme/kea-dhcp/images/icon.gif
 lib/webmin/gray-theme/krb5/images/icon.gif
 lib/webmin/gray-theme/lang/ar.auto
 lib/webmin/gray-theme/lang/bg.auto
@@ -9593,6 +9599,7 @@ lib/webmin/grub2/generate.cgi
 lib/webmin/grub2/grub2-lib.pl
 lib/webmin/grub2/help/help.zip
 lib/webmin/grub2/images/defaults.svg
+lib/webmin/grub2/images/icon.gif
 lib/webmin/grub2/images/install.svg
 lib/webmin/grub2/images/manual.svg
 lib/webmin/grub2/images/security.svg
@@ -11630,6 +11637,7 @@ lib/webmin/kea-dhcp/edit_shared.cgi
 lib/webmin/kea-dhcp/edit_subnet.cgi
 lib/webmin/kea-dhcp/edit_text.cgi
 lib/webmin/kea-dhcp/help/help.zip
+lib/webmin/kea-dhcp/images/icon.gif
 lib/webmin/kea-dhcp/index.cgi
 lib/webmin/kea-dhcp/install_check.pl
 lib/webmin/kea-dhcp/kea-dhcp-lib.pl
@@ -13301,6 +13309,7 @@ lib/webmin/man/view_kernel.cgi
 lib/webmin/man/view_man.cgi
 lib/webmin/man/view_perl.cgi
 lib/webmin/mime.types
+lib/webmin/miniserv-lib.pl
 lib/webmin/miniserv.pem
 lib/webmin/miniserv.pl
 lib/webmin/module_chooser.cgi
@@ -13825,6 +13834,7 @@ lib/webmin/mysql/table_form.cgi
 lib/webmin/mysql/useradmin_update.pl
 lib/webmin/mysql/view-lib.pl
 lib/webmin/mysql/view_table.cgi
+lib/webmin/negativeacl
 lib/webmin/net/CHANGELOG
 lib/webmin/net/acl_security.pl
 lib/webmin/net/alpine-linux-lib.pl

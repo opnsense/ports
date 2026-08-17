@@ -1,0 +1,6 @@
+GNATColl Bindings Ada Packages provides bindings to programming and
+scripting languages, libraries, and system services.
+
+This is the OpenMP component of the GNAT Components Collection. It provides
+parallel implementations of Ada APIs (e.g. sorting) using the OpenMP library,
+provided by GCC.

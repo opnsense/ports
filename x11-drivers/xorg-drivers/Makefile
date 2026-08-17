@@ -5,7 +5,7 @@ CATEGORIES=	x11-drivers
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	X.org drivers meta-port
-WWW=		https://www.x.org/
+WWW=		https://gitlab.freedesktop.org/groups/xorg/driver
 
 VIDEODIR=	${LOCALBASE}/lib/xorg/modules/drivers
 INPUTDIR=	${LOCALBASE}/lib/xorg/modules/input
@@ -25,7 +25,9 @@ INPUT_DRIVERS=		egalax \
 
 VIDEO_DRIVERS=		ast \
 			dummy \
+			mga \
 			nv \
+			qxl \
 			scfb \
 			vesa
 
@@ -44,12 +46,11 @@ ${a:tu}_DESC=		Install ${a} ${type} driver
 OPTIONS_DEFINE_amd64=	AMDGPU ATI INTEL VMMOUSE VMWARE
 OPTIONS_DEFAULT_amd64=	VESA
 
-OPTIONS_DEFINE_i386:=	${OPTIONS_DEFINE_amd64} GEODE
+OPTIONS_DEFINE_i386:=	${OPTIONS_DEFINE_amd64}
 OPTIONS_DEFAULT_i386:=	${OPTIONS_DEFAULT_amd64}
 
 AMDGPU_DESC=		Install amdgpu video driver
 ATI_DESC=		Install ati (radeon) video driver
-GEODE_DESC=		Install geode video driver
 INTEL_DESC=		Install intel video driver
 VMMOUSE_DESC=		Install vmmouse input driver
 VMWARE_DESC=		Install vmware video driver
@@ -63,10 +64,6 @@ QUIRKS=		keyboard:kbd
 .if ${ARCH}==i386 || ${ARCH}==amd64
 INPUT_DRIVERS+= vmmouse
 VIDEO_DRIVERS+=	amdgpu ati intel vmware
-.endif
-
-.if ${ARCH}==i386
-VIDEO_DRIVERS+= geode
 .endif
 
 .for type in input video

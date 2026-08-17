@@ -22,7 +22,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fenics-ufl>=2026.1.0:math/py-fenics-ufl@${P
 		${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sympy>0:math/py-sympy@${PY_FLAVOR}
 
-USES=		localbase python
+USES=		cmake:indirect localbase python
 USE_PYTHON=	pep517 autoplist pytest
 
 USE_GITHUB=	yes

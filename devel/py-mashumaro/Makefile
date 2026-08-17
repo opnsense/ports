@@ -1,10 +1,10 @@
 PORTNAME=	mashumaro
-DISTVERSION=	3.17
+DISTVERSION=	3.22
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	pat@patmaddox.com
+MAINTAINER=	patmaddox@FreeBSD.org
 COMMENT=	Fast serialization library on top of dataclasses
 WWW=		https://github.com/Fatal1ty/mashumaro
 

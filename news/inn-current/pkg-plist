@@ -46,6 +46,8 @@ bin/filter/nnrpd.py
 bin/gencancel
 bin/getlist
 bin/grephistory
+bin/hissqlite-convert
+bin/hissqlite-util
 bin/imapfeed
 @(,news,%%MODE_INEWS%%) bin/inews
 bin/inncheck
@@ -157,6 +159,7 @@ include/inn/portable-stdbool.h
 include/inn/qio.h
 include/inn/secrets.h
 include/inn/sequence.h
+include/inn/sqlite-helper.h
 include/inn/storage.h
 include/inn/system.h
 include/inn/timer.h
@@ -226,7 +229,9 @@ share/man/man5/cycbuff.conf.5.gz
 share/man/man5/distrib.pats.5.gz
 share/man/man5/distributions.5.gz
 share/man/man5/expire.ctl.5.gz
+share/man/man5/hissqlite.5.gz
 share/man/man5/history.5.gz
+share/man/man5/hisv6.5.gz
 share/man/man5/incoming.conf.5.gz
 share/man/man5/inn-radius.conf.5.gz
 share/man/man5/inn-secrets.conf.5.gz
@@ -269,6 +274,8 @@ share/man/man8/domain.8.gz
 share/man/man8/expire.8.gz
 share/man/man8/expireover.8.gz
 share/man/man8/expirerm.8.gz
+share/man/man8/hissqlite-convert.8.gz
+share/man/man8/hissqlite-util.8.gz
 share/man/man8/ident.8.gz
 share/man/man8/imapfeed.8.gz
 share/man/man8/innbind.8.gz

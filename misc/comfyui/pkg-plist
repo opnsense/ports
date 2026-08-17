@@ -1,5 +1,5 @@
-bin/comfyui
 %%DATADIR%%/.spectral.yaml
+%%DATADIR%%/AGENTS.md
 %%DATADIR%%/CODEOWNERS
 %%DATADIR%%/CONTRIBUTING.md
 %%DATADIR%%/LICENSE
@@ -14,6 +14,8 @@ bin/comfyui
 %%DATADIR%%/alembic_db/versions/0002_merge_to_asset_references.py
 %%DATADIR%%/alembic_db/versions/0003_add_metadata_job_id.py
 %%DATADIR%%/alembic_db/versions/0004_drop_tag_type.py
+%%DATADIR%%/alembic_db/versions/0005_allow_case_sensitive_tags.py
+%%DATADIR%%/alembic_db/versions/0006_add_loader_path.py
 %%DATADIR%%/api_server/__init__.py
 %%DATADIR%%/api_server/routes/__init__.py
 %%DATADIR%%/api_server/routes/internal/README.md
@@ -186,6 +188,7 @@ bin/comfyui
 %%DATADIR%%/comfy/clip_vision_siglip2_base_naflex.json
 %%DATADIR%%/comfy/clip_vision_siglip_384.json
 %%DATADIR%%/comfy/clip_vision_siglip_512.json
+%%DATADIR%%/comfy/comfy_api_env.py
 %%DATADIR%%/comfy/comfy_types/README.md
 %%DATADIR%%/comfy/comfy_types/__init__.py
 %%DATADIR%%/comfy/comfy_types/examples/example_nodes.py
@@ -345,6 +348,11 @@ bin/comfyui
 %%DATADIR%%/comfy/ldm/sam3/detector.py
 %%DATADIR%%/comfy/ldm/sam3/sam.py
 %%DATADIR%%/comfy/ldm/sam3/tracker.py
+%%DATADIR%%/comfy/ldm/seedvr/attention.py
+%%DATADIR%%/comfy/ldm/seedvr/color_fix.py
+%%DATADIR%%/comfy/ldm/seedvr/constants.py
+%%DATADIR%%/comfy/ldm/seedvr/model.py
+%%DATADIR%%/comfy/ldm/seedvr/vae.py
 %%DATADIR%%/comfy/ldm/supir/__init__.py
 %%DATADIR%%/comfy/ldm/supir/supir_modules.py
 %%DATADIR%%/comfy/ldm/supir/supir_patch.py
@@ -546,7 +554,7 @@ bin/comfyui
 %%DATADIR%%/comfy_api_nodes/apis/reve.py
 %%DATADIR%%/comfy_api_nodes/apis/rodin.py
 %%DATADIR%%/comfy_api_nodes/apis/runway.py
-%%DATADIR%%/comfy_api_nodes/apis/stability.py
+%%DATADIR%%/comfy_api_nodes/apis/sync_so.py
 %%DATADIR%%/comfy_api_nodes/apis/topaz.py
 %%DATADIR%%/comfy_api_nodes/apis/tripo.py
 %%DATADIR%%/comfy_api_nodes/apis/veo.py
@@ -582,7 +590,7 @@ bin/comfyui
 %%DATADIR%%/comfy_api_nodes/nodes_runway.py
 %%DATADIR%%/comfy_api_nodes/nodes_sonilo.py
 %%DATADIR%%/comfy_api_nodes/nodes_sora.py
-%%DATADIR%%/comfy_api_nodes/nodes_stability.py
+%%DATADIR%%/comfy_api_nodes/nodes_sync_so.py
 %%DATADIR%%/comfy_api_nodes/nodes_topaz.py
 %%DATADIR%%/comfy_api_nodes/nodes_tripo.py
 %%DATADIR%%/comfy_api_nodes/nodes_veo2.py
@@ -716,11 +724,14 @@ bin/comfyui
 %%DATADIR%%/comfy_extras/nodes_sdpose.py
 %%DATADIR%%/comfy_extras/nodes_sdupscale.py
 %%DATADIR%%/comfy_extras/nodes_seed.py
+%%DATADIR%%/comfy_extras/nodes_seedvr.py
 %%DATADIR%%/comfy_extras/nodes_slg.py
 %%DATADIR%%/comfy_extras/nodes_stable3d.py
 %%DATADIR%%/comfy_extras/nodes_stable_cascade.py
 %%DATADIR%%/comfy_extras/nodes_string.py
 %%DATADIR%%/comfy_extras/nodes_tcfg.py
+%%DATADIR%%/comfy_extras/nodes_text.py
+%%DATADIR%%/comfy_extras/nodes_text_overlay.py
 %%DATADIR%%/comfy_extras/nodes_textgen.py
 %%DATADIR%%/comfy_extras/nodes_tomesd.py
 %%DATADIR%%/comfy_extras/nodes_toolkit.py
@@ -820,6 +831,7 @@ bin/comfyui
 %%DATADIR%%/tests-unit/assets_test/services/__init__.py
 %%DATADIR%%/tests-unit/assets_test/services/conftest.py
 %%DATADIR%%/tests-unit/assets_test/services/test_asset_management.py
+%%DATADIR%%/tests-unit/assets_test/services/test_asset_response_loader_path.py
 %%DATADIR%%/tests-unit/assets_test/services/test_bulk_ingest.py
 %%DATADIR%%/tests-unit/assets_test/services/test_cursor.py
 %%DATADIR%%/tests-unit/assets_test/services/test_enrich.py
@@ -848,9 +860,19 @@ bin/comfyui
 %%DATADIR%%/tests-unit/comfy_extras_test/image_stitch_test.py
 %%DATADIR%%/tests-unit/comfy_extras_test/nodes_math_test.py
 %%DATADIR%%/tests-unit/comfy_extras_test/nodes_number_convert_test.py
+%%DATADIR%%/tests-unit/comfy_extras_test/test_seedvr2_conditioning.py
+%%DATADIR%%/tests-unit/comfy_extras_test/test_seedvr2_nodes.py
+%%DATADIR%%/tests-unit/comfy_extras_test/test_seedvr2_post_processing.py
+%%DATADIR%%/tests-unit/comfy_extras_test/test_seedvr2_temporal_chunk.py
 %%DATADIR%%/tests-unit/comfy_quant/test_mixed_precision.py
 %%DATADIR%%/tests-unit/comfy_test/folder_path_test.py
 %%DATADIR%%/tests-unit/comfy_test/model_detection_test.py
+%%DATADIR%%/tests-unit/comfy_test/seedvr_vae_forward_test.py
+%%DATADIR%%/tests-unit/comfy_test/test_seedvr2_dtype.py
+%%DATADIR%%/tests-unit/comfy_test/test_seedvr2_internals.py
+%%DATADIR%%/tests-unit/comfy_test/test_seedvr2_model.py
+%%DATADIR%%/tests-unit/comfy_test/test_seedvr2_vae_decode.py
+%%DATADIR%%/tests-unit/comfy_test/test_seedvr2_vae_tiled.py
 %%DATADIR%%/tests-unit/deploy_environment_test.py
 %%DATADIR%%/tests-unit/execution_test/preview_method_override_test.py
 %%DATADIR%%/tests-unit/execution_test/test_cache_provider.py
@@ -867,6 +889,11 @@ bin/comfyui
 %%DATADIR%%/tests-unit/prompt_server_test/system_user_endpoint_test.py
 %%DATADIR%%/tests-unit/prompt_server_test/user_manager_test.py
 %%DATADIR%%/tests-unit/requirements.txt
+%%DATADIR%%/tests-unit/security_test/__init__.py
+%%DATADIR%%/tests-unit/security_test/test_ghsa_779p_02_preview_traversal.py
+%%DATADIR%%/tests-unit/security_test/test_ghsa_779p_03_annotated_traversal.py
+%%DATADIR%%/tests-unit/security_test/test_ghsa_779p_04_userdata_xss.py
+%%DATADIR%%/tests-unit/security_test/test_ghsa_779p_05_dangerous_content_types.py
 %%DATADIR%%/tests-unit/seeder_test/test_seeder.py
 %%DATADIR%%/tests-unit/server/utils/file_operations_test.py
 %%DATADIR%%/tests-unit/server_test/test_cache_control.py
@@ -905,7 +932,9 @@ bin/comfyui
 %%DATADIR%%/utils/json_util.py
 %%DATADIR%%/utils/mime_types.py
 /var/db/comfyui/input/example.png
+@dir /var/db/comfyui
 @dir /var/db/comfyui/input
+@dir /var/db/comfyui/models
 @dir /var/db/comfyui/models/audio_encoders
 @dir /var/db/comfyui/models/checkpoints
 @dir /var/db/comfyui/models/clip
@@ -926,9 +955,8 @@ bin/comfyui
 @dir /var/db/comfyui/models/upscale_models
 @dir /var/db/comfyui/models/vae
 @dir /var/db/comfyui/models/vae_approx
-@dir /var/db/comfyui/models
 @dir /var/db/comfyui/output
 @dir /var/db/comfyui/temp
-@dir /var/db/comfyui/user/default
 @dir /var/db/comfyui/user
-@dir /var/db/comfyui
+@dir /var/db/comfyui/user/default
+bin/comfyui

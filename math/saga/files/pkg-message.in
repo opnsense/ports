@@ -17,6 +17,7 @@ Predefined ToolChains in xml format are located under
 A ToolChains manual and cheatsheet can be found at
   %%DATADIR%%/docs
 
+---
 Using the SAGA Python package PySAGA, the majority of all
 SAGA tools and functions, including the Grid Calculator,
 can be used directly in Python. The PySAGA package is
@@ -27,9 +28,23 @@ Python scripts with examples, utilities, and test data
 are located at:
   %%DATADIR%%/python/
 
-A good starting point is the script saga_python_example.py.
+A good starting point is the script %%DATADIR%%/docs/saga_python_example.py.
 Another good example can be found at
   https://sourceforge.net/p/saga-gis/news/2023/10/saga-920-released/
+
+---
+If you want to use SAGA within QGIS (graphics/qgis) via a plugin, you should perform the following steps with your user privileges after installing SAGA and QGIS:
+
+1. If it exists, please first delete the `saga4qgis` directory in the QGIS user’s home directory:
+rm -R ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/saga_provider
+
+2. Now copy the 'SAGA Processing Provider' plugin included with SAGA to the QGIS user’s home directory:
+cp -pRv %%DATADIR%%/resources/saga4qgis/saga_provider ~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/
+
+3. After restarting QGIS for the first time, you must activate the plugin you just installed by checking the box:
+Plugins -> Manage and Install Plugins... -> SAGA Processing Provider
+
+Please note that when using SAGA in QGIS, only a subset of the tools is available. Among other things, there are no interactive tools. We therefore recommend using SAGA directly as a standalone application.
 EOM
 }
 ]

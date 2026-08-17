@@ -1,5 +1,5 @@
 PORTNAME=	libsidplayfp
-DISTVERSION=	3.0.1
+DISTVERSION=	3.0.2
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -22,7 +22,7 @@ CONFIGURE_ARGS=	--disable-static \
 
 INSTALL_TARGET=	install-strip
 
-SIDPLAYFP_SHLIB_VERSION=        7.7.47
+SIDPLAYFP_SHLIB_VERSION=        7.7.48
 STILVIEW_SHLIB_VERSION=         0.0.8
 
 PLIST_SUB+=	SIDPLAYFP_SHLIB_VER=${SIDPLAYFP_SHLIB_VERSION:C/\.[[:digit:].]+//} \

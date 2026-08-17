@@ -5,8 +5,9 @@ CATEGORIES=	x11-fonts
 MASTER_SITES=	http://iotic.com/averia/font-files/GWF/
 DISTNAME=	AveriaGWF
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} AveriaSansGWF${EXTRACT_SUFX} AveriaSerifGWF${EXTRACT_SUFX}
+DIST_SUBDIR=	fonts/${PORTNAME}/${DISTVERSION}
 
-MAINTAINER=	alfix86@gmail.com
+MAINTAINER=	asiciliano@FreeBSD.org
 COMMENT=	Average font
 WWW=		http://iotic.com/averia/
 

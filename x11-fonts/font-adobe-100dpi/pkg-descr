@@ -1,1 +1,6 @@
-This package contains the X.Org Adobe 100dpi font.
+This are the PCF versions of the following Adobe fonts for 100dpi displays:
+- Courier
+- Helvetica
+- New Century Schoolbook
+- Symbol
+- Times

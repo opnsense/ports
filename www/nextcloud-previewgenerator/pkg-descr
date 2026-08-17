@@ -1,0 +1,5 @@
+Nextcloud app that allows admins to pre-generate previews. The app listens to
+edit events and stores this information. Once a cron job is triggered it will
+start preview generation. This means that you can better utilize your system by
+pre-generating previews when your system is normally idle and thus putting less
+load on your machine when the requests are actually served.

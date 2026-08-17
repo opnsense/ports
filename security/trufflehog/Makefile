@@ -1,6 +1,7 @@
 PORTNAME=	trufflehog
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.95.9
+DISTVERSION=	3.96.0
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BROKEN_armv7=	compilation fails see details here: https://github.com/trufflesecurity/trufflehog/issues/3791
 BROKEN_i386=	compilation fails see details here: https://github.com/trufflesecurity/trufflehog/issues/3791
 
-USES=		go:1.25+,modules
+USES=		go:modules
 
 GO_MODULE=	github.com/trufflesecurity/trufflehog/v3
 #GO_TARGET=	./${PORTNAME}

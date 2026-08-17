@@ -1,6 +1,7 @@
 PORTNAME=	zerofs
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.7
+DISTVERSION=	2.0.10
+PORTREVISION=	1
 CATEGORIES=	filesystems sysutils
 
 MAINTAINER=	stephan@lichtenauer.co.za
@@ -29,9 +30,5 @@ RUSTFLAGS+=	--cfg tokio_unstable
 WRKSRC_SUBDIR=	zerofs
 
 PLIST_FILES=	bin/zerofs
-
-post-extract:
-	@cd ${WRKDIR} && \
-		${MV} zerofs_arrow-rs-object-store-01b0349f126c9eda8e7ad8767c7e4868debe3602 arrow-rs-object-store-01b0349f126c9eda8e7ad8767c7e4868debe3602
 
 .include <bsd.port.mk>

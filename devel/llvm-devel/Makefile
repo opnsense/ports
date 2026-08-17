@@ -124,6 +124,7 @@ COMPILER_RT_IMPLIES=	CLANG
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS}
 COMPILER_RT_CONFLICTS_BUILD=${ARCH}-binutils
 DOCS_BUILD_DEPENDS= \
+	${PYTHON_PKGNAMEPREFIX}furo:textproc/py-furo@${PY_FLAVOR} \
 	${PYTHON_PKGNAMEPREFIX}myst-parser>0:textproc/py-myst-parser@${PY_FLAVOR} \
 	${PYTHON_PKGNAMEPREFIX}recommonmark>=0.0.20180530:textproc/py-recommonmark@${PY_FLAVOR} \
 	${PYTHON_PKGNAMEPREFIX}sphinx-markdown-tables>=0:textproc/py-sphinx-markdown-tables@${PY_FLAVOR}
@@ -152,6 +153,8 @@ LLD_DESC=		Install lld, the LLVM linker
 LLDB_BUILD_DEPENDS=	\
 	${PYTHON_PKGNAMEPREFIX}pexpect>0:misc/py-pexpect@${PY_FLAVOR} \
 	swig:devel/swig
+LLDB_CMAKE_ON= \
+	-DLLDB_EXPORT_ALL_SYMBOLS=ON
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_IMPLIES=		CLANG
 LLDB_PLIST_SUB=		PYTHON_ABIVER=${PYTHON_ABIVER}
@@ -345,7 +348,7 @@ _COMPILER_RT_LIBS=
 _COMPILER_RT_LIBS:= ${_COMPILER_RT_LIBS} ${COMPILER_RT_LIBS_${CRT_ARCH}:S|^|${_CRTLIBDIR}/${CRT_ARCH}-portbld-${OPSYS:tl}${OSREL}/|}
 .endfor
 
-COMPILER_RT_IGNORELISTS=
+COMPILER_RT_IGNORELISTS=hwasan_ignorelist.txt
 .for RT in asan cfi msan
 .if ${_COMPILER_RT_LIBS:M*/libclang_rt.${RT}.a}
 COMPILER_RT_IGNORELISTS:=	${COMPILER_RT_IGNORELISTS} ${RT}_ignorelist.txt
@@ -395,6 +398,9 @@ post-install-DOCS-on:
 	${RM} -r ${STAGEDIR}${DOCSDIR}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc/LLVM/* ${STAGEDIR}${DOCSDIR}
+.if ${PORT_OPTIONS:MFLANG}
+	${RMDIR} ${STAGEDIR}${DOCSDIR}/flang/html/_sources
+.endif
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc/LLVM
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc
 .for _man in ${MAN1SRCS}
@@ -428,7 +434,6 @@ post-install-CLANG-on:
 post-install-EXTRAS-on:
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/clang-tidy/cert
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/clang-tidy/misc/ConfusableTable
-	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/clang-tidy/zircon
 
 post-install-FLANG-on:
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/CodeGen/CMakeFiles

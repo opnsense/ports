@@ -1,6 +1,6 @@
 PORTNAME=	comfy-kitchen
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.18
+DISTVERSION=	0.2.22
 CATEGORIES=	misc python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -27,8 +27,9 @@ NO_ARCH=	yes # it would have binaries when CUDA would be enabled
 MAKE_ENV+=	COMFY_KITCHEN_NO_CUDA=1
 
 do-test:
-	@cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -v -rs
+	@cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -v -rs \
+		-p no:black -p no:ruff -p no:mypy
 
-# tests as of 0.2.18: 198 passed, 399 skipped, 9 warnings
+# tests as of 0.2.22: 309 passed, 620 skipped, 11 warnings
 
 .include <bsd.port.mk>

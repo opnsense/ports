@@ -500,7 +500,6 @@
     SUBDIR += libjxl
     SUBDIR += libjxr
     SUBDIR += libkdcraw
-    SUBDIR += libkdcraw-qt5
     SUBDIR += libkexiv2
     SUBDIR += libksane
     SUBDIR += libliftoff
@@ -1067,6 +1066,7 @@
     SUBDIR += py-spectra
     SUBDIR += py-sqlalchemy-imageattach
     SUBDIR += py-svg.path
+    SUBDIR += py-svg.py
     SUBDIR += py-svgelements
     SUBDIR += py-svgwrite
     SUBDIR += py-term-image
@@ -1083,6 +1083,7 @@
     SUBDIR += py-vecrec
     SUBDIR += py-vispy
     SUBDIR += py-visvis
+    SUBDIR += py-vtracer
     SUBDIR += py-vulkan
     SUBDIR += py-wand
     SUBDIR += py-webcolors
@@ -1273,12 +1274,14 @@
     SUBDIR += viewnior
     SUBDIR += vigra
     SUBDIR += vips
+    SUBDIR += virtio-gpu-qemu-kmod
     SUBDIR += visprint
     SUBDIR += viu
     SUBDIR += vkrunner
     SUBDIR += volpack
     SUBDIR += vp
     SUBDIR += vpaint
+    SUBDIR += vtracer
     SUBDIR += vulkan-caps-viewer
     SUBDIR += vulkan-extension-layer
     SUBDIR += vulkan-headers
@@ -1286,7 +1289,6 @@
     SUBDIR += vulkan-tools
     SUBDIR += vulkan-utility-libraries
     SUBDIR += vulkan-validation-layers
-    SUBDIR += vv
     SUBDIR += waffle
     SUBDIR += waifu2x-converter-cpp
     SUBDIR += waifu2x-ncnn-vulkan

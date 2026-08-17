@@ -1,6 +1,6 @@
 PORTNAME=	lego
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.2.2
+DISTVERSION=	5.3.1
 PORTREVISION=	1
 CATEGORIES=	security
 
@@ -15,7 +15,7 @@ RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
 USES=		go:modules
 GO_MODULE=	github.com/go-acme/lego/v5
-GO_BUILDFLAGS=	-ldflags '-X "main.version=${DISTVERSION}"'
+GO_LDFLAGS=	-X main.version=${DISTVERSION}
 
 SAMPLE_FILES=	deploy.sh.sample lego.sh.sample lego.yml.sample
 SUB_FILES=	${SAMPLE_FILES} 604.lego pkg-message

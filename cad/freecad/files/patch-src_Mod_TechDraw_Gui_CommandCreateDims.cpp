@@ -6,11 +6,9 @@ Date:   Mon Apr 13 22:18:38 2026 -0500
     
     Unnecessary, and fails to build on macOS 26.
 
-diff --git src/Mod/TechDraw/Gui/CommandCreateDims.cpp src/Mod/TechDraw/Gui/CommandCreateDims.cpp
-index cc3808bf7f..7e55d5993f 100644
---- src/Mod/TechDraw/Gui/CommandCreateDims.cpp
+--- src/Mod/TechDraw/Gui/CommandCreateDims.cpp.orig	2026-07-01 13:44:38 UTC
 +++ src/Mod/TechDraw/Gui/CommandCreateDims.cpp
-@@ -1127,7 +1127,7 @@ protected:
+@@ -1103,7 +1103,7 @@ class TDHandlerDimension : public TechDrawHandler, (pr
              TechDraw::pointPair pp = dim->getLinearPoints();
              float dx = pp.first().x - pp.second().x;
              float dy = pp.first().y - pp.second().y;
@@ -19,11 +17,9 @@ index cc3808bf7f..7e55d5993f 100644
              std::string sAlpha = std::to_string(alpha);
              std::string formatSpec = dim->FormatSpec.getStrValue();
              formatSpec = formatSpec + " x" + sAlpha + "°";
-diff --git src/Mod/TechDraw/Gui/CommandExtensionDims.cpp src/Mod/TechDraw/Gui/CommandExtensionDims.cpp
-index e7531ce714..46e6b4be4b 100644
---- src/Mod/TechDraw/Gui/CommandExtensionDims.cpp
+--- src/Mod/TechDraw/Gui/CommandExtensionDims.cpp.orig	2026-07-01 13:44:38 UTC
 +++ src/Mod/TechDraw/Gui/CommandExtensionDims.cpp
-@@ -1984,7 +1984,7 @@ void execCreateHorizChamferDimension(Gui::Command* cmd) {
+@@ -1984,7 +1984,7 @@ void execCreateHorizChamferDimension(Gui::Command* cmd
          dim->Y.setValue(-yMax);
          float dx = allVertexes[0].point.x - allVertexes[1].point.x;
          float dy = allVertexes[0].point.y - allVertexes[1].point.y;
@@ -32,7 +28,7 @@ index e7531ce714..46e6b4be4b 100644
          std::string sAlpha = std::to_string((int)alpha);
          std::string formatSpec = dim->FormatSpec.getStrValue();
          formatSpec = formatSpec + " x" + sAlpha + "°";
-@@ -2050,7 +2050,7 @@ void execCreateVertChamferDimension(Gui::Command* cmd) {
+@@ -2050,7 +2050,7 @@ void execCreateVertChamferDimension(Gui::Command* cmd)
          dim->Y.setValue(-mid.y);
          float dx = allVertexes[0].point.x - allVertexes[1].point.x;
          float dy = allVertexes[0].point.y - allVertexes[1].point.y;

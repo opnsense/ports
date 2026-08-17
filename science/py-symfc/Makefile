@@ -1,5 +1,5 @@
 PORTNAME=	symfc
-DISTVERSION=	1.7.2
+DISTVERSION=	1.7.3
 CATEGORIES=	science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -27,6 +27,6 @@ TEST_WRKSRC=	${WRKSRC}/tests
 
 NO_ARCH=	yes
 
-
+# tests as of 1.7.3: 128 passed in 37.33s
 
 .include <bsd.port.mk>

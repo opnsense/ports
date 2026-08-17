@@ -1,0 +1,59 @@
+#!/bin/sh
+
+# PROVIDE: colibri
+# REQUIRE: LOGIN
+# KEYWORDS: shutdown
+
+# Add the following lines to /etc/rc.conf to enable colibri
+# colibri_enable="YES"
+#
+# colibri_enable (bool):   Set to YES to enable colibri
+#                          Default: NO
+# colibri_user (str):      Ollama daemon user
+#                          Default: root
+# colibri_args (str):      Additional arguments for colibri
+#                          Default: "serve"
+# colibri_model (str):     Model directory for colibri
+#                          Default: "/home/$colibri_user/colibri-model"
+## colibri_api_key (str):   API key ti use with colibri
+##                          Default: "" # empty
+# colibri_log (str):       Log file for colibri
+#                          Default: "/var/log/colibri-$user.log"
+# colibri_pidfile (str):   PID file for colibri
+#                          Default: "/var/run/colibri-$user.pid"
+
+. /etc/rc.subr
+
+name="colibri"
+rcvar=colibri_enable
+
+load_rc_config $name
+
+: ${colibri_enable:="NO"}
+: ${colibri_user:="nobody"}
+: ${colibri_args:="serve"}
+: ${colibri_model:="/home/${colibri_user}/colibri-model"}
+#: ${colibri_api_key:=""}
+: ${colibri_log:="/var/log/colibri-${colibri_user}.log"}
+: ${colibri_pidfile:="/var/run/${name}-${colibri_user}.pid"}
+
+run_command="%%PREFIX%%/bin/coli"
+pidfile=${colibri_pidfile}
+command=/usr/sbin/daemon
+command_args="-f -t ${name} -P ${pidfile} -o ${colibri_log} ${run_command} ${colibri_args} --model-id glm-5.2-colibri --model ${colibri_model}"
+
+start_precmd="colibri_precmd"
+colibri_chdir=/tmp
+
+colibri_precmd()
+{
+    # set environment variables for the colibri server
+    #export COLI_MODEL=${colibri_model}
+    #export COLI_API_KEY=${colibri_api_key}
+    # ensure log file exists
+    touch ${colibri_log} ${pidfile}
+    chown ${colibri_user} ${colibri_log} ${pidfile}
+    chmod 640 ${colibri_log}
+}
+
+run_rc_command "$1"

@@ -1899,6 +1899,7 @@ lib/usermin/blue-theme/gray-theme-lib.pl
 lib/usermin/blue-theme/grub/images/chain.gif
 lib/usermin/blue-theme/grub/images/icon.gif
 lib/usermin/blue-theme/grub/images/kernel.gif
+lib/usermin/blue-theme/grub2/images/icon.gif
 lib/usermin/blue-theme/heartbeat/images/auth.gif
 lib/usermin/blue-theme/heartbeat/images/conf.gif
 lib/usermin/blue-theme/heartbeat/images/icon.gif
@@ -2038,6 +2039,7 @@ lib/usermin/blue-theme/iscsi-target/images/targets.gif
 lib/usermin/blue-theme/iscsi-target/images/timeout.gif
 lib/usermin/blue-theme/jabber/images/icon.gif
 lib/usermin/blue-theme/jsample/images/icon.gif
+lib/usermin/blue-theme/kea-dhcp/images/icon.gif
 lib/usermin/blue-theme/krb5/images/icon.gif
 lib/usermin/blue-theme/lang/ar.auto
 lib/usermin/blue-theme/lang/bg.auto
@@ -4584,6 +4586,7 @@ lib/usermin/gray-theme/gray-theme-lib.pl
 lib/usermin/gray-theme/grub/images/chain.gif
 lib/usermin/gray-theme/grub/images/icon.gif
 lib/usermin/gray-theme/grub/images/kernel.gif
+lib/usermin/gray-theme/grub2/images/icon.gif
 lib/usermin/gray-theme/heartbeat/images/auth.gif
 lib/usermin/gray-theme/heartbeat/images/conf.gif
 lib/usermin/gray-theme/heartbeat/images/icon.gif
@@ -4723,6 +4726,7 @@ lib/usermin/gray-theme/iscsi-target/images/targets.gif
 lib/usermin/gray-theme/iscsi-target/images/timeout.gif
 lib/usermin/gray-theme/jabber/images/icon.gif
 lib/usermin/gray-theme/jsample/images/icon.gif
+lib/usermin/gray-theme/kea-dhcp/images/icon.gif
 lib/usermin/gray-theme/krb5/images/icon.gif
 lib/usermin/gray-theme/lang/ar.auto
 lib/usermin/gray-theme/lang/bg.auto
@@ -6531,6 +6535,7 @@ lib/usermin/man/view_kernel.cgi
 lib/usermin/man/view_man.cgi
 lib/usermin/man/view_perl.cgi
 lib/usermin/mime.types
+lib/usermin/miniserv-lib.pl
 lib/usermin/miniserv.pem
 lib/usermin/miniserv.pl
 lib/usermin/mysql/CHANGELOG

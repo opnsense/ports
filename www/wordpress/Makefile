@@ -1,14 +1,19 @@
 PORTNAME=	wordpress
-DISTVERSION=	7.0.1
+PORTVERSION=	7.0.4
 PORTREVISION?=	0
 .ifndef WORDPRESS_LANG
 PORTEPOCH=	1
-MASTER_SITES=	https://wordpress.org/
-.else
-DISTVERSIONSUFFIX=	-${WORDPRESS_LANG}
-MASTER_SITES?=	https://${WORDPRESS_LANG}.wordpress.org/
 .endif
 CATEGORIES+=	www
+.ifndef WORDPRESS_LANG
+MASTER_SITES=	https://wordpress.org/
+.else
+MASTER_SITES?=	https://${WORDPRESS_LANG}.wordpress.org/
+.endif
+.ifdef WORDPRESS_LANG
+PKGNAMESUFFIX=	-${WORDPRESS_LANG}
+.endif
+DISTNAME=	wordpress-7.0.3${PKGNAMESUFFIX}
 
 MAINTAINER=	delphij@FreeBSD.org
 COMMENT=	State-of-the-art semantic personal publishing platform
@@ -20,25 +25,23 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 RUN_DEPENDS=	${PECL_PKGNAMEPREFIX}imagick>=2.2.2:graphics/pecl-imagick@${PHP_FLAVOR}
 
 USES=		cpe php:web
-IGNORE_WITH_PHP=	86
-.if ${DISTVERSION:N*.*.*}
-CPE_VERSION=	${DISTVERSION}.0
+.if ${PORTVERSION:N*.*.*}
+CPE_VERSION=	${PORTVERSION}.0
 .endif
-
 .ifdef WORDPRESS_LANG
-PKGNAMESUFFIX=	-${WORDPRESS_LANG}
 CPE_LANG=	${WORDPRESS_LANG}
 .endif
-
 USE_PHP=	curl exif fileinfo filter ftp gd mysqli tokenizer xml zip zlib
+IGNORE_WITH_PHP=	86
+
 CONFLICTS_INSTALL=	??-wordpress
-NO_ARCH=	yes
-NO_BUILD=	yes
-SUB_FILES=	pkg-message
-WRKSRC=		${WRKDIR}/${PORTNAME}
-PLIST=		${WRKDIR}/pkg-plist
-PORTDOCS=	readme.html
-OPTIONS_DEFINE=	DOCS
+NO_ARCH=		yes
+NO_BUILD=		yes
+SUB_FILES=		pkg-message
+WRKSRC=			${WRKDIR}/${PORTNAME}
+PLIST=			${WRKDIR}/pkg-plist
+PORTDOCS=		readme.html
+OPTIONS_DEFINE=		DOCS
 
 .include <bsd.port.options.mk>
 

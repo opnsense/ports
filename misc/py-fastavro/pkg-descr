@@ -1,4 +1,0 @@
-Fast read/write of AVRO files.
-
-fastavro is a Python library for reading and writing Apache Avro files
-with both pure-Python and Cython-accelerated implementations.

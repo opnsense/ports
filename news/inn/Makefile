@@ -1,6 +1,6 @@
 PORTNAME?=	inn
 PORTVERSION?=	2.7.4
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	news
 MASTER_SITES=	ISC
 MASTER_SITE_SUBDIR?=	${PORTNAME}
@@ -98,7 +98,7 @@ SQLITE_DESC=		Enable SQLite (for ovsqlite overview method)
 TAGGED_HASH_DESC=	Use tagged hash table for history
 UUCP_RNEWS_DESC=	Install rnews suitable for use with net/freebsd-uucp
 
-BERKELEYDB_USES=		bdb
+BERKELEYDB_USES=		bdb:18
 BERKELEYDB_CONFIGURE_ON=	--with-bdb-include=${BDB_INCLUDE_DIR} \
 				--with-bdb-lib=${LOCALBASE}/lib \
 				--with-bdb=${LOCALBASE}
@@ -138,6 +138,7 @@ SETGID_INEWS_CONFIGURE_ENABLE=	setgid-inews
 SETGID_INEWS_PLIST_SUB=		MODE_INEWS="2555"
 SETGID_INEWS_PLIST_SUB_OFF=	MODE_INEWS=""
 
+SQLITE_RUN_DEPENDS=	p5-DBD-SQLite>=0:databases/p5-DBD-SQLite
 SQLITE_USES=		sqlite
 SQLITE_CONFIGURE_ON=	--with-sqlite3=${LOCALBASE}
 SQLITE_CONFIGURE_OFF=	--without-sqlite3

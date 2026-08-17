@@ -1,0 +1,11 @@
+_NAME=		D2Koding
+
+PORTREVISION=	0
+DISTNAME=	D2Coding
+
+LICENSE=	OFL11
+LICENSE_FILE=	${WRKSRC}/OFL.txt
+
+MASTERDIR=	${.CURDIR}/../nerd-fonts
+
+.include "${MASTERDIR}/Makefile"

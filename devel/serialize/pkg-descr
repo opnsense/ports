@@ -1,0 +1,7 @@
+serialize is a header-only C++ library for reading and writing
+bit-packed binary data. Each type gets a single templated serialize
+function that is compiled three ways (read, write and measure), so the
+read and write paths cannot drift apart. Every value read off the wire
+is range-checked by the serializer.
+
+It is the serialization layer used by the yojimbo network library.

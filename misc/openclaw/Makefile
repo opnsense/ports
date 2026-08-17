@@ -1,5 +1,6 @@
 PORTNAME=	openclaw
 DISTVERSION=	2026.4.29
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 PKGNAMESUFFIX=	-ai-gateway
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
@@ -15,12 +16,11 @@ FETCH_DEPENDS=	curl:ftp/curl \
 		jq:textproc/jq \
 		npm:www/npm \
 		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
-BUILD_DEPENDS=	cmake:devel/cmake \
-		npm:www/npm \
+BUILD_DEPENDS=	npm:www/npm \
 		vips>=8.17.2:graphics/vips
 RUN_DEPENDS=	vips>=8.17.2:graphics/vips
 
-USES=		nodejs:run pkgconfig python:build
+USES=		cmake:indirect nodejs:run pkgconfig python:build
 USE_RC_SUBR=	${PORTNAME}
 
 OPTIONS_DEFINE=		EXTEND_AI_TIMEOUT EXTEND_TYPING_TTL_TIMEOUT SKILL_DEPENDENCIES

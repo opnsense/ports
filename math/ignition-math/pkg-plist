@@ -71,6 +71,7 @@ include/gz/%%MATH_IGN_VER%%/gz/math/detail/Export.hh
 include/gz/%%MATH_IGN_VER%%/gz/math/detail/InterpolationPoint.hh
 include/gz/%%MATH_IGN_VER%%/gz/math/detail/Sphere.hh
 include/gz/%%MATH_IGN_VER%%/gz/math/detail/WellOrderedVector.hh
+include/gz/%%MATH_IGN_VER%%/gz/math/detail/WetVolume.hh
 include/gz/%%MATH_IGN_VER%%/gz/math/eigen3.hh
 include/gz/%%MATH_IGN_VER%%/gz/math/eigen3/Conversions.hh
 include/gz/%%MATH_IGN_VER%%/gz/math/eigen3/Util.hh
@@ -90,6 +91,6 @@ lib/cmake/gz-math/gz-math-targets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/gz-math/gz-math-targets.cmake
 lib/libgz-math.so
 lib/libgz-math.so.9
-lib/libgz-math.so.9.0.0
+lib/libgz-math.so.9.2.0
 libdata/pkgconfig/gz-math-eigen3.pc
 libdata/pkgconfig/gz-math.pc

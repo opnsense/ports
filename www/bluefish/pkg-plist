@@ -80,6 +80,9 @@ share/applications/bluefish.desktop
 %%DATADIR%%/bflib/bflib_php5_with_examples.xml.gz
 %%DATADIR%%/bflib/bflib_python_2.3.xml.gz
 %%DATADIR%%/bflib/bflib_xhtml.xml.gz
+%%DATADIR%%/bluefish-breeze-dark.gresource
+%%DATADIR%%/bluefish-breeze.gresource
+%%DATADIR%%/bluefish.gresource
 %%DATADIR%%/bluefish_splash.png
 %%DATADIR%%/colorprofiles/Dark_theme
 %%DATADIR%%/colorprofiles/Light_theme
@@ -90,7 +93,9 @@ share/applications/bluefish.desktop
 %%DATADIR%%/jsmin.py
 %%DATADIR%%/json_prettyprint.py
 %%DATADIR%%/lorem-ipsum-generator
-%%DATADIR%%/plugins/htmlbar/ui/htmlbar_menu_ui.xml
+%%DATADIR%%/plugins/htmlbar/htmlbar-breeze-dark.gresource
+%%DATADIR%%/plugins/htmlbar/htmlbar-breeze.gresource
+%%DATADIR%%/plugins/htmlbar/htmlbar.gresource
 %%DATADIR%%/plugins/zencoding/__init__.py
 %%DATADIR%%/plugins/zencoding/actions/__init__.py
 %%DATADIR%%/plugins/zencoding/actions/basic.py

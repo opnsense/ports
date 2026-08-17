@@ -1,12 +1,13 @@
---- libddr_null.c.orig	2015-04-15 08:56:38 UTC
+--- libddr_null.c.orig	2025-01-19 17:00:21 UTC
 +++ libddr_null.c
-@@ -8,8 +8,10 @@
+@@ -8,9 +8,11 @@
  
  #include "ddr_plugin.h"
  #include "ddr_ctrl.h"
 +#include "ffs.h"
  #include <string.h>
  #include <stdlib.h>
+ #include <assert.h>
 +#include <stdint.h>
  
  /* fwd decl */

@@ -1,34 +1,39 @@
 PORTNAME=	ignition-fuel-tools
-DISTVERSION=	1.2.0
-PORTREVISION=	10
+DISTVERSIONPREFIX=	gz-fuel-tools11_
+DISTVERSION=	11.0.0
 CATEGORIES=	misc
-MASTER_SITES=	https://bitbucket.org/${BB_ACCOUNT}/${BB_PROJECT}/get/${BB_COMMIT}.tar.gz?dummy=/
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Classes and tools for interacting with Ignition Fuel
-WWW=		https://ignitionrobotics.org/home
+WWW=		https://ignitionrobotics.org/home \
+		https://gazebosim.org/libs/fuel_tools/ \
+		https://github.com/gazebosim/gz-fuel-tools
 
 LICENSE=	APACHE20
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	ignition-cmake>=2:devel/ignition-cmake
+BUILD_DEPENDS=	ignition-cmake>=5:devel/ignition-cmake
 LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libignition-common3.so:devel/ignition-common \
+		libgz-common.so:devel/ignition-common \
+		libgz-math.so:math/ignition-math \
+		libgz-msgs.so:devel/ignition-msgs \
 		libjsoncpp.so:devel/jsoncpp \
+		libprotobuf.so:devel/protobuf \
+		libtinyxml2.so:textproc/tinyxml2 \
 		libuuid.so:misc/libuuid \
 		libyaml.so:textproc/libyaml \
 		libzip.so:archivers/libzip
 
 USES=		cmake compiler:c++17-lang pkgconfig
+
+LDFLAGS+=	-Wl,--as-needed
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	BUILD_TESTING
 
-BB_ACCOUNT=	ignitionrobotics
-BB_PROJECT=	ign-fuel-tools
-BB_COMMIT=	0ffbf3a2c836
-
-WRKSRC=		${WRKDIR}/${BB_ACCOUNT}-${BB_PROJECT}-${BB_COMMIT}
+USE_GITHUB=	yes
+GH_ACCOUNT=	gazebosim
+GH_PROJECT=	gz-fuel-tools
 
 PLIST_SUB+=	FUEL_TOOLS_IGN_VER=fuel_tools${DISTVERSION:R:R}
 

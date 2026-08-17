@@ -42,6 +42,8 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/imageview%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/importthread%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/importthread%%PYTHON_TAG%%.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/loop_helpers%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/loop_helpers%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/page%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/page%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/pagerange%%PYTHON_TAG%%.opt-1.pyc
@@ -90,8 +92,6 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/paperlist%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/preferences%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/preferences%%PYTHON_TAG%%.pyc
-%%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/renumber%%PYTHON_TAG%%.opt-1.pyc
-%%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/renumber%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/sane%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/sane%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/__pycache__/save%%PYTHON_TAG%%.opt-1.pyc
@@ -102,7 +102,6 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/pagecontrols.py
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/paperlist.py
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/preferences.py
-%%PYTHON_SITELIBDIR%%/scantpaper/dialog/renumber.py
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/sane.py
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/save.py
 %%PYTHON_SITELIBDIR%%/scantpaper/dialog/scan.py
@@ -121,6 +120,7 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/i18n.py
 %%PYTHON_SITELIBDIR%%/scantpaper/imageview.py
 %%PYTHON_SITELIBDIR%%/scantpaper/importthread.py
+%%PYTHON_SITELIBDIR%%/scantpaper/loop_helpers.py
 %%PYTHON_SITELIBDIR%%/scantpaper/page.py
 %%PYTHON_SITELIBDIR%%/scantpaper/pagerange.py
 %%PYTHON_SITELIBDIR%%/scantpaper/postprocess_controls.py

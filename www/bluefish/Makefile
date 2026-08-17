@@ -1,5 +1,5 @@
 PORTNAME=	bluefish
-DISTVERSION=	2.4.1
+DISTVERSION=	2.4.2
 CATEGORIES=	www editors
 MASTER_SITES=	https://www.bennewitz.com/bluefish/stable/source/ \
 		SF

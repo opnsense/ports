@@ -1,13 +1,15 @@
 LLVM_COMMANDS=	\
-		bugpoint \
 		dsymutil \
 		llc \
 		lli \
+		llubi \
 		llvm-addr2line \
 		llvm-ar \
 		llvm-as \
 		llvm-bcanalyzer \
 		llvm-bitcode-strip \
+		llvm-c-test \
+		llvm-calc-occupancy \
 		llvm-cas \
 		llvm-cat \
 		llvm-cfi-verify \
@@ -28,6 +30,8 @@ LLVM_COMMANDS=	\
 		llvm-dwp \
 		llvm-exegesis \
 		llvm-extract \
+		llvm-extract-bundle-entry \
+		llvm-gpu-loader \
 		llvm-gsymutil \
 		llvm-ifs \
 		llvm-install-name-tool \
@@ -58,7 +62,6 @@ LLVM_COMMANDS=	\
 		llvm-reduce \
 		llvm-remarkutil \
 		llvm-rtdyld \
-		llvm-sim \
 		llvm-size \
 		llvm-split \
 		llvm-stress \
@@ -89,6 +92,9 @@ CLANG_COMMANDS=	\
 		clang-offload-packager \
 		clang-repl \
 		clang-scan-deps \
+		clang-ssaf-analyzer \
+		clang-ssaf-format \
+		clang-ssaf-linker \
 		clang-tblgen \
 		diagtool \
 		hmaptool \
@@ -150,6 +156,7 @@ LLDB_COMMANDS=	\
 
 MLIR_COMMANDS=	\
 		mlir-cat \
+		mlir-irdl-to-cpp \
 		mlir-lsp-server \
 		mlir-minimal-opt \
 		mlir-minimal-opt-canonicalize \
@@ -160,6 +167,7 @@ MLIR_COMMANDS=	\
 		mlir-reduce \
 		mlir-rewrite \
 		mlir-runner \
+		mlir-src-sharder \
 		mlir-tblgen \
 		mlir-transform-opt \
 		mlir-translate \

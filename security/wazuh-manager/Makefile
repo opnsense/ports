@@ -32,12 +32,12 @@ LIB_DEPENDS+=	libarrow.so:databases/arrow \
 		libopenblas.so:math/openblas
 RUN_DEPENDS=	bash>0:shells/bash
 
-USES=		cpe dos2unix gmake perl5 python:3.11 readline shebangfix sqlite:3 uidfix
+USES=		cpe dos2unix gmake perl5 python:3.11 readline shebangfix uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	alonsobsd
 GH_PROJECT=	wazuh-freebsd
-GH_TAGNAME=	62e1b663bbec762efd9d71bf5bdd33134e028d0a
+GH_TAGNAME=	b8c8db1e97f8a64a3904007640caae33a7a42085
 
 USE_RC_SUBR=	${PORTNAME}${PKGNAMESUFFIX}
 
@@ -114,11 +114,11 @@ WZARBIN_FILES=	default-firewall-drop pf npf ipfw firewalld-drop disable-account 
 		host-deny ip-customblock restart-wazuh route-null kaspersky wazuh-slack
 
 WZSHEBANG_FILES=chardetect connexion cygdb cython cythonize f2py fixup_pubsub_v1_keywords.py \
-		httpx jp.py jsonschema normalizer openapi-spec-validator \
+		httpx jp.py jsonschema normalizer openapi-spec-validator pip pip3 pip3.11\
 		pyrsa-decrypt pyrsa-encrypt pyrsa-keygen pyrsa-priv2pub pyrsa-sign \
 		pyrsa-verify rstpep2html.py rst2s5.py rst2xetex.py rst2man.py rst2odt.py \
 		rst2latex.py rst2pseudoxml.py rst2odt_prepstyles.py rst2html.py rst2html5.py \
-		rst2html4.py rst2xml.py tabulate uvicorn wsdump.py
+		rst2html4.py rst2xml.py tabulate uvicorn wheel wsdump.py
 
 WAZUHMOD660=	/queue/indexer /queue/vd
 WAZUHMOD750=	/ /logs/wazuh /logs/archives /logs/alerts /logs/firewall \
@@ -213,8 +213,7 @@ post-extract:
 post-patch:
 	${REINPLACE_CMD} -e 's|CC=|CC?=|g' -e 's|AR=|AR?=|g' ${WRKSRC}/src/external/bzip2/Makefile
 	${REINPLACE_CMD} -e 's|^\( *MULTIARCH=\).*--print-multiarch.*|\1|' ${WRKSRC}/src/external/cpython/configure
-	${REINPLACE_CMD} -e 's|coroutine|coroutines|g' ${WRKSRC}/framework/wazuh/core/cluster/client.py \
-		${WRKSRC}/framework/wazuh/rbac/decorators.py
+	${REINPLACE_CMD} -e 's|coroutine|coroutines|g' ${WRKSRC}/framework/wazuh/core/cluster/client.py
 
 do-build:
 	cd ${WRKSRC} && ${CC} ${CFLAGS} -o check_pid ${WRKSRC}/libexec/check_pid.c

@@ -21,6 +21,7 @@
     SUBDIR += NBlood
     SUBDIR += Nanosaur
     SUBDIR += OpenLara
+    SUBDIR += OpenLoco
     SUBDIR += OpenTomb
     SUBDIR += SRB2
     SUBDIR += SpaceCadetPinball
@@ -290,7 +291,6 @@
     SUBDIR += freedink-data
     SUBDIR += freedink-dfarc
     SUBDIR += freedink-engine
-    SUBDIR += freedoko
     SUBDIR += freedroid
     SUBDIR += freedroidrpg
     SUBDIR += freeorion

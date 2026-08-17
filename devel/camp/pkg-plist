@@ -24,6 +24,7 @@ include/camp/resource/hip.hpp
 include/camp/resource/host.hpp
 include/camp/resource/omp_target.hpp
 include/camp/resource/platform.hpp
+include/camp/resource/resource_allocator.hpp
 include/camp/resource/sycl.hpp
 include/camp/size.hpp
 include/camp/tuple.hpp

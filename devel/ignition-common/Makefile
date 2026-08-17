@@ -1,6 +1,6 @@
 PORTNAME=	ignition-common
 DISTVERSIONPREFIX=	gz-common7_
-DISTVERSION=	7.0.0
+DISTVERSION=	7.2.0
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,6 +18,7 @@ LIB_DEPENDS=	libassimp.so:multimedia/assimp \
 		libgdal.so:graphics/gdal \
 		libgz-math.so:math/ignition-math \
 		libgz-utils.so:devel/ignition-utils \
+		libminizip.so:archivers/minizip \
 		libspdlog.so:devel/spdlog \
 		libtinyxml2.so:textproc/tinyxml2 \
 		libuuid.so:misc/libuuid

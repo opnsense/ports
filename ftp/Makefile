@@ -10,6 +10,7 @@
     SUBDIR += cmdftp
     SUBDIR += coeurl
     SUBDIR += curl
+    SUBDIR += curl-impersonate
     SUBDIR += curlie
     SUBDIR += curlpp
     SUBDIR += dmachine
@@ -67,6 +68,7 @@
     SUBDIR += profxp
     SUBDIR += pure-ftpd
     SUBDIR += py-aioftp
+    SUBDIR += py-curl-cffi
     SUBDIR += py-ftputil
     SUBDIR += py-parfive
     SUBDIR += py-pycurl

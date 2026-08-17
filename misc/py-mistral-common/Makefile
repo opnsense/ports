@@ -1,6 +1,6 @@
 PORTNAME=	mistral-common
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.11.5
+DISTVERSION=	1.11.7
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # tests are broken in PYPI tarball
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -55,6 +55,6 @@ TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/tests
 TEST_ARGS=	--import-mode=importlib
 
-# tests as of 1.11.5: 1382 passed, 17 skipped, 14 warnings in 69.80s (0:01:09)
+# tests as of 1.11.7: 1420 passed, 17 skipped, 17 warnings in 101.43s (0:01:41)
 
 .include <bsd.port.mk>

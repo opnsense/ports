@@ -1,6 +1,6 @@
 PORTNAME=	kitty
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.47.4
+DISTVERSION=	0.48.2
 PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
@@ -83,6 +83,10 @@ CFLAGS+=	-Wno-error=invalid-utf8 -Winvalid-utf8
 
 .if ${ARCH:Mriscv64*}
 MAKE_ENV+=	KITTY_NO_LTO=1
+.endif
+
+.if ${ARCH} == "i386" || ${ARCH} == "powerpc" || ${ARCH:Marmv?}
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-vendor_github.com_sgtdi_fswatcher_watcher__kqueue.go
 .endif
 
 post-patch:

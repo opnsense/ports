@@ -1,7 +1,7 @@
 PORTNAME=	vikunja
-DISTVERSIONPREFIX=v
-DISTVERSION=	2.3.0
-PORTREVISION=	3
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.5.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/decke:ui
 DISTFILES=	vikunja-frontend-${DISTVERSION}.tar.gz:ui
@@ -13,14 +13,14 @@ WWW=		https://vikunja.io
 LICENSE=	AGPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.26,modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	go-vikunja
 
 USE_RC_SUBR=	vikunja
 
-GO_MODULE=	code.vikunja.io/api
 GO_MOD_DIST=	https://raw.githubusercontent.com/go-vikunja/vikunja/refs/tags/v${DISTVERSION}/
+GO_MODULE=	code.vikunja.io/api
 GO_BUILDFLAGS=	-tags osusergo -ldflags " \
 		-X code.vikunja.io/api/pkg/version.Version=${DISTVERSION} \
 		-X main.Tags=osusergo"

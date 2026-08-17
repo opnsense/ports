@@ -1,8 +1,6 @@
 bin/iocaine
 %%ETCDIR%%/README.md
-%%ETCDIR%%/config.kdl
-%%ETCDIR%%/config.kdl.orig
-%%ETCDIR%%/config.kdl.sample
+@sample %%ETCDIR%%/config.kdl.sample
 %%ETCDIR%%/etc/fennel.lua
 %%ETCDIR%%/etc/robots.json
 %%ETCDIR%%/lua/decide.lua
@@ -13,6 +11,5 @@ bin/iocaine
 %%ETCDIR%%/roto/init/pkg.roto
 %%ETCDIR%%/roto/main/pkg.roto
 %%ETCDIR%%/templates/garbage.html
-%%ETCDIR%%/testsuite.kdl
-%%ETCDIR%%/testsuite.kdl.sample
+@sample %%ETCDIR%%/testsuite.kdl.sample
 @dir(%%USERS%%,%%GROUPS%%,750) /var/db/iocaine

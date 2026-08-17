@@ -9,6 +9,8 @@ lib/inko/std/bytes/parsers.inko
 lib/inko/std/clone.inko
 lib/inko/std/cmp.inko
 lib/inko/std/compress/gzip.inko
+lib/inko/std/crypto/argon2.inko
+lib/inko/std/crypto/blake2.inko
 lib/inko/std/crypto/chacha.inko
 lib/inko/std/crypto/cipher.inko
 lib/inko/std/crypto/hash.inko
@@ -32,7 +34,7 @@ lib/inko/std/fs.inko
 lib/inko/std/fs/file.inko
 lib/inko/std/fs/path.inko
 lib/inko/std/hash.inko
-lib/inko/std/hash/siphash.inko
+lib/inko/std/hash/ahash.inko
 lib/inko/std/html.inko
 lib/inko/std/init.inko
 lib/inko/std/int.inko

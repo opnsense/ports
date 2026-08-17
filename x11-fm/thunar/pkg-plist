@@ -229,6 +229,7 @@ share/icons/hicolor/scalable/apps/org.xfce.thunar.svg
 %%NLS%%share/locale/ka/LC_MESSAGES/thunar.mo
 %%NLS%%share/locale/kk/LC_MESSAGES/thunar.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/thunar.mo
+%%NLS%%share/locale/lo/LC_MESSAGES/thunar.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/thunar.mo
 %%NLS%%share/locale/lv/LC_MESSAGES/thunar.mo
 %%NLS%%share/locale/ms/LC_MESSAGES/thunar.mo

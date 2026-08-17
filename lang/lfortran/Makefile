@@ -1,7 +1,6 @@
 PORTNAME=	lfortran
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.63.0
-PORTREVISION=	1
+DISTVERSION=	0.64.0
 CATEGORIES=	lang
 
 MAINTAINER=	fortran@FreeBSD.org
@@ -25,8 +24,8 @@ RUN_DEPENDS=	dwarfdump:devel/dwarfdump
 
 USE_GITHUB=	yes
 
-USES=		bison cmake:testing compiler:c++17-lang llvm:20,lib pkgconfig	\
-		python:build ssl shebangfix
+USES=		bison cmake:testing compiler:c++17-lang llvm:${LLVM_VERSION},lib	\
+		pkgconfig python:build ssl shebangfix
 SHEBANG_GLOB=	*.py *.sh
 BINARY_ALIAS=	python=${PYTHON_CMD}
 CMAKE_ON=	LFORTRAN_BUILD_ALL WITH_DWARFDUMP WITH_FMT WITH_JSON	\
@@ -48,7 +47,7 @@ NB_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}	\
 			jupyter:devel/py-jupyter-core@${PY_FLAVOR}	\
 			${PYTHON_PKGNAMEPREFIX}nbsphinx>0:textproc/py-nbsphinx@${PY_FLAVOR}	\
 			${PYTHON_PKGNAMEPREFIX}sphinx_material>0:textproc/py-sphinx-material@${PY_FLAVOR}	\
-			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR}	\
+			${PYTHON_PKGNAMEPREFIX}sphinx-copybutton>0:textproc/py-sphinx-copybutton@${PY_FLAVOR}
 
 PORTEXAMPLES=	*
 

@@ -1,4 +1,4 @@
---- dd_rescue.c.orig	2024-08-22 17:41:01 UTC
+--- dd_rescue.c.orig	2025-12-07 12:29:02 UTC
 +++ dd_rescue.c
 @@ -144,12 +144,11 @@
  # include <fallocate.h>
@@ -44,7 +44,7 @@
  #include "pread64.h"
  #endif
  
-@@ -698,7 +697,7 @@ static void unload_plugins() {};
+@@ -748,7 +747,7 @@ static void unload_plugins() {};
  static void unload_plugins() {};
  #endif
  
@@ -53,7 +53,7 @@
  #define posix_fadvise64 posix_fadvise
  #endif
  #ifdef HAVE_POSIX_FADVISE
-@@ -1055,13 +1054,13 @@ static void do_fallocate(int fd, const char* onm, opt_
+@@ -1101,13 +1100,13 @@ static void do_fallocate(int fd, const char* onm, opt_
  				op->init_opos, to_falloc);
  #ifdef HAVE_FALLOCATE64
  	else

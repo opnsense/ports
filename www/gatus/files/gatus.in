@@ -30,8 +30,9 @@ load_rc_config $name
 
 gatus_env="GATUS_CONFIG_PATH=${gatus_config} GATUS_LOG_LEVEL=${gatus_log_level} GATUS_DELAY_START_SECONDS=${gatus_delay_start_seconds}"
 pidfile="/var/run/${name}.pid"
+supervisor_pidfile="/var/run/${name}d.pid"
 procname="%%LOCALBASE%%/bin/${name}"
 command="/usr/sbin/daemon"
-command_args="-c -u ${gatus_runas} -o ${gatus_log} -p ${pidfile} -t \"${desc}\" ${procname}"
+command_args="-cH -u ${gatus_runas} -o ${gatus_log} -P ${supervisor_pidfile} -p ${pidfile} -t \"${name}: ${desc}\" ${procname}"
 
 run_rc_command "$1"

@@ -1,6 +1,7 @@
 PORTNAME=	ov
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.54.0
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -10,7 +11,7 @@ WWW=		https://github.com/noborus/ov
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25+,modules
+USES=		go:modules
 
 _BUILD_VERSION=		${DISTVERSION}
 _BUILD_REVISION=	0a791c8

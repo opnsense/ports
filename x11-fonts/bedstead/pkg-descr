@@ -1,0 +1,9 @@
+Bedstead is a family of outline fonts based on the characters produced by
+the Mullard SAA5050 series of Teletext Character Generators, as used to
+render the MODE 7 display on the BBC Microcomputer and other systems.
+
+The generator turns the original 5x9 pixel cells into smooth outlines,
+reproducing the diagonal-smoothing behaviour of the SAA5050 hardware. The
+family provides six width variants (from ultra condensed to extended), each
+in regular and bold weights, and covers Latin, Cyrillic and Hebrew glyphs
+plus the teletext mosaic graphics characters.

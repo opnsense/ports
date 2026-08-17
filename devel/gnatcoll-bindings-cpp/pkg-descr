@@ -1,0 +1,4 @@
+GNATColl Bindings Ada Packages provides bindings to programming and
+scripting languages, libraries, and system services.
+
+This package provides bindings to C++ Standard library functions.

@@ -467,7 +467,7 @@ lib/cmake/gz-msgs/gz_msgs_protoc.cmake
 lib/cmake/gz-msgs/gz_msgs_string_utils.cmake
 lib/libgz-msgs.so
 lib/libgz-msgs.so.12
-lib/libgz-msgs.so.12.0.0
+lib/libgz-msgs.so.12.0.2
 lib/python/gz/msgs/__init__.py
 lib/python/gz/msgs/actor_pb2.py
 lib/python/gz/msgs/actuators_pb2.py

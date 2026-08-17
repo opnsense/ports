@@ -1,7 +1,7 @@
 PORTNAME=	diswall
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -11,6 +11,8 @@ WWW=		https://diswall.stream \
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	ld: error: undefined symbol: __atomic_compare_exchange
 
 BUILD_DEPENDS=	gmake:devel/gmake
 

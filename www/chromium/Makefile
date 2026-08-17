@@ -1,5 +1,6 @@
 PORTNAME=	chromium
-PORTVERSION=	150.0.7871.100
+PORTVERSION=	151.0.7922.137
+PORTREVISION=	1
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	www wayland
@@ -79,8 +80,8 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		noto-basic>0:x11-fonts/noto-basic
 
 USES=		bison cargo compiler:c++17-lang cpe desktop-file-utils gl gmake \
-		gnome iconv:wchar_t jpeg localbase:ldflags ninja perl5 pkgconfig \
-		python:build qt:5 shebangfix tar:xz xorg
+		go:no_targets gnome iconv:wchar_t jpeg localbase:ldflags ninja perl5 \
+		pkgconfig python:build qt:5 shebangfix tar:xz xorg
 
 WITHOUT_FBSD10_FIX=	Yes
 
@@ -205,7 +206,7 @@ DEBUG_VARS_OFF=		BUILDTYPE=Release \
 
 DRIVER_MAKE_ARGS=	chromedriver
 
-HEIMDAL_LIB_DEPENDS=	libkrb.so.26:security/heimdal
+HEIMDAL_LIB_DEPENDS=	libkrb5.so.26:security/heimdal
 KERBEROS_VARS=		GN_ARGS+=use_kerberos=true
 KERBEROS_VARS_OFF=	GN_ARGS+=use_kerberos=false
 
@@ -215,7 +216,7 @@ LTO_VARS=		GN_ARGS+=use_thin_lto=true \
 			WANTMEM="16 GB"
 LTO_VARS_OFF=		GN_ARGS+=use_thin_lto=false
 
-MIT_LIB_DEPENDS=	libkrb.so.3:security/krb5
+MIT_LIB_DEPENDS=	libkrb5.so.3:security/krb5
 
 PIPEWIRE_DESC=		Screen capture via PipeWire
 PIPEWIRE_LIB_DEPENDS=	libpipewire-0.3.so:multimedia/pipewire
@@ -285,6 +286,9 @@ MAKE_ENV+=	C_INCLUDE_PATH=${LOCALBASE}/include \
 MAKE_ENV+=	RUSTC_BOOTSTRAP=1
 GN_ARGS+=	enable_rust=true \
 		rust_sysroot_absolute="${LOCALBASE}"
+
+# go
+MAKE_ENV+=	GOCACHE=${WRKDIR}/go-cache
 
 pre-everything::
 	@${ECHO_MSG}

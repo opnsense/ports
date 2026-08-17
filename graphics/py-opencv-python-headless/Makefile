@@ -15,8 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scikit-build>=0.14.0:devel/py-scikit-build@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR} \
-		cmake:devel/cmake
+		${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
 LIB_DEPENDS=	libavif.so:graphics/libavif \
 		libwebp.so:graphics/webp \
 		libpng16.so:graphics/png \
@@ -25,7 +24,7 @@ LIB_DEPENDS=	libavif.so:graphics/libavif \
 		libavcodec.so:multimedia/ffmpeg \
 		libopenblas.so:math/openblas
 
-USES=		gnome gstreamer jpeg python
+USES=		cmake:indirect gnome gstreamer jpeg python
 USE_GNOME=	glib20
 USE_GSTREAMER1=	yes
 USE_PYTHON=	pep517 autoplist pytest

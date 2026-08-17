@@ -4,7 +4,6 @@ lib/libncutil.so
 %%LITTLE_ENDIAN%%lib/libtdclientshared.so
 lib/libtgchat
 %%LITTLE_ENDIAN%%lib/libtgchat.so
-libexec/nchat/compose
 share/man/man1/nchat.1.gz
 %%DATADIR%%/themes/ayu-dark/color.conf
 %%DATADIR%%/themes/ayu-dark/usercolor.conf

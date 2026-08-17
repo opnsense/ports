@@ -1,5 +1,5 @@
 PORTNAME=	lme4
-DISTVERSION=	2.0-1
+DISTVERSION=	2.0-6
 CATEGORIES=	math
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -12,13 +12,15 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.note
 
 CRAN_DEPENDS=	R-cran-minqa>=1.1.15:math/R-cran-minqa \
 		R-cran-nloptr>=1.0.4:math/R-cran-nloptr \
-		R-cran-Rcpp>=0.10.5:devel/R-cran-Rcpp \
+		R-cran-Rcpp>=1.1.1.1.1:devel/R-cran-Rcpp \
 		R-cran-RcppEigen>=0.3.3.9.4:math/R-cran-RcppEigen \
 		R-cran-reformulas>=0.4.3.1:math/R-cran-reformulas \
 		R-cran-rlang>0:devel/R-cran-rlang
 BUILD_DEPENDS=	${CRAN_DEPENDS}
 RUN_DEPENDS=	${CRAN_DEPENDS}
-TEST_DEPENDS=	R-cran-ggplot2>0:graphics/R-cran-ggplot2 \
+TEST_DEPENDS=	R-cran-car>0:math/R-cran-car \
+		R-cran-ggplot2>0:graphics/R-cran-ggplot2 \
+		R-cran-gridExtra>0:graphics/R-cran-gridExtra \
 		R-cran-knitr>0:print/R-cran-knitr \
 		R-cran-optimx>0:misc/R-cran-optimx \
 		R-cran-statmod>0:math/R-cran-statmod \
@@ -29,7 +31,7 @@ USES=		cran:auto-plist,compiles
 pre-test:
 
 # Test depends not ported yet
-.for pkg in gamm4 glmmTMB
+.for pkg in DHARMa gamm4 glmmTMB mlmRev performance see
 	@${LOCALBASE}/bin/Rscript -e 'install.packages("${pkg}", \
 		repos = "https://cloud.r-project.org")'
 .endfor

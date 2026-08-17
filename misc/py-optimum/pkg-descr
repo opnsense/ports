@@ -1,0 +1,3 @@
+Optimum Library is an extension of the Hugging Face Transformers library,
+providing a framework to integrate third-party libraries from Hardware Partners
+and interface with their specific functionality.

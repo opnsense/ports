@@ -1,6 +1,7 @@
 PORTNAME=	bin
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.28.0
+DISTVERSION=	0.29.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	dtxdf@FreeBSD.org
@@ -26,7 +27,7 @@ PLIST_FILES=	bin/${PORTNAME}
 #
 # Run 'git checkout ${DISTVERSIONPREFIX}${DISTVERSION} && git rev-parse --short HEAD'
 # in the Bin repository to get the value of GITID.
-GITID=		3f85e583b8c22a29a241e64f4893084da9de173e
+GITID=		c24db4aced89c855062fe8e2907ae0deb3fb9f53
 
 BUILD_DATE=	$$(date -u "+%Y-%m-%dT%H:%M:%SZ")
 

@@ -1,5 +1,5 @@
-TIMESTAMP = 1783333333
-SHA256 (freerdp-3.28.0.tar.gz) = 61b7c02f64695a0ee883335ffbbce446e119f46bbf3653e1a71bebf6750ffae3
-SIZE (freerdp-3.28.0.tar.gz) = 11040961
+TIMESTAMP = 1784300000
+SHA256 (freerdp-3.30.0.tar.gz) = e2687d02dea6fede004d36391dac1a74ce57a210f8867fd95033171d4909590c
+SIZE (freerdp-3.30.0.tar.gz) = 11070523
 SHA256 (akallabeth-webview-2a0a130_GH0.tar.gz) = 22448da4658b73cc20e6944d9a351ab6c40d1a50026997f8278f63713f5f7c07
 SIZE (akallabeth-webview-2a0a130_GH0.tar.gz) = 185888

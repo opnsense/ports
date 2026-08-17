@@ -1,0 +1,20 @@
+--- pyproject.toml.orig	2026-06-18 04:20:19 UTC
++++ pyproject.toml
+@@ -1,6 +1,6 @@ requires = [
+ [build-system]
+ requires = [
+-    "setuptools>=77.0.3",   # PEP 639
++    "setuptools",   # PEP 639
+ ]
+ build-backend = "setuptools.build_meta"
+ 
+@@ -12,8 +12,7 @@ readme = {file = "README.rst", content-type = "text/x-
+ ]
+ description = "A package providing graphs and algorithms for working with D-Wave quantum computers."
+ readme = {file = "README.rst", content-type = "text/x-rst"}
+-license = "Apache-2.0"
+-license-files = ["LICEN[CS]E*"]
++license = { text = "Apache-2.0" }
+ classifiers = [
+     "Operating System :: OS Independent",
+     "Programming Language :: Python :: 3 :: Only",

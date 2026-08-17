@@ -1,6 +1,6 @@
---- adm/templates/OpenCASCADEConfig.cmake.in.orig	2021-06-26 15:04:30 UTC
+--- adm/templates/OpenCASCADEConfig.cmake.in.orig	2026-05-06 22:31:54 UTC
 +++ adm/templates/OpenCASCADEConfig.cmake.in
-@@ -36,11 +36,11 @@ if (OpenCASCADE_INSTALL_PREFIX MATCHES "/libs/${CMAKE_
+@@ -40,11 +40,11 @@ endif()
  endif()
  
  # Set OpenCASCADE paths to headers, binaries, libraries, resources, tests, samples, data

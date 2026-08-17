@@ -1,5 +1,5 @@
 PORTNAME=	fritzing
-PORTVERSION=	1.0.6
+PORTVERSION=	1.0.8
 CATEGORIES=	cad
 
 MAINTAINER=	kenrap@FreeBSD.org
@@ -14,7 +14,7 @@ BUILD_DEPENDS=	boost-libs>1.52:devel/boost-libs \
 LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libngspice.so:cad/ngspice_rework@shlib \
 		libpolyclipping.so:graphics/polyclipping \
-		libquazip1-qt6.so:archivers/quazip@qt6
+		libquazip1-qt6.so:archivers/quazip
 
 USES=		compiler:c++17-lang desktop-file-utils gl gmake pkgconfig \
 		qmake qt:6 shared-mime-info ssl xorg
@@ -22,8 +22,8 @@ USES=		compiler:c++17-lang desktop-file-utils gl gmake pkgconfig \
 USE_GITHUB=	yes
 GH_PROJECT=	fritzing-app \
 		fritzing-parts:parts
-GH_TAGNAME=	04e5bb0241e8f1de24d0fce9be070041c6d5b68e \
-		12761296fc8bcc53ed481b78e3a99c907d85b18d:parts
+GH_TAGNAME=	5aa56a510183c23084990a6b4481708cad24c15b \
+		27535f2fd02097be9bed229b75aa8e9be282a4a0:parts
 
 USE_CXXSTD=	c++17
 USE_GL=		egl gl opengl

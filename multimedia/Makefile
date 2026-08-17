@@ -117,6 +117,7 @@
     SUBDIR += handbrake
     SUBDIR += haruna
     SUBDIR += harvid
+    SUBDIR += hdrprobe
     SUBDIR += helvum
     SUBDIR += hyprpwcenter
     SUBDIR += intel-media-sdk
@@ -192,6 +193,8 @@
     SUBDIR += libvdpau
     SUBDIR += libvdpau-va-gl
     SUBDIR += libvlcpp
+    SUBDIR += libvpl
+    SUBDIR += libvpl-tools
     SUBDIR += libvpx
     SUBDIR += libwebm
     SUBDIR += libx264
@@ -232,6 +235,7 @@
     SUBDIR += mlt7
     SUBDIR += mlt7-glaxnimate
     SUBDIR += mlt7-qt
+    SUBDIR += moonshine
     SUBDIR += motion
     SUBDIR += mp3cd
     SUBDIR += mp4v2

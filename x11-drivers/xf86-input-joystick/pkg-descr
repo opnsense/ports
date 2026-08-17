@@ -1,1 +1,4 @@
-This package contains the X.Org xf86-input-joystick driver.
+Joystick is an Xorg input driver for controlling the pointer with a
+joystick device.
+It is not recommended to enable the joystick input driver by default
+unless explicitly requested by the user.

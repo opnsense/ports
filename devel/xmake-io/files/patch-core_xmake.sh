@@ -1,6 +1,6 @@
---- core/xmake.sh.orig	2025-02-04 16:48:40 UTC
+--- core/xmake.sh.orig	2026-05-19 14:33:04 UTC
 +++ core/xmake.sh
-@@ -92,8 +92,8 @@ option_find_lua() {
+@@ -101,8 +101,8 @@ option_find_lua() {
      local cflags=""
      option "lua"
          # detect lua5.4 on debian

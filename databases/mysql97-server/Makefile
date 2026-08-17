@@ -1,6 +1,6 @@
 PORTNAME?=		mysql
-PORTVERSION=		9.7.1
-PORTREVISION?=		0
+PORTVERSION=		9.7.2
+PORTREVISION?=		1
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-9.7
 PKGNAMESUFFIX?=		97-server
@@ -13,7 +13,7 @@ LICENSE=		GPLv2
 
 # MySQL8.2+ supports only 64-bit platforms
 # Review list after 13.x EoL
-NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
+NOT_FOR_ARCHS=	armv6 armv7 i386 powerpc
 
 USES=		bison:build cmake:noninja cpe groff:run libedit localbase \
 		ncurses perl5 pkgconfig shebangfix ssl compiler:c++20-lang
@@ -32,11 +32,16 @@ MY_DBDIR=	/var/db/mysql
 MY_SECDIR=	/var/db/mysql_secure
 MY_TMPDIR=	/var/db/mysql_tmpdir
 
+.if defined(CLIENT_ONLY)
+BUILD_DEPENDS+=	curl>0:ftp/curl \
+		icu>0:devel/icu \
+		liblz4>0:archivers/liblz4
+LIB_DEPENDS+=	libfido2.so:security/libfido2
+.else
 LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libicutu.so:devel/icu \
-		liblz4.so:archivers/liblz4 \
-		libhidapi.so:comms/hidapi \
-		libfido2.so:security/libfido2 \
+		liblz4.so:archivers/liblz4
+.endif
 
 CMAKE_BUILD_TYPE=	Release
 CFLAGS+=		-fPIC
@@ -71,8 +76,7 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DWITH_ZSTD=bundled \
 		-DWITH_PROTOBUF=bundled \
 		-DWITH_SSL=system \
-		-DWITH_ZLIB=system \
-		-DWITH_LZ4=system
+		-DWITH_ZLIB=system
 
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
@@ -105,12 +109,6 @@ USERS=		mysql
 GROUPS=		mysql
 
 USE_LDCONFIG+=	${PREFIX}/lib/mysql/plugin
-
-MMAN1=		ibd2sdi.1 innochecksum.1 my_print_defaults.1 myisam_ftdump.1 myisamchk.1 \
-		myisamlog.1 myisampack.1 mysql_secure_installation.1 mysql_ssl_rsa_setup.1 \
-		mysql_tzinfo_to_sql.1 mysql_upgrade.1 mysql.server.1 mysqldumpslow.1 mysqld_multi.1 \
-		mysqld_safe.1 mysqlrouter_passwd.1 mysqlrouter_plugin_info.1 mysqlrouter.1
-MMAN8=		mysqld.8
 
 CMAKE_ARGS+=	-DWITHOUT_CLIENTLIBS="ON"
 # Disable unit tests, it fails on !amd64 and <13.0 due to c++17 rules
@@ -166,6 +164,8 @@ post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}/keyring
 	${MKDIR} ${STAGEDIR}${MY_SECDIR}
 	${MKDIR} ${STAGEDIR}${MY_TMPDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MV} ${STAGEDIR}${PREFIX}/LICENSE.router ${STAGEDIR}${PREFIX}/README.router ${STAGEDIR}${DOCSDIR}
 .endif
 
 .include <bsd.port.post.mk>

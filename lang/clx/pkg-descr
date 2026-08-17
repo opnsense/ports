@@ -1,0 +1,8 @@
+CLX is a cross-platform ahead-of-time compiler for Lua that generates
+standalone native executables through modern C++ toolchains, rather than
+interpreting bytecode at runtime.
+
+It targets Lua 5.5 compatibility and aims for predictable runtime
+performance and fast startup times, integrating with existing C++ build
+systems.  Alongside the compiler it installs a static runtime library
+and headers for embedding compiled Lua into C++ projects.

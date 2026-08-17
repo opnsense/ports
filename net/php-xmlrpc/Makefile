@@ -1,4 +1,5 @@
 PORTNAME=	xmlrpc
+DISTVERSIONPREFIX=	xmlrpc-
 DISTVERSION=	1.0.0RC3
 PORTREVISION=	4
 PORTEPOCH=	1
@@ -16,7 +17,6 @@ USES=		gnome iconv:translit php:ext pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	php
 GH_PROJECT=	pecl-networking-xmlrpc
-GH_TAGNAME=	${DISTNAME}
 USE_GNOME=	libxml2
 USE_PHP=	xml:build
 IGNORE_WITH_PHP=	86

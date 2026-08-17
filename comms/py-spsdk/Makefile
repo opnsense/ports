@@ -24,7 +24,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}asn1crypto>=1.2<1.6:devel/py-asn1crypto@${PY
 		${PYTHON_PKGNAMEPREFIX}colorama>=0.3.9:devel/py-colorama@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}commentjson>=0.9<0.10:devel/py-commentjson@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}crcmod<1.8:devel/py-crcmod@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}deepmerge<1.2:devel/py-deepmerge@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}deepmerge>0:devel/py-deepmerge@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>=2.6:devel/py-jsonschema@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}fastjsonschema>=2.15.1:devel/py-fastjsonschema@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hexdump<3.4:textproc/py-hexdump@${PY_FLAVOR} \

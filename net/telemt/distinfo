@@ -803,5 +803,5 @@ SHA256 (rust/crates/zerovec-derive-0.11.3.crate) = 625dc425cab0dca6dc3c3319506e6
 SIZE (rust/crates/zerovec-derive-0.11.3.crate) = 22115
 SHA256 (rust/crates/zmij-1.0.21.crate) = b8848ee67ecc8aedbaf3e4122217aff892639231befc6a1b58d29fff4c2cabaa
 SIZE (rust/crates/zmij-1.0.21.crate) = 26665
-SHA256 (telemt-telemt-3.4.22_GH0.tar.gz) = 035acac3245c6702463a6f57e65144bcd07a4d18bb0ec9e9d6ee05cec860e69e
-SIZE (telemt-telemt-3.4.22_GH0.tar.gz) = 2478098
+SHA256 (telemt-telemt-3.4.24_GH0.tar.gz) = 307ca713c2d4092fc17e8fef7c08adb8fb66a688496ac5d7fe98294a94d04fe6
+SIZE (telemt-telemt-3.4.24_GH0.tar.gz) = 2533895

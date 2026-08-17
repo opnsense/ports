@@ -1,4 +1,4 @@
-PORTNAME=	dwave-networkx
+PORTNAME=	dwave-networkx # dwave-networkx is being deprecated in favor of dwave-graphs, but it is still used by some packages
 DISTVERSION=	0.8.19
 PORTREVISION=	2
 CATEGORIES=	science python # quantum-computing

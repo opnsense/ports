@@ -1,7 +1,7 @@
 PORTNAME=	gatus
 DISTVERSIONPREFIX=	v
 DISTVERSION=	5.36.0
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/
 # For instructions on how to create assets:
@@ -27,7 +27,8 @@ USE_RC_SUBR=	${PORTNAME}
 SUB_LIST=	USER=${GATUS_USER}
 
 PLIST_FILES=	bin/${PORTNAME} \
-		"@sample etc/${PORTNAME}.yaml.sample"
+		"@sample etc/${PORTNAME}.yaml.sample" \
+		"@sample etc/newsyslog.conf.d/${PORTNAME}.conf.sample"
 
 GATUS_USER=	www
 
@@ -38,5 +39,7 @@ post-extract:
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc
 	${INSTALL_DATA} ${WRKSRC}/config.yaml ${STAGEDIR}${PREFIX}/etc/${PORTNAME}.yaml.sample
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf.sample
 
 .include <bsd.port.mk>

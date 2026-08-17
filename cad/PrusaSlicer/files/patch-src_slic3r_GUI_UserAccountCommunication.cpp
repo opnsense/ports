@@ -1,4 +1,4 @@
---- src/slic3r/GUI/UserAccountCommunication.cpp.orig	2025-04-15 11:04:24 UTC
+--- src/slic3r/GUI/UserAccountCommunication.cpp.orig	2026-05-19 09:09:17 UTC
 +++ src/slic3r/GUI/UserAccountCommunication.cpp
 @@ -38,7 +38,7 @@
  #include <CommonCrypto/CommonDigest.h>
@@ -27,7 +27,7 @@
              // If we can't store the tokens in secret store, store them in file with chmod 600
              boost::filesystem::path target(boost::filesystem::path(Slic3r::data_dir()) / "UserAccount.dat") ;
              std::string data = "||||";
-@@ -640,7 +640,7 @@ void UserAccountCommunication::read_stored_data(UserAc
+@@ -663,7 +663,7 @@ void UserAccountCommunication::read_stored_data(UserAc
          }
          result.shared_session_key = key0;
      } else {

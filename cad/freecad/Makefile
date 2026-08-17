@@ -1,5 +1,6 @@
 PORTNAME=	FreeCAD
-DISTVERSION=	1.1.1
+DISTVERSION=	1.1.3
+PORTREVISION=	1
 CATEGORIES=	cad
 
 MAINTAINER=	cmt@FreeBSD.org
@@ -19,7 +20,6 @@ BUILD_DEPENDS=	doxygen:devel/doxygen \
 		microsoft-gsl>0:devel/microsoft-gsl \
 		googletest>0:devel/googletest \
 		swig:devel/swig
-# the ffmpeg4 dependency is inherited via cad/opencascade
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libyaml-cpp.so:devel/yaml-cpp \
 		libfreetype.so:print/freetype2 \
@@ -37,7 +37,6 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreeimage.so:graphics/freeimage \
 		libavutil.so.60:multimedia/ffmpeg \
-		libavformat.so.58:multimedia/ffmpeg4 \
 		libmed.so:french/med \
 		libshiboken6.abi3.so:devel/shiboken6@${PY_FLAVOR} \
 		libhdf5.so:science/hdf5 \

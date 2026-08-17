@@ -1,10 +1,10 @@
 PORTNAME=	scryer-prolog
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.10.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	lang
 
-MAINTAINER=	me@svmhdvn.name
+MAINTAINER=	siva@FreeBSD.org
 COMMENT=	Modern ISO Prolog implementation in Rust
 WWW=		https://scryer.pl/
 

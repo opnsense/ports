@@ -1,7 +1,7 @@
 PORTNAME=	lib${GH_PROJECT}
-PORTVERSION=	45.0.0
+PORTVERSION=	47.0.2
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	devel
 
 MAINTAINER=	ports@FreeBSD.org
@@ -28,8 +28,6 @@ GH_PROJECT=	wasmtime
 
 CARGO_BUILD_ARGS=	-p wasmtime-c-api
 CMAKE_SOURCE_PATH=	${WRKSRC}/crates/c-api
-
-.include "${.CURDIR}/Makefile.cargo"
 
 GH_TUPLE=	WebAssembly:component-model:dac7805:component_model/tests/component-model \
 		WebAssembly:testsuite:3453673:testsuite/tests/spec_testsuite \

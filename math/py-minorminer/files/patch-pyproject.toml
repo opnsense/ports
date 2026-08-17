@@ -1,0 +1,26 @@
+-- Move `license-files` from `[project]` to `[tool.setuptools]`.
+-- FreeBSD's setuptools does not yet recognize `license-files` under
+-- `[project]`, which causes `ValueError: invalid pyproject.toml config: project`.
+-- This preserves the license file list while using the setuptools-specific
+-- configuration section supported by the installed version.
+
+--- pyproject.toml.orig	2026-07-20 00:03:29 UTC
++++ pyproject.toml
+@@ -15,7 +15,6 @@ maintainers = [
+ maintainers = [
+     {name = "D-Wave Inc.", email = "tools@dwavesys.com"},
+ ]
+-license-files = ["LICENSE", "external/glasgow-subgraph-solver/LICENCE", "minorminer/_extern/rpack/LICENSE.md"]
+ classifiers = [
+     "Operating System :: Microsoft :: Windows",
+     "Operating System :: POSIX",
+@@ -49,6 +48,9 @@ Download = "https://github.com/dwavesystems/minorminer
+ [project.urls]
+ Homepage = "https://github.com/dwavesystems/minorminer"
+ Download = "https://github.com/dwavesystems/minorminer/releases"
++
++[tool.setuptools]
++license-files = ["LICENSE", "external/glasgow-subgraph-solver/LICENCE", "minorminer/_extern/rpack/LICENSE.md"]
+ 
+ [tool.cibuildwheel]
+ build-verbosity = "1"

@@ -1,6 +1,6 @@
 PORTNAME=       biscuit-auth
 DISTVERSION=    0.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=     security python
 PKGNAMEPREFIX=  ${PYTHON_PKGNAMEPREFIX}
 
@@ -19,7 +19,7 @@ USE_GITHUB=     yes
 GH_ACCOUNT=     eclipse-biscuit
 GH_PROJECT=     biscuit-python
 GH_TAGNAME=     ${DISTVERSION}
-USE_PYTHON=     autoplist concurrent
+USE_PYTHON=     autoplist concurrent flavors
 
 CARGO_BUILD=    no
 CARGO_INSTALL=  no

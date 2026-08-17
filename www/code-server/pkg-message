@@ -17,7 +17,7 @@ By default, code-server listens on:
 
 See:
 
-  %%PREFIX%%/share/doc/code-server/README.md
+  ${PREFIX}/share/doc/code-server/README.md
 EOM
 }
 ]

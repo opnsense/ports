@@ -1,5 +1,5 @@
 PORTNAME=	hermes-agent
-PORTVERSION=	0.14.0
+PORTVERSION=	0.16.0
 CATEGORIES=	misc python
 MASTER_SITES+=	LOCAL/olivier:webdist
 DISTFILES+=	${PORTNAME}-web-dist-${PORTVERSION}${EXTRACT_SUFX}:webdist
@@ -41,7 +41,7 @@ USES=		python:3.11+,run shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	NousResearch
 GH_PROJECT=	hermes-agent
-GH_TAGNAME=	v2026.5.16
+GH_TAGNAME=	v2026.8.3
 
 USE_RC_SUBR=	hermes_dashboard hermes_gateway
 
@@ -127,16 +127,19 @@ do-install:
 .endfor
 	${MKDIR} ${STAGEDIR}${PREFIX}/bin
 	${SED} -e 's|%%HERMES_LIBDIR%%|${HERMES_LIBDIR}|g' \
+		-e 's|%%DATADIR%%|${DATADIR}|g' \
 		-e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|g' \
 		-e 's|%%ENTRY_MODULE%%|hermes_cli.main|g' \
 		-e 's|%%ENTRY_FUNC%%|main|g' \
 		${FILESDIR}/wrapper.in > ${STAGEDIR}${PREFIX}/bin/hermes
 	${SED} -e 's|%%HERMES_LIBDIR%%|${HERMES_LIBDIR}|g' \
+		-e 's|%%DATADIR%%|${DATADIR}|g' \
 		-e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|g' \
 		-e 's|%%ENTRY_MODULE%%|run_agent|g' \
 		-e 's|%%ENTRY_FUNC%%|main|g' \
 		${FILESDIR}/wrapper.in > ${STAGEDIR}${PREFIX}/bin/hermes-agent
 	${SED} -e 's|%%HERMES_LIBDIR%%|${HERMES_LIBDIR}|g' \
+		-e 's|%%DATADIR%%|${DATADIR}|g' \
 		-e 's|%%PYTHON_CMD%%|${PYTHON_CMD}|g' \
 		-e 's|%%ENTRY_MODULE%%|acp_adapter.entry|g' \
 		-e 's|%%ENTRY_FUNC%%|main|g' \
@@ -145,10 +148,6 @@ do-install:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} skills ${STAGEDIR}${DATADIR}
 	cd ${WRKSRC} && ${COPYTREE_SHARE} optional-skills ${STAGEDIR}${DATADIR}
 
-# Walk the staged HERMES_LIBDIR and DATADIR trees and append every file
-# (and every directory we created) to the plist.  This avoids hand-
-# maintaining a 500-line pkg-plist for skill templates that change every
-# release.
 post-install:
 	@cd ${STAGEDIR}${PREFIX} && \
 		${FIND} ${HERMES_LIBDIR:S,^${PREFIX}/,,} ${DATADIR:S,^${PREFIX}/,,} \

@@ -1,2 +1,2 @@
-This package contains oclock, which displays the current time on an analog
-display.
+Oclock is a simple analog clock using the SHAPE extension to make a
+round (possibly transparent) window.

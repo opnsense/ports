@@ -1,5 +1,5 @@
 PORTNAME=	zsh
-DISTVERSION=	5.9.1
+DISTVERSION=	5.9.2
 CATEGORIES=	shells
 MASTER_SITES=	https://www.zsh.org/pub/ \
 		SF \

@@ -1,6 +1,6 @@
 PORTNAME=	comfyui
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.27.0
+DISTVERSION=	0.28.0
 CATEGORIES=	misc python # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -16,10 +16,10 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>=3.11.8:www/py-aiohttp@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}av>=16.0.0:multimedia/py-av@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}blake3>0:security/py-blake3@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}comfy-aimdo>=0.4.10:misc/py-comfy-aimdo@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}comfy-kitchen>=0.2.16:misc/py-comfy-kitchen@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}comfyui-embedded-docs>=0.5.6:misc/py-comfyui-embedded-docs@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}comfyui-frontend-package>=1.45.20:misc/py-comfyui-frontend-package@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}comfyui-workflow-templates>=0.11.1:misc/py-comfyui-workflow-templates@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}comfy-kitchen>=0.2.20:misc/py-comfy-kitchen@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}comfyui-embedded-docs>=0.5.8:misc/py-comfyui-embedded-docs@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}comfyui-frontend-package>=1.45.21:misc/py-comfyui-frontend-package@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}comfyui-workflow-templates>=0.11.9:misc/py-comfyui-workflow-templates@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}einops>0:misc/py-einops@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}filelock>0:sysutils/py-filelock@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}glfw>0:graphics/py-glfw@${PY_FLAVOR} \
@@ -29,7 +29,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>=3.11.8:www/py-aiohttp@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic-settings>=2.0:devel/py-pydantic-settings@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pydantic2>=2.0:devel/py-pydantic2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}PyOpenGL>0:graphics/py-PyOpenGL@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}PyOpenGL>=3.1.8:graphics/py-PyOpenGL@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \

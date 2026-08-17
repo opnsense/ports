@@ -1,4 +1,5 @@
 PORTNAME=	uptime-kuma
+PORTREVISION=	1
 DISTVERSION=	2.4.0
 CATEGORIES=	net-mgmt www
 MASTER_SITES=	LOCAL/dch/${PORTNAME}/:npmcache \
@@ -83,6 +84,13 @@ do-build:
 		'/checkAndPreparePackage()\.then/,$$d' \
 		${WRKSRC}/node_modules/esbuild/install.js
 	${ECHO_CMD} 'checkAndPreparePackage();' >> ${WRKSRC}/node_modules/esbuild/install.js
+# clang 16+ rejects static_cast<napi_typedarray_type>(-1) as a non-constant
+# expression because -1 is outside the valid enum range [0,15].  Adding
+# 'inline' makes it a C++17 inline static data member whose initialiser is
+# no longer required to be a constant expression.
+	${REINPLACE_CMD} \
+		's/static const napi_typedarray_type unknown_array_type = /static inline const napi_typedarray_type unknown_array_type = /' \
+		${WRKSRC}/node_modules/node-addon-api/napi.h
 	cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} HOME=${WRKDIR} npm_config_cache=${_NPM_CACHE} \
 		npm_config_offline=true npm_config_python=${PYTHON_CMD} \

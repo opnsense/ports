@@ -1,0 +1,18 @@
+GNATColl Bindings Ada packages provide interfaces to programming and
+scripting languages, libraries, and system services.
+
+Supported languages:
+ * C++
+ * Python-3.x
+
+Supported libraries:
+ * iconv
+ * lzma
+ * OpenMP
+ * readline
+ * syslog
+ * zlib
+
+This is a meta-port for the entire collection of the GNATColl Bindings.
+Consumers are encouraged to depend directly on specific bindings instead of
+this meta-port.

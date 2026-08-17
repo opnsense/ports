@@ -1,2 +1,4 @@
-This package contains xkbprint, an utility for printing an XKB keyboard
-description.
+The xkbprint command generates a printable or encapsulated PostScript
+description of the XKB keyboard description specified by source. The
+source can be any compiled keymap (.xkm) file that includes a geometry
+description or an X display specification.

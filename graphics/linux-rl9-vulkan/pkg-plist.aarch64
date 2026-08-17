@@ -1,8 +1,14 @@
+usr/bin/vkcube
+usr/bin/vkcubepp
+usr/bin/vulkaninfo
 usr/lib64/libvulkan.so.1
 usr/lib64/libvulkan.so.%%LIBVERSION%%
-%%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTING.md
-%%PORTDOCS%%%%DOCSDIR%%/README.md
+%%PORTDOCS%%usr/share/doc/vulkan-loader/CONTRIBUTING.md
+%%PORTDOCS%%usr/share/doc/vulkan-loader/README.md
+%%PORTDOCS%%usr/share/doc/vulkan-tools/CONTRIBUTING.md
+%%PORTDOCS%%usr/share/doc/vulkan-tools/README.md
 usr/share/licenses/vulkan-loader/LICENSE.txt
+usr/share/licenses/vulkan-tools/LICENSE.txt
 @dir %%ETCDIR%%/explicit_layer.d
 @dir %%ETCDIR%%/icd.d
 @dir %%ETCDIR%%/implicit_layer.d

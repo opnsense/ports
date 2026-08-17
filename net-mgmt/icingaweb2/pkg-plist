@@ -33,6 +33,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/application/controllers/RoleController.php
 %%WWWDIR%%/application/controllers/SearchController.php
 %%WWWDIR%%/application/controllers/StaticController.php
+%%WWWDIR%%/application/controllers/TwoFactorController.php
 %%WWWDIR%%/application/controllers/UserController.php
 %%WWWDIR%%/application/controllers/UsergroupbackendController.php
 %%WWWDIR%%/application/fonts/fontello-ifont/LICENSE.txt
@@ -52,15 +53,18 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/application/fonts/fontello-ifont/font/ifont.woff2
 %%WWWDIR%%/application/fonts/icingaweb.md
 %%WWWDIR%%/application/forms/Account/ChangePasswordForm.php
+%%WWWDIR%%/application/forms/Account/TwoFactorEnrollmentForm.php
 %%WWWDIR%%/application/forms/AcknowledgeApplicationStateMessageForm.php
 %%WWWDIR%%/application/forms/ActionForm.php
 %%WWWDIR%%/application/forms/Announcement/AcknowledgeAnnouncementForm.php
 %%WWWDIR%%/application/forms/Announcement/AnnouncementForm.php
 %%WWWDIR%%/application/forms/Authentication/LoginForm.php
+%%WWWDIR%%/application/forms/Authentication/TwoFactorChallengeForm.php
 %%WWWDIR%%/application/forms/AutoRefreshForm.php
 %%WWWDIR%%/application/forms/Config/General/ApplicationConfigForm.php
 %%WWWDIR%%/application/forms/Config/General/DefaultAuthenticationDomainConfigForm.php
 %%WWWDIR%%/application/forms/Config/General/LoggingConfigForm.php
+%%WWWDIR%%/application/forms/Config/General/PasswordPolicyConfigForm.php
 %%WWWDIR%%/application/forms/Config/General/ThemingConfigForm.php
 %%WWWDIR%%/application/forms/Config/GeneralConfigForm.php
 %%WWWDIR%%/application/forms/Config/Resource/DbResourceForm.php
@@ -68,6 +72,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/application/forms/Config/Resource/LdapResourceForm.php
 %%WWWDIR%%/application/forms/Config/Resource/SshResourceForm.php
 %%WWWDIR%%/application/forms/Config/ResourceConfigForm.php
+%%WWWDIR%%/application/forms/Config/Security/CspConfigForm.php
 %%WWWDIR%%/application/forms/Config/User/CreateMembershipForm.php
 %%WWWDIR%%/application/forms/Config/User/UserForm.php
 %%WWWDIR%%/application/forms/Config/UserBackend/DbBackendForm.php
@@ -110,7 +115,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/application/views/scripts/about/index.phtml
 %%WWWDIR%%/application/views/scripts/account/index.phtml
 %%WWWDIR%%/application/views/scripts/announcements/index.phtml
-%%WWWDIR%%/application/views/scripts/authentication/login.phtml
 %%WWWDIR%%/application/views/scripts/authentication/logout.phtml
 %%WWWDIR%%/application/views/scripts/config/devtools.phtml
 %%WWWDIR%%/application/views/scripts/config/general.phtml
@@ -121,6 +125,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/application/views/scripts/config/resource/create.phtml
 %%WWWDIR%%/application/views/scripts/config/resource/modify.phtml
 %%WWWDIR%%/application/views/scripts/config/resource/remove.phtml
+%%WWWDIR%%/application/views/scripts/config/security.phtml
 %%WWWDIR%%/application/views/scripts/config/userbackend/reorder.phtml
 %%WWWDIR%%/application/views/scripts/dashboard/error.phtml
 %%WWWDIR%%/application/views/scripts/dashboard/index.phtml
@@ -159,13 +164,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/composer.json
 %%WWWDIR%%/doc/01-About.md
 %%WWWDIR%%/doc/02-Installation.md
-%%WWWDIR%%/doc/02-Installation.md.d/01-Debian.md
-%%WWWDIR%%/doc/02-Installation.md.d/02-Ubuntu.md
-%%WWWDIR%%/doc/02-Installation.md.d/03-CentOS.md
-%%WWWDIR%%/doc/02-Installation.md.d/04-RHEL.md
-%%WWWDIR%%/doc/02-Installation.md.d/05-SLES.md
-%%WWWDIR%%/doc/02-Installation.md.d/06-Amazon-Linux.md
-%%WWWDIR%%/doc/02-Installation.md.d/07-From-Source.md
+%%WWWDIR%%/doc/02-Installation.md.d/From-Source.md
 %%WWWDIR%%/doc/03-Configuration.md
 %%WWWDIR%%/doc/04-Resources.md
 %%WWWDIR%%/doc/05-Authentication.md
@@ -178,14 +177,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/doc/70-Troubleshooting.md
 %%WWWDIR%%/doc/80-Upgrading.md
 %%WWWDIR%%/doc/90-SELinux.md
-%%WWWDIR%%/doc/accessibility/ifont-mute.html
-%%WWWDIR%%/doc/accessibility/ifont.html
-%%WWWDIR%%/doc/accessibility/link-labels.html
-%%WWWDIR%%/doc/accessibility/required-form-elements.html
-%%WWWDIR%%/doc/accessibility/skip-content.html
-%%WWWDIR%%/doc/accessibility/svg.html
-%%WWWDIR%%/doc/accessibility/text-cue-for-required-form-control-labels.html
-%%WWWDIR%%/doc/phpdoc.xml
 %%WWWDIR%%/doc/res/GraphExample#1.png
 %%WWWDIR%%/doc/res/GraphExample#2.png
 %%WWWDIR%%/doc/res/GraphExample#3.png
@@ -213,15 +204,19 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Application/Hook/AuthenticationHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/Common/DbMigrationStep.php
 %%WWWDIR%%/library/Icinga/Application/Hook/ConfigFormEventsHook.php
+%%WWWDIR%%/library/Icinga/Application/Hook/CspHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/DbMigrationHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/GrapherHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/HealthHook.php
+%%WWWDIR%%/library/Icinga/Application/Hook/HookEssentials.php
 %%WWWDIR%%/library/Icinga/Application/Hook/LoginButtonHook.php
+%%WWWDIR%%/library/Icinga/Application/Hook/PasswordPolicyHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/PdfexportHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/RequestHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/ThemeLoaderHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/Ticket/TicketPattern.php
 %%WWWDIR%%/library/Icinga/Application/Hook/TicketHook.php
+%%WWWDIR%%/library/Icinga/Application/Hook/TwoFactorHook.php
 %%WWWDIR%%/library/Icinga/Application/Hook/WebBaseHook.php
 %%WWWDIR%%/library/Icinga/Application/Icinga.php
 %%WWWDIR%%/library/Icinga/Application/LegacyWeb.php
@@ -241,6 +236,8 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Application/Modules/Module.php
 %%WWWDIR%%/library/Icinga/Application/Modules/NavigationItemContainer.php
 %%WWWDIR%%/library/Icinga/Application/Platform.php
+%%WWWDIR%%/library/Icinga/Application/ProvidedHook/AnyPasswordPolicy.php
+%%WWWDIR%%/library/Icinga/Application/ProvidedHook/CommonPasswordPolicy.php
 %%WWWDIR%%/library/Icinga/Application/ProvidedHook/DbMigration.php
 %%WWWDIR%%/library/Icinga/Application/StaticWeb.php
 %%WWWDIR%%/library/Icinga/Application/Test.php
@@ -254,8 +251,13 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Authentication/Authenticatable.php
 %%WWWDIR%%/library/Icinga/Authentication/LoginButton.php
 %%WWWDIR%%/library/Icinga/Authentication/LoginButtonForm.php
+%%WWWDIR%%/library/Icinga/Authentication/PasswordPolicy.php
+%%WWWDIR%%/library/Icinga/Authentication/PasswordPolicyHelper.php
+%%WWWDIR%%/library/Icinga/Authentication/PasswordPolicyValidator.php
 %%WWWDIR%%/library/Icinga/Authentication/Role.php
 %%WWWDIR%%/library/Icinga/Authentication/RolesConfig.php
+%%WWWDIR%%/library/Icinga/Authentication/TwoFactor.php
+%%WWWDIR%%/library/Icinga/Authentication/TwoFactorState.php
 %%WWWDIR%%/library/Icinga/Authentication/User/DbUserBackend.php
 %%WWWDIR%%/library/Icinga/Authentication/User/DomainAwareInterface.php
 %%WWWDIR%%/library/Icinga/Authentication/User/ExternalBackend.php
@@ -393,16 +395,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/File/Storage/StorageInterface.php
 %%WWWDIR%%/library/Icinga/File/Storage/TemporaryLocalFileStorage.php
 %%WWWDIR%%/library/Icinga/Legacy/DashboardConfig.php
-%%WWWDIR%%/library/Icinga/Less/Call.php
-%%WWWDIR%%/library/Icinga/Less/ColorProp.php
-%%WWWDIR%%/library/Icinga/Less/ColorPropOrVariable.php
-%%WWWDIR%%/library/Icinga/Less/DeferredColorProp.php
-%%WWWDIR%%/library/Icinga/Less/LightMode.php
-%%WWWDIR%%/library/Icinga/Less/LightModeCall.php
-%%WWWDIR%%/library/Icinga/Less/LightModeDefinition.php
-%%WWWDIR%%/library/Icinga/Less/LightModeTrait.php
-%%WWWDIR%%/library/Icinga/Less/LightModeVisitor.php
-%%WWWDIR%%/library/Icinga/Less/Visitor.php
 %%WWWDIR%%/library/Icinga/Model/Schema.php
 %%WWWDIR%%/library/Icinga/Protocol/Dns.php
 %%WWWDIR%%/library/Icinga/Protocol/File/Exception/FileReaderException.php
@@ -425,6 +417,17 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Repository/LdapRepository.php
 %%WWWDIR%%/library/Icinga/Repository/Repository.php
 %%WWWDIR%%/library/Icinga/Repository/RepositoryQuery.php
+%%WWWDIR%%/library/Icinga/Security/Csp/AttributedCsp.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Loader/ArrayCspLoader.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Loader/CspLoader.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Loader/DashboardCspLoader.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Loader/ModuleCspLoader.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Loader/NavigationCspLoader.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Reason/CspReason.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Reason/DashboardCspReason.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Reason/ModuleCspReason.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Reason/NavigationCspReason.php
+%%WWWDIR%%/library/Icinga/Security/Csp/Reason/StaticCspReason.php
 %%WWWDIR%%/library/Icinga/Security/SecurityException.php
 %%WWWDIR%%/library/Icinga/Test/BaseTestCase.php
 %%WWWDIR%%/library/Icinga/Test/ClassLoader.php
@@ -444,7 +447,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Util/Format.php
 %%WWWDIR%%/library/Icinga/Util/GlobFilter.php
 %%WWWDIR%%/library/Icinga/Util/Json.php
-%%WWWDIR%%/library/Icinga/Util/LessParser.php
 %%WWWDIR%%/library/Icinga/Util/StringHelper.php
 %%WWWDIR%%/library/Icinga/Util/TimezoneDetect.php
 %%WWWDIR%%/library/Icinga/Web/Announcement.php
@@ -464,6 +466,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Web/Dom/DomNodeIterator.php
 %%WWWDIR%%/library/Icinga/Web/FileCache.php
 %%WWWDIR%%/library/Icinga/Web/Form.php
+%%WWWDIR%%/library/Icinga/Web/Form/ConfigForm.php
 %%WWWDIR%%/library/Icinga/Web/Form/Decorator/Autosubmit.php
 %%WWWDIR%%/library/Icinga/Web/Form/Decorator/ConditionalHidden.php
 %%WWWDIR%%/library/Icinga/Web/Form/Decorator/ElementDoubler.php
@@ -477,6 +480,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Web/Form/Element/CsrfCounterMeasure.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Date.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/DateTimePicker.php
+%%WWWDIR%%/library/Icinga/Web/Form/Element/LoginRedirect.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Note.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Number.php
 %%WWWDIR%%/library/Icinga/Web/Form/Element/Textarea.php
@@ -554,6 +558,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/library/Icinga/Web/Widget/ItemList/MigrationList.php
 %%WWWDIR%%/library/Icinga/Web/Widget/ItemList/MigrationListItem.php
 %%WWWDIR%%/library/Icinga/Web/Widget/Limiter.php
+%%WWWDIR%%/library/Icinga/Web/Widget/LoginPage.php
 %%WWWDIR%%/library/Icinga/Web/Widget/Paginator.php
 %%WWWDIR%%/library/Icinga/Web/Widget/SearchDashboard.php
 %%WWWDIR%%/library/Icinga/Web/Widget/SingleValueSearchControl.php
@@ -687,6 +692,7 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/public/css/icinga/compat.less
 %%WWWDIR%%/public/css/icinga/configmenu.less
 %%WWWDIR%%/public/css/icinga/controls.less
+%%WWWDIR%%/public/css/icinga/csp-config-editor.less
 %%WWWDIR%%/public/css/icinga/dev.less
 %%WWWDIR%%/public/css/icinga/forms.less
 %%WWWDIR%%/public/css/icinga/grid.less
@@ -853,7 +859,6 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/public/js/icinga.js
 %%WWWDIR%%/public/js/icinga/behavior/actiontable.js
 %%WWWDIR%%/public/js/icinga/behavior/application-state.js
-%%WWWDIR%%/public/js/icinga/behavior/autofocus.js
 %%WWWDIR%%/public/js/icinga/behavior/collapsible.js
 %%WWWDIR%%/public/js/icinga/behavior/copy-to-clipboard.js
 %%WWWDIR%%/public/js/icinga/behavior/datetime-picker.js
@@ -892,5 +897,5 @@ etc/bash_completion.d/icingacli
 %%WWWDIR%%/schema/pgsql-upgrades/2.9.0.sql
 %%WWWDIR%%/schema/pgsql-upgrades/2.9.1.sql
 %%WWWDIR%%/schema/pgsql.schema.sql
-@dir(%%WWWOWN%%,%%WWWGRP%%) /var/db/icingaweb2
 @dir %%ETCDIR%%
+@dir(%%WWWOWN%%,%%WWWGRP%%) /var/db/icingaweb2

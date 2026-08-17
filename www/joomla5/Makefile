@@ -1,5 +1,5 @@
 PORTNAME=	joomla
-DISTVERSION=	5-3-1
+DISTVERSION=	5-4-7
 CATEGORIES=	www
 MASTER_SITES=	https://downloads.joomla.org/cms/joomla5/${DISTVERSION}/
 PKGNAMESUFFIX=	5
@@ -15,7 +15,7 @@ USES=		cpe php:web shebangfix zip
 CPE_VENDOR=	${PORTNAME}
 CPE_PRODUCT=	${PORTNAME}\!
 
-CONFLICTS_INSTALL=	joomla4
+CONFLICTS_INSTALL=	joomla4 joomla6
 
 NO_ARCH=	yes
 NO_BUILD=	yes

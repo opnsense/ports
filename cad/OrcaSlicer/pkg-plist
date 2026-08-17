@@ -12117,7 +12117,7 @@ lib/cmake/stb_dxt/stb_dxtTargets.cmake
 %%DATADIR%%/tooltip/main.css
 %%DATADIR%%/tooltip/main.js
 %%DATADIR%%/tooltip/privacyupdate.html
-%%DATADIR%%/tooltip/%%CMAKE_BUILD_TYPE%%note.html
+%%DATADIR%%/tooltip/releasenote.html
 %%DATADIR%%/tooltip/styled.html
 %%DATADIR%%/tooltip/zh_CN/.md
 %%DATADIR%%/web/data/text.js

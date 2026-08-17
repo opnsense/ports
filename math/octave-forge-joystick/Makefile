@@ -1,6 +1,7 @@
 PORTNAME=	octave-forge-joystick
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.0.5
+PORTREVISION=	1
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org
@@ -10,11 +11,9 @@ WWW=		https://packages.octave.org/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKDIR}/${OCTAVE_SRC}/COPYING
 
-BUILD_DEPENDS+=	cmake:devel/cmake # Required by configure.
-
 LIB_DEPENDS+=	libSDL2.so:devel/sdl20
 
-USES=		octave autoreconf
+USES=		cmake:indirect octave autoreconf
 USE_GITHUB=	yes
 GH_ACCOUNT=	gnu-octave
 GH_PROJECT=	octave-joystick

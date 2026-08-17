@@ -1,8 +1,8 @@
---- Makefile.orig	2024-08-22 17:41:01 UTC
+--- Makefile.orig	2025-12-07 17:50:24 UTC
 +++ Makefile
-@@ -7,11 +7,7 @@ SRCDIR ?= .
- DESTDIR = 
- SRCDIR ?= .
+@@ -7,11 +7,7 @@ SRCDIR ?= $(dir $(THISMKFILE))
+ THISMKFILE := $(lastword $(MAKEFILE_LIST))
+ SRCDIR ?= $(dir $(THISMKFILE))
  
 -CC = gcc
 -SHELL := bash
@@ -17,13 +17,13 @@
  LIBDIR = /usr/$(LIB)
  COMPILER = $(shell $(CC) --version | head -n1)
  ID = $(shell git describe --tags || cat REL-ID)
--DEFINES = -DVERSION=\"$(VERSION)\"  -D__COMPILER__="\"$(COMPILER)\"" -DID=\"$(ID)\" # -DPLUGSEARCH="\"$(LIBDIR)\""
-+DEFINES = -DVERSION=\"$(VERSION)\"  -D__COMPILER__="\"$(COMPILER)\"" -DID=\"$(ID)\" -DHAVE_CONFIG_H # -DPLUGSEARCH="\"$(LIBDIR)\""
+-DEFINES = -DIO_HAVOC=1 -DVERSION=\"$(VERSION)\"  -D__COMPILER__="\"$(COMPILER)\"" -DID=\"$(ID)\" # -DPLUGSEARCH="\"$(LIBDIR)\""
++DEFINES = -DIO_HAVOC=1 -DVERSION=\"$(VERSION)\"  -D__COMPILER__="\"$(COMPILER)\"" -DID=\"$(ID)\" -DHAVE_CONFIG_H # -DPLUGSEARCH="\"$(LIBDIR)\""
  OUT = -o dd_rescue
  PIC = -fPIC
  PIE = -fPIE
-@@ -75,19 +71,13 @@ endif
-   HAVE_XATTR=0
+@@ -89,19 +85,13 @@ endif
+ endif
  endif
  
 -ifeq ($(CC),wcl386)
@@ -43,7 +43,7 @@
    ISX86 := 1
    LIB = lib64
  endif
-@@ -296,7 +286,7 @@ libddr_lzo.so: libddr_lzo.po
+@@ -348,7 +338,7 @@ libddr_lzo.so: libddr_lzo.po
  	ln -sf $< $@
  
  libddr_lzo.so: libddr_lzo.po
@@ -52,7 +52,7 @@
  
  libddr_null.so: libddr_null.po
  	$(CC) -shared -o $@ $^
-@@ -367,7 +357,7 @@ dd_rescue: $(SRCDIR)/dd_rescue.c $(DDR_HEADERS) $(OBJE
+@@ -442,7 +432,7 @@ dd_rescue: $(SRCDIR)/dd_rescue.c $(DDR_HEADERS) $(OBJE
  
  # This is the default built
  dd_rescue: $(SRCDIR)/dd_rescue.c $(DDR_HEADERS) $(OBJECTS) $(OBJECTS2)

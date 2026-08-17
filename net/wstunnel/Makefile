@@ -1,6 +1,7 @@
 PORTNAME=	wstunnel
 DISTVERSIONPREFIX=	v
-DISTVERSION=	10.6.1
+DISTVERSION=	10.6.2
+PORTREVISION=	1
 CATEGORIES=	net
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -30,16 +31,16 @@ CARGO_CRATES=	ahash-0.8.12 \
 		asn1-rs-0.7.2 \
 		asn1-rs-derive-0.6.0 \
 		asn1-rs-impl-0.2.0 \
-		astral-tokio-tar-0.6.3 \
+		astral-tokio-tar-0.6.4 \
 		async-channel-2.5.0 \
 		async-stream-0.3.6 \
 		async-stream-impl-0.3.6 \
 		async-trait-0.1.89 \
 		atomic-waker-1.1.2 \
 		autocfg-1.5.1 \
-		aws-lc-fips-sys-0.13.14 \
-		aws-lc-rs-1.17.0 \
-		aws-lc-sys-0.41.0 \
+		aws-lc-fips-sys-0.13.16 \
+		aws-lc-rs-1.17.3 \
+		aws-lc-sys-0.43.0 \
 		axum-0.8.9 \
 		axum-core-0.5.6 \
 		base16ct-0.2.0 \
@@ -49,24 +50,24 @@ CARGO_CRATES=	ahash-0.8.12 \
 		bb8-0.9.1 \
 		bindgen-0.72.1 \
 		bit-vec-0.9.1 \
-		bitflags-2.13.0 \
+		bitflags-2.13.1 \
 		block-buffer-0.10.4 \
 		bollard-0.20.2 \
 		bollard-buildkit-proto-0.7.0 \
 		bollard-stubs-1.52.1-rc.29.1.3 \
 		bs58-0.5.1 \
 		bumpalo-3.20.3 \
-		bytes-1.12.0 \
+		bytes-1.12.1 \
 		c_linked_list-1.1.1 \
-		cc-1.2.65 \
+		cc-1.2.67 \
 		cexpr-0.6.0 \
 		cfg-if-1.0.4 \
-		cfg_aliases-0.2.1 \
+		cfg_aliases-0.2.2 \
 		chacha20-0.10.1 \
 		chrono-0.4.45 \
 		clang-sys-1.8.1 \
-		clap-4.6.1 \
-		clap_builder-4.6.0 \
+		clap-4.6.2 \
+		clap_builder-4.6.2 \
 		clap_derive-4.6.1 \
 		clap_lex-1.1.0 \
 		cmake-0.1.58 \
@@ -82,9 +83,9 @@ CARGO_CRATES=	ahash-0.8.12 \
 		cpufeatures-0.2.17 \
 		cpufeatures-0.3.0 \
 		critical-section-1.2.0 \
-		crossbeam-channel-0.5.15 \
-		crossbeam-epoch-0.9.18 \
-		crossbeam-utils-0.8.21 \
+		crossbeam-channel-0.5.16 \
+		crossbeam-epoch-0.9.20 \
+		crossbeam-utils-0.8.22 \
 		crossterm-0.29.0 \
 		crossterm_winapi-0.9.1 \
 		crypto-bigint-0.5.5 \
@@ -158,8 +159,8 @@ CARGO_CRATES=	ahash-0.8.12 \
 		hmac-0.12.1 \
 		home-0.5.12 \
 		http-1.4.2 \
-		http-body-1.0.1 \
-		http-body-util-0.1.3 \
+		http-body-1.1.0 \
+		http-body-util-0.1.4 \
 		httparse-1.10.1 \
 		httpdate-1.0.3 \
 		hyper-1.10.1 \
@@ -182,8 +183,8 @@ CARGO_CRATES=	ahash-0.8.12 \
 		idna_adapter-1.2.2 \
 		indexmap-1.9.3 \
 		indexmap-2.14.0 \
-		inotify-0.11.2 \
-		inotify-sys-0.1.5 \
+		inotify-0.11.4 \
+		inotify-sys-0.1.8 \
 		ipconfig-0.3.4 \
 		ipnet-2.12.0 \
 		is_terminal_polyfill-1.70.2 \
@@ -194,7 +195,7 @@ CARGO_CRATES=	ahash-0.8.12 \
 		jni-macros-0.22.4 \
 		jni-sys-0.4.1 \
 		jni-sys-macros-0.4.1 \
-		jobserver-0.1.34 \
+		jobserver-0.1.35 \
 		js-sys-0.3.103 \
 		jsonwebtoken-10.4.0 \
 		kqueue-1.2.0 \
@@ -203,7 +204,6 @@ CARGO_CRATES=	ahash-0.8.12 \
 		libc-0.2.186 \
 		libloading-0.8.9 \
 		libm-0.2.16 \
-		linux-raw-sys-0.4.15 \
 		linux-raw-sys-0.12.1 \
 		litemap-0.8.2 \
 		litrs-1.0.0 \
@@ -211,11 +211,11 @@ CARGO_CRATES=	ahash-0.8.12 \
 		log-0.4.33 \
 		matchers-0.2.0 \
 		matchit-0.8.4 \
-		memchr-2.8.2 \
+		memchr-2.8.3 \
 		memoffset-0.9.1 \
 		mime-0.3.17 \
 		minimal-lexical-0.2.1 \
-		mio-1.2.1 \
+		mio-1.2.2 \
 		moka-0.12.15 \
 		ndk-context-0.1.1 \
 		nix-0.31.3 \
@@ -224,12 +224,12 @@ CARGO_CRATES=	ahash-0.8.12 \
 		notify-types-2.1.0 \
 		nu-ansi-term-0.50.3 \
 		num-0.4.3 \
-		num-bigint-0.4.6 \
+		num-bigint-0.4.8 \
 		num-bigint-dig-0.8.6 \
 		num-complex-0.4.6 \
 		num-conv-0.2.2 \
 		num-integer-0.1.46 \
-		num-iter-0.1.45 \
+		num-iter-0.1.46 \
 		num-rational-0.4.2 \
 		num-traits-0.2.19 \
 		num_threads-0.1.7 \
@@ -251,7 +251,8 @@ CARGO_CRATES=	ahash-0.8.12 \
 		pin-project-lite-0.2.17 \
 		pkcs1-0.7.5 \
 		pkcs8-0.10.2 \
-		portable-atomic-1.13.1 \
+		pkg-config-0.3.33 \
+		portable-atomic-1.14.0 \
 		potential_utf-0.1.5 \
 		powerfmt-0.2.0 \
 		ppp-2.3.0 \
@@ -267,9 +268,9 @@ CARGO_CRATES=	ahash-0.8.12 \
 		quote-1.0.46 \
 		r-efi-5.3.0 \
 		r-efi-6.0.0 \
-		rand-0.8.6 \
-		rand-0.9.4 \
-		rand-0.10.1 \
+		rand-0.8.7 \
+		rand-0.9.5 \
+		rand-0.10.2 \
 		rand_chacha-0.3.1 \
 		rand_chacha-0.9.0 \
 		rand_core-0.6.4 \
@@ -279,8 +280,8 @@ CARGO_CRATES=	ahash-0.8.12 \
 		redox_syscall-0.5.18 \
 		ref-cast-1.0.25 \
 		ref-cast-impl-1.0.25 \
-		regex-1.12.4 \
-		regex-automata-0.4.14 \
+		regex-1.13.1 \
+		regex-automata-0.4.16 \
 		regex-syntax-0.8.11 \
 		relative-path-1.9.3 \
 		resolv-conf-0.7.6 \
@@ -289,17 +290,16 @@ CARGO_CRATES=	ahash-0.8.12 \
 		rsa-0.9.10 \
 		rstest-0.26.1 \
 		rstest_macros-0.26.1 \
-		rustc-hash-2.1.2 \
+		rustc-hash-2.1.3 \
 		rustc_version-0.4.1 \
 		rusticata-macros-4.1.0 \
-		rustix-0.38.44 \
 		rustix-1.1.4 \
-		rustls-0.23.41 \
+		rustls-0.23.42 \
 		rustls-native-certs-0.8.4 \
 		rustls-pemfile-2.2.0 \
-		rustls-pki-types-1.14.1 \
+		rustls-pki-types-1.15.0 \
 		rustls-webpki-0.103.13 \
-		rustversion-1.0.22 \
+		rustversion-1.0.23 \
 		ryu-1.0.23 \
 		same-file-1.0.6 \
 		schannel-0.1.29 \
@@ -322,7 +322,7 @@ CARGO_CRATES=	ahash-0.8.12 \
 		serde_yaml-0.9.34+deprecated \
 		serial_test-3.5.0 \
 		serial_test_derive-3.5.0 \
-		sha1-0.10.6 \
+		sha1-0.10.7 \
 		sha2-0.10.9 \
 		sharded-slab-0.1.7 \
 		shlex-1.3.0 \
@@ -331,20 +331,20 @@ CARGO_CRATES=	ahash-0.8.12 \
 		signal-hook-mio-0.2.5 \
 		signal-hook-registry-1.4.8 \
 		signature-2.2.0 \
-		simd_cesu8-1.1.1 \
+		simd_cesu8-1.2.0 \
 		simdutf8-0.1.5 \
 		slab-0.4.12 \
 		smallvec-1.15.2 \
 		socket2-0.5.10 \
-		socket2-0.6.4 \
-		spin-0.9.8 \
+		socket2-0.6.5 \
+		spin-0.9.9 \
 		spki-0.7.3 \
 		stable_deref_trait-1.2.1 \
 		strsim-0.11.1 \
 		structmeta-0.3.0 \
 		structmeta-derive-0.3.0 \
 		subtle-2.6.1 \
-		syn-2.0.118 \
+		syn-2.0.119 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
 		system-configuration-0.7.0 \
@@ -358,23 +358,23 @@ CARGO_CRATES=	ahash-0.8.12 \
 		thiserror-2.0.18 \
 		thiserror-impl-1.0.69 \
 		thiserror-impl-2.0.18 \
-		thread_local-1.1.9 \
+		thread_local-1.1.10 \
 		tikv-jemalloc-sys-0.7.1+5.3.1-0-g81034ce1f1373e37dc865038e1bc8eeecf559ce8 \
 		tikv-jemallocator-0.7.0 \
-		time-0.3.51 \
+		time-0.3.53 \
 		time-core-0.1.9 \
-		time-macros-0.2.30 \
+		time-macros-0.2.31 \
 		tinystr-0.8.3 \
-		tinyvec-1.11.0 \
+		tinyvec-1.12.0 \
 		tinyvec_macros-0.1.1 \
-		tokio-1.52.3 \
+		tokio-1.53.0 \
 		tokio-fd-0.3.0 \
-		tokio-macros-2.7.0 \
+		tokio-macros-2.7.1 \
 		tokio-rustls-0.26.4 \
 		tokio-stream-0.1.18 \
 		tokio-util-0.7.18 \
 		toml_datetime-1.1.1+spec-1.1.0 \
-		toml_edit-0.25.12+spec-1.1.0 \
+		toml_edit-0.25.13+spec-1.1.0 \
 		toml_parser-1.1.2+spec-1.1.0 \
 		tonic-0.14.6 \
 		tonic-prost-0.14.6 \
@@ -402,7 +402,7 @@ CARGO_CRATES=	ahash-0.8.12 \
 		utf8-zero-0.8.1 \
 		utf8_iter-1.0.4 \
 		utf8parse-0.2.2 \
-		uuid-1.23.4 \
+		uuid-1.24.0 \
 		valuable-0.1.1 \
 		version_check-0.9.5 \
 		walkdir-2.5.0 \
@@ -428,7 +428,6 @@ CARGO_CRATES=	ahash-0.8.12 \
 		windows-result-0.4.1 \
 		windows-strings-0.5.1 \
 		windows-sys-0.52.0 \
-		windows-sys-0.59.0 \
 		windows-sys-0.60.2 \
 		windows-sys-0.61.2 \
 		windows-targets-0.52.6 \
@@ -449,7 +448,7 @@ CARGO_CRATES=	ahash-0.8.12 \
 		windows_x86_64_gnullvm-0.53.1 \
 		windows_x86_64_msvc-0.52.6 \
 		windows_x86_64_msvc-0.53.1 \
-		winnow-1.0.3 \
+		winnow-1.0.4 \
 		wit-bindgen-0.57.1 \
 		writeable-0.6.3 \
 		x509-parser-0.18.1 \
@@ -457,8 +456,8 @@ CARGO_CRATES=	ahash-0.8.12 \
 		yasna-0.6.0 \
 		yoke-0.8.3 \
 		yoke-derive-0.8.2 \
-		zerocopy-0.8.52 \
-		zerocopy-derive-0.8.52 \
+		zerocopy-0.8.54 \
+		zerocopy-derive-0.8.54 \
 		zerofrom-0.1.8 \
 		zerofrom-derive-0.1.7 \
 		zeroize-1.9.0 \
@@ -466,7 +465,7 @@ CARGO_CRATES=	ahash-0.8.12 \
 		zerotrie-0.2.4 \
 		zerovec-0.11.6 \
 		zerovec-derive-0.11.3 \
-		zmij-1.0.21
+		zmij-1.0.23
 
 PLIST_FILES=	bin/${PORTNAME}
 

@@ -1,0 +1,5 @@
+GNATColl Bindings Ada Packages provides bindings to programming and
+scripting languages, libraries, and system services.
+
+This package is an interface to the GNU Multiple Precision (GMP) arithmetic
+library.

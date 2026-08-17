@@ -1,6 +1,7 @@
 PORTNAME=	ntfy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.26.0
+DISTVERSION=	2.26.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/:assets
 PKGNAMEPREFIX=	go-
@@ -32,6 +33,7 @@ CONFLICTS_INSTALL=	sysutils/ntfy
 
 PLIST_FILES=	"@sample ${ETCDIR}/client.yml.sample" \
 		"@sample ${ETCDIR}/server.yml.sample" \
+		"@sample etc/newsyslog.conf.d/${PORTNAME}.conf.sample" \
 		bin/${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS
@@ -42,7 +44,7 @@ DOCS_USES=		python
 
 # Run 'git checkout ${DISTVERSIONPREFIX}${DISTVERSION} && git rev-parse --short HEAD'
 # in the ntfy repository to get the value of GITID.
-GITID=		432da44
+GITID=		311138e
 
 BUILD_DATE=	$$(date -u "+%Y-%m-%dT%H:%M:%SZ")
 
@@ -64,5 +66,7 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${WRKSRC}/server/server.yml ${STAGEDIR}${ETCDIR}/server.yml.sample
 	${INSTALL_DATA} ${WRKSRC}/client/client.yml ${STAGEDIR}${ETCDIR}/client.yml.sample
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
+	${INSTALL_DATA} ${FILESDIR}/newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/${PORTNAME}.conf.sample
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=	zen
 DISTVERSION=	1.5.0.20260429
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/:assets
@@ -17,7 +17,7 @@ WWW=		https://www.sheshbabu.com/zen/ \
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/license.md
 
-USES=		go:1.25+,modules
+USES=		go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	sheshbabu
 GH_TAGNAME=	c8e14d70de7de631cd9d4cda55daccf227283d92

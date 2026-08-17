@@ -8,7 +8,8 @@ WWW=		https://www.mesa3d.org/
 BUILD_DEPENDS+=	glslangValidator:graphics/glslang \
 		${PYTHON_PKGNAMEPREFIX}ply>0:devel/py-ply@${PY_FLAVOR} \
 		libva>=0:multimedia/libva
-LIB_DEPENDS+=	libgallium-${MESAVERSION}.so:graphics/mesa-libs \
+LIB_DEPENDS+=	libdisplay-info.so:sysutils/libdisplay-info \
+		libgallium-${MESAVERSION}.so:graphics/mesa-libs \
 		libgbm.so:graphics/mesa-libs
 
 USES+=		llvm:lib,noexport

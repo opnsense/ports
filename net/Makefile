@@ -86,6 +86,7 @@
     SUBDIR += citrix_ica
     SUBDIR += cjdns
     SUBDIR += claws
+    SUBDIR += cliproxyapi
     SUBDIR += cloud-init
     SUBDIR += cloudflare-speed-cli
     SUBDIR += cloudflared
@@ -131,6 +132,8 @@
     SUBDIR += dhcprelya
     SUBDIR += dico
     SUBDIR += dictd
+    SUBDIR += dogtag-ldap-sdk
+    SUBDIR += dot1ag-utils
     SUBDIR += dpdk
     SUBDIR += dpdk-20.11
     SUBDIR += dpinger
@@ -244,7 +247,6 @@
     SUBDIR += hanstunnel
     SUBDIR += haproxy
     SUBDIR += haproxy-devel
-    SUBDIR += haproxy24
     SUBDIR += haproxy26
     SUBDIR += haproxy28
     SUBDIR += haproxy30
@@ -305,8 +307,6 @@
     SUBDIR += java-beepcore
     SUBDIR += jcifs
     SUBDIR += jgroups
-    SUBDIR += jicmp
-    SUBDIR += jicmp6
     SUBDIR += jose
     SUBDIR += jotta-cli
     SUBDIR += jrdesktop
@@ -366,6 +366,7 @@
     SUBDIR += lambdamoo
     SUBDIR += latd
     SUBDIR += lavinmq
+    SUBDIR += lazyrsync
     SUBDIR += ldap-stats
     SUBDIR += ldapbrowser
     SUBDIR += ldapdiff
@@ -532,6 +533,7 @@
     SUBDIR += nemesis
     SUBDIR += netatalk4
     SUBDIR += netcat
+    SUBDIR += netcode
     SUBDIR += netdiscover
     SUBDIR += netembryo
     SUBDIR += nethogs
@@ -548,7 +550,6 @@
     SUBDIR += ng_mikrotik_eoip
     SUBDIR += ngrep
     SUBDIR += nifmon
-    SUBDIR += nitroshare
     SUBDIR += nload
     SUBDIR += nmsg
     SUBDIR += nncp
@@ -1243,6 +1244,7 @@
     SUBDIR += rdesktop
     SUBDIR += rdist6
     SUBDIR += rdist7
+    SUBDIR += rdma-core
     SUBDIR += rdp2tcp
     SUBDIR += read_bbrlog
     SUBDIR += realtek-re-kmod
@@ -1253,6 +1255,7 @@
     SUBDIR += redir
     SUBDIR += redpanda-connect
     SUBDIR += relayd
+    SUBDIR += reliable
     SUBDIR += remarkable-devd
     SUBDIR += remmina
     SUBDIR += remotebox
@@ -1418,6 +1421,7 @@
     SUBDIR += rubygem-nkf-gitlab
     SUBDIR += rubygem-no_proxy_fix
     SUBDIR += rubygem-oauth
+    SUBDIR += rubygem-oauth-gitlab
     SUBDIR += rubygem-oauth-tty
     SUBDIR += rubygem-oauth0
     SUBDIR += rubygem-oauth2
@@ -1543,6 +1547,7 @@
     SUBDIR += sipsak
     SUBDIR += sl2tps
     SUBDIR += slackcat
+    SUBDIR += slapi-nis
     SUBDIR += slurm
     SUBDIR += smb4k
     SUBDIR += smbldap-tools
@@ -1745,6 +1750,7 @@
     SUBDIR += yazproxy
     SUBDIR += yconalyzer
     SUBDIR += yggdrasil
+    SUBDIR += yojimbo
     SUBDIR += yptransitd
     SUBDIR += zapret
     SUBDIR += zapret2

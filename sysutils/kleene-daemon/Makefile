@@ -1,10 +1,9 @@
 PORTNAME=	kleene-daemon
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.0
-DISTVERSIONSUFFIX=	-rc.5
+DISTVERSION=	0.1.1
 CATEGORIES=	sysutils
-MASTER_SITES+=	https://builds.hex.pm/installs/1.16.0/:hex
-DISTFILES+=	hex-${_HEXPM_VERSION}.ez:hex
+MASTER_SITES+=	https://builds.hex.pm/installs/1.19.0/:hex
+DISTFILES+=	hex-${_HEXPM_VERSION}-otp-${_HEXPM_OTP}.ez:hex
 
 MAINTAINER=	lasse@philomath.dk
 COMMENT=	Kleene backend daemon for managing containers on FreeBSD
@@ -37,7 +36,8 @@ ETCDIR=		${PREFIX}/etc/kleened
 SUB_FILES=	pkg-message
 PLIST_SUB=	DISTVERSION=${DISTVERSION}
 
-_HEXPM_VERSION=		2.1.1
+_HEXPM_VERSION=		2.5.1
+_HEXPM_OTP=		28
 _HEX_DIR=		${WRKDIR}/.mix/archives/hex-${_HEXPM_VERSION}
 _RELEASE_PATH=		${WRKSRC}/_build/prod/rel/kleened
 _RELEASE_BINARIES=	escript dialyzer erlexec beam.smp heart dyn_erl to_erl \

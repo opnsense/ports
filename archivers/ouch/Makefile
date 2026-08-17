@@ -1,6 +1,6 @@
 PORTNAME=	ouch
 DISTVERSION=	0.8.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	archivers
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -9,6 +9,8 @@ WWW=		https://github.com/ouch-org/ouch
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	compilation fails: error[E0080]: attempt to compute `16_usize - 20_usize`, which would overflow
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
 

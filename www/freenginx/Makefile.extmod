@@ -19,10 +19,11 @@ AJP_GH_TUPLE=		msva:nginx_ajp_module:fcbb2cc:ajp
 AJP_VARS=		DSO_EXTMODS+=ajp
 
 ARRAYVAR_IMPLIES=	DEVEL_KIT
-ARRAYVAR_GH_TUPLE=	openresty:array-var-nginx-module:v0.05:arrayvar
+ARRAYVAR_GH_TUPLE=	openresty:array-var-nginx-module:v0.06:arrayvar
 ARRAYVAR_VARS=		DSO_EXTMODS+=arrayvar
 
-AWS_AUTH_GH_TUPLE=	anomalizer:ngx_aws_auth:21931b2:aws_auth
+AWS_AUTH_GH_TUPLE=	anomalizer:ngx_aws_auth:f3d9862:aws_auth
+AWS_AUTH_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_aws_auth-freenginx
 AWS_AUTH_VARS=		DSO_EXTMODS+=aws_auth
 
 BROTLI_LIB_DEPENDS=	libbrotlicommon.so:archivers/brotli
@@ -30,7 +31,7 @@ BROTLI_GH_TUPLE=	google:ngx_brotli:a71f931:brotli
 BROTLI_VARS=		DSO_EXTMODS+=brotli
 BROTLI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_brotli_filter_config
 
-CACHE_PURGE_GH_TUPLE=	nginx-modules:ngx_cache_purge:a84b0f3:cache_purge
+CACHE_PURGE_GH_TUPLE=	nginx-modules:ngx_cache_purge:3.0.2:cache_purge
 CACHE_PURGE_VARS=	DSO_EXTMODS+=cache_purge
 
 CT_IMPLIES=		HTTP_SSL
@@ -45,7 +46,7 @@ ECHO_VARS=		DSO_EXTMODS+=echo
 DRIZZLE_LIB_DEPENDS=	libdrizzle.so:databases/libdrizzle
 DRIZZLE_CONFIGURE_ENV=	LIBDRIZZLE_INC=${LOCALBASE}/include \
 			LIBDRIZZLE_LIB=${LOCALBASE}/lib
-DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:3504fc6:drizzle
+DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:v0.1.14:drizzle
 DRIZZLE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-openresty-drizzle-nginx-module-config
 DRIZZLE_VARS=		DSO_EXTMODS+=drizzle
 
@@ -53,7 +54,7 @@ DYNAMIC_UPSTREAM_IMPLIES=	STREAM
 DYNAMIC_UPSTREAM_GH_TUPLE=	ZigzagAK:ngx_dynamic_upstream:960eef2:dynamic_upstream
 DYNAMIC_UPSTREAM_VARS=		DSO_EXTMODS+=dynamic_upstream
 
-DEVEL_KIT_GH_TUPLE=		vision5:ngx_devel_kit:v0.3.3:devel_kit
+DEVEL_KIT_GH_TUPLE=		vision5:ngx_devel_kit:v0.3.4:devel_kit
 DEVEL_KIT_VARS=			FIRST_DSO_EXTMODS+=devel_kit
 
 ENCRYPTSESSION_IMPLIES=		DEVEL_KIT
@@ -68,9 +69,12 @@ FORMINPUT_GH_TUPLE=	calio:form-input-nginx-module:v0.12:forminput
 FORMINPUT_VARS=		DSO_EXTMODS+=forminput
 
 GRIDFS_GH_TUPLE=	nieoding:nginx-gridfs:059bdc3:gridfs
-GRIDFS_LIB_DEPENDS=	libbson-1.0.so:devel/libbson \
-			libmongoc-1.0.so:devel/mongo-c-driver
+GRIDFS_LIB_DEPENDS=	libbson2.so:devel/libbson \
+			libmongoc2.so:devel/mongo-c-driver
+GRIDFS_USES=		pkgconfig
 GRIDFS_VARS=		DSO_EXTMODS+=gridfs GRIDFS_SUBDIR=/nginx-gridfs
+GRIDFS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-gridfs_ngx_http_gridfs_module.c \
+			${PATCHDIR}/extra-patch-nginx-gridfs_config
 
 HEADERS_MORE_GH_TUPLE=		openresty:headers-more-nginx-module:06dc0be:headers_more
 HEADERS_MORE_VARS=		DSO_EXTMODS+=headers_more
@@ -160,8 +164,9 @@ HTTP_TARANTOOL_GH_TUPLE=	tarantool:nginx_upstream_module:aeb8696:nginx_tarantool
 HTTP_TARANTOOL_VARS=		DSO_EXTMODS+=nginx_tarantool
 HTTP_TARANTOOL_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_tarantool-config
 
-HTTP_UPLOAD_GH_TUPLE=		fdintino:nginx-upload-module:643b4c1:upload
+HTTP_UPLOAD_GH_TUPLE=		fdintino:nginx-upload-module:2.3.0:upload
 HTTP_UPLOAD_VARS=		DSO_EXTMODS+=upload
+HTTP_UPLOAD_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_upload_module.c
 
 HTTP_UPLOAD_PROGRESS_GH_TUPLE=		masterzen:nginx-upload-progress-module:68b3ab3:uploadprogress
 HTTP_UPLOAD_PROGRESS_VARS=		DSO_EXTMODS+=uploadprogress
@@ -173,7 +178,8 @@ HTTP_UPSTREAM_CHECK_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-http-modules-ngx_
 					${PATCHDIR}/extra-patch-src-http-modules-ngx_http_upstream_ip_hash_module.c \
 					${PATCHDIR}/extra-patch-src-http-modules-ngx_http_upstream_least_conn_module.c \
 					${PATCHDIR}/extra-patch-src-http-ngx_http_upstream_round_robin.c \
-					${PATCHDIR}/extra-patch-src-http-ngx_http_upstream_round_robin.h
+					${PATCHDIR}/extra-patch-src-http-ngx_http_upstream_round_robin.h \
+					${PATCHDIR}/extra-patch-ngx_http_upstream_check_module.c
 
 HTTP_UPSTREAM_FAIR_GH_TUPLE=		jaygooby:nginx-upstream-fair:10ecdcf:upstreamfair
 HTTP_UPSTREAM_FAIR_VARS=		DSO_EXTMODS+=upstreamfair
@@ -209,7 +215,8 @@ LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
 LUA_RUN_DEPENDS=	lua-resty-core>0:www/lua-resty-core
 LUA_CONFIGURE_ENV=	LUAJIT_INC=${LOCALBASE}/include/luajit-2.1 \
 			LUAJIT_LIB=${LOCALBASE}/lib
-LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.29:lua
+LUA_BUILD_DEPENDS=	nginx-module-lua>0:www/nginx-module-lua
+WRKSRC_lua=		${WRKDIR}/lua-nginx-module
 LUA_VARS=		DSO_EXTMODS+=lua
 
 LUASTREAM_IMPLIES=	DEVEL_KIT
@@ -217,7 +224,7 @@ LUASTREAM_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
 LUASTREAM_RUN_DEPENDS=	lua-resty-core>0:www/lua-resty-core
 LUASTREAM_CONFIGURE_ENV=LUAJIT_INC=${LOCALBASE}/include/luajit-2.1 \
 			LUAJIT_LIB=${LOCALBASE}/lib
-LUASTREAM_BUILD_DEPENDS=lua-stream-nginx-module>=0.0.17:www/lua-stream-nginx-module
+LUASTREAM_BUILD_DEPENDS=nginx-module-lua-stream>0:www/nginx-module-lua-stream
 WRKSRC_luastream=	${WRKDIR}/lua-stream-nginx-module
 LUASTREAM_VARS=		DSO_EXTMODS+=luastream
 
@@ -244,6 +251,12 @@ NAXSI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-naxsi-libinjection__sqli_c \
 NJS_GH_TUPLE=		nginx:njs:1.0.0:njs
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
 NJS_IMPLIES=		STREAM
+
+NJS_QJS_IMPLIES=	NJS
+NJS_QJS_LIB_DEPENDS=	libquickjs.so:lang/quickjs
+# njs auto-enables QuickJS whenever it is found at configure time,
+# keep the build deterministic when the option is disabled
+NJS_QJS_CONFIGURE_ENV_OFF=	NJS_QUICKJS=NO
 
 NJS_XML_IMPLIES=	HTTP NJS
 NJS_XML_LIB_DEPENDS=	libxml2.so:textproc/libxml2 \

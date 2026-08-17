@@ -1,6 +1,6 @@
 PORTNAME=	rawtherapee
-PORTVERSION=	5.12
-PORTREVISION=	3
+PORTVERSION=	5.13
+PORTREVISION=	0
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/RawTherapee/RawTherapee/releases/download/${PORTVERSION}/ \
 		https://rawtherapee.com/shared/source/ \
@@ -18,6 +18,7 @@ LIB_DEPENDS=	\
 		libexpat.so:textproc/expat2 \
 		libfftw3.so:math/fftw3 \
 		libfftw3f.so:math/fftw3-float \
+		libfmt.so:devel/libfmt \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libiptcdata.so:graphics/libiptcdata \
@@ -43,10 +44,11 @@ CMAKE_ARGS+=	-DDOCDIR="${DOCSDIR}" \
 		-DDATADIR="${DATADIR}" \
 		-DCACHE_NAME_SUFFIX="" \
 		-Wno-dev \
+		-DWITH_SYSTEM_FMT="ON" \
 		-DCMAKE_AR:FILEPATH=${_AR} \
 		-DCMAKE_RANLIB:FILEPATH=${_RANLIB} \
 		-DCMAKE_POLICY_DEFAULT_CMP0056:STRING=NEW
-CONFIGURE_ENV+=	AR=${_AR} RANLIB=${_RANLIB} # for embedded LibRaw
+CONFIGURE_ENV+=	AR=${_AR} RANLIB=${_RANLIB}  # for embedded LibRaw
 # 3.4.x: CMAKE_EXE_LINKER_FLAGS is not passed to TRY_COMPILE by default
 # any more. The CMP0056 policy must be explicitly set to NEW to ensure
 # linker flags are passed. Else -lomp is not found with clang.
@@ -119,7 +121,7 @@ _RANLIB=	${RANLIB}
 CMAKE_ARGS+=	-DPROC_TARGET_NUMBER="1"
 .endif
 
-.if (${OPSYS} == FreeBSD) && (${OSVERSION} >= 1500000)
+.if (${OPSYS} == FreeBSD) && (${OSVERSION} >= 1600000)
 # don't waste everybody's time with Tier-2 and moving targets.
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=only amd64 is supported on non-released FreeBSD versions
@@ -135,9 +137,9 @@ _OPT_FLAGS=	-O3 -funroll-loops
 
 # x86_64/amd64 includes -msse2 by default
 .if ${ARCH} == i386
-# -mstackrealign: workaround for values passed on the stack that cause SIGBUS on SSE2
 # -msse2: SSE2 has been around since the year 2003 latest
 _OPT_FLAGS+=	-msse2
+# -mstackrealign: workaround for values passed on the stack that cause SIGBUS on SSE2
 _OPT_FLAGS+=	-mstackrealign
 .endif
 
@@ -145,6 +147,7 @@ _OPT_FLAGS+=	-mstackrealign
 
 .include <bsd.port.pre.mk>
 
+# align Standard C++ Library with what every other port uses, to match ABI
 .if ${COMPILER_FEATURES:Mlibc++}
 CXXFLAGS+=	-stdlib=libc++
 .endif

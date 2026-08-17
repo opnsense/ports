@@ -1,9 +1,8 @@
 PORTNAME=	gmsh
-DISTVERSION=	4.15.2
-PORTREVISION=	1
+DISTVERSION=	5.0.0-git
 CATEGORIES=	cad
-MASTER_SITES=	http://gmsh.info/src/
-DISTNAME=	${PORTNAME}-${PORTVERSION}-source
+MASTER_SITES=	LOCAL/thierry
+DISTNAME=	${PORTNAME}-master-23c47b0e6a91f2f67afcbe3bf9ad1b5c253e96e2
 DIST_SUBDIR=	gmsh
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -32,8 +31,13 @@ LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk \
 		${LIB_DEPENDS_${ARCH}}
 RUN_DEPENDS=	getdp:science/getdp
 
-USES=		bison compiler:c++14-lang cmake:testing eigen:3 fortran gl	\
+USES=		bison compiler:c++17-lang cmake:testing eigen:3 fortran gl	\
 		jpeg localbase tar:tgz xorg
+
+#USE_GITLAB=	yes
+#GL_SITE=	https://gitlab.onelab.info/gmsh/gmsh
+#GL_TAGNAME=	23c47b0e6a91f2f67afcbe3bf9ad1b5c253e96e2
+WRKSRC=		${WRKDIR}/gmsh-master
 
 # Only for 64 bits ARCHs
 LIB_DEPENDS_aarch64=	libmesquite.so:math/mesquite

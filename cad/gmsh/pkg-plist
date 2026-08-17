@@ -4,12 +4,12 @@ include/gmsh.f90
 include/gmsh.h
 include/gmsh.h_cwrap
 include/gmshc.h
-lib/gmsh-%%VER%%.dev1.dist-info/METADATA
+lib/gmsh-%%VE%%.dev1.dist-info/METADATA
 lib/gmsh.jl
 lib/gmsh.py
 lib/libgmsh.so
-lib/libgmsh.so.%%VE%%
-lib/libgmsh.so.%%VER%%
+lib/libgmsh.so.5.0
+lib/libgmsh.so.5.0.0
 %%PORTDOCS%%%%DOCSDIR%%/CHANGELOG.txt
 %%PORTDOCS%%%%DOCSDIR%%/CREDITS.txt
 %%PORTDOCS%%%%DOCSDIR%%/LICENSE.txt

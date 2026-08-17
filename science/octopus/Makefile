@@ -42,6 +42,7 @@ CONFIGURE_SHELL=	${PREFIX}/bin/bash
 CONFIGURE_ARGS=	--enable-shared --disable-static
 
 LDFLAGS+=	-lsymspg
+LDFLAGS+=	"-Wl,-z,execstack" # workaround for this error on 16: ld: error: scf/.libs/mixing_preconditioner.o: requires an executable stack, but -z execstack is not specified
 FCFLAGS+=	-I${LOCALBASE}/include -ffree-line-length-none
 FCFLAGS+=	-fallow-argument-mismatch # fix build on i386: Error: Type mismatch in argument 'dims' at (1); passed INTEGER(8) to INTEGER(4)
 

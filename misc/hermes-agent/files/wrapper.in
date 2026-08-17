@@ -3,9 +3,18 @@
 # Hermes is installed under %%HERMES_LIBDIR%% (not site-packages) because
 # upstream ships top-level packages with generic names (tools, agent,
 # gateway, plugins, ...) that would collide with other Python packages.
+import os
 import sys
 
 sys.path.insert(0, "%%HERMES_LIBDIR%%")
+
+# hermes_constants resolves the bundled/optional data dirs via env-var
+# override first, then a wheel-installed sysconfig lookup, then a
+# caller-supplied default.  The port installs those data trees under
+# %%DATADIR%% but doesn't ship a Python wheel — so the wrapper injects
+# the paths directly, before any Hermes code imports hermes_constants.
+os.environ.setdefault("HERMES_BUNDLED_SKILLS", "%%DATADIR%%/skills")
+os.environ.setdefault("HERMES_OPTIONAL_SKILLS", "%%DATADIR%%/optional-skills")
 
 from %%ENTRY_MODULE%% import %%ENTRY_FUNC%% as _entry
 

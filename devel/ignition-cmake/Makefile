@@ -1,6 +1,6 @@
 PORTNAME=	ignition-cmake
 DISTVERSIONPREFIX=	gz-cmake5_
-DISTVERSION=	5.0.0
+DISTVERSION=	5.1.1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org

@@ -54,7 +54,7 @@ usr/lib/llvm%%BINVERSION%%/include/lld/Common/Reproduce.h
 usr/lib/llvm%%BINVERSION%%/include/lld/Common/Strings.h
 usr/lib/llvm%%BINVERSION%%/include/lld/Common/TargetOptionsCommandFlags.h
 usr/lib/llvm%%BINVERSION%%/include/lld/Common/Timer.h
-usr/lib/llvm%%BINVERSION%%/include/lld/Common/Util.h
+usr/lib/llvm%%BINVERSION%%/include/lld/Common/Utils.h
 usr/lib/llvm%%BINVERSION%%/include/lld/Common/Version.h
 usr/lib/llvm%%BINVERSION%%/lib/cmake/lld/LLDConfig.cmake
 usr/lib/llvm%%BINVERSION%%/lib/cmake/lld/LLDConfigVersion.cmake

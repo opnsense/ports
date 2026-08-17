@@ -1,5 +1,6 @@
 PORTNAME=	mybee-qt
 DISTVERSION=	25.02.1
+PORTREVISION=	1
 CATEGORIES=	deskutils
 
 MAINTAINER=	fbsd-ports@convectix.com
@@ -9,7 +10,6 @@ WWW=		https://github.com/myb-project
 LICENSE=	MIT
 
 BUILD_DEPENDS=	curl:ftp/curl \
-		cmake:devel/cmake \
 		xfreerdp:net/freerdp
 LIB_DEPENDS=	libvncserver.so:net/libvncserver \
 		libfreerdp2.so:net/freerdp \
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libvncserver.so:net/libvncserver \
 		libz-ng.so:archivers/zlib-ng
 RUN_DEPENDS=	xfreerdp:net/freerdp
 
-USES=		gl gmake qmake qt:6
+USES=		cmake:indirect gl gmake qmake qt:6
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	myb-project

@@ -80,10 +80,8 @@
     SUBDIR += py-asv-runner
     SUBDIR += py-locust
     SUBDIR += py-locust-cloud
-    SUBDIR += py-naarad
     SUBDIR += py-reframe-hpc
     SUBDIR += py-throughpy
-    SUBDIR += py-zopkio
     SUBDIR += raidtest
     SUBDIR += randomio
     SUBDIR += rubygem-benchmark

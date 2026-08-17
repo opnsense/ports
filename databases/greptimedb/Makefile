@@ -1,6 +1,6 @@
 PORTNAME=	greptimedb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.2
+DISTVERSION=	1.1.4
 CATEGORIES=	databases
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -275,7 +275,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		dary_heap-0.3.7 \
 		dashmap-6.1.0 \
 		data-encoding-2.11.0 \
-		datafusion-pg-catalog-0.17.0 \
+		datafusion-pg-catalog-0.17.3 \
 		datasketches-0.2.0 \
 		dbl-0.3.2 \
 		deadpool-0.12.2 \
@@ -1268,11 +1268,11 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		zstd-0.13.3 \
 		zstd-safe-7.2.4 \
 		zstd-sys-2.0.15+zstd.1.5.7 \
-		datafusion,datafusion-catalog,datafusion-catalog-listing,datafusion-common,datafusion-common-runtime,datafusion-datasource,datafusion-datasource-arrow,datafusion-datasource-csv,datafusion-datasource-json,datafusion-datasource-parquet,datafusion-doc,datafusion-execution,datafusion-expr,datafusion-expr-common,datafusion-functions,datafusion-functions-aggregate,datafusion-functions-aggregate-common,datafusion-functions-nested,datafusion-functions-table,datafusion-functions-window,datafusion-functions-window-common,datafusion-macros,datafusion-optimizer,datafusion-physical-expr,datafusion-physical-expr-adapter,datafusion-physical-expr-common,datafusion-physical-optimizer,datafusion-physical-plan,datafusion-proto,datafusion-proto-common,datafusion-pruning,datafusion-session,datafusion-sql,datafusion-substrait@git+https://github.com/GreptimeTeam/datafusion.git?rev=e8a127c28e8839964bb6aefdd909810dc11cd2c9\#e8a127c28e8839964bb6aefdd909810dc11cd2c9 \
 		otel-arrow-rust,otlp-derive,otlp-model@git+https://github.com/GreptimeTeam/otel-arrow?rev=5da284414e9b14f678344b51e5292229e4b5f8d2\#5da284414e9b14f678344b51e5292229e4b5f8d2 \
 		memcomparable@git+https://github.com/v0y4g3r/memcomparable.git?rev=a07122dc03556bbd88ad66234cbea7efd3b23efb\#a07122dc03556bbd88ad66234cbea7efd3b23efb \
 		uddsketch@git+https://github.com/GreptimeTeam/timescaledb-toolkit.git?rev=84828fe8fb494a6a61412a3da96517fc80f7bb20\#84828fe8fb494a6a61412a3da96517fc80f7bb20 \
 		loki-proto@git+https://github.com/GreptimeTeam/loki-proto.git?rev=f69c8924c4babe516373e26a4118be82d976629c\#f69c8924c4babe516373e26a4118be82d976629c \
+		datafusion,datafusion-catalog,datafusion-catalog-listing,datafusion-common,datafusion-common-runtime,datafusion-datasource,datafusion-datasource-arrow,datafusion-datasource-csv,datafusion-datasource-json,datafusion-datasource-parquet,datafusion-doc,datafusion-execution,datafusion-expr,datafusion-expr-common,datafusion-functions,datafusion-functions-aggregate,datafusion-functions-aggregate-common,datafusion-functions-nested,datafusion-functions-table,datafusion-functions-window,datafusion-functions-window-common,datafusion-macros,datafusion-optimizer,datafusion-physical-expr,datafusion-physical-expr-adapter,datafusion-physical-expr-common,datafusion-physical-optimizer,datafusion-physical-plan,datafusion-proto,datafusion-proto-common,datafusion-pruning,datafusion-session,datafusion-sql,datafusion-substrait@git+https://github.com/GreptimeTeam/datafusion.git?rev=7a84c45104d35408f00bbf880268c47193b73b28\#7a84c45104d35408f00bbf880268c47193b73b28 \
 		datafusion-orc@git+https://github.com/datafusion-contrib/datafusion-orc.git?rev=6c07fa282dc8d62db2aa4ded06ab55485efc811a\#6c07fa282dc8d62db2aa4ded06ab55485efc811a \
 		sqlparser,sqlparser_derive@git+https://github.com/GreptimeTeam/sqlparser-rs.git?rev=2aefa08a8d69c96eec2d6d6703598a009bba6e4c\#2aefa08a8d69c96eec2d6d6703598a009bba6e4c \
 		rskafka@git+https://github.com/GreptimeTeam/rskafka.git?rev=f5688f83e7da591cda3f2674c2408b4c0ed4ed50\#f5688f83e7da591cda3f2674c2408b4c0ed4ed50 \

@@ -1,4 +1,4 @@
---- src/slic3r/GUI/GUI_App.cpp.orig	2025-04-10 11:26:51 UTC
+--- src/slic3r/GUI/GUI_App.cpp.orig	2026-05-19 09:09:17 UTC
 +++ src/slic3r/GUI/GUI_App.cpp
 @@ -412,7 +412,7 @@ class SplashScreen : public wxSplashScreen (private)
  };
@@ -90,7 +90,7 @@
          //if (DesktopIntegrationDialog::integration_possible())
          local_menu->Append(config_id_base + ConfigMenuDesktopIntegration, _L("Desktop Integration"), _L("Desktop Integration"));    
  #endif //(__linux__) && defined(SLIC3R_DESKTOP_INTEGRATION)        
-@@ -2760,7 +2764,7 @@ wxMenu* GUI_App::get_config_menu(MainFrame* main_frame
+@@ -2761,7 +2765,7 @@ wxMenu* GUI_App::get_config_menu(MainFrame* main_frame
          case ConfigMenuUpdateApp:
              app_version_check(true);
              break;
@@ -99,7 +99,7 @@
          case ConfigMenuDesktopIntegration:
              show_desktop_integration_dialog();
              break;   
-@@ -3404,7 +3408,7 @@ void GUI_App::show_desktop_integration_dialog()
+@@ -3405,7 +3409,7 @@ void GUI_App::show_desktop_integration_dialog()
  
  void GUI_App::show_desktop_integration_dialog()
  {
@@ -108,7 +108,7 @@
      //wxCHECK_MSG(mainframe != nullptr, false, "Internal error: Main frame not created / null");
      DesktopIntegrationDialog dialog(mainframe);
      dialog.ShowModal();
-@@ -3424,7 +3428,7 @@ void GUI_App::show_downloader_registration_dialog()
+@@ -3425,7 +3429,7 @@ void GUI_App::show_downloader_registration_dialog()
      if (msg.ShowModal() == wxID_YES) {
          auto downloader_worker = new DownloaderUtils::Worker(nullptr);
          downloader_worker->perform_download_register(app_config->get("url_downloader_dest"));
@@ -117,7 +117,7 @@
          if (DownloaderUtils::Worker::perform_registration_linux)
              DesktopIntegrationDialog::perform_downloader_desktop_integration();
  #endif //(__linux__) && defined(SLIC3R_DESKTOP_INTEGRATION)
-@@ -3839,7 +3843,7 @@ void GUI_App::start_download(std::string url)
+@@ -3840,7 +3844,7 @@ void GUI_App::start_download(std::string url)
          return; 
      }
  

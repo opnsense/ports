@@ -1,5 +1,5 @@
 PORTNAME=	synced-collections
-DISTVERSION=	1.0.0
+DISTVERSION=	1.0.1
 CATEGORIES=	misc
 MASTER_SITES=	PYPI # some test files are missing in the PYPI tarball
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}

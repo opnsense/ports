@@ -1,6 +1,7 @@
 PORTNAME=	openblas
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.3.33
+DISTVERSION=	0.3.34
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	math
 MASTER_SITES=	NL/lapack/timing/:lapack_tmg
@@ -82,11 +83,6 @@ USE_GCC=		yes
 TARGET_CPU_ARCH=	PPCG4
 .endif
 
-.if ${ARCH} == powerpc64le
-CFLAGS+=		-lm
-USE_GCC=		yes
-.endif
-
 MAXTHREADS?=	64
 
 .include <bsd.port.pre.mk>
@@ -125,6 +121,9 @@ pre-configure:
 	${ECHO_CMD} BINARY=32 >> ${WRKSRC}/Makefile.rule
 .else
 	${ECHO_CMD} BINARY=64 >> ${WRKSRC}/Makefile.rule
+.endif
+.if ${ARCH} == "i386"
+	${ECHO_CMD} FCOMMON_OPT+=-mpreferred-stack-boundary=2 >> ${WRKSRC}/Makefile.rule
 .endif
 .for f in exports/Makefile Makefile.system
 	${REINPLACE_CMD} -e 's|-lgfortran|${LDFLAGS} -lgfortran|' ${WRKSRC}/${f}

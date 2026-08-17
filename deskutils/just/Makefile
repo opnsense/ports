@@ -1,5 +1,5 @@
 PORTNAME=	just
-DISTVERSION=	1.56.0
+DISTVERSION=	1.58.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -16,7 +16,7 @@ USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	casey
 
-CARGO_CRATES=	aho-corasick-1.1.4 \
+CARGO_CRATES=	aho-corasick-1.1.5 \
 		android_system_properties-0.1.5 \
 		anstream-1.0.0 \
 		anstyle-1.0.14 \
@@ -26,23 +26,23 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		arrayref-0.3.9 \
 		arrayvec-0.7.8 \
 		autocfg-1.5.1 \
-		bitflags-2.13.0 \
+		bitflags-2.13.1 \
 		blake3-1.8.5 \
 		block-buffer-0.12.1 \
 		block2-0.6.2 \
-		bstr-1.12.3 \
+		bstr-1.13.0 \
 		bumpalo-3.20.3 \
 		bytecount-0.6.9 \
-		camino-1.2.4 \
-		cc-1.2.66 \
+		camino-1.2.5 \
+		cc-1.4.0 \
 		cfg-if-1.0.4 \
-		cfg_aliases-0.2.1 \
+		cfg_aliases-0.2.2 \
 		chacha20-0.10.1 \
 		chrono-0.4.45 \
-		clap-4.6.1 \
-		clap_builder-4.6.0 \
-		clap_complete-4.6.7 \
-		clap_derive-4.6.1 \
+		clap-4.6.5 \
+		clap_builder-4.6.5 \
+		clap_complete-4.6.8 \
+		clap_derive-4.6.4 \
 		clap_lex-1.1.0 \
 		clap_mangen-0.3.0 \
 		colorchoice-1.0.5 \
@@ -64,12 +64,12 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		dotenvy-0.15.7 \
 		equivalent-1.0.2 \
 		errno-0.3.14 \
-		fastrand-2.4.1 \
+		fastrand-2.5.0 \
 		find-msvc-tools-0.1.9 \
 		fnv-1.0.7 \
-		futures-core-0.3.32 \
-		futures-task-0.3.32 \
-		futures-util-0.3.32 \
+		futures-core-0.3.33 \
+		futures-task-0.3.33 \
+		futures-util-0.3.33 \
 		getopts-0.2.24 \
 		getrandom-0.2.17 \
 		getrandom-0.4.3 \
@@ -77,7 +77,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		heck-0.5.0 \
 		hermit-abi-0.5.2 \
 		hex-0.4.3 \
-		hybrid-array-0.4.13 \
+		hybrid-array-0.4.14 \
 		iana-time-zone-0.1.65 \
 		iana-time-zone-haiku-0.1.2 \
 		indexmap-2.14.0 \
@@ -85,8 +85,8 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		is_terminal_polyfill-1.70.2 \
 		itoa-1.0.18 \
 		js-sys-0.3.103 \
-		libc-0.2.186 \
-		libredox-0.1.18 \
+		libc-0.2.189 \
+		libredox-0.1.19 \
 		linux-raw-sys-0.12.1 \
 		log-0.4.33 \
 		memchr-2.8.3 \
@@ -106,46 +106,47 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		pretty_assertions-1.4.1 \
 		proc-macro-error-attr2-2.0.0 \
 		proc-macro-error2-2.0.1 \
-		proc-macro2-1.0.106 \
+		proc-macro2-1.0.107 \
 		pulldown-cmark-0.9.6 \
 		pulldown-cmark-0.13.4 \
 		pulldown-cmark-to-cmark-10.0.4 \
-		quote-1.0.46 \
+		quote-1.0.47 \
 		r-efi-6.0.0 \
 		rand-0.10.2 \
 		rand_core-0.10.1 \
 		rayon-core-1.13.0 \
 		redox_users-0.5.2 \
-		regex-1.13.0 \
-		regex-automata-0.4.15 \
+		regex-1.13.1 \
+		regex-automata-0.4.16 \
 		regex-syntax-0.8.11 \
 		roff-1.1.1 \
 		rustix-1.1.4 \
 		rustversion-1.0.23 \
 		ryu-1.0.23 \
 		semver-1.0.28 \
-		serde-1.0.228 \
-		serde_core-1.0.228 \
-		serde_derive-1.0.228 \
-		serde_json-1.0.150 \
+		serde-1.0.229 \
+		serde_core-1.0.229 \
+		serde_derive-1.0.229 \
+		serde_json-1.0.151 \
 		serde_yaml-0.9.34+deprecated \
 		sha2-0.11.0 \
 		shellexpand-3.1.2 \
 		shlex-2.0.1 \
 		similar-3.1.1 \
 		slab-0.4.12 \
-		snafu-0.9.1 \
-		snafu-derive-0.9.1 \
+		snafu-0.9.2 \
+		snafu-derive-0.9.2 \
 		strsim-0.11.1 \
 		strum-0.28.0 \
 		strum_macros-0.28.0 \
-		syn-2.0.118 \
+		syn-2.0.119 \
+		syn-3.0.3 \
 		tabled-0.18.0 \
 		tabled_derive-0.10.0 \
 		tempfile-3.27.0 \
 		terminal_size-0.4.4 \
-		thiserror-2.0.18 \
-		thiserror-impl-2.0.18 \
+		thiserror-2.0.19 \
+		thiserror-impl-2.0.19 \
 		typed-arena-2.0.2 \
 		typenum-1.20.1 \
 		unicase-2.9.0 \
@@ -154,13 +155,13 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		unicode-width-0.2.2 \
 		unsafe-libyaml-0.2.11 \
 		utf8parse-0.2.2 \
-		uuid-1.23.4 \
+		uuid-1.24.0 \
 		wasi-0.11.1+wasi-snapshot-preview1 \
 		wasm-bindgen-0.2.126 \
 		wasm-bindgen-macro-0.2.126 \
 		wasm-bindgen-macro-support-0.2.126 \
 		wasm-bindgen-shared-0.2.126 \
-		which-8.0.4 \
+		which-8.0.5 \
 		windows-core-0.62.2 \
 		windows-implement-0.60.2 \
 		windows-interface-0.59.3 \
@@ -169,7 +170,7 @@ CARGO_CRATES=	aho-corasick-1.1.4 \
 		windows-strings-0.5.1 \
 		windows-sys-0.61.2 \
 		yansi-1.0.1 \
-		zmij-1.0.21
+		zmij-1.0.23
 PLIST_FILES=	bin/${PORTNAME}
 
 OPTIONS_DEFINE=		COMPLETIONS

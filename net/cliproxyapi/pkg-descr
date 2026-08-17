@@ -1,0 +1,6 @@
+CLIProxyAPI is a proxy server that exposes OpenAI, Gemini, Claude,
+Codex, and Grok compatible API interfaces, letting local clients reach
+multiple AI providers through a single endpoint and authentication.
+
+It supports streaming responses, function calling, multimodal inputs, and
+load-balanced multi-account management.

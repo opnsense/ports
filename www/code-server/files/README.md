@@ -107,7 +107,6 @@ After changing the configuration, restart the service:
 
 
 Extensions
-
 ----------
 
 code-server supports many Visual Studio Code extensions.

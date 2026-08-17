@@ -1,5 +1,6 @@
 PORTNAME=	hostapd
 PORTVERSION=	${COMMIT_DATE}
+PORTREVISION=	2
 CATEGORIES=	net
 PKGNAMESUFFIX=	-devel
 
@@ -10,8 +11,8 @@ WWW=		https://w1.fi/hostapd/
 USE_GITHUB=	yes
 GH_ACCOUNT=	cschuber
 GH_PROJECT=	hostap
-GH_TAGNAME=	890d573a18
-COMMIT_DATE=	2026.06.18
+GH_TAGNAME=	7533e0a806
+COMMIT_DATE=	2026.08.09
 
 LICENSE=	BSD3CLAUSE
 
@@ -35,6 +36,7 @@ post-patch:
 		${BUILD_WRKSRC}/Makefile
 	@${SED} -e 's|/usr/local|${PREFIX}|g;s|^CONFIG_DRIVER_NL80211|#CONFIG_DRIVER_NL80211|' ${BUILD_WRKSRC}/defconfig \
 		>> ${WRKSRC}/hostapd/.config
+	@${ECHO_CMD} 'CONFIG_DRIVER_BSD=y' >> ${WRKSRC}/hostapd/.config
 	@${ECHO_CMD} 'CONFIG_L2_FREEBSD=y' >> ${WRKSRC}/hostapd/.config
 	@${ECHO_CMD} 'CONFIG_DNET_PCAP=y' >> ${WRKSRC}/hostapd/.config
 	@${ECHO_CMD} 'CONFIG_IEEE80211BE=y' >> ${WRKSRC}/hostapd/.config

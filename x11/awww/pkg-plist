@@ -1,0 +1,16 @@
+bin/awww
+bin/awww-daemon
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/README.md
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/awww_init_according_to_time_of_day.sh
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/awww_randomize.sh
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/awww_randomize_multi.sh
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/awww_scheduler.sh
+share/man/man1/awww-clear-cache.1.gz
+share/man/man1/awww-clear.1.gz
+share/man/man1/awww-daemon.1.gz
+share/man/man1/awww-img.1.gz
+share/man/man1/awww-kill.1.gz
+share/man/man1/awww-pause.1.gz
+share/man/man1/awww-query.1.gz
+share/man/man1/awww-restore.1.gz
+share/man/man1/awww.1.gz

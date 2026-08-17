@@ -19,6 +19,7 @@
     SUBDIR += ashell
     SUBDIR += aterm
     SUBDIR += autorandr
+    SUBDIR += awww
     SUBDIR += babl
     SUBDIR += bbappconf
     SUBDIR += bbdock
@@ -90,6 +91,7 @@
     SUBDIR += flruler
     SUBDIR += fnott
     SUBDIR += foot
+    SUBDIR += framework-autorotate
     SUBDIR += fstobdf
     SUBDIR += fuzzel
     SUBDIR += gbsddialog
@@ -443,7 +445,6 @@
     SUBDIR += swayr
     SUBDIR += swayrbar
     SUBDIR += swaysettings
-    SUBDIR += swww
     SUBDIR += sxhkd
     SUBDIR += sxmo-wayout
     SUBDIR += sxpc

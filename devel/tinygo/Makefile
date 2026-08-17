@@ -1,7 +1,7 @@
 PORTNAME=	tinygo
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.19.0
-PORTREVISION=	41
+PORTREVISION=	42
 CATEGORIES=	devel
 
 MAINTAINER=	ports@FreeBSD.org
@@ -11,9 +11,12 @@ WWW=		https://tinygo.org/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Does not build with Go 1.26+
+EXPIRATION_DATE=	2026-09-30
+
 TEST_DEPENDS=	qemu-system-arm:emulators/qemu
 
-USES=		cmake:indirect gmake go:modules,run ninja:build python:build
+USES=		cmake:indirect gmake go:1.25,modules,run ninja:build python:build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	tinygo-org

@@ -1,12 +1,11 @@
 PORTNAME=	dbt-semantic-interfaces
-DISTVERSION=	0.10.0
-PORTREVISION=	2
+DISTVERSION=	0.10.5
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	dbt_semantic_interfaces-${PORTVERSION}
 
-MAINTAINER=	pat@patmaddox.com
+MAINTAINER=	patmaddox@FreeBSD.org
 COMMENT=	Shared semantic layer definitions that dbt-core and MetricFlow use
 WWW=		https://github.com/dbt-labs/dbt-semantic-interfaces
 

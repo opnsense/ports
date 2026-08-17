@@ -1,7 +1,7 @@
 PORTNAME=	opencascade
 DISTVERSIONPREFIX=	V
-DISTVERSION=	7_9_3
-PORTREVISION=	4
+DISTVERSION=	8_0_1
+PORTREVISION=	1
 CATEGORIES=	cad science
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
 
@@ -15,7 +15,6 @@ LICENSE_FILE=	${WRKSRC}/OCCT_LGPL_EXCEPTION.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	rapidjson>0:devel/rapidjson			\
-		${LOCALBASE}/lib/qt5/bin/qmake:devel/qt5-qmake	\
 		${LOCALBASE}/lib/qt5/bin/moc:devel/qt5-buildtools
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig	\
 		libfreetype.so:print/freetype2		\
@@ -28,11 +27,13 @@ RUN_DEPENDS=	bash:shells/bash
 
 # Check ${WRKSRC}/dox/build/build_occt/building_occt.md
 USES=		cmake compiler:c++17-lang eigen:3 gettext-runtime	\
-		gl gnome localbase python qt:5 shebangfix tk xorg
+		gl gnome localbase python qmake:no_configure,no_env qt:5\
+		shebangfix tk xorg
 USE_XORG=	ice sm x11 xau xcb xdmcp xext xft xi xmu xrender xscrnsaver xt
 USE_GL=		egl gl glesv2 glu
 USE_GNOME=	libxml2
-USE_QT=		core declarative gui network quick3d linguisttools widgets xml
+USE_QT=		buildtools:build core declarative gui network quick3d	\
+		linguisttools widgets xml
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Open-Cascade-SAS
@@ -41,7 +42,7 @@ GH_PROJECT=	OCCT
 SHEBANG_FILES=	adm/templates/*.sh	\
 		adm/templates/*.sh.in	\
 		adm/templates/*.sh.main	\
-		adm/*.tcl
+		adm/scripts/migration_800/*.py
 ENVSH=		adm/templates/env.sh
 
 OPTIONS_DEFINE=	DOCS DOXYGEN FFMPEG VIS
@@ -51,32 +52,23 @@ OPTIONS_SUB=	yes
 
 REINPLACE_ARGS=	-i ""
 LDFLAGS+=	-Wl,--allow-shlib-undefined -lexecinfo
-CMAKE_ARGS+=	-DINSTALL_DIR=${OCCROOT}				\
-		-DINSTALL_DIR_INCLUDE=${PREFIX}/include/OpenCASCADE	\
-		-DINSTALL_DIR_LIB=${PREFIX}/lib				\
-		-DINSTALL_DIR_CMAKE=${PREFIX}/lib/cmake			\
-		-DINSTALL_DIR_DATA=${OCCROOT}/data			\
-		-DINSTALL_DIR_RESOURCE=${OCCROOT}/resources		\
-		-DINSTALL_DIR_SAMPLES=${OCCROOT}/samples		\
-		-DINSTALL_DIR_TESTS=${OCCROOT}/tests			\
-		-DINSTALL_TEST_CASES:BOOL=ON				\
-		-DBUILD_Inspector:BOOL=ON				\
-		-DUSE_TCL:BOOL=ON					\
-		-DCAN_USE_TK:BOOL=ON -DUSE_TK:BOOL=ON			\
-		-DCAN_USE_XLIB:BOOL=ON -DUSE_XLIB:BOOL=ON		\
-		-DCAN_USE_FREETYPE:BOOL=ON -DUSE_FREETYPE:BOOL=ON	\
-		-DCAN_USE_VTK:BOOL=ON -DUSE_VTK:BOOL=ON			\
-		-DCAN_USE_EIGEN:BOOL=ON -DUSE_EIGEN:BOOL=ON		\
-		-DCAN_USE_RAPIDJSON:BOOL=ON -DUSE_RAPIDJSON:BOOL=ON	\
-		-DCAN_USE_DRACO:BOOL=ON -DUSE_DRACO:BOOL=ON		\
-		-DCAN_USE_TBB:BOOL=ON -DUSE_TBB:BOOL=ON			\
-		-DUSE_QT_FROM_3RDPARTY_DIR:BOOL=ON			\
+CMAKE_ARGS=	-DINSTALL_DIR:PATH=${OCCROOT}				\
+		-DINSTALL_DIR_INCLUDE:PATH=${PREFIX}/include/OpenCASCADE	\
+		-DINSTALL_DIR_LIB:PATH=${PREFIX}/lib				\
+		-DINSTALL_DIR_CMAKE:PATH=${PREFIX}/lib/cmake			\
+		-DINSTALL_DIR_DATA:PATH=${OCCROOT}/data			\
+		-DINSTALL_DIR_RESOURCE:PATH=${OCCROOT}/resources		\
+		-DINSTALL_DIR_TESTS:PATH=${OCCROOT}/tests			\
 		-D3RDPARTY_QT_DIR:PATH=${LOCALBASE}/lib/cmake/Qt5	\
 		-D3RDPARTY_DRACO_DIR:PATH=${LOCALBASE}			\
 		-D3RDPARTY_DRACO_LIBRARY=libdraco.so			\
 		-D3RDPARTY_DRACO_LIBRARY_DIR:PATH=${LOCALBASE}/lib	\
 		-D3RDPARTY_DRACO_INCLUDE_DIR:PATH=${LOCALBASE}/include/draco	\
 		-D3RDPARTY_VTK_INCLUDE_DIR:PATH=${LOCALBASE}/include/vtk-${VTK_VER}
+CMAKE_ON=	CAN_USE_DRACO CAN_USE_EIGEN CAN_USE_FREETYPE CAN_USE_RAPIDJSON	\
+		CAN_USE_TBB CAN_USE_TK CAN_USE_VTK CAN_USE_XLIB INSTALL_TEST_CASES\
+		USE_DRACO USE_FREETYPE USE_RAPIDJSON USE_TBB USE_TCL USE_TK	\
+		USE_VTK USE_XLIB
 CONFIGURE_ENV+=	DESTDIR=${STAGEDIR}
 USE_LDCONFIG=	yes
 
@@ -93,10 +85,10 @@ PLIST_SUB=	OCCROOT="${LOCCROOT}" BITS=${BITS} CC=${CHOSEN_COMPILER_TYPE}	\
 		VE=${PORTVERSION:R} VER=${PORTVERSION}
 
 FFMPEG_CMAKE_ON=	-DCAN_USE_FFMPEG:BOOL=ON -DUSE_FFMPEG:BOOL=ON \
-			-D3RDPARTY_FFMPEG_INCLUDE_DIR=${LOCALBASE}/ffmpeg4/include \
-			-D3RDPARTY_FFMPEG_DIR=${LOCALBASE}/ffmpeg4
+			-D3RDPARTY_FFMPEG_INCLUDE_DIR=${LOCALBASE}/ffmpeg6/include \
+			-D3RDPARTY_FFMPEG_DIR=${LOCALBASE}/ffmpeg6
 FFMPEG_CMAKE_OFF=	-DUSE_FFMPEG:BOOL=OFF
-FFMPEG_LIB_DEPENDS=	libavcodec.so.58:multimedia/ffmpeg4	\
+FFMPEG_LIB_DEPENDS=	libavcodec.so.60:multimedia/ffmpeg6	\
 			libtheoraenc.so:multimedia/libtheora	\
 			libunistring.so:devel/libunistring	\
 			libvdpau.so:multimedia/libvdpau		\
@@ -150,19 +142,10 @@ BITS=	32
 BITS=	64
 .endif
 
-pre-everything::
-	@${ECHO_MSG}
-	@${ECHO_MSG} "Warning: to build OpenCascade, you should have at least"
-	@${ECHO_MSG} "2.6 Gb of free disk space in build area!"
-	@${ECHO_MSG}
-
 pre-configure:
 	${REINPLACE_CMD} 's|<malloc.h>|<stdlib.h>|'	\
-		${WRKSRC}/src/BRepMesh/delabella.cpp	\
-		${WRKSRC}/src/OSD/OSD_MemInfo.cxx
-	${REINPLACE_CMD} -e 's|tclsh|${TCLSH}|' ${WRKSRC}/adm/gendoc
-	${REINPLACE_CMD} -e 's|/usr/bin/|${LOCALBASE}/bin/|'	\
-		${WRKSRC}/adm/vcpkg/ports/ffmpeg/portfile.cmake
+		${WRKSRC}/src/ModelingAlgorithms/TKMesh/BRepMesh/delabella.cpp	\
+		${WRKSRC}/src/FoundationClasses/TKernel/OSD/OSD_MemInfo.cxx
 	${GREP} -rl x86_64 ${WRKSRC} | ${XARGS} ${REINPLACE_CMD}	\
 		-e 's|x86_64|amd64|'
 .for es in ${ENVSH}

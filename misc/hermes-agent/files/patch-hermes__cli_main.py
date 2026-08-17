@@ -1,66 +1,19 @@
---- hermes_cli/main.py.orig	2026-05-16 09:59:15 UTC
-+++ hermes_cli/main.py	2026-05-19 11:13:44.567947000 +0200
-@@ -9838,7 +9838,7 @@
-     gateway_start.add_argument(
-         "--system",
-         action="store_true",
--        help="Target the Linux system-level gateway service",
-+        help="Target the system-level gateway service (Linux only; ignored on FreeBSD/macOS)",
-     )
-     gateway_start.add_argument(
-         "--all",
-@@ -9851,7 +9851,7 @@
-     gateway_stop.add_argument(
-         "--system",
-         action="store_true",
--        help="Target the Linux system-level gateway service",
-+        help="Target the system-level gateway service (Linux only; ignored on FreeBSD/macOS)",
-     )
-     gateway_stop.add_argument(
-         "--all",
-@@ -9866,7 +9866,7 @@
-     gateway_restart.add_argument(
-         "--system",
-         action="store_true",
--        help="Target the Linux system-level gateway service",
-+        help="Target the system-level gateway service (Linux only; ignored on FreeBSD/macOS)",
-     )
-     gateway_restart.add_argument(
-         "--all",
-@@ -9886,23 +9886,23 @@
-     gateway_status.add_argument(
-         "--system",
-         action="store_true",
--        help="Target the Linux system-level gateway service",
-+        help="Target the system-level gateway service (Linux only; ignored on FreeBSD/macOS)",
-     )
+--- hermes_cli/main.py.orig	2026-08-03 16:57:23 UTC
++++ hermes_cli/main.py
+@@ -11112,6 +11112,16 @@ def cmd_skills(args):
  
-     # gateway install
-     gateway_install = gateway_subparsers.add_parser(
--        "install", help="Install gateway as a systemd/launchd background service"
-+        "install", help="Install gateway as a systemd/launchd/rc.d background service"
-     )
-     gateway_install.add_argument("--force", action="store_true", help="Force reinstall")
-     gateway_install.add_argument(
-         "--system",
-         action="store_true",
--        help="Install as a Linux system-level service (starts at boot)",
-+        help="Install as a system-level service (Linux only; FreeBSD rc.d is always system-scoped)",
-     )
-     gateway_install.add_argument(
-         "--run-as-user",
-         dest="run_as_user",
--        help="User account the Linux system service should run as",
-+        help="User account the service should run as (Linux systemd / FreeBSD rc.d)",
-     )
  
-     # gateway uninstall
-@@ -9912,7 +9912,7 @@
-     gateway_uninstall.add_argument(
-         "--system",
-         action="store_true",
--        help="Target the Linux system-level gateway service",
-+        help="Target the system-level gateway service (Linux only; ignored on FreeBSD/macOS)",
-     )
- 
-     # gateway list
+ def cmd_skills(args):
++    # Seed ~/.hermes/skills/ from the bundled library before any skills
++    # subcommand runs.  Without this, a fresh install's `hermes skills list`
++    # reports zero skills — the sync only fires from cmd_chat / cmd_gateway /
++    # cmd_dashboard, so a user who runs `hermes skills` first sees an empty
++    # catalog and (reasonably) assumes something is broken.  On FreeBSD in
++    # particular the port ships bundled skills under DATADIR and exposes the
++    # path via HERMES_BUNDLED_SKILLS; without this sync call, the catalog stays
++    # empty forever until the user happens to run one of the other entrypoints.
++    _sync_bundled_skills_quietly()
++
+     # Route 'config' action to skills_config module
+     if getattr(args, "skills_action", None) == "config":
+         _require_tty("skills config")

@@ -1,12 +1,17 @@
---- pyproject.toml.orig	2026-04-06 20:00:28 UTC
+-- Convert PEP 639 license/license-files to the PEP 621 form
+-- supported by the setuptools version in FreeBSD ports.  Without this,
+-- setuptools rejects project.license and the build fails during
+-- parse_config_files.
+
+--- pyproject.toml.orig	2026-07-17 06:54:23 UTC
 +++ pyproject.toml
-@@ -7,8 +7,7 @@ authors = [{name = "bam4d", email = "bam4d@mistral.ai"
- version = "1.11.0"
+@@ -7,8 +7,8 @@
+ version = "1.11.6"
  description = "Mistral-common is a library of common utilities for Mistral AI."
- authors = [{name = "bam4d", email = "bam4d@mistral.ai"}]
+ authors = [{name = "Mistral AI", email = "oss@mistral.ai"}]
 -license = "Apache-2.0"
 -license-files = ["LICENSE"] 
 +license = {text = "Apache-2.0"}
++
  readme = "README.md"
  requires-python = ">=3.10.0,<3.15"
- 

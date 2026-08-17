@@ -1,5 +1,3 @@
-TIMESTAMP = 1749995129
-SHA256 (xmake-io-xmake-v2.9.9_GH0.tar.gz) = 5037b77194a2cafac75b7fbed57cdf647a80cec3ed91bc25b5ac27f39a20c1f2
-SIZE (xmake-io-xmake-v2.9.9_GH0.tar.gz) = 2391647
-SHA256 (tboox-tbox-914bd30a5f6faca7a749e7956630dfc6caece0b9_GH0.tar.gz) = 9eff782510a8cb53d7b7c2410203e8245b3a625c484920ce620af5f416dd2cdd
-SIZE (tboox-tbox-914bd30a5f6faca7a749e7956630dfc6caece0b9_GH0.tar.gz) = 864140
+TIMESTAMP = 1784400000
+SHA256 (xmake-v3.0.9.tar.gz) = 45335220e83cee7ab9ad9e50900f9e751f32510e204719f89c5866c143ef3a5a
+SIZE (xmake-v3.0.9.tar.gz) = 3290252

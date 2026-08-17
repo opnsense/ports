@@ -18,6 +18,7 @@
 # code_server_auth="password"
 # code_server_user_data_dir="/var/db/code-server/user-data"
 # code_server_extensions_dir="/var/db/code-server/extensions"
+# code_server_shell="/bin/sh"
 # code_server_extra_args=""
 
 . /etc/rc.subr
@@ -36,6 +37,7 @@ load_rc_config "${name}"
 : ${code_server_auth:="password"}
 : ${code_server_user_data_dir:="/var/db/code-server/user-data"}
 : ${code_server_extensions_dir:="/var/db/code-server/extensions"}
+: ${code_server_shell:="/bin/sh"}
 : ${code_server_extra_args:=""}
 
 pidfile="/var/run/code-server/${name}.pid"
@@ -51,6 +53,7 @@ HOME=/var/db/code-server \
 XDG_DATA_HOME=${code_server_user_data_dir} \
 XDG_CONFIG_HOME=$(dirname ${code_server_config}) \
 XDG_CACHE_HOME=/var/db/code-server/cache \
+SHELL=${code_server_shell} \
 %%PREFIX%%/bin/code-server \
 --config ${code_server_config} \
 --host ${code_server_host} \

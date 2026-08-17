@@ -1,7 +1,6 @@
 PORTNAME=	xdg-desktop-portal-hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.12
-PORTREVISION=	1
+DISTVERSION=	1.4.1
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -19,6 +18,7 @@ LIB_DEPENDS=	libhyprlang.so:devel/hyprlang \
 		libsdbus-c++.so:devel/sdbus-cpp \
 		libdrm.so:graphics/libdrm \
 		libwayland-client.so:graphics/wayland \
+		libuuid.so:misc/libuuid \
 		libpipewire-0.3.so:multimedia/pipewire
 RUN_DEPENDS=	xdg-desktop-portal>0:deskutils/xdg-desktop-portal \
 		grim:x11/grim \

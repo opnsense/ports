@@ -1,0 +1,5 @@
+D-Wave Graphs is a library for graph theory and algorithms for users of
+D-Wave Systems. It provides graph generators (Chimera, Pegasus, Zephyr),
+topology utilities, and implementations of graph-theory algorithms for
+working with D-Wave quantum computers and other binary quadratic model
+samplers.

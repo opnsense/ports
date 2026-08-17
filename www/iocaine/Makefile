@@ -1,5 +1,6 @@
 PORTNAME=	iocaine
 DISTVERSION=	3.5.0
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://git.madhouse-project.org/iocaine/iocaine/archive/ \
 		https://raw.githubusercontent.com/ai-robots-txt/ai.robots.txt/refs/tags/v${ROBOTS_VERSION}/:robots \
@@ -70,10 +71,8 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	(cd ${WRKSRC}/iocaine-powder/embeds/defaults && \
 		${COPYTREE_SHARE} . ${STAGEDIR}${ETCDIR})
-	${INSTALL_DATA} ${WRKSRC}/iocaine-powder/embeds/defaults/config.kdl \
-		${STAGEDIR}${ETCDIR}/config.kdl.sample
-	${INSTALL_DATA} ${WRKSRC}/iocaine-powder/embeds/defaults/testsuite.kdl \
-		${STAGEDIR}${ETCDIR}/testsuite.kdl.sample
+	@${MV} ${STAGEDIR}${ETCDIR}/config.kdl ${STAGEDIR}${ETCDIR}/config.kdl.sample
+	@${MV} ${STAGEDIR}${ETCDIR}/testsuite.kdl ${STAGEDIR}${ETCDIR}/testsuite.kdl.sample
 	@${MKDIR} ${STAGEDIR}/var/db/${PORTNAME}
 
 .include <bsd.port.mk>

@@ -1,0 +1,21 @@
+-- Fix license declaration and lower the setuptools build-system requirement
+-- to match the version available in FreeBSD ports.
+--- pyproject.toml.orig	2026-04-22 16:12:41 UTC
++++ pyproject.toml	2026-07-20 17:52:41 UTC
+@@ -1,6 +1,6 @@
+ [build-system]
+ build-backend = 'setuptools.build_meta'
+-requires = ['setuptools>=77.0.3', 'setuptools_scm[toml]>=8']
++requires = ['setuptools>=61', 'setuptools_scm[toml]>=8']
+
+ [project]
+ authors = [
+@@ -22,7 +22,7 @@
+ description = 'A Great Dane turned Python environment detective'
+ dynamic = ['version']
+ keywords = ['environment', 'reporting', 'versioning']
+-license = 'MIT'
++license = {text = "MIT"}
+ name = 'scooby'
+ readme = 'README.md'
+ requires-python = '>=3.10'

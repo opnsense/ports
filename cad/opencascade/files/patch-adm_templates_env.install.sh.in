@@ -1,0 +1,16 @@
+--- adm/templates/env.install.sh.in.orig	2026-05-09 19:58:53 UTC
++++ adm/templates/env.install.sh.in
+@@ -1,4 +1,5 @@
+ #!/usr/local/bin/bash
++#set -x
+ aCurrentPath="$PWD"
+ aScriptPath=${BASH_SOURCE%/*}; if [ -d "${aScriptPath}" ]; then cd "$aScriptPath"; fi; aScriptPath="$PWD";
+ cd ${aCurrentPath}
+@@ -17,6 +18,7 @@ fi
+   fi
+   cd ${aCurrentPath}
+ fi
++export INSTALL_DIR_RESOURCE=${CASROOT}/resources
+ 
+ # ----- Define path to 3rdparty products -----
+ if [ "${THIRDPARTY_DIR}" == "" ]; then

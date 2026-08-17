@@ -1,6 +1,5 @@
 PORTNAME=	onnx
-DISTVERSION=	1.17.0
-PORTREVISION=	5
+DISTVERSION=	1.22.0
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	PYPI \
 		https://github.com/abseil/abseil-cpp/archive/refs/tags/:abseil \
@@ -23,11 +22,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	bash:shells/bash \
 		cmake:devel/cmake-core \
 		protoc-gen-mypy:devel/py-mypy-protobuf@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pybind11>0:devel/py-pybind11@${PY_FLAVOR} \
-		${PY_SETUPTOOLS} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-#LIB_DEPENDS=	libabsl_base.so:devel/abseil \
-		libprotobuf.so:devel/protobuf # disable packaged protobuf
+		protoc:devel/protobuf \
+		${PYTHON_PKGNAMEPREFIX}nanobind>0:devel/py-nanobind@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}scikit-build-core>0:devel/py-scikit-build-core@${PY_FLAVOR}
+LIB_DEPENDS=	libprotobuf-lite.so:devel/protobuf
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}google-re2>0:devel/py-google-re2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}numpy>=1.16:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pillow>0:graphics/py-pillow@${PY_FLAVOR} \
@@ -39,27 +37,20 @@ USES=		compiler:c++17-lang python shebangfix
 USE_PYTHON=	pep517 concurrent autoplist pytest
 
 CXXFLAGS+=	-Dstat64=stat
+CMAKE_ARGS=	-DProtobuf_PROTOC_EXECUTABLE=${LOCALBASE}/bin/protoc
 
-SHEBANG_FILES=	tools/protoc-gen-mypy.sh.in
+SHEBANG_FILES=	onnx/gen_proto.py
 
-CONFLICTS_BUILD=	protobuf # use downloaded protobuf-22.3
+#CONFLICTS_BUILD=	protobuf # use downloaded protobuf-22.3
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 TEST_WRKSRC=	${WRKSRC}/onnx/test
 
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-post-patch: # replace protobuf-24+ with protobuf-lite-22.3
-	@${REINPLACE_CMD} \
-		-e ' \
-			s|set(ProtobufURL https://github.com/protocolbuffers/protobuf/releases/download/v22.3/|set(ProtobufURL file://${DISTDIR}/${DIST_SUBDIR}/|; \
-			s|set(AbseilURL https://github.com/abseil/abseil-cpp/archive/refs/tags/|set(AbseilURL file://${DISTDIR}/${DIST_SUBDIR}/| \
-		' \
-		${WRKSRC}/CMakeLists.txt
-
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/onnx/onnx_cpp2py_export*.so
 
-# tests as of 1.17.0: 4 failed, 4564 passed, 3044 skipped, 26 warnings in 60.66s (0:01:00), see https://github.com/onnx/onnx/issues/6733
+# tests as of 1.22.0: 1 failed, 6020 passed, 3970 skipped, 12 warnings in 16.90s
 
 .include <bsd.port.mk>

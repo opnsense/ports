@@ -1,7 +1,7 @@
 PORTNAME=	susshi
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.20.0
-PORTREVISION=	0
+DISTVERSION=	0.21.0
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -21,11 +21,11 @@ GH_ACCOUNT=	yatoub
 CARGO_CRATES=	adler2-2.0.1 \
 		allocator-api2-0.2.21 \
 		anstream-1.0.0 \
-		anstyle-1.0.13 \
+		anstyle-1.0.14 \
 		anstyle-parse-1.0.0 \
 		anstyle-query-1.1.5 \
 		anstyle-wincon-3.0.11 \
-		anyhow-1.0.103 \
+		anyhow-1.0.104 \
 		approx-0.5.1 \
 		arboard-3.6.1 \
 		arc-swap-1.9.1 \
@@ -41,8 +41,8 @@ CARGO_CRATES=	adler2-2.0.1 \
 		cc-1.2.56 \
 		cfg-if-1.0.4 \
 		cfg_aliases-0.2.1 \
-		clap-4.6.1 \
-		clap_builder-4.6.0 \
+		clap-4.6.2 \
+		clap_builder-4.6.2 \
 		clap_derive-4.6.1 \
 		clap_lex-1.0.0 \
 		clap_mangen-0.3.0 \
@@ -180,9 +180,9 @@ CARGO_CRATES=	adler2-2.0.1 \
 		scopeguard-1.2.0 \
 		self_cell-1.2.2 \
 		semver-1.0.27 \
-		serde-1.0.228 \
-		serde_core-1.0.228 \
-		serde_derive-1.0.228 \
+		serde-1.0.229 \
+		serde_core-1.0.229 \
+		serde_derive-1.0.229 \
 		serde_json-1.0.150 \
 		serde_yaml_ng-0.10.0 \
 		sha2-0.11.0 \
@@ -200,12 +200,13 @@ CARGO_CRATES=	adler2-2.0.1 \
 		strum_macros-0.28.0 \
 		subtle-2.6.1 \
 		syn-2.0.117 \
+		syn-3.0.0 \
 		sys-locale-0.3.2 \
 		tempfile-3.27.0 \
 		thiserror-1.0.69 \
-		thiserror-2.0.18 \
+		thiserror-2.0.19 \
 		thiserror-impl-1.0.69 \
-		thiserror-impl-2.0.18 \
+		thiserror-impl-2.0.19 \
 		thread_local-1.1.9 \
 		time-0.3.47 \
 		time-core-0.1.8 \

@@ -1,0 +1,6 @@
+Speed up file transfers with the Hugging Face Hub.
+
+hf-transfer is a power user tool intended to go beyond ~500MB/s on very high
+bandwidth networks, where Python cannot cap out the available bandwidth. It
+is not meant to be a general usability tool and purposefully lacks progress
+bars.

@@ -4,7 +4,6 @@
     SUBDIR += ALPSCore
     SUBDIR += ChipmunkPhysics
     SUBDIR += InsightToolkit
-    SUBDIR += InsightToolkit501
     SUBDIR += PETSc
     SUBDIR += R-cran-DCluster
     SUBDIR += R-cran-Epi
@@ -26,6 +25,7 @@
     SUBDIR += agrum
     SUBDIR += aircraft-datcom
     SUBDIR += amrex
+    SUBDIR += anari
     SUBDIR += antioch
     SUBDIR += apbs
     SUBDIR += arbor
@@ -165,6 +165,7 @@
     SUBDIR += libsvm
     SUBDIR += libsvm-python
     SUBDIR += libvdwxc
+    SUBDIR += libwignernj
     SUBDIR += libxc
     SUBDIR += liggghts
     SUBDIR += linearelasticity
@@ -329,6 +330,7 @@
     SUBDIR += py-dlib
     SUBDIR += py-dwave-cloud-client
     SUBDIR += py-dwave-gate
+    SUBDIR += py-dwave-graphs
     SUBDIR += py-dwave-greedy
     SUBDIR += py-dwave-hybrid
     SUBDIR += py-dwave-inspector
@@ -344,6 +346,7 @@
     SUBDIR += py-earthpy
     SUBDIR += py-eccodes
     SUBDIR += py-emmet-core
+    SUBDIR += py-endf
     SUBDIR += py-esda
     SUBDIR += py-fresnel
     SUBDIR += py-gemmi
@@ -375,6 +378,7 @@
     SUBDIR += py-liac-arff
     SUBDIR += py-libgetar
     SUBDIR += py-libpysal
+    SUBDIR += py-libwignernj
     SUBDIR += py-lifelines
     SUBDIR += py-mdp
     SUBDIR += py-mercantile
@@ -426,6 +430,7 @@
     SUBDIR += py-pymatgen
     SUBDIR += py-pymatgen-analysis-alloys
     SUBDIR += py-pymatgen-core
+    SUBDIR += py-pymatgen-io-validation
     SUBDIR += py-pymbd
     SUBDIR += py-pymol
     SUBDIR += py-pynrrd

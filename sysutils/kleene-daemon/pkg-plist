@@ -7,6 +7,7 @@ libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.DBConnection.Query.
 libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.Enumerable.beam
 libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.IEx.Info.beam
 libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.Inspect.beam
+libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.JSON.Encoder.beam
 libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.Jason.Encoder.beam
 libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.List.Chars.beam
 libexec/kleened/releases/%%DISTVERSION%%/consolidated/Elixir.OpenApiSpex.Extendable.beam
