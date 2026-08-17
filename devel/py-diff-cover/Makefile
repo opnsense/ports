@@ -1,5 +1,5 @@
 PORTNAME=	diff-cover
-DISTVERSION=	10.2.1
+DISTVERSION=	10.4.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -36,6 +36,6 @@ TEST_ARGS=	-p pytest_mock -p pytest_datadir.plugin tests
 
 NO_ARCH=	yes
 
-# tests as of 10.2.0: 352 passed in 4.82s
+# tests as of 10.4.0: 369 passed in 9.85s
 
 .include <bsd.port.mk>
