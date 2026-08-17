@@ -1,5 +1,5 @@
 PORTNAME=	postfix
-DISTVERSION=	3.11.4
+DISTVERSION=	3.11.6
 PORTREVISION?=	0
 PORTEPOCH=	1
 CATEGORIES=	mail
@@ -110,6 +110,8 @@ OPTIONS_SLAVE=		PGSQL
 OPTIONS_SLAVE=		SASL
 .elif ${FLAVOR:U} == sqlite
 OPTIONS_SLAVE=		SQLITE
+.elif ${FLAVOR:U} == mongo
+OPTIONS_SLAVE=		MONGO
 .endif
 .if !empty(FLAVOR) && ${FLAVOR:U} != default
 OPTIONS_FILE=	${PORT_DBDIR}/${OPTIONS_NAME}/${FLAVOR}-options
@@ -134,9 +136,9 @@ BDB_USES=			bdb
 CDB_LIB_DEPENDS=		libcdb.so:databases/tinycdb
 EAI_LIB_DEPENDS=		libicuuc.so:devel/icu
 LDAP_USES=			ldap
-LMDB_LIB_DEPENDS=		liblmdb.so:databases/lmdb
-MONGO_LIB_DEPENDS=		libbson-1.0.so:devel/libbson \
-				libmongoc-1.0.so:devel/mongo-c-driver
+LMDB_LIB_DEPENDS=		liblmdb.so:databases/lmdb0
+MONGO_LIB_DEPENDS=		libbson2.so:devel/libbson \
+				libmongoc2.so:devel/mongo-c-driver
 MYSQL_USES?=			mysql
 PCRE2_LIB_DEPENDS=		libpcre2-8.so:devel/pcre2
 PGSQL_USES=			pgsql
@@ -186,6 +188,8 @@ PKGNAMESUFFIX=	-base-pgsql
 PKGNAMESUFFIX=	-base-sasl
 .elif ${FLAVOR:U} == sqlite
 PKGNAMESUFFIX=	-base-sqlite
+.elif ${FLAVOR:U} == mongo
+PKGNAMESUFFIX=	-base-mongo
 .else
 PKGNAMESUFFIX=	-base
 .endif
@@ -311,10 +315,10 @@ IGNORE=		blocklistd is only supported on FreeBSD
 .endif
 
 .if ${PORT_OPTIONS:MMONGO}
+USES+=			pkgconfig
 DYN_EXT+=		mongodb
-POSTFIX_CCARGS+=	-DHAS_MONGODB -I${LOCALBASE}/include/libmongoc-1.0 \
-			-I${LOCALBASE}/include/libbson-1.0
-POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_MONGODB=-L${LOCALBASE}/lib -lmongoc-1.0 -lbson-1.0"
+POSTFIX_CCARGS+=	-DHAS_MONGODB `pkg-config --cflags mongoc2`
+POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_MONGODB=`pkg-config --libs mongoc2`"
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
