@@ -1,6 +1,5 @@
 PORTNAME=	monitoring-plugins
-PORTVERSION=	2.4.0
-PORTREVISION=	0
+PORTVERSION=	3.0.3
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://www.monitoring-plugins.org/download/ \
 		LOCAL/mat/${PORTNAME}
@@ -132,7 +131,7 @@ PLIST_SUB+=	SSH=""
 
 post-patch:
 .for file in check_by_ssh.c check_disk.c check_http.c check_mrtgtraf.c \
-	check_nagios.c check_ntp.c check_ntp_peer.c check_ntp_time.c \
+	check_nagios.c check_ntp_peer.c check_ntp_time.c \
 	check_pgsql.c check_snmp.c check_ssh.c check_swap.c check_time.c \
 	check_users.c
 	@${REINPLACE_CMD} -e 's|setlocale (LC_ALL, "");|setlocale (LC_ALL, ""); setlocale(LC_NUMERIC, "C");|g' ${WRKSRC}/plugins/${file}

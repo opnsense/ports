@@ -1,13 +1,15 @@
---- plugins/check_dig.c.orig	2016-11-29 08:45:08 UTC
+--- plugins/check_dig.c.orig	2026-07-01 15:57:44 UTC
 +++ plugins/check_dig.c
-@@ -94,8 +94,8 @@ main (int argc, char **argv)
-   timeout_interval_dig = timeout_interval / number_tries + number_tries;
+@@ -88,9 +88,9 @@ int main(int argc, char **argv) {
  
-   /* get the command to run */
--  xasprintf (&command_line, "%s %s %s -p %d @%s %s %s +retry=%d +time=%d",
--            PATH_TO_DIG, dig_args, query_transport, server_port, dns_server, query_address, record_type, number_tries, timeout_interval_dig);
-+  xasprintf (&command_line, "%s %s %s -p %d @%s %s %s",
-+            PATH_TO_DIG, dig_args, query_transport, server_port, dns_server, query_address, record_type);
+ 	char *command_line;
+ 	/* get the command to run */
+-	xasprintf(&command_line, "%s %s %s -p %d @%s %s %s +retry=%d +time=%d", PATH_TO_DIG,
+-			  config.dig_args, config.query_transport, config.server_port, config.dns_server,
+-			  config.query_address, config.record_type, config.number_tries, timeout_interval_dig);
++	xasprintf(&command_line, "%s %s %s -p %d @%s %s %s", PATH_TO_DIG,
++			  config.dig_args, config.query_transport, config.server_port, config.dns_server,
++			  config.query_address, config.record_type);
  
-   alarm (timeout_interval);
-   gettimeofday (&tv, NULL);
+ 	alarm(timeout_interval);
+ 	struct timeval start_time;
