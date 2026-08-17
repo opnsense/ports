@@ -1,5 +1,5 @@
 PORTNAME=	pyproject-metadata
-PORTVERSION=	0.11.0
+PORTVERSION=	0.12.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -7,7 +7,7 @@ DISTNAME=	pyproject_metadata-${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	PEP 621 metadata parsing
-WWW=		https://pep621.readthedocs.io/en/latest/ \
+WWW=		https://pep621.readthedocs.io/en/stable/ \
 		https://github.com/pypa/pyproject-metadata
 
 LICENSE=	MIT
