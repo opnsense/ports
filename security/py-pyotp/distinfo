@@ -1,3 +1,3 @@
-TIMESTAMP = 1691070164
-SHA256 (pyotp-2.9.0.tar.gz) = 346b6642e0dbdde3b4ff5a930b664ca82abfa116356ed48cc42c7d6590d36f63
-SIZE (pyotp-2.9.0.tar.gz) = 17763
+TIMESTAMP = 1782966586
+SHA256 (pyotp-2.10.0.tar.gz) = d01e9703443616b03c57c700b5cbffd56a1f929c1b0f8f03131bc78c1fca9d3f
+SIZE (pyotp-2.10.0.tar.gz) = 18625
