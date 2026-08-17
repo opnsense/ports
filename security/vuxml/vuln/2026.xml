@@ -1,3 +1,724 @@
+  <vuln vid="2f3568eb-999e-11f1-a655-3497f65b111b">
+    <topic>gitea -- Multiple vulnerabilities</topic>
+    <affects>
+    <package>
+    <name>gitea</name>
+    <range><lt>1.27.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitea reports</p>
+	<blockquote cite="https://blog.gitea.com/release-of-1.27.0/">
+	<p>This release contains fixes for 45 security issues,
+	including privilege escalation, remote denial of service,
+	server-side request forgery, authorization and token scope
+	bypasses, and information disclosure vulnerabilities.
+	Please upgrade as soon as possible.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-23603</cvename>
+      <cvename>CVE-2026-42931</cvename>
+      <cvename>CVE-2026-50105</cvename>
+      <cvename>CVE-2026-54481</cvename>
+      <cvename>CVE-2026-55982</cvename>
+      <cvename>CVE-2026-55984</cvename>
+      <cvename>CVE-2026-55986</cvename>
+      <cvename>CVE-2026-55987</cvename>
+      <cvename>CVE-2026-56443</cvename>
+      <cvename>CVE-2026-56654</cvename>
+      <cvename>CVE-2026-56657</cvename>
+      <cvename>CVE-2026-56750</cvename>
+      <cvename>CVE-2026-56755</cvename>
+      <cvename>CVE-2026-57886</cvename>
+      <cvename>CVE-2026-57894</cvename>
+      <cvename>CVE-2026-57897</cvename>
+      <cvename>CVE-2026-58314</cvename>
+      <cvename>CVE-2026-58416</cvename>
+      <cvename>CVE-2026-58417</cvename>
+      <cvename>CVE-2026-58420</cvename>
+      <cvename>CVE-2026-58425</cvename>
+      <cvename>CVE-2026-58427</cvename>
+      <cvename>CVE-2026-58428</cvename>
+      <cvename>CVE-2026-58429</cvename>
+      <cvename>CVE-2026-58431</cvename>
+      <cvename>CVE-2026-58432</cvename>
+      <cvename>CVE-2026-58433</cvename>
+      <cvename>CVE-2026-58434</cvename>
+      <cvename>CVE-2026-58435</cvename>
+      <cvename>CVE-2026-58436</cvename>
+      <cvename>CVE-2026-58437</cvename>
+      <cvename>CVE-2026-58438</cvename>
+      <cvename>CVE-2026-58439</cvename>
+      <cvename>CVE-2026-58440</cvename>
+      <cvename>CVE-2026-58441</cvename>
+      <cvename>CVE-2026-58442</cvename>
+      <cvename>CVE-2026-58443</cvename>
+      <cvename>CVE-2026-58444</cvename>
+      <cvename>CVE-2026-58445</cvename>
+      <cvename>CVE-2026-58507</cvename>
+      <cvename>CVE-2026-58508</cvename>
+      <cvename>CVE-2026-58510</cvename>
+      <cvename>CVE-2026-58511</cvename>
+      <cvename>CVE-2026-59763</cvename>
+      <cvename>CVE-2026-59765</cvename>
+      <url>https://blog.gitea.com/release-of-1.27.0/</url>
+    </references>
+    <dates>
+      <discovery>2026-07-13</discovery>
+      <entry>2026-08-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="05d311bc-9991-11f1-bc50-6cc21735f730">
+    <topic>PostgreSQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>postgresql14-server</name>
+       <range><lt>14.24</lt></range>
+      </package>
+      <package>
+       <name>postgresql15-server</name>
+       <range><lt>15.19</lt></range>
+      </package>
+      <package>
+       <name>postgresql16-server</name>
+       <range><lt>16.15</lt></range>
+      </package>
+      <package>
+       <name>postgresql17-server</name>
+       <range><lt>17.11</lt></range>
+      </package>
+      <package>
+       <name>postgresql18-server</name>
+       <range><lt>18.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/about/news/postgresql-186-1711-1615-1519-1424-and-19-beta-3-released-3365/">
+	<p>
+	  CVE-2026-6464: psql COPY FROM STDIN, if the copy fails
+	  before data rows begin, processes the following data lines
+	  as psql commands.
+	</p>
+	<p>
+	  CVE-2026-6469: ALTER TABLE ALTER TYPE incorrectly reassigns
+	  ownership of dependent extended statistics objects to the
+	  current user.
+	</p>
+	<p>
+	  CVE-2026-6470: Missing privilege check for type USAGE allows
+	  denial of service against ALTER and DROP of the type.
+	</p>
+	<p>
+	  CVE-2026-6471: Logical decoding lets a REPLICATION-
+	  privileged user dlopen an arbitrary file via the decoding
+	  plugin choice, running arbitrary code as the server's OS
+	  user.
+	</p>
+	<p>
+	  CVE-2026-14662: Integer wraparound in tsvector and tsquery
+	  functions can undersize an allocation, causing a buffer
+	  overflow and arbitrary code execution.
+	</p>
+	<p>
+	  CVE-2026-14663: pgcrypto silently encrypts to and decrypts
+	  from cleartext for ciphers OpenSSL has disabled, letting an
+	  attacker recover cleartext.
+	</p>
+	<p>
+	  CVE-2026-14664: Heap buffer overflow in the regexp engine
+	  allows arbitrary code execution via crafted input text.
+	</p>
+	<p>
+	  CVE-2026-14666: Row-level security policy caching can retain
+	  a stale policy after role changes, letting a user complete
+	  now-forbidden reads or writes.
+	</p>
+	<p>
+	  CVE-2026-14668: Type confusion in the ctid selectivity
+	  estimator discloses a derivative of an arbitrary 4-byte span
+	  of server memory.
+	</p>
+	<p>
+	  CVE-2026-14669: Heap buffer overflow in to_char(timestamptz)
+	  via a long POSIX timezone abbreviation allows arbitrary code
+	  execution.
+	</p>
+	<p>
+	  CVE-2026-14670: Heap buffer overflow in plperl, on return of
+	  a tied hash, allows the function owner to execute arbitrary
+	  code.
+	</p>
+	<p>
+	  CVE-2026-14671: Type confusion in module "refint" allows an
+	  object creator to execute arbitrary code.
+	</p>
+	<p>
+	  CVE-2026-14672: SCRAM authentication reveals whether a role
+	  exists via an observable difference in the reported
+	  iteration count.
+	</p>
+	<p>
+	  CVE-2026-14673: amcheck fails to clear an untrusted search
+	  path, letting an EXECUTE grantee run arbitrary functions as
+	  an expression index's owner.
+	</p>
+	<p>
+	  CVE-2026-14676: Heap buffer overflow in pg_stat_statements
+	  via crafted queries with array constants allows arbitrary
+	  code execution.
+	</p>
+	<p>
+	  CVE-2026-14677: Integer wraparound in 32-bit pltcl/plperl
+	  builds can undersize an allocation, allowing arbitrary code
+	  execution.
+	</p>
+	<p>
+	  CVE-2026-14678: pg_trgm's picksplit function reads past the
+	  end of a heap buffer, potentially disclosing limited memory.
+	</p>
+	<p>
+	  CVE-2026-14679: Stack buffer overflow in argument-name
+	  matching lets an object creator write a few attacker-
+	  influenced bytes into server memory.
+	</p>
+	<p>
+	  CVE-2026-14680: Type confusion via "internal"-typed function
+	  arguments allows any user to execute arbitrary code.
+	</p>
+	<p>
+	  CVE-2026-14681: GSSAPI encryption is not properly enforced
+	  when coupled with an initial direct SSL connection.
+	</p>
+	<p>
+	  CVE-2026-15741: Expression deparse of EXTRACT() allows SQL
+	  injection via a hostile object definition, affecting pg_dump
+	  and psql.
+	</p>
+	<p>
+	  CVE-2026-15742: Integer wraparound in fuzzystrmatch's
+	  levenshtein() functions allows writes to arbitrary addresses
+	  and code execution.
+	</p>
+	<p>
+	  CVE-2026-16238: Type confusion in
+	  pg_restore_attribute_stats() allows arbitrary code execution
+	  via conflated range/multirange values.
+	</p>
+	<p>
+	  CVE-2026-16239: Type confusion via cursor DECLARE and CLOSE
+	  allows a user to execute arbitrary code.
+	</p>
+	<p>
+	  CVE-2026-16241: Integer underflow in ECPG can crash the
+	  client via a bytea value lacking its mandatory prefix.
+	</p>
+	<p>
+	  CVE-2026-18024: The ascii() function reads past the end of a
+	  buffer, disclosing a few bytes of server memory.
+	</p>
+	<p>
+	  CVE-2026-18408: psql's \unrestrict lets a malicious pg_dump
+	  origin-server superuser execute arbitrary code in the
+	  restoring client.
+	</p>
+	<p>
+	  CVE-2026-19385: Heap buffer overflow in pg_dump, when
+	  dumping long function transform lists, allows arbitrary code
+	  execution.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-6464</cvename>
+      <cvename>CVE-2026-6469</cvename>
+      <cvename>CVE-2026-6470</cvename>
+      <cvename>CVE-2026-6471</cvename>
+      <cvename>CVE-2026-14662</cvename>
+      <cvename>CVE-2026-14663</cvename>
+      <cvename>CVE-2026-14664</cvename>
+      <cvename>CVE-2026-14666</cvename>
+      <cvename>CVE-2026-14668</cvename>
+      <cvename>CVE-2026-14669</cvename>
+      <cvename>CVE-2026-14670</cvename>
+      <cvename>CVE-2026-14671</cvename>
+      <cvename>CVE-2026-14672</cvename>
+      <cvename>CVE-2026-14673</cvename>
+      <cvename>CVE-2026-14676</cvename>
+      <cvename>CVE-2026-14677</cvename>
+      <cvename>CVE-2026-14678</cvename>
+      <cvename>CVE-2026-14679</cvename>
+      <cvename>CVE-2026-14680</cvename>
+      <cvename>CVE-2026-14681</cvename>
+      <cvename>CVE-2026-15741</cvename>
+      <cvename>CVE-2026-15742</cvename>
+      <cvename>CVE-2026-16238</cvename>
+      <cvename>CVE-2026-16239</cvename>
+      <cvename>CVE-2026-16241</cvename>
+      <cvename>CVE-2026-18024</cvename>
+      <cvename>CVE-2026-18408</cvename>
+      <cvename>CVE-2026-19385</cvename>
+      <url>https://www.postgresql.org/about/news/postgresql-186-1711-1615-1519-1424-and-19-beta-3-released-3365/</url>
+    </references>
+    <dates>
+      <discovery>2026-08-13</discovery>
+      <entry>2026-08-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="56449320-97c5-11f1-84d7-3c7c3fba4204">
+    <topic>OpenEXR -- 3.4.14 fixes multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>openexr</name>
+	<range><lt>3.4.14</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Cary Phillips reports:</p>
+	<blockquote cite="https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.4.14">
+	  <p>[The OpenEXR 3.4.14] release addresses the following security vulnerabilities:</p>
+	  <ul>
+	    <li>CVE-2026-68514: PyOpenEXR deep prefixed literal RGB key collision heap buffer overflow</li>
+	    <li>CVE-2026-68513: PyOpenEXR prefixed literal RGB key collision heap buffer overflow</li>
+	    <li>CVE-2026-62986: PyOpenEXR deep prefixed RGB stale lane disclosure</li>
+	    <li>CVE-2026-61703: PyOpenEXR deep mixed RGB heap buffer overflow</li>
+	    <li>CVE-2026-61555: empty multiView viewFromChannelName file crash</li>
+	    <li>CVE-2026-59985: ILP32 OpenEXRCore RLE decode heap OOB read DoS</li>
+	    <li>CVE-2026-59984: ILP32 B44 InputFile decode scratch buffer overflow</li>
+	    <li>CVE-2026-59983: ILP32 DeepTiledInputFile sample count table decode OOB read</li>
+	    <li>CVE-2026-59982: ILP32 DWAA InputFile packed AC buffer overflow</li>
+	    <li>CVE-2026-59981: OpenEXRUtil SampleCountChannel row nonzero dataWindow heap OOB read</li>
+	    <li>CVE-2026-59189: OpenEXRUtil DeepImageChannel row nonzero dataWindow heap OOB read</li>
+	    <li>CVE-2026-59187: OpenEXR exrmetrics deep pixelmode heap buffer overflow</li>
+	    <li>CVE-2026-59186: OpenEXR ILP32 TiledRgbaInputFile large tile Array2D heap OOB write</li>
+	    <li>CVE-2026-59184: OpenEXRUtil FlatImageChannel row nonzero dataWindow heap OOB write</li>
+	    <li>CVE-2026-59183: Signed Integer Overflow Leading to Out-of-Bounds Memory Access in Deep Tile Decoding</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-68514</cvename>
+      <cvename>CVE-2026-68513</cvename>
+      <cvename>CVE-2026-62986</cvename>
+      <cvename>CVE-2026-61703</cvename>
+      <cvename>CVE-2026-61555</cvename>
+      <cvename>CVE-2026-59985</cvename>
+      <cvename>CVE-2026-59984</cvename>
+      <cvename>CVE-2026-59983</cvename>
+      <cvename>CVE-2026-59982</cvename>
+      <cvename>CVE-2026-59981</cvename>
+      <cvename>CVE-2026-59189</cvename>
+      <cvename>CVE-2026-59187</cvename>
+      <cvename>CVE-2026-59186</cvename>
+      <cvename>CVE-2026-59184</cvename>
+      <cvename>CVE-2026-59183</cvename>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.4.14</url>
+    </references>
+    <dates>
+      <discovery>2026-08-07</discovery>
+      <entry>2026-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2c73b6d5-971c-11f1-bdc8-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+<package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>19.2.0</ge><lt>19.2.2</lt></range>
+	<range><ge>19.1.0</ge><lt>19.1.4</lt></range>
+	<range><ge>12.0.0</ge><lt>19.0.6</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-2-2-released/?nav=19.2.2">
+	  <p>Cross-site Scripting issue in Analytics Dashboards table field configuration impacts GitLab CE/EE</p>
+	  <p>Cross-site Scripting issue in Analytics Dashboards pagination controls impacts GitLab CE/EE GitLab</p>
+	  <p>Improper Authorization issue in CI/CD pipeline API impacts GitLab CE/EE</p>
+	  <p>Authorization Bypass issue in Duo Workflow Service impacts GitLab EE</p>
+	  <p>Cross-site Scripting issue in CI manual job confirmation modal impacts GitLab CE/E</p>
+	  <p>Missing Authorization issue in ProjectsController impacts GitLab EE</p>
+	  <p>Denial of Service issue in GraphQL API JSON parser impacts GitLab CE/EE</p>
+	  <p>Missing Authorization issue in merge requests API impacts GitLab EE</p>
+	  <p>Missing Authorization issue in external status check API impacts GitLab EE</p>
+	  <p>Incorrect Authorization issue in npm dist-tags endpoint impacts GitLab CE/EE</p>
+	  <p>Missing Authorization issue in GitLab Duo settings page impacts GitLab EE</p>
+	  <p>Incorrect Authorization issue in AI Tool Rules GraphQL resolver impacts GitLab EE</p>
+	  <p>Incorrect Privilege Assignment issue in custom roles impacts GitLab EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-15217</cvename>
+      <cvename>CVE-2026-15216</cvename>
+      <cvename>CVE-2026-15423</cvename>
+      <cvename>CVE-2026-19228</cvename>
+      <cvename>CVE-2026-16627</cvename>
+      <cvename>CVE-2026-16494</cvename>
+      <cvename>CVE-2026-7427</cvename>
+      <cvename>CVE-2026-6821</cvename>
+      <cvename>CVE-2026-4879</cvename>
+      <cvename>CVE-2026-8667</cvename>
+      <cvename>CVE-2026-18244</cvename>
+      <cvename>CVE-2026-18433</cvename>
+      <cvename>CVE-2025-9486</cvename>
+      <url>https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-2-2-released/?nav=19.2.2</url>
+    </references>
+    <dates>
+      <discovery>2026-08-12</discovery>
+      <entry>2026-08-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a4e5cc5f-d4bc-4f67-ad8e-0f6a9e37064f">
+    <topic>chromium -- security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>151.0.7922.137</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>151.0.7922.137</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2026/08/stable-channel-update-for-desktop_01815628406.html">
+	 <p>This update includes 5 security fixes:</p>
+	 <ul>
+	    <li>[535000102] High CVE-2026-19556: Use after free in V8.</li>
+	    <li>[534867485] High CVE-2026-19557: Use after free in TabStrip.</li>
+	    <li>[536676756] High CVE-2026-19558: Use after free in Extensions.</li>
+	    <li>[540100588] High CVE-2026-19559: Use after free in HTML.</li>
+	    <li>[540482895] High CVE-2026-19560: Use after free in Blink.</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-19556</cvename>
+      <cvename>CVE-2026-19557</cvename>
+      <cvename>CVE-2026-19558</cvename>
+      <cvename>CVE-2026-19559</cvename>
+      <cvename>CVE-2026-19560</cvename>
+      <url>https://chromereleases.googleblog.com/2026/08/stable-channel-update-for-desktop_01815628406.html</url>
+    </references>
+    <dates>
+      <discovery>2026-08-11</discovery>
+      <entry>2026-08-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8acd79a5-35ee-4076-b107-3550bbd7d118">
+    <topic>chromium -- security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>151.0.7922.108</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>151.0.7922.108</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2026/08/stable-channel-update-for-desktop_01193673229.html">
+	 <p>This update includes 41 security fixes:</p>
+	 <ul>
+	    <li>[499602793] Critical CVE-2026-19137: Use after free in WebGL.</li>
+	    <li>[524824288] Critical CVE-2026-19149: Use after free in ura.</li>
+	    <li>[532941869] Critical CVE-2026-19154: Use after free in Skia.</li>
+	    <li>[534903095] Critical CVE-2026-19157: Out of bounds write in GLE.</li>
+	    <li>[537729021] Critical CVE-2026-19170: Use after free in WebGL.</li>
+	    <li>[537838324] Critical CVE-2026-19172: Use after free in Views.</li>
+	    <li>[537390933] High CVE-2026-19169: Insufficient validation of untrusted input in Contextual Tasks.</li>
+	    <li>[536945254] High CVE-2026-19168: Inappropriate implementation in V8.</li>
+	    <li>[500097298] High CVE-2026-19138: Heap buffer overflow in CrashReporting.</li>
+	    <li>[511731805] High CVE-2026-19139: Race in CredentialProvider.</li>
+	    <li>[513044017] High CVE-2026-19140: Use after free in GPU.</li>
+	    <li>[513602949] High CVE-2026-19141: Use after free in Resources.</li>
+	    <li>[515428251] High CVE-2026-19142: Use after free in Views.</li>
+	    <li>[517772612] High CVE-2026-19143: Insufficient validation of untrusted input in WebPKs.</li>
+	    <li>[520167277] High CVE-2026-19144: Use after free in HTML.</li>
+	    <li>[521878431] High CVE-2026-19145: Use after free in Translate.</li>
+	    <li>[523713150] High CVE-2026-19146: Uninitialized Use in GPU.</li>
+	    <li>[524439798] High CVE-2026-19147: Use after free in ura.</li>
+	    <li>[524460000] High CVE-2026-19148: Out of bounds write in GPU.</li>
+	    <li>[526380803] High CVE-2026-19150: Inappropriate implementation in V8.</li>
+	    <li>[530663440] High CVE-2026-19151: Use after free in V8.</li>
+	    <li>[531165110] High CVE-2026-19152: Inappropriate implementation in avigation.</li>
+	    <li>[532939327] High CVE-2026-19153: Insufficient validation of untrusted input in Workers.</li>
+	    <li>[533053621] High CVE-2026-19155: Use after free in Payments.</li>
+	    <li>[533331920] High CVE-2026-19156: Heap buffer overflow in Base.</li>
+	    <li>[535749174] High CVE-2026-19158: Use after free in Views.</li>
+	    <li>[536067175] High CVE-2026-19159: Use after free in Views.</li>
+	    <li>[536068737] High CVE-2026-19160: Uninitialized Use in Skia.</li>
+	    <li>[536165038] High CVE-2026-19161: Uninitialized Use in Skia.</li>
+	    <li>[536271629] High CVE-2026-19162: Out of bounds write in V8.</li>
+	    <li>[536449742] High CVE-2026-19163: Use after free in Media.</li>
+	    <li>[536470854] High CVE-2026-19164: Insufficient validation of untrusted input in Codecs.</li>
+	    <li>[536512612] High CVE-2026-19165: Use after free in Extensions.</li>
+	    <li>[536584251] High CVE-2026-19166: Use after free in Web uthentication.</li>
+	    <li>[536666274] High CVE-2026-19167: Integer overflow in GPU.</li>
+	    <li>[537832446] High CVE-2026-19171: Use after free in Media.</li>
+	    <li>[538332338] High CVE-2026-19173: Out of bounds write in Skia.</li>
+	    <li>[538378084] High CVE-2026-19174: Integer overflow in V8.</li>
+	    <li>[540138836] High CVE-2026-19175: Use after free in Payments.</li>
+	    <li>[540157141] High CVE-2026-19176: Use after free in Skia.</li>
+	    <li>[540289900] High CVE-2026-19177: Insufficient validation of untrusted input in UI.</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-19137</cvename>
+      <cvename>CVE-2026-19149</cvename>
+      <cvename>CVE-2026-19154</cvename>
+      <cvename>CVE-2026-19157</cvename>
+      <cvename>CVE-2026-19170</cvename>
+      <cvename>CVE-2026-19172</cvename>
+      <cvename>CVE-2026-19169</cvename>
+      <cvename>CVE-2026-19168</cvename>
+      <cvename>CVE-2026-19138</cvename>
+      <cvename>CVE-2026-19139</cvename>
+      <cvename>CVE-2026-19140</cvename>
+      <cvename>CVE-2026-19141</cvename>
+      <cvename>CVE-2026-19142</cvename>
+      <cvename>CVE-2026-19143</cvename>
+      <cvename>CVE-2026-19144</cvename>
+      <cvename>CVE-2026-19145</cvename>
+      <cvename>CVE-2026-19146</cvename>
+      <cvename>CVE-2026-19147</cvename>
+      <cvename>CVE-2026-19148</cvename>
+      <cvename>CVE-2026-19150</cvename>
+      <cvename>CVE-2026-19151</cvename>
+      <cvename>CVE-2026-19152</cvename>
+      <cvename>CVE-2026-19153</cvename>
+      <cvename>CVE-2026-19155</cvename>
+      <cvename>CVE-2026-19156</cvename>
+      <cvename>CVE-2026-19158</cvename>
+      <cvename>CVE-2026-19159</cvename>
+      <cvename>CVE-2026-19160</cvename>
+      <cvename>CVE-2026-19161</cvename>
+      <cvename>CVE-2026-19162</cvename>
+      <cvename>CVE-2026-19163</cvename>
+      <cvename>CVE-2026-19164</cvename>
+      <cvename>CVE-2026-19165</cvename>
+      <cvename>CVE-2026-19166</cvename>
+      <cvename>CVE-2026-19167</cvename>
+      <cvename>CVE-2026-19171</cvename>
+      <cvename>CVE-2026-19173</cvename>
+      <cvename>CVE-2026-19174</cvename>
+      <cvename>CVE-2026-19175</cvename>
+      <cvename>CVE-2026-19176</cvename>
+      <cvename>CVE-2026-19177</cvename>
+      <url>https://chromereleases.googleblog.com/2026/08/stable-channel-update-for-desktop_01193673229.html</url>
+    </references>
+    <dates>
+      <discovery>2026-08-06</discovery>
+      <entry>2026-08-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7a691536-968b-11f1-9863-50ebf6bdf8e9">
+    <topic>phpmyfaq -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>phpmyfaq-php83</name>
+	<name>phpmyfaq-php84</name>
+	<name>phpmyfaq-php85</name>
+	<range><lt>4.1.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>phpMyFAQ team reports:</p>
+	<blockquote cite="https://www.phpmyfaq.de/security/advisory-2026-08-04/">
+	  <p>The WebAuthn login flow never persists the challenge it issues, so
+	    the replay guard never runs. An attacker who captures a valid
+	    assertion can replay it to authenticate as the victim.</p>
+	  <p>The brute-force throttle protecting the administration two-factor
+	    prompt is scoped to the session. An attacker who starts with a fresh
+	    cookie jar resets the counter and can guess TOTP codes without any
+	    effective rate limit.</p>
+	  <p>An LDAP login silently reactivates a local account that an
+	    administrator has blocked, and the state change is not written to the
+	    audit log, so a revoked user regains access unnoticed.</p>
+	  <p>The remember-me cookie is issued before the second factor has been
+	    verified. An attacker who knows only the password can keep the cookie
+	    from the incomplete login and use it to return as the fully
+	    authenticated user, bypassing two-factor authentication.</p>
+	  <p>Glossary input is escaped before it is truncated. Truncation can cut
+	    an escape sequence in half, which allows an authenticated user to
+	    inject SQL into the resulting query.</p>
+	  <p>A tracking file below the document root is served without
+	    authentication and contains password reset tokens, allowing an
+	    unauthenticated visitor to take over the accounts those tokens belong
+	    to.</p>
+	  <p>The public PDF export does not check whether a FAQ record is active,
+	    so an unauthenticated visitor can retrieve the title and solution of
+	    drafts and unpublished entries.</p>
+	  <p>Comment endpoints do not verify authorization for the parent FAQ
+	    record, exposing the comments, the personal data of the commenters,
+	    and attachment metadata of restricted records.</p>
+	  <p>The PostgreSQL search backend declares the wrong LIKE ESCAPE
+	    character, which makes the wildcard-escaping fix ineffective on that
+	    backend.</p>
+	  <p>The administration API endpoints that read the LDAP, Elasticsearch,
+	    OpenSearcr, and dashboard configuration only require a login instead
+	    of the CONFIGURATION_EDIT permission, so any authenticated user can
+	    read these settings.</p>
+	  <p>An authenticated FAQ editor can reference a local file as an image in
+	    a FAQ entry and have the PDF export embed and disclose its contents.</p>
+	  <p>The registration endpoints remain reachable even when
+	    security.enableRegistration is turned off, so visitors can still create
+	     accounts on an installation that is meant to be closed.</p>
+	  <p>The content backup is written as a ZIP archive into the web-accessible
+	    document root, where anyone who guesses or learns its name can download
+	    the full contents of the installation.</p>
+	  <p>The backup, database migration, and maintenance mode endpoints can be
+	    reached without authentication, allowing an unauthenticated attacker
+	    to export data or put the installation into maintenance mode.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://www.phpmyfaq.de/security/advisory-2026-08-04/</url>
+    </references>
+    <dates>
+      <discovery>2026-08-04</discovery>
+      <entry>2026-08-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f4af92f7-95ae-11f1-a6f7-b42e991fc52e">
+    <topic>gitea -- Multiple vulnerabilities</topic>
+    <affects>
+    <package>
+    <name>gitea</name>
+    <range><lt>1.27.1</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitea reports</p>
+	<blockquote cite="https://blog.gitea.com/release-of-1.27.1/">
+	<p>This release addresses the following security
+	vulnerabilities. Please upgrade as soon as possible.
+	</p>
+	<p>
+	Unauthenticated arbitrary file read via the Org-mode
+	#INCLUDE directive.
+	</p>
+	<p>
+	Remote code execution via the diffpatch API through Git hook
+	installation.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-59774</cvename>
+      <url>https://github.com/go-gitea/gitea/security/advisories/GHSA-6v53-hr58-556r</url>
+      <cvename>CVE-2026-60004</cvename>
+      <url>https://github.com/go-gitea/gitea/security/advisories/GHSA-rcr6-4jqh-j84m</url>
+    </references>
+    <dates>
+      <discovery>2026-08-11</discovery>
+      <entry>2026-08-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ab10c9c9-95ac-11f1-a6f7-b42e991fc52e">
+  <topic>chromium -- Multiple vulnerabilities</topic>
+  <affects>
+    <package>
+      <name>chromium</name>
+      <range><lt>151.0.7922.109</lt></range>
+    </package>
+  </affects>
+  <description>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Google has released Chrome 151.0.7922.109 to address multiple critical vulnerabilities.</p>
+	<p>
+	CVE-2026-19172:
+	  Use after free in Views in Google Chrome prior to
+	  151.0.7922.109 allowed a remote attacker who had
+	  compromised the renderer process to potentially perform a
+	  sandbox escape via a crafted HTML page. (Chromium security
+	  severity: Critical)
+	</p>
+	<p>
+	CVE-2026-19170:
+	  Use after free in WebGL in Google Chrome on Android
+	  prior to 151.0.7922.109 allowed a remote attacker to
+	  potentially perform a sandbox escape via a crafted HTML
+	  page. (Chromium security severity: Critical)
+	</p>
+	<p>
+	CVE-2026-19157:
+	  Out of bounds write in ANGLE in Google Chrome on Android
+	  prior to 151.0.7922.109 allowed a remote attacker to
+	  potentially perform a sandbox escape via a crafted HTML
+	  page. (Chromium security severity: Critical)
+	</p>
+	<p>
+	CVE-2026-19154:
+	  Use after free in Skia in Google Chrome on Android prior
+	  to 151.0.7922.109 allowed a remote attacker who had
+	  compromised the renderer process to potentially perform a
+	  sandbox escape via a crafted HTML page. (Chromium security
+	  severity: Critical)
+	</p>
+	<p>
+	CVE-2026-19149:
+	  Use after free in Aura in Google Chrome on Linux prior to
+	  151.0.7922.109 allowed a remote attacker to potentially
+	  perform a sandbox escape via a crafted HTML page.
+	  (Chromium security severity: Critical)
+	</p>
+	<p>
+	CVE-2026-19137:
+	  Use after free in WebGL in Google Chrome on Android prior
+	  to 151.0.7922.109 allowed a remote attacker who had
+	  compromised the renderer process to potentially perform a
+	  sandbox escape via a crafted HTML page. (Chromium security
+	  severity: Critical)
+	</p>
+    </body>
+  </description>
+  <references>
+    <cvename>CVE-2026-19172</cvename>
+    <cvename>CVE-2026-19170</cvename>
+    <cvename>CVE-2026-19157</cvename>
+    <cvename>CVE-2026-19154</cvename>
+    <cvename>CVE-2026-19149</cvename>
+    <cvename>CVE-2026-19137</cvename>
+    <url>https://chromereleases.googleblog.com/2026/08/stable-channel-update-for-desktop_01193673229.html</url>
+  </references>
+  <dates>
+    <discovery>2026-08-06</discovery>
+    <entry>2026-08-11</entry>
+  </dates>
+</vuln>
+
   <vuln vid="20655058-9565-11f1-8144-8447094a420f">
     <topic>OpenSSH -- Multiple vulnerbilities</topic>
     <affects>
@@ -14193,8 +14914,8 @@ affected.</p>
   <vuln vid="30bda1c3-369b-11f1-b51c-6dd25bec137b">
     <topic>Python -- HTTP proxy CONNECT tunnel does not sanitize CR/LF</topic>
     <affects>
-      <package><name>python310</name><range><ge>0</ge></range></package>
-      <package><name>python311</name><range><ge>0</ge></range></package>
+      <package><name>python310</name><range><lt>3.10.21</lt></range></package>
+      <package><name>python311</name><range><lt>3.11.16</lt></range></package>
       <package><name>python312</name><range><lt>3.12.13_3</lt></range></package>
       <package><name>python313</name><range><lt>3.13.14</lt></range></package>
       <package><name>python313t</name><range><lt>3.13.14</lt></range></package>
@@ -14215,15 +14936,15 @@ affected.</p>
     <dates>
       <discovery>2026-03-20</discovery>
       <entry>2026-04-12</entry>
-      <modified>2026-06-19</modified>
+      <modified>2026-08-14</modified>
     </dates>
    </vuln>
 
   <vuln vid="5ec4dcf6-3588-11f1-b51c-6dd25bec137b">
     <topic>Python -- configparser vulnerable to excessive CPU use</topic>
     <affects>
-      <package><name>python310</name><range><ge>0</ge></range></package>
-      <package><name>python311</name><range><ge>0</ge></range></package>
+      <package><name>python310</name><range><lt>3.10.21</lt></range></package>
+      <package><name>python311</name><range><lt>3.11.16</lt></range></package>
       <package><name>python312</name><range><lt>3.12.13_4</lt></range></package>
       <package><name>python313</name><range><lt>3.13.14</lt></range></package>
       <package><name>python313t</name><range><lt>3.13.14</lt></range></package>
@@ -14243,7 +14964,7 @@ affected.</p>
     <dates>
       <discovery>2026-03-23</discovery>
       <entry>2026-04-12</entry>
-      <modified>2026-08-09</modified>
+      <modified>2026-08-14</modified>
     </dates>
   </vuln>
 
@@ -14980,7 +15701,7 @@ affected.</p>
     <package><name>python313t</name> <range><ge>0</ge></range></package>
     <package><name>python314</name> <range><ge>0</ge></range></package>
     <package><name>python314t</name> <range><ge>0</ge></range></package>
-    <package><name>python315</name> <range><ge>0</ge></range></package>
+    <package><name>python315</name> <range><lt>3.15.0.a6</lt></range></package>
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
@@ -14999,7 +15720,7 @@ affected.</p>
     <dates>
       <discovery>2026-01-20</discovery>
       <entry>2026-04-01</entry>
-      <modified>2026-08-08</modified>
+      <modified>2026-08-14</modified>
     </dates>
   </vuln>
 
