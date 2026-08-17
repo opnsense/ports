@@ -2,8 +2,8 @@
 #
 # Feature:	linux:args
 # Usage:	USES=linux or USES=linux:args
-# Valid args:	c7	Depend on CentOS 7 packages (default)
-#		rl9	Depend on Rocky Linux 9 packages
+# Valid args:	c7	Depend on CentOS 7 packages (default on i386)
+#		rl9	Depend on Rocky Linux 9 packages (default on all other arches)
 # Additional variables:
 # USE_LINUX	List of Linux packages to depend on.
 # USE_LINUX_RPM	When defined, additional variables and targets useful to Linux
@@ -37,7 +37,7 @@ linux_ARGS=		${LINUX_DEFAULT}
 .  if ${linux_ARGS} == c7
 LINUX_DIST_VER?=	7.9.2009
 .  elif ${linux_ARGS} == rl9
-LINUX_DIST_VER?=	9.7
+LINUX_DIST_VER?=	9.8
 .  else
 ERROR+=			"Invalid Linux distribution: ${linux_ARGS}"
 .  endif
@@ -198,7 +198,7 @@ _linux_rl9_tk86=			linux-rl9-tk86>0:x11-toolkits/linux-rl9-tk86
 _linux_${linux_ARGS}_trousers=		linux-${linux_ARGS}-trousers>0:security/linux-${linux_ARGS}-trousers
 _linux_c7_userspace-rcu=		linux-c7-userspace-rcu>0:sysutils/linux-c7-userspace-rcu
 _linux_rl9_vmaf=			linux-rl9-vmaf>0:multimedia/linux-rl9-vmaf
-_linux_rl9_vulkan=			linux-rl9-vulkan-loader>0:graphics/linux-rl9-vulkan
+_linux_rl9_vulkan=			linux-rl9-vulkan>0:graphics/linux-rl9-vulkan
 _linux_${linux_ARGS}_wayland=		linux-${linux_ARGS}-wayland>0:graphics/linux-${linux_ARGS}-wayland
 _linux_rl9_wget=			linux-rl9-wget>0:ftp/linux-rl9-wget
 _linux_${linux_ARGS}_xcb-util=		linux-${linux_ARGS}-xcb-util>0:x11/linux-${linux_ARGS}-xcb-util

@@ -14,6 +14,7 @@
 # 		* font     don't install .pc file
 # 		* lib      various dependencies, install .pc file, needs
 # 		           pathfix
+# 		* test     no particular notes
 # 		* util     no particular notes
 #
 # 		These categories has to match upstream categories.  Don't invent
@@ -32,7 +33,7 @@
 .if !defined(_INCLUDE_USES_XORG_CAT_MK)
 _INCLUDE_USES_XORG_CAT_MK=yes
 
-_XORG_CATEGORIES=	app data doc driver font lib util
+_XORG_CATEGORIES=	app data doc driver font lib test util
 _XORG_BUILDSYSTEMS=	autotools meson
 
 _XORG_CAT=		# empty
@@ -114,7 +115,10 @@ USE_XORG+=      xorg-macros
 # Nothing at the moment
 
 .  elif ${_XORG_CAT} == data
-# Nothing at the moment.
+NO_ARCH=	yes
+
+.  elif ${_XORG_CAT} == doc
+NO_ARCH=	yes
 
 .  elif ${_XORG_CAT} == driver
 USE_XORG+=	xi xorg-server xorgproto
@@ -142,17 +146,18 @@ BUILD_DEPENDS+=	mkfontscale>=0:x11-fonts/mkfontscale \
 		bdftopcf:x11-fonts/bdftopcf
 PLIST_FILES+=	"@comment ${FONTSDIR}/fonts.dir" \
 		"@comment ${FONTSDIR}/fonts.scale"
+NO_ARCH=	yes
 .    endif
 
 .  elif ${_XORG_CAT} == lib
 CFLAGS+=	-Werror=uninitialized
 .include "${USESDIR}/pathfix.mk"
+USE_LDCONFIG=	yes
 .    if ${_XORG_BUILDSYS} == meson
 # put meson stuff here
 .    else
 libtool_ARGS?=	# empty
 .include "${USESDIR}/libtool.mk"
-USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=--enable-malloc0returnsnull
 .    endif
 

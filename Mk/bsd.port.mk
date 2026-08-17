@@ -343,9 +343,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  can be used in Makefiles by port maintainers
 #				  if a port breaks with it.
 ##
-# USE_LOCALE	- LANG and LC_ALL are set to the value of this variable in
-#				  CONFIGURE_ENV and MAKE_ENV.  Example: USE_LOCALE=en_US.UTF-8
-##
 # USE_GCC		- If set, this port requires this version of gcc, either in
 #				  the system or installed from a port.
 # USE_CSTD		- Override the default C language standard (gnu89, gnu99)
@@ -681,6 +678,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # For extract:
 #
 # EXTRACT_ENV	- Environment to pass to ${EXTRACT_CMD}
+#				  Default: none
 # EXTRACT_CMD	- Command for extracting archive
 #				  Default: ${TAR}
 # EXTRACT_BEFORE_ARGS
@@ -994,8 +992,8 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # Most port authors should not need to understand anything after this point.
 #
 
-LANG=		C
-LC_ALL=		C
+LANG=		C.UTF-8
+LC_ALL=		C.UTF-8
 .export		LANG LC_ALL
 
 # These need to be absolute since we don't know how deep in the ports
@@ -1166,7 +1164,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .    endif
 _EXPORTED_VARS+=	OSVERSION
 
-.    if ${OPSYS} == FreeBSD && ${OSVERSION} < 1403000
+.    if ${OPSYS} == FreeBSD && ${OSVERSION} < 1404000
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
 .      if defined(ALLOW_UNSUPPORTED_SYSTEM)
@@ -1589,6 +1587,7 @@ PKG_NOTE_flavor=	${FLAVOR}
 # GIT_CEILING_DIRECTORIES prevents ports that try to find their version
 # using git from finding the ports tree's git repository.
 WRK_ENV+=		HOME=${WRKDIR} \
+				LANG=C.UTF-8 \
 				MACHINE_ARCH=${MACHINE_ARCH} \
 				PWD="$${PWD}" \
 				GIT_CEILING_DIRECTORIES=${WRKDIR} \
@@ -1988,10 +1987,6 @@ ERROR+=	"Unknown USES=${f:C/\:.*//}"
 .      endif
 .    endif
 
-.    if defined(USE_LOCALE)
-WRK_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-.    endif
-
 # Macro for doing in-place file editing using regexps.  REINPLACE_ARGS may only
 # be used to set or override the -i argument.  Any other use is considered
 # invalid.
@@ -2144,7 +2139,6 @@ PATCH_DIST_ARGS+=	--suffix .orig
 TAR?=	/usr/bin/tar
 
 # EXTRACT_SUFX is defined in .pre.mk section
-EXTRACT_ENV?=	LC_ALL=C.UTF-8
 EXTRACT_CMD?=	${TAR}
 EXTRACT_BEFORE_ARGS?=	-xf
 EXTRACT_AFTER_ARGS?=	--no-same-owner --no-same-permissions
@@ -3211,7 +3205,7 @@ clean-wrkdir:
 .    if !target(do-extract)
 do-extract: ${EXTRACT_WRKDIR}
 	@for file in ${EXTRACT_ONLY}; do \
-		if ! (cd ${EXTRACT_WRKDIR} && ${EXTRACT_ENV} ${EXTRACT_CMD} \
+		if ! (cd ${EXTRACT_WRKDIR} && ${SETENV} ${EXTRACT_ENV} ${EXTRACT_CMD} \
 		    ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/$$file ${EXTRACT_AFTER_ARGS});\
 		then \
 			${ECHO_MSG} "===>  Failed to extract \"${_DISTDIR}/$$file\"."; \
@@ -4120,7 +4114,7 @@ DEPENDS-LIST= \
 ALL-DEPENDS-LIST=			${DEPENDS-LIST} -r ${_UNIFIED_DEPENDS:Q}
 ALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:Q}
 DEINSTALL-DEPENDS-FLAVORS-LIST=	${DEPENDS-LIST} -f -r ${_UNIFIED_DEPENDS:N${PKG_DEPENDS}:Q}
-MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -m ${_UNIFIED_DEPENDS:Q}
+MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -f -m ${_UNIFIED_DEPENDS:Q}
 BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS_ALL} ${EXTRACT_DEPENDS_ALL} ${PATCH_DEPENDS_ALL} ${FETCH_DEPENDS_ALL} ${BUILD_DEPENDS_ALL} ${LIB_DEPENDS_ALL}"
 RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL}"
 TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS_ALL:Q}
@@ -4420,10 +4414,17 @@ missing-packages:
 	done
 
 # Install missing dependencies from package
+# Preserve the interactive pkg prompt unless running in BATCH mode, in
+# which case -o cannot reopen stdin from /dev/tty and is not wanted.
+.    if defined(BATCH)
+_INSTALL_MISSING_PKGS=	${XARGS} ${PKG_BIN} install -yA
+.    else
+_INSTALL_MISSING_PKGS=	${XARGS} -o ${PKG_BIN} install -A
+.    endif
 install-missing-packages:
 	@_dirs=$$(${MISSING-DEPENDS-LIST}); \
 	${ECHO_CMD} "$${_dirs}" | ${SED} "s%${PORTSDIR}/%%g" | \
-		${SU_CMD} "${XARGS} -o ${PKG_BIN} install -A"
+		${SU_CMD} "${_INSTALL_MISSING_PKGS}"
 
 ################################################################
 # Everything after here are internal targets and really
