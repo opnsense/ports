@@ -1,5 +1,5 @@
 PORTNAME=	ipython
-PORTVERSION=	9.13.0
+PORTVERSION=	9.15.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -19,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}decorator>=5.1.0:devel/py-decorator@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}ipython-pygments-lexers>=1.0.0:devel/py-ipython-pygments-lexers@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jedi>=0.18.2:devel/py-jedi@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib-inline>=0.1.6:math/py-matplotlib-inline@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pexpect>4.6:misc/py-pexpect@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pexpect>=4.6:misc/py-pexpect@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}prompt-toolkit>=3.0.41<3.1.0:devel/py-prompt-toolkit@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>=7:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pygments>=2.14.0:textproc/py-pygments@${PY_FLAVOR} \
