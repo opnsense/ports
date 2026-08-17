@@ -1,6 +1,5 @@
 PORTNAME=	redis
-PORTVERSION=	7.4.0
-PORTREVISION=	1
+PORTVERSION=	7.4.1
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -33,7 +32,7 @@ OTEL_DESC=	OpenTelemetry support
 XXHASH_DESC=	Compute digest locally via xxHash
 
 HIREDIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hiredis>=3.2.0:databases/py-hiredis@${PY_FLAVOR}
-JWT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyjwt>=2.9.0:www/py-pyjwt@${PY_FLAVOR}
+JWT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyjwt>=2.13.0:www/py-pyjwt@${PY_FLAVOR}
 OCSP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyopenssl>=20.0.1,1:security/py-pyopenssl@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}requests>=2.31.0:www/py-requests@${PY_FLAVOR}
 OCSP_USE=		PYTHON=cryptography
