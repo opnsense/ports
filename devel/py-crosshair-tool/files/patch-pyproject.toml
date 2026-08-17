@@ -1,0 +1,17 @@
+--- pyproject.toml.orig	2026-06-16 01:14:38 UTC
++++ pyproject.toml
+@@ -65,13 +65,10 @@ mypycrosshair = "crosshair.main:mypy_and_check"
+ mypycrosshair = "crosshair.main:mypy_and_check"
+ 
+ [tool.setuptools.packages.find]
++exclude = ["doc", "doc.*"]
+ 
+ [tool.setuptools.package-data]
+ crosshair = ["*.h", "py.typed"]
+-
+-[[tool.setuptools.ext-modules]]
+-name = "_crosshair_tracers"
+-sources = ["crosshair/_tracers.c"]
+ 
+ [tool.flake8]
+ select = ["E7", "E9", "F60", "F63", "F7", "F82"]
