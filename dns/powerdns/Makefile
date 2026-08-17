@@ -1,5 +1,6 @@
 PORTNAME=	powerdns
-DISTVERSION=	5.1.3
+DISTVERSION=	5.1.4
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	https://downloads.powerdns.com/releases/
 DISTNAME=	pdns-${DISTVERSION}
@@ -83,7 +84,7 @@ IXFRDIST_LIB_DEPENDS=	libyaml-cpp.so:devel/yaml-cpp
 IXFRDIST_MESON_TRUE=	tools-ixfrdist
 
 LMDB_LIB_DEPENDS=	libboost_serialization.so:devel/boost-libs \
-			liblmdb.so:databases/lmdb
+			liblmdb.so:databases/lmdb0
 LMDB_MESON_ON=		-Dmodule-lmdb=dynamic
 LMDB_VARS=		MODULES+=lmdb
 
