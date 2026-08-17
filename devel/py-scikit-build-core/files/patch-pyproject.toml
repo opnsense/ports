@@ -1,0 +1,13 @@
+-- Ignore pytest_benchmark.logger.PytestBenchmarkWarning which occurs when using pytest-xdist.
+-- This warning is not indicative of a test failure, just that benchmarks are disabled in parallel mode.
+
+--- pyproject.toml.orig2026-04-30 16:02:41 UTC
++++ pyproject.toml
+@@ -177,6 +177,7 @@ filterwarnings = [
+     "ignore::scikit_build_core._vendor.pyproject_metadata.errors.ConfigurationWarning",
+     "ignore:'_UnionGenericAlias' is deprecated and slated for removal in Python 3.17:DeprecationWarning",  # From cattrs 24.1.2 and other?
+     "ignore:The 'wheel.metadata' package has been made private:DeprecationWarning",
++    "ignore::pytest_benchmark.logger.PytestBenchmarkWarning",
+     "ignore:version of cmake-example already set:UserWarning",  # Caused by setuptoools-scm 9+ being installed
+ ]
+ log_level = "INFO"
