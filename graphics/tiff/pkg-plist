@@ -21,16 +21,16 @@ include/tiffconf.h
 include/tiffio.h
 include/tiffio.hxx
 include/tiffvers.h
-lib/cmake/tiff/TiffConfig.cmake
-lib/cmake/tiff/TiffConfigVersion.cmake
-lib/cmake/tiff/TiffTargets-%%CMAKE_BUILD_TYPE%%.cmake
-lib/cmake/tiff/TiffTargets.cmake
+lib/cmake/tiff/tiff-config-version.cmake
+lib/cmake/tiff/tiff-config.cmake
+lib/cmake/tiff/tiff-targets-%%CMAKE_BUILD_TYPE%%.cmake
+lib/cmake/tiff/tiff-targets.cmake
 lib/libtiff.so
 lib/libtiff.so.6
-lib/libtiff.so.6.2.0
+lib/libtiff.so.6.3.0
 lib/libtiffxx.so
 lib/libtiffxx.so.6
-lib/libtiffxx.so.6.2.0
+lib/libtiffxx.so.6.3.0
 libdata/pkgconfig/libtiff-4.pc
 %%PORTDOCS%%%%DOCSDIR%%/ChangeLog
 %%PORTDOCS%%%%DOCSDIR%%/LICENSE.md
@@ -75,6 +75,7 @@ libdata/pkgconfig/libtiff-4.pc
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFFieldWriteCount.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFFlush.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFGetField.rst.txt
+%%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFGetMaxCompressionRatio.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFMergeFieldInfo.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFOpen.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/functions/TIFFOpenOptions.rst.txt
@@ -189,6 +190,7 @@ libdata/pkgconfig/libtiff-4.pc
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/releases/v4.6.0.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/releases/v4.7.0.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/releases/v4.7.1.rst.txt
+%%PORTDOCS%%%%DOCSDIR%%/manual/_sources/releases/v4.7.2.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/rfcs/index.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/rfcs/rfc1_psc.rst.txt
 %%PORTDOCS%%%%DOCSDIR%%/manual/_sources/rfcs/rfc2_restoring_needed_tools.rst.txt
@@ -255,6 +257,7 @@ libdata/pkgconfig/libtiff-4.pc
 %%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFFieldWriteCount.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFFlush.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFGetField.html
+%%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFGetMaxCompressionRatio.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFMergeFieldInfo.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFOpen.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/functions/TIFFOpenOptions.html
@@ -371,6 +374,7 @@ libdata/pkgconfig/libtiff-4.pc
 %%PORTDOCS%%%%DOCSDIR%%/manual/releases/v4.6.0.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/releases/v4.7.0.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/releases/v4.7.1.html
+%%PORTDOCS%%%%DOCSDIR%%/manual/releases/v4.7.2.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/rfcs/index.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/rfcs/rfc1_psc.html
 %%PORTDOCS%%%%DOCSDIR%%/manual/rfcs/rfc2_restoring_needed_tools.html
@@ -443,6 +447,7 @@ share/man/man3/TIFFFieldTag.3tiff.gz
 share/man/man3/TIFFFieldWriteCount.3tiff.gz
 share/man/man3/TIFFFlush.3tiff.gz
 share/man/man3/TIFFGetField.3tiff.gz
+share/man/man3/TIFFGetMaxCompressionRatio.3tiff.gz
 share/man/man3/TIFFMergeFieldInfo.3tiff.gz
 share/man/man3/TIFFOpen.3tiff.gz
 share/man/man3/TIFFPrintDirectory.3tiff.gz
