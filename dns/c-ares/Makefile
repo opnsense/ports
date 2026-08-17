@@ -1,5 +1,5 @@
 PORTNAME=	c-ares
-DISTVERSION=	1.34.6
+DISTVERSION=	1.34.8
 CATEGORIES=	dns
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
@@ -19,7 +19,7 @@ OPTIONS_SUB=	yes
 STATIC_CMAKE_BOOL=	CARES_STATIC
 
 TEST_BUILD_DEPENDS=	googletest>0:devel/googletest
-TEST_USES=		compiler:c++14-lang localbase:ldflags
+TEST_USES=		compiler:c++17-lang localbase:ldflags
 TEST_CMAKE_BOOL=	CARES_BUILD_TESTS
 TEST_TEST_TARGET=	test
 
