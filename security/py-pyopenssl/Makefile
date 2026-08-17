@@ -7,7 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Python interface to the OpenSSL library
-WWW=		https://www.pyopenssl.org/en/latest/ \
+WWW=		https://pyopenssl.org/en/latest/ \
 		https://github.com/pyca/pyopenssl
 
 LICENSE=	APACHE20
@@ -15,27 +15,18 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pretend>0:devel/py-pretend@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pytest-rerunfailures>0:devel/py-pytest-rerunfailures@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pretend>=0:devel/py-pretend@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pytest-rerunfailures>=0:devel/py-pytest-rerunfailures@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist concurrent cryptography pep517 pytest pythonprefix
+USE_PYTHON=	autoplist concurrent cryptography pep517 pytest
 
 NO_ARCH=	yes
-# These tests will be skipped due the following reasons:
-#
-# * test_connect_refused: Avoid stalling in build environments that don't have
-#   a internet connection
-# * test_set_verify_callback_exception: Fails on *BSD systems, see also
-#   https://github.com/pyca/pyopenssl/issues/656 for further details
-# * test_connect_ex: succeeds unexpectedly:
-#   https://github.com/pyca/pyopenssl/issues/1192
-#
-# The system clock must be in sync otherwise the test "test_verify_with_time"
-# will fail.
+# test_connect_refused: Avoid stalling in build environments that don't have an internet connection
+# test_connect_ex: https://github.com/pyca/pyopenssl/issues/1192
 PYTEST_IGNORED_TESTS=	test_connect_ex \
 			test_connect_refused
-TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR}
 
 CPE_VENDOR=	jean-paul_calderone
 
