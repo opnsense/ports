@@ -8,7 +8,7 @@ LICENSE+=	LGPL21
 
 # MySQL8.2+ supports only 64-bit platforms
 # Review list after 13.x EoL
-NOT_FOR_ARCHS= armv6 armv7 i386 powerpc
+NOT_FOR_ARCHS=	armv6 armv7 i386 powerpc
 
 MASTERDIR=	${.CURDIR}/../mysql84-server
 
@@ -16,20 +16,15 @@ PKGMESSAGE=	${.CURDIR}/pkg-message
 PATCHDIR=	${MASTERDIR}/files
 PLIST=		${.CURDIR}/pkg-plist
 
-CONFLICTS_INSTALL=	mysql8[1-9]-client \
-			mysql[0-79][0-9]-client \
-			mariadb[0-9][0-9]-client \
-			percona[0-9][0-9]-client
+CONFLICTS_INSTALL=	mysql*-client \
+			mariadb*-client \
+			percona*-client
 
 CMAKE_ARGS+=	-DWITHOUT_SERVER=1 -DINSTALL_SUPPORTFILESDIR=0
 
 CPE_PRODUCT=	mysql
 
 USE_LDCONFIG+=	${PREFIX}/lib/mysql
-
-MMAN1=		comp_err.1 lz4_decompress.1 mysql.1 mysql_config.1 mysql_config_editor.1 \
-		mysqladmin.1 mysqlbinlog.1 mysqlcheck.1 mysqldump.1 mysqlimport.1 mysqlman.1 \
-		mysqlpump.1 mysqlshow.1 mysqlslap.1 perror.1 zlib_decompress.1
 
 CLIENT_ONLY=	yes
 
