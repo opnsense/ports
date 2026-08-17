@@ -1,27 +1,31 @@
 PORTNAME=	hypothesis
-PORTVERSION=	6.152.9
+PORTVERSION=	6.156.6
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTFILES=	hypothesis-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Property-based testing library for Python
 WWW=		https://hypothesis.works/ \
 		https://hypothesis.readthedocs.io/en/latest/ \
-		https://github.com/HypothesisWorks/hypothesis/tree/master/hypothesis-python
+		https://github.com/HypothesisWorks/hypothesis/tree/master/hypothesis
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.7<2.0:devel/py-maturin@${PY_FLAVOR}
 RUN_DEPENDS=	${PY_EXCEPTIONGROUP} \
 		${PYTHON_PKGNAMEPREFIX}sortedcontainers>=2.1.0<3.0.0:devel/py-sortedcontainers@${PY_FLAVOR}
 
-USES=		python
+USES=		cargo python
 USE_PYTHON=	autoplist concurrent pep517
 
-NO_ARCH=	yes
+CARGO_BUILD=	no
+CARGO_CARGOTOML=	${WRKSRC}/rust/Cargo.toml
+CARGO_CARGOLOCK=	${WRKSRC}/rust/Cargo.lock
+CARGO_INSTALL=	no
 
 OPTIONS_DEFINE=	CLI CODEMODS CROSSHAIR DATEUTIL DJANGO DPCONTRACTS GHOSTWRITER LARK NUMPY PANDAS PYTEST PYTZ REDIS WATCHDOG
 OPTIONS_DEFAULT=CLI CROSSHAIR DATEUTIL DJANGO DPCONTRACTS GHOSTWRITER LARK NUMPY PANDAS PYTEST PYTZ REDIS WATCHDOG
@@ -44,7 +48,7 @@ CLI_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}black>=20.8b0:devel/py-black@${PY_FLAVOR
 			${PYTHON_PKGNAMEPREFIX}click>=7.0:devel/py-click@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}rich>=9.0.0:textproc/py-rich@${PY_FLAVOR}
 CODEMODS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}libcst>=0.3.16:devel/py-libcst@${PY_FLAVOR}
-CROSSHAIR_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}crosshair-tool>=0.0.104:devel/py-crosshair-tool@${PY_FLAVOR} \
+CROSSHAIR_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}crosshair-tool>=0.0.107:devel/py-crosshair-tool@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}hypothesis-crosshair>=0.0.28:devel/py-hypothesis-crosshair@${PY_FLAVOR}
 DATEUTIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python-dateutil>=1.4:devel/py-python-dateutil@${PY_FLAVOR}
 DJANGO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django52>=5.2:www/py-django52@${PY_FLAVOR}
@@ -57,5 +61,8 @@ PYTEST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=4.6,1:devel/py-pytest@${PY_FL
 PYTZ_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>=2014.1,1:devel/py-pytz@${PY_FLAVOR}
 REDIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}redis>=3.0.0:databases/py-redis@${PY_FLAVOR}
 WATCHDOG_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}watchdog>=4.0.0:devel/py-watchdog@${PY_FLAVOR}
+
+post-install:
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
