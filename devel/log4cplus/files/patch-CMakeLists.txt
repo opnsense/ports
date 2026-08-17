@@ -1,0 +1,16 @@
+--- CMakeLists.txt.orig	2026-07-09 04:40:46 UTC
++++ CMakeLists.txt
+@@ -168,9 +168,12 @@ configure_file(${DEFINES_HXX_CMAKE} ${DEFINES_HXX} @ON
+ 
+ configure_file(${DEFINES_HXX_CMAKE} ${DEFINES_HXX} @ONLY)
+ 
++if(NOT DEFINED CATCH2_INCLUDE_DIR)
++  set(CATCH2_INCLUDE_DIR ${log4cplus_SOURCE_DIR}/catch/single_include/catch2)
++endif()
+ include_directories (${log4cplus_SOURCE_DIR}/include
+                      ${log4cplus_SOURCE_DIR}/threadpool
+-                     ${log4cplus_SOURCE_DIR}/catch/single_include/catch2
++                     ${CATCH2_INCLUDE_DIR}
+                      ${log4cplus_BINARY_DIR}/include
+                     )
+ 
