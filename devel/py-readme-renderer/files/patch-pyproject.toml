@@ -1,0 +1,21 @@
+--- pyproject.toml.orig	2026-06-09 21:04:44 UTC
++++ pyproject.toml
+@@ -6,8 +6,7 @@ readme = "README.rst"
+   {name = "The Python Packaging Authority", email = "admin@mail.pypi.org"}
+ ]
+ readme = "README.rst"
+-license = "Apache-2.0"
+-license-files = ["LICENSE"]
++license = {text = "Apache License, Version 2.0"}
+ dependencies = [
+   "nh3>=0.2.14",
+   "docutils>=0.21.2",
+@@ -48,7 +47,7 @@ Homepage = "https://github.com/pypa/readme_renderer"
+ Homepage = "https://github.com/pypa/readme_renderer"
+ 
+ [build-system]
+-requires = ["setuptools>=77.0.3"]
++requires = ["setuptools>=61"]
+ build-backend = "setuptools.build_meta"
+ 
+ [tool.check-manifest]
