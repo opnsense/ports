@@ -1,5 +1,5 @@
 PORTNAME=	isa-l
-PORTVERSION=	2.32.0
+PORTVERSION=	2.32.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -18,6 +18,7 @@ BUILD_DEPENDS=	nasm:devel/nasm
 
 USES=		autoreconf gmake libtool
 
+CONFIGURE_ARGS=	--enable-programs
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
