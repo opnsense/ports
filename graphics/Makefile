@@ -970,6 +970,7 @@
     SUBDIR += py-imagesize
     SUBDIR += py-img2pdf
     SUBDIR += py-imutils
+    SUBDIR += py-jbpy
     SUBDIR += py-kornia
     SUBDIR += py-kornia-rs
     SUBDIR += py-leather
@@ -986,6 +987,7 @@
     SUBDIR += py-mpl-scatter-density
     SUBDIR += py-napari-console
     SUBDIR += py-napari-plugin-engine
+    SUBDIR += py-neatnet
     SUBDIR += py-nwdiag
     SUBDIR += py-olmocr
     SUBDIR += py-opencolorio
@@ -995,6 +997,7 @@
     SUBDIR += py-openslide-python
     SUBDIR += py-optimize-images
     SUBDIR += py-osmnet
+    SUBDIR += py-osmnx
     SUBDIR += py-pandana
     SUBDIR += py-pandarm
     SUBDIR += py-pdf2image
@@ -1056,6 +1059,7 @@
     SUBDIR += py-rawkit
     SUBDIR += py-rawpy
     SUBDIR += py-rich-pixels
+    SUBDIR += py-rioxarray
     SUBDIR += py-rlpycairo
     SUBDIR += py-s2
     SUBDIR += py-sane

@@ -97,6 +97,7 @@
     SUBDIR += lrzsz
     SUBDIR += lysdr
     SUBDIR += mbelib
+    SUBDIR += mbpoll
     SUBDIR += meshcore-cli
     SUBDIR += mgetty+sendfax
     SUBDIR += minicom
@@ -184,8 +185,8 @@
     SUBDIR += rxtx
     SUBDIR += scmxx
     SUBDIR += scrcpy
-    SUBDIR += sdrangel
     SUBDIR += sdr++
+    SUBDIR += sdrangel
     SUBDIR += ser2net
     SUBDIR += serialoverip
     SUBDIR += sigdigger

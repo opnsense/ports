@@ -1386,6 +1386,7 @@
     SUBDIR += py-dict2xml
     SUBDIR += py-diff-match-patch
     SUBDIR += py-dirtyjson
+    SUBDIR += py-docify
     SUBDIR += py-doclang
     SUBDIR += py-docling
     SUBDIR += py-docling-agent
@@ -1937,6 +1938,7 @@
     SUBDIR += rubygem-creole
     SUBDIR += rubygem-cronex
     SUBDIR += rubygem-css_parser
+    SUBDIR += rubygem-css_parser1
     SUBDIR += rubygem-cssmin
     SUBDIR += rubygem-cucumber-gherkin
     SUBDIR += rubygem-cucumber-gherkin39

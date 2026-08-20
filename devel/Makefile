@@ -5019,6 +5019,7 @@
     SUBDIR += py-electrum-aionostr
     SUBDIR += py-electrum-ecc
     SUBDIR += py-eliot
+    SUBDIR += py-encutils
     SUBDIR += py-enlighten
     SUBDIR += py-entrypoint2
     SUBDIR += py-entrypoints
@@ -6448,6 +6449,7 @@
     SUBDIR += py-validators
     SUBDIR += py-validictory
     SUBDIR += py-vcrpy
+    SUBDIR += py-vcs-versioning
     SUBDIR += py-vcver
     SUBDIR += py-vcversioner
     SUBDIR += py-vendy
