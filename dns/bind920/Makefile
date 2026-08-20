@@ -1,7 +1,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.20.26
+DISTVERSION=	9.20.27
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
@@ -186,6 +186,10 @@ BUILD_DEPENDS+=		cmocka>0:sysutils/cmocka
 
 .if !${PORT_OPTIONS:MDOCS}
 CONFIGURE_ENV+=	ac_cv_path_SPHINX_BUILD=
+.endif
+
+.if ${OSREL:R} >= 15 && ${PORT_OPTIONS:MGSSAPI_HEIMDAL}
+BROKEN=	Does not build
 .endif
 
 .include <bsd.port.pre.mk>
