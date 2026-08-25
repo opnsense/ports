@@ -1,12 +1,13 @@
 PORTNAME=	emacs
-DISTVERSION=	31.0.91
+DISTVERSION=	31.1
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	editors
-MASTER_SITES=	GNU_ALPHA/emacs/pretest
+MASTER_SITES=	GNU
 
 .if ${FLAVOR:U} == canna
 PATCH_SITES+=	https://www.gentei.org/~yuuji/software/emacs31canna/:canna
-PATCHFILES+=	emacs31.0.91canna-20260808.diff.gz:-p1:canna
+PATCHFILES+=	emacs31.1canna-20260824.diff.gz:-p1:canna
 .endif
 
 MAINTAINER=	emacs@FreeBSD.org
@@ -43,6 +44,10 @@ CONFIGURE_ARGS=		--disable-build-details \
 			--without-selinux
 .if ${FLAVOR:U} == canna
 CONFIGURE_ARGS+=	--with-canna
+# isearch-ext.el is a file that comes with the canna patch.  Native compiling it
+# during bootstrap creates the native-lisp directory early on in the build, and
+# that causes AOT to be silently skipped.
+MAKE_ARGS+=		BYTE_COMPILE_EXTRA_FLAGS="--eval '(setq native-comp-bootstrap-deny-list (list \"isearch-ext\"))'"
 .elif ${FLAVOR:U} == nox
 CONFIGURE_ARGS+=	--with-sound=no \
 			--with-x-toolkit=no \
