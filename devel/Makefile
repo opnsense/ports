@@ -484,6 +484,7 @@
     SUBDIR += cocogitto
     SUBDIR += codebase-memory-mcp
     SUBDIR += codeblocks
+    SUBDIR += codemark
     SUBDIR += codequery
     SUBDIR += codesearch-py
     SUBDIR += collada-dom
@@ -908,6 +909,7 @@
     SUBDIR += gitu
     SUBDIR += gitui
     SUBDIR += glab
+    SUBDIR += glab-tui
     SUBDIR += glade
     SUBDIR += glaze
     SUBDIR += glib20
@@ -1628,6 +1630,7 @@
     SUBDIR += linux-rl9-systemd-libs
     SUBDIR += linux-sublime-merge
     SUBDIR += linux_libusb
+    SUBDIR += linuxapi
     SUBDIR += listserialc
     SUBDIR += liteide
     SUBDIR += llama.el
@@ -5572,8 +5575,10 @@
     SUBDIR += py-opencensus
     SUBDIR += py-opencensus-context
     SUBDIR += py-opendht
+    SUBDIR += py-openfeature-sdk
     SUBDIR += py-openstacksdk
     SUBDIR += py-opentelemetry-api
+    SUBDIR += py-opentelemetry-configuration
     SUBDIR += py-opentelemetry-distro
     SUBDIR += py-opentelemetry-exporter-credential-provider-gcp
     SUBDIR += py-opentelemetry-exporter-otlp
@@ -5593,6 +5598,7 @@
     SUBDIR += py-opentelemetry-instrumentation-urllib3
     SUBDIR += py-opentelemetry-instrumentation-wsgi
     SUBDIR += py-opentelemetry-proto
+    SUBDIR += py-opentelemetry-proto-json
     SUBDIR += py-opentelemetry-resource-detector-azure
     SUBDIR += py-opentelemetry-sdk
     SUBDIR += py-opentelemetry-semantic-conventions
@@ -6297,6 +6303,7 @@
     SUBDIR += py-taskgroup
     SUBDIR += py-tasklib
     SUBDIR += py-tatsu
+    SUBDIR += py-tatsu-lts
     SUBDIR += py-tblib
     SUBDIR += py-tdworkflow
     SUBDIR += py-telepath
@@ -6800,6 +6807,7 @@
     SUBDIR += rubygem-analogger
     SUBDIR += rubygem-annoy
     SUBDIR += rubygem-anonymous_loader
+    SUBDIR += rubygem-anonymous_loader-gitlab
     SUBDIR += rubygem-ansi
     SUBDIR += rubygem-apipie-bindings
     SUBDIR += rubygem-apipie-params
@@ -6829,8 +6837,11 @@
     SUBDIR += rubygem-aws-sdk
     SUBDIR += rubygem-aws-sdk-accessanalyzer
     SUBDIR += rubygem-aws-sdk-account
+    SUBDIR += rubygem-aws-sdk-accountaccess
     SUBDIR += rubygem-aws-sdk-acm
     SUBDIR += rubygem-aws-sdk-acmpca
+    SUBDIR += rubygem-aws-sdk-agentregistry
+    SUBDIR += rubygem-aws-sdk-agentregistrycontrol
     SUBDIR += rubygem-aws-sdk-aiops
     SUBDIR += rubygem-aws-sdk-amplify
     SUBDIR += rubygem-aws-sdk-amplifybackend
@@ -7149,6 +7160,7 @@
     SUBDIR += rubygem-aws-sdk-pipes
     SUBDIR += rubygem-aws-sdk-polly
     SUBDIR += rubygem-aws-sdk-pricing
+    SUBDIR += rubygem-aws-sdk-pricingplanmanager
     SUBDIR += rubygem-aws-sdk-prometheusservice
     SUBDIR += rubygem-aws-sdk-proton
     SUBDIR += rubygem-aws-sdk-qapps
@@ -7784,12 +7796,12 @@
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
     SUBDIR += rubygem-grape-entity
+    SUBDIR += rubygem-grape-gitlab
     SUBDIR += rubygem-grape-path-helpers
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grape-swagger-entity
     SUBDIR += rubygem-grape-swagger-gitlab
-    SUBDIR += rubygem-grape20
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-grape_logging-gitlab
     SUBDIR += rubygem-graphiql-rails
@@ -8546,6 +8558,7 @@
     SUBDIR += rubygem-validates_timeliness
     SUBDIR += rubygem-validates_timeliness7
     SUBDIR += rubygem-version_gem
+    SUBDIR += rubygem-version_gem-gitlab
     SUBDIR += rubygem-versionomy
     SUBDIR += rubygem-view_component-rails-gitlab
     SUBDIR += rubygem-virtus
@@ -8883,6 +8896,7 @@
     SUBDIR += violet
     SUBDIR += vipack
     SUBDIR += vitables
+    SUBDIR += vite-plus
     SUBDIR += volk
     SUBDIR += vstr
     SUBDIR += vxlog

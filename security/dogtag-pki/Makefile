@@ -1,7 +1,7 @@
 PORTNAME=	dogtag-pki
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.7.0
-PORTREVISION=	6
+DISTVERSION=	11.10.1
+PORTREVISION=	1
 CATEGORIES=	security java python
 
 MAINTAINER=	joneum@FreeBSD.org
@@ -43,7 +43,6 @@ BUILD_DEPENDS=	${_JAVA_DEPENDS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 LIB_DEPENDS=	libapr-1.so:devel/apr1 \
-		libldap.so:net/openldap26-client \
 		libnspr4.so:devel/nspr \
 		libnss3.so:security/nss
 
@@ -57,16 +56,21 @@ RUN_DEPENDS=	${_JAVA_DEPENDS} \
 		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
 		bash:shells/bash
 
-USES=		cmake:indirect java:build,run pkgconfig python shebangfix
+USES=		cmake:indirect java:build,run ldap pkgconfig python shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	dogtagpki
 GH_PROJECT=	pki
-JAVA_VERSION=	17
+JAVA_VERSION=	21
 USE_LDCONFIG=	yes
 USE_PYTHON=	autoplist pep517
 
-SHEBANG_FILES=	base/common/upgrade/*/*.py base/server/scripts/operations \
-		base/server/scripts/pkidaemon base/server/upgrade/*/*.py
+SHEBANG_FILES=	base/acme/bin/pki-acme-run base/ca/bin/pki-ca-run \
+		base/common/sbin/pki-upgrade base/common/upgrade/*/*.py \
+		base/server/bin/pki-server-run base/server/sbin/pki-server \
+		base/server/scripts/operations base/server/scripts/pkidaemon \
+		base/server/upgrade/*/*.py base/tools/bin/pki
+SHEBANG_LANG=	sh
+sh_CMD=		/bin/sh
 
 CMAKE_ARGS=	-DAPP_SERVER=tomcat-9.0 \
 		-DCOMMONS_CLI_JAR=${JAVAJARDIR}/commons-cli.jar \
@@ -119,8 +123,9 @@ CMAKE_ON=	WITH_ACME WITH_CA WITH_JAVA WITH_SERVER
 CMAKE_OFF=	RUN_TESTS WITH_CONSOLE WITH_EST WITH_JAVADOC WITH_KRA \
 		WITH_META WITH_OCSP WITH_TESTS WITH_THEME WITH_TKS WITH_TPS \
 		WITH_WURST
-
 CMAKE_SOURCE_PATH=	${WRKSRC}
+
+CONFIGURE_ENV=	APP_SERVER_CM=tomcat-9.0
 
 DATADIR=	${PREFIX}/share/pki
 
@@ -358,5 +363,8 @@ post-install-version: post-install-config
 
 post-install-runtime: post-install-version
 	@${MKDIR} ${STAGEDIR}/var/log/pki
+
+post-stage:
+	@${FIND} ${STAGEDIR}${DATADIR} -name '*.orig' -delete
 
 .include <bsd.port.mk>

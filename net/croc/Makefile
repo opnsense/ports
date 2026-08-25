@@ -1,7 +1,6 @@
 PORTNAME=	croc
 DISTVERSIONPREFIX=	v
-DISTVERSION=	11.1.1
-PORTREVISION=	1
+DISTVERSION=	11.2.5
 CATEGORIES=	net
 
 MAINTAINER=	olgeni@FreeBSD.org
@@ -11,7 +10,7 @@ WWW=		https://github.com/schollz/croc
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.27,modules
 USE_RC_SUBR=	croc
 
 GO_MODULE=	github.com/schollz/croc/v11

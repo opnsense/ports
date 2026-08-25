@@ -383,6 +383,7 @@
     SUBDIR += f-upgrade
     SUBDIR += f2
     SUBDIR += f3
+    SUBDIR += facl
     SUBDIR += fakertc
     SUBDIR += faketty
     SUBDIR += fand
@@ -403,7 +404,6 @@
     SUBDIR += fileprune
     SUBDIR += fileschanged
     SUBDIR += filetype
-    SUBDIR += filevercmp
     SUBDIR += filewatcherd
     SUBDIR += finfo
     SUBDIR += firstboot-cloudsetup
@@ -1705,6 +1705,8 @@
     SUBDIR += zeroer
     SUBDIR += zetaback
     SUBDIR += zetaback-devel
+    SUBDIR += zfs-allow
+    SUBDIR += zfs-set
     SUBDIR += zidrav
     SUBDIR += zli
     SUBDIR += znapzend
@@ -1712,6 +1714,7 @@
     SUBDIR += zot
     SUBDIR += zoxide
     SUBDIR += zpool-iostat-viz
+    SUBDIR += zpool-set
     SUBDIR += zrep
     SUBDIR += zsd
     SUBDIR += zsm

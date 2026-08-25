@@ -226,6 +226,7 @@
     SUBDIR += freeglut
     SUBDIR += freeimage
     SUBDIR += freetype-gl
+    SUBDIR += freeze
     SUBDIR += frei0r
     SUBDIR += frei0r-plugins
     SUBDIR += frei0r-plugins-cairo
@@ -1013,6 +1014,7 @@
     SUBDIR += py-pointpats
     SUBDIR += py-projpicker
     SUBDIR += py-proplot
+    SUBDIR += py-py_svg_hush
     SUBDIR += py-pycairo
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
