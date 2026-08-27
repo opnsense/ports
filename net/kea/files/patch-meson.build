@@ -44,15 +44,6 @@
  endif
  
  #### Build Options
-@@ -189,7 +189,7 @@ message(f'Detected system "@SYSTEM@".')
- 
- #### Dependencies
- 
--boost_dep = dependency('boost', version: '>=1.66', modules: ['system'])
-+boost_dep = dependency('boost', version: '>=1.69')
- dl_dep = dependency('dl')
- threads_dep = dependency('threads')
- add_project_dependencies(boost_dep, dl_dep, threads_dep, language: ['cpp'])
 @@ -1127,9 +1127,9 @@ if PREFIX == '/usr/local'
  # In case prefix is default, install to hardcoded path.
  if PREFIX == '/usr/local'
