@@ -1,0 +1,95 @@
+#!/bin/sh
+#
+# PROVIDE: netflector
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following to /etc/rc.conf to enable netflector:
+#
+#   netflector_enable="YES"
+#
+# Optional:
+#
+#   netflector_config="/path/to/netflector.toml"   # default %%PREFIX%%/etc/netflector.toml
+#   netflector_flags="-r"                          # options for daemon(8), e.g. restart on exit
+#   netflector_carp_vhid="1"                       # only start if this CARP vhid is MASTER
+#   netflector_carp_interface="em0"                # interface holding it; needed if the vhid is reused
+
+. /etc/rc.subr
+
+name="netflector"
+rcvar="netflector_enable"
+desc="Reflect link-local service discovery between interfaces"
+
+load_rc_config $name
+
+: ${netflector_enable:="NO"}
+: ${netflector_config:="%%PREFIX%%/etc/netflector.toml"}
+: ${netflector_carp_vhid:=""}
+: ${netflector_carp_interface:=""}
+
+# The pidfile must hold daemon(8) itself (-P), not the child: stop then terminates the supervisor,
+# which forwards the signal and exits. Killing only the child would let a restarting supervisor
+# (netflector_flags="-r") respawn it behind rc's back. The child's pid stays visible beside it.
+pidfile="/var/run/${name}.pid"
+child_pidfile="/var/run/${name}_child.pid"
+netflector_bin="%%PREFIX%%/bin/${name}"
+
+# The daemon runs in the foreground and logs to stderr, so daemon(8) backgrounds it and -S routes that
+# stderr into syslog under our own tag rather than /dev/null. -f closes the descriptors daemon(8)
+# inherited: without it the supervisor holds the caller's stdout open for the service's lifetime, so
+# `ssh host service netflector start` never returns. It does not affect -S, which redirects the child.
+command="/usr/sbin/daemon"
+command_args="-f -S -T ${name} -P ${pidfile} -p ${child_pidfile} ${netflector_bin} '${netflector_config}'"
+
+start_precmd="${name}_precmd"
+extra_commands="report"
+report_cmd="${name}_report"
+
+netflector_precmd()
+{
+    if [ ! -f "${netflector_config}" ]; then
+        err 1 "${netflector_config} does not exist"
+    fi
+
+    # Refuse to start on a configuration the daemon would reject, so the failure is one clear message
+    # here rather than a service that appears to start and is gone a moment later. --check-config parses
+    # and validates only: it opens no interface and needs no privileges.
+    if ! ${netflector_bin} --check-config "${netflector_config}" > /dev/null 2>&1; then
+        ${netflector_bin} --check-config "${netflector_config}" 2>&1 | while read -r line; do
+            warn "${line}"
+        done
+        err 1 "refusing to start: ${netflector_config} is not valid"
+    fi
+
+    # Checked after the config, not before: on a backup node a bad configuration should still be
+    # reported now, rather than at failover.
+    if [ -n "${netflector_carp_vhid}" ] &&
+        ! carp_is_master "${netflector_carp_vhid}" "${netflector_carp_interface}"; then
+        warn "CARP vhid ${netflector_carp_vhid} is not MASTER here; not starting netflector"
+        return 1
+    fi
+}
+
+# A carp line reads "carp: MASTER vhid 1 advbase 1 advskew 0". Neither field identifies a group on its
+# own: one interface can carry several vhids, and the same vhid can run on several interfaces as
+# unrelated groups. $2 narrows ifconfig to the one that matters, and can be empty for a unique vhid.
+carp_is_master()
+{
+    ifconfig ${2:+"$2"} 2>/dev/null |
+        awk -v vhid="$1" '$1 == "carp:" && $4 == vhid { print $2 }' |
+        grep -q '^MASTER$'
+}
+
+# SIGUSR1 must reach netflector itself: ${pidfile} holds daemon(8), which has no handler for it and
+# would die, orphaning the daemon it supervises.
+netflector_report()
+{
+    pid=$(check_pidfile "$child_pidfile" "$netflector_bin")
+    if [ -z "$pid" ]; then
+        err 1 "${name} is not running"
+    fi
+    kill -USR1 "$pid"
+}
+
+run_rc_command "$1"
