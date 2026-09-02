@@ -5,6 +5,82 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20260830:
+  AFFECTS: users of www/nginx-module-lua
+  AUTHOR: joneum@FreeBSD.org
+
+  Since 20260819 www/nginx-module-lua no longer installs a prebuilt
+  libexec/nginx/ngx_http_lua_module.so.  The port now only provides the
+  module sources used by the nginx ports, because the prebuilt module
+  conflicted with the one built by www/nginx with the LUA option.
+
+  If nginx.conf contains
+
+	load_module "/usr/local/libexec/nginx/ngx_http_lua_module.so";
+
+  nginx will fail to start after the upgrade.  A running nginx keeps
+  serving until the next restart, so this may surface later.
+
+  Rebuild www/nginx (or www/nginx-devel, www/freenginx) with the DSO and
+  LUA options enabled.  The module is installed at the same path again,
+  so the load_module line keeps working.  LUA is not a default option,
+  therefore the official binary packages do not ship the module.
+
+20260826:
+  AFFECTS: users of x11/sddm
+  AUTHOR: arrowd@FreeBSD.org
+
+  The keyboard layouts used by SDDM are now derived from the sddm_lang rc
+  variable. Setting it for example to "fr_FR" will result in "fr,us" value
+  for the '-layout' argument of the setxkbmap call.
+
+  If a more complex layout configuration is required, it is possible to set
+  it directly with
+
+  sysrc sddm_xkb_layout="us,de,fr,it,ru"
+
+20260826:
+  AFFECTS: users of net-mgmt/semaphore
+  AUTHOR: joneum@FreeBSD.org
+
+  Semaphore has been updated to 2.19.7.  Upstream removed BoltDB support in
+  2.19; the supported dialects are now mysql, postgres and sqlite.  If your
+  configuration still contains "dialect": "bolt", semaphore will refuse to
+  start after the upgrade.
+
+  Migrate the database BEFORE upgrading the port.  The migration tool is
+  part of Semaphore 2.18 and no longer present in 2.19; see also
+  https://semaphoreui.com/docs/admin-guide/cli/migrations
+
+  1) Stop the service and back up the BoltDB file:
+
+	service semaphore stop
+	cp /var/db/semaphore/database.boltdb /var/db/semaphore/database.boltdb.bak
+
+  2) Fetch the official 2.18 binary, it is only needed for the migration:
+
+	fetch -o /tmp/sem218.tar.gz https://github.com/semaphoreui/semaphore/releases/download/v2.18.29/semaphore_community_2.18.29_freebsd_amd64.tar.gz
+	tar -xzf /tmp/sem218.tar.gz -C /tmp semaphore
+
+  3) Change "dialect" in semaphore_config.json to sqlite (or mysql/postgres)
+     and add the matching connection settings.  A minimal sqlite example is
+     installed as %%PREFIX%%/etc/semaphore/config.json.sample.
+
+  4) Import the data.  The BoltDB file is only read, not modified:
+
+	/tmp/semaphore migrate --from-boltdb /var/db/semaphore/database.boltdb --config /usr/local/etc/semaphore/semaphore_config.json
+
+  5) Upgrade the port, apply the remaining schema migrations and start the
+     service again:
+
+	semaphore migrate --config /usr/local/etc/semaphore/semaphore_config.json
+	service semaphore start
+	rm /tmp/semaphore
+
+  Note that this update also restores the bundled web interface.  Previous
+  versions of the port installed the API server only, so every UI route
+  returned 404.
+
 20260819:
   AFFECTS: users of net/freeipa-server and security/dogtag-pki
   AUTHOR: joneum@FreeBSD.org
