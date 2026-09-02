@@ -189,7 +189,6 @@
     SUBDIR += git-secret
     SUBDIR += gitjacker
     SUBDIR += gitlab-analyzers-secrets
-    SUBDIR += globalprotect-openconnect
     SUBDIR += gnome-keyring
     SUBDIR += gnupg
     SUBDIR += gnupg-pkcs11-scd
@@ -440,6 +439,7 @@
     SUBDIR += olm
     SUBDIR += onionscan
     SUBDIR += op
+    SUBDIR += open-vulnerability-cli
     SUBDIR += openbao
     SUBDIR += openbsm
     SUBDIR += openca-ocspd
@@ -789,6 +789,7 @@
     SUBDIR += pam_yubico
     SUBDIR += pamtester
     SUBDIR += paperkey
+    SUBDIR += pass-cli
     SUBDIR += passh
     SUBDIR += passivedns
     SUBDIR += pcsc-tools
@@ -875,7 +876,6 @@
     SUBDIR += plasma6-kscreenlocker
     SUBDIR += plasma6-ksshaskpass
     SUBDIR += plasma6-kwallet-pam
-    SUBDIR += please
     SUBDIR += portacl-rc
     SUBDIR += proftpd-mod_clamav
     SUBDIR += proxytunnel
@@ -908,7 +908,7 @@
     SUBDIR += py-badkeys
     SUBDIR += py-base58
     SUBDIR += py-bcrypt
-    SUBDIR += py-biscuit-auth
+    SUBDIR += py-biscuit-python
     SUBDIR += py-bitbox02
     SUBDIR += py-blake3
     SUBDIR += py-btchip-python
@@ -1475,6 +1475,7 @@
     SUBDIR += xmlsec1
     SUBDIR += xorsearch
     SUBDIR += xray-core
+    SUBDIR += y509
     SUBDIR += yafic
     SUBDIR += yapet
     SUBDIR += yara

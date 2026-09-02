@@ -582,6 +582,7 @@
     SUBDIR += pgbackrest
     SUBDIR += pgbadger
     SUBDIR += pgbarman
+    SUBDIR += pgbot
     SUBDIR += pgbouncer
     SUBDIR += pgdbf
     SUBDIR += pgjwt
@@ -601,6 +602,7 @@
     SUBDIR += pgschema
     SUBDIR += pgsql-http
     SUBDIR += pgtcl
+    SUBDIR += pgterm
     SUBDIR += pgtop
     SUBDIR += pgtui
     SUBDIR += pguri
@@ -765,7 +767,6 @@
     SUBDIR += puredb
     SUBDIR += pxlib
     SUBDIR += pxtools
-    SUBDIR += py-Elixir
     SUBDIR += py-PyGreSQL
     SUBDIR += py-PyHive
     SUBDIR += py-PyPika
@@ -892,7 +893,6 @@
     SUBDIR += py-sqlalchemy-json
     SUBDIR += py-sqlalchemy-migrate
     SUBDIR += py-sqlalchemy-utils
-    SUBDIR += py-sqlalchemy10
     SUBDIR += py-sqlalchemy14
     SUBDIR += py-sqlalchemy20
     SUBDIR += py-sqlcipher3
@@ -1180,6 +1180,7 @@
     SUBDIR += tdb1
     SUBDIR += tdb1410
     SUBDIR += tdb1413
+    SUBDIR += tdb1415
     SUBDIR += tdbc
     SUBDIR += tile38
     SUBDIR += tiledb

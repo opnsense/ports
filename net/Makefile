@@ -347,7 +347,6 @@
     SUBDIR += kldap
     SUBDIR += kmailtransport
     SUBDIR += kmbox
-    SUBDIR += kmime
     SUBDIR += knc
     SUBDIR += knxd
     SUBDIR += kontactinterface
@@ -557,6 +556,7 @@
     SUBDIR += nng
     SUBDIR += norm
     SUBDIR += nqptp
+    SUBDIR += nsc-tui
     SUBDIR += nsq
     SUBDIR += nss-pam-ldapd
     SUBDIR += nss-pam-ldapd-sasl
@@ -1526,6 +1526,7 @@
     SUBDIR += samba420
     SUBDIR += samba422
     SUBDIR += samba423
+    SUBDIR += samba424
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbm

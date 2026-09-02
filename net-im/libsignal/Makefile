@@ -1,6 +1,6 @@
 PORTNAME=	libsignal
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.96.4
+DISTVERSION=	0.99.1
 CATEGORIES=	net-im java
 
 MAINTAINER=	jaap.aarts1@gmail.com
@@ -20,6 +20,7 @@ CFLAGS_powerpc64le=	-DOPENSSL_NO_ASM
 CXXFLAGS_powerpc64le=	-DOPENSSL_NO_ASM
 USE_GITHUB=	yes
 GH_ACCOUNT=	signalapp
+BROKEN_aarch64=Missing max_align_t in libc crate
 BROKEN_i386= 	bindgen for boring-ssl fail
 #CFLAGS_i386=	-DOPENSSL_NO_ASM
 USE_LDCONFIG=	yes

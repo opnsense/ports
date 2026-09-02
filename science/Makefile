@@ -381,7 +381,6 @@
     SUBDIR += py-libpysal
     SUBDIR += py-libwignernj
     SUBDIR += py-lifelines
-    SUBDIR += py-mdp
     SUBDIR += py-mercantile
     SUBDIR += py-meshio
     SUBDIR += py-mmcif
@@ -401,7 +400,6 @@
     SUBDIR += py-nglview
     SUBDIR += py-nibabel
     SUBDIR += py-nixio
-    SUBDIR += py-obspy
     SUBDIR += py-oddt
     SUBDIR += py-openEMS
     SUBDIR += py-openbabel

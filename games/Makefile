@@ -432,6 +432,7 @@
     SUBDIR += kbreakout
     SUBDIR += kdegames
     SUBDIR += kdiamond
+    SUBDIR += kdominate
     SUBDIR += kevedit
     SUBDIR += kfourinline
     SUBDIR += kgoldrunner
@@ -598,6 +599,7 @@
     SUBDIR += lskat
     SUBDIR += ltris
     SUBDIR += luanti
+    SUBDIR += luanti-mineclonia
     SUBDIR += lugaru
     SUBDIR += luola
     SUBDIR += lwjgl

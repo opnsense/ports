@@ -165,7 +165,6 @@
     SUBDIR += R-cran-whoami
     SUBDIR += R-cran-withr
     SUBDIR += R-cran-zeallot
-    SUBDIR += RStudio
     SUBDIR += SpecTcl
     SUBDIR += aarch64-none-elf-gcc
     SUBDIR += abi-compliance-checker
@@ -186,7 +185,6 @@
     SUBDIR += allegro5
     SUBDIR += amber
     SUBDIR += aml
-    SUBDIR += ammonite
     SUBDIR += amqp-cpp
     SUBDIR += android-tools
     SUBDIR += antlr
@@ -670,8 +668,6 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron37
-    SUBDIR += electron38
     SUBDIR += electron40
     SUBDIR += electron41
     SUBDIR += electron42
@@ -944,6 +940,7 @@
     SUBDIR += gnustep-make
     SUBDIR += go-bindata
     SUBDIR += go-bindata-assetfs
+    SUBDIR += go-blueprint
     SUBDIR += go-critic
     SUBDIR += go-git
     SUBDIR += go-mode.el
@@ -1918,6 +1915,7 @@
     SUBDIR += openapi
     SUBDIR += openapi-generator
     SUBDIR += openapi-tui
+    SUBDIR += opencircuitx
     SUBDIR += opencl
     SUBDIR += opencl-clang
     SUBDIR += opencvs
@@ -5244,6 +5242,7 @@
     SUBDIR += py-importlib-metadata
     SUBDIR += py-importlib-metadata6
     SUBDIR += py-importlib-metadata7
+    SUBDIR += py-importlib-metadata8
     SUBDIR += py-importlib-resources
     SUBDIR += py-in-n-out
     SUBDIR += py-incremental
@@ -5790,13 +5789,14 @@
     SUBDIR += py-proto-plus
     SUBDIR += py-protobuf
     SUBDIR += py-protobuf-compiler
+    SUBDIR += py-protobuf-py
+    SUBDIR += py-protobuf-py-ext
     SUBDIR += py-protoc-gen-validate
     SUBDIR += py-protovalidate
     SUBDIR += py-proxmoxer
     SUBDIR += py-psygnal
     SUBDIR += py-ptable
     SUBDIR += py-ptpython
-    SUBDIR += py-ptvsd
     SUBDIR += py-pudb
     SUBDIR += py-pure-eval
     SUBDIR += py-pure-sasl
@@ -5869,7 +5869,6 @@
     SUBDIR += py-pygit2
     SUBDIR += py-pygls
     SUBDIR += py-pygobject
-    SUBDIR += py-pygpx
     SUBDIR += py-pyhashxx
     SUBDIR += py-pyhcl
     SUBDIR += py-pyicu
@@ -7439,6 +7438,7 @@
     SUBDIR += rubygem-bin_struct
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
+    SUBDIR += rubygem-bindata-gitlab
     SUBDIR += rubygem-bindata24
     SUBDIR += rubygem-bindex
     SUBDIR += rubygem-binding_of_caller
@@ -7981,6 +7981,7 @@
     SUBDIR += rubygem-multi_json
     SUBDIR += rubygem-multi_json-gitlab
     SUBDIR += rubygem-multi_test
+    SUBDIR += rubygem-multi_test1
     SUBDIR += rubygem-murmurhash3
     SUBDIR += rubygem-mustache
     SUBDIR += rubygem-mustache-sinatra
@@ -8770,6 +8771,7 @@
     SUBDIR += talloc
     SUBDIR += talloc242
     SUBDIR += talloc243
+    SUBDIR += talloc244
     SUBDIR += task
     SUBDIR += taskctl
     SUBDIR += taskflow
@@ -8909,6 +8911,7 @@
     SUBDIR += wasi-compiler-rt20
     SUBDIR += wasi-compiler-rt21
     SUBDIR += wasi-compiler-rt22
+    SUBDIR += wasi-compiler-rt23
     SUBDIR += wasi-libc
     SUBDIR += wasi-libcxx
     SUBDIR += wasi-libcxx17

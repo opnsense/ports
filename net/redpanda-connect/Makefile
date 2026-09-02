@@ -1,6 +1,6 @@
 PORTNAME=	connect
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.106.0
+DISTVERSION=	4.107.2
 CATEGORIES=	net
 PKGNAMEPREFIX=	redpanda-
 
@@ -23,6 +23,7 @@ USE_RC_SUBR=	redpanda_connect
 
 GO_MODULE=	github.com/redpanda-data/connect/v4
 GO_TARGET=	./cmd/redpanda-connect
+GO_LDFLAGS=	-X main.Version=${DISTVERSION}
 
 ETCDIR=		${PREFIX}/etc/${PKGNAMEPREFIX}${PORTNAME}
 
