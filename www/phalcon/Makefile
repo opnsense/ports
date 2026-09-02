@@ -11,7 +11,7 @@ WWW=		https://github.com/phalcon/cphalcon \
 
 LICENSE=	BSD3CLAUSE
 
-USES=		localbase php:ext
+USES=		php:ext
 USE_GITHUB=	yes
 GH_PROJECT=	c${PORTNAME}
 USE_PHP=	mbstring pdo:build session:build
