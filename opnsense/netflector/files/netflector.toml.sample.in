@@ -1,0 +1,33 @@
+# netflector configuration; netflector.toml(5) documents every key.
+#
+# Nothing below is enabled, so the daemon refuses to start until you uncomment an entry and name
+# your own interfaces. Check your work with
+# `netflector --check-config %%PREFIX%%/etc/netflector.toml`.
+
+# off, error, warn, info, debug, or trace. trace is compiled out and behaves as debug.
+#log_level = "info"
+
+# Seconds between per-interface packet-counter summaries in the log. 0 disables them.
+#counters_interval_secs = 0
+
+# One entry per interface pair, named by its label in the log. Clients on source_if discover and
+# reach the devices on target_if; the other direction is not exposed, so add a second entry to
+# reverse it.
+#[reflectors.tv]
+#source_if = "em0"
+#target_if = "em1"
+#
+# Limit the entry to these devices on target_if. Omit for the whole segment.
+#macs = ["b0:37:95:c5:60:be"]
+#
+# At least one of wol, mdns, ssdp and wsd, in any mix. All default false.
+#wol = true                         # Wake-on-LAN magic packets
+#mdns = true                        # Bonjour, AirPlay
+#ssdp = true                        # UPnP, DLNA
+#wsd = true                         # WS-Discovery: ONVIF cameras, Windows printers
+#
+# dial layers onto ssdp rather than standing alone, and DIAL is IPv4-only.
+#dial = true                        # cast-to-TV app launch
+#
+#wol_ports = [7, 9]                 # only with wol
+#address_family = "default"         # default, dual, ipv4, or ipv6

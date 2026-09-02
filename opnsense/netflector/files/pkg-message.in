@@ -1,0 +1,12 @@
+[
+{ type: install
+  message: <<EOM
+Add at least one reflector entry to %%PREFIX%%/etc/netflector.toml, then:
+
+  sysrc netflector_enable=YES
+  service netflector start
+
+netflector.toml(5) documents the configuration, netflector(8) the operation.
+EOM
+}
+]
