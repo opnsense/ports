@@ -57,13 +57,16 @@ static const struct tok pf_actions[] = {
 	{ PF_PASS,		"pass" },
 	{ PF_DROP,		"block" },
 	{ PF_SCRUB,		"scrub" },
+	{ PF_NOSCRUB,		"noscrub" },
 	{ PF_NAT,		"nat" },
-	{ PF_NONAT,		"nat" },
+	{ PF_NONAT,		"nonat" },
 	{ PF_BINAT,		"binat" },
-	{ PF_NOBINAT,		"binat" },
+	{ PF_NOBINAT,		"nobinat" },
 	{ PF_RDR,		"rdr" },
-	{ PF_NORDR,		"rdr" },
+	{ PF_NORDR,		"nordr" },
 	{ PF_SYNPROXY_DROP,	"synproxy-drop" },
+	{ PF_DEFER,		"defer" },
+	{ PF_MATCH,		"match" },
 	{ 0,			NULL }
 };
 
@@ -144,6 +147,8 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 		case PF_NOBINAT:
 		case PF_RDR:
 		case PF_NORDR:
+		case PF_SCRUB:
+		case PF_NOSCRUB:
 			/* no label support for NAT types */
 			break;
 		default:
