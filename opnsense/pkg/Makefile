@@ -1,19 +1,15 @@
 PORTNAME=	pkg
-DISTVERSION=	2.3.1
-PORTREVISION=	1
+DISTVERSION=	2.8.4
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 
 PATCH_SITES=	https://github.com/opnsense/${PORTNAME}/commit/
-PATCHFILES=	a54ea1a2f7d858fe6eb2976d688c251e64acf8f8.patch:-p1 \
-		ee697525b7d6e02ce0f62660b0a31b082514b393.patch:-p1 \
-		d9e62a7b42efca6c0e1d1c0f9aa2fe763f56da85.patch:-p1 \
-		b93bfd925b7871a9d93b597aa90df41642064d4c.patch:-p1 \
-		523caa97c9409c4015f08db750ebc79b904ea6dd.patch:-p1
+PATCHFILES=	65e6bddc5ffb3edb71e240f7bbaf58fb00b7002e.patch:-p1 \
+		6a8c6d4bfc5fef41a055952ab2f6fd5e8c6348cb.patch:-p1
 
-MAINTAINER=	pkg@FreeBSD.org
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Package manager
-WWW=		https://github.com/freebsd/pkg
+WWW=		https://github.com/opnsense/pkg
 
 LICENSE=	BSD2CLAUSE
 
@@ -24,13 +20,13 @@ USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
 HAS_CONFIGURE=	yes
 PORTDOCS=	NEWS
 PORTSCOUT=	ignore:1
-CONFIGURE_ARGS=	--prefix="${PREFIX}"
+CONFIGURE_ARGS=	--prefix="${PREFIX}" \
+		--mandir="${PREFIX}/share/man"
 CONFIGURE_ENV=	CC_FOR_BUILD="${CC}"
 
 # Use a submake as 'deinstall install' needs to reevaluate PKG_REGISTER
 # so that pkg-static is used from the wrkdir
 USE_SUBMAKE=	yes
-CFLAGS+=	-Wno-error
 
 OPTIONS_DEFINE=	DOCS
 
@@ -61,6 +57,7 @@ PKG_BIN=	${WRKSRC}/src/pkg-static
 .endif
 
 post-install:
+	${INSTALL_DATA} ${WRKSRC}/src/pkg.conf.sample ${STAGEDIR}${PREFIX}/etc/
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/compat/pkg
 
 post-install-DOCS-on:
