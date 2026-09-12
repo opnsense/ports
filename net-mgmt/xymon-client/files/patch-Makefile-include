@@ -1,0 +1,10 @@
+--- client/Makefile.orig	2014-01-07 21:43:56.000000000 +0000
++++ client/Makefile	2024-11-11 10:57:56.816734000 +0000
+@@ -28,6 +28,7 @@
+ 
+ xymonclient.cfg: xymonclient.cfg.DIST
+ 	cat xymonclient.cfg.DIST | sed -e 's!@XYMONHOSTIP@!$(XYMONHOSTIP)!g' >xymonclient.cfg
++	echo 'include /usr/local/etc/xymon/xymonclient.cfg' >>xymonclient.cfg
+ 	../build/bb-commands.sh >>xymonclient.cfg
+ 
+ clientlaunch.cfg: clientlaunch.cfg.DIST
