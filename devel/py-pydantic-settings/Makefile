@@ -1,5 +1,5 @@
 PORTNAME=	pydantic-settings
-DISTVERSION=	2.14.2
+DISTVERSION=	2.15.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -22,10 +22,18 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}coverage>=0:devel/py-coverage@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}pytest-pretty>=0:devel/py-pytest-pretty@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	pep517 autoplist pytest # 1 test fails
+USE_PYTHON=	pep517 autoplist pytest
+
+TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	--disable-plugin-autoload \
+		-p pytest_examples \
+		-p pytest_mock \
+		-p pytest_pretty
 
 NO_ARCH=	yes
 
 CPE_VENDOR=	pydantic_project
+
+# tests as of 2.15.0: 558 passed 136 skipped
 
 .include <bsd.port.mk>
