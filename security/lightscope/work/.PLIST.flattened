@@ -1,0 +1,9 @@
+/usr/local/share/licenses/lightscope-1.0/catalog.mk
+/usr/local/share/licenses/lightscope-1.0/LICENSE
+/usr/local/share/licenses/lightscope-1.0/BSD2CLAUSE
+/usr/local/bin/lightscope
+/usr/local/share/lightscope/__init__.py
+/usr/local/share/lightscope/honeypot.py
+/usr/local/share/lightscope/lightscope_daemon.py
+/usr/local/share/lightscope/pflog_reader.py
+/usr/local/share/lightscope/uploader.py
