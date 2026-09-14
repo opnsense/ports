@@ -25,8 +25,8 @@ _fetchextract() {
 	return 0
 }
 
-# Get the license key from the GeoIP.conf file
-LICENSE_KEY=$(awk -F ' ' '/^#/ {next} $1=="LicenseKey" {print $2}' %%LOCALBASE%%/etc/GeoIP.conf)
+# Get the license key from config.xml file
+LICENSE_KEY=$(awk -F '&amp;|license_key=' '/<url>/ {print $3}' /conf/config.xml | tr -d '[:space:]')
 
 echo Fetching GeoLite2-City
 _fetchextract "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=${LICENSE_KEY}&suffix=tar.gz"
