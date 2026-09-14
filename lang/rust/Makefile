@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION?=	1.97.1
+PORTVERSION?=	1.98.1
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
@@ -71,8 +71,8 @@ WASM_VARS=		_COMPONENTS+="rust-analysis-${_PACKAGE_VERS}-wasm32-unknown-unknown 
 			_RUST_TARGETS+=wasm32-unknown-unknown
 
 # See WRKSRC/src/stage0 for the date and version values
-BOOTSTRAPS_DATE?=		2026-05-28
-RUST_BOOTSTRAP_VERSION?=	1.96.0
+BOOTSTRAPS_DATE?=		2026-07-16
+RUST_BOOTSTRAP_VERSION?=	1.97.1
 
 _LLVM_VERSION=	21
 
@@ -242,6 +242,9 @@ do-configure:
 .endif # powerpc
 .if ${PORT_OPTIONS:MPORT_LLVM}
 	@${ECHO_CMD} 'llvm-config="${LOCALBASE}/bin/${LLVM_CONFIG}"' >> ${WRKSRC}/config.toml
+.endif
+.if ${_target} == "wasm32-unknown-unknown"
+	@${ECHO_CMD} 'profiler=false' >> ${WRKSRC}/config.toml
 .endif
 .endfor
 	@${ECHO_CMD} '[dist]' >> ${WRKSRC}/config.toml
