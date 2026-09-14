@@ -1,7 +1,11 @@
 PORTNAME=	dhcp6c
 DISTVERSIONPREFIX=v
 DISTVERSION=	20260122
+PORTREVISION=	1
 CATEGORIES=	net
+
+PATCH_SITES=	https://github.com/opnsense/${PORTNAME}/commit/
+PATCHFILES=	76e55bf8dbce3046c6895fe2045f3cccde55c95e.patch:-p1
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	OPNsense WIDE-DHCPv6 client
