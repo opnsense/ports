@@ -1,3 +1,468 @@
+  <vuln vid="fac18f5f-afc2-11f1-8266-3c7c3fba4204">
+    <topic>Gitea -- multiple vulnerabilities</topic>
+    <affects>
+	<package>
+	  <name>gitea</name>
+	  <range><lt>1.27.3</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitea reports:</p>
+	<blockquote cite="https://blog.gitea.com/release-of-1.27.3/">
+	<p>This release contains fixes for 26 security issues,
+	hardens issue searching that an unfiltered query no longer
+	enumerates every public repository into the indexer filter
+	and removes unsafe code from the internal private endpoints.
+	Please upgrade as soon as possible.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-66877</cvename>
+      <cvename>CVE-2026-71184</cvename>
+      <cvename>CVE-2026-68957</cvename>
+      <cvename>CVE-2026-60010</cvename>
+      <cvename>CVE-2026-70406</cvename>
+      <cvename>CVE-2026-63792</cvename>
+      <cvename>CVE-2026-66874</cvename>
+      <cvename>CVE-2026-68964</cvename>
+      <cvename>CVE-2026-67577</cvename>
+      <cvename>CVE-2026-66849</cvename>
+      <cvename>CVE-2026-73135</cvename>
+      <cvename>CVE-2026-78433</cvename>
+      <cvename>CVE-2026-70407</cvename>
+      <cvename>CVE-2026-73126</cvename>
+      <cvename>CVE-2026-70400</cvename>
+      <cvename>CVE-2026-70396</cvename>
+      <cvename>CVE-2026-63021</cvename>
+      <cvename>CVE-2026-62925</cvename>
+      <cvename>CVE-2026-73273</cvename>
+      <cvename>CVE-2026-60021</cvename>
+      <cvename>CVE-2026-60018</cvename>
+      <cvename>CVE-2026-73130</cvename>
+      <cvename>CVE-2026-70402</cvename>
+      <cvename>CVE-2026-66853</cvename>
+      <cvename>CVE-2026-71301</cvename>
+      <cvename>CVE-2026-73504</cvename>
+      <url>https://blog.gitea.com/release-of-1.27.3/</url>
+    </references>
+    <dates>
+      <discovery>2026-08-29</discovery>
+      <entry>2026-09-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e627950e-ad4f-11f1-8656-000af7b98cf6">
+    <topic>strongSwan -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>strongswan</name>
+       <range><lt>6.1.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>The strongSwan project reports:</p>
+       <blockquote cite="https://www.strongswan.org/blog/2026/09/07/strongswan-6.1.0-released.html">
+       <p>strongSwan 6.1.0 fixes eleven vulnerabilities:</p>
+       <ul>
+       <li>CVE-2026-78123: A flaw in the openssl plugin in the
+       processing of PKCS#7 containers can result in a crash.
+       Affects 5.0.2 and newer.</li>
+       <li>CVE-2026-78124: A flaw in the openssl plugin in the
+       enumeration of certificates in PKCS#7 containers can result
+       in memory leaks.  Affects 5.0.2 and newer.</li>
+       <li>CVE-2026-78126: A flaw in the eap-aka plugin in the
+       processing of an unexpected AKA-Synchronization-Failure can
+       result in a crash.  Affects 4.1.10 and newer.</li>
+       <li>CVE-2026-78127: A flaw in libcharon in the logging of IKE
+       messages can result in a denial of service via memory
+       exhaustion.  Affects 4.1.2 and newer.</li>
+       <li>CVE-2026-78129: A flaw in libstrongswan in the processing
+       of encrypted PKCS#7 containers can result in a denial of
+       service.  Affects 4.6.2 and newer.</li>
+       <li>CVE-2026-78130: A flaw in the x509 plugin in the
+       verification of X.509 attribute certificates can lead to a
+       denial of service.  Affects 4.2.0 and newer.</li>
+       <li>CVE-2026-78131: A flaw in the x509 plugin in the parsing
+       of identities in X.509 attribute certificates can lead to a
+       denial of service via memory exhaustion.  Affects 4.2.0 and
+       newer.</li>
+       <li>CVE-2026-78132: A flaw in the x509 plugin in the parsing
+       of the ietfAttrSyntax ASN.1 type in X.509 attribute
+       certificates can lead to a denial of service.  Affects 5.1.3
+       and newer.</li>
+       <li>CVE-2026-78133: A flaw in libcharon in the handling of
+       IKEv2 rekeying collisions can result in a use-after-free and
+       potentially remote code execution.  Affects 6.0.0 and
+       newer.</li>
+       <li>CVE-2026-78134: A flaw in the eap-peap and eap-ttls
+       plugins in the propagation of authentication details from
+       inner EAP methods can result in incorrect identity binding
+       and potential authorization bypass.  Affects 4.5.0 and
+       newer.</li>
+       <li>CVE-2026-78135: A flaw in libcharon in the handling of
+       CREATE_CHILD_SA requests on unestablished IKE SAs can result
+       in the creation of a usable Child SA before authentication
+       completes.  Affects 5.9.7 and newer.</li>
+       </ul>
+       </blockquote>
+     </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-78123</cvename>
+      <cvename>CVE-2026-78124</cvename>
+      <cvename>CVE-2026-78126</cvename>
+      <cvename>CVE-2026-78127</cvename>
+      <cvename>CVE-2026-78129</cvename>
+      <cvename>CVE-2026-78130</cvename>
+      <cvename>CVE-2026-78131</cvename>
+      <cvename>CVE-2026-78132</cvename>
+      <cvename>CVE-2026-78133</cvename>
+      <cvename>CVE-2026-78134</cvename>
+      <cvename>CVE-2026-78135</cvename>
+      <url>https://www.strongswan.org/blog/2026/09/07/strongswan-6.1.0-released.html</url>
+      <url>https://github.com/strongswan/strongswan/releases/tag/6.1.0</url>
+    </references>
+    <dates>
+      <discovery>2026-09-07</discovery>
+      <entry>2026-09-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b7ae786a-af80-11f1-9800-641c67a117d8">
+    <topic>znc -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>znc</name>
+	<range><lt>1.10.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ZNC reports:</p>
+	<blockquote cite="https://wiki.znc.in/ChangeLog/1.10.3">
+	  <p>CVE-2026-82373: Use-after-free when unloading modules,
+	    triggered by unprivileged users.  To mitigate, set DenyLoadMod
+	    to true.</p>
+	  <p>CVE-2026-82374: Null pointer dereference in crypt module,
+	    triggered by IRC server.</p>
+	  <p>CVE-2020-11022, CVE-2020-11023: Updated the old bundled
+	    vulnerable version of jQuery to 3.5.1.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-11022</cvename>
+      <cvename>CVE-2020-11023</cvename>
+      <cvename>CVE-2026-82373</cvename>
+      <cvename>CVE-2026-82374</cvename>
+      <url>https://wiki.znc.in/ChangeLog/1.10.3</url>
+      <url>https://github.com/znc/znc/releases/tag/znc-1.10.3</url>
+    </references>
+    <dates>
+      <discovery>2026-09-13</discovery>
+      <entry>2026-09-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7fd351d1-af26-11f1-a883-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+<package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>19.3.0</ge><lt>19.3.2</lt></range>
+	<range><ge>19.2.0</ge><lt>19.2.6</lt></range>
+	<range><ge>10.1.0</ge><lt>19.1.8</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-3-2-released/?nav=19.3.2">
+	  <p>Path Traversal issue in repository commits API impacts GitLab CE/EE</p>
+	  <p>Insecure Deserialization issue in GraphQL subscription serializer impacts GitLab EE</p>
+	  <p>Buffer Overflow issue in Unicode conversion wrapper impacts GitLab EE</p>
+	  <p>Scheduled Pipeline Execution Policy test allows Developers to access protected CI/CD variables</p>
+	  <p>Cross-site Scripting issue in Markdown JSON table renderer impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in CI/CD environment variable scope matcher impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in GraphQL complexity limiter impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in GraphQL complexity limiter impacts GitLab CE/EE</p>
+	  <p>Race Condition issue in Merge Request Pipelines impacts GitLab CE/EE</p>
+	  <p>Improper Authentication issue in SAML SSO sign-in restriction enforcement impacts GitLab CE/EE</p>
+	  <p>Insufficiently Protected Credentials issue in Workhorse senddata emitters impacts GitLab CE/EE</p>
+	  <p>Cross-site Scripting issue in Content Editor impacts GitLab CE/EE</p>
+	  <p>Access Control Implementation issue in protected environment approval rules impacts GitLab EE</p>
+	  <p>Authorization Bypass issue in protected environment approval rules impacts GitLab EE</p>
+	  <p>Missing Authorization issue in Generic Package Registry impacts GitLab CE/EE</p>
+	  <p>Improper Input Validation issue in Namespace Transfer impacts GitLab CE/EE</p>
+	  <p>Missing Authorization issue in Compliance Framework management impacts GitLab EE</p>
+	  <p>Improper Input Validation issue in Terraform State API impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-85706</cvename>
+      <cvename>CVE-2026-87719</cvename>
+      <cvename>CVE-2026-88765</cvename>
+      <cvename>CVE-2026-79708</cvename>
+      <cvename>CVE-2026-78252</cvename>
+      <cvename>CVE-2026-13210</cvename>
+      <cvename>CVE-2025-14871</cvename>
+      <cvename>CVE-2026-1168</cvename>
+      <cvename>CVE-2024-11222</cvename>
+      <cvename>CVE-2026-12910</cvename>
+      <cvename>CVE-2026-82837</cvename>
+      <cvename>CVE-2026-19619</cvename>
+      <cvename>CVE-2026-86341</cvename>
+      <cvename>CVE-2026-86340</cvename>
+      <cvename>CVE-2026-7514</cvename>
+      <cvename>CVE-2026-8030</cvename>
+      <cvename>CVE-2026-16794</cvename>
+      <cvename>CVE-2026-3855</cvename>
+      <url>https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-3-2-released/?nav=19.3.2</url>
+    </references>
+    <dates>
+      <discovery>2026-09-10</discovery>
+      <entry>2026-09-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="cd5bfb7d-ac34-11f1-9b94-901b0e13f1a0">
+    <topic>yt-dlp: Improper Neutralization of Special Elements</topic>
+    <affects>
+    <package>
+	<name>yt-dlp</name>
+	<range><lt>2026.07.04</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://github.com/yt-dlp/yt-dlp/security/advisories/GHSA-6v4j-43gg-vj32 reports:</p>
+	<blockquote cite="https://github.com/yt-dlp/yt-dlp/security/advisories/GHSA-6v4j-43gg-vj32">
+	<p>yt-dlp and youtube-dl are command-line audio/video downloaders.
+	Prior to 2026.7.4, the --write-link, --write-url-link, and
+	--write-desktop-link options can write .url or .desktop shortcut
+	files using attacker-controlled webpage_url or filename metadata
+	without sufficient validation or escaping, allowing malicious
+	file:// URI injection on Windows or newline-based desktop
+	entry key injection on Linux that can execute commands if
+	the generated shortcut is
+	opened. This issue is fixed in version 2026.7.4.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-55404</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2026-55404</url>
+    </references>
+    <dates>
+      <discovery>2026-07-08</discovery>
+      <entry>2026-09-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fcc6917b-adbc-11f1-a655-3497f65b111b">
+    <topic>immich -- locked assets remain accessible through shared albums and links</topic>
+    <affects>
+	<package>
+	  <name>immich</name>
+	  <range><le>3.2.0</le></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NVD reports:</p>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2026-82272">
+	  <p>Immich through 3.1.0 fails to properly enforce locked asset
+	    visibility when assets are locked through the single-asset
+	    endpoint, allowing them to remain accessible through shared
+	    albums and links.</p>
+	</blockquote>
+	<p>The single-asset code path still lacks the album removal that the
+	  bulk path performs, so 3.2.0 is affected as well.  Upstream has not
+	  released a fix yet.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-82272</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2026-82272</url>
+      <url>https://github.com/immich-app/immich/issues/29526</url>
+    </references>
+    <dates>
+      <discovery>2026-08-28</discovery>
+      <entry>2026-09-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fcc6baaa-adbc-11f1-a655-3497f65b111b">
+    <topic>immich -- open redirect and reflected XSS in maintenance endpoint</topic>
+    <affects>
+	<package>
+	  <name>immich</name>
+	  <range><lt>3.2.0</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The immich project reports:</p>
+	<blockquote cite="https://github.com/immich-app/immich/security/advisories/GHSA-h5w4-vjv4-9r5q">
+	  <p>The /maintenance endpoint fails to validate the continue URL
+	    parameter.  When maintenance mode is disabled, which is the
+	    default, the application accepts unvalidated redirect targets,
+	    enabling both open redirects and reflected cross-site scripting.
+	    An unauthenticated user can craft a malicious link leading to
+	    account takeover, including administrative accounts, through
+	    same-origin API requests with credentials.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/immich-app/immich/security/advisories/GHSA-h5w4-vjv4-9r5q</url>
+    </references>
+    <dates>
+      <discovery>2026-08-23</discovery>
+      <entry>2026-09-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5d69ee28-adb9-11f1-9d0e-4c526214c986">
+    <topic>redpanda-connect -- memory exhaustion via oversized AMQP frames</topic>
+    <affects>
+	<package>
+	  <name>redpanda-connect</name>
+	  <range><lt>4.109.0</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>amqp091-go developers report:</p>
+	<blockquote cite="https://github.com/rabbitmq/amqp091-go/security/advisories/GHSA-6c5v-hqjr-5xxp">
+	  <p>Before version 1.13.0, a compromised or malicious AMQP broker
+	    can force the client to allocate resources for and process
+	    content body frames that exceed the negotiated frame_max limit.
+	    This can lead to unexpected memory consumption or
+	    application-layer denial of service (DoS), bypassing the
+	    protocol's built-in framing constraints.</p>
+	</blockquote>
+	<p>Redpanda Connect vendored an affected amqp091-go release
+	  up to version 4.108.0; 4.109.0 bumps it to 1.14.0.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-79921</cvename>
+      <url>https://github.com/rabbitmq/amqp091-go/security/advisories/GHSA-6c5v-hqjr-5xxp</url>
+      <url>https://github.com/redpanda-data/connect/pull/4795</url>
+    </references>
+    <dates>
+      <discovery>2026-08-26</discovery>
+      <entry>2026-09-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9736fef3-ada6-11f1-a655-3497f65b111b">
+    <topic>FreeIPA -- multiple vulnerabilities</topic>
+    <affects>
+	<package>
+	  <name>freeipa-server</name>
+	  <range><lt>4.13.4</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The FreeIPA project reports:</p>
+	<blockquote cite="https://www.freeipa.org/release-notes/4-13-4.html">
+	  <ul>
+	    <li>CVE-2026-76578: the access control instruction for self-managed
+	      OTP tokens requires no authentication and does not restrict which
+	      attributes may be written alongside the token entry. An
+	      unauthenticated LDAP client can create a Kerberos principal and
+	      add it to the administrators group.</li>
+	    <li>CVE-2026-79678: insufficiently validated --organization and
+	      --base-url input to idp-add reaches a constrained eval() before
+	      the LDAP access control check is enforced, allowing any
+	      authenticated principal to enumerate server environment variables
+	      and to exhaust memory.</li>
+	    <li>CVE-2026-11861: where a cross-realm trust with Active Directory
+	      is configured, Active Directory users can bypass authentication
+	      for FreeIPA services including the Web UI, the SMB server and the
+	      LDAP directory.</li>
+	    <li>CVE-2026-13097: the uniqueness constraint on Kerberos principal
+	      name attributes does not account for equivalent representations of
+	      the same name, so a user with LDAP write privileges can create a
+	      service principal that impersonates a privileged one.</li>
+	    <li>CVE-2026-19550: trust-fetch-domains is gated by a read-only
+	      permission on the trust object rather than a trust administration
+	      permission, letting any authenticated user trigger a privileged
+	      trust refresh against an attacker-supplied server.</li>
+	    <li>CVE-2026-73196: an oversized OTP key value is decoded and
+	      re-encoded without a size limit, consuming excessive CPU and
+	      memory.</li>
+	    <li>CVE-2026-73197: the migration endpoint reads oversized POST
+	      bodies fully into memory, which an unauthenticated client can
+	      abuse for denial of service.</li>
+	    <li>CVE-2026-73198: the i18n_messages endpoint accepts arbitrarily
+	      large request bodies, which an unauthenticated client can abuse
+	      for memory exhaustion.</li>
+	    <li>CVE-2026-73199: a null pointer dereference in the ipa-enrollment
+	      SLAPI plugin crashes the directory server when a malformed LDAP
+	      extended operation omits a required request value.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-11861</cvename>
+      <cvename>CVE-2026-13097</cvename>
+      <cvename>CVE-2026-19550</cvename>
+      <cvename>CVE-2026-73196</cvename>
+      <cvename>CVE-2026-73197</cvename>
+      <cvename>CVE-2026-73198</cvename>
+      <cvename>CVE-2026-73199</cvename>
+      <cvename>CVE-2026-76578</cvename>
+      <cvename>CVE-2026-79678</cvename>
+      <url>https://www.freeipa.org/release-notes/4-13-3.html</url>
+      <url>https://www.freeipa.org/release-notes/4-13-4.html</url>
+    </references>
+    <dates>
+      <discovery>2026-08-19</discovery>
+      <entry>2026-09-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6a6ddb1d-ac6b-11f1-982d-3c7c3fba4204">
+    <topic>CrowdSec -- multiple vulnerabilities</topic>
+    <affects>
+	<package>
+	  <name>crowdsec</name>
+	  <range><lt>1.8.0</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The CrowdSec Team reports:</p>
+	<blockquote cite="https://github.com/crowdsecurity/crowdsec/releases/tag/v1.8.0">
+	  <ul>
+	    <li><a href="https://github.com/crowdsecurity/crowdsec/security/advisories/GHSA-g2x2-jgfg-pg7g">[GHSA-g2x2-jgfg-pg7g]</a>: HTTP acquisition datasource lacks a decompressed body cap and trusts Content-Length.</li>
+	    <li><a href="https://github.com/crowdsecurity/crowdsec/security/advisories/GHSA-rh69-4vqj-9gj8">[GHSA-rh69-4vqj-9gj8]</a>: Unbounded request-body read in kubernetes-audit acquisition webhook.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/crowdsecurity/crowdsec/security/advisories/GHSA-g2x2-jgfg-pg7g</url>
+      <url>https://github.com/crowdsecurity/crowdsec/security/advisories/GHSA-rh69-4vqj-9gj8</url>
+    </references>
+    <dates>
+      <discovery>2026-08-31</discovery>
+      <entry>2026-09-09</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="e7726f5e-a9d0-11f1-93c7-8447094a420f">
     <topic>Roundcube -- Multiple vulnerabilities</topic>
     <affects>
