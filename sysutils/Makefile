@@ -1131,6 +1131,7 @@
     SUBDIR += py-puremagic
     SUBDIR += py-py-consul
     SUBDIR += py-py-cpuinfo
+    SUBDIR += py-py-cpuinfo2
     SUBDIR += py-pyinfra
     SUBDIR += py-python-bareos
     SUBDIR += py-python-consul
@@ -1148,6 +1149,8 @@
     SUBDIR += py-resolve-march-native
     SUBDIR += py-salt
     SUBDIR += py-salt-tower
+    SUBDIR += py-saltext.freebsd
+    SUBDIR += py-saltext.zfs
     SUBDIR += py-scandir
     SUBDIR += py-scarab
     SUBDIR += py-supervisor
@@ -1281,6 +1284,8 @@
     SUBDIR += rubygem-openfact
     SUBDIR += rubygem-openvoxserver-ca
     SUBDIR += rubygem-parallel
+    SUBDIR += rubygem-parallel-gitlab
+    SUBDIR += rubygem-parallel1
     SUBDIR += rubygem-puppet_forge
     SUBDIR += rubygem-puppetfile-resolver
     SUBDIR += rubygem-r10k

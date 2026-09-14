@@ -82,6 +82,42 @@ post-patch:
 	${REINPLACE_CMD} -e 's:struct nv_drm_mst_display_info \*r_info = (struct nv_drm_mst_display_info:const struct nv_drm_mst_display_info \*r_info = (const struct nv_drm_mst_display_info:' \
 		${WRKSRC}/nvidia-drm-drv.c
 .endif
+	# Workaround for build failure on 615.71.09. There are no other "%llu" in this file.
+	# --- nvidia-drm-fence.o ---
+	# nvidia-drm-fence.c:1908:13: error: format specifies type 'unsigned long long' but the argument has type 'uint64_t' (aka 'unsigned long') [-Werror,-Wformat]
+	#  1907 |             "Failed to create fence for wait_value: %llu",
+	#       |                                                     ~~~~
+	#       |                                                     %lu
+	#  1908 |             p->wait_value);
+	#       |             ^~~~~~~~~~~~~
+	# ./nvidia-drm-priv.h:73:72: note: expanded from macro 'NV_DRM_DEV_LOG_ERR'
+	#    73 |     NV_DRM_LOG_ERR("[GPU ID 0x%08x] " __fmt, __dev->gpu_info.gpu_id, ##__VA_ARGS__)
+	#       |                                       ~~~~~                            ^~~~~~~~~~~
+	# ./nvidia-drm-priv.h:43:45: note: expanded from macro 'NV_DRM_LOG_ERR'
+	#    43 |     DRM_ERROR("[nvidia-drm] " __fmt "\n", ##__VA_ARGS__)
+	#       |                               ~~~~~         ^~~~~~~~~~~
+	# /usr/ports/graphics/nvidia-drm-612-kmod-devel/work/drm-kmod-drm_v6.12.85_3//include/drm/drm_print.h:697:29: note: expanded from macro 'DRM_ERROR'
+	#   697 |         __drm_err(__func__, fmt, ##__VA_ARGS__)
+	#       |                             ~~~    ^~~~~~~~~~~
+	# nvidia-drm-fence.c:1972:13: error: format specifies type 'unsigned long long' but the argument has type 'uint64_t' (aka 'unsigned long') [-Werror,-Wformat]
+	#  1970 |             "Failed to find fence for syncobj 0x%08x at point %llu",
+	#       |                                                               ~~~~
+	#       |                                                               %lu
+	#  1971 |             p->syncobj_handle,
+	#  1972 |             p->syncobj_point);
+	#       |             ^~~~~~~~~~~~~~~~
+	# ./nvidia-drm-priv.h:73:72: note: expanded from macro 'NV_DRM_DEV_LOG_ERR'
+	#    73 |     NV_DRM_LOG_ERR("[GPU ID 0x%08x] " __fmt, __dev->gpu_info.gpu_id, ##__VA_ARGS__)
+	#       |                                       ~~~~~                            ^~~~~~~~~~~
+	# ./nvidia-drm-priv.h:43:45: note: expanded from macro 'NV_DRM_LOG_ERR'
+	#    43 |     DRM_ERROR("[nvidia-drm] " __fmt "\n", ##__VA_ARGS__)
+	#       |                               ~~~~~         ^~~~~~~~~~~
+	# /usr/ports/graphics/nvidia-drm-612-kmod-devel/work/drm-kmod-drm_v6.12.85_3//include/drm/drm_print.h:697:29: note: expanded from macro 'DRM_ERROR'
+	#   697 |         __drm_err(__func__, fmt, ##__VA_ARGS__)
+	#       |                             ~~~    ^~~~~~~~~~~
+.if ${NVVERSION} >= 615.00000
+	${REINPLACE_CMD} -e 's/%llu\"/%lu\"/'	${WRKSRC}/nvidia-drm-fence.c
+.endif
 	# Workaround for build failure on graphics/nvidia-drm-515-kmod*,
 	# as struct dma_buf_map was renamed to struct iosys_map at Linux 5.18 (DRM5.18).
 .if ${.CURDIR:M*nvidia-drm-515-kmod*}

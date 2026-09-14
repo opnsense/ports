@@ -35,6 +35,10 @@ post-patch:
 		'.version = "${DISTVERSION}" | .commit = "${DISTVERSION}"' \
 		${WRKSRC}/package.json > ${WRKSRC}/package.json.tmp
 	${MV} ${WRKSRC}/package.json.tmp ${WRKSRC}/package.json
+	${LOCALBASE}/bin/jq --slurp '.[0] * .[1]' \
+		${WRKSRC}/lib/vscode/product.json ${FILESDIR}/product.json.extensions \
+		> ${WRKSRC}/lib/vscode/product.json.tmp
+	${MV} ${WRKSRC}/lib/vscode/product.json.tmp ${WRKSRC}/lib/vscode/product.json
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \

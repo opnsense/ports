@@ -274,6 +274,7 @@
     SUBDIR += h2c
     SUBDIR += h2o
     SUBDIR += habari
+    SUBDIR += hedgedoc
     SUBDIR += hiawatha
     SUBDIR += hiawatha-monitor
     SUBDIR += homepage
@@ -528,6 +529,7 @@
     SUBDIR += nginx-lite
     SUBDIR += nginx-module-array-var
     SUBDIR += nginx-module-cache-purge
+    SUBDIR += nginx-module-form-input
     SUBDIR += nginx-module-lua
     SUBDIR += nginx-module-lua-stream
     SUBDIR += nginx-module-ndk
@@ -1660,6 +1662,7 @@
     SUBDIR += py-django-mptt
     SUBDIR += py-django-multiselectfield
     SUBDIR += py-django-netfields
+    SUBDIR += py-django-ninja
     SUBDIR += py-django-object-actions
     SUBDIR += py-django-otp
     SUBDIR += py-django-otp-yubikey
@@ -1817,6 +1820,7 @@
     SUBDIR += py-google-cloud-vision
     SUBDIR += py-google-resumable-media
     SUBDIR += py-googlemaps
+    SUBDIR += py-googlesearch-python
     SUBDIR += py-grafana-dashboard-manager
     SUBDIR += py-granian
     SUBDIR += py-graphite-api
@@ -1950,6 +1954,7 @@
     SUBDIR += py-requests-mock
     SUBDIR += py-requests-oauthlib
     SUBDIR += py-requests-ratelimiter
+    SUBDIR += py-requests-sse
     SUBDIR += py-requests-toolbelt
     SUBDIR += py-requests-unixsocket
     SUBDIR += py-requests-wsgi-adapter
@@ -2063,6 +2068,7 @@
     SUBDIR += reddsaver
     SUBDIR += redmine60
     SUBDIR += redmine61
+    SUBDIR += redmine70
     SUBDIR += rejik
     SUBDIR += remark42
     SUBDIR += reportmagic
@@ -2457,6 +2463,7 @@
     SUBDIR += rubygem-redis-rails-rails61
     SUBDIR += rubygem-requestjs-rails
     SUBDIR += rubygem-requestjs-rails-rails72
+    SUBDIR += rubygem-requestjs-rails-rails81
     SUBDIR += rubygem-responders
     SUBDIR += rubygem-responders-rails-gitlab
     SUBDIR += rubygem-responders-rails5

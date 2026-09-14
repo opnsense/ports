@@ -1,5 +1,6 @@
 PORTNAME=	freenginx-acme-module
 DISTVERSION=	0.4.1
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/nginx/nginx-acme/releases/download/v${DISTVERSION}/:acme \
 		https://freenginx.org/download/:freenginx
@@ -18,7 +19,7 @@ RUN_DEPENDS=	${LOCALBASE}/sbin/nginx:www/freenginx
 
 USES=		cargo cpe llvm:lib,noexport ssl
 
-CPE_VENDOR=	nginx
+CPE_VENDOR=	f5
 CPE_PRODUCT=	nginx-acme
 
 CARGO_ENV+=	NGINX_BUILD_DIR=${WRKDIR}/freenginx-${NGINX_VERSION}/objs

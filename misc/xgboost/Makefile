@@ -1,6 +1,6 @@
 PORTNAME=	xgboost
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.1.3
+DISTVERSION=	3.4.1
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -30,6 +30,8 @@ GH_TUPLE=	\
 
 LDFLAGS+=	${LOCALBASE}/lib/libdmlc.so -lexecinfo
 
+CMAKE_ARGS+=	-DBUILD_WITH_SYSTEM_DMLC=ON
+
 CMAKE_TESTING_ON=	GOOGLE_TEST
 
 OPTIONS_DEFINE=		OPENMP
@@ -37,5 +39,6 @@ OPTIONS_DEFINE=		OPENMP
 OPENMP_CMAKE_BOOL=	USE_OPENMP
 
 # tests as of 2.1.4: 100% tests passed, 0 tests failed out of 1 (failures when machine is loaded, see https://github.com/dmlc/xgboost/issues/11214)
+# tests fail to compile in 3.4.1, see https://github.com/dmlc/xgboost/issues/12559
 
 .include <bsd.port.mk>

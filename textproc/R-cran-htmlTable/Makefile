@@ -1,6 +1,5 @@
 PORTNAME=	htmlTable
-DISTVERSION=	2.4.0
-PORTREVISION=	1
+DISTVERSION=	2.5.0
 CATEGORIES=	textproc
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -12,7 +11,9 @@ LICENSE=	GPLv3
 
 CRAN_DEPENDS=	R-cran-stringr>0:textproc/R-cran-stringr \
 		R-cran-knitr>0:print/R-cran-knitr \
+		R-cran-magrittr>0:devel/R-cran-magrittr \
 		R-cran-htmlwidgets>0:www/R-cran-htmlwidgets \
+		R-cran-htmltools>0:textproc/R-cran-htmltools \
 		R-cran-rstudioapi>0:devel/R-cran-rstudioapi \
 		R-cran-checkmate>0:devel/R-cran-checkmate
 BUILD_DEPENDS=	${CRAN_DEPENDS}

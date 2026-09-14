@@ -10,6 +10,8 @@ WWW=		https://freedv.org/
 
 LICENSE=	LGPL21
 
+BROKEN=		Fails to build, error: use of undeclared identifier 'freedv_set_dpsk'
+
 LIB_DEPENDS=	libcodec2.so:audio/codec2 \
 		libportaudio.so:audio/portaudio \
 		libgsm.so:audio/gsm \

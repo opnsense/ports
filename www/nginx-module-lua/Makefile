@@ -1,7 +1,7 @@
 PORTNAME=	nginx-module-lua
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.10.29
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 
 MAINTAINER=	joneum@FreeBSD.org
@@ -9,6 +9,10 @@ COMMENT=	Lua module for the NGINX HTTP subsystem
 WWW=		https://github.com/openresty/lua-nginx-module
 
 LICENSE=	BSD2CLAUSE
+
+USES=		cpe
+CPE_VENDOR=	openresty
+CPE_PRODUCT=	lua-nginx-module
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	openresty

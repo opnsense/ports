@@ -1422,6 +1422,7 @@
     SUBDIR += rubygem-net-ntp
     SUBDIR += rubygem-net-ping
     SUBDIR += rubygem-net-protocol
+    SUBDIR += rubygem-net-protocol-gitlab
     SUBDIR += rubygem-net-protocol01
     SUBDIR += rubygem-netrc
     SUBDIR += rubygem-network_interface
@@ -1508,6 +1509,7 @@
     SUBDIR += rubygem-uri
     SUBDIR += rubygem-uri-gitlab
     SUBDIR += rubygem-uri-redis
+    SUBDIR += rubygem-uri-valkey
     SUBDIR += rubygem-uri_template
     SUBDIR += rubygem-whois
     SUBDIR += rubygem-x

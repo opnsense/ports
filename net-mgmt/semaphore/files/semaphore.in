@@ -12,7 +12,7 @@ rcvar=semaphore_enable
 load_rc_config ${name}
 
 : ${semaphore_enable:="NO"}
-: ${semaphore_config="%%PREFIX%%/etc/semaphore/semaphore_config.json"}
+: ${semaphore_config="%%PREFIX%%/etc/semaphore/config.json"}
 
 export PATH=${PATH}:%%PREFIX%%/bin
 

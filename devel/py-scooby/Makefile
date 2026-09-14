@@ -1,6 +1,5 @@
 PORTNAME=	scooby
-DISTVERSION=	0.11.2
-PORTREVISION=	1
+DISTVERSION=	0.12.0
 CATEGORIES=	devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -28,12 +27,15 @@ USE_PYTHON=	pep517 autoplist pytest
 NO_ARCH=	yes
 
 TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} PATH=${STAGEDIR}${PREFIX}/bin:$$PATH
+TEST_ARGS=	--disable-plugin-autoload \
+		-p pytest_console_scripts \
+		-p pytest_cov
 
 # tests/test_scooby.py::test_import_os_error requires pyvips to fail to import;
 # tests/test_scooby.py::test_get_version and test_tracking require the no-version
 # package, which is not currently in FreeBSD ports.
 PYTEST_BROKEN_TESTS=	test_get_version test_tracking test_import_os_error
 
-# tests as of 0.11.2: 24 passed, 1 skipped, 3 deselected in 21.54s
+# tests as of 0.12.0: 28 passed, 1 skipped, 3 deselected in 11.54s
 
 .include <bsd.port.mk>

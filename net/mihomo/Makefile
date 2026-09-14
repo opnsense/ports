@@ -1,7 +1,6 @@
 PORTNAME=	mihomo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.19.29
-PORTREVISION=	3
+DISTVERSION=	1.19.30
 CATEGORIES=	net games
 DIST_SUBDIR=	${PORTNAME}
 
@@ -14,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:1.26,modules cpe
 
-CPE_VENDOR=	clash_project
+CPE_VENDOR=	metacubex
 
 GO_MODULE=	github.com/metacubex/mihomo # project is hosted in the GH acct that is Honkai game related but it has nothing to do with gaming
 

@@ -2,6 +2,7 @@ PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.0.42 # git rev-list --count HEAD
 DISTVERSIONSUFFIX=	-19675-gcd814f8c92
+PORTREVISION=	1
 CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -64,7 +65,7 @@ EVDEV_LIB_DEPENDS=	libevdev.so:devel/libevdev \
 			libudev.so:devel/libudev-devd
 
 FAUDIO_DESC=		FAudio audio support
-FAUDIO_LIB_DEPENDS=	libFAudio.so:audio/faudio@sdl3
+FAUDIO_LIB_DEPENDS=	libFAudio.so:audio/faudio
 FAUDIO_CMAKE_BOOL=	USE_FAUDIO USE_SYSTEM_FAUDIO
 
 JACK_BUILD_DEPENDS=	jackit>0:audio/jack

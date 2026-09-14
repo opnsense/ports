@@ -1,8 +1,8 @@
 PORTNAME=		aseprite
-DISTVERSIONPREFIX=	v
-DISTVERSION=		1.2.9
-PORTREVISION=	10
+DISTVERSION=		1.3.18.5
 CATEGORIES=		graphics
+MASTER_SITES=		https://github.com/aseprite/aseprite/releases/download/v${DISTVERSION}/
+DISTNAME=		Aseprite-v${DISTVERSION}-Source
 
 MAINTAINER=		yuri@FreeBSD.org
 COMMENT=		Animated sprite editor and pixel art tool
@@ -16,70 +16,54 @@ LICENSE_PERMS=		dist-mirror auto-accept
 BROKEN_armv6=		fails to compile: undefined reference to __va_copy
 BROKEN_armv7=		fails to compile: undefined reference to __va_copy
 
-EXTRACT_DEPENDS=	${NONEXISTENT}:x11/pixman:extract
-LIB_DEPENDS=		liballeg.so:devel/allegro \
-			libcmark.so:textproc/cmark \
+BUILD_DEPENDS=		skia124>0:graphics/skia124
+LIB_DEPENDS=		libcmark.so:textproc/cmark \
 			libcurl.so:ftp/curl \
-			libexpat.so:textproc/expat2 \
+			libGL.so:graphics/libglvnd \
+			libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \
 			libgif.so:graphics/giflib \
 			libharfbuzz.so:print/harfbuzz \
-			libharfbuzz-icu.so:print/harfbuzz-icu \
-			liblz4.so:archivers/liblz4 \
-			libnettle.so:security/nettle \
-			libpng.so:graphics/png \
-			libtinyxml.so:textproc/tinyxml \
-			libzstd.so:archivers/zstd
+			libicuuc.so:devel/icu \
+			libpixman-1.so:x11/pixman \
+			libpng16.so:graphics/png \
+			libXi.so:x11/libXi \
+			libXrandr.so:x11/libXrandr
 
-USES=			cmake compiler:c++11-lib gnome iconv:wchar_t jpeg \
-			localbase:ldflags pkgconfig ssl xorg
-USE_GITHUB=		yes
-GH_TUPLE=		aseprite:libarchive:c51dbfc:libarchive/third_party/libarchive
-GH_TUPLE+=		aseprite:clip:964a64a:clip/src/clip
-GH_TUPLE+=		aseprite:flic:65a6072:flic/src/flic
-GH_TUPLE+=		aseprite:fmt:933a33a:fmt/third_party/fmt
-GH_TUPLE+=		aseprite:json11:ec4e452:json11/third_party/json11
-GH_TUPLE+=		aseprite:laf:60e6ad7:laf/laf
-GH_TUPLE+=		aseprite:mujs:34cb617:mujs/third_party/mujs
-GH_TUPLE+=		aseprite:observable:59c3862:observable/src/observable
-GH_TUPLE+=		aseprite:simpleini:0687587:simpleini/third_party/simpleini
-GH_TUPLE+=		aseprite:tinyexpr:ca50544:tinyexpr/third_party/tinyexpr
-GH_TUPLE+=		aseprite:stringencoders:e1448a9:stringencoders/laf/third_party/stringencoders
-GH_TUPLE+=		aseprite:undo:93fc81d:undo/src/undo
+USES=			cmake compiler:c++17-lang gnome iconv:wchar_t jpeg \
+			localbase:ldflags ninja pkgconfig ssl xorg zip
+USE_GL=			gl
+USE_XORG+=		xrandr
 USE_GNOME=		libxml2
-USE_XORG=		x11 xcb xcursor xext xpm ice pixman sm xxf86dga xxf86vm
+USE_XORG=		x11 xcb xcursor xext ice sm
 
-CMAKE_ON=		USE_SHARED_ALLEGRO4 \
-			USE_SHARED_CMARK \
+CMAKE_ON=		USE_SHARED_CMARK \
 			USE_SHARED_CURL \
 			USE_SHARED_FREETYPE \
 			USE_SHARED_GIFLIB \
 			USE_SHARED_HARFBUZZ \
-			USE_SHARED_JPEGLIB \
-			USE_SHARED_LIBLOADPNG \
 			USE_SHARED_LIBPNG \
 			USE_SHARED_PIXMAN \
-			USE_SHARED_TINYXML \
 			USE_SHARED_ZLIB
-CMAKE_ARGS=		-DFREEBSD_LIB_PATH=${LOCALBASE}/lib
+CMAKE_OFF=		UPDATE_VERSION_WITH_GIT \
+			ENABLE_UPDATER \
+			ENABLE_NEWS \
+			ENABLE_WEBP
+CMAKE_ARGS=		-DLAF_BACKEND=skia \
+			-DSKIA_DIR=${LOCALBASE}/include/aseprite-skia \
+			-DSKIA_LIBRARY_DIR=${LOCALBASE}/lib/aseprite-skia \
+			-DSKIA_LIBRARY=${LOCALBASE}/lib/aseprite-skia/libskia.a \
+			-DVERSION=${PORTVERSION}
 
-OPTIONS_DEFINE=		STEAM WEBP
-OPTIONS_DEFAULT=	WEBP
+OPTIONS_DEFINE=		STEAM
+OPTIONS_DEFAULT=
 
 STEAM_DESC=		Compile with Steam library
 STEAM_CMAKE_BOOL=	ENABLE_STEAM
 
-WEBP_CMAKE_BOOL=	WITH_WEBP_SUPPORT
-WEBP_LIB_DEPENDS=	libwebp.so:graphics/webp
+CONFLICTS_BUILD=	skia
 
-post-extract:
-	@${RM} -r ${WRKSRC}/src/allegro
-	@${MKDIR} ${WRKSRC}/third_party/pixman/pixman
-	@${CP} `${MAKE} -C ${PORTSDIR}/x11/pixman -V WRKSRC`/pixman/pixman-combine32.h \
-		${WRKSRC}/third_party/pixman/pixman/
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|1.3-dev|${PORTVERSION}|' ${WRKSRC}/src/config.h ${WRKSRC}/data/gui.xml
+NO_WRKSUBDIR=		yes
 
 post-install:
 	@cd ${STAGEDIR}${PREFIX} && ${RM} -r bin/bsd* include lib libdata share/man # see https://github.com/aseprite/aseprite/issues/1602

@@ -1,5 +1,5 @@
 PORTNAME=	mango
-DISTVERSION=	0.16.3
+DISTVERSION=	0.17.0
 PORTREVISION=	0
 CATEGORIES=	x11-wm
 
@@ -10,9 +10,11 @@ WWW=		https://mangowm.github.io/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	hwdata>=0.399:misc/hwdata \
+BUILD_DEPENDS=	evdev-proto>=5.8:devel/evdev-proto \
+		hwdata>=0.399:misc/hwdata \
 		wayland-protocols>=1.24:graphics/wayland-protocols
 LIB_DEPENDS=	libcjson.so:devel/libcjson \
+		libdrm.so:graphics/libdrm \
 		libinput.so:x11/libinput \
 		libpcre2-8.so:devel/pcre2 \
 		libpixman-1.so:x11/pixman \

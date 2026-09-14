@@ -1,28 +1,18 @@
---- pyproject.toml.orig	2026-07-08 17:44:27 UTC
+--- pyproject.toml.orig	2026-09-02 17:43:46 UTC
 +++ pyproject.toml
-@@ -2,9 +2,7 @@ requires = [
- 
- [build-system]
- requires = [
--    "setuptools>=77.0.0,<82",  # 77.0 is the first release with PEP 639 license-files support
--    "cmake>=3.27",
--    "ninja",
-+    "setuptools",  # 77.0 is the first release with PEP 639 license-files support
-     "numpy",
-     "packaging>=24.2",  # required by setuptools>=77 to validate PEP 639 license expressions
-     "pyyaml",
-@@ -20,9 +18,7 @@ dev = [
-     # in PyTorch root until the project fully migrates to pyproject.toml
+@@ -312,10 +312,8 @@ dev = [
      # after which this can be removed as it is already specified in the
      # [build-system] section
+     "scikit-build-core>=1.0",
 -    "setuptools>=77.0.0,<82",  # 77.0 is the first release with PEP 639 license-files support
++    "setuptools",  # 77.0 is the first release with PEP 639 license-files support
+     "spin",
 -    "cmake>=3.27",
 -    "ninja",
-+    "setuptools",  # 77.0 is the first release with PEP 639 license-files support
      "numpy",
      "packaging>=24.2",  # required by setuptools>=77 to validate PEP 639 license expressions
      "pyyaml",
-@@ -55,14 +51,6 @@ requires-python = ">=3.10"
+@@ -349,13 +347,6 @@ requires-python = ">=3.10"
  # License info:
  #   - The main Pytorch project license is BSD-3-Clause.
  #   - The SPDX license expression below reflects installed pytorch packages.
@@ -32,7 +22,6 @@
 -    "third_party/**/LICENSE",
 -    "third_party/**/LICENSE.txt",
 -    "third_party/**/LICENSE.rst",
--    "third_party/**/COPYING.BSD",
 -]
  authors = [{ name = "PyTorch Team", email = "packages@pytorch.org" }]
  keywords = ["pytorch", "machine learning"]

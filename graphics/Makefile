@@ -1231,6 +1231,7 @@
     SUBDIR += skanlite
     SUBDIR += skanpage
     SUBDIR += skia
+    SUBDIR += skia124
     SUBDIR += spirv-cross
     SUBDIR += spirv-headers
     SUBDIR += spirv-tools
@@ -1262,6 +1263,7 @@
     SUBDIR += tintfu
     SUBDIR += tinyows
     SUBDIR += tkpng
+    SUBDIR += tlottie
     SUBDIR += togl
     SUBDIR += tslib
     SUBDIR += ttygif

@@ -17,6 +17,7 @@
     SUBDIR += curlftpfs
     SUBDIR += darling-dmg
     SUBDIR += davfs2
+    SUBDIR += diffsnap
     SUBDIR += dsbmc
     SUBDIR += dsbmc-cli
     SUBDIR += dsbmd
@@ -68,6 +69,7 @@
     SUBDIR += moosefs-metalogger
     SUBDIR += moosefs-netdump
     SUBDIR += mp3fs
+    SUBDIR += ms-sys
     SUBDIR += mtools
     SUBDIR += mtpfs
     SUBDIR += nbd-client-kmod

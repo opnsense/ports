@@ -1,7 +1,7 @@
 PORTNAME=	freenginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION?=	12
+PORTREVISION?=	14
 CATEGORIES=	www
 MASTER_SITES=	https://freenginx.org/download/ \
 		LOCAL/joneum
@@ -347,6 +347,11 @@ pre-configure-DEVEL_KIT-on:
 	@${RM} -rf ${WRKSRC_devel_kit}
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-ndk ${WRKSRC_devel_kit}
 	@${CHMOD} -R u+w ${WRKSRC_devel_kit}
+
+pre-configure-FORMINPUT-on:
+	@${RM} -rf ${WRKSRC_forminput}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-form-input ${WRKSRC_forminput}
+	@${CHMOD} -R u+w ${WRKSRC_forminput}
 
 pre-configure-LUA-on:
 	@${RM} -rf ${WRKSRC_lua}

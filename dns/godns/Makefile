@@ -1,7 +1,6 @@
 PORTNAME=	godns
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.4.3
-PORTREVISION=	3
+DISTVERSION=	3.4.4
 CATEGORIES=	dns
 MASTER_SITES=	https://raw.githubusercontent.com/TimothyYe/${PORTNAME}/${DISTVERSIONFULL}/:gomod \
 		https://github.com/TimothyYe/${PORTNAME}/releases/download/v${DISTVERSION}/:webui

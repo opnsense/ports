@@ -1,6 +1,6 @@
 PORTNAME=	immich-ml
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.1.0
+DISTVERSION=	3.2.0
 CATEGORIES=	www python
 
 MAINTAINER=	joneum@FreeBSD.org
@@ -30,7 +30,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiocache>0:devel/py-aiocache@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}uvicorn>0:www/py-uvicorn@${PY_FLAVOR} \
 		opencv>0:graphics/opencv
 
-USES=		python
+USES=		cpe python
+CPE_VENDOR=	futo
+CPE_PRODUCT=	immich
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	immich-app

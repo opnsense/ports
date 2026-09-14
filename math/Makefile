@@ -355,6 +355,7 @@
     SUBDIR += flintqs
     SUBDIR += flopc++
     SUBDIR += form
+    SUBDIR += formfactor
     SUBDIR += fparser
     SUBDIR += fplll
     SUBDIR += freefem++
@@ -466,7 +467,6 @@
     SUBDIR += libdivsufsort
     SUBDIR += libfixmath
     SUBDIR += libflame
-    SUBDIR += libformfactor
     SUBDIR += libhomfly
     SUBDIR += libmesh
     SUBDIR += libnormaliz
@@ -1094,6 +1094,7 @@
     SUBDIR += py-osqp
     SUBDIR += py-pandas
     SUBDIR += py-pandas-datareader
+    SUBDIR += py-pandas-gbq
     SUBDIR += py-pandas-stubs
     SUBDIR += py-patsy
     SUBDIR += py-pcodec

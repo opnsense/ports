@@ -30,7 +30,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # rubygem-freezolite is required by bundled gem auto_freeze
 # rubygem-erb-gitlab 6.0.4 (listed in lockfile, maybe bundled dep)
 MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
-	gitlab-elasticsearch-indexer>=5.14.7:textproc/gitlab-elasticsearch-indexer \
+	gitlab-elasticsearch-indexer>=5.14.13:textproc/gitlab-elasticsearch-indexer \
 	gitlab-agent>=${GITLAB_VERSION}:net/gitlab-agent \
 	gitlab-pages>=${GITLAB_VERSION}:www/gitlab-pages \
 	gitlab-shell>=14.56.1:devel/gitlab-shell \
@@ -106,7 +106,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-grape-path-helpers>=2.1.0<2.2:devel/rubygem-grape-path-helpers \
 	rubygem-gitlab-grape-openapi>=0.3.0<0.4:devel/rubygem-gitlab-grape-openapi \
 	rubygem-rack-cors>=2.0.1<2.1:www/rubygem-rack-cors \
-	rubygem-graphql>=2.6.3<2.6.4:devel/rubygem-graphql \
+	rubygem-graphql>=2.6.10<2.7:devel/rubygem-graphql \
 	rubygem-apollo_upload_server>=2.1.8<2.2:net/rubygem-apollo_upload_server \
 	rubygem-ffaker>=2.25.0<3:devel/rubygem-ffaker \
 	rubygem-hashie-gitlab>=5.0.0<5.1:devel/rubygem-hashie-gitlab \
@@ -321,7 +321,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-app_store_connect>=0:net/rubygem-app_store_connect \
 	rubygem-telesignenterprise>=2.6<3:devel/rubygem-telesignenterprise \
 	rubygem-base6402>=0.2.0<0.3:converters/rubygem-base6402 \
-	rubygem-net-protocol>=0.2.2<0.3:net/rubygem-net-protocol \
+	rubygem-net-protocol-gitlab>=0.2.2<0.3:net/rubygem-net-protocol-gitlab \
 	rubygem-nkf-gitlab>=0.2.0<0.3:net/rubygem-nkf-gitlab \
 	rubygem-resolv-replace>=0.2.0<0.3:dns/rubygem-resolv-replace \
 	rubygem-net-http-gitlab>=0.6.0<0.6.1:www/rubygem-net-http-gitlab \
@@ -336,7 +336,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-zlib>=3.2.3<3.3:devel/rubygem-zlib \
 	rubygem-license_finder-gitlab>=7.2.1<8:devel/rubygem-license_finder-gitlab \
 	rubygem-google-cloud-profiler-v2>=0.3<1:textproc/rubygem-google-cloud-profiler-v2 \
-	rubygem-parallel>=1.28.0<2:sysutils/rubygem-parallel \
+	rubygem-parallel-gitlab>=1.28.0<2:sysutils/rubygem-parallel-gitlab \
 	rubygem-google-cloud-storage_transfer-gitlab>=1.2.0<1.3:net/rubygem-google-cloud-storage_transfer-gitlab \
 	rubygem-minitest>=5.11<6:devel/rubygem-minitest \
 	rubygem-grpc-tools>=1.83.0<1.84:net/rubygem-grpc-tools \
