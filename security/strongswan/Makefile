@@ -1,11 +1,10 @@
 PORTNAME=	strongswan
-DISTVERSION=	6.0.7
-PORTREVISION=	1
+DISTVERSION=	6.1.0
 CATEGORIES=	security net-vpn
 MASTER_SITES=	https://download.strongswan.org/ \
 		https://download2.strongswan.org/
 
-MAINTAINER=	strongswan@nanoteq.com
+MAINTAINER=	rcm@FreeBSD.org
 COMMENT=	Open Source IKEv2 IPsec-based VPN solution
 WWW=		https://www.strongswan.org
 
@@ -105,7 +104,7 @@ EAPSIMFILE_CONFIGURE_ON=	--enable-eap-sim \
 FARP_CONFIGURE_ON=		--enable-farp
 FIPS_PRF_CONFIGURE_ON=		--enable-fips-prf
 GCM_CONFIGURE_ON=		--enable-gcm
-IKEV1_CONFIGURE_OFF=		--disable-ikev1
+IKEV1_CONFIGURE_ON=		--enable-ikev1
 IPSECKEY_CONFIGURE_ON=		--enable-ipseckey
 KDF_CONFIGURE_ON=		--enable-kdf
 KERNELLIBIPSEC_CONFIGURE_ON=	--enable-kernel-libipsec
