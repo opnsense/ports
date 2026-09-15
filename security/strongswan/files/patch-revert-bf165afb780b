@@ -1,0 +1,72 @@
+From 293628fd11e84bc58af29dac8d20755e1e44249c Mon Sep 17 00:00:00 2001
+From: Franco Fichtner <franco@opnsense.org>
+Date: Tue, 15 Sep 2026 11:12:08 +0200
+Subject: [PATCH] Revert "kernel-pfroute: Route via interface if we don't have
+ a next hop"
+
+This reverts commit bf165afb780b7ba4edd2092b3348038c0a14b7ae.
+---
+ .../kernel_pfroute/kernel_pfroute_net.c       | 35 +------------------
+ 1 file changed, 1 insertion(+), 34 deletions(-)
+
+diff --git src/libcharon/plugins/kernel_pfroute/kernel_pfroute_net.c src/libcharon/plugins/kernel_pfroute/kernel_pfroute_net.c
+index ee7ce6e2f6..fe1e16ff53 100644
+--- src/libcharon/plugins/kernel_pfroute/kernel_pfroute_net.c
++++ src/libcharon/plugins/kernel_pfroute/kernel_pfroute_net.c
+@@ -1,5 +1,5 @@
+ /*
+- * Copyright (C) 2009-2024 Tobias Brunner
++ * Copyright (C) 2009-2016 Tobias Brunner
+  *
+  * Copyright (C) secunet Security Networks AG
+  *
+@@ -1449,35 +1449,6 @@ static void add_rt_ifname(struct rt_msghdr *hdr, int type, char *name)
+ 	}
+ }
+ 
+-/**
+- * Append an interface address sockaddr_dl to routing message
+- */
+-static void add_rt_ifaddr(struct rt_msghdr *hdr, int type, char *name)
+-{
+-	struct ifaddrs *ifap, *ifa;
+-	struct sockaddr_dl *sdl;
+-
+-	if (getifaddrs(&ifap) < 0)
+-	{
+-		return;
+-	}
+-
+-	for (ifa = ifap; ifa != NULL; ifa = ifa->ifa_next)
+-	{
+-		if (!ifa->ifa_addr || ifa->ifa_addr->sa_family != AF_LINK ||
+-			!streq(name, ifa->ifa_name))
+-		{
+-			continue;
+-		}
+-		sdl = (struct sockaddr_dl*)ifa->ifa_addr;
+-		memcpy((char*)hdr + hdr->rtm_msglen, sdl, sdl->sdl_len);
+-		hdr->rtm_msglen += SA_LEN(sdl->sdl_len);
+-		hdr->rtm_addrs |= type;
+-		break;
+-	}
+-	freeifaddrs(ifap);
+-}
+-
+ /**
+  * Add or remove a route
+  */
+@@ -1554,10 +1525,6 @@ static status_t manage_route(private_kernel_pfroute_net_t *this, int op,
+ 				{
+ 					add_rt_addr(&msg.hdr, RTA_GATEWAY, gateway);
+ 				}
+-				else if (if_name)
+-				{
+-					add_rt_ifaddr(&msg.hdr, RTA_GATEWAY, if_name);
+-				}
+ 				break;
+ 			default:
+ 				break;
+-- 
+2.30.1 (Apple Git-130)
+
