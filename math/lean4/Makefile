@@ -1,6 +1,6 @@
 PORTNAME=	lean4
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.33.1
+DISTVERSION=	4.34.0
 CATEGORIES=	math lang devel # lean4 is primarily a math theorem prover, but it is also a language and a development environment
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -11,6 +11,7 @@ WWW=		https://lean-lang.org/ \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_FreeBSD_14=	compilation fails: .rsp files are not supprted by ar on 14: ar there is from Elftoolchain project which was later replaced by LLVM ar, which supports .rsp files
 BROKEN_armv7=	compilation fails: ../../.build/stage1/lib/temp/Init/Coe.depend: No such file or directory
 BROKEN_i386=	linking fails: INTERNAL PANIC: out of memory (during: Linking runLinter)
 
@@ -101,5 +102,6 @@ post-install:
 		lib/lean/libLake_shared.so
 
 # tests as of 4.33.1: 100% tests passed, 0 tests failed out of 3988
+# tests as of 4.34.0: 100% tests pass (individual testsuite runs have intermittent failures with different tests, but all individual tests pass when run separately)
 
 .include <bsd.port.mk>

@@ -5140,7 +5140,6 @@
     SUBDIR += py-fuzzywuzzy
     SUBDIR += py-fypp
     SUBDIR += py-game
-    SUBDIR += py-game_sdl2
     SUBDIR += py-gapic-generator
     SUBDIR += py-gast
     SUBDIR += py-gelidum
@@ -5198,6 +5197,7 @@
     SUBDIR += py-guppy3
     SUBDIR += py-gyp
     SUBDIR += py-gyp-next
+    SUBDIR += py-hachoir
     SUBDIR += py-hacking
     SUBDIR += py-hammett
     SUBDIR += py-hash_ring
@@ -5581,6 +5581,7 @@
     SUBDIR += py-opencensus-context
     SUBDIR += py-opendht
     SUBDIR += py-openfeature-sdk
+    SUBDIR += py-opengrok-tools
     SUBDIR += py-openstacksdk
     SUBDIR += py-opentelemetry-api
     SUBDIR += py-opentelemetry-configuration
@@ -6043,7 +6044,6 @@
     SUBDIR += py-python-decouple
     SUBDIR += py-python-discovery
     SUBDIR += py-python-distutils-extra
-    SUBDIR += py-python-dtrace
     SUBDIR += py-python-easyconfig
     SUBDIR += py-python-editor
     SUBDIR += py-python-engineio
@@ -6379,7 +6379,6 @@
     SUBDIR += py-tree-sitter-yaml
     SUBDIR += py-tree-sitter023
     SUBDIR += py-treelib
-    SUBDIR += py-trimesh
     SUBDIR += py-trove-classifiers
     SUBDIR += py-ttictoc
     SUBDIR += py-ttkbootstrap
@@ -6413,6 +6412,7 @@
     SUBDIR += py-types-pyyaml
     SUBDIR += py-types-requests
     SUBDIR += py-types-retry
+    SUBDIR += py-types-s3transfer
     SUBDIR += py-types-setuptools
     SUBDIR += py-types-toml
     SUBDIR += py-typeshed-client
@@ -8993,6 +8993,7 @@
     SUBDIR += zeal
     SUBDIR += zfp
     SUBDIR += zix
+    SUBDIR += zizmor
     SUBDIR += zls
     SUBDIR += zookeeper
     SUBDIR += zthread
