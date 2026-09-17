@@ -1,3 +1,287 @@
+  <vuln vid="0627020f-b21c-11f1-bc39-5404a68ad561">
+    <topic>traefik -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+      <name>traefik</name>
+      <range><lt>3.7.13</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>The traefik project releases a new version addressing multiple vulnerabilities:</p>
+      <blockquote cite="https://github.com/traefik/traefik/releases/tag/v3.7.13">
+      <ul>
+      <li>GHSA-qqjf-53cj-pwvv (HTTP/3 Backend NTLM Connection Reuse)</li>
+      <li>GHSA-f52w-8j3h-j724 (bypassing path-scoped routing)</li>
+      <li>GHSA-v67p-phpq-fc8x (entrypoint header-name sanitization bypass)</li>
+      <li>GHSA-w4v4-9rw7-5326 (HTTP Request/Response Smuggling)</li>
+      <li>GHSA-8fcf-v89g-xpg6 (unauthenticated username-enumeration timing oracle)</li>
+      </ul>
+      </blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/traefik/traefik/releases/tag/v3.7.13</url>
+    </references>
+    <dates>
+      <discovery>2026-09-04</discovery>
+      <entry>2026-09-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a738c927-b216-11f1-bc39-5404a68ad561">
+    <topic>mkvtoolnix -- Heap Buffer Overflow via avilib ODML Superindex Integer Wraparound</topic>
+    <affects>
+      <package>
+      <name>mkvtoolnix</name>
+      <range><lt>102.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Moritz Bunkus reports:</p>
+      <blockquote cite="https://mkvtoolnix.download/doc/ChangeLog">
+       <p>potential heap overflows/invalid memory access in the ODML index handling due to
+       unsiged integer multiplication wrapping around (colloquially known as "overflowing")
+       with specifically crafted AVI files. Affects only mkvmerge as the other tools do
+       not read AVIs</p>
+      </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-90783</cvename>
+      <url>https://www.cve.org/CVERecord?id=CVE-2026-90783</url>
+    </references>
+    <dates>
+      <discovery>2026-08-25</discovery>
+      <entry>2026-09-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3f4d285d-b1f6-11f1-8f5e-3c7c3fba4204">
+    <topic>Unbound -- multiple vulnerabilities</topic>
+    <affects>
+	<package>
+	  <name>unbound</name>
+	  <range><lt>1.26.1</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NLnet Labs reports:</p>
+	<blockquote cite="https://community.nlnetlabs.nl/t/unbound-1-26-1-released/3463">
+	  <p>This release consolidates security fixes for issues reported over
+	  a period of time. There are fixes for:</p>
+	  <ul>
+	  <li>CVE-2026-81642: Heap buffer overflow and possible Remote Code
+	  Execution when digesting DNSKEY.</li>
+	  <li>CVE-2026-81634: Possible heap buffer overflow during DNSSEC
+	  canonicalization.</li>
+	  <li>CVE-2026-82717: CNAME synthesis could lead to heap corruption.</li>
+	  <li>CVE-2026-77955: Possible ZONEMD verification bypass window.</li>
+	  <li>CVE-2026-78227: Use-after-free in DoQ stream output buffer on
+	  reset re-transmission.</li>
+	  <li>CVE-2026-80225: Possible degradation of service from continuous
+	  queries on the same TCP/DoT connection.</li>
+	  <li>CVE-2026-82720: Use-after-free in DoH stream cleanup code path.</li>
+	  <li>CVE-2026-85501: Retrap: Novel Vulnerabilities to launch
+	  Algorithmic Complexity Attacks on DNSSEC.</li>
+	  <li>CVE-2026-77860: ‘serve-expired’ can bypass Unbound ‘wait-limit’.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-81642</cvename>
+      <cvename>CVE-2026-81634</cvename>
+      <cvename>CVE-2026-82717</cvename>
+      <cvename>CVE-2026-77955</cvename>
+      <cvename>CVE-2026-78227</cvename>
+      <cvename>CVE-2026-80225</cvename>
+      <cvename>CVE-2026-82720</cvename>
+      <cvename>CVE-2026-85501</cvename>
+      <cvename>CVE-2026-77860</cvename>
+      <url>https://community.nlnetlabs.nl/t/unbound-1-26-1-released/3463</url>
+      <url>https://github.com/NLnetLabs/unbound/releases/tag/release-1.26.1</url>
+      <url>https://www.nlnetlabs.nl/projects/unbound/security-advisories/</url>
+    </references>
+    <dates>
+      <discovery>2026-09-15</discovery>
+      <entry>2026-09-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7dc8fd4b-b1a7-11f1-a655-3497f65b111b">
+    <topic>nginx -- buffer overflow when using ngx_http_v3_module</topic>
+    <affects>
+    <package>
+	<name>nginx</name>
+	<range><lt>1.30.5,3</lt></range>
+    </package>
+    <package>
+	<name>nginx-devel</name>
+	<range><lt>1.31.6</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The nginx development team reports:</p>
+	<blockquote cite="https://nginx.org/en/security_advisories.html">
+	  <p>Buffer overflow when using ngx_http_v3_module
+	    (CVE-2026-90439). Severity: medium.</p>
+	  <p>A heap memory buffer overflow might occur in a worker
+	    process under certain configurations when using HTTP/3 with
+	    OpenSSL 3.5.0 and earlier.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-90439</cvename>
+      <url>https://my.f5.com/manage/s/article/K000162604</url>
+      <url>https://nginx.org/en/security_advisories.html</url>
+    </references>
+    <dates>
+      <discovery>2026-09-15</discovery>
+      <entry>2026-09-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ce54d883-b060-11f1-b187-901b0edee044">
+    <topic>anki -- multiple vulnerabilities</topic>
+    <affects>
+    <package>
+      <name>anki</name>
+      <range><lt>26.9</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Abdo Hasani reports:</p>
+	<blockquote cite="https://github.com/ankitects/anki/security/advisories/GHSA-jw6j-j4mf-8jgm">
+	  <p>Imported note HTML may execute inside an embedded image-occlusion
+	document that retains the editor profile's desktop API credentials. This could
+	cross the boundary between untrusted note content and privileged desktop
+	operations.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/ankitects/anki/security/advisories/GHSA-932p-crhj-v43p">
+	  <p>An improper path validation vulnerability allows an attacker to
+	execute arbitrary code on a victim's system when they interact with a malicious
+	flashcard deck. This vulnerability is triggered when a user right-clicks an
+	image within the editor and selects the "Open image" action; if an embedded
+	"&lt;img&gt;" tag contains a path with a dangerous extension in its src attribute,
+	the operating system may execute the file.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/ankitects/anki/security/advisories/GHSA-jw6j-j4mf-8jgm</url>
+      <url>https://github.com/ankitects/anki/security/advisories/GHSA-932p-crhj-v43p</url>
+    </references>
+    <dates>
+      <discovery>2026-09-14</discovery>
+      <entry>2026-09-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3a38fdda-b05a-11f1-9369-b42e991fc52e">
+    <topic>cjose -- Use of Hard-coded Cryptographic Key</topic>
+    <affects>
+    <package>
+	<name>cjose</name>
+	<range><lt>0.6.2.6</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://github.com/OpenIDC/cjose/security/advisories/GHSA-f6wf-pqg3-6wqq reports:</p>
+	<blockquote cite="https://github.com/OpenIDC/cjose/security/advisories/GHSA-f6wf-pqg3-6wqq">
+	<p>
+	OpenIDC/cjose is a C library implementing the Javascript
+	Object Signing and Encryption (JOSE). In versions 0.6.1
+	through 0.6.2.5, when cjose encrypts a JWE using an
+	AES-CBC-HMAC content-encryption algorithm (`A128CBC-HS256`,
+	`A192CBC-HS384`, or `A256CBC-HS512`) together with any
+	key-management algorithm that generates a fresh
+	content-encryption key (CEK), the CEK is all zero bytes
+	instead of being randomly generated. The resulting JWE is
+	therefore encrypted and authenticated under a fixed,
+	publicly known key, so anyone who obtains the JWE can
+	recover the plaintext and forge or modify the content. This
+	is fixed in version 0.6.2.6 by
+	`_cjose_jwe_set_cek_aes_cbc()` generating the CEK from
+	`RAND_bytes`. A regression test asserts that the
+	`encrypted_key` differs across two encryptions for each
+	AES-CBC-HMAC variant. Until upgrading, for data encrypted
+	with cjose, three options are available. Use an AES-GCM
+	`enc` (`A128GCM` / `A192GCM` / `A256GCM`) instead of an
+	AES-CBC-HMAC `enc`, use `alg=dir` with a caller-supplied
+	CEK, or avoid using cjose for JWE encryption with the
+	affected algorithm pair. These are mitigations for new
+	ciphertexts only; data already encrypted under the zero key
+	remains compromised and should be
+	re-encrypted (and any secrets it contained rotated).
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-53939</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2026-53939</url>
+    </references>
+    <dates>
+      <discovery>2026-09-08</discovery>
+      <entry>2026-09-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="35b3a492-b05a-11f1-9369-b42e991fc52e">
+    <topic>cjose -- Heap-based Buffer Overflow</topic>
+    <affects>
+    <package>
+	<name>cjose</name>
+	<range><lt>0.6.2.5</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://github.com/OpenIDC/cjose/security/advisories/GHSA-75r7-f5cv-g3wj reports:</p>
+	<blockquote cite="https://github.com/OpenIDC/cjose/security/advisories/GHSA-75r7-f5cv-g3wj">
+	<p>
+	  OpenIDC/cjose is a C library implementing the Javascript
+	  Object Signing and Encryption (JOSE). Prior to version
+	  0.6.2.5, cjose's JWE decryption path for the AES Key Wrap
+	  key-management algorithms (`alg` = `A128KW`, `A192KW`,
+	  `A256KW`) does not validate the length of the
+	  attacker-supplied `encrypted_key` (JWE Encrypted Key)
+	  before unwrapping it into a fixed-size, heap-allocated
+	  Content Encryption Key (CEK) buffer. A remote,
+	  unauthenticated attacker who can submit a crafted JWE to
+	  an application that decrypts it with an AES-KW symmetric
+	  key can trigger an out-of-bounds heap write, corrupting
+	  the heap. This leads at minimum to a crash (denial of
+	  service) and, depending on the heap layout and allocator,
+	  may be leverageable for further memory-corruption impact.
+	  `cjose_jwe_import()` / `cjose_jwe_decrypt()` are
+	  pre-authentication entry points: they parse and process
+	  fully attacker-controlled input. Upgrade to cjose 0.6.2.5
+	  to receive a patch. If upgrading is not immediately
+	  possible, reject the AES Key Wrap algorithms
+	  (`A128KW`/`A192KW`/`A256KW`) for untrusted JWEs at the
+	  application layer.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-53938</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2026-53938</url>
+    </references>
+    <dates>
+      <discovery>2026-09-08</discovery>
+      <entry>2026-09-14</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="fac18f5f-afc2-11f1-8266-3c7c3fba4204">
     <topic>Gitea -- multiple vulnerabilities</topic>
     <affects>
@@ -271,21 +555,27 @@
     <affects>
 	<package>
 	  <name>immich</name>
-	  <range><le>3.2.0</le></range>
+	  <range><le>3.2.2</le></range>
 	</package>
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
-	<p>NVD reports:</p>
+	<p>VulnCheck reports:</p>
 	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2026-82272">
 	  <p>Immich through 3.1.0 fails to properly enforce locked asset
 	    visibility when assets are locked through the single-asset
 	    endpoint, allowing them to remain accessible through shared
 	    albums and links.</p>
 	</blockquote>
-	<p>The single-asset code path still lacks the album removal that the
-	  bulk path performs, so 3.2.0 is affected as well.  Upstream has not
-	  released a fix yet.</p>
+	<p>In 3.2.2 the single-asset endpoint still lacks the album removal
+	  that the bulk endpoint performs, and the album and shared link
+	  access checks still carry no visibility filter.  Both code paths
+	  of the web interface use the bulk endpoint, so the state can only
+	  be reached by calling the API directly, and such assets stay
+	  visible only to those the owner already shares the album or the
+	  link with.  The identifier was assigned by VulnCheck, not by the
+	  immich project, which has published no advisory and has not
+	  confirmed the report.  NVD has not analysed the entry.</p>
 	</body>
     </description>
     <references>
@@ -296,6 +586,7 @@
     <dates>
       <discovery>2026-08-28</discovery>
       <entry>2026-09-11</entry>
+      <modified>2026-09-16</modified>
     </dates>
   </vuln>
 
