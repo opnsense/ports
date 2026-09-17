@@ -4261,7 +4261,6 @@ www/py-django-hijack||2025-03-31|Has expired: Depends on expired devel/py-pytest
 security/heimdal-devel||2025-03-31|Has expired: Upstream commits are incompatible
 lang/ruby31||2025-03-31|Has expired: Please migrate to newer version. Ruby 3.1 is expected to reach its EoL on March 31, 2025
 multimedia/gnome-mplayer||2025-03-31|Has expired: Abandonware, last activity from upstream 11 years ago and multiple unresolved issue reports
-devel/py-opengrok-tools||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
 multimedia/gmtk||2025-03-31|Has expired: Support library for deprecated port multimedia/gnome-mplayer
 lang/neko||2025-03-31|Has expired: Depends on expired security/mbedtls2
 devel/radian||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
@@ -5600,3 +5599,21 @@ devel/libheinz|devel/heinz|2026-09-12|Project was renamed upstream from libheinz
 devel/pecl-mustache|devel/php-mustache|2026-09-12|PECL is deprecated. Migrate devel/pecl-mustache to devel/php-mustache
 devel/py-pytest-httpserver|devel/py-pytest_httpserver|2026-09-12|Rename to match upstream naming
 math/libformfactor|math/formfactor|2026-09-12|Project was renamed upstream from libformfactor to formfactor
+math/py-pygslodeiv2||2026-09-15|Has expired: Depends on expired lang/cython0
+devel/py-python-dtrace||2026-09-15|Has expired: Depends on expired lang/cython0
+graphics/py-djvulibre||2026-09-15|Has expired: Depends on expired lang/cython0
+misc/py-torch-geometric||2026-09-15|Has expired: Depends on expiring math/py-dgl
+math/py-dgl||2026-09-15|Has expired: Depends on expired lang/cython0
+cad/cura||2026-09-15|Has expired: Depends on expiring devel/py-trimesh
+net/py-libdnet||2026-09-15|Has expired: Depends on expired lang/cython0
+devel/py-trimesh||2026-09-15|Has expired: Depends on expiring math/py-python-fcl
+net/py-pytradfri||2026-09-15|Has expired: Depends on expirign net/py-DTLSSocket
+net/py-DTLSSocket||2026-09-15|Has expired: Depends on expired lang/cython0
+net/py-pyenet||2026-09-15|Has expired: Depends on expired lang/cython0
+science/py-openEMS||2026-09-15|Has expired: Depends on expired lang/cython0
+science/py-molmod||2026-09-15|Has expired: Depends on expired lang/cython0
+databases/py-pymssql||2026-09-15|Has expired: Depends on expired lang/cython0
+devel/py-game_sdl2||2026-09-15|Has expired: Depends on expired lang/cython0
+databases/py-cassandra-driver||2026-09-15|Has expired: Depends on expired lang/cython0
+misc/py-python-pygtrie|misc/py-pygtrie|2026-09-16|Project was renamed on PyPI
+sysutils/py-py-cpuinfo|sysutils/py-py-cpuinfo2|2026-09-16|Remove obsolete sysutils/py-py-cpuinfo in favor of sysutils/py-py-cpuinfo2
