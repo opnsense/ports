@@ -1,0 +1,14 @@
+LightScope is a network security telescope and honeypot system designed for
+cybersecurity research. It monitors network traffic by analyzing firewall
+logs (pflog) to detect and log blocked connection attempts, providing
+valuable data for threat intelligence and research.
+
+Features:
+- Real-time pflog monitoring for blocked traffic analysis
+- Optional honeypot services to capture attacker behavior
+- Automatic data upload to LightScope cloud dashboard
+- Low resource footprint suitable for firewall appliances
+
+LightScope contributes anonymized threat data to benefit the security
+research community while helping you understand what attacks target your
+network.
