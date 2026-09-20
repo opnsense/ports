@@ -1,6 +1,6 @@
 PORTNAME=	netflector
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.15.2
+DISTVERSION=	0.16.0
 CATEGORIES=	net
 
 MAINTAINER=	sergii@bogomolov.io
@@ -21,7 +21,7 @@ CARGO_CRATES=	equivalent-1.0.2 \
 		hashbrown-0.17.1 \
 		indexmap-2.14.0 \
 		libc-0.2.189 \
-		log-0.4.33 \
+		log-0.4.34 \
 		proc-macro2-1.0.106 \
 		quote-1.0.45 \
 		serde-1.0.229 \
@@ -31,7 +31,7 @@ CARGO_CRATES=	equivalent-1.0.2 \
 		syn-3.0.0 \
 		thiserror-2.0.20 \
 		thiserror-impl-2.0.20 \
-		toml-1.1.4+spec-1.1.0 \
+		toml-1.1.6+spec-1.1.0 \
 		toml_datetime-1.1.1+spec-1.1.0 \
 		toml_parser-1.1.3+spec-1.1.0 \
 		toml_writer-1.1.2+spec-1.1.0 \
