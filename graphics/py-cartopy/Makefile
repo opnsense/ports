@@ -1,12 +1,13 @@
 PORTNAME=	cartopy
-PORTVERSION=	0.25.0
+PORTVERSION=	0.26.0
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Cartographic library with Matplotlib support for visualisation
-WWW=		https://github.com/SciTools/cartopy
+WWW=		https://cartopy.readthedocs.io/stable/ \
+		https://github.com/SciTools/cartopy
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -15,14 +16,14 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=2.0.0,1:math/py-numpy@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=7.0.0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}matplotlib>=3.6:math/py-matplotlib@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}numpy>=1.23,1:math/py-numpy@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}matplotlib>=3.8:math/py-matplotlib@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}numpy>=1.26,1:math/py-numpy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}packaging>=21:devel/py-packaging@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyproj>=3.1.0:graphics/py-pyproj@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pyshp>=2.1:devel/py-pyshp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyproj>=3.6:graphics/py-pyproj@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pyshp>=2.3.1:devel/py-pyshp@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}shapely>=2.0:devel/py-shapely@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.11+
 USE_PYTHON=	autoplist concurrent cython pep517
 
 OPTIONS_DEFINE=	OWS PLOTTING SPEEDUPS

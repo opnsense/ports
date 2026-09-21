@@ -7,6 +7,7 @@
     SUBDIR += ImageMagick6
     SUBDIR += ImageMagick7
     SUBDIR += O2-tools
+    SUBDIR += R-cran-Cairo
     SUBDIR += R-cran-DiagrammeR
     SUBDIR += R-cran-GDD
     SUBDIR += R-cran-R.devices
@@ -1057,6 +1058,7 @@
     SUBDIR += py-qt6-3d
     SUBDIR += py-qudida
     SUBDIR += py-railroad-diagrams
+    SUBDIR += py-rapidocr
     SUBDIR += py-rasterio
     SUBDIR += py-rasterstats
     SUBDIR += py-rawkit

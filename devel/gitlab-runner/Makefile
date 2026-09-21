@@ -1,6 +1,6 @@
 PORTNAME=	gitlab-runner
 DISTVERSIONPREFIX=	v
-DISTVERSION=	19.3.2
+DISTVERSION=	19.4.0
 CATEGORIES=	devel
 MASTER_SITES=	https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerx64 \
 		https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerarm
@@ -33,7 +33,7 @@ GL_ACCOUNT=	gitlab-org
 USE_RC_SUBR=	gitlab_runner
 GO_MOD_DIST=	gitlab
 
-GITBRANCH=	19-3-stable
+GITBRANCH=	19-4-stable
 GO_MODULE=	gitlab.com/gitlab-org/gitlab-runner
 
 _BUILD_DATE=	$$(date -u +%Y-%m-%dT%H:%M:%S%z)
@@ -66,11 +66,13 @@ PLIST_FILES=	bin/gitlab-runner
 # been fetched, and resolves that local path relative to it. Extract the
 # subtree from the main tarball first (this runs before go-post-fetch).
 post-fetch:
-	@${MKDIR} ${DISTDIR}/${DIST_SUBDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		${TAR} -xf ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.bz2 \
-		--strip-components 1 --no-same-owner --no-same-permissions \
-		${DISTNAME}/helpers/runner_wrapper/api
+	if [ ! -d "${DISTDIR}/${DIST_SUBDIR}/helpers" ]; then \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR} && \
+		cd ${DISTDIR}/${DIST_SUBDIR} && \
+			${TAR} -xf "${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.bz2" \
+			--strip-components 1 --no-same-owner --no-same-permissions \
+			"${DISTNAME}/helpers/runner_wrapper/api/go.mod" "${DISTNAME}/helpers/runner_wrapper/api/go.sum"; \
+	fi
 
 post-patch:
 	@${MKDIR} ${WRKSRC}/out/docker/

@@ -312,7 +312,10 @@
     SUBDIR += ilias
     SUBDIR += imaginary
     SUBDIR += immich
+    SUBDIR += immich-cli
+    SUBDIR += immich-go
     SUBDIR += immich-ml
+    SUBDIR += immich-public-proxy
     SUBDIR += iocaine
     SUBDIR += iridium
     SUBDIR += janus
@@ -1917,6 +1920,7 @@
     SUBDIR += py-priority1
     SUBDIR += py-prometheus-fastapi-instrumentator
     SUBDIR += py-protego
+    SUBDIR += py-proxpi
     SUBDIR += py-proxy.py
     SUBDIR += py-proxy_tools
     SUBDIR += py-puppetboard
@@ -2026,6 +2030,7 @@
     SUBDIR += py-wcag-contrast-ratio
     SUBDIR += py-webargs
     SUBDIR += py-webassets
+    SUBDIR += py-webdavclient3
     SUBDIR += py-webdriver_manager
     SUBDIR += py-webob
     SUBDIR += py-websocket-client

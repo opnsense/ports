@@ -64,9 +64,9 @@ CARGO_CRATES=	addchain-0.2.1 \
 		cast-0.3.0 \
 		cbc-0.1.2 \
 		cbc-0.2.1 \
-		cc-1.4.6 \
+		cc-1.4.7 \
 		cfg-expr-0.20.9 \
-		cfg-if-1.0.4 \
+		cfg-if-1.0.5 \
 		cfg_aliases-0.2.2 \
 		chacha20-0.10.2 \
 		chrono-0.4.45 \
@@ -75,11 +75,11 @@ CARGO_CRATES=	addchain-0.2.1 \
 		ciborium-ll-0.2.2 \
 		cipher-0.4.4 \
 		cipher-0.5.2 \
-		clap-4.6.6 \
-		clap_builder-4.6.6 \
-		clap_complete-4.6.9 \
-		clap_derive-4.6.4 \
-		clap_lex-1.1.0 \
+		clap-4.6.7 \
+		clap_builder-4.6.7 \
+		clap_complete-4.6.11 \
+		clap_derive-4.6.7 \
+		clap_lex-1.1.1 \
 		clap_mangen-0.3.3 \
 		cmake-0.1.58 \
 		cmov-0.5.4 \
@@ -112,7 +112,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		crypto-common-0.2.2 \
 		crypto-mac-0.11.0 \
 		crypto-primes-0.7.2 \
-		cryptoki-0.12.0 \
+		cryptoki-0.12.1 \
 		cryptoki-sys-0.5.0 \
 		csv-1.4.0 \
 		csv-core-0.1.13 \
@@ -158,7 +158,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		fiat-crypto-0.3.0 \
 		field-offset-0.3.6 \
 		filetime-0.2.29 \
-		find-msvc-tools-0.1.12 \
+		find-msvc-tools-0.1.13 \
 		flagset-0.4.7 \
 		flate2-1.1.10 \
 		float-cmp-0.9.0 \
@@ -388,6 +388,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		pastey-0.2.3 \
 		pbkdf2-0.12.2 \
 		pbkdf2-0.13.0 \
+		pem-rfc7468-0.7.0 \
 		pem-rfc7468-1.0.0 \
 		percent-encoding-2.3.2 \
 		phc-0.6.1 \
@@ -411,7 +412,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		polyval-0.7.3 \
 		potential_utf-0.1.6 \
 		powerfmt-0.2.0 \
-		ppmd-rust-1.4.1 \
+		ppmd-rust-1.5.0 \
 		ppv-lite86-0.2.21 \
 		primefield-0.14.0 \
 		primeorder-0.14.0-rc.14 \
@@ -436,7 +437,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		rc2-0.9.0 \
 		read-fonts-0.41.0 \
 		redox_syscall-0.5.18 \
-		redox_users-0.5.2 \
+		redox_users-0.5.3 \
 		regex-1.13.1 \
 		regex-automata-0.4.18 \
 		regex-syntax-0.8.11 \
@@ -457,7 +458,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		rustcrypto-ff_derive-0.14.0-rc.0 \
 		rustcrypto-group-0.14.0-rc.1 \
 		rusticata-macros-4.1.0 \
-		rustix-1.1.4 \
+		rustix-1.1.5 \
 		rustls-0.23.45 \
 		rustls-pki-types-1.15.1 \
 		rustls-webpki-0.103.15 \
@@ -520,9 +521,10 @@ CARGO_CRATES=	addchain-0.2.1 \
 		svgtypes-0.16.1 \
 		syn-1.0.109 \
 		syn-2.0.119 \
-		syn-3.0.5 \
+		syn-3.0.6 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.13.2 \
+		synstructure-0.14.0 \
 		system-configuration-0.7.0 \
 		system-configuration-sys-0.6.0 \
 		system-deps-7.0.8 \
@@ -576,7 +578,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		uds_windows-1.2.1 \
 		unarray-0.1.4 \
 		unicode-bidi-0.3.18 \
-		unicode-ident-1.0.24 \
+		unicode-ident-1.0.26 \
 		unicode-script-0.5.8 \
 		unicode-segmentation-1.13.3 \
 		unicode-vo-0.1.0 \
@@ -610,7 +612,7 @@ CARGO_CRATES=	addchain-0.2.1 \
 		webkit6-0.6.1 \
 		webkit6-sys-0.6.0 \
 		weezl-0.1.12 \
-		wide-1.7.0 \
+		wide-1.7.1 \
 		widestring-1.2.1 \
 		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
@@ -659,8 +661,8 @@ CARGO_CRATES=	addchain-0.2.1 \
 		xattr-1.6.1 \
 		xmlwriter-0.1.0 \
 		yoke-0.8.3 \
-		yoke-derive-0.8.2 \
-		yuv-0.8.18 \
+		yoke-derive-0.8.3 \
+		yuv-0.8.19 \
 		zbus-5.19.0 \
 		zbus_macros-5.19.0 \
 		zbus_names-4.3.4 \
@@ -668,14 +670,14 @@ CARGO_CRATES=	addchain-0.2.1 \
 		zerocopy-0.8.57 \
 		zerocopy-derive-0.8.57 \
 		zerofrom-0.1.8 \
-		zerofrom-derive-0.1.7 \
+		zerofrom-derive-0.1.8 \
 		zeroize-1.9.0 \
 		zeroize_derive-1.5.0 \
 		zerotrie-0.2.5 \
 		zerovec-0.11.8 \
 		zerovec-derive-0.11.6 \
 		zip-8.6.0 \
-		zlib-rs-0.6.7 \
+		zlib-rs-0.6.8 \
 		zmij-1.0.23 \
 		zopfli-0.8.3 \
 		zstd-0.13.3 \

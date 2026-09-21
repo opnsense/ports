@@ -30,17 +30,23 @@ GO_BUILDFLAGS= -tags="tracer_static,tracer_static_jaeger" \
 
 PLIST_FILES=	bin/kas
 
-# The go.mod has a local path replace (pkg/autoflow). The framework's
+# The go.mod has a local path replace (pkg/autoflow, pkg/tunnel). The framework's
 # go-post-fetch hook runs "go mod download all" from the distdir, where only
 # the bare go.mod has been fetched, and resolves that local path relative to
 # it. Extract the subtree from the main tarball first (this runs before
 # go-post-fetch).
 post-fetch:
-	@${MKDIR} ${DISTDIR}/${DIST_SUBDIR}
-	cd ${DISTDIR}/${DIST_SUBDIR} && \
-		${TAR} -xf ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.bz2 \
-		--strip-components 1 --no-same-owner --no-same-permissions \
-		${DISTNAME}/pkg/autoflow
+	if [ ! -d "${DISTDIR}/${DIST_SUBDIR}/pkg" ]; then \
+		${MKDIR} ${DISTDIR}/${DIST_SUBDIR} && \
+		cd ${DISTDIR}/${DIST_SUBDIR} && \
+			${TAR} -xf "${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.bz2" \
+			--strip-components 1 --no-same-owner --no-same-permissions \
+			"${DISTNAME}/pkg/autoflow/go.mod" "${DISTNAME}/pkg/autoflow/go.sum" && \
+		cd ${DISTDIR}/${DIST_SUBDIR} && \
+			${TAR} -xf ${DISTDIR}/${DIST_SUBDIR}/${DISTNAME}.tar.bz2 \
+			--strip-components 1 --no-same-owner --no-same-permissions \
+			"${DISTNAME}/pkg/tunnel/go.mod" "${DISTNAME}/pkg/tunnel/go.sum"; \
+	fi
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/bin/kas ${STAGEDIR}${PREFIX}/bin/kas

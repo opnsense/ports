@@ -557,11 +557,18 @@
     SUBDIR += installwatch
     SUBDIR += intel-epct
     SUBDIR += intel-nvmupdate-700series
+    SUBDIR += intel-nvmupdate-700series-dell
     SUBDIR += intel-nvmupdate-e610
     SUBDIR += intel-nvmupdate-e810
+    SUBDIR += intel-nvmupdate-e810-e823-dell
+    SUBDIR += intel-nvmupdate-e810-lenovo
+    SUBDIR += intel-nvmupdate-e825-e830-dell
     SUBDIR += intel-nvmupdate-e830-e835
     SUBDIR += intel-nvmupdate-i210
+    SUBDIR += intel-nvmupdate-i210-i350-x550-700series-lenovo
     SUBDIR += intel-nvmupdate-i225-i226
+    SUBDIR += intel-nvmupdate-i350-x550-700series-hpe
+    SUBDIR += intel-nvmupdate-i350-x550-dell
     SUBDIR += intel-nvmupdate-x550
     SUBDIR += intel-pcm
     SUBDIR += intel-undervolt
@@ -944,6 +951,7 @@
     SUBDIR += p5-User
     SUBDIR += p5-arclog
     SUBDIR += p5-reslog
+    SUBDIR += pack
     SUBDIR += packer
     SUBDIR += packmule
     SUBDIR += pacman
@@ -1076,6 +1084,7 @@
     SUBDIR += py-bitrot
     SUBDIR += py-blinkstick
     SUBDIR += py-borgmatic
+    SUBDIR += py-cdist
     SUBDIR += py-clustershell
     SUBDIR += py-concurrent-log-handler
     SUBDIR += py-container-inspector

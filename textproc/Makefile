@@ -255,6 +255,7 @@
     SUBDIR += goldendict
     SUBDIR += goldendict-ng
     SUBDIR += google-ctemplate
+    SUBDIR += google-translate
     SUBDIR += gpp
     SUBDIR += grap
     SUBDIR += grass
@@ -1691,6 +1692,7 @@
     SUBDIR += py-rouge-score
     SUBDIR += py-rst2ansi
     SUBDIR += py-rst2html5
+    SUBDIR += py-sacrebleu
     SUBDIR += py-sacremoses
     SUBDIR += py-scour
     SUBDIR += py-segments
@@ -1800,6 +1802,7 @@
     SUBDIR += py-tomli-w
     SUBDIR += py-tomlkit
     SUBDIR += py-tomllint
+    SUBDIR += py-toon-format
     SUBDIR += py-toronado
     SUBDIR += py-towncrier
     SUBDIR += py-translationstring
