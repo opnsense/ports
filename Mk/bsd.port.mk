@@ -3144,7 +3144,7 @@ ${_target}:
 	@printf '%s\n' "${site}" >> ${_PATCH_SITES_FILE}
 .          endfor
 .          for file in ${PATCHFILES}
-	@printf '%s\n' "${file}" >> ${_PATCHFILES_FILE}
+	@printf '%s\n' "${file:C/:-p[0-9]//}" >> ${_PATCHFILES_FILE}
 .          endfor
 	@${SETENV} \
 			${_DO_FETCH_ENV} \
@@ -3941,9 +3941,9 @@ makesum: check-sanity
 	@cd ${.CURDIR} && ${MAKE} makesum-fetch
 	@${MKDIR} ${WRKDIR}
 	@${RM} ${_CKSUMFILES_FILE}
-.          for file in ${_CKSUMFILES}
+.      for file in ${_CKSUMFILES}
 	@printf '%s\n' "${file}" >> ${_CKSUMFILES_FILE}
-.          endfor
+.      endfor
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
@@ -3960,9 +3960,9 @@ checksum: fetch
 .      if !empty(_CKSUMFILES) && !defined(NO_CHECKSUM)
 	@${MKDIR} ${WRKDIR}
 	@${RM} ${_CKSUMFILES_FILE}
-.          for file in ${_CKSUMFILES}
+.        for file in ${_CKSUMFILES}
 	@printf '%s\n' "${file}" >> ${_CKSUMFILES_FILE}
-.          endfor
+.        endfor
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
