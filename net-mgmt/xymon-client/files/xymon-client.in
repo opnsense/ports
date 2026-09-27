@@ -13,7 +13,7 @@ load_rc_config "$name"
 : ${xymon_client_enable:=NO}
 : ${xymon_client_user:=%%XYMONUSER%%}
 
-pidfile="%%WWWDIR%%/client/logs/clientlaunch.`hostname`.pid"
+pidfile="/var/run/xymon/${name}.pid"
 command=%%WWWDIR%%/client/bin/xymonlaunch
 command_args="--config=%%WWWDIR%%/client/etc/clientlaunch.cfg --log=%%WWWDIR%%/client/logs/clientlaunch.log --pidfile=${pidfile}"
 start_precmd=xymon_precmd
@@ -25,6 +25,10 @@ xymon_precmd()
 
 	# Ensure permissions of log dir
 	chown -R ${xymon_client_user} %%WWWDIR%%/client/logs
+
+	# Ensure pidfile directory is writable
+	mkdir /var/run/xymon
+	chown ${xymon_client_user} /var/run/xymon
 
 	# Below is pulled almost directly from Xymon's runclient.sh script which we are bypassing due to redundancy
 
