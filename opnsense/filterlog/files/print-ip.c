@@ -50,6 +50,7 @@ struct ip_print_demux_state {
 	const struct ip *ip;
 	const u_char *cp;
 	u_int   len, off;
+	u_int   caplen;
 	u_char  nh;
 	int     advance;
 };
@@ -70,6 +71,9 @@ ip_print_demux(struct sbuf *sbuf, struct ip_print_demux_state *ipds)
 		    EXTRACT_16BITS(&up->uh_ulen));
 		break;
 	}
+	case IPPROTO_ICMP:
+		icmp_print(sbuf, ipds->cp, ipds->len, ipds->caplen, 0);
+		break;
 	case IPPROTO_VRRP:
 		/* Type, ttl, vhid, version, adbskew, advbase */
 		sbuf_printf(sbuf, "%s,%d,%d,%d,%d,%d",
@@ -171,6 +175,7 @@ ip_print(struct sbuf *sbuf,
 	 */
 	if ((ipds->off & 0x1fff) == 0) {
 		ipds->cp = (const u_char *)ipds->ip + hlen;
+		ipds->caplen = length > hlen ? length - hlen : 0;
 		ipds->nh = ipds->ip->ip_p;
 		ip_print_demux(sbuf, ipds);
 	}
