@@ -43,7 +43,7 @@ PLIST_SUB+=	ETCDIR=etc/rspamd \
 		RSPAMDVERSION=${PORTVERSION}
 
 OPTIONS_DEFINE=	BLAS CGP GPERF LUAJIT
-OPTIONS_DEFINE_amd64=	HYPERSCAN
+OPTIONS_DEFINE_amd64=	HYPERSCAN VECTORSCAN
 OPTIONS_DEFAULT_amd64=	LUAJIT
 OPTIONS_DEFAULT_armv7=	LUAJIT
 OPTIONS_DEFAULT_i386=	LUAJIT
@@ -57,6 +57,7 @@ CGP_DESC=	Install Communigate Pro(tm) helper
 GPERF_DESC=	Google perf-tools profiling
 HYPERSCAN_DESC=	Use hyperscan optimizations (amd64 only)
 LUAJIT_DESC=	Use LuaJIT instead of standard Lua
+VECTORSCAN_DESC=	Use vectorscan optimizations (amd64 only)
 
 BLAS_LIB_DEPENDS=	libblis.so:math/blis \
 			liblapack.so:math/lapack
@@ -73,15 +74,20 @@ GPERF_CMAKE_ON=		-DENABLE_GPERF_TOOLS=ON
 
 HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
 HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
+HYPERSCAN_PREVENTS=	VECTORSCAN
 
 LUAJIT_USES=		luajit
 LUAJIT_USES_OFF=	lua:51+
 LUAJIT_CMAKE_OFF=	-DENABLE_LUAJIT=OFF
 
+VECTORSCAN_LIB_DEPENDS=	libhs.so:devel/vectorscan
+VECTORSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
+
 .include <bsd.port.options.mk>
 
 .if ${OPTIONS_DEFINE:NHYPERSCAN}
-PLIST_SUB+=	HYPERSCAN="@comment "
+PLIST_SUB+=	HYPERSCAN="@comment " \
+		VECTORSCAN="@comment "
 .endif
 
 post-install:

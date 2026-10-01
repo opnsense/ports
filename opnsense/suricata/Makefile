@@ -37,7 +37,7 @@ TEST_TARGET=	check
 SUB_FILES=	pkg-message
 
 OPTIONS_DEFINE=		GEOIP IPFW NETMAP NSS PORTS_PCAP PYTHON REDIS TESTS
-OPTIONS_DEFINE_amd64=	HYPERSCAN
+OPTIONS_DEFINE_amd64=	HYPERSCAN VECTORSCAN
 OPTIONS_DEFAULT=	IPFW NETMAP PYTHON
 
 OPTIONS_RADIO=		SCRIPTS
@@ -57,11 +57,13 @@ PYTHON_DESC=		Python-based update and control utilities
 REDIS_DESC=		Redis output support
 SCRIPTS_DESC=		Scripting
 TESTS_DESC=		Unit tests in suricata binary
+VECTORSCAN_DESC=	Hyperscan support via Vectorscan
 
 GEOIP_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 GEOIP_CONFIGURE_ON=	--enable-geoip
 
 HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
+HYPERSCAN_PREVENTS=	VECTORSCAN
 
 IPFW_CONFIGURE_ON=	--enable-ipfw
 
@@ -89,6 +91,8 @@ REDIS_LIB_DEPENDS=	libevent_pthreads.so:devel/libevent \
 			libhiredis.so:databases/hiredis
 REDIS_CONFIGURE_ON=	--enable-hiredis
 TESTS_CONFIGURE_ENABLE=	unittests
+
+VECTORSCAN_LIB_DEPENDS=	libhs.so:devel/vectorscan
 
 pre-patch:
 	@${CP} ${FILESDIR}/ax_check_compile_flag.m4 ${WRKSRC}/m4
