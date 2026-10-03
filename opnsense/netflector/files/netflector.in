@@ -49,7 +49,8 @@ report_cmd="${name}_report"
 netflector_precmd()
 {
     if [ ! -f "${netflector_config}" ]; then
-        err 1 "${netflector_config} does not exist"
+        netflector_log err "${netflector_config} does not exist"
+        exit 1
     fi
 
     # Refuse to start on a configuration the daemon would reject, so the failure is one clear message
@@ -57,18 +58,25 @@ netflector_precmd()
     # and validates only: it opens no interface and needs no privileges.
     if ! ${netflector_bin} --check-config "${netflector_config}" > /dev/null 2>&1; then
         ${netflector_bin} --check-config "${netflector_config}" 2>&1 | while read -r line; do
-            warn "${line}"
+            netflector_log err "${line}"
         done
-        err 1 "refusing to start: ${netflector_config} is not valid"
+        netflector_log err "refusing to start: ${netflector_config} is not valid"
+        exit 1
     fi
 
     # Checked after the config, not before: on a backup node a bad configuration should still be
     # reported now, rather than at failover.
     if [ -n "${netflector_carp_vhid}" ] &&
         ! carp_is_master "${netflector_carp_vhid}" "${netflector_carp_interface}"; then
-        warn "CARP vhid ${netflector_carp_vhid} is not MASTER here; not starting netflector"
+        netflector_log notice "CARP vhid ${netflector_carp_vhid} is not MASTER here; not starting netflector"
         return 1
     fi
+}
+
+netflector_log()
+{
+    logger -t "${name}" -p "daemon.$1" "$2"
+    printf '%s: %s\n' "$0" "$2" >&2
 }
 
 # A carp line reads "carp: MASTER vhid 1 advbase 1 advskew 0". Neither field identifies a group on its
