@@ -17,7 +17,7 @@
 # Settings:
 # ndp_proxy_go_enable (bool):       Enable service
 # ndp_proxy_go_upstream (string):   Upstream interface
-# ndp_proxy_go_downstream (string): Downstream interface(s), space-separated
+# ndp_proxy_go_downstream (string): Optional downstream interface(s), space-separated
 # ndp_proxy_go_flags (string):      Additional flags (e.g., --debug, --no-ra)
 # ndp_proxy_go_cache_file (string): Path to persistent cache file
 # ndp_proxy_go_check_carp (bool):   Check if CARP status is MASTER before starting
@@ -57,11 +57,6 @@ ndp_proxy_go_precmd()
         warn "ndp_proxy_go_upstream not set in rc.conf"
         return 1
     fi
-    if [ -z "${ndp_proxy_go_downstream}" ]; then
-        warn "ndp_proxy_go_downstream not set in rc.conf"
-        return 1
-    fi
-
     # Verify interfaces exist
     if ! ifconfig ${ndp_proxy_go_upstream} > /dev/null 2>&1; then
         warn "upstream interface ${ndp_proxy_go_upstream} does not exist"
