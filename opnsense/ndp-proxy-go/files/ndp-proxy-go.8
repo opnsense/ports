@@ -1,6 +1,6 @@
 .\" Copyright (c) 2025 Cedrik Pischem
 .\" SPDX-License-Identifier: BSD-2-Clause
-.Dd July 28, 2026
+.Dd October 5, 2026
 .Dt NDP-PROXY-GO 8
 .Os
 .Sh NAME
@@ -13,6 +13,7 @@
 .Op Fl -no-dad
 .Op Fl -no-routes
 .Op Fl -no-rewrite-lla
+.Op Fl -respond-prefix
 .Op Fl -cache-ttl Ar duration
 .Op Fl -cache-max Ar n
 .Op Fl -cache-file Ar path
@@ -23,19 +24,19 @@
 .Op Fl -static-prefix Ar prefix
 .Op Fl -static-router Ar address
 .Ar upstream
-.Ar downstream ...
+.Op Ar downstream ...
 .Sh DESCRIPTION
 The
 .Nm
 userspace daemon bridges IPv6 Neighbor Discovery (NA/NS/DAD) and Router Advertisement (RS/RA)
-between an upstream interface (ISP router) and one or more downstream interfaces (local clients).
+between an upstream interface (ISP router) and zero or more downstream interfaces (local clients).
 It is intended to run on a FreeBSD router that separates internal networks from the ISP uplink
 while allowing downstream clients to autoconfigure IPv6 addresses as if directly connected
 to the provider.
 .Pp
 The upstream (WAN) interface must be ethernet (preferred) or point-to-point (experimental),
 obtain a global SLAAC address, and receive periodic Router Advertisements (RA) from the provider.
-Downstream (LAN) interfaces must be ethernet and at least have a link-local address to
+Configured downstream (LAN) interfaces must be ethernet and at least have a link-local address to
 participate in Neighbor Discovery forwarding.
 .Pp
 This daemon is useful when the ISP provides only a single /64 on-link prefix and no DHCPv6-PD.
@@ -47,11 +48,19 @@ Enable verbose packet logging.
 .It Fl -no-ra
 Disable forwarding of Router Advertisements.
 .It Fl -no-dad
-Disable Duplicate Address Detection proxying.
+Disable all Duplicate Address Detection behavior.
 .It Fl -no-routes
 Do not install per-host /128 routes.
 .It Fl -no-rewrite-lla
 Keep original SLLA/TLLA fields in forwarded packets.
+.It Fl -respond-prefix
+Respond to upstream Neighbor Solicitations for unknown addresses in valid RA-learned or static
+prefixes after an upstream DAD check.
+This is useful for NPTv6 and can operate without downstream interfaces.
+With
+.Fl -no-dad ,
+addresses are claimed immediately without a DAD check.
+This option is a no-op on point-to-point upstreams.
 .It Fl -cache-ttl Ar duration
 Neighbor cache entry lifetime (default 10m).
 .It Fl -cache-max Ar n
@@ -74,7 +83,7 @@ If
 .Ar interface
 is omitted, the mapping applies globally to all interfaces.
 .It Fl -static-prefix Ar prefix
-Manually trust an IPv6 prefix (repeatable).
+Manually trust an IPv6 prefix for learning and prefix responding (repeatable).
 .It Fl -static-router Ar address
 Manually trust an upstream IPv6 link-local router address (repeatable).
 .El
