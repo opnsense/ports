@@ -15,7 +15,8 @@ OPTIONS_GROUP_THIRDPARTYGRP=	AJP AWS_AUTH BROTLI CACHE_PURGE \
 	REDIS2 RTMP SET_MISC SFLOW SHIBBOLETH SLOWFS_CACHE SRCACHE STS \
 	VOD VTS XSS WEBSOCKIFY ZSTD
 
-AJP_GH_TUPLE=		msva:nginx_ajp_module:fcbb2cc:ajp
+AJP_BUILD_DEPENDS=	nginx-module-ajp>0:www/nginx-module-ajp
+WRKSRC_ajp=		${WRKDIR}/nginx_ajp_module
 AJP_VARS=		DSO_EXTMODS+=ajp
 
 ARRAYVAR_IMPLIES=	DEVEL_KIT
@@ -62,7 +63,7 @@ FIPS_CHECK_VARS=	DSO_EXTMODS+=fipscheck
 
 FORMINPUT_IMPLIES=	DEVEL_KIT
 FORMINPUT_BUILD_DEPENDS=	nginx-module-form-input>0:www/nginx-module-form-input
-WRKSRC_forminput=	${WRKDIR}/form-input-nginx-module
+WRKSRC_forminput=	${WRKDIR}/nginx-form-input-module
 FORMINPUT_VARS=		DSO_EXTMODS+=forminput
 
 GRIDFS_GH_TUPLE=	nieoding:nginx-gridfs:059bdc3:gridfs
@@ -348,3 +349,6 @@ ZSTD_CONFIGURE_ENV=	ZSTD_INC=${LOCALBASE}/include \
 			ZSTD_LIB=${LOCALBASE}/lib
 ZSTD_GH_TUPLE=		tokers:zstd-nginx-module:f4ba115:zstd
 ZSTD_VARS=		DSO_EXTMODS+=zstd
+ZSTD_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-zstd-empty-flush \
+			${PATCHDIR}/extra-patch-zstd-last-truncation \
+			${PATCHDIR}/extra-patch-zstd-full-outbuf
