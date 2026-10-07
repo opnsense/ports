@@ -342,10 +342,10 @@ _turnserver:*:392:392::0:0:Coturn Turnserver Daemon:/nonexistent:/usr/sbin/nolog
 immich:*:393:393::0:0:Immich Daemon:/nonexistent:/usr/sbin/nologin
 mysqlrouter:*:394:394::0:0:MySQL Router Daemon:/nonexistent:/usr/sbin/nologin
 comentario:*:395:395::0:0:Comentario Daemon:/var/db/comentario:/usr/sbin/nologin
-# free: 396
+littlefedi:*:396:396::0:0:littleFedi Daemon:/var/db/littlefedi:/usr/sbin/nologin
 rtorrent:*:397:397::0:0:rtorrent Daemon User:/nonexistent:/usr/sbin/nologin
 tiarra:*:398:398::0:0:Tiarra IRC Proxy:/nonexistent:/usr/sbin/nologin
-# free: 399
+linkwarden:*:399:399::0:0:Linkwarden Daemon:/var/db/linkwarden:/usr/sbin/nologin
 evcc:*:400:400::0:0:evcc Daemon:/nonexistent:/usr/sbin/nologin
 spectrumknx:*:401:401::0:0:SpectrumKNX Daemon:/var/db/spectrumknx:/usr/sbin/nologin
 # free: 402
@@ -792,7 +792,7 @@ tcpcryptd:*:841:841::0:0:tcpcrypt daemon:/nonexistent:/usr/sbin/nologin
 munin:*:842:842::0:0:Munin:/var/munin:/usr/sbin/nologin
 # free: 843
 subsonic:*:844:844::0:0:Subsonic standalone-server:/nonexistent:/usr/sbin/nologin
-# free: 845
+rauthy:*:845:845::0:0:Rauthy IdP Daemon:/var/db/rauthy:/usr/sbin/nologin
 sogod:*:846:846::0:0:SOGo groupware:/nonexistent:/usr/sbin/nologin
 domoticz:*:847:847::0:0:domoticz user:/nonexistent:/usr/sbin/nologin
 graylog:*:848:848::0:0:Graylog user:/nonexistent:/usr/sbin/nologin

@@ -569,6 +569,9 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # run-depends-list
 #				- Show all directories which are run-dependencies
 #				  for this port.
+# test-depends
+#				- Build and install all test-dependencies for this
+#				  port.
 # test-depends-list
 #				- Show all directories which are test-dependencies
 #				  for this port.
@@ -1164,7 +1167,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .    endif
 _EXPORTED_VARS+=	OSVERSION
 
-.    if ${OPSYS} == FreeBSD && ${OSVERSION} < 1404000
+.    if ${OPSYS} == FreeBSD && (${OSVERSION} < 1404000 || (${OSVERSION} >= 1500000 && ${OSVERSION} < 1501000))
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
 .      if defined(ALLOW_UNSUPPORTED_SYSTEM)
@@ -1486,8 +1489,8 @@ _DID_FLAVORS_HELPERS=	yes
 _FLAVOR_HELPERS_OVERRIDE=	DESCR PLIST PKGNAMEPREFIX PKGNAMESUFFIX
 _FLAVOR_HELPERS_APPEND=	 	CONFLICTS CONFLICTS_BUILD CONFLICTS_INSTALL \
 							PKG_DEPENDS EXTRACT_DEPENDS PATCH_DEPENDS \
-							FETCH_DEPENDS BUILD_DEPENDS LIB_DEPENDS \
-							RUN_DEPENDS TEST_DEPENDS
+							FETCH_DEPENDS BUILD_RUN_DEPENDS BUILD_DEPENDS \
+							LIB_DEPENDS RUN_DEPENDS TEST_DEPENDS
 # These overwrite the current value
 .      for v in ${_FLAVOR_HELPERS_OVERRIDE}
 .        if defined(${FLAVOR}_${v})
@@ -3116,21 +3119,43 @@ _DISTFILES_FILE=${WRKDIR}/.distfiles
 _PATCH_SITES_FILE=${WRKDIR}/.patch_sites
 _PATCHFILES_FILE=${WRKDIR}/.patchfiles
 
+create-do-fetch-distfiles-files: .PHONY
+.    if !empty(DISTFILES)
+.      if !defined(_DO_FETCH_FILES_CREATED) || ${_DO_FETCH_FILES_CREATED} != ${PKGORIGIN}
+	@${MKDIR} ${WRKDIR}
+	@${RM} ${_MASTER_SITES_FILE} ${_DISTFILES_FILE}
+.        for site in ${_MASTER_SITES_ENV}
+	@printf '%s\n' "${site}" >> ${_MASTER_SITES_FILE}
+.        endfor
+.        for file in ${DISTFILES}
+	@printf '%s\n' "${file}" >> ${_DISTFILES_FILE}
+.        endfor
+.      endif
+.    endif
+
+create-do-fetch-patchfiles-files: .PHONY
+.    if defined(PATCHFILES) && !empty(PATCHFILES)
+.      if !defined(_DO_FETCH_FILES_CREATED) || ${_DO_FETCH_FILES_CREATED} != ${PKGORIGIN}
+	@${MKDIR} ${WRKDIR}
+	@${RM} ${_PATCH_SITES_FILE} ${_PATCHFILES_FILE}
+.        for site in ${_PATCH_SITES_ENV}
+	@printf '%s\n' "${site}" >> ${_PATCH_SITES_FILE}
+.        endfor
+.        for file in ${PATCHFILES}
+	@printf '%s\n' "${file:C/:-p[0-9]//}" >> ${_PATCHFILES_FILE}
+.        endfor
+.      endif
+.    endif
+
+
 # do-fetch does the fetching
 # fetch-list Prints out a list of files to fetch (useful to do a batch fetch)
 # fetch-url-list-int Used by fetch-urlall-list and fetch-url-list
-.    for _target in do-fetch fetch-list fetch-url-list-int makesum-fetch
+.    for _target in do-fetch fetch-list fetch-url-list-int
 .      if !target(${_target})
-${_target}:
+${_target}: create-do-fetch-distfiles-files create-do-fetch-patchfiles-files
 	@${MKDIR} ${WRKDIR}
 .        if !empty(DISTFILES)
-	@${RM} ${_MASTER_SITES_FILE} ${_DISTFILES_FILE}
-.          for site in ${_MASTER_SITES_ENV}
-	@printf '%s\n' "${site}" >> ${_MASTER_SITES_FILE}
-.          endfor
-.          for file in ${DISTFILES}
-	@printf '%s\n' "${file}" >> ${_DISTFILES_FILE}
-.          endfor
 	@${SETENV} \
 			${_DO_FETCH_ENV} \
 			dp_SITES_FILE=${_MASTER_SITES_FILE} \
@@ -3139,13 +3164,6 @@ ${_target}:
 			${SH} ${SCRIPTSDIR}/do-fetch.sh
 .        endif
 .        if defined(PATCHFILES) && !empty(PATCHFILES)
-	@${RM} ${_PATCH_SITES_FILE} ${_PATCHFILES_FILE}
-.          for site in ${_PATCH_SITES_ENV}
-	@printf '%s\n' "${site}" >> ${_PATCH_SITES_FILE}
-.          endfor
-.          for file in ${PATCHFILES}
-	@printf '%s\n' "${file:C/:-p[0-9]//}" >> ${_PATCHFILES_FILE}
-.          endfor
 	@${SETENV} \
 			${_DO_FETCH_ENV} \
 			dp_SITES_FILE=${_PATCH_SITES_FILE} \
@@ -3937,8 +3955,11 @@ _CKSUMFILES_FILE=${WRKDIR}/.cksumfiles
 # the options consistent when fetching and when makesum'ing.
 # As we're fetching new distfiles, that are not in the distinfo file, disable
 # checksum and sizes checks.
-makesum: check-sanity
-	@cd ${.CURDIR} && ${MAKE} makesum-fetch
+makesum: check-sanity create-do-fetch-distfiles-files create-do-fetch-patchfiles-files
+	@cd ${.CURDIR} && ${MAKE} fetch \
+			NO_CHECKSUM=yes \
+			DISABLE_SIZE=yes \
+			_DO_FETCH_FILES_CREATED=${PKGORIGIN}
 	@${MKDIR} ${WRKDIR}
 	@${RM} ${_CKSUMFILES_FILE}
 .      for file in ${_CKSUMFILES}
@@ -4025,6 +4046,11 @@ package-noinstall: package
 # Dependency checking
 ################################################################
 
+.    for sp in ${_PKGS}
+BUILD_DEPENDS${_SP.${sp}}+=		${BUILD_RUN_DEPENDS${_SP.${sp}}}
+RUN_DEPENDS${_SP.${sp}}+=		${BUILD_RUN_DEPENDS${_SP.${sp}}}
+.    endfor
+
 .    if !target(depends)
 depends: pkg-depends extract-depends patch-depends lib-depends fetch-depends build-depends run-depends
 
@@ -4064,7 +4090,7 @@ ${deptype:tl}-depends:
 
 # Dependency lists: both build and runtime, recursive.  Print out directory names.
 
-_UNIFIED_DEPENDS=${PKG_DEPENDS_ALL} ${EXTRACT_DEPENDS_ALL} ${PATCH_DEPENDS_ALL} ${FETCH_DEPENDS_ALL} ${BUILD_DEPENDS_ALL} ${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL} ${TEST_DEPENDS_ALL}
+_UNIFIED_DEPENDS=${PKG_DEPENDS_ALL} ${EXTRACT_DEPENDS_ALL} ${PATCH_DEPENDS_ALL} ${FETCH_DEPENDS_ALL} ${BUILD_DEPENDS_ALL} ${LIB_DEPENDS_ALL} ${RUN_DEPENDS_ALL}
 _DEPEND_SPECIALS=	${_UNIFIED_DEPENDS:M*\:*\:*:C,^[^:]*:([^:]*):.*$,\1,}
 
 .    for d in ${_UNIFIED_DEPENDS:M*\:/*}

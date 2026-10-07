@@ -20,7 +20,7 @@
 #			USES=python:3.11+	# Supports Python 3.11 or later
 #			USES=python:3.11-3.12	# Supports Python 3.11 to 3.12
 #			USES=python:-3.11	# Supports Python up to 3.11
-#			USES=python		# Supports 3.10+
+#			USES=python		# Supports 3.11+
 #
 # NOTE:	<version-spec> should be as specific as possible, matching the versions
 #	upstream declares support for, without being incorrect. In particular,
@@ -231,7 +231,7 @@
 #			  without dots, e.g. 20706, 31114, ...
 #
 # PYTHON_SUFFIX		- The major-minor release number of the chosen Python
-#			  interpreter without dots, e.g. 27, 310, ...
+#			  interpreter without dots, e.g. 27, 311, ...
 #			  Used for prefixes and suffixes.
 #
 # PYTHON_BASESUFFIX	- PYTHON_SUFFIX without the threaded ABI flag.
@@ -326,6 +326,9 @@
 #
 # The following variables may be set by the user:
 #
+# PYTHON_DISABLE_BYTECODE	- Disable compiling and including bytecode in the
+#				  resulting package. To take effect with existing
+#				  packages, rebuilds are required.
 # PYTEST_ENABLE_ALL_TESTS	- Enable tests skipped by PYTEST_BROKEN_TESTS
 #				  and PYTEST_IGNORED_TESTS.
 # PYTEST_ENABLE_BROKEN_TESTS	- Enable tests skipped by PYTEST_BROKEN_TESTS.
@@ -341,7 +344,7 @@ ZEROREGS_UNSAFE=	yes
 # What Python version and what Python interpreters are currently supported?
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-_PYTHON_VERSIONS=		3.12 3.13 3.13t 3.14 3.14t 3.11 3.10 3.15 2.7 # preferred first
+_PYTHON_VERSIONS=		3.12 3.13 3.13t 3.14 3.14t 3.11 3.15 2.7 # preferred first
 _PYTHON_PORTBRANCH=		3.12		# ${_PYTHON_VERSIONS:[1]}
 _PYTHON_BASECMD=		${LOCALBASE}/bin/python
 _PYTHON_RELPORTDIR=		lang/python
@@ -449,7 +452,7 @@ DEV_ERROR+=		"USES=python:3 is no longer supported, use USES=python:3.11+ or an 
 _PYTHON_VERSION:=	${PYTHON_DEFAULT}
 
 .  if empty(_PYTHON_ARGS)
-_PYTHON_ARGS=	3.10+
+_PYTHON_ARGS=	3.11+
 .  endif
 
 # Validate Python version whether it meets the version restriction.
@@ -743,7 +746,11 @@ PYDISTUTILS_SETUP?=	-c \
 	exec(compile(open(__file__, 'rb').read().replace(b'\\r\\n', b'\\n'), __file__, 'exec'))"
 PYDISTUTILS_CONFIGUREARGS?=	# empty
 PYDISTUTILS_BUILDARGS?=		# empty
+.  if defined(PYTHON_DISABLE_BYTECODE)
+PYDISTUTILS_INSTALLARGS?=	--no-compile -O1 --prefix=${PREFIX}
+.  else
 PYDISTUTILS_INSTALLARGS?=	-c -O1 --prefix=${PREFIX}
+.  endif
 .  if defined(_PYTHON_FEATURE_DISTUTILS)
 .    if !defined(PYDISTUTILS_INSTALLNOSINGLE)
 PYDISTUTILS_INSTALLARGS+=	--single-version-externally-managed
@@ -761,7 +768,11 @@ PYDISTUTILS_EGGINFODIR?=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
 # PEP-517 support
 PEP517_BUILD_CMD?=	${PYTHON_CMD} -m build --no-isolation --wheel ${PEP517_BUILD_CONFIG_SETTING}
 PEP517_BUILD_DEPEND?=	${PYTHON_PKGNAMEPREFIX}build>=0:devel/py-build@${PY_FLAVOR}
+.  if defined(PYTHON_DISABLE_BYTECODE)
+PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --no-compile-bytecode --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:tl:C|[-_]+|_|g}-${DISTVERSION}*.whl
+.  else
 PEP517_INSTALL_CMD?=	${PYTHON_CMD} -m installer --destdir ${STAGEDIR} --prefix ${PREFIX} ${BUILD_WRKSRC}/dist/${PORTNAME:C|[-_]+|_|g}-${DISTVERSION}*.whl
+.  endif
 PEP517_INSTALL_DEPEND?=	${PYTHON_PKGNAMEPREFIX}installer>=0:devel/py-installer@${PY_FLAVOR}
 
 # nose support
@@ -953,7 +964,12 @@ PYDISTUTILS_INSTALL_TARGET?=	install
 
 .  if defined(_PYTHON_FEATURE_DISTUTILS)
 LDSHARED?=	${CC} -shared
-MAKE_ENV+=	LDSHARED="${LDSHARED}" PYTHONDONTWRITEBYTECODE= PYTHONOPTIMIZE=
+MAKE_ENV+=	LDSHARED="${LDSHARED}"
+.    if defined(PYTHON_DISABLE_BYTECODE)
+MAKE_ENV+=	PYTHONDONTWRITEBYTECODE=y
+.    else
+MAKE_ENV+=	PYTHONDONTWRITEBYTECODE= PYTHONOPTIMIZE=
+.    endif
 
 .    if !target(do-configure) && !defined(HAS_CONFIGURE) && !defined(GNU_CONFIGURE)
 do-configure:
