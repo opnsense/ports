@@ -1,7 +1,7 @@
 PORTNAME=	semaphore
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.19.7
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 MASTER_SITES+=	https://github.com/joneum/FreeBSD-Semaphore/releases/download/${PORTNAME}-${DISTVERSION}/:webui
 DISTFILES+=	${PORTNAME}-webui-${DISTVERSION}${EXTRACT_SUFX}:webui \
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	ansible:sysutils/py-ansible-core@${PY_FLAVOR} \
 		git:devel/git
 
-USES=		go:1.26,modules python:env
+USES=		go:modules python:env
 USE_GITHUB=	yes
 GH_ACCOUNT=	semaphoreui
 GH_TUPLE=	Azure:go-ntlmssp:v0.1.1:azure_go_ntlmssp/vendor/github.com/Azure/go-ntlmssp \

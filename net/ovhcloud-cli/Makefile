@@ -1,6 +1,6 @@
 PORTNAME=		ovhcloud-cli
 DISTVERSIONPREFIX=	v
-DISTVERSION=		0.14.0
+DISTVERSION=		0.15.0
 CATEGORIES=		net devel
 
 MAINTAINER=	bapt@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/ovh/ovhcloud-cli
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.26+,modules
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ovh

@@ -1,6 +1,6 @@
 PORTNAME=	wacli
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.18.1
+DISTVERSION=	0.19.0
 CATEGORIES=	misc
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/steipete/wacli
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.26+,modules
+USES=		go:modules
 
 GO_MODULE=	github.com/steipete/wacli
 GO_TARGET=	./cmd/wacli

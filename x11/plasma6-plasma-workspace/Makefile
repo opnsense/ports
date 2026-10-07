@@ -1,5 +1,6 @@
 PORTNAME=	plasma-workspace
 DISTVERSION=	${KDE_PLASMA_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11 kde kde-plasma
 
 COMMENT=	Various components for Plasma-based environment
@@ -41,8 +42,7 @@ USE_KDE=	activities activities-stats archive attica auth baloo \
 		statusnotifieritem svg syntaxhighlighting texteditor \
 		textwidgets userfeedback wallet wayland \
 		widgetsaddons windowsystem xmlgui \
-		ecm:build plasma-wayland-protocols:build \
-		kwin-x11:run
+		ecm:build plasma-wayland-protocols:build
 USE_QT=		5compat base declarative location svg wayland
 USE_XORG=	ice sm x11 xau xcb xcursor xext xfixes xft xi xrender xtst
 SHEBANG_FILES=	components/calendar/kconf_update/migrate-calendar-to-plugin-id.py.in
@@ -53,6 +53,17 @@ OPTIONS_DEFINE=	GTK
 
 GTK_DESC=		Global menu bar support for GTK applications
 GTK_RUN_DEPENDS=	appmenu-gtk-module>0:x11/gtk-app-menu
+
+.include <bsd.port.options.mk>
+# https://reviews.freebsd.org/D59635
+.if ${OSVERSION} < 1501503
+PLIST_SUB+=	RTLD="@comment "
+
+post-install:
+	${RM} ${STAGEDIR}${QT_PLUGINDIR}/plasma/applets/org.kde.plasma.cameraindicator.so
+.else
+PLIST_SUB+=	RTLD=""
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \

@@ -134,7 +134,6 @@
     SUBDIR += kalarm
     SUBDIR += kanbanapp
     SUBDIR += kcharselect
-    SUBDIR += kchmviewer
     SUBDIR += kdeconnect-kde
     SUBDIR += kdepim
     SUBDIR += kdepim-addons
@@ -155,7 +154,6 @@
     SUBDIR += ktimetracker
     SUBDIR += kweather
     SUBDIR += kweathercore
-    SUBDIR += latte-dock
     SUBDIR += lazycli
     SUBDIR += libcprime
     SUBDIR += libkdepim
@@ -185,7 +183,6 @@
     SUBDIR += menumaker
     SUBDIR += merkuro
     SUBDIR += meteo
-    SUBDIR += mindforger
     SUBDIR += moregroupware
     SUBDIR += mozo
     SUBDIR += mybee-qt
@@ -258,7 +255,6 @@
     SUBDIR += rubygem-shellplay
     SUBDIR += rubygem-taskjuggler
     SUBDIR += rwpspread
-    SUBDIR += semantik
     SUBDIR += sigi
     SUBDIR += sigye
     SUBDIR += simpleagenda

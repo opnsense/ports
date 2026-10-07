@@ -100,6 +100,7 @@
     SUBDIR += darkice
     SUBDIR += dcd
     SUBDIR += deadbeef
+    SUBDIR += deadbeef-gui-plugins
     SUBDIR += deadbeef-jack-plugin
     SUBDIR += deadbeef-mpris2-plugin
     SUBDIR += deadbeef-musical-spectrum-plugin
@@ -503,7 +504,6 @@
     SUBDIR += muse-sequencer
     SUBDIR += musepack
     SUBDIR += musescore
-    SUBDIR += musescore3
     SUBDIR += musiccontrol
     SUBDIR += musicpc
     SUBDIR += musicpd
@@ -630,6 +630,7 @@
     SUBDIR += py-al
     SUBDIR += py-apetag
     SUBDIR += py-aubio
+    SUBDIR += py-audioop-lts
     SUBDIR += py-audioread
     SUBDIR += py-auditok
     SUBDIR += py-discid
@@ -648,7 +649,6 @@
     SUBDIR += py-mutagen
     SUBDIR += py-opuslib
     SUBDIR += py-playsound
-    SUBDIR += py-pocketsphinx
     SUBDIR += py-pulsectl
     SUBDIR += py-pyacoustid
     SUBDIR += py-pyaudio
@@ -671,6 +671,7 @@
     SUBDIR += py-soxr
     SUBDIR += py-speechrecognition
     SUBDIR += py-spotipy
+    SUBDIR += py-standard-aifc
     SUBDIR += py-supysonic
     SUBDIR += py-tinytag
     SUBDIR += py-torchaudio
@@ -779,7 +780,6 @@
     SUBDIR += squeezelite
     SUBDIR += sratom
     SUBDIR += ssr-lv2
-    SUBDIR += stegosaurus-lv2
     SUBDIR += stk
     SUBDIR += stone-phaser-lv2
     SUBDIR += strawberry

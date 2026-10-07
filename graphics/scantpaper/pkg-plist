@@ -19,6 +19,8 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/bboxtree%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/canvas%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/canvas%%PYTHON_TAG%%.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/clipboard%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/clipboard%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/comboboxtext%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/comboboxtext%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/config%%PYTHON_TAG%%.opt-1.pyc
@@ -37,6 +39,8 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/entry_completion%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/file_menu_mixins%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/file_menu_mixins%%PYTHON_TAG%%.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/gobject%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/gobject%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/helpers%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/helpers%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/i18n%%PYTHON_TAG%%.opt-1.pyc
@@ -45,6 +49,8 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/imageview%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/importthread%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/importthread%%PYTHON_TAG%%.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/layer%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/layer%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/loop_helpers%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/loop_helpers%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/page%%PYTHON_TAG%%.opt-1.pyc
@@ -67,8 +73,6 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/simplelist%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/tesseract%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/tesseract%%PYTHON_TAG%%.pyc
-%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/text_layer_control%%PYTHON_TAG%%.opt-1.pyc
-%%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/text_layer_control%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/tools_menu_mixins%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/tools_menu_mixins%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/__pycache__/unpaper%%PYTHON_TAG%%.opt-1.pyc
@@ -80,6 +84,7 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/basethread.py
 %%PYTHON_SITELIBDIR%%/scantpaper/bboxtree.py
 %%PYTHON_SITELIBDIR%%/scantpaper/canvas.py
+%%PYTHON_SITELIBDIR%%/scantpaper/clipboard.py
 %%PYTHON_SITELIBDIR%%/scantpaper/comboboxtext.py
 %%PYTHON_SITELIBDIR%%/scantpaper/config.py
 %%PYTHON_SITELIBDIR%%/scantpaper/conftest.py
@@ -122,10 +127,12 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/frontend/__pycache__/image_sane%%PYTHON_TAG%%.pyc
 %%PYTHON_SITELIBDIR%%/scantpaper/frontend/enums.py
 %%PYTHON_SITELIBDIR%%/scantpaper/frontend/image_sane.py
+%%PYTHON_SITELIBDIR%%/scantpaper/gobject.py
 %%PYTHON_SITELIBDIR%%/scantpaper/helpers.py
 %%PYTHON_SITELIBDIR%%/scantpaper/i18n.py
 %%PYTHON_SITELIBDIR%%/scantpaper/imageview.py
 %%PYTHON_SITELIBDIR%%/scantpaper/importthread.py
+%%PYTHON_SITELIBDIR%%/scantpaper/layer.py
 %%PYTHON_SITELIBDIR%%/scantpaper/loop_helpers.py
 %%PYTHON_SITELIBDIR%%/scantpaper/page.py
 %%PYTHON_SITELIBDIR%%/scantpaper/pagerange.py
@@ -146,7 +153,6 @@ bin/scantpaper
 %%PYTHON_SITELIBDIR%%/scantpaper/session_mixins.py
 %%PYTHON_SITELIBDIR%%/scantpaper/simplelist.py
 %%PYTHON_SITELIBDIR%%/scantpaper/tesseract.py
-%%PYTHON_SITELIBDIR%%/scantpaper/text_layer_control.py
 %%PYTHON_SITELIBDIR%%/scantpaper/tools_menu_mixins.py
 %%PYTHON_SITELIBDIR%%/scantpaper/unpaper.py
 share/icons/hicolor/16x16/apps/stock-selection-all-16.png
@@ -162,6 +168,8 @@ share/icons/hicolor/scalable/apps/stock-rotate-180.svg
 share/icons/hicolor/scalable/apps/stock-rotate-270.svg
 share/icons/hicolor/scalable/apps/stock-rotate-90.svg
 share/locale/ab/LC_MESSAGES/scantpaper.mo
+share/locale/af/LC_MESSAGES/scantpaper.mo
+share/locale/ar/LC_MESSAGES/scantpaper.mo
 share/locale/be/LC_MESSAGES/scantpaper.mo
 share/locale/bg/LC_MESSAGES/scantpaper.mo
 share/locale/ca/LC_MESSAGES/scantpaper.mo
@@ -179,8 +187,10 @@ share/locale/fr/LC_MESSAGES/scantpaper.mo
 share/locale/gl/LC_MESSAGES/scantpaper.mo
 share/locale/gu/LC_MESSAGES/scantpaper.mo
 share/locale/he/LC_MESSAGES/scantpaper.mo
+share/locale/hi/LC_MESSAGES/scantpaper.mo
 share/locale/hr/LC_MESSAGES/scantpaper.mo
 share/locale/hu/LC_MESSAGES/scantpaper.mo
+share/locale/id/LC_MESSAGES/scantpaper.mo
 share/locale/it/LC_MESSAGES/scantpaper.mo
 share/locale/ja/LC_MESSAGES/scantpaper.mo
 share/locale/ko/LC_MESSAGES/scantpaper.mo
@@ -190,11 +200,14 @@ share/locale/oc/LC_MESSAGES/scantpaper.mo
 share/locale/pl/LC_MESSAGES/scantpaper.mo
 share/locale/pt/LC_MESSAGES/scantpaper.mo
 share/locale/pt_BR/LC_MESSAGES/scantpaper.mo
+share/locale/ro/LC_MESSAGES/scantpaper.mo
 share/locale/ru/LC_MESSAGES/scantpaper.mo
 share/locale/sk/LC_MESSAGES/scantpaper.mo
 share/locale/sl/LC_MESSAGES/scantpaper.mo
+share/locale/sr/LC_MESSAGES/scantpaper.mo
 share/locale/sv/LC_MESSAGES/scantpaper.mo
 share/locale/tr/LC_MESSAGES/scantpaper.mo
 share/locale/uk/LC_MESSAGES/scantpaper.mo
+share/locale/vi/LC_MESSAGES/scantpaper.mo
 share/locale/zh_CN/LC_MESSAGES/scantpaper.mo
 share/locale/zh_TW/LC_MESSAGES/scantpaper.mo

@@ -19,7 +19,7 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools-scm>0:devel/py-setuptools-scm@$
 LIB_DEPENDS=	libxslt.so:textproc/libxslt
 
 USES=		cmake compiler:c++11-lang gnome llvm:lib,noexport \
-		python:3.10-3.12 qt:5 shebangfix tar:xz
+		python:3.11-3.12 qt:5 shebangfix tar:xz
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_PYTHON=	flavors
@@ -30,7 +30,8 @@ CMAKE_ARGS+=	"-DCMAKE_CXX_FLAGS=-lexecinfo" \
 		"-DCMAKE_STANDARD_LIBRARIES=-lexecinfo" \
 		"-DCMAKE_CXX_STANDARD_LIBRARIES=-lexecinfo" \
 		"-DUSE_PYTHON_VERSION=${PYTHON_VER}" \
-		"-DLLVM_CONFIG=${LLVM_CONFIG}"
+		"-DLLVM_CONFIG=${LLVM_CONFIG}" \
+		"-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
 
 PLIST_SUB+=	DISTVERSION=${DISTVERSION}
 PLIST_SUB+=	PYVERSTR=.cpython-${PYTHON_SUFFIX}${PYTHON_ABIVER}

@@ -1,6 +1,6 @@
 PORTNAME=	publisher
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.9.4
+DISTVERSION=	5.9.9
 CATEGORIES=	print
 PKGNAMESUFFIX=	-devel
 
@@ -24,7 +24,7 @@ RUN_DEPENDS=	luahbtex:print/tex-luatex
 FLAVORS=	default pro
 FLAVOR?=	${FLAVORS:[1]}
 
-pro_PKGNAMESUFFIX=	-pro
+pro_PKGNAMESUFFIX=	-devel-pro
 default_COMMENT=	(community)
 pro_COMMENT=		(pro)
 

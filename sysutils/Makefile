@@ -120,6 +120,7 @@
     SUBDIR += beats92
     SUBDIR += beats93
     SUBDIR += beats94
+    SUBDIR += beats95
     SUBDIR += bfs
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
@@ -141,6 +142,7 @@
     SUBDIR += bpytop
     SUBDIR += brasero
     SUBDIR += brename
+    SUBDIR += bricoler
     SUBDIR += brut
     SUBDIR += bsd-splash-changer
     SUBDIR += bsdconfig
@@ -188,14 +190,8 @@
     SUBDIR += cfengine-masterfiles
     SUBDIR += cfengine-masterfiles-devel
     SUBDIR += cfengine-masterfiles-lts
-    SUBDIR += cfengine-masterfiles324
-    SUBDIR += cfengine-masterfiles325
-    SUBDIR += cfengine-masterfiles326
     SUBDIR += cfengine-masterfiles327
     SUBDIR += cfengine-masterfiles328
-    SUBDIR += cfengine324
-    SUBDIR += cfengine325
-    SUBDIR += cfengine326
     SUBDIR += cfengine327
     SUBDIR += cfengine328
     SUBDIR += chaoskube
@@ -223,8 +219,10 @@
     SUBDIR += cmogstored
     SUBDIR += cmospwd
     SUBDIR += cni-dnsname
+    SUBDIR += cni-epair
     SUBDIR += colorize
     SUBDIR += conan
+    SUBDIR += condy
     SUBDIR += confctl
     SUBDIR += conky
     SUBDIR += conky-awesome
@@ -372,6 +370,7 @@
     SUBDIR += env4801
     SUBDIR += envconsul
     SUBDIR += epazote
+    SUBDIR += eppctl
     SUBDIR += erdtree
     SUBDIR += erldash
     SUBDIR += etcmerge
@@ -414,6 +413,7 @@
     SUBDIR += firstboot-freebsd-update
     SUBDIR += firstboot-pkg-upgrade
     SUBDIR += firstboot-pkgs
+    SUBDIR += fjord
     SUBDIR += flasher
     SUBDIR += flashrom
     SUBDIR += flexbackup
@@ -451,7 +451,6 @@
     SUBDIR += fx
     SUBDIR += g15daemon
     SUBDIR += gaffitter
-    SUBDIR += ganglia-monitor-core
     SUBDIR += gapcmon
     SUBDIR += garcon
     SUBDIR += gather
@@ -510,6 +509,7 @@
     SUBDIR += gstat-rs
     SUBDIR += gstopd
     SUBDIR += gstreamer1-plugins-cdio
+    SUBDIR += gtime
     SUBDIR += handlr
     SUBDIR += hardlink
     SUBDIR += hare
@@ -610,6 +610,7 @@
     SUBDIR += jstest-gtk
     SUBDIR += jtop
     SUBDIR += jtopen
+    SUBDIR += jtransfer
     SUBDIR += jvmtop
     SUBDIR += k3b
     SUBDIR += k8temp
@@ -647,7 +648,6 @@
     SUBDIR += kubo-go
     SUBDIR += kustomize
     SUBDIR += kvmclock-kmod
-    SUBDIR += lava
     SUBDIR += lazyssh
     SUBDIR += lbl-cf
     SUBDIR += lbl-hf
@@ -702,6 +702,7 @@
     SUBDIR += logstash92
     SUBDIR += logstash93
     SUBDIR += logstash94
+    SUBDIR += logstash95
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += loki
@@ -857,7 +858,9 @@
     SUBDIR += opentofu
     SUBDIR += openupsd
     SUBDIR += openvox-agent8
+    SUBDIR += openvox-agent9
     SUBDIR += openvox-server8
+    SUBDIR += openvox-server9
     SUBDIR += osinfo-db-tools
     SUBDIR += osquery
     SUBDIR += p5-App-Regather
@@ -1014,7 +1017,6 @@
     SUBDIR += pipeform
     SUBDIR += pipemeter
     SUBDIR += plasma-pass
-    SUBDIR += plasma5-libksysguard
     SUBDIR += plasma6-discover
     SUBDIR += plasma6-kde-cli-tools
     SUBDIR += plasma6-kinfocenter
@@ -1070,15 +1072,11 @@
     SUBDIR += py-GPUtil
     SUBDIR += py-ansible-compat
     SUBDIR += py-ansible-core
-    SUBDIR += py-ansible-core218
-    SUBDIR += py-ansible-core219
     SUBDIR += py-ansible-core220
     SUBDIR += py-ansible-core221
     SUBDIR += py-ansible-lint
     SUBDIR += py-ansible-runner
-    SUBDIR += py-appjail-gui
     SUBDIR += py-azure-cli
-    SUBDIR += py-azure-cli-acr
     SUBDIR += py-azure-cli-core
     SUBDIR += py-azure-cli-telemetry
     SUBDIR += py-bitrot
@@ -1252,7 +1250,6 @@
     SUBDIR += rubygem-chef-winrm-elevated
     SUBDIR += rubygem-chef-zero
     SUBDIR += rubygem-choria-mcorpc-support
-    SUBDIR += rubygem-facter
     SUBDIR += rubygem-fluent-mixin-plaintextformatter
     SUBDIR += rubygem-fluent-plugin-config-expander
     SUBDIR += rubygem-fluent-plugin-file-alternative
@@ -1513,7 +1510,6 @@
     SUBDIR += tvterm
     SUBDIR += tw_cli
     SUBDIR += twa-kmod
-    SUBDIR += twmn
     SUBDIR += tzdialog
     SUBDIR += u-boot-a13-olinuxino
     SUBDIR += u-boot-a64-olinuxino
@@ -1592,6 +1588,7 @@
     SUBDIR += ucspi-unix
     SUBDIR += udfclient
     SUBDIR += ufetch
+    SUBDIR += ufs-utils
     SUBDIR += uhidd
     SUBDIR += uhubctl
     SUBDIR += uif2iso

@@ -26,6 +26,7 @@
     SUBDIR += SRB2
     SUBDIR += SpaceCadetPinball
     SUBDIR += SpaceCadetPinball-devel
+    SUBDIR += UZDoom
     SUBDIR += abbayedesmorts
     SUBDIR += abe
     SUBDIR += abuse_sdl
@@ -301,7 +302,6 @@
     SUBDIR += fretsonfire-data
     SUBDIR += frikqcc
     SUBDIR += frobtads
-    SUBDIR += frogatto
     SUBDIR += frotz
     SUBDIR += frozen-bubble
     SUBDIR += fs2open

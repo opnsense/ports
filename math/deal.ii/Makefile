@@ -1,5 +1,6 @@
 PORTNAME=	deal.II
 DISTVERSION=	9.8.0
+PORTREVISION=	4
 CATEGORIES=	math
 MASTER_SITES=	https://github.com/dealii/dealii/releases/download/v${DISTVERSION}/
 DISTNAME=	dealii-${DISTVERSION}
@@ -45,8 +46,10 @@ USE_LDCONFIG=	yes
 CMAKE_OFF=	DEAL_II_ALLOW_BUNDLED DEAL_II_COMPONENT_EXAMPLES \
 		DEAL_II_WITH_P4EST DEAL_II_WITH_TRILINOS DEAL_II_WITH_UMFPACK \
 		DEAL_II_WITH_MUPARSER DEAL_II_WITH_ASSIMP
+CMAKE_OFF+=	DEAL_II_WITH_MUMPS # when math/mumps is installed deal fails because it expects a newer mumps (FIXME)
 #CMAKE_ON=	FORCE_BUNDLED_KOKKOS # TMP turn on bundled kokkos
 CMAKE_TESTING_ON=	FREEBSD_ENABLE_TESTS
+CMAKE_ARGS=	-DCMAKE_POLICY_VERSION_MINIMUM=3.5 # CMake 4.5 compatibility, see https://github.com/dealii/dealii/issues/20250
 
 USE_CXXSTD=	c++23
 LDFLAGS+=	-lomp

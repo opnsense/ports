@@ -1,6 +1,6 @@
 PORTNAME=	vault
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1.0
+DISTVERSION=	2.1.1
 CATEGORIES=	security
 MASTER_SITES=	https://raw.githubusercontent.com/hashicorp/vault/${DISTVERSIONFULL}/ \
 		LOCAL/bofh/security/${PORTNAME}/:web_ui
@@ -26,7 +26,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 EXTRACT_DEPENDS=npm-node20>0:www/npm-node20
 .endif
 
-USES=		cpe go:1.26+,modules
+USES=		cpe go:modules
 CPE_VENDOR=	hashicorp
 USE_GITHUB=	yes
 GH_ACCOUNT=	hashicorp

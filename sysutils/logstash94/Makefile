@@ -1,7 +1,7 @@
 PORTNAME=	logstash
-DISTVERSION=	9.4.1
-PORTREVISION=	1
+DISTVERSION=	9.4.7
 DISTVERSIONSUFFIX=	-darwin-x86_64
+PORTREVISION=	3
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://artifacts.elastic.co/downloads/logstash/ \
 		LOCAL/vvd/elastic
@@ -28,6 +28,10 @@ CONFLICTS=	${PORTNAME}*
 
 EXTRACT_AFTER_ARGS=	--exclude jdk.app \
 			--exclude *.bat \
+			--exclude vendor/jruby/lib/ruby/stdlib/libfixposix/binary/*-darwin \
+			--exclude vendor/jruby/lib/ruby/stdlib/libfixposix/binary/*-linux \
+			--exclude vendor/jruby/lib/ruby/stdlib/libfixposix/binary/x86-freebsd \
+			--exclude vendor/jruby/lib/ruby/stdlib/libfixposix/binary/${ARCH:S|aarch64|x86_64|}-freebsd \
 			--no-same-owner --no-same-permissions
 
 NO_BUILD=	yes
@@ -36,7 +40,8 @@ SUB_FILES=	pkg-message
 SUB_LIST=	JAVA_HOME=${JAVA_HOME} \
 		LOGSTASH_HOME=${LOGSTASH_HOME} \
 		LOGUSER=${LOGUSER} \
-		LOGGROUP=${LOGGROUP}
+		LOGGROUP=${LOGGROUP} \
+		VERSION=${DISTVERSION:R}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 

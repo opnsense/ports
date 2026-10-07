@@ -1,6 +1,5 @@
 PORTNAME=	xdg-desktop-portal-kde
 DISTVERSION=	${KDE_PLASMA_VERSION}
-PORTREVISION=	1
 CATEGORIES=	deskutils kde kde-plasma
 
 MAINTAINER=	kde@FreeBSD.org
@@ -13,7 +12,7 @@ LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
 RUN_DEPENDS=	xdg-desktop-portal>0:deskutils/xdg-desktop-portal
 
 USES=		cmake gettext gl kde:6 pkgconfig qt:6 tar:xz xorg
-USE_KDE=	bookmarks completion config coreaddons globalaccel guiaddons \
+USE_KDE=	bookmarks completion config coreaddons globalaccel \
 		i18n iconthemes itemviews jobwidgets kio kirigami2 \
 		notifications service solid statusnotifieritem wayland \
 		widgetsaddons windowsystem \

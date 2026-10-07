@@ -1,6 +1,6 @@
---- source3/modules/vfs_freebsd.c.orig	2025-07-11 10:55:17 UTC
-+++ source3/modules/vfs_freebsd.c
-@@ -0,0 +1,699 @@
+--- source3/modules/vfs_freebsd.c.orig	2026-09-30 16:38:33.996311000 +0700
++++ source3/modules/vfs_freebsd.c	2026-09-30 16:39:38.964459000 +0700
+@@ -0,0 +1,702 @@
 +/*
 + * This module implements VFS calls specific to FreeBSD
 + *
@@ -199,7 +199,7 @@
 +	if (fsp->fsp_flags.is_pathref) {
 +		const char *path = fsp->fsp_name->base_name;
 +		if (fsp->fsp_flags.have_proc_fds) {
-+			char buf[PATH_MAX];
++			struct sys_proc_fd_path_buf buf;
 +			path = sys_proc_fd_path(fd, &buf);
 +			if (path == NULL) {
 +				return -1;
@@ -253,7 +253,7 @@
 +		if (fsp->fsp_flags.is_pathref) {
 +			const char *path = fsp->fsp_name->base_name;
 +			if (fsp->fsp_flags.have_proc_fds) {
-+				char buf[PATH_MAX];
++				struct sys_proc_fd_path_buf buf;
 +				path = sys_proc_fd_path(fd, &buf);
 +				if (path == NULL) {
 +					return -1;
@@ -301,8 +301,9 @@
 +			uint16_t flags;
 +			list_end = list + list_size;
 +			for(list_size = 0, p = q = list; p < list_end; p += len) {
-+				len = p[0] + 1;
-+				(void)strlcpy(q, p + 1, len);
++				len = p[0];
++				memmove(q, p + 1, len);
++				q[len++] = '\0';
 +				flags = freebsd_map_attrname(q);
 +				/* Skip secure attributes for non-root user */
 +				if(extattr_mode != FREEBSD_EXTATTR_SECURE && !as_root && flags > EXTATTR_USER) {
@@ -329,7 +330,7 @@
 +			 `extra_len` having the total margin between `list` and `p`
 +			*/
 +			for(list_end += list_size; p < list_end; p += len) {
-+				len = strlen(p) + 1;
++				len = strlen(p);
 +				flags = freebsd_map_attrname(p);
 +				if(flags <= EXTATTR_USER) {
 +					/* Add namespace prefix */
@@ -337,15 +338,17 @@
 +					list += extattr[ns].data.len;
 +				}
 +				/* Append attribute name */
-+				(void)strlcpy(list, p, len);
++				memmove(list, p, len);
++				list[len++] = '\0';
 +				list += len;
 +			}
 +		}
 +		else {
 +			/* Convert UCSD strings into nul-terminated strings */
 +			for(list_end = list + list_size; list < list_end; list += len) {
-+				len = list[0] + 1;
-+				(void)strlcpy(list, list + 1, len);
++				len = list[0];
++				memmove(list, list + 1, len);
++				list[len++] = '\0';
 +			}
 +			total_size += list_size;
 +		}
@@ -433,7 +436,7 @@
 +	if (fsp->fsp_flags.is_pathref) {
 +		const char *path = fsp->fsp_name->base_name;
 +		if (fsp->fsp_flags.have_proc_fds) {
-+			char buf[PATH_MAX];
++			struct sys_proc_fd_path_buf buf;
 +			path = sys_proc_fd_path(fd, &buf);
 +			if (path == NULL) {
 +				return -1;
@@ -508,7 +511,7 @@
 +	if (fsp->fsp_flags.is_pathref) {
 +		const char *path = fsp->fsp_name->base_name;
 +		if (fsp->fsp_flags.have_proc_fds) {
-+			char buf[PATH_MAX];
++			struct sys_proc_fd_path_buf buf;
 +			path = sys_proc_fd_path(fd, &buf);
 +			if (path == NULL) {
 +				return -1;
@@ -585,7 +588,7 @@
 +	if (fsp->fsp_flags.is_pathref) {
 +		const char *path = fsp->fsp_name->base_name;
 +		if (fsp->fsp_flags.have_proc_fds) {
-+			char buf[PATH_MAX];
++			struct sys_proc_fd_path_buf buf;
 +			path = sys_proc_fd_path(fd, &buf);
 +			if (path == NULL) {
 +				return -1;

@@ -377,12 +377,10 @@
     SUBDIR += py-booleanOperations
     SUBDIR += py-cffsubr
     SUBDIR += py-compreffor
-    SUBDIR += py-cu2qu
     SUBDIR += py-defcon
     SUBDIR += py-fclist-cffi
     SUBDIR += py-fontMath
     SUBDIR += py-fontfeatures
-    SUBDIR += py-fontmake
     SUBDIR += py-gflanguages
     SUBDIR += py-gfmetadata
     SUBDIR += py-gfsubsets
@@ -391,7 +389,6 @@
     SUBDIR += py-opentypespec
     SUBDIR += py-rendercv-fonts
     SUBDIR += py-shaperglot
-    SUBDIR += py-ufo2ft
     SUBDIR += py-ufoLib
     SUBDIR += py-ufolint
     SUBDIR += py-ufonormalizer

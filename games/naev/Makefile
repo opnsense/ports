@@ -26,11 +26,13 @@ LIB_DEPENDS=	libamd.so:math/suitesparse-amd \
 		libcmark.so:textproc/cmark \
 		libcolamd.so:math/suitesparse-colamd \
 		libcxsparse.so:math/suitesparse-cxsparse \
+		libdav1d.so:multimedia/dav1d \
 		libenet.so:net/enet \
 		libfreetype.so:print/freetype2 \
 		libglpk.so:math/glpk \
 		libmetis.so:math/metis \
 		libopenblas.so:math/openblas \
+		libopus.so:audio/opus \
 		libpcre2-8.so:devel/pcre2 \
 		libphysfs.so:devel/physfs \
 		libpng.so:graphics/png \
@@ -48,7 +50,7 @@ USES=		cmake:indirect desktop-file-utils gettext gl gnome localbase:ldflags \
 USE_GL=		gl glu
 USE_GNOME=	intltool libxml2
 USE_LDCONFIG=	yes
-USE_SDL=	sdl2 image2
+USE_SDL=	sdl3 image3
 
 SHEBANG_GLOB=	*.py *.sh
 

@@ -1,5 +1,5 @@
 PORTNAME=	firefox
-DISTVERSION=	153.3.0
+DISTVERSION=	153.5.0
 PORTEPOCH=	2
 CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -26,28 +26,34 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		v4l_compat>0:multimedia/v4l_compat \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
-		zip:archivers/zip \
-		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
-		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc.a:devel/wasi-libc@${LLVM_VERSION} \
-		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
+		zip:archivers/zip
 
 USE_GECKO=	gecko
 CPE_PRODUCT=	${PORTNAME}_esr
 CONFLICTS_INSTALL=	firefox
 USE_MOZILLA=	-sqlite
-# work around bindgen not finding ICU, e.g.
-# dist/include/mozilla/intl/ICU4CGlue.h:8:10: fatal error: 'unicode/uenum.h' file not found, err: true
-CONFIGURE_ENV+=	BINDGEN_CFLAGS="-I${LOCALBASE}/include"
 
 USES=		tar:xz
 
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 MOZ_OPTIONS=	--enable-application=browser \
-		--enable-official-branding \
-		--with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
+		--enable-official-branding
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} != powerpc64
+BUILD_DEPENDS+=	${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc++abi.a:devel/wasi-libcxx${LLVM_VERSION} \
+		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc.a:devel/wasi-libc@${LLVM_VERSION} \
+		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
+MOZ_OPTIONS+=	--with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
+.endif
+
+.if ${ARCH} == powerpc64le && ${OSVERSION} < 1600020
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-config_makefiles_rust.mk
+.endif
 
 post-extract:
 	@${SED} -e 's|@FIREFOX_ICON@|${FIREFOX_ICON:R}|;s|@MOZILLA@|${MOZILLA}|' \

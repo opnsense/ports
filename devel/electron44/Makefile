@@ -1,6 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
+PORTREVISION=	1
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -352,7 +353,7 @@ pre-patch:
 .ifndef MAINTAINER_MODE
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/bin/dbus-daemon|${LOCALBASE}/bin/dbus-daemon|' \
-		${WRKSRC}/electron/spec/api-app-spec.ts
+		${WRKSRC}/electron/spec/api-app.spec.ts
 .endif
 
 pre-configure:

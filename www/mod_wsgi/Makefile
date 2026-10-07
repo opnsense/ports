@@ -1,5 +1,6 @@
 PORTNAME=	mod_wsgi
-DISTVERSION=	5.0.2
+DISTVERSION=	6.1.0
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}${PYTHON_PKGNAMEPREFIX}
@@ -10,13 +11,14 @@ WWW=		https://www.modwsgi.org/
 
 LICENSE=	APACHE20
 
-USES=		apache cpe gettext python
+USES=		apache autoreconf cpe python
 USE_PYTHON=	flavors
 
 CPE_VENDOR=	modwsgi
 
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-apxs="${APXS}" --with-python="${PYTHON_CMD}"
+GNU_CONFIGURE=		yes
+CONFIGURE_ARGS+=	--with-apxs="${APXS}" \
+			--with-python="${PYTHON_CMD}"
 
 SUB_FILES=	${APMOD_FILE}
 APMOD_FILE=	270_${PORTNAME}.conf.sample

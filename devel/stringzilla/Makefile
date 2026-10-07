@@ -12,7 +12,7 @@ WWW=		https://ashvardanian.com/posts/stringzilla/ \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
+BROKEN_i386=	fails to stage: non-constant-expression cannot be narrowed from type 'sz_u64_t', see https://github.com/ashvardanian/StringZilla/issues/341
 
 USES=		cmake:testing
 USE_LDCONFIG=	yes

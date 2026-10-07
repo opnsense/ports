@@ -77,6 +77,7 @@
     SUBDIR += bwi-firmware-kmod
     SUBDIR += bwn-firmware-kmod
     SUBDIR += bwping
+    SUBDIR += byedpi
     SUBDIR += c3270
     SUBDIR += calendarsupport
     SUBDIR += ccxstream
@@ -259,8 +260,6 @@
     SUBDIR += honeyd
     SUBDIR += hostapd
     SUBDIR += hostapd-devel
-    SUBDIR += hostapd210
-    SUBDIR += hostapd29
     SUBDIR += hping3
     SUBDIR += hsflowd
     SUBDIR += htpdate
@@ -451,6 +450,7 @@
     SUBDIR += linux-c7-avahi-libs
     SUBDIR += linux-c7-openldap
     SUBDIR += linux-c7-tcp_wrappers-libs
+    SUBDIR += linux-remotedesktopmanager
     SUBDIR += linux-rl9-avahi-libs
     SUBDIR += linux-rl9-openldap
     SUBDIR += linux-rl9-sdl_net
@@ -589,10 +589,6 @@
     SUBDIR += openbgpd7
     SUBDIR += openbgpd8
     SUBDIR += openbgpd9
-    SUBDIR += openldap25-client
-    SUBDIR += openldap25-server
-    SUBDIR += openldap26-client
-    SUBDIR += openldap26-server
     SUBDIR += openmdns
     SUBDIR += openmpi
     SUBDIR += openmpi4
@@ -1136,7 +1132,7 @@
     SUBDIR += py-pypcap
     SUBDIR += py-pyprowl
     SUBDIR += py-pyroute2
-    SUBDIR += py-pyroute2.minimal
+    SUBDIR += py-pyroute2-minimal
     SUBDIR += py-pyroute2.protocols
     SUBDIR += py-pysendfile
     SUBDIR += py-pyshark
@@ -1193,6 +1189,7 @@
     SUBDIR += py-suds
     SUBDIR += py-terminado
     SUBDIR += py-tiny-proxy
+    SUBDIR += py-tinytuya
     SUBDIR += py-tofu
     SUBDIR += py-transip
     SUBDIR += py-trio
@@ -1217,7 +1214,6 @@
     SUBDIR += py-zope.proxy
     SUBDIR += pyrad
     SUBDIR += qadsl
-    SUBDIR += qoauth-qt5
     SUBDIR += qrcp
     SUBDIR += qt5-network
     SUBDIR += qt5-networkauth
@@ -1238,6 +1234,7 @@
     SUBDIR += radsecproxy
     SUBDIR += radvd
     SUBDIR += rathole
+    SUBDIR += rayfish
     SUBDIR += rclone
     SUBDIR += rclone-browser
     SUBDIR += rdapper
@@ -1379,6 +1376,7 @@
     SUBDIR += rubygem-google-cloud-pubsub
     SUBDIR += rubygem-google-cloud-pubsub-v1
     SUBDIR += rubygem-google-cloud-resource_manager
+    SUBDIR += rubygem-google-cloud-resource_manager-v3
     SUBDIR += rubygem-google-cloud-spanner
     SUBDIR += rubygem-google-cloud-spanner-admin-database-v1
     SUBDIR += rubygem-google-cloud-spanner-admin-instance-v1

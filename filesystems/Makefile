@@ -28,6 +28,7 @@
     SUBDIR += exfat
     SUBDIR += exfat-utils
     SUBDIR += ext2
+    SUBDIR += fatsort
     SUBDIR += fstyp
     SUBDIR += fswatch-mon
     SUBDIR += fusefs-libs
@@ -101,6 +102,7 @@
     SUBDIR += py-pyfakefs
     SUBDIR += py-s3fs
     SUBDIR += py-tahoe-lafs
+    SUBDIR += py-universal-pathlib
     SUBDIR += py-zfs-autobackup
     SUBDIR += rar2fs
     SUBDIR += rubygem-chef-winrm-fs

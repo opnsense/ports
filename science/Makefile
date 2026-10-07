@@ -127,6 +127,7 @@
     SUBDIR += helfem
     SUBDIR += hepmc3
     SUBDIR += highfive
+    SUBDIR += hpddm
     SUBDIR += hypre
     SUBDIR += iboview
     SUBDIR += isaac-cfd
@@ -414,6 +415,7 @@
     SUBDIR += py-plumed
     SUBDIR += py-pnetcdf
     SUBDIR += py-probeinterface
+    SUBDIR += py-psims
     SUBDIR += py-pupynere
     SUBDIR += py-py3Dmol
     SUBDIR += py-pyaixi
@@ -507,7 +509,6 @@
     SUBDIR += sciplot
     SUBDIR += seacas
     SUBDIR += segyio
-    SUBDIR += serac
     SUBDIR += shelxle
     SUBDIR += siconos
     SUBDIR += siesta
@@ -523,6 +524,7 @@
     SUBDIR += simple-dftd3
     SUBDIR += simsmith
     SUBDIR += sirius
+    SUBDIR += smith
     SUBDIR += smoldyn
     SUBDIR += sparta
     SUBDIR += spglib

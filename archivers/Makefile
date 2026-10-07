@@ -118,6 +118,7 @@
     SUBDIR += p5-Archive-Tar
     SUBDIR += p5-Archive-Tar-Wrapper
     SUBDIR += p5-Archive-Zip
+    SUBDIR += p5-Archive-Zip-SimpleZip
     SUBDIR += p5-Compress-Bzip2
     SUBDIR += p5-Compress-LZ4
     SUBDIR += p5-Compress-LZF
@@ -220,7 +221,6 @@
     SUBDIR += py-python-lhafile
     SUBDIR += py-python-lzo
     SUBDIR += py-python-rpm-packaging
-    SUBDIR += py-python-snappy
     SUBDIR += py-pyunpack
     SUBDIR += py-pyzstd
     SUBDIR += py-rarfile

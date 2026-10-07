@@ -1,5 +1,5 @@
 PORTNAME=	openssl
-DISTVERSION=	4.1.0-alpha1
+DISTVERSION=	4.1.0-beta1
 CATEGORIES=	security devel
 PKGNAMESUFFIX=	41
 MASTER_SITES=	https://github.com/openssl/openssl/releases/download/${DISTNAME}/
@@ -11,7 +11,10 @@ WWW=		https://www.openssl.org/
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl111 openssl3[1234] openssl*-quictls
+# DEPRECATED=		Please use security/openssl42 (LTS)
+# EXPIRATION_DATE=	
+
+CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl3? openssl40
 
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	config
@@ -139,7 +142,7 @@ SHARED_MAKE_ENV=	SHLIBVER=${OPENSSL_SHLIBVER}
 SHARED_PLIST_SUB=	SHLIBVER=${OPENSSL_SHLIBVER}
 SHARED_USE=		ldconfig=yes
 SHARED_VARS=		shlibs+="lib/libcrypto.so.${OPENSSL_SHLIBVER} \
-				lib/libssl.so.${OPENSSL_SHLIBVER}
+				lib/libssl.so.${OPENSSL_SHLIBVER}"
 THREADPOOL_CONFIGURE_OFF=	no-thread-pool
 ZLIB_CONFIGURE_ON=	zlib-dynamic
 ZSTD_CFLAGS=		-I${PREFIX}/include
@@ -196,6 +199,6 @@ post-install:
 
 post-install-MAN3-on:
 	( cd ${STAGEDIR}/${PREFIX} ; find share/man/man3 -not -type d ; \
-		find share/man/man7 -not -type d ) | sed 's/$$/.gz/' >> ${TMPPLIST}
+		find share/man/man7 -not -type d ) | ${SED} 's/$$/.gz/' >> ${TMPPLIST}
 
 .include <bsd.port.post.mk>

@@ -369,6 +369,7 @@
     SUBDIR += linklint
     SUBDIR += links
     SUBDIR += links1
+    SUBDIR += linkwarden
     SUBDIR += linux-brave
     SUBDIR += linux-c7-qtwebkit
     SUBDIR += linux-chrome
@@ -376,9 +377,12 @@
     SUBDIR += linux-rl9-libnghttp2
     SUBDIR += linux-rl9-qt5-qtwebchannel
     SUBDIR += linux-rl9-qt5-qtwebsockets
+    SUBDIR += linux-rl9-webkit2gtk3
+    SUBDIR += linux-rl9-webkit2gtk3-jsc
     SUBDIR += linux-vieb
     SUBDIR += linux-widevine-cdm
     SUBDIR += litmus
+    SUBDIR += littlefedi
     SUBDIR += ljdeps
     SUBDIR += llhttp
     SUBDIR += loco
@@ -530,6 +534,7 @@
     SUBDIR += nginx-devel
     SUBDIR += nginx-full
     SUBDIR += nginx-lite
+    SUBDIR += nginx-module-ajp
     SUBDIR += nginx-module-array-var
     SUBDIR += nginx-module-cache-purge
     SUBDIR += nginx-module-form-input
@@ -572,7 +577,6 @@
     SUBDIR += osticket
     SUBDIR += ot-recorder
     SUBDIR += otrs
-    SUBDIR += otter-browser
     SUBDIR += owncast
     SUBDIR += owncloud
     SUBDIR += p5-AMF-Perl
@@ -1525,6 +1529,7 @@
     SUBDIR += py-aiohttp
     SUBDIR += py-aiohttp-client-cache
     SUBDIR += py-aiohttp-cors
+    SUBDIR += py-aiohttp-fast-zlib
     SUBDIR += py-aiohttp-jinja2
     SUBDIR += py-aiohttp-middlewares
     SUBDIR += py-aiohttp-oauthlib
@@ -1596,7 +1601,6 @@
     SUBDIR += py-dj60-django-redis
     SUBDIR += py-dj60-django-rich
     SUBDIR += py-dj60-django-storages
-    SUBDIR += py-dj60-django-stubs-ext
     SUBDIR += py-dj60-django-tables2
     SUBDIR += py-dj60-django-taggit
     SUBDIR += py-dj60-django-timezone-field
@@ -1605,6 +1609,7 @@
     SUBDIR += py-dj60-drf-spectacular-sidecar
     SUBDIR += py-dj60-social-auth-app-django
     SUBDIR += py-dj60-strawberry-graphql-django
+    SUBDIR += py-dj61-django-debug-toolbar
     SUBDIR += py-dj61-django-stubs-ext
     SUBDIR += py-dj61-djangorestframework
     SUBDIR += py-django-admin-rangefilter
@@ -1933,6 +1938,8 @@
     SUBDIR += py-pyramid-mako
     SUBDIR += py-pyramid_rpc
     SUBDIR += py-pysmartdl
+    SUBDIR += py-pytauri
+    SUBDIR += py-pytauri-wheel
     SUBDIR += py-python-digitalocean
     SUBDIR += py-python-dotenv
     SUBDIR += py-python-fasthtml
@@ -1943,7 +1950,6 @@
     SUBDIR += py-pywikibot
     SUBDIR += py-pywry
     SUBDIR += py-qh3
-    SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine
     SUBDIR += py-quart
     SUBDIR += py-quart-trio
@@ -1967,6 +1973,7 @@
     SUBDIR += py-requests_ntlm
     SUBDIR += py-respx
     SUBDIR += py-restclient
+    SUBDIR += py-retry-requests
     SUBDIR += py-rfc3986
     SUBDIR += py-rfc3987
     SUBDIR += py-rfc3987-syntax
@@ -2057,7 +2064,6 @@
     SUBDIR += qdecoder
     SUBDIR += qhttpengine
     SUBDIR += qt5-webchannel
-    SUBDIR += qt5-webengine
     SUBDIR += qt5-webglplugin
     SUBDIR += qt5-websockets
     SUBDIR += qt5-websockets-qml
@@ -2593,8 +2599,6 @@
     SUBDIR += snarf
     SUBDIR += so
     SUBDIR += sogo
-    SUBDIR += sogo2
-    SUBDIR += sogo2-activesync
     SUBDIR += spawn-fcgi
     SUBDIR += spreadlogd
     SUBDIR += sqlpage

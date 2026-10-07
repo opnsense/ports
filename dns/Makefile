@@ -16,7 +16,6 @@
     SUBDIR += coredns
     SUBDIR += ddclient
     SUBDIR += ddns
-    SUBDIR += denominator
     SUBDIR += dhisd
     SUBDIR += dlint
     SUBDIR += dns-blackhole
@@ -57,7 +56,6 @@
     SUBDIR += dnswall
     SUBDIR += dnsx
     SUBDIR += doc
-    SUBDIR += dog
     SUBDIR += doggo
     SUBDIR += doh-proxy
     SUBDIR += dq

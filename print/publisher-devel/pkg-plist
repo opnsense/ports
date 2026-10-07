@@ -111,6 +111,7 @@ share/speedata-publisher/sw/lua/publisher/language.lua
 share/speedata-publisher/sw/lua/publisher/layout_functions.lua
 share/speedata-publisher/sw/lua/publisher/links.lua
 share/speedata-publisher/sw/lua/publisher/math.lua
+share/speedata-publisher/sw/lua/publisher/mathoperators.lua
 share/speedata-publisher/sw/lua/publisher/metadata.lua
 share/speedata-publisher/sw/lua/publisher/metapost.lua
 share/speedata-publisher/sw/lua/publisher/nodes.lua
@@ -118,6 +119,7 @@ share/speedata-publisher/sw/lua/publisher/page.lua
 share/speedata-publisher/sw/lua/publisher/pages.lua
 share/speedata-publisher/sw/lua/publisher/spinit.lua
 share/speedata-publisher/sw/lua/publisher/structure_tree.lua
+share/speedata-publisher/sw/lua/publisher/tabstops.lua
 share/speedata-publisher/sw/lua/publisher/tabular.lua
 share/speedata-publisher/sw/lua/publisher/usercallbacks.lua
 share/speedata-publisher/sw/lua/publisher/utilities.lua
@@ -128,6 +130,7 @@ share/speedata-publisher/sw/lua/sdscripts.lua
 share/speedata-publisher/sw/lua/shalocal.lua
 share/speedata-publisher/sw/lua/socket_url.lua
 share/speedata-publisher/sw/lua/spotcolors.lua
+share/speedata-publisher/sw/lua/tools/genmathoperators.lua
 share/speedata-publisher/sw/lua/uuid.lua
 share/speedata-publisher/sw/lua/xmlbuilder.lua
 share/speedata-publisher/sw/metapost/csscolors.mp

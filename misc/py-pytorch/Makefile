@@ -1,7 +1,6 @@
 PORTNAME=	pytorch
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.14.0
-PORTREVISION=	1
+DISTVERSION=	2.14.1
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	https://github.com/pytorch/pytorch/releases/download/v${DISTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -104,6 +103,12 @@ CONFLICTS_BUILD=	mpich # binaries are still linked with mpich when it is present
 
 .include <bsd.port.options.mk>
 
+.if ${ARCH} == aarch64
+# torch's many dlopen'd shared libraries (OpenMP, mimalloc, cpuinfo, etc.) require
+# more initial-exec TLS than rtld's small default dlopen reserve, see rtld(1)
+TEST_ENV+=	LD_STATIC_TLS_EXTRA=4096
+.endif
+
 post-extract:
 	# upstream ships a stray *.orig file that 'make makepatch' would otherwise
 	# mistake for a patch baseline and turn into a bogus binary patch
@@ -141,7 +146,7 @@ do-install: # port should be moved to 'torch', but keep this for now with the ha
 do-test:
 	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} run_test.py
 
-test-quick:
+test-quick: # tests basic training+inference functionality
 	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} ${FILESDIR}/example.py
 
 # tests as of 2.14.0: 231 passed 6 skipped

@@ -17,7 +17,6 @@
     SUBDIR += bluez-firmware
     SUBDIR += bpl+
     SUBDIR += chirp
-    SUBDIR += chu
     SUBDIR += conserver-com
     SUBDIR += cqrlog
     SUBDIR += cubicsdr
@@ -240,6 +239,5 @@
     SUBDIR += xnecview
     SUBDIR += yagiuda
     SUBDIR += yfklog
-    SUBDIR += zigbee2mqtt
 
 .include <bsd.port.subdir.mk>

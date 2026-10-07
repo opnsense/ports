@@ -7,7 +7,6 @@
     SUBDIR += conduit
     SUBDIR += convey
     SUBDIR += coyim
-    SUBDIR += cutegram
     SUBDIR += debugtox
     SUBDIR += deltachat-desktop
     SUBDIR += dendrite
@@ -175,7 +174,6 @@
     SUBDIR += tuba
     SUBDIR += twirssi
     SUBDIR += uTox
-    SUBDIR += vesktop
     SUBDIR += vqcc-gtk
     SUBDIR += xmpp-client
     SUBDIR += yume

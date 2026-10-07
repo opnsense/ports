@@ -1,6 +1,7 @@
 PORTNAME=	node
 PORTVERSION=	${NODEJS_PORTVERSION}
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${PORTVERSION}/
 PKGNAMESUFFIX=	${PORTVERSION:R:R}
@@ -18,8 +19,7 @@ BROKEN_SSL_REASON=	Node.js ${PORTVERSION:R:R}.x requires OpenSSL or the BUNDLED_
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
 BUILD_DEPENDS=	objdump:devel/binutils
-LIB_DEPENDS=	libabsl_base.so:devel/abseil \
-		libada.so:devel/libada \
+LIB_DEPENDS=	libada.so:devel/libada \
 		libbrotlidec.so:archivers/brotli \
 		libcares.so:dns/c-ares \
 		libffi.so:devel/libffi \
@@ -44,7 +44,6 @@ RUN_DEPENDS=	corepack>=0:www/corepack
 USES=		compiler:c++20-lang gmake localbase pkgconfig python:build shebangfix tar:xz
 
 CONFIGURE_ARGS=	--prefix=${PREFIX:S|^${DESTDIR}||} \
-		--shared-abseil \
 		--shared-ada \
 		--shared-brotli \
 		--shared-cares \
@@ -122,7 +121,6 @@ post-patch:
 	@${RM} -r ${WRKSRC}/deps/sqlite/
 	@${RM} -r ${WRKSRC}/deps/uv/
 	@${RM} -r ${WRKSRC}/deps/uvwasi/
-	@${RM} -r ${WRKSRC}/deps/v8/third_party/abseil-cpp/
 	@${RM} -r ${WRKSRC}/deps/v8/third_party/highway/
 	@${RM} -r ${WRKSRC}/deps/zlib/
 	@${RM} -r ${WRKSRC}/deps/zstd/
