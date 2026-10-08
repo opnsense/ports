@@ -1,6 +1,6 @@
 PORTNAME=	opnsense-filterlog
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.11.0
+DISTVERSION=	0.12.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	me@allddd.onl
@@ -10,7 +10,7 @@ WWW=		https://gitlab.com/allddd/opnsense-filterlog
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.26,modules
+USES=		go:1.27,modules
 CGO_ENABLED=	0
 GO_MODULE=	gitlab.com/allddd/opnsense-filterlog
 GO_TARGET=	.:${PREFIX}/sbin/${PORTNAME}
