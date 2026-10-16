@@ -1,5 +1,5 @@
 PORTNAME=	evcc
-DISTVERSION=	0.316.2
+DISTVERSION=	0.317.1
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/mfechner/${PORTNAME}/:npmcache
 DISTFILES=	${PORTNAME}-npm-cache-${DISTVERSION}${EXTRACT_SUFX}:npmcache
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	Npm cache only for amd64 generated (rolldown freebsd-x64 binding)
 
-# evcc 0.316.x ships a vite-plus based build, but plain vite 8 is used instead
+# evcc 0.317.1 ships a vite-plus based build, but plain vite 8 is used instead
 # (see patch-package.json / patch-vite.config.ts).  vite 8 publishes official
 # FreeBSD x64 native bindings (rolldown/lightningcss) as npm optional
 # packages, so they are pulled in by the npm cache and no devel/vite-plus
@@ -25,7 +25,7 @@ BUILD_DEPENDS=	npm-node24>0:www/npm-node24
 USES=		gmake go:1.27+,modules,no_targets nodejs:24,build tar:zstd
 
 # Find here: https://github.com/evcc-io/evcc/releases
-_SHA=		7db12597018f97076633cdd8262d434a89893fd2
+_SHA=		259d5fd99774ccb3690eb0de8ebbf873089bd13d
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	evcc-io
@@ -38,7 +38,7 @@ MAKE_ENV=	npm_config_offline=true TAG_NAME=${DISTVERSION} SHA=${_SHA}
 # parallel build failed in my tests, so disable it here
 MAKE_JOBS_UNSAFE=yes
 # Build the Go binary only; the UI (dist/) is built in pre-build with plain
-# vite.  0.316.x upstream "default"/"ui" targets require the vite-plus "vp"
+# vite.  0.317.0 upstream "default"/"ui" targets require the vite-plus "vp"
 # CLI, so we bypass them.
 ALL_TARGET=	build
 
@@ -54,7 +54,7 @@ pre-build:
 	# make-npm-cache) so a plain "npm ci" resolves without peer warnings.
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm ci
 	# build the UI (dist/) with plain vite; "npm run build" -> "vite build"
-	# (vite 8 ships official FreeBSD x64 native bindings via npm)
+	# (vite 8 ships official FreeBSD x64 native bindings via npm).
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} npm run build
 
 do-install:
@@ -78,7 +78,7 @@ make-npm-cache: patch
 # cd ../..
 # make makepatch
 # make make-npm-cache
-# cp work/evcc-npm-cache* ../../distfiles/go/www_evcc/evcc-io-evcc-0.316.2_GH0/
+# cp work/evcc-npm-cache* ../../distfiles/go/www_evcc/evcc-io-evcc-0.317.0_GH0/
 # uncomment DISTFILES
 # make makesum
 

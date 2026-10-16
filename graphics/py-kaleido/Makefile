@@ -1,10 +1,10 @@
 PORTNAME=		kaleido
-DISTVERSION=		1.4.0
+DISTVERSION=		1.5.0
 CATEGORIES=		graphics python
 MASTER_SITES=		PYPI
 PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	jwb@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cross-platform library for generating static images for Plotly
 WWW=		https://github.com/plotly/kaleido
 

@@ -1,6 +1,7 @@
 PORTNAME=	zli
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.1.21
+DISTVERSION=	2.1.22
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	decke@FreeBSD.org
@@ -10,7 +11,7 @@ WWW=		https://zotregistry.dev/
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cpe go:modules
+USES=		cpe go:1.27+,modules
 CPE_VENDOR=	zotregistry
 CPE_PRODUCT=	zot
 USE_GITHUB=	yes

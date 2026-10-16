@@ -1,5 +1,6 @@
 PORTNAME=	vscode
 DISTVERSION=	${VSCODE_VERSION}
+PORTREVISION=	2
 CATEGORIES=	editors
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-VSCode/releases/download/${DISTVERSION}/:node_modules \
 		https://registry.npmjs.org/@github/copilot-linux-${ELECTRON_ARCH}/-/:copilot_cli \
@@ -65,7 +66,7 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		bash:shells/bash
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		cargo desktop-file-utils display:test electron:42,build,test \
+USES=		cargo desktop-file-utils display:test electron:43,build,test \
 		gl gmake gnome gssapi:mit iconv:wchar_t jpeg localbase:ldflags \
 		nodejs:24,build npm:npm pkgconfig python:build shebangfix xorg
 
@@ -354,7 +355,7 @@ do-test:
 	fi; \
 	cd ${WRKSRC} && \
 	${SETENV} ${TEST_ENV} DBUS_SESSION_BUS_ADDRESS=$${DBUS_SESSION_BUS_ADDRESS} \
-		./scripts/test.sh || ${TRUE} && \
+		./scripts/test.sh --timeout 30000 || ${TRUE} && \
 	${SETENV} ${TEST_ENV} DBUS_SESSION_BUS_ADDRESS=$${DBUS_SESSION_BUS_ADDRESS} \
 		npm run smoketest
 

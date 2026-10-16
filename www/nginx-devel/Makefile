@@ -1,7 +1,7 @@
 PORTNAME?=	nginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION=	3
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/
 PKGNAMESUFFIX?=	-devel
@@ -68,15 +68,15 @@ NO_OPTIONS_SORT=	yes
 OPTIONS_GROUP=	HTTPGRP MAILGRP STREAMGRP
 # Modules that are part of the base nginx distribution
 OPTIONS_GROUP_HTTPGRP=	GOOGLE_PERFTOOLS HTTP HTTP_ADDITION HTTP_AUTH_REQ \
-	HTTP_CACHE HTTP_DAV HTTP_DEGRADATION HTTP_FLV HTTP_GUNZIP_FILTER \
-	HTTP_GZIP_STATIC HTTP_IMAGE_FILTER HTTP_MP4 HTTP_PERL \
-	HTTP_RANDOM_INDEX HTTP_REALIP HTTP_SECURE_LINK HTTP_SLICE HTTP_SSL \
-	HTTP_STATUS HTTP_SUB HTTP_XSLT HTTPV2 HTTPV3 HTTPV3_BORING HTTPV3_LSSL \
-	HTTPV3_OSSL
+	HTTP_CACHE HTTP_DAV HTTP_DEGRADATION HTTP_FLV HTTP_GEOIP \
+	HTTP_GUNZIP_FILTER HTTP_GZIP_STATIC HTTP_IMAGE_FILTER HTTP_MP4 \
+	HTTP_PERL HTTP_RANDOM_INDEX HTTP_REALIP HTTP_SECURE_LINK \
+	HTTP_SLICE HTTP_SSL HTTP_STATUS HTTP_SUB HTTP_XSLT HTTPV2 HTTPV3 \
+	HTTPV3_BORING HTTPV3_LSSL HTTPV3_OSSL
 
 OPTIONS_GROUP_MAILGRP=	MAIL MAIL_IMAP MAIL_POP3 MAIL_SMTP MAIL_SSL
 
-OPTIONS_GROUP_STREAMGRP=	STREAM STREAM_REALIP STREAM_SSL \
+OPTIONS_GROUP_STREAMGRP=	STREAM STREAM_GEOIP STREAM_REALIP STREAM_SSL \
 	STREAM_SSL_PREREAD
 
 OPTIONS_DEFINE=		DEBUG DEBUGLOG DSO FILE_AIO IPV6 NJS NJS_QJS NJS_XML OTEL THREADS WWW
@@ -145,6 +145,8 @@ HTTP_CACHE_CONFIGURE_OFF=	--without-http-cache
 HTTP_DAV_CONFIGURE_ON=		--with-http_dav_module
 HTTP_DEGRADATION_CONFIGURE_ON=	--with-http_degradation_module
 HTTP_FLV_CONFIGURE_ON=		--with-http_flv_module
+HTTP_GEOIP_LIB_DEPENDS=		libmaxminddb.so:net/libmaxminddb
+HTTP_GEOIP_VARS=		DSO_BASEMODS+=http_geoip_module
 HTTP_GZIP_STATIC_CONFIGURE_ON=	--with-http_gzip_static_module
 HTTP_GUNZIP_FILTER_CONFIGURE_ON=--with-http_gunzip_module
 HTTP_IMAGE_FILTER_LIB_DEPENDS=	libgd.so:graphics/gd
@@ -190,6 +192,8 @@ MAIL_SSL_USES=			ssl
 MAIL_SSL_CONFIGURE_ON=		--with-mail_ssl_module
 STREAM_VARS=			DSO_BASEMODS+=stream
 STREAM_CONFIGURE_ON=		--with-stream
+STREAM_GEOIP_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
+STREAM_GEOIP_VARS=		DSO_BASEMODS+=stream_geoip_module
 STREAM_REALIP_CONFIGURE_ON=	--with-stream_realip_module
 STREAM_SSL_USES=		ssl
 STREAM_SSL_CONFIGURE_ON=	--with-stream_ssl_module
@@ -268,8 +272,24 @@ NJS_CONFIGURE_ARGS+=	--cc-opt="${CFLAGS} -I${LOCALBASE}/include/quickjs" \
 
 pre-everything::
 	@${ECHO_MSG}
+.if ${PORT_OPTIONS:MHTTP_NOTICE}
+	@${ECHO_MSG} "${PORTNAME} can return a fixed body itself.  HTTP_NOTICE will be"
+	@${ECHO_MSG} "removed after 2026-12-31: replace notice with return 200 and the"
+	@${ECHO_MSG} "text, and notice_type with default_type.  Unlike a static file,"
+	@${ECHO_MSG} "return answers every request method."
+.endif
 .if ${PORT_OPTIONS:MHTTP_UPSTREAM_FAIR}
+	@${ECHO_MSG} "${PORTNAME} can balance by least connections itself.  HTTP_UPSTREAM_FAIR"
+	@${ECHO_MSG} "will be removed after 2026-12-31: replace fair; with least_conn;, and"
+	@${ECHO_MSG} "fair weight_mode=peak; with least_conn; plus a max_conns= parameter on"
+	@${ECHO_MSG} "each server."
 	@${ECHO_MSG} "Enable http_ssl module to build upstream_fair with SSL support"
+.endif
+.if ${PORT_OPTIONS:MHTTP_UPSTREAM_STICKY}
+	@${ECHO_MSG} "${PORTNAME} has its own sticky directive since 1.29.6, and the module"
+	@${ECHO_MSG} "defines the same name.  HTTP_UPSTREAM_STICKY will be removed after"
+	@${ECHO_MSG} "2026-12-31: drop the option and use the built-in sticky, which takes"
+	@${ECHO_MSG} "domain=, path=, expires= and samesite=."
 .endif
 .if ${PORT_OPTIONS:MNJS}
 	@${ECHO_MSG} "The built-in njs scripting engine is EOL, deprecated since njs 1.0.0."
@@ -326,14 +346,6 @@ post-patch-PASSENGER-on:
 		s!-Iext/libeio!!' \
 		${WRKSRC_PASSENGER}/build/common_library.rb
 
-post-patch-POSTGRES-on:
-	@${REINPLACE_CMD} 's!%%PREFIX%%!${LOCALBASE}!g' ${WRKSRC_postgres}/config
-
-post-patch-SFLOW-on:
-	@${REINPLACE_CMD} \
-		's!%%PREFIX%%!${LOCALBASE}!g' \
-		${WRKSRC_sflow}/ngx_http_sflow_config.h
-
 pre-configure-SMALL_LIGHT-on:
 	( cd ${WRKSRC_small_light} && ./setup )
 
@@ -347,6 +359,11 @@ pre-configure-ARRAYVAR-on:
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-array-var ${WRKSRC_arrayvar}
 	@${CHMOD} -R u+w ${WRKSRC_arrayvar}
 
+pre-configure-AWS_AUTH-on:
+	@${RM} -rf ${WRKSRC_aws_auth}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-aws-auth ${WRKSRC_aws_auth}
+	@${CHMOD} -R u+w ${WRKSRC_aws_auth}
+
 pre-configure-CACHE_PURGE-on:
 	@${RM} -rf ${WRKSRC_cache_purge}
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-cache-purge ${WRKSRC_cache_purge}
@@ -357,10 +374,30 @@ pre-configure-DEVEL_KIT-on:
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-ndk ${WRKSRC_devel_kit}
 	@${CHMOD} -R u+w ${WRKSRC_devel_kit}
 
+pre-configure-FIPS_CHECK-on:
+	@${RM} -rf ${WRKSRC_fipscheck}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-fips-check ${WRKSRC_fipscheck}
+	@${CHMOD} -R u+w ${WRKSRC_fipscheck}
+
 pre-configure-FORMINPUT-on:
 	@${RM} -rf ${WRKSRC_forminput}
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-form-input ${WRKSRC_forminput}
 	@${CHMOD} -R u+w ${WRKSRC_forminput}
+
+pre-configure-GRIDFS-on:
+	@${RM} -rf ${WRKSRC_gridfs}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-gridfs ${WRKSRC_gridfs}
+	@${CHMOD} -R u+w ${WRKSRC_gridfs}
+
+pre-configure-HTTP_ACCEPT_LANGUAGE-on:
+	@${RM} -rf ${WRKSRC_accept_language}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-accept-language ${WRKSRC_accept_language}
+	@${CHMOD} -R u+w ${WRKSRC_accept_language}
+
+pre-configure-LET-on:
+	@${RM} -rf ${WRKSRC_let}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-let ${WRKSRC_let}
+	@${CHMOD} -R u+w ${WRKSRC_let}
 
 pre-configure-LUA-on:
 	@${RM} -rf ${WRKSRC_lua}
@@ -372,16 +409,58 @@ pre-configure-LUASTREAM-on:
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-lua-stream ${WRKSRC_luastream}
 	@${CHMOD} -R u+w ${WRKSRC_luastream}
 
+pre-configure-MODSECURITY3-on:
+	@${RM} -rf ${WRKSRC_modsecurity3}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-modsecurity3 ${WRKSRC_modsecurity3}
+	@${CHMOD} -R u+w ${WRKSRC_modsecurity3}
+
 pre-configure-NJS-on:
 	@${RM} -rf ${WRKSRC_njs}
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-njs ${WRKSRC_njs}
 	@${CHMOD} -R u+w ${WRKSRC_njs}
 	@${CHMOD} u+x ${WRKSRC_njs}/configure
 
+pre-configure-POSTGRES-on:
+	@${RM} -rf ${WRKSRC_postgres}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-postgres ${WRKSRC_postgres}
+	@${CHMOD} -R u+w ${WRKSRC_postgres}
+
+pre-configure-REDIS2-on:
+	@${RM} -rf ${WRKSRC_redis2}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-redis2 ${WRKSRC_redis2}
+	@${CHMOD} -R u+w ${WRKSRC_redis2}
+
+pre-configure-SFLOW-on:
+	@${RM} -rf ${WRKSRC_sflow}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-sflow ${WRKSRC_sflow}
+	@${CHMOD} -R u+w ${WRKSRC_sflow}
+	@${REINPLACE_CMD} 's!"/etc/hsflowd.auto"!"${LOCALBASE}/etc/hsflowd.auto"!' \
+		${WRKSRC_sflow}/src/ngx_http_sflow_config.h
+
+pre-configure-SLOWFS_CACHE-on:
+	@${RM} -rf ${WRKSRC_slowfs_cache}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-slowfs-cache ${WRKSRC_slowfs_cache}
+	@${CHMOD} -R u+w ${WRKSRC_slowfs_cache}
+
+pre-configure-STS-on:
+	@${RM} -rf ${WRKSRC_sts}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-sts ${WRKSRC_sts}
+	@${CHMOD} -R u+w ${WRKSRC_sts}
+
 pre-configure-VOD-on:
 	@${RM} -rf ${WRKSRC_vod}
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-vod ${WRKSRC_vod}
 	@${CHMOD} -R u+w ${WRKSRC_vod}
+
+pre-configure-WEBSOCKIFY-on:
+	@${RM} -rf ${WRKSRC_websockify}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-websockify ${WRKSRC_websockify}
+	@${CHMOD} -R u+w ${WRKSRC_websockify}
+
+pre-configure-ZSTD-on:
+	@${RM} -rf ${WRKSRC_zstd}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-zstd ${WRKSRC_zstd}
+	@${CHMOD} -R u+w ${WRKSRC_zstd}
 
 do-configure-NJS-on:
 	( cd ${WRKSRC_njs} && ${SETENV} ${CONFIGURE_ENV} ${CONFIGURE_CMD} ${NJS_CONFIGURE_ARGS} )

@@ -194,6 +194,7 @@
     SUBDIR += mongodb-tools
     SUBDIR += mongodb70
     SUBDIR += mongodb80
+    SUBDIR += mongodb90
     SUBDIR += mongosh
     SUBDIR += mroonga
     SUBDIR += mtop
@@ -205,6 +206,8 @@
     SUBDIR += mysql-connector-odbc
     SUBDIR += mysql-shell
     SUBDIR += mysql2pgsql
+    SUBDIR += mysql267-client
+    SUBDIR += mysql267-server
     SUBDIR += mysql80-client
     SUBDIR += mysql80-server
     SUBDIR += mysql84-client
@@ -593,6 +596,7 @@
     SUBDIR += pgbot
     SUBDIR += pgbouncer
     SUBDIR += pgdbf
+    SUBDIR += pgdog
     SUBDIR += pgjwt
     SUBDIR += pgloader3
     SUBDIR += pglogical

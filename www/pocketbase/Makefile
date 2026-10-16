@@ -1,9 +1,9 @@
 PORTNAME=	pocketbase
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.40.4
+DISTVERSION=	0.40.5
 CATEGORIES=	www
 
-MAINTAINER=	chris.longros@gmail.com
+MAINTAINER=	longros@FreeBSD.org
 COMMENT=	Open source realtime backend in a single binary
 WWW=		https://pocketbase.io/
 

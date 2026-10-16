@@ -1,5 +1,5 @@
 PORTNAME=	fcitx5-qt
-DISTVERSION=	5.1.14
+DISTVERSION=	5.1.16
 CATEGORIES=	textproc
 MASTER_SITES=	https://download.fcitx-im.org/fcitx5/${PORTNAME}/
 
@@ -21,7 +21,7 @@ FLAVOR?=	${FLAVORS:[1]}
 qt5_PKGNAMESUFFIX=	5
 qt6_PKGNAMESUFFIX=	6
 
-USES=		cmake compiler:c++17-lang gettext-tools kde:5 pkgconfig tar:zst \
+USES=		cmake compiler:c++17-lang gettext-tools kde pkgconfig tar:zst \
 		xorg
 
 CMAKE_OFF?=	ENABLE_QT4

@@ -132,6 +132,7 @@
     SUBDIR += py-openbb-cboe
     SUBDIR += py-openbb-cftc
     SUBDIR += py-openbb-charting
+    SUBDIR += py-openbb-cli
     SUBDIR += py-openbb-commodity
     SUBDIR += py-openbb-congress-gov
     SUBDIR += py-openbb-core
@@ -139,6 +140,7 @@
     SUBDIR += py-openbb-currency
     SUBDIR += py-openbb-deribit
     SUBDIR += py-openbb-derivatives
+    SUBDIR += py-openbb-devtools
     SUBDIR += py-openbb-ecb
     SUBDIR += py-openbb-econdb
     SUBDIR += py-openbb-econometrics
@@ -156,6 +158,7 @@
     SUBDIR += py-openbb-imf
     SUBDIR += py-openbb-index
     SUBDIR += py-openbb-intrinio
+    SUBDIR += py-openbb-jodi
     SUBDIR += py-openbb-mcp-server
     SUBDIR += py-openbb-multpl
     SUBDIR += py-openbb-nasdaq

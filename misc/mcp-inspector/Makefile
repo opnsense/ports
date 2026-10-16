@@ -1,5 +1,6 @@
 PORTNAME=	mcp-inspector
 DISTVERSION=	2.8.0
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -12,7 +13,7 @@ LICENSE=	APACHE20 MIT
 LICENSE_COMB=	multi
 #LICENSE_FILE=	${WRKSRC}/node_modules/${PACKAGE_NAME}/LICENSE
 
-ONLY_FOR_ARCHS=		aarch64 amd64
+ONLY_FOR_ARCHS=		aarch64 amd64 powerpc64 powerpc64le
 ONLY_FOR_ARCHS_REASON=	distinfo was only generated for these architectures # feel free to add more architectures
 
 FETCH_DEPENDS=	npm:www/npm \
@@ -27,7 +28,7 @@ WRKSRC=		${WRKDIR}/inspector-${DISTVERSION}
 
 PACKAGE_NAME=	@modelcontextprotocol/inspector
 
-JS_ARCH=	${ARCH:S/amd64/x64/:S/aarch64/arm64/:S/i386/ia32/:S/powerpc64le/ppc64le/:S/powerpc64/ppc64/:C/armv[67]/arm/} # modeled after electron.mk
+JS_ARCH=	${ARCH:S/amd64/x64/:S/aarch64/arm64/:S/i386/ia32/:S/powerpc64le/ppc64/:S/powerpc64/ppc64/:C/armv[67]/arm/} # modeled after electron.mk
 PLIST_SUB=	JS_ARCH=${JS_ARCH}
 
 DD=		${DISTDIR}/${DIST_SUBDIR}

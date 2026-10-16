@@ -1,6 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
+PORTREVISION=	1
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
@@ -152,7 +153,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_system_libjpeg=true \
 		use_udev=false \
 		chrome_pgo_phase=0 \
-		extra_cflags="${CFLAGS}" \
+		extra_cflags="${CFLAGS} -I${LOCALBASE}/include/libepoll-shim ${PINCLUDES}" \
 		extra_cxxflags="${CXXFLAGS} -I${LOCALBASE}/include/libepoll-shim ${PINCLUDES}" \
 		extra_ldflags="${LDFLAGS}" \
 		ffmpeg_branding="${FFMPEG_BRAND}" \
@@ -166,14 +167,15 @@ GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild --skip-generate-buildfiles
 PLIST_SUB=	ELECTRON_VER=${ELECTRON_VER} \
 		ELECTRON_VER_MAJOR=${ELECTRON_VER_MAJOR}
 
-OPTIONS_DEFINE=		CODECS CUPS DEBUG DIST DRIVER KERBEROS LTO PIPEWIRE
-OPTIONS_DEFAULT=	CODECS CUPS DRIVER KERBEROS PIPEWIRE ALSA PULSEAUDIO SNDIO
+OPTIONS_DEFINE=		AVX512 CODECS CUPS DEBUG DIST DRIVER KERBEROS LTO PIPEWIRE
+OPTIONS_DEFAULT=	AVX512 CODECS CUPS DRIVER KERBEROS PIPEWIRE ALSA PULSEAUDIO SNDIO
 OPTIONS_EXCLUDE_aarch64=LTO
 OPTIONS_GROUP=		AUDIO
 OPTIONS_GROUP_AUDIO=	ALSA PULSEAUDIO SNDIO
 OPTIONS_RADIO=		KERBEROS
 OPTIONS_RADIO_KERBEROS=	HEIMDAL HEIMDAL_BASE MIT
 OPTIONS_SUB=		yes
+AVX512_DESC=		Enable AVX512 instructions
 CODECS_DESC=		Compile and enable patented codecs like H.264
 DIST_DESC=		Build distribution zip files
 DRIVER_DESC=		Install chromedriver
@@ -187,6 +189,8 @@ ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/al
 			alsa-lib>=1.1.1_1:audio/alsa-lib
 ALSA_VARS=		GN_ARGS+=use_alsa=true
 ALSA_VARS_OFF=		GN_ARGS+=use_alsa=false
+AVX512_VARS=		GN_ARGS+=allow_avx512=true
+AVX512_VARS_OFF=	GN_ARGS+=allow_avx512=false
 CODECS_VARS=		GN_ARGS+=proprietary_codecs=true \
 			FFMPEG_BRAND="Chrome"
 CODECS_VARS_OFF=	GN_ARGS+=proprietary_codecs=false \

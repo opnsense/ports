@@ -1,6 +1,7 @@
 PORTNAME=	grist-core
-PORTVERSION=	1.7.20
+PORTVERSION=	1.7.21
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/mfechner/${PORTNAME}/:yarncache
 DISTFILES=	${PORTNAME}-yarn-offline-cache-${DISTVERSION}${EXTRACT_SUFX}:yarncache
@@ -70,7 +71,7 @@ do-install:
 		${WRKSRC}/node_modules/@gristlabs/sqlite3/build/Release/obj.target/nothing
 
 	# Install main directories
-.for d in node_modules _build bower_components plugins static
+.for d in node_modules assets _build bower_components plugins static
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} ${d} ${STAGEDIR}${WWWDIR})
 .endfor
 
@@ -102,6 +103,7 @@ post-install:
 # 4. Upload yarn cache
 # 5. Uncomment DITSFILES
 # 6. Run 'make makesum'
+# 7. Run 'make clean'
 make-yarn-cache: patch
 	${RM} -r ${WRKDIR}/yarn-offline-cache
 	#cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn --frozen-lockfile --ignore-scripts

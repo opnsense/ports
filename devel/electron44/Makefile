@@ -1,11 +1,10 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER}
-PORTREVISION=	1
 PULSEMV=	16
 PULSEV=		${PULSEMV}.1
 CATEGORIES=	devel
-MASTER_SITES=	https://github.com/tagattie/FreeBSD-Electron/releases/download/v44.4.3/:chromium \
+MASTER_SITES=	https://github.com/tagattie/FreeBSD-Electron/releases/download/v44.7.2/:chromium \
 		https://freedesktop.org/software/pulseaudio/releases/:pulseaudio
 PKGNAMESUFFIX=	${ELECTRON_VER_MAJOR}
 DISTFILES=	chromium-${CHROMIUM_VER}${EXTRACT_SUFX}.0:chromium \
@@ -91,6 +90,7 @@ GH_TUPLE=	electron:electron:${DISTVERSIONFULL}:electron \
 		Squirrel:Squirrel.Mac:${SQUIRREL_MAC_VER}:squirrel_mac \
 		ReactiveCocoa:ReactiveObjC:${REACTIVEOBJC_VER}:reactiveobjc \
 		Mantle:Mantle:${MANTLE_VER}:mantle \
+		sparkle-project:Sparkle:${SPARKLE_VER}:sparkle \
 		EngFlow:reclient-configs:${ENGFLOW_RECLIENT_CONFIGS_VER}:reclient_configs \
 		rollup:rollup:v${ROLLUP_VER}:rollup
 USE_GL=		gbm gl glesv2
@@ -153,7 +153,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_system_libjpeg=true \
 		use_udev=false \
 		chrome_pgo_phase=0 \
-		extra_cflags="${CFLAGS}" \
+		extra_cflags="${CFLAGS} -I${LOCALBASE}/include/libepoll-shim ${PINCLUDES}" \
 		extra_cxxflags="${CXXFLAGS} -I${LOCALBASE}/include/libepoll-shim ${PINCLUDES}" \
 		extra_ldflags="${LDFLAGS}" \
 		ffmpeg_branding="${FFMPEG_BRAND}" \
@@ -168,14 +168,15 @@ PLIST_SUB=	ELECTRON_VER=${ELECTRON_VER} \
 		ELECTRON_VER_MAJOR=${ELECTRON_VER_MAJOR} \
 		ELECTRON_ARCH=${ELECTRON_ARCH}
 
-OPTIONS_DEFINE=		CODECS CUPS DEBUG DIST DRIVER KERBEROS LTO PIPEWIRE
-OPTIONS_DEFAULT=	CODECS CUPS DRIVER KERBEROS PIPEWIRE ALSA PULSEAUDIO SNDIO
+OPTIONS_DEFINE=		AVX512 CODECS CUPS DEBUG DIST DRIVER KERBEROS LTO PIPEWIRE
+OPTIONS_DEFAULT=	AVX512 CODECS CUPS DRIVER KERBEROS PIPEWIRE ALSA PULSEAUDIO SNDIO
 OPTIONS_EXCLUDE_aarch64=LTO
 OPTIONS_GROUP=		AUDIO
 OPTIONS_GROUP_AUDIO=	ALSA PULSEAUDIO SNDIO
 OPTIONS_RADIO=		KERBEROS
 OPTIONS_RADIO_KERBEROS=	HEIMDAL HEIMDAL_BASE MIT
 OPTIONS_SUB=		yes
+AVX512_DESC=		Enable AVX512 instructions
 CODECS_DESC=		Compile and enable patented codecs like H.264
 DIST_DESC=		Build distribution zip files
 DRIVER_DESC=		Install chromedriver
@@ -189,6 +190,8 @@ ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/al
 			alsa-lib>=1.1.1_1:audio/alsa-lib
 ALSA_VARS=		GN_ARGS+=use_alsa=true
 ALSA_VARS_OFF=		GN_ARGS+=use_alsa=false
+AVX512_VARS=		GN_ARGS+=allow_avx512=true
+AVX512_VARS_OFF=	GN_ARGS+=allow_avx512=false
 CODECS_VARS=		GN_ARGS+=proprietary_codecs=true \
 			FFMPEG_BRAND="Chrome"
 CODECS_VARS_OFF=	GN_ARGS+=proprietary_codecs=false \
@@ -236,17 +239,19 @@ SNDIO_VARS=		GN_ARGS+=use_sndio=true
 SNDIO_VARS_OFF=		GN_ARGS+=use_sndio=false
 
 # See ${WRKSRC}/electron/DEPS for CHROMIUM_VER
-CHROMIUM_VER=			152.0.7977.130
+CHROMIUM_VER=			152.0.7977.149
 # See ${WRKSRC}/electron/DEPS for NODE_VER
 NODE_VER=			24.21.0
 # See ${WRKSRC}/electron/DEPS for NAN_VER
 NAN_VER=			675cefebca42410733da8a454c8d9391fcebfbc2
 # See ${WRKSRC}/electron/DEPS for SQUIRREL_MAC_VER
-SQUIRREL_MAC_VER=		8d808803bc89ec0e2aa1450474856dfee3b00c6b
+SQUIRREL_MAC_VER=		fffea30e4a339a7f7d69a3391314b72548d209bd
 # See ${WRKSRC}/electron/DEPS for REACTIVEOBJC_VER
 REACTIVEOBJC_VER=		74ab5baccc6f7202c8ac69a8d1e152c29dc1ea76
 # See ${WRKSRC}/electron/DEPS for MANTLE_VER
 MANTLE_VER=			2a8e2123a3931038179ee06105c9e6ec336b12ea
+# See ${WRKSRC}/electron/DEPS for SPARKLE_VER
+SPARKLE_VER=			79bc9e872948e47877e76f194cb0c8e0412b0b90
 # See ${WRKSRC}/electron/DEPS for ENGFLOW_RECLIENT_CONFIGS_VER
 ENGFLOW_RECLIENT_CONFIGS_VER=	955335c30a752e9ef7bff375baab5e0819b6c00d
 # See ${WRKSRC}/third_party/devtools-frontend/src/node_modules/rollup/package.json
@@ -337,6 +342,8 @@ post-extract:
 		${WRKSRC}/third_party/squirrel.mac/vendor/ReactiveObjC
 	${MV} ${WRKDIR}/${GH_PROJECT_mantle}-${MANTLE_VER} \
 		${WRKSRC}/third_party/squirrel.mac/vendor/Mantle
+	${MV} ${WRKDIR}/${GH_PROJECT_sparkle}-${SPARKLE_VER} \
+		${WRKSRC}/third_party/squirrel.mac/vendor/Sparkle
 	${MV} ${WRKDIR}/${GH_PROJECT_reclient_configs}-${ENGFLOW_RECLIENT_CONFIGS_VER} \
 		${WRKSRC}/third_party/engflow-reclient-configs
 	${MV} ${WRKDIR}/${GH_PROJECT_rollup}-${ROLLUP_VER} \

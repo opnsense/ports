@@ -22,7 +22,7 @@ MAINTAINER=	kde@FreeBSD.org
 COMMENT?=	Qt 6 library to render web content
 
 # 32-bit platforms are not supported by upstream, but we're limping them along.
-ONLY_FOR_ARCHS=	aarch64 amd64 armv7 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 armv7 i386 powerpc64le
 
 BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
 		${PYTHON_PKGNAMEPREFIX}cyclonedx-python-lib>0:textproc/py-cyclonedx-python-lib@${PY_FLAVOR} \
@@ -77,7 +77,7 @@ LIB_DEPENDS+=	libabsl_base.so:devel/abseil \
 		libvpx.so:multimedia/libvpx \
 		libwebp.so:graphics/webp
 
-USES+=		bison gnome gperf jpeg minizip xorg
+USES+=		bison gnome gperf jpeg minizip nodejs:build,lts xorg
 USE_GL+=	gbm
 USE_QT+=	positioning quick3d:build webchannel
 USE_GNOME+=	glib20 libxml2 libxslt
@@ -156,15 +156,6 @@ SNDIO_CMAKE_OFF=	-DQT_FEATURE_webengine_system_sndio:BOOL=OFF
 .endif
 
 .include <bsd.port.options.mk>
-
-.if !defined(BUILD_QTPDF)
-.  if ${ARCH:Mi386}
-DEPRECATED=	Depends on expired www/node20 (on i386 only)
-USES+=		nodejs:build,20  # expired 2026-05-31
-.  else
-USES+=		nodejs:build,lts
-.  endif
-.endif
 
 post-extract:
 	@${MKDIR} ${WRKSRC}/src/3rdparty/chromium/media/audio/sndio \

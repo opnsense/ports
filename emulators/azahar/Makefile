@@ -1,6 +1,5 @@
 PORTNAME=	azahar
-DISTVERSION=	2126.1.2
-PORTREVISION=	2
+DISTVERSION=	2126.2
 CATEGORIES=	emulators
 MASTER_SITES=	https://github.com/azahar-emu/${PORTNAME}/releases/download/${DISTVERSION}/
 DISTNAME=	${PORTNAME}-unified-source-${DISTVERSION}
@@ -14,7 +13,7 @@ LICENSE_COMB=	multi
 LICENSE_FILE_GPLv2+ =	${WRKSRC}/license.txt
 LICENSE_FILE_ISCL=	${WRKSRC}/externals/cubeb/LICENSE
 
-ONLY_FOR_ARCHS=	amd64 aarch64
+ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64le
 BROKEN_aarch64=	build fails on aarch64 with system boost-libs
 
 BUILD_DEPENDS=	nlohmann-json>0:devel/nlohmann-json \

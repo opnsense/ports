@@ -1,10 +1,10 @@
 PORTNAME=	libnusqlite3
-DISTVERSION=	1.12
+DISTVERSION=	1.18
 CATEGORIES=	databases
 MASTER_SITES=	https://bitbucket.org/alekseyt/nunicode/get/${DISTVERSION}${EXTRACT_SUFX}?dummy=/
 DISTNAME=	nunicode-${DISTVERSION}
 
-MAINTAINER=	michaeljohnson@ahze.net
+MAINTAINER=	ahze@FreeBSD.org
 COMMENT=	SQLite3 extension with Unicode collation, case mapping, and unaccent
 WWW=		https://bitbucket.org/alekseyt/nunicode
 
@@ -20,7 +20,7 @@ CMAKE_ARGS=	-DSQLITE3_INCLUDE_DIR=${LOCALBASE}/include
 CMAKE_ON=	NU_BUILD_SQLITE3_EXT
 ALL_TARGET=	nusqlite3
 
-WRKSRC=		${WRKDIR}/alekseyt-nunicode-5d3279b1399d
+WRKSRC=		${WRKDIR}/alekseyt-nunicode-dea05c47ee53
 
 PLIST_FILES=	lib/libnusqlite3.so
 

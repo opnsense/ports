@@ -537,7 +537,7 @@
     SUBDIR += mtrxmath
     SUBDIR += multichoose
     SUBDIR += mumps
-    SUBDIR += mumps4
+    SUBDIR += mumps-edf
     SUBDIR += munkres-cpp
     SUBDIR += muparser
     SUBDIR += muparserx
@@ -661,6 +661,7 @@
     SUBDIR += octave-forge-optiminterp
     SUBDIR += octave-forge-outliers
     SUBDIR += octave-forge-parallel
+    SUBDIR += octave-forge-parts
     SUBDIR += octave-forge-pde1dm
     SUBDIR += octave-forge-piqp
     SUBDIR += octave-forge-pkg-octave-doc

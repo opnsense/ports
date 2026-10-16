@@ -106,6 +106,7 @@
     SUBDIR += R-cran-parallelly
     SUBDIR += R-cran-parsedate
     SUBDIR += R-cran-patrick
+    SUBDIR += R-cran-pbapply
     SUBDIR += R-cran-pillar
     SUBDIR += R-cran-pkgbuild
     SUBDIR += R-cran-pkgcache
@@ -164,6 +165,7 @@
     SUBDIR += R-cran-uuid
     SUBDIR += R-cran-vcd
     SUBDIR += R-cran-vctrs
+    SUBDIR += R-cran-vdiffr
     SUBDIR += R-cran-waldo
     SUBDIR += R-cran-webfakes
     SUBDIR += R-cran-whisker
@@ -500,7 +502,6 @@
     SUBDIR += commitizen
     SUBDIR += commoncpp
     SUBDIR += compdbgen
-    SUBDIR += compiler-rt
     SUBDIR += compiz-bcop
     SUBDIR += computelibrary
     SUBDIR += concurrencpp
@@ -585,6 +586,7 @@
     SUBDIR += cwrap
     SUBDIR += cxmon
     SUBDIR += cxref
+    SUBDIR += cxx-rust-cssparser
     SUBDIR += cxxopts
     SUBDIR += cxxtest
     SUBDIR += cxxtools
@@ -1731,6 +1733,7 @@
     SUBDIR += maven363
     SUBDIR += maven38
     SUBDIR += maven39
+    SUBDIR += maven310
     SUBDIR += mcpp
     SUBDIR += mdb
     SUBDIR += mdds
@@ -8794,6 +8797,7 @@
     SUBDIR += talloc242
     SUBDIR += talloc243
     SUBDIR += talloc244
+    SUBDIR += talloc250
     SUBDIR += task
     SUBDIR += taskctl
     SUBDIR += taskflow
@@ -8828,6 +8832,7 @@
     SUBDIR += tevent
     SUBDIR += tevent016
     SUBDIR += tevent017
+    SUBDIR += tevent0172
     SUBDIR += tex-kpathsea
     SUBDIR += tex-libtexlua
     SUBDIR += tex-libtexluajit

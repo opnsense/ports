@@ -312,6 +312,7 @@
     SUBDIR += ibus-m17n
     SUBDIR += ibus-table
     SUBDIR += ibus-typing-booster
+    SUBDIR += ibus-uim
     SUBDIR += ibus-uniemoji
     SUBDIR += icdiff
     SUBDIR += id-aspell
@@ -489,6 +490,7 @@
     SUBDIR += markdownfmt
     SUBDIR += markdownpart
     SUBDIR += markless
+    SUBDIR += markterm
     SUBDIR += mathml-xsd
     SUBDIR += md2roff
     SUBDIR += md4c
@@ -1243,6 +1245,7 @@
     SUBDIR += pa-aspell
     SUBDIR += pageedit
     SUBDIR += par
+    SUBDIR += patdiff
     SUBDIR += pdf-form-filler-mcp
     SUBDIR += pdf-reader-mcp
     SUBDIR += pdfgrep
@@ -1484,7 +1487,6 @@
     SUBDIR += py-guess-language
     SUBDIR += py-hashids
     SUBDIR += py-hexdump
-    SUBDIR += py-hieroglyph
     SUBDIR += py-hjson
     SUBDIR += py-hotdoc
     SUBDIR += py-html-text
@@ -1645,7 +1647,6 @@
     SUBDIR += py-pyls-spyder
     SUBDIR += py-pymdown-extensions
     SUBDIR += py-pymupdf4llm
-    SUBDIR += py-pypa-docs-theme
     SUBDIR += py-pypandoc
     SUBDIR += py-pyphen
     SUBDIR += py-pyrdfa3
@@ -2275,6 +2276,7 @@
     SUBDIR += uim-m17nlib
     SUBDIR += uim-qt5
     SUBDIR += uim-qt6
+    SUBDIR += uim-wayland
     SUBDIR += uml2svg
     SUBDIR += uncle
     SUBDIR += uncrustify

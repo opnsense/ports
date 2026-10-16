@@ -1,6 +1,6 @@
 PORTNAME=	codemark
 DISTVERSION=	0.7.30
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	olgeni@FreeBSD.org
@@ -21,5 +21,15 @@ CARGO_INSTALL_PATH=	crates/codemark-cli crates/codemark-tui
 
 PLIST_FILES=	bin/codemark \
 		bin/codemark-tui
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH:Mpowerpc64*}
+post-patch:
+	@${REINPLACE_CMD} -e 's/, "wasm"]/]/' \
+		${WRKSRC}/crates/codemark-cli/Cargo.toml \
+		${WRKSRC}/crates/codemark-core/Cargo.toml \
+		${WRKSRC}/crates/codemark-tui/Cargo.toml
+.endif
 
 .include <bsd.port.mk>

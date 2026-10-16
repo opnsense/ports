@@ -1,7 +1,7 @@
 PORTNAME=	filebrowser
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.63.23
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/:assets
 # For instructions on how to create assets:
@@ -14,6 +14,9 @@ WWW=		https://filebrowser.org
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=		Upstream repo archived on Aug 31, 2026
+EXPIRATION_DATE=	2026-11-07
 
 USES=		go:modules
 USE_GITHUB=	yes

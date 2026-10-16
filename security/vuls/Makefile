@@ -1,6 +1,6 @@
 PORTNAME=	vuls
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.41.0
+DISTVERSION=	0.42.0
 CATEGORIES=	security
 
 MAINTAINER=	girgen@FreeBSD.org
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	module modernc.org/sqlite only supported on aarch64 and amd64
 
-USES=		go:modules
+USES=		go:1.26,modules
 
 GO_MODULE=	github.com/future-architect/vuls
 GO_TARGET=	./cmd/${PORTNAME}

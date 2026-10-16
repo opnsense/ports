@@ -1,10 +1,10 @@
 PORTNAME=	csvtk
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.37.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	science
 
-MAINTAINER=	jwb@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cross-platform and ultrafast toolkit for CSV/TSV processing
 WWW=		https://bioinf.shenwei.me/csvtk/ \
 		https://github.com/shenwei356/csvtk/

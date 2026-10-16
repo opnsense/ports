@@ -1,28 +1,33 @@
 # We follow the stable channel on https://chromiumdash.appspot.com/releases?platform=Linux
 # Latest stable version API: https://chromiumdash.appspot.com/fetch_releases?channel=Stable&platform=Linux&num=1&offset=0
 # V8 is mirrored at https://github.com/v8/v8 (use a specific release tag, not lkgr which is a dynamic ref)
-# Browse current stable branch: https://chromium.googlesource.com/v8/v8/+/refs/heads/15.4-lkgr
+# Browse current stable branch: https://chromium.googlesource.com/v8/v8/+/refs/heads/15.5-lkgr
 
 PORTNAME=	v8
-PORTVERSION=	15.4.80.20
+PORTVERSION=	15.5.35.20
+PORTREVISION=	2
 CATEGORIES=	lang
-DIST_SUBDIR=	v8/${PORTVERSION:R}
 
 MAINTAINER=	delphij@FreeBSD.org
 COMMENT=	Open source JavaScript engine by Google
 WWW=		https://v8.dev/
 
-LICENSE=	BSD3CLAUSE
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	APACHE20 BSD3CLAUSE MIT UNICODE30
+LICENSE_COMB=	multi
+LICENSE_NAME_UNICODE30=	Unicode License v3
+LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE
+LICENSE_FILE_UNICODE30=	${WRKSRC_crate_icu_calendar}/LICENSE
+LICENSE_PERMS_UNICODE30=	dist-mirror dist-sell pkg-mirror pkg-sell \
+				auto-accept
 
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR} \
 		binutils>=0:devel/binutils \
 		gn:devel/gn
-LIB_DEPENDS=	libicudata.so:devel/icu
+LIB_DEPENDS=	libicuuc.so:devel/icu
 
-USES=		compiler:c++20-lang cpe elfctl gnome llvm:min=20,build ninja \
+USES=		cargo compiler:c++20-lang cpe elfctl llvm:min=20,build ninja \
 		pkgconfig python:build
 CPE_VENDOR=	google
 USE_GITHUB=	yes
@@ -55,8 +60,14 @@ GH_TUPLE=	chromium-full-mirror:external_github.com_google_cpu_features:${CPU_FEA
 		chromium-full-mirror:chromium_src_tools_protoc_wrapper:${PROTOC_WRAPPER_REV}:protoc_wrapper/tools/protoc_wrapper \
 		chromium-full-mirror:chromium_src_third_party_simdutf:${SIMDUTF_REV}:simdutf/third_party/simdutf \
 		chromium-full-mirror:chromium_src_third_party_zlib:${ZLIB_REV}:zlib/third_party/zlib
-USE_GNOME=	glib20
 USE_LDCONFIG=	yes
+
+# Temporal is implemented by the temporal_capi Rust crate.  GN can only build
+# it with the Chromium Rust toolchain, so build it with cargo as a static
+# library, through a small wrapper crate, and have GN link that.  CARGO_CRATES
+# follows chromium_crates_io/Cargo.lock in chromium/src/third_party/rust at
+# the revision pinned in DEPS.
+CARGO_VENDOR_DIR=	${WRKDIR}/cargo-crates
 
 MAKE_ARGS=	-C \
 		out/Release
@@ -74,9 +85,13 @@ BINARY_ALIAS=	python3=${PYTHON_CMD}
 SUB_FILES=	v8.pc v8_libbase.pc v8_libplatform.pc
 SUB_LIST+=	PORTVERSION=${PORTVERSION}
 
+CARGO_SRC_SUBDIR=	third_party/rust/temporal_capi
+TEMPORAL_CAPI_DIR=	${CARGO_VENDOR_DIR}/${CARGO_CRATES:Mtemporal_capi-[0-9]*}
+TEMPORAL_CAPI_LIB=	${WRKDIR}/libv8_temporal.a
+
 # Sub-dependency commit hashes from DEPS at tag ${PORTVERSION}
 ABSL_REV=			435e7d977fb36fb47854a4c552c0706dad0bd7cf
-BUILD_REV=			fdd530b37c6cd6c8645cdfa296d209643ab2dc26
+BUILD_REV=			8ca8a372cab9ff143072204053d30fbc2c17bd7a
 BUILDTOOLS_REV=			6f6a5dbf04b734214f3b1f386567d101ec9d607e
 CLANG_REV=			450d823868eaee61e2b2cb986e19aec287f16d58
 CPU_FEATURES_CHROMIUM_REV=	4974e2063946d9dd2a417c27db139fd982ff447a
@@ -86,22 +101,22 @@ DRAGONBOX_REV=			beeeef91cf6fef89a4d4ba5e95d47ca64ccb3a44
 FADEC_REV=			c9f78f532b9004de278489019ab2c6c28ae9746e
 FAST_FLOAT_REV=			34164f547b7df3f5d794ff67e9f885c36819ebfc
 FP16_REV=			782eea126dc5c755827be751a099eb01826175cf
-FUZZTEST_REV=			0dcd0b87a3252a116ec59fadcfc80f2d2015bbac
-FUZZTEST_SRC_REV=		94c3cf3a4391eb0bb12999128e29cbe625bad2f3
+FUZZTEST_REV=			f0f143db954fb311d4e7ba39972d2dab9ba47e2a
+FUZZTEST_SRC_REV=		846bda6f291e26b7f8fb33c8de23796129bffd12
 GOOGLETEST_REV=			4fe3307fb2d9f86d19777c7eb0e4809e9694dde7
 HIGHWAY_REV=			2607d3b5b0113992fe84d3848859eae13b3b52c1
-ICU_REV=			8cc91d9b6ab9991802fd208ee03a69714fd0251c
+ICU_REV=			6ebb40c594776cc2c21ea14df85a2a89a328b364
 JSONCPP_REV=			3347a4b86bb914cb565f0cbda19c06e109513300
 LIBCXX_REV=			97b436da4c33663581d394f4ee0a5977fc38c2f4
 LIBCXXABI_REV=			fc1897a2c12aa27e703c3ed48b62eba8abf4ce19
 LIBUNWIND_REV=			45120ee2331193c3650acc9c427ed267fab31d62
-LLVM_LIBC_REV=			320824188c37e5c28738b9652a0ca8087c934bc9
-PARTITION_ALLOC_REV=		f0d1e646eb41d8736261d5d8d8f094404bac62ac
+LLVM_LIBC_REV=			43a9a99ce4b5a04954090f8a0e74bf2786f59379
+PARTITION_ALLOC_REV=		c029851c21b7e1154fa3964e08c97710adc92cc7
 PROTOBUF_REV=			5f8c379d1fc89fe8eee16ae560dd5e514a4608da
 PROTOC_WRAPPER_REV=		e9dbe1bf6a2a5d2d4973725874259eed587cf18d
 RE2_REV=			972a15cedd008d846f1a39b2e88ce48d7f166cbd
 SIMDUTF_REV=			f7356eed293f8208c40b3c1b344a50bd70971983
-ZLIB_REV=			5eb4d7ed380f214e7a0a23c18f629048d3ba9e00
+ZLIB_REV=			285e94b8fa95ad3b7d16b80798ec8dce6febb8c8
 
 # Run "gn args --list out/Release" for all variables.
 # Some parts don't have use_system_* flag, and can be turned on/off by using
@@ -109,22 +124,23 @@ ZLIB_REV=			5eb4d7ed380f214e7a0a23c18f629048d3ba9e00
 # OS "target_os == is_bsd", like libusb, libpci.
 GN_ARGS+=	clang_base_path="${LLVM_PREFIX}" \
 		clang_use_chrome_plugins=false \
+		clang_version="${LLVM_VERSION}" \
 		enable_rust=false \
 		extra_cxxflags="${CXXFLAGS}" \
 		extra_ldflags="${LDFLAGS} -Wl,--icf=none" \
-		is_clang=true \
 		icu_use_data_file=false \
+		is_clang=true \
 		is_component_build=true \
 		is_debug=false \
 		treat_warnings_as_errors=false \
 		use_aura=true \
+		use_glib=false \
 		use_lld=true \
 		use_custom_libcxx=false \
 		use_custom_libcxx_for_host=false \
-		v8_use_external_startup_data=false \
-		v8_enable_temporal_support=false # TC39 Temporal (Stage 3) requires Rust; disabled until supported
-
-#OPTIONS_DEFINE=	EXAMPLES
+		v8_metagen_libclang_bindings_dir="${LLVM_PREFIX}/lib/${PYTHON_VERSION}/site-packages" \
+		v8_metagen_libclang_so="${LLVM_PREFIX}/lib/libclang.so" \
+		v8_use_external_startup_data=false
 
 # GH_TUPLE group:path-on-chromium.googlesource.com pairs.  The distfiles come
 # from the unofficial chromium-full-mirror on GitHub and are compared against
@@ -162,7 +178,22 @@ _GS_DEPS=		absl:chromium/src/third_party/abseil-cpp \
 _GS_DIFF_ARGS_jsoncpp=	--strip-trailing-cr
 _GS_SITE=		https://chromium.googlesource.com
 _GS_VERIFY=		${WRKDIR}/.verify-mirror
+_V8_LIBS=		libchrome_zlib.so libthird_party_abseil-cpp_absl.so \
+			libv8.so libv8_libbase.so libv8_libplatform.so
 _V8_OUTDIR=		${WRKSRC}/out/Release
+
+.include <bsd.port.options.mk>
+
+# V8 only uses PartitionAlloc together with pointer compression, which needs
+# 64-bit pointers.
+.if ${ARCH} == i386
+PLIST_SUB+=	PARTITION_ALLOC="@comment "
+.else
+PLIST_SUB+=	PARTITION_ALLOC=""
+_V8_LIBS+=	libthird_party_partition_alloc_src_partition_alloc_allocator_base.so \
+		libthird_party_partition_alloc_src_partition_alloc_allocator_core.so \
+		libthird_party_partition_alloc_src_partition_alloc_allocator_shim.so
+.endif
 
 # "make makesum" fetches with these two set; hook the verification in there so
 # that distinfo can not be regenerated without it.
@@ -204,14 +235,22 @@ verify-mirror:
 	@${RM} -r ${_GS_VERIFY}
 	@${ECHO_MSG} "===>  verify-mirror: all ${_GS_DEPS:[#]} mirrored distfiles match ${_GS_SITE}"
 
+post-extract:
+	@${MKDIR} ${CARGO_WRKSRC}/src
+	@${CP} ${FILESDIR}/temporal_capi-Cargo.toml ${CARGO_CARGOTOML}
+	@${CP} ${FILESDIR}/temporal_capi-Cargo.lock ${CARGO_CARGOLOCK}
+	@${CP} ${FILESDIR}/temporal_capi-lib.rs ${CARGO_WRKSRC}/src/lib.rs
+
 post-patch:
-	@${REINPLACE_CMD} -i '' 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/build/toolchain/gcc_toolchain.gni
 # https://github.com/klzgrad/naiveproxy/blob/master/src/build/config/gclient_args.gni
 	@${ECHO_CMD} 'checkout_google_benchmark = false' > ${WRKSRC}/build/config/gclient_args.gni
+	@${SED} -e 's|%%TEMPORAL_CAPI_DIR%%|${TEMPORAL_CAPI_DIR}|' \
+		-e 's|%%TEMPORAL_CAPI_LIB%%|${TEMPORAL_CAPI_LIB}|' \
+		${FILESDIR}/temporal_capi-BUILD.gn.in > ${CARGO_WRKSRC}/BUILD.gn
 
 # Use ICU from ports and create needed directory
 pre-configure:
-	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} ./build/linux/unbundle/replace_gn_files.py --system-libraries icu # || ${FALSE}
+	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} ./build/linux/unbundle/replace_gn_files.py --system-libraries icu
 	@${MKDIR} ${_V8_OUTDIR}/gen/shim_headers/icui18n_shim/third_party/icu/source/i18n/unicode \
 		${_V8_OUTDIR}/gen/shim_headers/icuuc_shim/third_party/icu/source/common/unicode \
 		${_V8_OUTDIR}/gen/include
@@ -220,25 +259,25 @@ pre-configure:
 do-configure:
 	@cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} gn gen out/Release --args='${GN_ARGS}'
 
+pre-build:
+	@${CARGO_CARGO_RUN} build \
+		--manifest-path ${CARGO_CARGOTOML} \
+		--verbose \
+		--verbose \
+		${CARGO_BUILD_ARGS}
+	${CP} ${CARGO_TARGET_DIR}/*/libv8_temporal.a ${TEMPORAL_CAPI_LIB}
+
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/include/cppgc ${STAGEDIR}${PREFIX}/include/libplatform
 .for prog in d8 mkgrokdump mksnapshot v8_shell
 	${INSTALL_PROGRAM} ${_V8_OUTDIR}/${prog} ${STAGEDIR}${PREFIX}/bin/${prog}
 .endfor
-.for lib in libchrome_zlib.so libv8.so libv8_libbase.so libv8_libplatform.so \
-	libthird_party_abseil-cpp_absl.so \
-	libthird_party_partition_alloc_src_partition_alloc_allocator_base.so \
-	libthird_party_partition_alloc_src_partition_alloc_allocator_core.so \
-	libthird_party_partition_alloc_src_partition_alloc_allocator_shim.so
+.for lib in ${_V8_LIBS}
 	${INSTALL_LIB} ${_V8_OUTDIR}/${lib} ${STAGEDIR}${PREFIX}/lib/${lib}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/include/*.h ${STAGEDIR}${PREFIX}/include/
 	cd ${WRKSRC}/include/cppgc && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/include/cppgc '-name *\.h'
 	${INSTALL_DATA} ${WRKSRC}/include/libplatform/*.h ${STAGEDIR}${PREFIX}/include/libplatform/
 	${INSTALL_DATA} ${WRKDIR}/v8*.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/
-
-do-install-EXAMPLES-on:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_PROGRAM} ${_V8_OUTDIR}/v8_simple_* ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>
