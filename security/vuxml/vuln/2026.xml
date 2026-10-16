@@ -1,3 +1,1053 @@
+  <vuln vid="bac88b3f-c8a1-11f1-866a-3c7c3fba4204">
+    <topic>NSD -- multiple vulnerabilities</topic>
+    <affects>
+	<package>
+	  <name>nsd</name>
+	  <range><ge>4.10.0</ge><lt>4.15.3</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NLnet Labs reports:</p>
+	<blockquote cite="https://community.nlnetlabs.nl/t/nsd-4-15-3-security-release/3490">
+	  <p>This security release has fixes for vulnerabilities which were all for cases with specially crafted and formatted data in zone files. Zone files which are written out by NSD itself, such as for zones for which NSD is secondary, would not be formatted like this. The zone file had to be fed to NSD directly, but could in multi-tenant configurations, come from an operator controlled provisioning system accessible to third parties. Zone files that are regularly formatted (generated from DNS software) or come from trusted sources would not trigger these vulnerabilities.</p>
+	  <ul>
+	  <li>CVE-2026-101337: Reserve correct number of bytes for base64 sequence tokens, regardless of stream decoder phase.</li>
+	  <li>CVE-2026-101338: No SVCB and/or HTTPS parameters are parsed when the RDATA is already filled to the brim.</li>
+	  <li>CVE-2026-101339: Fix for dname possibility to overwrite the stack when near the RDATA limit.</li>
+	  <li>CVE-2026-101341: Also check that RDATA stays within bounds while parsing string tokens under 32 bytes.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-101337</cvename>
+      <cvename>CVE-2026-101338</cvename>
+      <cvename>CVE-2026-101339</cvename>
+      <cvename>CVE-2026-101341</cvename>
+      <url>https://www.nlnetlabs.nl/downloads/nsd/CVE-2026-101337.txt</url>
+      <url>https://www.nlnetlabs.nl/downloads/nsd/CVE-2026-101338.txt</url>
+      <url>https://www.nlnetlabs.nl/downloads/nsd/CVE-2026-101339.txt</url>
+      <url>https://www.nlnetlabs.nl/downloads/nsd/CVE-2026-101341.txt</url>
+      <url>https://community.nlnetlabs.nl/t/nsd-4-15-3-security-release/3490</url>
+    </references>
+    <dates>
+      <discovery>2026-10-14</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1be69a2e-c883-11f1-b5c5-3c7c3fba4204">
+    <topic>Newsboat -- vulnerabilities</topic>
+    <affects>
+	<package>
+	  <name>newsboat</name>
+	  <range><ge>2.10</ge><lt>2.45</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Newsboat Team reports:</p>
+	<blockquote cite="https://github.com/newsboat/newsboat/blob/r2.45/CHANGELOG.md#security">
+	<ul>
+	  <li>(CVE ID Pending) Remote code execution via manual OPML import (--import-from-opml)</li>
+	  <li><a href="https://github.com/newsboat/newsboat/security/advisories/GHSA-4m8m-vj3m-hfxx">GHSA-4m8m-vj3m-hfxx</a>: Remote code execution via OPML import (both manual --import-from-opml and opml-url config setting)</li>
+	  <li><a href="https://github.com/newsboat/newsboat/security/advisories/GHSA-pvg7-gjxf-23c9">GHSA-pvg7-gjxf-23c9</a>: Podboat could write at arbitrary paths</li>
+	</ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/newsboat/newsboat/security/advisories/GHSA-4m8m-vj3m-hfxx</url>
+      <url>https://github.com/newsboat/newsboat/security/advisories/GHSA-pvg7-gjxf-23c9</url>
+    </references>
+    <dates>
+      <discovery>2026-10-04</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f0604004-c87b-11f1-9006-3497f65b111b">
+    <topic>nginx-module-cache-purge -- symlink traversal when walking cache trees</topic>
+    <affects>
+      <package>
+       <name>nginx-module-cache-purge</name>
+       <range><lt>3.0.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>The ngx_cache_purge developers report:</p>
+       <blockquote cite="https://github.com/nginx-modules/ngx_cache_purge/releases/tag/3.0.4">
+       <p>
+       Fixed a symlink traversal vulnerability during cache tree traversal.
+       An attacker with the ability to create symbolic links inside the
+       cache directory could potentially cause cache purge operations to
+       delete arbitrary files accessible to the NGINX worker process
+       (CVE-2026-108981).
+       </p>
+      </blockquote>
+     </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-108981</cvename>
+      <url>https://github.com/nginx-modules/ngx_cache_purge/releases/tag/3.0.4</url>
+    </references>
+    <dates>
+      <discovery>2026-10-11</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3f9e602e-c849-11f1-ada3-bc241121aa0a">
+    <topic>FreeBSD -- Multiple vulnerabilities in bhyve device models</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>15.1</ge><lt>15.1_5</lt></range>
+	<range><ge>14.5</ge><lt>14.5_2</lt></range>
+	<range><ge>14.4</ge><lt>14.4_11</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	  <p>Several vulnerabilities were found in the bhyve hypervisor's
+	  device models.</p>
+	  <p>The xHCI (USB 3) device model did not validate or save the event
+	  ring size provided by the guest.  The size was re-read from guest
+	  memory on each use, and Transfer Request Block (TRB) fields were
+	  loaded without protection against concurrent modification by the
+	  guest.  This race condition could be triggered by a guest running
+	  malicious, privileged code.  (CVE-2026-101309)</p>
+	  <p>The HDA audio device model did not check for zero-length Buffer
+	  Descriptor List (BDL) entries when starting a stream.  A zero-length
+	  entry caused an out-of-bounds read or write during DMA transfer
+	  processing.  BDL fields were also subject to modification by the
+	  guest after validation.  (CVE-2026-101310)</p>
+	  <p>The framebuffer device model's maximum resolution constants were
+	  duplicated between the framebuffer and RFB modules and had gotten
+	  out of sync.  Additionally, writes to the framebuffer BAR could set
+	  arbitrary width and height values without validation, and the
+	  framebuffer BAR I/O and RFB rendering threads were not synchronized.
+	  (CVE-2026-101311)</p>
+	<h1>Impact:</h1>
+	  <p>A malicious guest can crash the bhyve process or potentially
+	  execute arbitrary code in the host userspace context running the
+	  virtual machine, subject to bhyve's Capsicum sandbox.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-101309</cvename>
+      <cvename>CVE-2026-101310</cvename>
+      <cvename>CVE-2026-101311</cvename>
+      <freebsdsa>SA-26:72.bhyve</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2026-10-14</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1fef3562-c848-11f1-ada3-bc241121aa0a">
+    <topic>FreeBSD -- TOCTOU race between sound(4) buffer resizing and mmap</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>15.1</ge><lt>15.1_5</lt></range>
+	<range><ge>14.5</ge><lt>14.5_2</lt></range>
+	<range><ge>14.4</ge><lt>14.4_11</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	  <p>When an audio channel's buffer needs to be resized, the sound(4)
+	  driver checks that the buffer is not memory-mapped and then drops
+	  the channel lock to allocate a new buffer.  An mmap(2) call on
+	  another thread can complete during this window, after which the
+	  resize path frees the now-mapped buffer without rechecking.</p>
+	<h1>Impact:</h1>
+	  <p>An unprivileged local user with access to a sound device can
+	  exploit this race to trigger a use-after-free in the kernel,
+	  potentially escalating privileges.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-101308</cvename>
+      <freebsdsa>SA-26:71.sound</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2026-10-14</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e40e981e-c847-11f1-ada3-bc241121aa0a">
+    <topic>FreeBSD -- Remotely triggerable buffer overflow in tcp_rack</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>15.1</ge><lt>15.1_5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	  <p>When the PCM sample array needs to grow, the RACK stack doubles
+	  a 16-bit allocation counter.  Repeated doublings caused the counter
+	  to wrap to zero, resulting in a near-zero-length allocation followed
+	  by a copy of the existing samples into the undersized buffer.  A
+	  remote peer can trigger the expansion by sending a sufficient number
+	  of ACKs on an established connection.</p>
+	<h1>Impact:</h1>
+	  <p>A remote attacker who can establish a TCP connection to a system
+	  using the RACK stack can trigger an out-of-bounds write of approximately
+	  512 KB in the kernel heap possibly resulting in a kernel panic.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-101307</cvename>
+      <freebsdsa>SA-26:70.tcp</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2026-10-14</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="95970257-c867-11f1-9006-3497f65b111b">
+    <topic>nginx -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>nginx</name>
+       <name>nginx-full</name>
+       <name>nginx-lite</name>
+       <range><lt>1.30.6,3</lt></range>
+      </package>
+      <package>
+       <name>nginx-devel</name>
+       <range><lt>1.31.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>The nginx developers report:</p>
+       <blockquote cite="https://nginx.org/en/security_advisories.html">
+       <p>
+       A buffer overflow might occur in a worker process when using the
+       "alias" directive if the request URI was changed by the "rewrite"
+       directive and was then mapped to a file path (CVE-2026-15176).
+       </p>
+       <p>
+       A buffer overflow might occur in a worker process while evaluating
+       string expressions with variables, which affected the document root
+       calculation and request logging in the http and stream modules
+       (CVE-2026-93479).
+       </p>
+       <p>
+       When using HTTP/3 a part of an unknown frame might be treated as the
+       request body, which might result in bypassing the
+       "client_max_body_size" limit or injecting data in the proxied
+       request (CVE-2026-95101).
+       </p>
+       <p>
+       When using TLS session ticket key rotation, one of the keys was left
+       uninitialized, which might allow to forge a session (CVE-2026-97629).
+       </p>
+       <p>
+       When using asynchronous file I/O (AIO), use-after-free might occur in
+       certain configurations if the SSI page has "include virtual" commands
+       (CVE-2026-97205).
+       </p>
+      </blockquote>
+     </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-15176</cvename>
+      <cvename>CVE-2026-93479</cvename>
+      <cvename>CVE-2026-95101</cvename>
+      <cvename>CVE-2026-97629</cvename>
+      <cvename>CVE-2026-97205</cvename>
+      <url>https://nginx.org/en/security_advisories.html</url>
+      <url>https://nginx.org/en/CHANGES-1.30</url>
+      <url>https://nginx.org/en/CHANGES</url>
+    </references>
+    <dates>
+      <discovery>2026-10-14</discovery>
+      <entry>2026-10-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fdb34ad1-c7ac-11f1-97dc-40b034429ecf">
+    <topic>p5-Plack -- Multiple vulnerabilities</topic>
+    <affects>
+	<package>
+	<name>p5-Plack</name>
+	<range><lt>1.0055</lt></range>
+	</package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Plack project reports:</p>
+	<blockquote cite="https://metacpan.org/dist/Plack/changes">
+	  <p>[SECURITY]</p>
+	  <ul>
+	    <li>Fix memory leak of every request env in Plack::Middleware::Recursive (CVE-2026-110333)</li>
+	    <li>Plack::Request::Upload->basename never returns '', '.' or '..' (CVE-2026-110332)</li>
+	    <li>Plack::App::URLMap matches SERVER_PORT literally when stripping it from Host (CVE-2026-110335)</li>
+	  </ul>
+	  <p>[BUG FIXES]</p>
+	  <ul>
+	    <li>Plack::Middleware::ErrorDocument restores the env after a subrequest, so outer
+	    middleware such as AccessLog sees the original request (CVE-2026-110334)</li>
+	  </ul>
+	  <p>[BUG FIXES]</p>
+	  <ul>
+	    <li>Document that Plack::Handler::FCGI and Apache2 keep dot segments in PATH_INFO and
+	    warn against relying on front-server path-based access control (CVE-2026-110336)</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-110333</cvename>
+      <cvename>CVE-2026-110332</cvename>
+      <cvename>CVE-2026-110335</cvename>
+      <cvename>CVE-2026-110334</cvename>
+      <cvename>CVE-2026-110336</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/cve-2026-110333</url>
+      <url>https://nvd.nist.gov/vuln/detail/cve-2026-110332</url>
+      <url>https://nvd.nist.gov/vuln/detail/cve-2026-110335</url>
+      <url>https://nvd.nist.gov/vuln/detail/cve-2026-110334</url>
+      <url>https://nvd.nist.gov/vuln/detail/cve-2026-110336</url>
+    </references>
+    <dates>
+      <discovery>2026-10-13</discovery>
+      <entry>2026-10-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="14dab969-c797-11f1-a6ea-8447094a420f">
+    <topic>Curl -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>curl</name>
+	<range><lt>8.23.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Curl project reports:</p>
+	<blockquote cite="">
+	  <ul>
+	    <li>local interface connection reuse mixup (CVE-2026-107929)</li>
+	    <li>info leak uploading over WebSockets with GnuTLS (CVE-2026-107928)</li>
+	    <li>password leak in CURLINFO_EFFECTIVE_URL (CVE-2026-94266)</li>
+	    <li>Authorization: Negotiate sent to foreign origin (CVE-2026-94265)</li>
+	    <li>server-set cookie aborts cookie jar load (CVE-2026-92386)</li>
+	    <li>never-ending loop via server response omission (CVE-2026-92387)</li>
+	    <li>FTP wildcard write callback mixup (CVE-2026-92388)</li>
+	    <li>TFTP direction confusion (CVE-2026-92389)</li>
+	    <li>-J no-clobber guarantee bypassed with 103 early hints (CVE-2026-92390)</li>
+	    <li>curl_mime_free stack overflow by recursion (CVE-2026-92391)</li>
+	    <li>HTTP/2 upload Use-After-Free (CVE-2026-92392)</li>
+	    <li>redirect to SFTP or SCP bypasses host verification (CVE-2026-86410)</li>
+	    <li>server-set cookie erases cookie jar (CVE-2026-86412)</li>
+	    <li>Negotiate credentials sent to redirected origin (CVE-2026-86413)</li>
+	    <li>leaking host credentials to HTTP proxy (CVE-2026-86414)</li>
+	    <li>auto client cert connection reuse mixup (CVE-2026-86415)</li>
+	    <li>cross-origin reuse of a Negotiate connection (CVE-2026-87861)</li>
+	    <li>HSTS cache import drops longer-lived child (CVE-2026-87862)</li>
+	    <li>HSTS response erases persisted entries (CVE-2026-87863)</li>
+	    <li>knownhost callback mismatches key as missing (CVE-2026-87865)</li>
+	    <li>wolfSSL public-key pinning bypass (CVE-2026-87866)</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-107929</cvename>
+      <cvename>CVE-2026-107928</cvename>
+      <cvename>CVE-2026-94266</cvename>
+      <cvename>CVE-2026-94265</cvename>
+      <cvename>CVE-2026-92386</cvename>
+      <cvename>CVE-2026-92387</cvename>
+      <cvename>CVE-2026-92388</cvename>
+      <cvename>CVE-2026-92389</cvename>
+      <cvename>CVE-2026-92390</cvename>
+      <cvename>CVE-2026-92391</cvename>
+      <cvename>CVE-2026-92392</cvename>
+      <cvename>CVE-2026-86410</cvename>
+      <cvename>CVE-2026-86412</cvename>
+      <cvename>CVE-2026-86413</cvename>
+      <cvename>CVE-2026-86414</cvename>
+      <cvename>CVE-2026-86415</cvename>
+      <cvename>CVE-2026-87861</cvename>
+      <cvename>CVE-2026-87862</cvename>
+      <cvename>CVE-2026-87863</cvename>
+      <cvename>CVE-2026-87865</cvename>
+      <cvename>CVE-2026-87866</cvename>
+      <url>https://curl.se/docs/security.html</url>
+    </references>
+    <dates>
+      <discovery>2026-10-14</discovery>
+      <entry>2026-10-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="371fc9b2-c543-11f1-b115-74563cf85f9d">
+    <topic>libwasmtime -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>libwasmtime</name>
+	<name>wasmtime</name>
+	<range><lt>36.0.17</lt></range>
+	<range><ge>37.0.0</ge><lt>48.0.4</lt></range>
+	<range><ge>49.0.0</ge><lt>49.0.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Wasmtime development team reports:</p>
+	<blockquote cite="https://github.com/bytecodealliance/wasmtime/releases/tag/v49.0.2">
+	  <ul>
+	    <li>Wasmtime component async-lifted callback result count is
+	    unvalidated, causing a native stack buffer overflow.</li>
+	    <li>Mis-typed WebAssembly tag imports can lead to GC heap
+	    corruption.</li>
+	    <li>Rooting for GC values live across try_call may be missing,
+	    causing GC heap corruption.</li>
+	    <li>Excessive allocated memory on the host when guests don't
+	    have stdio.</li>
+	    <li>Guest can panic host through filesystem timestamp before the
+	    epoch on wasip3.</li>
+	    <li>Wasmtime wasi:http implementation panics with a zero timeout
+	    supplied.</li>
+	    <li>WASI preview 0 implementation of poll_oneoff circumvents fuel
+	    consumption.</li>
+	    <li>fd_readdir copies uninitialized struct padding into guest
+	    memory.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-32h6-97mm-8q3c</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-cfhf-m2cr-62wj</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-hw8m-q44c-ggrf</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-gqmc-89g8-p25r</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-mr2v-56j5-cmfc</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-w4qr-p94g-mjhv</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-j366-h8gg-77pm</url>
+      <url>https://github.com/bytecodealliance/wasmtime/security/advisories/GHSA-96f6-r43r-8c24</url>
+    </references>
+    <dates>
+      <discovery>2026-10-02</discovery>
+      <entry>2026-10-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="07e99f22-c176-4c8f-9678-a57ba8114959">
+    <topic>Timing leaks of the nonce in ECDSA, EdDSA and DSA signatures</topic>
+    <affects>
+      <package>
+	<name>py312-pycryptodome</name>
+	<name>py312-pycryptodomex</name>
+	<name>py313-pycryptodome</name>
+	<name>py313-pycryptodomex</name>
+	<name>py313t-pycryptodome</name>
+	<name>py313t-pycryptodomex</name>
+	<name>py314-pycryptodome</name>
+	<name>py314-pycryptodomex</name>
+	<name>py314t-pycryptodome</name>
+	<name>py314t-pycryptodomex</name>
+	<name>py311-pycryptodome</name>
+	<name>py311-pycryptodomex</name>
+	<name>py315-pycryptodome</name>
+	<name>py315-pycryptodomex</name>
+	<name>py27-pycryptodome</name>
+	<name>py27-pycryptodomex</name>
+	<range><lt>3.24.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Helder Eijs reports</p>
+	<blockquote cite="https://github.com/Legrandin/pycryptodome/commit/59351474682db6648825f17b11112d6821d66cb9">
+	  <p>Fix timing leaks of the nonce in ECDSA, EdDSA and DSA signatures
+	     The signing time depended on the secret nonce, enough to recover the
+	     private key with a lattice attack.
+
+	     - EC: scalars are encoded and processed on the full length of the
+	       order, and ec_mix_add() is constant time for the point at infinity
+	       (a zero digit).
+	     - DSA: g^k uses k + q or k + 2q (fixed length) and mpz_powm_sec, or the
+	       library's Montgomery exponentiation without GMP. About 40% slower.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/Legrandin/pycryptodome/commit/59351474682db6648825f17b11112d6821d66cb9</url>
+    </references>
+    <dates>
+      <discovery>2026-10-11</discovery>
+      <entry>2026-10-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5518664d-c652-11f1-b273-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+<package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>19.4.0</ge><lt>19.4.2</lt></range>
+	<range><ge>19.3.0</ge><lt>19.3.4</lt></range>
+	<range><ge>10.3.0</ge><lt>19.2.8</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/?nav=19.4.2">
+	  <p>Integer Overflow issue in CI/CD Regular Expression Compiler impacts GitLab CE/EE</p>
+	  <p>Cross-site Scripting issue in syntax highlighting impacts GitLab CE/EE</p>
+	  <p>Improper Authorization issue in downstream pipeline creation service impacts GitLab CE/EE</p>
+	  <p>Permissive Regular Expression issue in repository file access impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in scheduled pipeline execution policy impacts GitLab EE</p>
+	  <p>Improper Neutralization of Input Used for LLM Prompting issue in GitLab Duo Agent Platform impacts GitLab EE</p>
+	  <p>Sensitive Information Exposure issue in GitLab Pages impacts GitLab CE/EE</p>
+	  <p>Open Redirect issue in Kubernetes proxy impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in GraphQL notes widget impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in GraphQL work item hierarchy impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in GraphQL scope impacts GitLab CE/EE</p>
+	  <p>Page cache poisoning via improper cache key construction in merge requests impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in work items GraphQL API impacts GitLab CE/EE</p>
+	  <p>Missing Authorization issue in merge request accessibility report comparison endpoint impacts GitLab CE/EE</p>
+	  <p>Incorrect Privilege Assignment issue in custom roles impacts GitLab EE</p>
+	  <p>Insufficient Granularity of Access Control issue in project label management impacts GitLab CE/EE</p>
+	  <p>Governance Control Bypass issue in Duo Agent Platform impacts GitLab EE</p>
+	  <p>Incorrect Authorization issue in package registry impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in merge request approval eligibility check impacts GitLab EE</p>
+	  <p>Incorrect Authorization issue in fine-grained personal access tokens impacts GitLab CE/EE</p>
+	  <p>Server Side Request Forgery (SSRF) issue in repository import impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in project import impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in Package Registry impacts GitLab CE/EE</p>
+	  <p>Improper Access Control issue in project CI/CD settings impacts GitLab EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-97229</cvename>
+      <cvename>CVE-2026-92883</cvename>
+      <cvename>CVE-2026-16301</cvename>
+      <cvename>CVE-2026-14814</cvename>
+      <cvename>CVE-2026-81839</cvename>
+      <cvename>CVE-2026-96893</cvename>
+      <cvename>CVE-2026-101168</cvename>
+      <cvename>CVE-2026-7767</cvename>
+      <cvename>CVE-2026-16275</cvename>
+      <cvename>CVE-2026-84284</cvename>
+      <cvename>CVE-2026-85529</cvename>
+      <cvename>CVE-2026-100755</cvename>
+      <cvename>CVE-2026-14552</cvename>
+      <cvename>CVE-2026-6567</cvename>
+      <cvename>CVE-2026-104661</cvename>
+      <cvename>CVE-2026-14210</cvename>
+      <cvename>CVE-2026-105458</cvename>
+      <cvename>CVE-2026-5954</cvename>
+      <cvename>CVE-2026-92528</cvename>
+      <cvename>CVE-2026-78335</cvename>
+      <cvename>CVE-2026-100104</cvename>
+      <cvename>CVE-2026-82632</cvename>
+      <cvename>CVE-2026-103549</cvename>
+      <cvename>CVE-2026-9268</cvename>
+      <url>https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/?nav=19.4.2</url>
+    </references>
+    <dates>
+      <discovery>2026-10-12</discovery>
+      <entry>2026-10-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bfa621d9-e508-4e3e-9a15-c2b54929ea77">
+    <topic>gstreamer1 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gstreamer1</name>
+	<name>gstreamer1-editing-services</name>
+	<name>gstreamer1-plugins</name>
+	<name>gstreamer1-plugins-bad</name>
+	<name>gstreamer1-plugins-good</name>
+	<name>gstreamer1-plugins-ugly</name>
+	<name>gstreamer1-rtsp-server</name>
+	<range><lt>1.28.8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The GStreamer project reports:</p>
+	<blockquote cite="https://gstreamer.freedesktop.org/security/">
+	  <p>Multiple security issues were identified and fixed in the GStreamer framework.</p>
+	  <ul>
+	    <li>GStreamer-SA-2026-0078: Type confusion crash in GValue list comparison when parsing caps</li>
+	    <li>GStreamer-SA-2026-0083: Out-of-bounds read and write in GStreamer video meta deserialization</li>
+	    <li>GStreamer-SA-2026-0084: Out-of-bounds read in the RTSP KeyMgmt header parser</li>
+	    <li>GStreamer-SA-2026-0085: Stack-based out-of-bounds write in closed caption converter and combiner</li>
+	    <li>GStreamer-SA-2026-0086: Out-of-bounds read in H.265 RTP depayloader when processing short packets</li>
+	    <li>GStreamer-SA-2026-0087: Excessive memory allocation in the ASF demuxer</li>
+	    <li>GStreamer-SA-2026-0088: Heap out-of-bounds write in RTP L8/L16/L24 audio depayloaders</li>
+	    <li>GStreamer-SA-2026-0089: Integer overflow and out-of-bounds read in Matroska demuxer Xiph codec data parser</li>
+	    <li>GStreamer-SA-2026-0090: Arbitrary element instantiation in GStreamer Editing Services project file loader</li>
+	    <li>GStreamer-SA-2026-0091: Out-of-bounds read in RTCP SDES privately defined entry handling</li>
+	    <li>GStreamer-SA-2026-0092: Out-of-bounds read in SVG image decoder</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-86476</cvename>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0078.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0083.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0084.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0085.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0086.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0087.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0088.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0089.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0090.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0091.html</url>
+      <url>https://gstreamer.freedesktop.org/security/sa-2026-0092.html</url>
+    </references>
+    <dates>
+      <discovery>2026-10-08</discovery>
+      <entry>2026-10-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bb4528f4-c5d4-11f1-8c8c-ac5afc632ba3">
+    <topic>podman -- vulnerabilities</topic>
+    <affects>
+	<package>
+	<name>podman</name>
+	<range><lt>5.8.8</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Podman developers report:</p>
+	<blockquote cite="https://github.com/podman-container-tools/podman/releases/tag/v5.8.8">
+	  <p>This release addresses (CVE-2026-94603), where a
+	  "podman run" on a checkpoint image (any image with the
+	  io.podman.annotations.checkpoint.runtime.name annotation) could
+	  disable all sandboxing, including sandboxing specified by the
+	  user, when the container was created.</p>
+	  <p>Removed support for checkpoint images in podman run due to
+	  serious security concerns with the different security models of
+	  running images and running checkpoints. Checkpoints ignore
+	  user-specified security configuration and are very difficult to
+	  run safely.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-94603</cvename>
+      <url>https://github.com/podman-container-tools/podman/releases/tag/v5.8.8</url>
+    </references>
+    <dates>
+      <discovery>2026-10-11</discovery>
+      <entry>2026-10-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0f5aaca7-c4d5-11f1-96b4-74563cf85f9d">
+    <topic>py-WsgiDAV -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py311-WsgiDAV</name>
+	<name>py312-WsgiDAV</name>
+	<name>py313-WsgiDAV</name>
+	<name>py313t-WsgiDAV</name>
+	<name>py314-WsgiDAV</name>
+	<name>py314t-WsgiDAV</name>
+	<name>py315-WsgiDAV</name>
+	<range><lt>4.3.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="https://www.cve.org/CVERecord?id=CVE-2026-48099">
+	  <p>WsgiDAV is a generic and extendable WebDAV server based on
+	    WSGI. WsgiDAV 4.3.3 and prior can allow a WebDAV request path
+	    containing an encoded parent-directory segment to escape the
+	    configured filesystem share root in a specific path layout. The
+	    issue is fixed with version 4.3.4.</p>
+	</blockquote>
+	<blockquote cite="https://www.cve.org/CVERecord?id=CVE-2026-55509">
+	  <p>WsgiDAV is a generic and extendable WebDAV server based on
+	    WSGI. Prior to 4.3.5, the sample MySQLBrowserProvider in
+	    wsgidav/samples/mysql_dav_provider.py concatenates the record key
+	    parsed from a request URL directly into SQL WHERE clauses. The
+	    affected _exists_record_by_primary_key, _get_field_by_primary_key,
+	    and _get_record_by_primary_key methods are part of a shipped
+	    example provider that is not enabled by default. An attacker who
+	    can access a share explicitly configured with this non-default
+	    provider can inject SQL through a normal GET request; anonymously
+	    exposed read shares permit a status-code oracle and extraction of
+	    arbitrary data reachable by the configured MySQL account. This
+	    issue is fixed in version 4.3.5.</p>
+	</blockquote>
+	<p>The WsgiDAV project reports:</p>
+	<blockquote cite="https://github.com/mar10/wsgidav/security/advisories/GHSA-wm65-64rq-rh8r">
+	  <p>When follow_symlinks is false (the default), WsgiDAV is expected
+	    to prevent serving content through symbolic links - a request for
+	    a symlink returns 403 Forbidden: Symlink support is disabled.
+	    However, that guard inspects only the leaf component of the
+	    resolved path, and the root-containment check is purely lexical
+	    (os.path.abspath, which does not resolve symlinks).</p>
+	  <p>As a result, a symlink used as an intermediate directory in the
+	    request path is neither blocked by the guard nor caught by the
+	    containment check, and the request escapes the configured share
+	    root. This allows reading, writing, and deleting files outside the
+	    root.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-48099</cvename>
+      <cvename>CVE-2026-55509</cvename>
+      <cvename>CVE-2026-55560</cvename>
+      <url>https://github.com/mar10/wsgidav/security/advisories/GHSA-wxq4-cc2q-338q</url>
+      <url>https://github.com/mar10/wsgidav/security/advisories/GHSA-p6gw-4frg-j7jw</url>
+      <url>https://github.com/mar10/wsgidav/security/advisories/GHSA-wm65-64rq-rh8r</url>
+    </references>
+    <dates>
+      <discovery>2026-05-27</discovery>
+      <entry>2026-10-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ec9017a0-c4fe-11f1-bbb3-901b0e9408dc">
+    <topic>ejabberd -- Multiple security vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>ejabberd</name>
+	<range><lt>26.09</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ejabberd team reports:</p>
+	<blockquote cite="https://www.process-one.net/blog/ejabberd-26-09/#security">
+	  <ul>
+	    <li>Unauthenticated Remote Code Execution on ejabberd (reported by Gia Bui) when:
+	    <ul>
+	      <li>ejabberd versions is at least 25.10</li>
+	      <li>BOSH is enabled on any port</li>
+	      <li>S2S is enabled</li>
+	      <li>mod_adhoc_api is loaded</li>
+	      <li>outbound connectivity from ejabberd on ports epmd
+	      (default 4369), s2s (default 5269) and Erlang
+	      distribution port (dynamically assigned, typically in
+	      the range 49152-65535 unless FIREWALL_WINDOW is set in
+	      ejabberdctl.cfg).</li>
+	    </ul>
+	    </li>
+	    <li>DoS attack on 16.12+ versions if BOSH is enabled on any port.</li>
+	    <li>Cross-Tenant MUC, Roster and Shared-Roster
+	    unauthorized access (reported by Hoang Gia).</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://www.process-one.net/blog/ejabberd-26-09/#security</url>
+    </references>
+    <dates>
+      <discovery>2026-09-30</discovery>
+      <entry>2026-10-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="28c48cd9-e79a-4ad6-8e62-1317c2ec19a1">
+    <topic>mutt -- Heap out-of-bounds write via crafted Content-Header line</topic>
+    <affects>
+	<package>
+	  <name>mutt</name>
+	  <range><lt>2.4.3</lt></range>
+	</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Kevin J. McCarthy reports:</p>
+	<blockquote cite="https://gitlab.com/muttmua/mutt/-/work_items/533">
+	 <p>
+	  Fixing an OOB heap write. This is triggered by a specially
+	  crafted Content-Header line in an email that is used as a
+	  template for a new email, via &lt;resend-message &gt;.
+	  Thanks to Calif.io, in collaboration with
+	  Anthropic for sending me a detailed write up and
+	  suggested patch.
+	 </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-107570</cvename>
+      <url>https://www.cve.org/CVERecord?id=CVE-2026-107570</url>
+    </references>
+    <dates>
+      <discovery>2026-10-08</discovery>
+      <entry>2026-10-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="049d88bb-c4a2-11f1-9d0b-5404a68ad561">
+    <topic>traefik -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+      <name>traefik</name>
+      <range><lt>3.7.14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>The traefik project releases a new version addressing multiple vulnerabilities:</p>
+      <blockquote cite="https://github.com/traefik/traefik/releases/tag/v3.7.14">
+      <ul>
+      <li>GHSA-53qr-784g-cj35 (FastProxy backend connection pool leaks identity)</li>
+      <li>GHSA-cw35-4q88-3rmp (NTLM/Kerberos sticky round tripper is not keyed by service)</li>
+      <li>GHSA-fh26-gfpp-7xxx (snicheck skips the check when `req.TLS` is nil)</li>
+      <li>GHSA-mwrr-6hp4-pxr6 (Ingress-NGINX provider forwards forged Ssl-Client-* identity headers</li>
+      <li>GHSA-qm9f-w54v-q2qh (Preauthenticated Negotiate contaminates Traefik's backend connection pool</li>
+      <li>GHSA-qvj7-gq9c-hp7q (ssl-passthrough sibling HTTP router serves the auth-protected backend without auth)</li>
+      <li>GHSA-rv2h-qh7j-xrjw (colliding auth-tls-secret names merge two client CAs into one TLS option)</li>
+      <li>GHSA-mhjw-hmjv-p99x (Unsynchroinized write to sticky round tripper shared by concurrent HTTP/2 streams)</li>
+      </ul>
+      </blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/traefik/traefik/releases/tag/v3.7.14</url>
+    </references>
+    <dates>
+      <discovery>2026-10-06</discovery>
+      <entry>2026-10-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2719a8da-c3f8-11f1-8da1-3497f65b111b">
+    <topic>clamav -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>clamav</name>
+	<range><lt>1.5.4,1</lt></range>
+      </package>
+      <package>
+	<name>clamav-lts</name>
+	<range><lt>1.4.6,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The ClamAV project reports:</p>
+	<blockquote cite="https://github.com/Cisco-Talos/clamav/releases/tag/clamav-1.4.6">
+	  <ul>
+	    <li>CVE-2026-20345: indexing error while converting GPT partition
+	      names could read or write beyond a stack-allocated partition
+	      entry.</li>
+	    <li>CVE-2026-20339: integer overflow in the PESpin unpacker could
+	      allocate an undersized buffer and write beyond it.</li>
+	    <li>CVE-2026-20346: integer underflow in the PDF parser could
+	      cause a crash while reading a malformed hex string.</li>
+	    <li>CVE-2026-20347: undefined behavior and integer overflow in
+	      the Mach-O parser could cause a crash on a malformed
+	      file.</li>
+	    <li>CVE-2026-20348: XAR parser size handling could request an
+	      excessive allocation or exceed scan limits.</li>
+	    <li>CVE-2025-8088: path separators in NTFS alternate data stream
+	      names in the bundled UnRAR library could lead to extraction
+	      outside the temporary scan directory.</li>
+	    <li>CVE-2026-20217: PESpin unpacker cleanup path could free
+	      pointers into the scanned file buffer and crash the
+	      scanner.</li>
+	    <li>CVE-2026-20213: integer overflow in PE rebuild size
+	      calculations could lead to a heap buffer overflow write.</li>
+	    <li>CVE-2026-20216: InstallShield archive extraction limit bypass
+	      could exhaust temporary storage.</li>
+	    <li>CVE-2026-20214: FSG unpacker loop underflow could write past
+	      the section array.</li>
+	    <li>CVE-2026-20243: ALZ parser size handling bugs could abort the
+	      scanner.</li>
+	    <li>CVE-2026-20215: 7z parser substream count overflow could
+	      write past under-allocated metadata arrays.</li>
+	    <li>CVE-2026-20244: 32-bit DMG parser size checks could crash
+	      32-bit scanner builds.</li>
+	    <li>Thread-safety issues in the clamd STATS command could
+	      disclose process memory or crash the daemon.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-20345</cvename>
+      <cvename>CVE-2026-20339</cvename>
+      <cvename>CVE-2026-20346</cvename>
+      <cvename>CVE-2026-20347</cvename>
+      <cvename>CVE-2026-20348</cvename>
+      <cvename>CVE-2025-8088</cvename>
+      <cvename>CVE-2026-20217</cvename>
+      <cvename>CVE-2026-20213</cvename>
+      <cvename>CVE-2026-20216</cvename>
+      <cvename>CVE-2026-20214</cvename>
+      <cvename>CVE-2026-20243</cvename>
+      <cvename>CVE-2026-20215</cvename>
+      <cvename>CVE-2026-20244</cvename>
+      <url>https://github.com/Cisco-Talos/clamav/releases/tag/clamav-1.4.5</url>
+      <url>https://github.com/Cisco-Talos/clamav/releases/tag/clamav-1.4.6</url>
+    </references>
+    <dates>
+      <discovery>2026-08-07</discovery>
+      <entry>2026-10-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="26fd839c-c338-11f1-a6ea-8447094a420f">
+    <topic>OpenSSH -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>openssh-portable</name>
+	<range><lt>10.6.p1,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSH project reports:</p>
+	<blockquote cite="https://www.openssh.org/txt/release-10.6">
+	  <ul>
+	    <li>sftp(1): more strictly validate paths returned from the server to
+	      avoid some cases where a server could return paths that could
+	      manipulate a recursive copy operation into writing outside its
+	      target directory.</li>
+	    <li>sshd(8): when GSSAPIAuthentication is in use, only store GSSAPI
+	      credentials when authentication has succeeded. Avoids a situation
+	      where credentials from a failed GSSAPIAuthentication attempt may
+	      persist and be made inappropriately available if another
+	      authentication subsequently succeeds.</li>
+	    <li>sshd(8): reset GSSAPIAuthentication before authentication, avoiding
+	      state from one authentication attempt being confused with that of
+	      a later attempt.</li>
+	    <li>sshd(8), ssh(1): disable LZ77 dictionary coder to mitigate the
+	      side-channel leaks described in "Crossing the Streams: SSH
+	      Plaintext Recovery via a Common Compression Context in
+	      Multiplexed Channels"</li>
+	    <li>ssh(1): disallow '$' and '\' characters in usernames entered on
+	      the command-line to avoid usernames from untrusted sources
+	      yielding injection in shell context via ProxyCommand, Match exec,
+	      etc. Usernames specified via the configuration files are not
+	      subject this this control.</li>
+	    <li>ssh-keygen(1): correct handling of Daylight Saving Time when
+	      converting dates. Previous handling could cause errors of
+	      up to +/- 1 hour (unless you are in the Antarctica/Troll
+	      timezone, where the error could be +/- 2 hours). These errors
+	      could result in creation of certificates with incorrect expiry
+	      times.</li>
+	    <li>sshd(8), ssh(1): ensure that compressed payloads don't inflate
+	      past the maximum supported packet length.</li>
+	    <li>sshd(8): fully honor the authorized_keys "restrict" keyword,
+	      which was not being properly applied to tunnel forwarding
+	      (PermitTunnel, disabled by default).</li>
+	    <li>sshd(8): correctly handle some options that accept "none". Some
+	      options, including AuthorizedPrincipalsFile, were documented as
+	      accepting "none" as a way to disable them; however, when
+	      overridden by an sshd_config(5) Match keyword, this argument was
+	      being incorrectly interpreted as a literal file.</li>
+	    <li>sshd(8): on platforms that do not support file descriptor passing
+	      and that require root for PTY allocation, the post-authentication
+	      sshd-session process retains root privilege, whereas on other
+	      platforms this process runs with the privilege of the logged-in
+	      user. When sshd-session was run with elevated privilege, it could
+	      perform certain actions as root and circumvent controls that
+	      would normally have applied to the user, such as making unix
+	      domain socket connections or binding (via -R forwarding) to low-
+	      numbered TCP ports.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://www.openssh.org/txt/release-10.6</url>
+    </references>
+    <dates>
+      <discovery>2026-10-06</discovery>
+      <entry>2026-10-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="06bf834f-c31f-11f1-9b94-901b0e13f1a0">
+    <topic>xorg -- Multiple vulnerabilities</topic>
+    <affects>
+    <package>
+	<name>xorg-server</name>
+	<name>xephyr</name>
+	<name>xorg-vfbserver</name>
+	<range><lt>21.1.25,1</lt></range>
+    </package>
+    <package>
+	<name>xorg-nestserver</name>
+	<range><lt>21.1.25,2</lt></range>
+    </package>
+    <package>
+	<name>xwayland</name>
+	<range><lt>24.1.14,1</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>X.Org reports:</p>
+	<blockquote cite="https://lists.x.org/archives/xorg-announce/2026-October/003747.html">
+	  <p>Multiple issues have been found in the X server and Xwayland implementations
+	    published by X.Org for which we are releasing security fixes for in
+	    xorg-server-21.1.25 and xwayland-24.1.14.
+	    CVE-2026-88812: XKB SetGeometry TextDoodad Double Free
+	    CVE-2026-93515: Present Extension Cross-Window Notify Use-After-Free
+	    CVE-2026-93516: XInput Passive Grab modifierDevice Use-After-Free
+	    CVE-2026-93517: GLX RenderLarge Heap Buffer Overflow
+	    CVE-2026-93518: XKB ResizeKeyType Numeric Truncation
+	    CVE-2026-93519: XFixes Pointer Barrier Event List Buffer Overflow
+	    CVE-2026-93520: XKB ChangeKeycodeRange Heap Out-of-Bounds Write
+	    CVE-2026-93521: RandR ChangeProviderProperty Heap Buffer Overflow
+	    CVE-2026-93522: Glamor CopyArea CPU-FBO Heap Buffer Overflow
+	    CVE-2026-93523: XInput2 PassiveUngrabDevice Modifier Out-of-Bounds Write
+	    CVE-2026-93524: XKB SetMap Key Width/Action Count Desync Out-Of-Bounds Read
+	    CVE-2026-93536: GestureBuildSprite Use-After-Free
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-88812</cvename>
+      <cvename>CVE-2026-93515</cvename>
+      <cvename>CVE-2026-93516</cvename>
+      <cvename>CVE-2026-93517</cvename>
+      <cvename>CVE-2026-93518</cvename>
+      <cvename>CVE-2026-93519</cvename>
+      <cvename>CVE-2026-93520</cvename>
+      <cvename>CVE-2026-93521</cvename>
+      <cvename>CVE-2026-93522</cvename>
+      <cvename>CVE-2026-93523</cvename>
+      <cvename>CVE-2026-93524</cvename>
+      <cvename>CVE-2026-93536</cvename>
+      <url>https://lists.x.org/archives/xorg-announce/2026-October/003747.html</url>
+    </references>
+    <dates>
+      <discovery>2026-10-07</discovery>
+      <entry>2026-10-08</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="03302734-c15d-11f1-8561-107c611e671e">
     <topic>rabbitmq-c -- remote client-side memory exhaustion</topic>
     <affects>
@@ -12475,8 +13525,7 @@
     <affects>
       <package>
 	<name>postgresql-jdbc</name>
-	<range><lt>47.7.12</lt></range>
-	<range><ge>47.7.4</ge></range>
+	<range><ge>47.7.4</ge><lt>47.7.12</lt></range>
       </package>
     </affects>
     <description>
