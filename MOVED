@@ -5731,3 +5731,12 @@ devel/cppurses|devel/termox|2026-10-04|Project renamed upstream
 devel/fatal||2026-10-05|Project archived on GitHub, no users
 sysutils/lava||2026-10-06|Removed, only applies to unsupported CouchDB 1.x versions
 audio/stegosaurus-lv2||2026-10-06|Removed, no longer maintained upstream
+math/mumps|math/mumps-edf|2026-10-07|Repomove to math/mumps-edf
+math/mumps4|math/mumps|2026-10-07|Repomove to math/mumps
+textproc/py-hieroglyph||2026-10-09|Has expired: Broken with textproc/py-sphinx 7 and newer, last upstream release in 2020
+graphics/kamerka||2026-10-11|Remove abandonware
+www/node20||2026-10-13|Has expired: Node.js 20.* has reached its EoL on 2026-04-30. Use Node.js 24.* (www/node24) instead
+www/yarn-node20||2026-10-13|Removed, part of expired www/node20
+www/npm-node20||2026-10-13|Removed, part of expired www/node20
+devel/compiler-rt||2026-10-15|Now ships with the base system
+textproc/py-pypa-docs-theme||2026-10-15|Has expired: Upstream archived the repo on Mar 16, 2024

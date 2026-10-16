@@ -68,7 +68,7 @@ GHOSTSCRIPT_DEFAULT?=	10
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
 # Possible values: 1.26, 1.27
-GO_DEFAULT?=		1.26
+GO_DEFAULT?=		1.27
 # Possible values: 1.8, 2.2, 3.0
 GUILE_DEFAULT?=		2.2
 # Possible versions: 6, 7
@@ -117,11 +117,11 @@ LUAJIT_DEFAULT?=	luajit
 .  endif
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT?=		5.20
-# Possible values: 8.0, 8.4, 9.7, 10.11m, 11.4m, 11.8m
+# Possible values: 8.0, 8.4, 9.7, 26.7, 10.11m, 11.4m, 11.8m
 MYSQL_DEFAULT?=		8.4
 # Possible values: ninja, samurai
 NINJA_DEFAULT?=		ninja
-# Possible value: 20, 22, 24, 26, current, lts (Note: current = 26 and lts = 24)
+# Possible value: 22, 24, 26, current, lts (Note: current = 26 and lts = 24)
 NODEJS_DEFAULT?=	lts
 # Possible value: 25, 26, 27
 OPENLDAP_DEFAULT?=	26

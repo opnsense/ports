@@ -343,8 +343,8 @@ tiarra:*:398:
 linkwarden:*:399:
 evcc:*:400:
 spectrumknx:*:401:
-# free: 402
-# free: 403
+lid_switchd:*:402:
+airplane_radiosd:*:403:
 # free: 404
 # free: 405
 # free: 406
@@ -662,7 +662,7 @@ _sndio:*:702:
 bopm:*:717:
 # free: 718
 # free: 719
-# free: 720
+pgdog:*:720:
 # free: 721
 # free: 722
 # free: 723
