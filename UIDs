@@ -625,7 +625,7 @@ stanchion:*:669:667::0:0:Stanchion user:/usr/local/lib/stanchion:/bin/sh
 # free: 675
 # free: 676
 # free: 677
-# free: 678
+netflector:*:678:678::0:0:Netflector Daemon:/nonexistent:/usr/sbin/nologin
 # free: 679
 # free: 680
 # free: 681
