@@ -1,6 +1,6 @@
 PORTNAME=	netflector
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.0
+DISTVERSION=	0.17.1
 CATEGORIES=	net
 
 MAINTAINER=	sergii@bogomolov.io
@@ -20,7 +20,7 @@ USE_RC_SUBR=	netflector
 CARGO_CRATES=	equivalent-1.0.2 \
 		hashbrown-0.17.1 \
 		indexmap-2.14.0 \
-		libc-0.2.190 \
+		libc-0.2.191 \
 		log-0.4.34 \
 		proc-macro2-1.0.106 \
 		quote-1.0.45 \
