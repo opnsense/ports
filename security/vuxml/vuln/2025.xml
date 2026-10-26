@@ -8000,6 +8000,7 @@ This issue has been patched in version 2.25.2.</p>
       <discovery>2025-04-10</discovery>
       <entry>2025-07-12</entry>
       <modified>2026-01-02</modified>
+      <modified>2026-10-25</modified>
     </dates>
   </vuln>
 
@@ -8016,7 +8017,7 @@ This issue has been patched in version 2.25.2.</p>
       </package>
       <package>
 	<name>linux-rl9-libxml2</name>
-	<range><lt>2.14.5</lt></range> <!-- needs update once fixed version appears -->
+	<range><lt>2.9.13_10</lt></range> <!-- needs update once fixed version appears -->
       </package>
     </affects>
     <description>
@@ -8064,6 +8065,7 @@ This issue has been patched in version 2.25.2.</p>
       <discovery>2025-05-27</discovery>
       <entry>2025-07-12</entry>
       <modified>2025-07-15</modified>
+      <modified>2026-10-16</modified>
     </dates>
   </vuln>
 
