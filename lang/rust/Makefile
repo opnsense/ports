@@ -1,6 +1,6 @@
 PORTNAME=	rust
-PORTVERSION?=	1.99.0
-PORTREVISION?=	0
+PORTVERSION?=	1.99.1
+PORTREVISION?=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://dev-static.rust-lang.org/dist/:src \
@@ -109,8 +109,11 @@ LIB_DEPENDS+=	libatomic.so:lang/gcc${GCC_DEFAULT}
 MAKE_ENV+=	RUSTFLAGS="-L/usr/local/lib/gcc${GCC_DEFAULT}"
 .endif
 
-.if ${ARCH} != powerpc64le || (${ARCH} == powerpc64le && ${OSVERSION} >= 1600019)
 MAKE_ENV+=	RUST_BACKTRACE=1
+.if ${ARCH} == powerpc64le && (${OSVERSION} < 1405000 || \
+	(${OSVERSION} >= 1500000 && ${OSVERSION} < 1501501) || \
+	(${OSVERSION} >= 1600000 && ${OSVERSION} < 1600019))
+MAKE_ENV+=	RUST_LIB_BACKTRACE=0
 .endif
 
 # per https://rust-lang.github.io/rustup/concepts/components.html
