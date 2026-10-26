@@ -1,6 +1,6 @@
 PORTNAME=	jellyfin-ffmpeg
 PORTVERSION=	8.1.3.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 
 MAINTAINER=	ahze@FreeBSD.org
@@ -10,8 +10,8 @@ WWW=		https://github.com/jellyfin/jellyfin-ffmpeg
 LICENSE=	GPLv2+ LGPL21+
 LICENSE_COMB=	multi
 
-ONLY_FOR_ARCHS=	aarch64 amd64
-ONLY_FOR_ARCHS_REASON=	upstream jellyfin-ffmpeg targets 64-bit; 32-bit builds non-PIC asm that lld rejects
+NOT_FOR_ARCHS=	armv6 armv7 i386 powerpc powerpcspe
+NOT_FOR_ARCHS_REASON=	upstream jellyfin-ffmpeg targets 64-bit; 32-bit builds non-PIC asm that lld rejects
 
 BUILD_DEPENDS=	nasm:devel/nasm \
 		${LOCALBASE}/include/fftw3.h:math/fftw3 \
@@ -90,8 +90,10 @@ pre-configure:
 	    -j ${MAKE_JOBS_NUMBER}
 	${SETENVI} ${WRK_ENV} ${CMAKE_BIN} --install ${WRKDIR}/chromaprint-build
 	# configure links with plain `pkg-config --libs` (shared build), so the
-	# static deps go in Libs:, not Libs.private: as upstream's builder does
-	${REINPLACE_CMD} -e 's|^Libs:.*|Libs: -L$${libdir} -lchromaprint ${LOCALBASE}/lib/libfftw3f.a -lc++ -lm|' \
+	# static deps go in Libs:, not Libs.private: as upstream's builder does.
+	# Archives by full path: with -lchromaprint the ports -L${LOCALBASE}/lib
+	# comes first and an installed audio/chromaprint .so wins the search.
+	${REINPLACE_CMD} -e 's|^Libs:.*|Libs: $${libdir}/libchromaprint.a ${LOCALBASE}/lib/libfftw3f.a -lc++ -lm|' \
 	    ${CHROMAPRINT_PREFIX}/lib/pkgconfig/libchromaprint.pc
 
 HAS_CONFIGURE=	yes

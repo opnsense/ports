@@ -1,7 +1,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.21.26
+DISTVERSION=	9.21.27
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
@@ -11,6 +11,7 @@ PORTREVISION=	0
 PORTREVISION=	0
 .endif
 CATEGORIES=	dns net
+CONFIGURE_ENV+=	PKG_CONFIG_PATH=${LOCALBASE}/lmdb0/libdata/pkgconfig
 MASTER_SITES=	ISC/bind9/${DISTVERSION}
 .if defined(BIND_TOOLS_SLAVE)
 PKGNAMESUFFIX=	-tools
@@ -35,7 +36,7 @@ WWW=		https://www.isc.org/bind/
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-LIB_DEPENDS=	liblmdb.so:databases/lmdb0 \
+LIB_DEPENDS=	liblmdb0.so:databases/lmdb0 \
 		libnghttp2.so:www/libnghttp2 \
 		liburcu.so:sysutils/liburcu \
 		libuv.so:devel/libuv

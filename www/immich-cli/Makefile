@@ -1,6 +1,6 @@
 PORTNAME=	immich-cli
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.2.4
+DISTVERSION=	3.3.5
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/joneum/FreeBSD-Immich/releases/download/v${DISTVERSION}/:buildkit
 DISTFILES=	immich-freebsd-buildkit-${DISTVERSION}${EXTRACT_SUFX}:buildkit
@@ -29,7 +29,7 @@ GH_PROJECT=	immich
 # how it is made.
 BUILDKIT=	${WRKDIR}/immich-freebsd-buildkit-${DISTVERSION}
 PNPM=		${WRKDIR}/pnpm-prefix/bin/pnpm
-PNPM_VERSION=	11.22.0
+PNPM_VERSION=	11.27.1
 
 MAKE_ENV=	CI=1 \
 		COREPACK_ENABLE_STRICT=0 \

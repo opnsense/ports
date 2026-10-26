@@ -392,6 +392,7 @@
     SUBDIR += jasper
     SUBDIR += jave6
     SUBDIR += jbig2dec
+    SUBDIR += jbig2enc
     SUBDIR += jbigkit
     SUBDIR += jdraw
     SUBDIR += jgraph
@@ -661,6 +662,7 @@
     SUBDIR += ogre3d19
     SUBDIR += oidn
     SUBDIR += okular
+    SUBDIR += omasnap
     SUBDIR += open3d
     SUBDIR += openboard
     SUBDIR += opencollada
@@ -913,7 +915,6 @@
     SUBDIR += py-PyOpenGL
     SUBDIR += py-PyOpenGL-accelerate
     SUBDIR += py-actdiag
-    SUBDIR += py-agx-emulsion
     SUBDIR += py-albucore
     SUBDIR += py-albumentations
     SUBDIR += py-altair
@@ -978,6 +979,7 @@
     SUBDIR += py-kornia
     SUBDIR += py-kornia-rs
     SUBDIR += py-leather
+    SUBDIR += py-lensfunpy
     SUBDIR += py-liffile
     SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
@@ -1067,6 +1069,7 @@
     SUBDIR += py-rasterstats
     SUBDIR += py-rawkit
     SUBDIR += py-rawpy
+    SUBDIR += py-rendercanvas
     SUBDIR += py-rich-pixels
     SUBDIR += py-rioxarray
     SUBDIR += py-rlpycairo
@@ -1077,6 +1080,7 @@
     SUBDIR += py-simplejpeg
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-spectra
+    SUBDIR += py-spektrafilm
     SUBDIR += py-sqlalchemy-imageattach
     SUBDIR += py-svg.path
     SUBDIR += py-svg.py
@@ -1089,6 +1093,7 @@
     SUBDIR += py-tkcolorpicker
     SUBDIR += py-toyplot
     SUBDIR += py-traitsui
+    SUBDIR += py-trimesh
     SUBDIR += py-ueberzug
     SUBDIR += py-urbanaccess
     SUBDIR += py-urbansim
@@ -1100,6 +1105,7 @@
     SUBDIR += py-vulkan
     SUBDIR += py-wand
     SUBDIR += py-webcolors
+    SUBDIR += py-wgpu
     SUBDIR += py-willow
     SUBDIR += py-yaswfp
     SUBDIR += py-zbar-py
@@ -1256,6 +1262,7 @@
     SUBDIR += synfigstudio
     SUBDIR += tachyon
     SUBDIR += telak
+    SUBDIR += tensaku
     SUBDIR += tesseract
     SUBDIR += tesseract-data
     SUBDIR += tgif
@@ -1315,6 +1322,7 @@
     SUBDIR += waylandpp
     SUBDIR += webp
     SUBDIR += webp-pixbuf-loader
+    SUBDIR += wgpu-native
     SUBDIR += wings
     SUBDIR += wmicons
     SUBDIR += wrapland

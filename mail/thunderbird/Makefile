@@ -1,6 +1,5 @@
 PORTNAME=	thunderbird
-DISTVERSION=	158.0
-PORTREVISION=	1
+DISTVERSION=	158.0.1
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
@@ -58,10 +57,6 @@ BUILD_DEPENDS+=	${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc++abi.a:de
 		${LOCALBASE}/share/wasi-sysroot/lib/wasm32-wasip1/libc.a:devel/wasi-libc@${LLVM_VERSION} \
 		wasi-compiler-rt${LLVM_VERSION}>0:devel/wasi-compiler-rt${LLVM_VERSION}
 MOZ_OPTIONS+=	--with-wasi-sysroot=${LOCALBASE}/share/wasi-sysroot
-.endif
-
-.if ${ARCH} == powerpc64le && ${OSVERSION} < 1600020
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-config_makefiles_rust.mk
 .endif
 
 post-extract:

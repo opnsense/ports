@@ -1,5 +1,6 @@
 PORTNAME=	bosd
-DISTVERSION=	10.5
+DISTVERSION=	10.6
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	dteske@FreeBSD.org
@@ -21,7 +22,10 @@ SHEBANG_FILES=	examples/*.py tools/glyph.py
 
 # FreeBSD keeps .pc files under libdata/pkgconfig.
 # PYTHON= drives the example glyph build (no bare python3 on PATH).
-MAKE_ARGS=	PKGCONFIGDIR="${PREFIX}/libdata/pkgconfig" \
+# DATADIR is compiled into bosd. DATADIR and DOCSDIR are written into bosd.1.
+MAKE_ARGS=	DATADIR="${DATADIR}" \
+		DOCSDIR="${DOCSDIR}" \
+		PKGCONFIGDIR="${PREFIX}/libdata/pkgconfig" \
 		PYTHON="${PYTHON_CMD}"
 ALL_TARGET=	all example
 
@@ -38,8 +42,6 @@ TESTS_MAKE_ARGS_OFF=	INSTALL_TESTS=no
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/bosd \
 		${STAGEDIR}${PREFIX}/lib/libbosd.so.4
-	${INSTALL_DATA} ${WRKSRC}/CHANGELOG.md ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/examples/*.png ${STAGEDIR}${DATADIR}
 
 # Upstream install always copies the example scripts.
 post-install-EXAMPLES-off:

@@ -1,5 +1,6 @@
 PORTNAME=	datalad
-DISTVERSION=	1.6.2
+DISTVERSION=	1.7.1
+PORTREVISION=	1
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -37,6 +38,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}annexremote>0:devel/py-annexremote@${PY_FLAV
 		${PYTHON_PKGNAMEPREFIX}python-gitlab>0:devel/py-python-gitlab@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}requests>=1.2:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tqdm>=4.32.0:misc/py-tqdm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.0.0:devel/py-typing-extensions@${PY_FLAVOR} \
 		git:devel/git@lite
 
 USES=		python

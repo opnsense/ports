@@ -1,6 +1,6 @@
 PORTNAME=	photocraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.0
+DISTVERSION=	0.15.1
 CATEGORIES=	graphics
 
 MAINTAINER=	pkubaj@FreeBSD.org
@@ -205,6 +205,7 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		euclid-0.22.14 \
 		event-listener-5.4.2 \
 		event-listener-strategy-0.5.4 \
+		exacl-0.13.0 \
 		exr-1.74.2 \
 		fastrand-2.5.0 \
 		fax-0.2.6 \
@@ -537,6 +538,7 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		rmcp-macros-3.5.0 \
 		ron-0.12.2 \
 		roxmltree-0.20.0 \
+		roxmltree-0.21.1 \
 		rustc-hash-1.1.0 \
 		rustc-hash-2.1.3 \
 		rustc_version-0.4.1 \
@@ -553,7 +555,7 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		rustversion-1.0.23 \
 		rusty-fork-0.3.1 \
 		rustybuzz-0.20.1 \
-		ruzstd-0.9.0 \
+		ruzstd-0.9.1 \
 		ryu-1.0.23 \
 		ryu-js-1.0.3 \
 		same-file-1.0.6 \
@@ -793,6 +795,7 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		xml-rs-0.8.29 \
 		xmlwriter-0.1.0 \
 		y4m-0.8.0 \
+		yeslogic-fontconfig-sys-6.0.1 \
 		yoke-0.8.3 \
 		yoke-derive-0.8.3 \
 		zbus-5.19.0 \
@@ -825,6 +828,7 @@ CARGO_CRATES=	accesskit-0.24.1 \
 		winprint@git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49\#5f80b9baf6b58937c401656634e42d33f00ddf49 \
 		craft-winprint-gdi@git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312\#417ac3c4d14d3da5485a99c7d5ce8f05664ec312 \
 		craft-print@git+https://github.com/storytold/craft-libs?rev=3d37da389a3618ab9b76109da11416e9ca4ea719\#3d37da389a3618ab9b76109da11416e9ca4ea719 \
+		craft-docpath@git+https://github.com/storytold/craft-libs?rev=82a24b006eefa036b43c09a67fb9a3fbd17ffe63\#82a24b006eefa036b43c09a67fb9a3fbd17ffe63 \
 		craft-ui@git+https://github.com/storytold/craft-libs?rev=5c874d51eeb3de70e735c8ce87a59a7dedd47675\#5c874d51eeb3de70e735c8ce87a59a7dedd47675
 
 CARGO_FEATURES=	heif
@@ -837,7 +841,7 @@ CARGO_INSTALL=	no
 OPTIONS_DEFINE=	DOCS
 
 APP_ID=		ai.storyteller.photocraft
-RELEASE_DATE=	2026-10-14
+RELEASE_DATE=	2026-10-23
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@VERSION@|${DISTVERSION}|; s|@DATE@|${RELEASE_DATE}|' \

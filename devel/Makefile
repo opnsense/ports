@@ -2510,7 +2510,6 @@
     SUBDIR += p5-DateTime-Format-Excel
     SUBDIR += p5-DateTime-Format-Flexible
     SUBDIR += p5-DateTime-Format-HTTP
-    SUBDIR += p5-DateTime-Format-IBeat
     SUBDIR += p5-DateTime-Format-ICal
     SUBDIR += p5-DateTime-Format-ISO8601
     SUBDIR += p5-DateTime-Format-Mail
@@ -3889,7 +3888,6 @@
     SUBDIR += p5-Test-XML
     SUBDIR += p5-Test-XML-Valid
     SUBDIR += p5-Test-YAML
-    SUBDIR += p5-Test-YAML-Meta
     SUBDIR += p5-Test-YAML-Valid
     SUBDIR += p5-Test-utf8
     SUBDIR += p5-Test2-Harness
@@ -4354,6 +4352,8 @@
     SUBDIR += php-pie
     SUBDIR += php-raphf
     SUBDIR += php-swoole
+    SUBDIR += php80-APCu
+    SUBDIR += php80-arcanist
     SUBDIR += php82-ffi
     SUBDIR += php82-gettext
     SUBDIR += php82-intl
@@ -6102,6 +6102,7 @@
     SUBDIR += py-q
     SUBDIR += py-qasync
     SUBDIR += py-qcs-api-client
+    SUBDIR += py-qcs-api-client-common
     SUBDIR += py-qcs-sdk-python
     SUBDIR += py-qstylizer
     SUBDIR += py-qt5
@@ -7623,6 +7624,7 @@
     SUBDIR += rubygem-drb-gitlab
     SUBDIR += rubygem-dry-cli
     SUBDIR += rubygem-dry-configurable
+    SUBDIR += rubygem-dry-configurable-gitlab
     SUBDIR += rubygem-dry-container
     SUBDIR += rubygem-dry-core
     SUBDIR += rubygem-dry-core-gitlab
@@ -7994,7 +7996,6 @@
     SUBDIR += rubygem-mixlib-versioning
     SUBDIR += rubygem-mize
     SUBDIR += rubygem-mkrf
-    SUBDIR += rubygem-mmap2
     SUBDIR += rubygem-mocha
     SUBDIR += rubygem-molinillo
     SUBDIR += rubygem-moneta
@@ -8274,6 +8275,7 @@
     SUBDIR += rubygem-rb-kqueue
     SUBDIR += rubygem-rblineprof
     SUBDIR += rubygem-rbs
+    SUBDIR += rubygem-rbs-gitlab
     SUBDIR += rubygem-rbs_json_schema
     SUBDIR += rubygem-rbtrace
     SUBDIR += rubygem-rbtree
@@ -8689,7 +8691,6 @@
     SUBDIR += shell-toolbox
     SUBDIR += shflags
     SUBDIR += shfmt
-    SUBDIR += shiboken2
     SUBDIR += shiboken6
     SUBDIR += shiboken6-tools
     SUBDIR += shmap
@@ -8864,6 +8865,7 @@
     SUBDIR += tlsh
     SUBDIR += tlx
     SUBDIR += tnt
+    SUBDIR += tobi-try
     SUBDIR += tokei
     SUBDIR += tokio-console
     SUBDIR += toml11
@@ -8904,6 +8906,7 @@
     SUBDIR += unordered-dense
     SUBDIR += upnp
     SUBDIR += urjtag
+    SUBDIR += usage
     SUBDIR += ut
     SUBDIR += utf8cpp
     SUBDIR += uthash

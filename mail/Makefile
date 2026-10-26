@@ -422,6 +422,7 @@
     SUBDIR += p5-Net-LMTP
     SUBDIR += p5-Net-ManageSieve
     SUBDIR += p5-Net-POP3-SSLWrapper
+    SUBDIR += p5-Net-POP3-XOAuth2
     SUBDIR += p5-Net-QMTP
     SUBDIR += p5-Net-SMTP-Server
     SUBDIR += p5-Net-SMTP-TLS
@@ -477,6 +478,7 @@
     SUBDIR += perdition
     SUBDIR += pflogsumm
     SUBDIR += pfqueue
+    SUBDIR += php80-mailparse
     SUBDIR += php82-imap
     SUBDIR += php83-imap
     SUBDIR += phplist
@@ -546,6 +548,7 @@
     SUBDIR += py-pymilter
     SUBDIR += py-pysasl
     SUBDIR += py-pyspf
+    SUBDIR += py-python-oxmsg
     SUBDIR += py-python-slimta
     SUBDIR += py-pyzmail
     SUBDIR += py-resend

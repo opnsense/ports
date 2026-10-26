@@ -407,6 +407,7 @@
     SUBDIR += libfolia
     SUBDIR += libfyaml
     SUBDIR += libgepub
+    SUBDIR += libgrapheme
     SUBDIR += libinfinity
     SUBDIR += libixion
     SUBDIR += libjcat
@@ -1588,6 +1589,7 @@
     SUBDIR += py-ntc-templates
     SUBDIR += py-numpydoc
     SUBDIR += py-ocrmypdf
+    SUBDIR += py-odfdo
     SUBDIR += py-openpyxl
     SUBDIR += py-opensearch-py
     SUBDIR += py-openstackdocstheme
@@ -1882,7 +1884,6 @@
     SUBDIR += redland-bindings
     SUBDIR += refdb
     SUBDIR += reflex
-    SUBDIR += regex2dfa
     SUBDIR += regexplain
     SUBDIR += replaceit
     SUBDIR += rfcdiff

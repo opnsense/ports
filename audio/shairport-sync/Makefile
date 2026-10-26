@@ -1,5 +1,5 @@
 PORTNAME=	shairport-sync
-DISTVERSION=	5.5.2
+DISTVERSION=	5.6.1
 CATEGORIES=	audio
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -63,7 +63,7 @@ MQTT_LIB_DEPENDS=	libmosquitto.so:net/mosquitto
 MQTT_CONFIGURE_ON=	--with-mqtt-client
 
 PULSEAUDIO_LIB_DEPENDS=		libpulse.so:audio/pulseaudio
-PULSEAUDIO_CONFIGURE_ON=	--with-pa
+PULSEAUDIO_CONFIGURE_ON=	--with-pulseaudio
 
 SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
 SNDIO_CONFIGURE_ON=	--with-sndio

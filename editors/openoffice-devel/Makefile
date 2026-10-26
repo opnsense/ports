@@ -49,7 +49,7 @@ LICENSE_PERMS_ICU=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_TWAIN=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_W3C=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-ONLY_FOR_ARCHS=	amd64 i386 powerpc64
+ONLY_FOR_ARCHS=	amd64 i386 powerpc64 powerpc64le
 
 BUILD_DEPENDS=								\
 		p5-Archive-Zip>=0:archivers/p5-Archive-Zip		\
@@ -118,6 +118,8 @@ JAVA_VERSION=	8
 USE_PERL5=	build
 USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
 		xinerama xrandr xrender xt
+
+NO_SHLIB_REQUIRES_GLOB=	libjawt.so
 
 CONFLICTS_INSTALL=	apache-openoffice-4*
 
@@ -267,6 +269,9 @@ PACKAGE_MIDDLE=		${PORTVERSION}_${OPSYS}_x86
 .elif ${ARCH} == powerpc64
 FREEBSD_ENV_SET=	FreeBSDPPC64Env.Set.sh
 PACKAGE_MIDDLE=		${PORTVERSION}_${OPSYS}_ppc64
+.elif ${ARCH} == powerpc64le
+FREEBSD_ENV_SET=	FreeBSDPPC64Env.Set.sh
+PACKAGE_MIDDLE=		${PORTVERSION}_${OPSYS}_ppc64le
 .endif
 PACKAGE_PREFIX=		Apache_OpenOffice
 

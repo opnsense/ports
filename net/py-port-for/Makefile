@@ -1,6 +1,5 @@
 PORTNAME=	port-for
-PORTVERSION=	0.4
-PORTREVISION=	1
+DISTVERSION=	0.6.2
 CATEGORIES=	net devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,16 +11,18 @@ WWW=		https://github.com/kmike/port-for/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}mock>=0.8:devel/py-mock@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	distutils concurrent autoplist
+USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
 
 post-patch:
-	@${REINPLACE_CMD} '/DEFAULT_CONFIG_PATH/ s|/etc|${PREFIX}&|' ${WRKSRC}/port_for/store.py
+	@${REINPLACE_CMD} '/DEFAULT_CONFIG_PATH/ s|/etc|${PREFIX}&|' ${WRKSRC}/src/port_for/store.py
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} -m pytest \

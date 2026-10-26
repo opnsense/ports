@@ -9,6 +9,7 @@
     SUBDIR += R-cran-BsMD
     SUBDIR += R-cran-CVST
     SUBDIR += R-cran-ChangeAnomalyDetection
+    SUBDIR += R-cran-CompQuadForm
     SUBDIR += R-cran-DEoptimR
     SUBDIR += R-cran-DRR
     SUBDIR += R-cran-Deriv
@@ -101,7 +102,10 @@
     SUBDIR += R-cran-mclust
     SUBDIR += R-cran-mcmc
     SUBDIR += R-cran-memisc
+    SUBDIR += R-cran-meta
+    SUBDIR += R-cran-metabook
     SUBDIR += R-cran-metadat
+    SUBDIR += R-cran-metafor
     SUBDIR += R-cran-minqa
     SUBDIR += R-cran-misc3d
     SUBDIR += R-cran-miscTools
@@ -706,6 +710,7 @@
     SUBDIR += ogdf
     SUBDIR += oink
     SUBDIR += oleo
+    SUBDIR += omacalc
     SUBDIR += onednn
     SUBDIR += onednn252
     SUBDIR += openblas
@@ -1074,6 +1079,7 @@
     SUBDIR += py-moarchiving
     SUBDIR += py-modin
     SUBDIR += py-moocore
+    SUBDIR += py-mplcursors
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-narwhals

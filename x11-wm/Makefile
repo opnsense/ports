@@ -12,6 +12,7 @@
     SUBDIR += blackbox
     SUBDIR += bspwm
     SUBDIR += bspwm-devel
+    SUBDIR += bvwm
     SUBDIR += cage
     SUBDIR += cagebreak
     SUBDIR += chamfer
@@ -57,6 +58,7 @@
     SUBDIR += jwm
     SUBDIR += kickshaw
     SUBDIR += korgwm
+    SUBDIR += kwin-zones
     SUBDIR += labwc
     SUBDIR += leftwm
     SUBDIR += libcompizconfig

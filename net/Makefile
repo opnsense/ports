@@ -651,7 +651,6 @@
     SUBDIR += p5-IP-Country
     SUBDIR += p5-IPC-Session
     SUBDIR += p5-IPv6-Address
-    SUBDIR += p5-JavaScript-RPC
     SUBDIR += p5-Kafka
     SUBDIR += p5-MaxMind-DB-Common
     SUBDIR += p5-MaxMind-DB-Reader
@@ -699,7 +698,6 @@
     SUBDIR += p5-Net-DHCPClient
     SUBDIR += p5-Net-DLookup
     SUBDIR += p5-Net-Daemon
-    SUBDIR += p5-Net-Delicious
     SUBDIR += p5-Net-Dict
     SUBDIR += p5-Net-Divert
     SUBDIR += p5-Net-Dropbox-API
@@ -762,7 +760,6 @@
     SUBDIR += p5-Net-MAC
     SUBDIR += p5-Net-MAC-Vendor
     SUBDIR += p5-Net-MQTT
-    SUBDIR += p5-Net-Mosso-CloudFiles
     SUBDIR += p5-Net-MovableType
     SUBDIR += p5-Net-NBName
     SUBDIR += p5-Net-NBsocket
@@ -1668,12 +1665,14 @@
     SUBDIR += ttl
     SUBDIR += tun2socks
     SUBDIR += tunneller
+    SUBDIR += turnd
     SUBDIR += turnserver
     SUBDIR += u6rd
     SUBDIR += ucarp
     SUBDIR += ucx
     SUBDIR += udp-over-tcp
     SUBDIR += udpbroadcastrelay
+    SUBDIR += udpspeeder
     SUBDIR += udptunnel
     SUBDIR += udpxy
     SUBDIR += udt

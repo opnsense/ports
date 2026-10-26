@@ -1,6 +1,6 @@
 PORTNAME=	SoapyPlutoSDR
 DISTVERSIONPREFIX=	soapy-plutosdr-
-DISTVERSION=	0.2.2
+DISTVERSION=	0.2.4
 CATEGORIES=	comms hamradio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,6 +19,6 @@ GH_ACCOUNT=	pothosware
 
 CMAKE_ARGS=	-DCMAKE_POLICY_VERSION_MINIMUM=3.5 # CMake 4.5 compatibility
 
-PLIST_FILES=	lib/SoapySDR/modules0.8/libPlutoSDRSupport.so
+PLIST_FILES=	lib/SoapySDR/modules0.9/libPlutoSDRSupport.so
 
 .include <bsd.port.mk>

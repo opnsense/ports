@@ -2,11 +2,10 @@ PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION}${AOORCN:?.p${AOORCN}:}
 PORTREVISION=	0
 CATEGORIES=	editors java
-MASTER_SITES=	https://dist.apache.org/repos/dist/dev/openoffice/${AOOVERSION}${AOORCN:?-RC${AOORCN}:}/source/
-#MASTER_SITES=	https://dlcdn.apache.org/openoffice/${PORTVERSION}/source/ \
-#1		https://archive.apache.org/dist/openoffice/${PORTVERSION}/source
-MASTER_SITES+=	https://dlcdn.apache.org/openoffice/${PORTVERSION}/source/ \
-		http://tools.openoffice.org/unowinreg_prebuild/680/:unoreg \
+#MASTER_SITES=	https://dist.apache.org/repos/dist/dev/openoffice/${AOOVERSION}${AOORCN:?-RC${AOORCN}:}/source/
+MASTER_SITES=	https://dlcdn.apache.org/openoffice/${PORTVERSION}/source/ \
+		https://archive.apache.org/dist/openoffice/${PORTVERSION}/source
+MASTER_SITES+=	http://tools.openoffice.org/unowinreg_prebuild/680/:unoreg \
 		LOCAL/truckman/openoffice:extsrc \
 		SF/oooextras.mirror/:sf
 .if defined(LANG_PKGNAME)
@@ -50,7 +49,7 @@ LICENSE_PERMS_ICU=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_TWAIN=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_W3C=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-ONLY_FOR_ARCHS=	amd64 i386 powerpc64
+ONLY_FOR_ARCHS=	amd64 i386 powerpc64 powerpc64le
 
 BUILD_DEPENDS=								\
 		p5-Archive-Zip>=0:archivers/p5-Archive-Zip		\
@@ -121,6 +120,8 @@ USE_PERL5=	build
 USE_XORG=	ice sm x11 xau xaw xcomposite xcursor xdamage xext xfixes xi \
 		xinerama xrandr xrender xt
 
+NO_SHLIB_REQUIRES_GLOB=	libjawt.so
+
 # ftp/curl uses OpenSSL by default. However, curl 8.18.0 drops OpenSSL 1.x support
 # which is used in FreeBSD 13 base system. Therefore, we change the curl defaults to
 # wolfSSL instead.
@@ -129,7 +130,7 @@ CONFLICTS_INSTALL=	apache-openoffice-devel
 AOOVERSION1=	4
 AOOVERSION2=	1
 AOOVERSION3=	17
-AOORCN=		2
+#AOORCN=		2
 # From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
 AOOTAG=		AOO4117m2\(Build:9818\)
 GITREVISION=	49c05bc6fd
@@ -239,6 +240,9 @@ PACKAGE_MIDDLE=		${PORTVERSION}_${OPSYS}_x86
 .elif ${ARCH} == powerpc64
 FREEBSD_ENV_SET=	FreeBSDPPC64Env.Set.sh
 PACKAGE_MIDDLE=		${PORTVERSION}_${OPSYS}_ppc64
+.elif ${ARCH} == powerpc64le
+FREEBSD_ENV_SET=	FreeBSDPPC64Env.Set.sh
+PACKAGE_MIDDLE=		${PORTVERSION}_${OPSYS}_ppc64le
 .endif
 PACKAGE_PREFIX=		Apache_OpenOffice
 

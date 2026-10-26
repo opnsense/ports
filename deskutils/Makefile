@@ -94,7 +94,6 @@
     SUBDIR += gnome-shell-extension-simple-weather
     SUBDIR += gnome-shell-extra-extensions
     SUBDIR += gnome-sound-recorder
-    SUBDIR += gnome-todo
     SUBDIR += gnome-tweaks
     SUBDIR += gnome-utils
     SUBDIR += gnome-weather
@@ -201,7 +200,6 @@
     SUBDIR += owncloudclient
     SUBDIR += p5-Data-ICal
     SUBDIR += p5-Data-ICal-DateTime
-    SUBDIR += p5-Goo
     SUBDIR += pal
     SUBDIR += parcellite
     SUBDIR += peaclock
@@ -322,6 +320,7 @@
     SUBDIR += zanshin
     SUBDIR += zim
     SUBDIR += zk
+    SUBDIR += znotes
     SUBDIR += zorro
 
 .include <bsd.port.subdir.mk>
