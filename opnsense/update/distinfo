@@ -1,3 +1,3 @@
-TIMESTAMP = 1791873524
-SHA256 (opnsense-update-26.7.7-db018c3_GH0.tar.gz) = 435098162c9cd3729f69c4449f501bae477a7dd56c55fe186873386c377d38e4
-SIZE (opnsense-update-26.7.7-db018c3_GH0.tar.gz) = 31304
+TIMESTAMP = 1793007710
+SHA256 (opnsense-update-26.7.8-9bfd3b7_GH0.tar.gz) = f447423789de0d0cac284384b101a5b6b810c12c5ca66557da0d3163ed2889af
+SIZE (opnsense-update-26.7.8-9bfd3b7_GH0.tar.gz) = 31489
