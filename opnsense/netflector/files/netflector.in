@@ -14,6 +14,8 @@
 #   netflector_flags="-r"                          # options for daemon(8), e.g. restart on exit
 #   netflector_carp_vhid="1"                       # only start if this CARP vhid is MASTER
 #   netflector_carp_interface="em0"                # interface holding it; needed if the vhid is reused
+#   netflector_log_target="syslog"                 # the default; empty leaves it to the config file
+#   netflector_user="netflector"                   # the default; empty leaves it to the config file
 
 . /etc/rc.subr
 
@@ -27,6 +29,18 @@ load_rc_config $name
 : ${netflector_config:="%%PREFIX%%/etc/netflector.toml"}
 : ${netflector_carp_vhid:=""}
 : ${netflector_carp_interface:=""}
+: ${netflector_log_target="syslog"}
+: ${netflector_user="netflector"}
+
+if [ -n "${netflector_log_target}" ]; then
+    netflector_env="${netflector_env:+${netflector_env} }NETFLECTOR_LOG_TARGET=${netflector_log_target}"
+fi
+
+if [ -n "${netflector_user}" ]; then
+    netflector_env="${netflector_env:+${netflector_env} }NETFLECTOR_USER=${netflector_user}"
+fi
+# rc.subr would run daemon(8) itself as ${name}_user through su(1), and the capture needs root.
+netflector_user=""
 
 # The pidfile must hold daemon(8) itself (-P), not the child: stop then terminates the supervisor,
 # which forwards the signal and exits. Killing only the child would let a restarting supervisor
@@ -35,10 +49,8 @@ pidfile="/var/run/${name}.pid"
 child_pidfile="/var/run/${name}_child.pid"
 netflector_bin="%%PREFIX%%/bin/${name}"
 
-# The daemon runs in the foreground and logs to stderr, so daemon(8) backgrounds it and -S routes that
-# stderr into syslog under our own tag rather than /dev/null. -f closes the descriptors daemon(8)
-# inherited: without it the supervisor holds the caller's stdout open for the service's lifetime, so
-# `ssh host service netflector start` never returns. It does not affect -S, which redirects the child.
+# daemon(8) backgrounds netflector. -S sends its stderr to syslog: the log when it stays on stderr,
+# otherwise a panic or a startup error. -f lets go of the caller's stdout.
 command="/usr/sbin/daemon"
 command_args="-f -S -T ${name} -P ${pidfile} -p ${child_pidfile} ${netflector_bin} '${netflector_config}'"
 
@@ -56,8 +68,8 @@ netflector_precmd()
     # Refuse to start on a configuration the daemon would reject, so the failure is one clear message
     # here rather than a service that appears to start and is gone a moment later. --check-config parses
     # and validates only: it opens no interface and needs no privileges.
-    if ! ${netflector_bin} --check-config "${netflector_config}" > /dev/null 2>&1; then
-        ${netflector_bin} --check-config "${netflector_config}" 2>&1 | while read -r line; do
+    if ! env ${netflector_env} ${netflector_bin} --check-config "${netflector_config}" > /dev/null 2>&1; then
+        env ${netflector_env} ${netflector_bin} --check-config "${netflector_config}" 2>&1 | while read -r line; do
             netflector_log err "${line}"
         done
         netflector_log err "refusing to start: ${netflector_config} is not valid"
@@ -66,10 +78,22 @@ netflector_precmd()
 
     # Checked after the config, not before: on a backup node a bad configuration should still be
     # reported now, rather than at failover.
-    if [ -n "${netflector_carp_vhid}" ] &&
-        ! carp_is_master "${netflector_carp_vhid}" "${netflector_carp_interface}"; then
-        netflector_log notice "CARP vhid ${netflector_carp_vhid} is not MASTER here; not starting netflector"
-        return 1
+    if [ -n "${netflector_carp_vhid}" ]; then
+        state=$(carp_state "${netflector_carp_vhid}" "${netflector_carp_interface}")
+        case "${state}" in
+        MASTER)
+            ;;
+        "")
+            netflector_log err "no CARP vhid ${netflector_carp_vhid} here; refusing to start"
+            exit 1
+            ;;
+        *)
+            netflector_log notice "CARP vhid ${netflector_carp_vhid} is ${state} here; not starting netflector"
+            # A backup idling is no failure: exit, not return, so the start ends with status 0 and
+            # forcestart cannot start a second active node.
+            exit 0
+            ;;
+        esac
     fi
 }
 
@@ -82,11 +106,11 @@ netflector_log()
 # A carp line reads "carp: MASTER vhid 1 advbase 1 advskew 0". Neither field identifies a group on its
 # own: one interface can carry several vhids, and the same vhid can run on several interfaces as
 # unrelated groups. $2 narrows ifconfig to the one that matters, and can be empty for a unique vhid.
-carp_is_master()
+# Prints the group's state, or nothing when no group has that vhid.
+carp_state()
 {
     ifconfig ${2:+"$2"} 2>/dev/null |
-        awk -v vhid="$1" '$1 == "carp:" && $4 == vhid { print $2 }' |
-        grep -q '^MASTER$'
+        awk -v vhid="$1" '$1 == "carp:" && $4 == vhid { print $2; exit }'
 }
 
 # SIGUSR1 must reach netflector itself: ${pidfile} holds daemon(8), which has no handler for it and
