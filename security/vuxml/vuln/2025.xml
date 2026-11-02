@@ -1239,7 +1239,6 @@
       <cvename>CVE-2025-13638</cvename>
       <cvename>CVE-2025-13639</cvename>
       <cvename>CVE-2025-13640</cvename>
-      <cvename>CVE-2025-13634</cvename>
       <cvename>CVE-2025-13720</cvename>
       <cvename>CVE-2025-13721</cvename>
       <url>https://chromereleases.googleblog.com/2025/12/stable-channel-update-for-desktop.html</url>
@@ -1321,8 +1320,6 @@ This issue has been patched in version 2.25.2.</p>
       <url>https://cveawg.mitre.org/api/cve/CVE-2018-15859</url>
       <cvename>CVE-2018-15861</cvename>
       <url>https://cveawg.mitre.org/api/cve/CVE-2018-15861</url>
-      <cvename>CVE-2018-15863</cvename>
-      <url>https://cveawg.mitre.org/api/cve/CVE-2018-15863</url>
     </references>
     <dates>
       <discovery>2025-12-03</discovery>
@@ -2557,7 +2554,6 @@ This issue has been patched in version 2.25.2.</p>
     </description>
     <references>
       <cvename>CVE-2025-62507</cvename>
-      <url></url>
     </references>
     <dates>
       <discovery>2025-11-03</discovery>
@@ -4225,7 +4221,7 @@ This issue has been patched in version 2.25.2.</p>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Tim Wojtulewicz of Corelight reports:</p>
-	<blockquote cite="INSERT URL HERE">
+	<blockquote cite="https://github.com/zeek/zeek/releases/tag/v8.0.2">
 	  <p>The KRB analyzer can leak information about hosts in
 	  analyzed traffic via external DNS lookups.</p>
 	</blockquote>
@@ -7999,7 +7995,6 @@ This issue has been patched in version 2.25.2.</p>
     <dates>
       <discovery>2025-04-10</discovery>
       <entry>2025-07-12</entry>
-      <modified>2026-01-02</modified>
       <modified>2026-10-25</modified>
     </dates>
   </vuln>
@@ -8050,7 +8045,6 @@ This issue has been patched in version 2.25.2.</p>
       <cvename>CVE-2025-6170</cvename>
       <cvename>CVE-2025-49794</cvename>
       <cvename>CVE-2025-49795</cvename>
-      <cvename>CVE-2025-49795</cvename>
       <url>https://www.openwall.com/lists/oss-security/2025/06/16/6</url>
       <url>https://gitlab.gnome.org/Teams/Releng/security/-/wikis/2025#libxml2-and-libxslt</url>
       <url>https://gitlab.gnome.org/GNOME/libxml2/-/issues/913</url>
@@ -8064,7 +8058,6 @@ This issue has been patched in version 2.25.2.</p>
     <dates>
       <discovery>2025-05-27</discovery>
       <entry>2025-07-12</entry>
-      <modified>2025-07-15</modified>
       <modified>2026-10-16</modified>
     </dates>
   </vuln>
@@ -9356,7 +9349,7 @@ This issue has been patched in version 2.25.2.</p>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
 	<p>GitHub Security Advisories reports:</p>
-	<blockquote cite="null">
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2025-52560">
 	<p>
 	Kanboard allows password reset emails to be sent with URLs
 	derived from the unvalidated Host header when the
