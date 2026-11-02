@@ -1,7 +1,7 @@
 PORTNAME=	nginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION=	6
+PORTREVISION=	10
 PORTEPOCH=	3
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
@@ -22,7 +22,7 @@ PORTSCOUT=	limit:^1\.30\.[0-9]*
 USES=		cpe
 
 CPE_VENDOR=	f5
-CPE_PRODUCT=	nginx
+CPE_PRODUCT=	nginx_open_source
 USE_GITHUB=	nodefault
 
 NGINX_VARDIR?=	/var
@@ -366,6 +366,36 @@ pre-configure-HTTP_ACCEPT_LANGUAGE-on:
 	@${RM} -rf ${WRKSRC_accept_language}
 	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-accept-language ${WRKSRC_accept_language}
 	@${CHMOD} -R u+w ${WRKSRC_accept_language}
+
+pre-configure-HTTP_FOOTER-on:
+	@${RM} -rf ${WRKSRC_footer}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-footer ${WRKSRC_footer}
+	@${CHMOD} -R u+w ${WRKSRC_footer}
+
+pre-configure-HTTP_UPLOAD-on:
+	@${RM} -rf ${WRKSRC_upload}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-upload ${WRKSRC_upload}
+	@${CHMOD} -R u+w ${WRKSRC_upload}
+
+pre-configure-HTTP_DAV_EXT-on:
+	@${RM} -rf ${WRKSRC_dav_ext}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-dav-ext ${WRKSRC_dav_ext}
+	@${CHMOD} -R u+w ${WRKSRC_dav_ext}
+
+pre-configure-HTTP_AUTH_DIGEST-on:
+	@${RM} -rf ${WRKSRC_auth_digest}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-auth-digest ${WRKSRC_auth_digest}
+	@${CHMOD} -R u+w ${WRKSRC_auth_digest}
+
+pre-configure-HTTP_SUBS_FILTER-on:
+	@${RM} -rf ${WRKSRC_subs_filter}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-subs-filter ${WRKSRC_subs_filter}
+	@${CHMOD} -R u+w ${WRKSRC_subs_filter}
+
+pre-configure-LINK-on:
+	@${RM} -rf ${WRKSRC_link}
+	@${CP} -R ${LOCALBASE}/share/nginx/modules/nginx-module-link ${WRKSRC_link}
+	@${CHMOD} -R u+w ${WRKSRC_link}
 
 pre-configure-ICONV-on:
 	@${RM} -rf ${WRKSRC_iconv}
