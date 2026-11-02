@@ -40,6 +40,9 @@ CARGO_CRATES=	equivalent-1.0.2 \
 
 SUB_FILES=	netflector.toml.sample pkg-message
 
+GID_FILES=	${FILESDIR}/GID
+UID_FILES=	${FILESDIR}/UID
+
 USERS=		netflector
 GROUPS=		netflector
 
