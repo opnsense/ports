@@ -5,7 +5,6 @@
     SUBDIR += coccinella
     SUBDIR += concord
     SUBDIR += conduit
-    SUBDIR += convey
     SUBDIR += coyim
     SUBDIR += deltachat-desktop
     SUBDIR += dendrite
@@ -14,6 +13,7 @@
     SUBDIR += dissent
     SUBDIR += echat
     SUBDIR += ejabberd
+    SUBDIR += faro
     SUBDIR += farstream
     SUBDIR += finch
     SUBDIR += flare

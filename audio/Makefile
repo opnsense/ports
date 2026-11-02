@@ -126,6 +126,7 @@
     SUBDIR += dtmfdial
     SUBDIR += dumb
     SUBDIR += dumb-allegro
+    SUBDIR += easyeffects
     SUBDIR += easytag
     SUBDIR += eawpats
     SUBDIR += eawplus
@@ -432,6 +433,7 @@
     SUBDIR += liquidsfz
     SUBDIR += listener
     SUBDIR += littlefly-lv2
+    SUBDIR += lmms
     SUBDIR += lollypop
     SUBDIR += lpcnet
     SUBDIR += lsp-plugins-lv2

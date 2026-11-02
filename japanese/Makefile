@@ -177,11 +177,11 @@
     SUBDIR += migemo.el
     SUBDIR += mime_pls
     SUBDIR += mozc-el
-    SUBDIR += mozc3-el
     SUBDIR += mozc-modeless
     SUBDIR += mozc-server
-    SUBDIR += mozc3-server
     SUBDIR += mozc-tool
+    SUBDIR += mozc3-el
+    SUBDIR += mozc3-server
     SUBDIR += mozc3-tool
     SUBDIR += multiskkserv
     SUBDIR += mypaedia-fpw-package
@@ -266,7 +266,6 @@
     SUBDIR += skk-jisyo-cdb
     SUBDIR += skk-tools
     SUBDIR += skkinput
-    SUBDIR += skkinput3
     SUBDIR += skkserv
     SUBDIR += slimeforest
     SUBDIR += slrn

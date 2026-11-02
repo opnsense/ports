@@ -1,6 +1,6 @@
 PORTNAME=	perfetto
 DISTVERSIONPREFIX=	v
-DISTVERSION=	58.2
+DISTVERSION=	59.1
 CATEGORIES=	devel
 MASTER_SITES=	https://storage.googleapis.com/perfetto/:perfetto
 DISTFILES=	sqlite-amalgamation-3500300.zip:perfetto \
@@ -16,6 +16,8 @@ WWW=		https://perfetto.dev/
 BUILD_DEPENDS=	gn:devel/gn
 
 USES=		compiler:c++17-lang ninja python:build
+
+BROKEN_i386=	fails to configure: clang++: error: clang frontend command failed with exit code 139
 
 OPTIONS_DEFINE=		EXAMPLES
 OPTIONS_DEFAULT=	EXAMPLES

@@ -249,7 +249,6 @@
     SUBDIR += glance
     SUBDIR += glassfish
     SUBDIR += glpi
-    SUBDIR += gnome-user-share
     SUBDIR += go-anubis
     SUBDIR += go-away
     SUBDIR += go-www
@@ -450,9 +449,7 @@
     SUBDIR += mod_authnz_external24
     SUBDIR += mod_authz_unixgroup24
     SUBDIR += mod_cfg_ldap
-    SUBDIR += mod_dav_svn
     SUBDIR += mod_defensible
-    SUBDIR += mod_dnssd
     SUBDIR += mod_evasive
     SUBDIR += mod_fastcgi
     SUBDIR += mod_fcgid
@@ -484,11 +481,12 @@
     SUBDIR += mod_scgi
     SUBDIR += mod_security
     SUBDIR += mod_setenvifplus
-    SUBDIR += mod_tls
+    SUBDIR += mod_subversion
     SUBDIR += mod_umask
     SUBDIR += mod_webauth
     SUBDIR += mod_webkit
     SUBDIR += mod_wsgi
+    SUBDIR += mod_wsgi4
     SUBDIR += mod_xsendfile
     SUBDIR += mohawk
     SUBDIR += moin2
@@ -497,7 +495,6 @@
     SUBDIR += mongoose
     SUBDIR += monolith
     SUBDIR += moodle45
-    SUBDIR += moodle50
     SUBDIR += moodle51
     SUBDIR += moodle52
     SUBDIR += moodle53
@@ -540,14 +537,17 @@
     SUBDIR += nginx-module-accept-language
     SUBDIR += nginx-module-ajp
     SUBDIR += nginx-module-array-var
+    SUBDIR += nginx-module-auth-digest
     SUBDIR += nginx-module-auth-ldap
     SUBDIR += nginx-module-auth-pam
     SUBDIR += nginx-module-aws-auth
     SUBDIR += nginx-module-cache-purge
     SUBDIR += nginx-module-cert-expiry
+    SUBDIR += nginx-module-dav-ext
     SUBDIR += nginx-module-encrypted-session
     SUBDIR += nginx-module-fancyindex
     SUBDIR += nginx-module-fips-check
+    SUBDIR += nginx-module-footer
     SUBDIR += nginx-module-form-input
     SUBDIR += nginx-module-geoip2
     SUBDIR += nginx-module-gridfs
@@ -555,6 +555,7 @@
     SUBDIR += nginx-module-ip-anon
     SUBDIR += nginx-module-json-status
     SUBDIR += nginx-module-let
+    SUBDIR += nginx-module-link
     SUBDIR += nginx-module-lua
     SUBDIR += nginx-module-lua-stream
     SUBDIR += nginx-module-memc
@@ -568,7 +569,9 @@
     SUBDIR += nginx-module-slowfs-cache
     SUBDIR += nginx-module-stream-limit-req
     SUBDIR += nginx-module-sts
+    SUBDIR += nginx-module-subs-filter
     SUBDIR += nginx-module-syslog5424
+    SUBDIR += nginx-module-upload
     SUBDIR += nginx-module-vod
     SUBDIR += nginx-module-websockify
     SUBDIR += nginx-module-zstd

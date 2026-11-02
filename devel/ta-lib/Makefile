@@ -1,10 +1,10 @@
 PORTNAME=	ta-lib
-PORTVERSION=	0.8.1
+DISTVERSION=	0.8.3
 DISTVERSIONSUFFIX=	-src
 CATEGORIES=	devel finance
-MASTER_SITES=	https://github.com/TA-Lib/ta-lib/releases/download/v${PORTVERSION}/
+MASTER_SITES=	https://github.com/TA-Lib/ta-lib/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	bdheeman@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	UNIX, POSIX Library for Technical Analysis
 WWW=		https://ta-lib.org/ \
 		https://github.com/TA-Lib/ta-lib
@@ -15,7 +15,7 @@ USES=		gmake libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 MAKE_JOBS_UNSAFE=yes
 

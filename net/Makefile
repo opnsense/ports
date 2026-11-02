@@ -305,7 +305,6 @@
     SUBDIR += isc-dhcp44-server
     SUBDIR += istgt
     SUBDIR += iwnet
-    SUBDIR += java-beepcore
     SUBDIR += jcifs
     SUBDIR += jgroups
     SUBDIR += jose
@@ -1301,7 +1300,9 @@
     SUBDIR += rubygem-cloudflare
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-connection_pool-gitlab
+    SUBDIR += rubygem-connection_pool2
     SUBDIR += rubygem-devfile
+    SUBDIR += rubygem-dnsimple
     SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-dogapi
     SUBDIR += rubygem-domain_name

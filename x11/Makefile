@@ -453,6 +453,7 @@
     SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += somebar
+    SUBDIR += sonic-screen-library
     SUBDIR += sprop
     SUBDIR += squeekboard
     SUBDIR += srandrd

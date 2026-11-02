@@ -1,8 +1,7 @@
 PORTNAME=	thread
-PORTVERSION=	3.0.4
-PORTREVISION=	2
+PORTVERSION=	3.0.7
 CATEGORIES=	devel
-MASTER_SITES=	SF/tcl/Tcl/9.0.3
+MASTER_SITES=	SF/tcl/Tcl/9.1.0
 PKGNAMEPREFIX=	tcl-
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
@@ -29,7 +28,7 @@ GDBM_DESC=	Persistent shared variables using GDBM
 LMDB_DESC=	Persistent shared variables using LMDB
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
 GDBM_CONFIGURE_WITH=	gdbm
-LMDB_LIB_DEPENDS=	liblmdb0.so:databases/lmdb0
+LMDB_LIB_DEPENDS=	liblmdb.so:databases/lmdb
 LMDB_CPPFLAGS=		-I${LOCALBASE}/lmdb0/include
 LMDB_LDFLAGS=		-L${LOCALBASE}/lmdb0/lib
 LMDB_CONFIGURE_ENV=	PKG_CONFIG_PATH=${LOCALBASE}/lmdb0/libdata/pkgconfig

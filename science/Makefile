@@ -351,6 +351,7 @@
     SUBDIR += py-endf
     SUBDIR += py-esda
     SUBDIR += py-fresnel
+    SUBDIR += py-galore
     SUBDIR += py-gemmi
     SUBDIR += py-geolinks
     SUBDIR += py-geomet
@@ -370,6 +371,7 @@
     SUBDIR += py-igor2
     SUBDIR += py-inequality
     SUBDIR += py-ipygany
+    SUBDIR += py-jarvis-tools
     SUBDIR += py-jupyter_jsmol
     SUBDIR += py-kim-query
     SUBDIR += py-kimpy
@@ -443,6 +445,7 @@
     SUBDIR += py-pysal
     SUBDIR += py-pyscf
     SUBDIR += py-pyteomics
+    SUBDIR += py-pyzeo
     SUBDIR += py-qcelemental
     SUBDIR += py-qcengine
     SUBDIR += py-qcmanybody

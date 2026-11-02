@@ -101,7 +101,6 @@
     SUBDIR += hiredis
     SUBDIR += hsqldb
     SUBDIR += iceberg-rust
-    SUBDIR += immudb
     SUBDIR += imposm3
     SUBDIR += influxdb
     SUBDIR += influxdb2-cli
@@ -206,9 +205,11 @@
     SUBDIR += mysql-connector-j
     SUBDIR += mysql-connector-odbc
     SUBDIR += mysql-shell
-    SUBDIR += mysql2pgsql
+    SUBDIR += mysql2610-client
+    SUBDIR += mysql2610-server
     SUBDIR += mysql267-client
     SUBDIR += mysql267-server
+    SUBDIR += mysql2pgsql
     SUBDIR += mysql80-client
     SUBDIR += mysql80-server
     SUBDIR += mysql84-client
@@ -883,6 +884,7 @@
     SUBDIR += py-pylibmc
     SUBDIR += py-pymemcache
     SUBDIR += py-pymongo
+    SUBDIR += py-pymssql
     SUBDIR += py-pymysql
     SUBDIR += py-pyodbc
     SUBDIR += py-pypuppetdb

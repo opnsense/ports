@@ -13,6 +13,7 @@
     SUBDIR += c-ares
     SUBDIR += cascade
     SUBDIR += cli53
+    SUBDIR += cmdns-cli
     SUBDIR += coredns
     SUBDIR += ddclient
     SUBDIR += ddns
@@ -184,7 +185,6 @@
     SUBDIR += py-dns-lexicon
     SUBDIR += py-dnslib
     SUBDIR += py-dnspython
-    SUBDIR += py-dnspython1
     SUBDIR += py-easyzone
     SUBDIR += py-idna
     SUBDIR += py-ldns
