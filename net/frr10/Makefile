@@ -1,6 +1,7 @@
 PORTNAME=	frr
 DISTVERSIONPREFIX=	frr-
 DISTVERSION=	10.7.1
+PORTREVISION=	1
 CATEGORIES=	net
 .if defined(PYTHONTOOLS)
 PKGNAMESUFFIX=	10-pythontools
@@ -46,7 +47,7 @@ USES=		autoreconf bison compiler:c++11-lang cpe gmake libtool makeinfo \
 
 BINARY_ALIAS=	python=${PYTHON_VERSION} sed=gsed
 
-CONFLICTS=	frr8 frr9 openbgpd openospfd quagga zebra
+CONFLICTS=	frr9
 
 CPE_PRODUCT=	frrouting
 
@@ -92,18 +93,18 @@ TCMALLOC_DESC=		Use tcmalloc
 USERS=	frr
 GROUPS=	frr frrvty
 
-# PIMD and PBRD compile but doesn't work on FreeBSD
+# PBRD compile but doesn't work on FreeBSD
 CONFIGURE_ARGS=	--enable-user=frr \
 		--enable-group=frr \
 		--enable-vty-group=frrvty \
 		--enable-vtysh \
 		--disable-doc-html \
 		--sysconfdir=${ETCDIR} \
+		--sbindir=${PREFIX}/lib/frr \
 		--localstatedir=/var/run/frr \
 		--disable-nhrpd \
 		--disable-pathd \
 		--disable-ospfclient \
-		--disable-pimd \
 		--disable-pbrd \
 		--with-vtysh-pager=cat
 
