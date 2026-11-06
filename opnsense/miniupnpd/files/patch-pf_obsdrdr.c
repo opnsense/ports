@@ -1,15 +1,4 @@
-From d9ffcddba15d190e40fc68783dfedbbb61e764d0 Mon Sep 17 00:00:00 2001
-From: Chad Lajiness <chad.lajiness@icloud.com>
-Date: Wed, 26 Aug 2026 06:56:47 -0500
-Subject: [PATCH] miniupnpd/pf: set pool address family
-
----
- miniupnpd/pf/obsdrdr.c | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git pf/obsdrdr.c pf/obsdrdr.c
-index dfbc0615..31e330c8 100644
---- pf/obsdrdr.c
+--- pf/obsdrdr.c.orig	2026-09-30 17:32:31 UTC
 +++ pf/obsdrdr.c
 @@ -448,6 +448,7 @@ int add_nat_rule(const char * ifname,
  		TAILQ_INSERT_TAIL(&pcr.rule.rpool.list, a, entries);
