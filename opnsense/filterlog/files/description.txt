@@ -34,6 +34,29 @@ CARP
 
 [IPv4 | IPv6], type, ttl | hoplimit, vhid, version, advskew, advbase
 
+ICMP
+====
+
+[IPv4 | IPv6], datalength, type, code, id, seq, mtu
+
+Applies to both ICMP and ICMPv6. "datalength" is printed as "datalength=N"
+for consistency with other protocols that are not decoded further.
+
+Type and code use the pf.conf(5) icmp-type / icmp-code and icmp6-type /
+icmp6-code keywords (e.g. "echoreq", "unreach", "port-unr", "needfrag",
+"filter-prohib", "neighbrsol").  Types without a keyword print as
+"unknown(N)", codes without a keyword print numerically.
+
+Fields not applicable to the message type are left empty:
+
+    id, seq     echoreq, echorep and for IPv4 also timereq, timerep,
+                inforeq, inforep, maskreq, maskrep
+    mtu         IPv4 unreach/needfrag (next-hop MTU, 0 if not provided)
+                and IPv6 toobig
+
+If less than two octets of ICMP data are available the type field reads
+"truncated-icmp=N" and the remaining fields are left empty.
+
 Caveats
 =======
 

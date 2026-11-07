@@ -101,7 +101,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	const char *label = "0";
 	const struct pfloghdr *hdr;
 	const struct ip *ip;
-	u_int length = pkthdr->len;
+	u_int length = pkthdr->caplen;
 	u_int hdrlen;
 	u_int caplen = pkthdr->caplen;
 	u_int32_t subrulenr;
