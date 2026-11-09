@@ -1,6 +1,6 @@
 PORTNAME=	stalwart-migrate
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.5
+DISTVERSION=	1.0.6
 CATEGORIES=	mail
 
 MAINTAINER=	jsi@jules.de
@@ -80,6 +80,16 @@ ROCKSDB_LIB_DEPENDS=	librocksdb.so:databases/rocksdb
 ROCKSDB_VARS=		CARGO_FEATURES+=rocks
 S3_VARS=		CARGO_FEATURES+=s3
 SQLITE_VARS=		CARGO_FEATURES+=sqlite
+
+.include <bsd.port.options.mk>
+
+# The enterprise feature compiles code that is only available under the
+# SELv2, which grants no redistribution rights and requires acceptance.
+.if ${PORT_OPTIONS:MENTERPRISE}
+LICENSE_COMB=		multi
+LICENSE_PERMS_SELv2=	no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-sell \
+			no-auto-accept
+.endif
 
 # librocksdb-sys comes from a git snapshot without the bundled RocksDB
 # submodule.  Its build script runs "git submodule update" unless it

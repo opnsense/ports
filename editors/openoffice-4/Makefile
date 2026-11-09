@@ -1,6 +1,6 @@
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION}${AOORCN:?.p${AOORCN}:}
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	editors java
 #MASTER_SITES=	https://dist.apache.org/repos/dist/dev/openoffice/${AOOVERSION}${AOORCN:?-RC${AOORCN}:}/source/
 MASTER_SITES=	https://dlcdn.apache.org/openoffice/${PORTVERSION}/source/ \
@@ -49,9 +49,6 @@ LICENSE_PERMS_ICU=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_TWAIN=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_W3C=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-DEPRECATED=	Depends on expired java/apache-commons-lang
-EXPIRATION_DATE=2026-12-31
-
 ONLY_FOR_ARCHS=	amd64 i386 powerpc64 powerpc64le
 
 BUILD_DEPENDS=								\
@@ -65,11 +62,10 @@ BUILD_DEPENDS=								\
 		libunwind>=20211201_1:devel/libunwind			\
 		gpatch:devel/patch					\
 		${LOCALBASE}/include/sane/sane.h:graphics/sane-backends	\
-		${JAVALIBDIR}/commons-lang.jar:java/apache-commons-lang \
+		${JAVALIBDIR}/commons-lang3.jar:java/apache-commons-lang3 \
 		${JAVALIBDIR}/junit.jar:java/junit			\
 		${JAVALIBDIR}/bsh.jar:lang/bsh				\
 		bash:shells/bash					\
-		${JAVALIBDIR}/lucene-core-3.6.2.jar:textproc/lucene	\
 		p5-XML-Parser>=0:textproc/p5-XML-Parser			\
 		p5-libwww>=0:www/p5-libwww				\
 		p5-LWP-Protocol-https>0:www/p5-LWP-Protocol-https
@@ -103,7 +99,7 @@ LIB_DEPENDS=								\
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=								\
 		${LOCALBASE}/share/icons/hicolor/index.theme:misc/hicolor-icon-theme \
-		${JAVALIBDIR}/commons-lang.jar:java/apache-commons-lang \
+		${JAVALIBDIR}/commons-lang3.jar:java/apache-commons-lang3 \
 		${JAVALIBDIR}/bsh.jar:lang/bsh				\
 		${LOCALBASE}/share/fonts/Caladea/Caladea-Bold.ttf:x11-fonts/crosextrafonts-caladea-ttf \
 		${LOCALBASE}/share/fonts/Carlito/Carlito-Bold.ttf:x11-fonts/crosextrafonts-carlito-ttf \
@@ -270,7 +266,7 @@ CONFIGURE_ARGS+=							\
 			--with-alloc=system				\
 			--with-ant-home=${LOCALBASE}/share/java/apache-ant \
 			--with-system-apache-commons=yes		\
-			--with-commons-lang-jar=${JAVALIBDIR}/commons-lang.jar \
+			--with-commons-lang-jar=${JAVALIBDIR}/commons-lang3.jar \
 			--with-system-apr				\
 			--with-system-apr-util				\
 			--with-system-beanshell				\
@@ -298,8 +294,6 @@ CONFIGURE_ARGS+=							\
 			--disable-kde4					\
 			--with-system-libxml				\
 			--with-system-libxslt				\
-			--with-lucene-core-jar=${JAVALIBDIR}/lucene-core-2.9.4.jar \
-			--with-lucene-analyzers-jar=${JAVALIBDIR}/lucene-analyzers-2.9.4.jar \
 			--with-system-mythes				\
 			--with-external-thes-dir=${LOCALBASE}/share/mythes \
 			--with-system-nss				\
@@ -399,14 +393,6 @@ post-patch:
 	${REINPLACE_CMD} -e "s|%%JAVA_HOME%%|${JAVA_HOME}|" \
 		${WRKSRC}/desktop/scripts/soffice.sh
 	${REINPLACE_CMD} -e '/^mkdir -p/,$$d' ${CREATE_TREE}
-
-# Verify that lucene was built with the CONTRIB option instead of
-# failing mysteriously during the build
-pre-configure:
-	@if [ ! -f ${JAVALIBDIR}/lucene-analyzers-3.6.2.jar ]; then \
-		${ECHO} "error: textproc/lucene must be built with the CONTRIB option enabled"; \
-		exit 1; \
-	fi
 
 do-build:
 	${PRINTF} "[repositories]\nmain=active\nextras=active\n" > ${WRKSUBDIR}/source_config

@@ -1,6 +1,6 @@
 PORTNAME=	semaphore
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.19.17
+DISTVERSION=	2.19.18
 CATEGORIES=	net-mgmt
 MASTER_SITES+=	https://github.com/joneum/FreeBSD-Semaphore/releases/download/${PORTNAME}-${DISTVERSION}/:webui
 DISTFILES+=	${PORTNAME}-webui-${DISTVERSION}${EXTRACT_SUFX}:webui \
@@ -12,6 +12,10 @@ WWW=		https://semaphoreui.com/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS_REASON=	modernc.org/sqlite ships outdated FreeBSD bindings \
+			for the other architectures
 
 RUN_DEPENDS=	ansible:sysutils/py-ansible-core@${PY_FLAVOR} \
 		git:devel/git

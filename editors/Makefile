@@ -31,6 +31,7 @@
     SUBDIR += diakonos
     SUBDIR += diamond
     SUBDIR += dkns
+    SUBDIR += doom-modeline
     SUBDIR += drjava
     SUBDIR += dte
     SUBDIR += dz6
@@ -225,6 +226,7 @@
     SUBDIR += neovim
     SUBDIR += neovim-gtk
     SUBDIR += neovim-qt
+    SUBDIR += nerd-icons.el
     SUBDIR += notepadnext
     SUBDIR += novelwriter
     SUBDIR += nvi-m17n
@@ -268,6 +270,7 @@
     SUBDIR += semi
     SUBDIR += setzer
     SUBDIR += shed
+    SUBDIR += shrink-path.el
     SUBDIR += slime
     SUBDIR += sly
     SUBDIR += sly-asdf

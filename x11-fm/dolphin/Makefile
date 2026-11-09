@@ -1,9 +1,6 @@
 PORTNAME=	dolphin
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
-PORTREVISION=	1
 CATEGORIES=	x11-fm kde kde-applications
-PATCH_SITES=	https://invent.kde.org/system/dolphin/-/commit/
-PATCHFILES=	9685acf1bbc6ba1f591b37b8be4250a604fcc0bf.patch:-p1
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE filemanager dolphin
@@ -29,9 +26,7 @@ USE_KDE=	activities attica auth baloo baloo-widgets bookmarks codecs \
 USE_QT=		base imageformats:run
 USE_XORG=	x11
 
-SHLIB_VER=	6.0.0
-PLIST_SUB+=	SHLIB_VER="${SHLIB_VER}" \
-		SHLIB_SHVER="${SHLIB_VER:R:R}"
+PLIST_SUB+=	SHLIB_SHVER=6
 
 OPTIONS_DEFINE=	DOCS
 

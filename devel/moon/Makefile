@@ -1,6 +1,6 @@
 PORTNAME=	moon
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.6.3
+DISTVERSION=	2.6.5
 CATEGORIES=	devel
 
 MAINTAINER=	olivier@FreeBSD.org
@@ -10,6 +10,9 @@ WWW=		https://moonrepo.dev/ \
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+NOT_FOR_ARCHS=		i386
+NOT_FOR_ARCHS_REASON=	rustc runs out of memory during LTO link
 
 BUILD_DEPENDS=	protoc:devel/protobuf
 LIB_DEPENDS=	libzstd.so:archivers/zstd

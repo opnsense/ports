@@ -372,7 +372,6 @@
     SUBDIR += plank
     SUBDIR += plasma-wayland-protocols
     SUBDIR += plasma6-kactivitymanagerd
-    SUBDIR += plasma6-kgamma
     SUBDIR += plasma6-kglobalacceld
     SUBDIR += plasma6-kscreen
     SUBDIR += plasma6-kwayland
@@ -386,6 +385,21 @@
     SUBDIR += plasma6-plasma-desktop
     SUBDIR += plasma6-plasma-integration
     SUBDIR += plasma6-plasma-workspace
+    SUBDIR += plasma6lts-kactivitymanagerd
+    SUBDIR += plasma6lts-kgamma
+    SUBDIR += plasma6lts-kglobalacceld
+    SUBDIR += plasma6lts-kscreen
+    SUBDIR += plasma6lts-kwayland
+    SUBDIR += plasma6lts-kwayland-integration
+    SUBDIR += plasma6lts-layer-shell-qt
+    SUBDIR += plasma6lts-libkscreen
+    SUBDIR += plasma6lts-libplasma
+    SUBDIR += plasma6lts-plasma
+    SUBDIR += plasma6lts-plasma-activities
+    SUBDIR += plasma6lts-plasma-activities-stats
+    SUBDIR += plasma6lts-plasma-desktop
+    SUBDIR += plasma6lts-plasma-integration
+    SUBDIR += plasma6lts-plasma-workspace
     SUBDIR += pmenu
     SUBDIR += polybar
     SUBDIR += printscreen
@@ -479,6 +493,7 @@
     SUBDIR += sxmo-wayout
     SUBDIR += sxpc
     SUBDIR += tabbed
+    SUBDIR += tabby
     SUBDIR += tecla
     SUBDIR += temperature.app
     SUBDIR += terminal.app
@@ -616,6 +631,7 @@
     SUBDIR += xfce4-goodies
     SUBDIR += xfce4-screensaver
     SUBDIR += xfce4-screenshooter-plugin
+    SUBDIR += xfce4-sweaters
     SUBDIR += xfce4-taskmanager
     SUBDIR += xfce4-terminal
     SUBDIR += xfce4-verve-plugin

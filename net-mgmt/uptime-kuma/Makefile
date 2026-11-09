@@ -1,6 +1,5 @@
 PORTNAME=	uptime-kuma
-DISTVERSION=	2.5.5
-PORTREVISION=	1
+DISTVERSION=	2.5.9
 CATEGORIES=	net-mgmt www
 MASTER_SITES=	LOCAL/dch/${PORTNAME}/:npmcache \
 		https://github.com/louislam/${PORTNAME}/releases/download/${DISTVERSION}/:dist
@@ -20,9 +19,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	${LOCALBASE}/bin/npm:www/npm \
 		${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
 		esbuild:devel/esbuild
-LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
-USES=		gmake nodejs:lts,build,run python:build
+USES=		gmake nodejs:lts,build,run python:build sqlite
 USE_GITHUB=	yes
 GH_ACCOUNT=	louislam
 USE_RC_SUBR=	uptimekuma
@@ -246,7 +244,7 @@ _fetch-src:
 _npm-populate:
 	(cd ${WRKSRC} && \
 		${SETENV} HOME=${WRKDIR} npm_config_cache=${_NPM_CACHE} \
-		npm ci --legacy-peer-deps --no-audit --no-fund)
+		npm ci --ignore-scripts --legacy-peer-deps --no-audit --no-fund)
 
 _npm-cache:
 	(cd ${WRKDIR} && \

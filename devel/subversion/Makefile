@@ -1,3 +1,5 @@
+PORTREVISION=	2
+
 MAINTAINER=	michaelo@apache.org
 COMMENT=	Apache Subversion is a full-featured version control system
 WWW=		https://subversion.apache.org/
@@ -47,12 +49,15 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 TEST_TARGET=	check
 
 .if ${PORT_OPTIONS:MSVNSERVE_WRAPPER}
-BINS_TO_STRIP=	svn svnadmin svnauthz svnauthz-validate svnbench svndumpfilter \
-		svnfsfs svnlook svnmucc svnrdump svnserve.bin svnsync svnversion
+SVNSERVE_EXT=	.bin
 .else
-BINS_TO_STRIP=	svn svnadmin svnauthz svnauthz-validate svnbench svndumpfilter \
-		svnfsfs svnlook svnmucc svnrdump svnserve svnsync svnversion
+SVNSERVE_EXT=
 .endif
+SUB_LIST+=	SVNSERVE_EXT=${SVNSERVE_EXT}
+
+BINS_TO_STRIP=	svn svnadmin svnauthz svnauthz-validate svnbench svndumpfilter \
+		svnfsfs svnlook svnmucc svnrdump svnserve${SVNSERVE_EXT} \
+		svnsync svnversion
 
 TOOLS_TO_STRIP=	svn-mergeinfo-normalizer svn-populate-node-origins-index \
 		svnconflict svndiff svndiff3 svndiff4 svnraisetreeconflict

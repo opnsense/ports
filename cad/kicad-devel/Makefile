@@ -1,6 +1,6 @@
 PORTNAME=	kicad
 DISTVERSION=	r${GIT_SRC_DATE}
-#PORTREVISION=	8
+PORTREVISION=	2
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-devel
 DIST_SUBDIR=		${PORTNAME}
@@ -16,7 +16,9 @@ BROKEN_i386=    doesn't buld on pkg builder
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/git:devel/git \
 		${LOCALBASE}/include/glm/glm.hpp:math/glm \
-		${LOCALBASE}/bin/swig:devel/swig
+		glslang>0:graphics/glslang \
+		${LOCALBASE}/bin/swig:devel/swig \
+		vulkan-headers>0:graphics/vulkan-headers
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -29,10 +31,12 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libprotobuf.so:devel/protobuf \
 		libcurl.so:ftp/curl \
 		libGLEW-wayland.so:graphics/glew-wayland \
-		libnng.so:net/nng \
+		libnng.so:net/nng1 \
 		libpoppler-glib.so:graphics/poppler-glib \
 		libspnav.so:misc/libspnav \
-		libodbc.so:databases/unixODBC
+		libodbc.so:databases/unixODBC \
+		libshaderc_shared.so:graphics/shaderc \
+		libvulkan.so:graphics/vulkan-loader
 
 CONFLICTS_INSTALL=	kicad # bin/_cvpcb.kiface
 
@@ -43,7 +47,7 @@ PLIST_SUB=	OPSYS=${OPSYS}	\
 
 USES=		cmake:noninja compiler:c++20-lang cpe desktop-file-utils gl \
 		gettext gnome pkgconfig python shared-mime-info shebangfix ssl \
-		tar:bzip2 xorg 
+		tar:bzip2 xorg
 CPE_VENDOR=	kicad
 CPE_PRODUCT=	eda
 USE_GITLAB=	yes

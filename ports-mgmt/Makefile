@@ -11,6 +11,7 @@
     SUBDIR += fastest_pkg
     SUBDIR += freebsd-bugzilla-cli
     SUBDIR += genpatch
+    SUBDIR += git-proxy
     SUBDIR += hs-cabal2tuple
     SUBDIR += hs-panopticum
     SUBDIR += jailaudit
@@ -79,6 +80,7 @@
     SUBDIR += py-skog
     SUBDIR += rc-subr-jail
     SUBDIR += reprise
+    SUBDIR += sbom-generator
     SUBDIR += sccache-overlay
     SUBDIR += submodules2tuple
     SUBDIR += synth

@@ -1,6 +1,6 @@
 PORTNAME=	nng
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.12.5
+DISTVERSION=	2.1.0
 CATEGORIES=	net
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -18,5 +18,8 @@ USE_LDCONFIG=	yes
 CMAKE_ON=	BUILD_SHARED_LIBS
 
 PLIST_SUB=	PORTMAJ=${PORTVERSION:C/\..*//}
+
+post-patch:
+	@${REINPLACE_CMD} -e '/FindMbedTLS/d' ${WRKSRC}/src/CMakeLists.txt
 
 .include <bsd.port.mk>

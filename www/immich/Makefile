@@ -1,7 +1,6 @@
 PORTNAME=	immich
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.3.5
-PORTREVISION=	1
+DISTVERSION=	3.3.6
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/joneum/FreeBSD-Immich/releases/download/v${BUILDKIT_VERSION}/:buildkit
 DISTFILES=	immich-freebsd-buildkit-${BUILDKIT_VERSION}${EXTRACT_SUFX}:buildkit
@@ -13,9 +12,8 @@ WWW=		https://immich.app/
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
-ONLY_FOR_ARCHS_REASON=	native Node.js modules are only tested on \
-			64-bit platforms
+ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS_REASON=	rolldown provides no FreeBSD/arm64 binding
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node22
 LIB_DEPENDS=	libheif.so:graphics/libheif \
@@ -46,7 +44,7 @@ USE_RC_SUBR=	immich_server
 # plus the geodata files from geonames.org and natural-earth-vector, and
 # the immich-plugin-core payload from the upstream container image.
 BUILDKIT=	${WRKDIR}/immich-freebsd-buildkit-${BUILDKIT_VERSION}
-BUILDKIT_VERSION=	${DISTVERSION}_1
+BUILDKIT_VERSION=	${DISTVERSION}
 PNPM=		${WRKDIR}/pnpm-prefix/bin/pnpm
 PNPM_VERSION=	11.27.1
 PLUGIN_SDK=	@immich+plugin-sdk@file+packages+plugin-sdk

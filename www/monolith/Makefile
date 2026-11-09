@@ -1,9 +1,9 @@
 PORTNAME=	monolith
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.11.5
+DISTVERSION=	2.12.0
 CATEGORIES=	www
 
-MAINTAINER=	lcook@FreeBSD.org
+MAINTAINER=	tagattie@FreeBSD.org
 COMMENT=	CLI tool for saving complete web pages as a single HTML file
 WWW=		https://github.com/Y2Z/monolith
 
@@ -13,8 +13,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	gmake:devel/gmake
 
 USES=		cargo perl5 ssl
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	Y2Z
+
 USE_PERL5=	build
 
 PLIST_FILES=	bin/${PORTNAME}

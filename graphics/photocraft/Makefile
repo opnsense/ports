@@ -1,6 +1,6 @@
 PORTNAME=	photocraft
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.18.0
+DISTVERSION=	0.21.0
 CATEGORIES=	graphics
 
 MAINTAINER=	pkubaj@FreeBSD.org
@@ -31,6 +31,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		accesskit_windows-0.35.1 \
 		accesskit_winit-0.34.1 \
 		adler2-2.0.1 \
+		aes-0.8.4 \
 		ahash-0.8.12 \
 		aho-corasick-1.1.5 \
 		aligned-0.4.3 \
@@ -94,6 +95,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		blake3-1.8.7 \
 		block-0.1.6 \
 		block-buffer-0.10.4 \
+		block-padding-0.3.3 \
 		block2-0.5.1 \
 		block2-0.6.2 \
 		blocking-1.7.0 \
@@ -102,6 +104,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		brotli-decompressor-5.0.3 \
 		built-0.8.1 \
 		bumpalo-3.20.3 \
+		bytecount-0.6.9 \
 		bytemuck-1.25.2 \
 		bytemuck_derive-1.12.1 \
 		byteorder-lite-0.1.0 \
@@ -113,6 +116,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		cap-primitives-4.0.3 \
 		cap-std-4.0.3 \
 		cast-0.3.0 \
+		cbc-0.1.2 \
 		cc-1.5.1 \
 		cexpr-0.6.0 \
 		cfg-expr-0.20.10 \
@@ -124,6 +128,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		ciborium-0.2.2 \
 		ciborium-io-0.2.2 \
 		ciborium-ll-0.2.2 \
+		cipher-0.4.4 \
 		clang-sys-1.9.1 \
 		clap-4.6.7 \
 		clap_builder-4.6.7 \
@@ -190,6 +195,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		drm-sys-0.8.1 \
 		dunce-1.0.5 \
 		dyn-clone-1.0.20 \
+		ecb-0.1.2 \
 		either-1.18.0 \
 		encoding_rs-0.8.42 \
 		endi-1.1.1 \
@@ -311,6 +317,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		imagesize-0.13.0 \
 		imgref-1.12.3 \
 		indexmap-2.14.2 \
+		inout-0.1.4 \
 		interpolate_name-0.2.4 \
 		io-extras-0.19.0 \
 		io-lifetimes-2.0.4 \
@@ -319,7 +326,6 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		is-docker-0.2.0 \
 		is-wsl-0.4.0 \
 		is_terminal_polyfill-1.70.2 \
-		itertools-0.10.5 \
 		itertools-0.13.0 \
 		itertools-0.14.0 \
 		itertools-0.15.0 \
@@ -371,9 +377,12 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		lock_api-0.4.14 \
 		log-0.4.34 \
 		loop9-0.1.5 \
+		lopdf-0.38.0 \
 		lru-slab-0.1.3 \
+		lz4_flex-0.11.6 \
 		maybe-owned-0.3.4 \
 		maybe-rayon-0.1.1 \
+		md-5-0.10.6 \
 		memchr-2.8.3 \
 		memmap2-0.9.11 \
 		memoffset-0.9.1 \
@@ -397,7 +406,9 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		nohash-hasher-0.2.0 \
 		nom-7.1.3 \
 		nom-8.0.0 \
+		nom_locate-5.0.0 \
 		noop_proc_macro-0.3.0 \
+		ntapi-0.4.3 \
 		num-bigint-0.4.8 \
 		num-complex-0.4.6 \
 		num-conv-0.2.2 \
@@ -433,6 +444,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		objc2-foundation-0.2.2 \
 		objc2-foundation-0.3.2 \
 		objc2-image-io-0.3.2 \
+		objc2-io-kit-0.3.2 \
 		objc2-io-surface-0.3.2 \
 		objc2-link-presentation-0.2.2 \
 		objc2-media-toolbox-0.3.2 \
@@ -527,6 +539,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		rand_pcg-0.10.2 \
 		rand_xorshift-0.5.0 \
 		range-alloc-0.1.5 \
+		rangemap-1.8.0 \
 		rav1e-0.8.1 \
 		ravif-0.13.0 \
 		raw-cpuid-11.6.0 \
@@ -581,6 +594,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		schemars_derive-1.2.3 \
 		scoped-tls-1.0.1 \
 		scopeguard-1.2.0 \
+		sctk-adwaita-0.10.1 \
 		security-framework-3.7.0 \
 		security-framework-sys-2.17.0 \
 		self_cell-1.3.0 \
@@ -632,6 +646,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		strength_reduce-0.2.4 \
 		strict-num-0.1.1 \
 		string-interner-0.19.0 \
+		stringprep-0.1.5 \
 		strsim-0.11.1 \
 		strum-0.28.0 \
 		strum_macros-0.28.0 \
@@ -643,6 +658,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		sync_wrapper-1.0.2 \
 		synstructure-0.14.0 \
 		sys-locale-0.3.2 \
+		sysinfo-0.40.1 \
 		system-configuration-0.7.0 \
 		system-configuration-sys-0.6.0 \
 		system-deps-7.0.8 \
@@ -698,6 +714,7 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		unicode-ccc-0.4.0 \
 		unicode-general-category-1.1.0 \
 		unicode-ident-1.0.26 \
+		unicode-normalization-0.1.26 \
 		unicode-properties-0.1.4 \
 		unicode-script-0.5.8 \
 		unicode-segmentation-1.13.3 \
@@ -797,6 +814,8 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		winreg-0.55.0 \
 		winresource-0.1.34 \
 		winsafe-0.0.29 \
+		wintab-0.1.1 \
+		wintab-sys-0.1.0 \
 		winx-0.36.4 \
 		wit-bindgen-0.57.1 \
 		wl-clipboard-rs-0.9.4 \
@@ -851,9 +870,9 @@ CARGO_CRATES=	accesskit-0.25.1 \
 		zvariant_utils-4.2.0 \
 		winprint@git+https://github.com/storytold/winprint.rs?rev=5f80b9baf6b58937c401656634e42d33f00ddf49\#5f80b9baf6b58937c401656634e42d33f00ddf49 \
 		craft-winprint-gdi@git+https://github.com/storytold/winprint.rs?rev=417ac3c4d14d3da5485a99c7d5ce8f05664ec312\#417ac3c4d14d3da5485a99c7d5ce8f05664ec312 \
-		craft-docpath,craft-fonts-build,craft-i18n,craft-jpeg,craft-print,craft-ui@git+https://github.com/storytold/craft-libs?rev=92d392cff132eaf53e13afff77f38b5c11b73aa0\#92d392cff132eaf53e13afff77f38b5c11b73aa0 \
+		craft-docpath,craft-fonts-build,craft-i18n,craft-jpeg,craft-print,craft-ui,craft-update@git+https://github.com/storytold/craft-libs?rev=c5a1cbfb5f9049f9270955caffb5bee5997aebf7\#c5a1cbfb5f9049f9270955caffb5bee5997aebf7 \
 		ecolor,eframe,egui,egui-wgpu,egui-winit,egui_extras,egui_glow,egui_kittest,emath,epaint,epaint_default_fonts@git+https://github.com/storytold/egui.git?rev=6d518fc799681571963842f95b55a6b68431b15a\#6d518fc799681571963842f95b55a6b68431b15a \
-		craft-update@git+https://github.com/storytold/craft-libs?rev=04aa1703b32d299e54f78fcde4182f2b393a9116\#04aa1703b32d299e54f78fcde4182f2b393a9116 \
+		craft-pcraft-format@git+https://github.com/storytold/craft-libs?rev=b8f7d93b00dfb8f172938f3d2d796ae62dcfe123\#b8f7d93b00dfb8f172938f3d2d796ae62dcfe123 \
 		winit@git+https://github.com/storytold/winit.git?rev=a517b3846ee8457d84ee4975110bfda6797c44dc\#a517b3846ee8457d84ee4975110bfda6797c44dc
 
 CARGO_BUILD_ARGS=	-p ${PORTNAME} -p ${PORTNAME}-cli
@@ -872,7 +891,7 @@ AVIF_VARS=	CARGO_FEATURES+=photocraft-codecs/avif
 HEIF_VARS=	CARGO_FEATURES+=heif
 
 APP_ID=		ai.storyteller.photocraft
-RELEASE_DATE=	2026-10-31
+RELEASE_DATE=	2026-11-06
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|@VERSION@|${DISTVERSION}|; s|@DATE@|${RELEASE_DATE}|' \

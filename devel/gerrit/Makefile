@@ -1,0 +1,45 @@
+PORTNAME=	gerrit
+PORTVERSION=	3.14.5
+CATEGORIES=	devel java
+MASTER_SITES=	https://gerrit-releases.storage.googleapis.com/
+EXTRACT_SUFX=	.war
+EXTRACT_ONLY=
+
+MAINTAINER=	delphij@FreeBSD.org
+COMMENT=	Web-based code review and repository management for Git
+WWW=		https://www.gerritcodereview.com/
+
+LICENSE=	APACHE20
+
+USES=		cpe java
+JAVA_VERSION=	21+
+USE_RC_SUBR=	${PORTNAME}
+
+NO_ARCH=	yes
+NO_BUILD=	yes
+SUB_FILES=	pkg-message
+
+GERRIT_HOME?=		/var/db/${PORTNAME}
+GERRIT_USER?=		${PORTNAME}
+GERRIT_GROUP?=		${PORTNAME}
+GERRIT_LOG_FILE?=	/var/log/${PORTNAME}.log
+
+SUB_LIST+=	GERRIT_GROUP=${GERRIT_GROUP} \
+		GERRIT_HOME=${GERRIT_HOME} \
+		GERRIT_LOG_FILE=${GERRIT_LOG_FILE} \
+		GERRIT_USER=${GERRIT_USER} \
+		JAVA_HOME=${JAVA_HOME} \
+		PORTVERSION=${PORTVERSION}
+
+USERS=		${GERRIT_USER}
+GROUPS=		${GERRIT_GROUP}
+
+PLIST_SUB+=	GERRIT_GROUP=${GERRIT_GROUP} \
+		GERRIT_USER=${GERRIT_USER}
+
+do-install:
+	${MKDIR} ${STAGEDIR}${DATADIR}
+	${INSTALL_DATA} ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} \
+		${STAGEDIR}${DATADIR}/${PORTNAME}.war
+
+.include <bsd.port.mk>

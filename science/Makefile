@@ -60,6 +60,7 @@
     SUBDIR += clhep
     SUBDIR += clipper
     SUBDIR += code_saturne
+    SUBDIR += codeaster-frontend
     SUBDIR += conduit
     SUBDIR += coordgenlibs
     SUBDIR += cp2k
@@ -128,6 +129,7 @@
     SUBDIR += hepmc3
     SUBDIR += highfive
     SUBDIR += hpddm
+    SUBDIR += hpddm_petsc
     SUBDIR += hypre
     SUBDIR += iboview
     SUBDIR += isaac-cfd
@@ -186,10 +188,13 @@
     SUBDIR += mcxtrace
     SUBDIR += mcxtrace-comps
     SUBDIR += mdynamix
+    SUBDIR += medcoupling
     SUBDIR += medit
     SUBDIR += meep
     SUBDIR += metaphysicl
+    SUBDIR += mgis
     SUBDIR += minc-tools
+    SUBDIR += miss3d
     SUBDIR += mmdb2
     SUBDIR += mmg
     SUBDIR += mmtf-cpp

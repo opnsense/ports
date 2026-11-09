@@ -1,5 +1,4 @@
-ytop is a minimal interactive process monitor for FreeBSD. Its scrollable
-process table displays CPU, user-mode and kernel-mode CPU usage, memory, swap,
-and runtime. Expand a process to inspect individual threads, their CPU
-affinity, and context-switch counts. Navigate and select rows with the keyboard
-or mouse.
+ytop is a minimal interactive process monitor for FreeBSD.
+
+Keyboard and mouse controls support row selection, scrolling, and switching
+between process and thread lists.

@@ -45,6 +45,7 @@
     SUBDIR += dtv-scan-tables
     SUBDIR += dv2sub
     SUBDIR += dvb-apps
+    SUBDIR += dvbcut
     SUBDIR += dvbsnoop
     SUBDIR += dvd-slideshow
     SUBDIR += dvdauthor
@@ -55,6 +56,7 @@
     SUBDIR += ffaudioconverter
     SUBDIR += ffdec
     SUBDIR += ffmpeg
+    SUBDIR += ffmpeg-netint
     SUBDIR += ffmpeg3
     SUBDIR += ffmpeg4
     SUBDIR += ffmpegthumbnailer
@@ -77,6 +79,7 @@
     SUBDIR += gstreamer1
     SUBDIR += gstreamer1-editing-services
     SUBDIR += gstreamer1-libav
+    SUBDIR += gstreamer1-plugin-netint
     SUBDIR += gstreamer1-plugins
     SUBDIR += gstreamer1-plugins-all
     SUBDIR += gstreamer1-plugins-aom
@@ -199,6 +202,7 @@
     SUBDIR += libvpx
     SUBDIR += libwebm
     SUBDIR += libx264
+    SUBDIR += libxcoder
     SUBDIR += libxine
     SUBDIR += libxspf
     SUBDIR += libzen

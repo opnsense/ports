@@ -1,6 +1,5 @@
 PORTNAME=	kmail
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
-PORTREVISION=	1
 CATEGORIES=	deskutils kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -38,7 +37,7 @@ USE_KDE+=	akonadi akonadicontacts akonadimime akonadisearch calendarcore \
 		libkdepim libkleo libksieve mailcommon mailtransport \
 		messagelib mime pimcommon pimtextedit tnef \
 		kdepim-runtime:run
-USE_QT=		base
+USE_QT=		base webengine
 USE_XORG=	x11
 USE_LDCONFIG=	yes
 

@@ -1,5 +1,6 @@
 PORTNAME=	fleur
 DISTVERSION=	8.1
+PORTREVISION=	1
 CATEGORIES=	science # chemistry
 #MASTER_SITES=	https://iffgit.fz-juelich.de/fleur/fleur/-/archive/MaX-R${DISTVERSION}/
 MASTER_SITES=	LOCAL/yuri # same as unversioned tarball linked from https://www.flapw.de/master/downloads/#download-via-configure-script: it only downloads from a browser, and fails with fetch/wget
@@ -13,7 +14,6 @@ WWW=		https://www.flapw.de/master/ \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_aarch64=	fatal error: cannot find an intrinsic module named 'ieee_arithmetic' at (1)
 BROKEN_i386=	compilation fails: Type mismatch in argument 'increment' at (1); passed INTEGER(8) to INTEGER(4)
 
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \

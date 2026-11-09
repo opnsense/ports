@@ -475,7 +475,6 @@
     SUBDIR += perdition
     SUBDIR += pflogsumm
     SUBDIR += pfqueue
-    SUBDIR += php80-mailparse
     SUBDIR += php82-imap
     SUBDIR += php83-imap
     SUBDIR += phplist
@@ -753,6 +752,8 @@
     SUBDIR += stalwart
     SUBDIR += stalwart-cli
     SUBDIR += stalwart-migrate
+    SUBDIR += stalwart-proxy
+    SUBDIR += stalwart016
     SUBDIR += surblhost
     SUBDIR += swaks
     SUBDIR += sylpheed
@@ -770,6 +771,7 @@
     SUBDIR += up-imapproxy
     SUBDIR += usendmail
     SUBDIR += vacation
+    SUBDIR += vandelay
     SUBDIR += vbsfilter
     SUBDIR += vexim
     SUBDIR += vpopmail

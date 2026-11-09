@@ -146,6 +146,13 @@
     SUBDIR += plasma6-plasma-workspace-wallpapers
     SUBDIR += plasma6-qqc2-breeze-style
     SUBDIR += plasma6-union
+    SUBDIR += plasma6lts-aurorae
+    SUBDIR += plasma6lts-breeze
+    SUBDIR += plasma6lts-breeze-gtk
+    SUBDIR += plasma6lts-kde-gtk-config
+    SUBDIR += plasma6lts-oxygen
+    SUBDIR += plasma6lts-plasma-workspace-wallpapers
+    SUBDIR += plasma6lts-qqc2-breeze-style
     SUBDIR += plata-theme
     SUBDIR += pocillo-gtk-themes
     SUBDIR += pop-gtk-themes
@@ -169,6 +176,7 @@
     SUBDIR += slim-themes
     SUBDIR += tela-icon-theme
     SUBDIR += thewidgetfactory
+    SUBDIR += ventanas-10
     SUBDIR += wallpapers-freebsd-kde
     SUBDIR += win98se-icon-theme
     SUBDIR += wpgtk

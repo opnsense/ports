@@ -1,6 +1,6 @@
 PORTNAME=	immich-cli
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.3.5
+DISTVERSION=	3.3.6
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/joneum/FreeBSD-Immich/releases/download/v${DISTVERSION}/:buildkit
 DISTFILES=	immich-freebsd-buildkit-${DISTVERSION}${EXTRACT_SUFX}:buildkit
@@ -12,8 +12,8 @@ WWW=		https://immich.app/
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64
-ONLY_FOR_ARCHS_REASON=	the TypeScript compiler ships no FreeBSD/i386 binary
+ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS_REASON=	the prebuilt dependency store holds x64 binaries only
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/npm:www/npm-node22
 

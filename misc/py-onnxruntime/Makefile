@@ -1,6 +1,7 @@
 PORTNAME=	onnxruntime
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.31.0
+DISTVERSION=	1.31.1
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DIST_SUBDIR=	${PORTNAME}
@@ -56,6 +57,7 @@ GH_TUPLE=	emscripten-core:emsdk:0742117:emsdk/cmake/external/emsdk \
 
 CXXFLAGS+=	-Wno-array-bounds # workaround for https://github.com/microsoft/onnxruntime/issues/23410
 CXXFLAGS+=	-I${WRKSRC}/include/onnxruntime/core/common/logging # otherwise logging.h isn't found
+CXXFLAGS_aarch64=	-Wno-error=unused-const-variable # kleidiai halfgemm_kleidiai.cpp: unused variable 'Sve2p1HalfGemmKernelName' when kernel logging is off
 CXXFLAGS_powerpc64=	-Wno-error=deprecated-declarations -Wno-error=deprecated-altivec-src-compat
 CXXFLAGS_powerpc64le=	-Wno-error=deprecated-declarations
 

@@ -62,6 +62,7 @@
     SUBDIR += R-cran-dplyr
     SUBDIR += R-cran-eRm
     SUBDIR += R-cran-energy
+    SUBDIR += R-cran-epitools
     SUBDIR += R-cran-exactRankTests
     SUBDIR += R-cran-expm
     SUBDIR += R-cran-forcats
@@ -971,6 +972,7 @@
     SUBDIR += py-arviz-stats
     SUBDIR += py-arybo
     SUBDIR += py-autograd
+    SUBDIR += py-autograd-gamma
     SUBDIR += py-awkward
     SUBDIR += py-awkward-cpp
     SUBDIR += py-baycomp
