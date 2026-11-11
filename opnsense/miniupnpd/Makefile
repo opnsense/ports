@@ -1,5 +1,6 @@
 PORTNAME=	miniupnpd
 DISTVERSION=	2.3.11
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	http://miniupnp.free.fr/files/ \
@@ -23,7 +24,7 @@ USE_RC_SUBR=	${PORTNAME}
 
 HAS_CONFIGURE=	yes
 # unconditionally use pf, ipfw does not work on FreeBSD
-CONFIGURE_ARGS=	--disable-pppconn --firewall=pf --libpfctl
+CONFIGURE_ARGS=	--disable-pppconn --firewall=pf --libpfctl --vendorcfg
 MAKE_ENV=	MANPREFIX=${PREFIX}/share
 
 MAKE_JOBS_UNSAFE=	yes
