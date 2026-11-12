@@ -1,5 +1,5 @@
 PORTNAME=	apache24
-PORTVERSION=	2.4.70
+PORTVERSION=	2.4.71
 CATEGORIES=	www
 MASTER_SITES=	APACHE_HTTPD
 DISTNAME=	httpd-${PORTVERSION}
@@ -220,7 +220,7 @@ post-configure:
 	@FTPUSERS=`${EGREP} -v '^#' /etc/ftpusers| ${TR} -s "\n" " "` ;\
 		${REINPLACE_CMD} -e "s,%%FTPUSERS%%,$${FTPUSERS}," \
 			${WRKSRC}/docs/conf/extra/httpd-userdir.conf
-	${REINPLACE_CMD} -e "/EXTRA_LDFLAGS/s|-L/usr/lib||g" ${WRKSRC}/build/config_vars.mk
+	${REINPLACE_CMD} -e "/EXTRA_LDFLAGS/s|-L/usr/lib||" ${WRKSRC}/build/config_vars.mk
 	${REINPLACE_CMD} -e "s,%%WWWOWN%%,${WWWOWN}," -e "s,%%WWWGRP%%,${WWWGRP}," \
 		${WRKSRC}/docs/conf/httpd.conf
 	${REINPLACE_CMD} -e "s,%%PREFIX%%,${PREFIX}," ${WRKSRC}/support/envvars-std
