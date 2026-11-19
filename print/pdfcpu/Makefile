@@ -1,9 +1,10 @@
 PORTNAME=	pdfcpu
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.16.4
+PORTREVISION=	1
 CATEGORIES=	print
 
-MAINTAINER=	diizzy@FreeBSD.org
+MAINTAINER=	daniel.engberg.lists@pyret.net
 COMMENT=	PDF processor written in Go
 WWW=		https://github.com/pdfcpu/pdfcpu
 
@@ -13,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 USES=		go:modules
 
 GO_MODULE=	github.com/${PORTNAME}/${PORTNAME}
+
+PIE_UNSAFE=	yes
 
 PLIST_FILES=	bin/pdfcpu
 

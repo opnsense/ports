@@ -1,7 +1,6 @@
 PORTNAME=	git-pkgs
-PORTVERSION=	0.20.0
+PORTVERSION=	0.22.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -24,8 +23,10 @@ OPTIONS_DEFINE=	MANPAGES
 OPTIONS_DEFAULT=MANPAGES
 OPTIONS_SUB=	yes
 
-post-install-MANPAGES-on:
+post-build-MANPAGES-on:
 	@cd ${WRKSRC} && ${GO_CMD} run scripts/generate-man/main.go
+
+post-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/man/*.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 
 .include <bsd.port.mk>

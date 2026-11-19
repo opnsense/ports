@@ -1,6 +1,6 @@
 PORTNAME=	pomerium
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.34.0
+DISTVERSION=	0.34.1
 PORTEPOCH=	1
 CATEGORIES=	www
 # Custom distfiles for packages not on GitHub

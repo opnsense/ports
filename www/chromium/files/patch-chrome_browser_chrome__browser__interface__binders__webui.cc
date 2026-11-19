@@ -1,7 +1,7 @@
---- chrome/browser/chrome_browser_interface_binders_webui.cc.orig	2026-10-18 13:29:39 UTC
+--- chrome/browser/chrome_browser_interface_binders_webui.cc.orig	2026-11-19 12:25:27 UTC
 +++ chrome/browser/chrome_browser_interface_binders_webui.cc
-@@ -110,13 +110,13 @@
- #endif  // !BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_DESKTOP_ANDROID)
+@@ -114,13 +114,13 @@
+ #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
 -    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_DESKTOP_ANDROID)
@@ -16,7 +16,7 @@
  #include "chrome/browser/ui/webui/skills/skills.mojom.h"
  #include "chrome/browser/ui/webui/skills/skills_ui.h"
  #endif
-@@ -439,7 +439,7 @@ void PopulateChromeWebUIFrameBinders(
+@@ -452,7 +452,7 @@ void PopulateChromeWebUIFrameBinders(
  #endif  // BUILDFLAG(IS_CHROMEOS)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -25,7 +25,7 @@
    RegisterWebUIControllerInterfaceBinder<discards::mojom::DetailsProvider,
                                           DiscardsUI>(map);
  
-@@ -451,7 +451,7 @@ void PopulateChromeWebUIFrameBinders(
+@@ -464,7 +464,7 @@ void PopulateChromeWebUIFrameBinders(
  #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

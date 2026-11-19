@@ -1,6 +1,6 @@
 PORTNAME=	clickhouse
 DISTVERSIONPREFIX=	v
-DISTVERSION=	26.8.9.10
+DISTVERSION=	26.8.13.2
 DISTVERSIONSUFFIX=-lts
 CATEGORIES=	databases
 DIST_SUBDIR=	${PORTNAME}
@@ -10,7 +10,7 @@ MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Fast open-source OLAP database management system
 WWW=		https://clickhouse.com/
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 
 ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64le
 ONLY_FOR_ARCHS_REASON=	only supported on aarch64, amd64 and powerpc64le

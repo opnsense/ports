@@ -1,6 +1,6 @@
---- ui/base/ui_base_features.h.orig	2026-10-18 13:29:39 UTC
+--- ui/base/ui_base_features.h.orig	2026-11-19 12:25:27 UTC
 +++ ui/base/ui_base_features.h
-@@ -155,7 +155,7 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
+@@ -159,7 +159,7 @@ COMPONENT_EXPORT(UI_BASE_FEATURES)
  BASE_DECLARE_FEATURE(kWaylandExternalBeginFrameSource);
  #endif  // BUILDFLAG(IS_OZONE)
  

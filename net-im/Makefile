@@ -5,6 +5,7 @@
     SUBDIR += coccinella
     SUBDIR += concord
     SUBDIR += conduit
+    SUBDIR += continuwuity
     SUBDIR += coyim
     SUBDIR += deltachat-desktop
     SUBDIR += dendrite
@@ -140,7 +141,6 @@
     SUBDIR += signal-desktop
     SUBDIR += slack-term
     SUBDIR += snac
-    SUBDIR += spectral
     SUBDIR += ssh-chat
     SUBDIR += sshout
     SUBDIR += tdlib
@@ -169,6 +169,7 @@
     SUBDIR += toxic
     SUBDIR += toxins
     SUBDIR += tuba
+    SUBDIR += tuwunel
     SUBDIR += twirssi
     SUBDIR += uTox
     SUBDIR += vqcc-gtk

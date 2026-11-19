@@ -1,4 +1,4 @@
---- components/password_manager/core/browser/password_autofill_manager.cc.orig	2026-10-22 09:04:01 UTC
+--- components/password_manager/core/browser/password_autofill_manager.cc.orig	2026-11-19 12:25:27 UTC
 +++ components/password_manager/core/browser/password_autofill_manager.cc
 @@ -447,7 +447,7 @@ void PasswordAutofillManager::DidAcceptSuggestion(
                           weak_ptr_factory_.GetWeakPtr(), payload);

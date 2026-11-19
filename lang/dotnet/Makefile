@@ -3,7 +3,8 @@ DISTVERSION?=	${DOTNETVERSION}.14
 PORTREVISION?=	0
 CATEGORIES=	lang devel
 MASTER_SITES=	${NO_RELEASE_JSON:Uhttps\://github.com/dotnet/dotnet/releases/download/${GH_TAGNAME}/release.json?dummy=/\:dotnetmanifest} \
-		LOCAL/arrowd/dotnet/:bootstrap
+		LOCAL/arrowd/dotnet/:bootstrap \
+		https://github.com/sec/dotnet-core-freebsd-source-build/releases/download/${BOOTSTRAP_SDKVERSION}-vmr/:bootstrap
 DISTFILES=	${NO_RELEASE_JSON:Urelease.json-${PORTVERSION}\:dotnetmanifest} \
 		${BOOTSTRAP_SOURCEBUILT_ARTIFACTS_DISTNAME}${EXTRACT_SUFX}:bootstrap \
 		${BOOTSTRAP_SDK_DISTNAME}${EXTRACT_SUFX}:bootstrap
@@ -24,10 +25,10 @@ BUILD_DEPENDS=	bash:shells/bash \
 		ggrep:textproc/gnugrep \
 		terminfo-db>0:misc/terminfo-db \
 		${LOCALBASE}/lib/compat/libssl.so.111:misc/compat13x
-LIB_DEPENDS=	libbrotlienc.so:archivers/brotli \
+LIB_DEPENDS?=	libbrotlienc.so:archivers/brotli \
 		libicuuc.so:devel/icu \
 		libinotify.so:devel/libinotify \
-		libunwind.so:devel/libunwind
+		libunwind.so.11:devel/libunwind-devel
 RUN_DEPENDS=	terminfo-db>0:misc/terminfo-db \
 		dotnet:lang/dotnet-host
 
@@ -42,16 +43,23 @@ SHEBANG_FILES+=	src/diagnostics/src/Tools/dotnet-trace/*.sh
 BINARY_ALIAS=	grep=${LOCALBASE}/bin/ggrep
 DOTNET_ENV+=	PYTHON=${PYTHON_CMD}
 
-BOOTSTRAP_DOTNETVERSION?=			9.0
-BOOTSTRAP_SDKVERSION?=				${BOOTSTRAP_DOTNETVERSION}.110
-BOOTSTRAP_SDKVERSIONSUFFIX?=			-servicing.25421.1
-BOOTSTRAP_SOURCEBUILT_ARTIFACTS_DISTNAME=	Private.SourceBuilt.Artifacts.${BOOTSTRAP_SDKVERSION}${BOOTSTRAP_SDKVERSIONSUFFIX}.freebsd.13-${DOTNET_ARCH}
+# devel/libunwind-devel keeps its development files outside of the default
+# paths so that it can be installed alongside devel/libunwind.  CPATH is used
+# for the headers because the build overrides the compiler flags.
+DOTNET_ENV+=	CMAKE_LIBRARY_PATH=${LOCALBASE}/libunwind11/lib \
+		CMAKE_INCLUDE_PATH=${LOCALBASE}/libunwind11/include \
+		CPATH=${LOCALBASE}/libunwind11/include
+
+BOOTSTRAP_DOTNETVERSION?=			10.0
+BOOTSTRAP_SDKVERSION?=				${BOOTSTRAP_DOTNETVERSION}.112
+BOOTSTRAP_SDKVERSIONSUFFIX?=			-servicing.26422.108
+BOOTSTRAP_SOURCEBUILT_ARTIFACTS_DISTNAME?=	Private.SourceBuilt.Artifacts.${BOOTSTRAP_SDKVERSION}${BOOTSTRAP_SDKVERSIONSUFFIX}.freebsd-${DOTNET_ARCH}
 BOOTSTRAP_SDK_DISTNAME=				dotnet-sdk-${BOOTSTRAP_SDKVERSION}-freebsd-${DOTNET_ARCH}
 
-DOTNETVERSION?=		9.0
-SDKVERSION?=		${DOTNETVERSION}.115
-SDKVERSIONSUFFIX?=	-servicing.26119.9
-SDKSERVICESUFFIX?=	-servicing.26120.1
+DOTNETVERSION?=		10.0
+SDKVERSION?=		${DOTNETVERSION}.114
+SDKVERSIONSUFFIX?=	-servicing.26522.126
+SDKSERVICESUFFIX?=	-servicing.26422.108
 MANIFESTSUFFIX=		${DOTNETVERSION}.100
 DOTNET_ARCH=		${ARCH:S|amd64|x64|:C|aarch64|arm64|}
 SDK_DISTNAME?=		dotnet-sdk-${SDKVERSION}-${SDK_RID}
@@ -70,7 +78,7 @@ SOURCEBUILT_ARTIFACTS_DISTNAME?=Private.SourceBuilt.Artifacts.${SDKVERSION}${SDK
 PLIST_SUB=	DOTNET_ARCH=${DOTNET_ARCH} FULL_DOTNETVERSION=${DISTVERSION} \
 		DOTNETVERSION=${DOTNETVERSION} SDKVERSION=${SDKVERSION} \
 		SDK_RID=${SDK_RID} SDKVERSIONSUFFIX=${SDKVERSIONSUFFIX} \
-		SDKSERVICESUFFIX=${SDKSERVICESUFFIX} MANIFESTSUFFIX=${MANIFESTSUFFIX}
+		MANIFESTSUFFIX=${MANIFESTSUFFIX}
 
 .if defined(DOTNET_PORTABLE)
 SDK_RID=		freebsd-${DOTNET_ARCH}
@@ -94,13 +102,6 @@ EXTRA_PATCHES=	${PATCHDIR}/extra-patch-base-openssl
 PLIST_SUB+=	VXSORT=
 .else
 PLIST_SUB+=	VXSORT="@comment "
-.endif
-
-# https://github.com/dotnet/dotnet/issues/4037
-.if !target(post-patch)
-post-patch:
-	${CP} ${PATCHDIR}/0002-Fix-assembly-version-calculation-in-2026.patch \
-		${WRKSRC}/src/source-build-externals/patches/azure-activedirectory-identitymodel-extensions-for-dotnet/
 .endif
 
 post-extract:

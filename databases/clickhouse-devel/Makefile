@@ -1,6 +1,6 @@
 PORTNAME=	clickhouse
 DISTVERSIONPREFIX=	v
-DISTVERSION=	26.9.6.6
+DISTVERSION=	26.9.10.4
 DISTVERSIONSUFFIX=-stable
 CATEGORIES=	databases
 DIST_SUBDIR=	${PORTNAME}
@@ -11,7 +11,7 @@ MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Fast open-source OLAP database management system
 WWW=		https://clickhouse.com/
 
-LICENSE=	APACHE20
+LICENSE=	Apache-2.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	clickhouse-[0-9]*

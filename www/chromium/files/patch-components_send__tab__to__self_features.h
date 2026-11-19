@@ -1,8 +1,8 @@
---- components/send_tab_to_self/features.h.orig	2026-10-18 13:29:39 UTC
+--- components/send_tab_to_self/features.h.orig	2026-11-19 12:25:27 UTC
 +++ components/send_tab_to_self/features.h
-@@ -59,7 +59,7 @@ BASE_DECLARE_FEATURE(kSendTabToSelfPostSendToast);
- // to the Omnibox context menu.
- BASE_DECLARE_FEATURE(kSendTabToSelfExtraEntryPoints);
+@@ -25,7 +25,7 @@ BASE_DECLARE_FEATURE(kSendTabToSelfPropagateNavigation
+ BASE_DECLARE_FEATURE(kSendTabToSelfSupportAutoOpenInTabGrid);
+ #endif  // BUILDFLAG(IS_IOS) || BUILDFLAG(IS_ANDROID)
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

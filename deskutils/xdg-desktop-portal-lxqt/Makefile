@@ -1,5 +1,5 @@
 PORTNAME=	xdg-desktop-portal-lxqt
-PORTVERSION=	1.4.0
+PORTVERSION=	1.5.0
 CATEGORIES=	deskutils
 
 MAINTAINER=	lxqt@FreeBSD.org
@@ -12,7 +12,7 @@ RUN_DEPENDS=	xdg-desktop-portal>0:deskutils/xdg-desktop-portal
 
 USES=		cmake kde:6 lxqt:2 pkgconfig qt:6 tar:xz
 USE_KDE=	windowsystem
-USE_LXQT=	libfmqt6
+USE_LXQT=	buildtools2 libfmqt6
 USE_QT=		base:run tools:build
 
 post-install:

@@ -1,0 +1,15 @@
+--- configure.orig	2026-11-18 10:11:21 UTC
++++ configure
+@@ -20491,12 +20491,6 @@ fi
+       if test "$GCC" = "yes" -a "$INTELCC" = "no"; then :
+ 
+ 
+-                case "$target_cpu" in
+-      *ppc* | *powerpc*)
+-        AM_CFLAGS="-mno-fused-madd ${AM_CFLAGS}"
+-        AM_CXXFLAGS="-mno-fused-madd ${AM_CXXFLAGS}"
+-      ;;
+-    esac
+ 
+             CC="${CC} -std=gnu99"
+ 

@@ -1,6 +1,5 @@
 PORTNAME=	libdbusmenu-lxqt
-PORTVERSION=	0.4.0
-PORTREVISION=	1
+PORTVERSION=	0.5.0
 CATEGORIES=	devel
 MASTER_SITE=	LXQT/${PORTNAME}
 
@@ -12,17 +11,8 @@ LICENSE=	LGPL20
 
 USES=		compiler:c++17-lang cmake lxqt:2 qt:6 tar:xz
 USE_LDCONFIG=	yes
+USE_LXQT=	buildtools2
 USE_QT=		base
-
-OPTIONS_DEFINE=		DOXYGEN
-OPTIONS_SUB=		YES
-DOXYGEN_DESC=		Build documentation (requires doxygen)
-DOXYGEN_CMAKE_BOOL=	WITH_DOC
-DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen
-
-.  if defined(PACKAGE_BUILDING)
-OPTIONS_DEFAULT+=	DOXYGEN
-.  endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/add_subdirectory(tests)/ d' \

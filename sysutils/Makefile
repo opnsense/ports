@@ -65,6 +65,7 @@
     SUBDIR += async
     SUBDIR += atf-fvp
     SUBDIR += atf-master
+    SUBDIR += atf-mt7986
     SUBDIR += atf-rk3328
     SUBDIR += atf-rk3399
     SUBDIR += atf-sun50i_a64
@@ -192,8 +193,10 @@
     SUBDIR += cfengine-masterfiles-lts
     SUBDIR += cfengine-masterfiles327
     SUBDIR += cfengine-masterfiles328
+    SUBDIR += cfengine-masterfiles329
     SUBDIR += cfengine327
     SUBDIR += cfengine328
+    SUBDIR += cfengine329
     SUBDIR += chaoskube
     SUBDIR += checkrestart
     SUBDIR += chezmoi
@@ -412,6 +415,7 @@
     SUBDIR += filetype
     SUBDIR += filewatcherd
     SUBDIR += finfo
+    SUBDIR += fiptool
     SUBDIR += firstboot-cloudsetup
     SUBDIR += firstboot-freebsd-update
     SUBDIR += firstboot-pkg-upgrade
@@ -584,7 +588,6 @@
     SUBDIR += iograph
     SUBDIR += iohyve
     SUBDIR += ioping
-    SUBDIR += ipa
     SUBDIR += ipad_charge
     SUBDIR += ipdbtools
     SUBDIR += ipget
@@ -652,7 +655,6 @@
     SUBDIR += kubie
     SUBDIR += kubo-go
     SUBDIR += kustomize
-    SUBDIR += kvmclock-kmod
     SUBDIR += lazydocker
     SUBDIR += lazyssh
     SUBDIR += lbl-cf
@@ -675,6 +677,7 @@
     SUBDIR += libg15
     SUBDIR += libg15render
     SUBDIR += libieee1284
+    SUBDIR += libmbus
     SUBDIR += libptytty
     SUBDIR += libsunacl
     SUBDIR += libsysstat
@@ -742,7 +745,6 @@
     SUBDIR += magicrescue
     SUBDIR += magika
     SUBDIR += manck
-    SUBDIR += mapchan
     SUBDIR += mapdir
     SUBDIR += massadmin
     SUBDIR += mate-control-center
@@ -826,6 +828,7 @@
     SUBDIR += nix
     SUBDIR += nmdaemon
     SUBDIR += nmrpflash
+    SUBDIR += noct
     SUBDIR += node_exporter
     SUBDIR += nomad
     SUBDIR += nomad-driver-podman
@@ -1141,6 +1144,7 @@
     SUBDIR += py-leviathan
     SUBDIR += py-liquidctl
     SUBDIR += py-magika
+    SUBDIR += py-midcli
     SUBDIR += py-mitogen
     SUBDIR += py-mqttwarn
     SUBDIR += py-nagiosplugin
@@ -1182,11 +1186,13 @@
     SUBDIR += py-tarsnapper
     SUBDIR += py-tldr
     SUBDIR += py-tmuxp
+    SUBDIR += py-truenas-api-client
     SUBDIR += py-uptime
     SUBDIR += py-zfsstat
     SUBDIR += qchroot
     SUBDIR += qdirstat
     SUBDIR += qflipper
+    SUBDIR += qga-guest-exec
     SUBDIR += qjail
     SUBDIR += qjail54
     SUBDIR += qlogtools
@@ -1304,6 +1310,7 @@
     SUBDIR += rubygem-mothra
     SUBDIR += rubygem-murder
     SUBDIR += rubygem-ohai
+    SUBDIR += rubygem-ohai-gitlab
     SUBDIR += rubygem-ohai18
     SUBDIR += rubygem-openbolt
     SUBDIR += rubygem-openfact
@@ -1536,12 +1543,15 @@
     SUBDIR += u-boot-a64-olinuxino
     SUBDIR += u-boot-bananapi
     SUBDIR += u-boot-bananapi-r2-pro
+    SUBDIR += u-boot-bananapi-r3
+    SUBDIR += u-boot-bananapi-r3-emmc
     SUBDIR += u-boot-bananapim2
     SUBDIR += u-boot-beaglebone
     SUBDIR += u-boot-bhyve-arm64
     SUBDIR += u-boot-bhyve-riscv
     SUBDIR += u-boot-chip
     SUBDIR += u-boot-clearfog
+    SUBDIR += u-boot-cm3588-nas
     SUBDIR += u-boot-cubieboard
     SUBDIR += u-boot-cubieboard2
     SUBDIR += u-boot-cubox-hummingboard
@@ -1652,6 +1662,7 @@
     SUBDIR += virt-firmware
     SUBDIR += virt-what
     SUBDIR += virtualmin
+    SUBDIR += vitaly
     SUBDIR += vivid
     SUBDIR += vm-bhyve
     SUBDIR += vm-bhyve-devel

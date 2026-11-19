@@ -1,6 +1,6 @@
---- components/feature_engagement/public/feature_constants.cc.orig	2026-10-18 13:29:39 UTC
+--- components/feature_engagement/public/feature_constants.cc.orig	2026-11-19 12:25:27 UTC
 +++ components/feature_engagement/public/feature_constants.cc
-@@ -32,7 +32,7 @@ bool IsOnDeviceStorageEnabled() {
+@@ -35,7 +35,7 @@ bool IsOnDeviceStorageEnabled() {
  }
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
@@ -9,7 +9,7 @@
  #if BUILDFLAG(GOOGLE_CHROME_BRANDING)
  BASE_FEATURE(kEsbDownloadRowPromoFeature,
               "EsbDownloadRowPromo",
-@@ -990,7 +990,7 @@ BASE_FEATURE(kIPHiOSActiveDaysTrackingFeature,
+@@ -1045,7 +1045,7 @@ BASE_FEATURE(kIPHiOSActiveDaysTrackingFeature,
  #endif  // BUILDFLAG(IS_IOS)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || \
@@ -18,7 +18,7 @@
  BASE_FEATURE(kIPHAutofillAtMemoryFeature,
               "IPH_AutofillAtMemory",
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -1056,7 +1056,7 @@ BASE_FEATURE(kIPHLauncherSearchHelpUiFeature,
+@@ -1110,7 +1110,7 @@ BASE_FEATURE(kIPHGoogleOneOfferNotificationFeature,
  #endif
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -27,7 +27,7 @@
  // This can be enabled by default, as the DesktopPWAsLinkCapturing
  // flag is needed for the IPH linked to this feature to work, and
  // use-cases to show the IPH are guarded by that flag.
-@@ -1073,7 +1073,7 @@ BASE_FEATURE(kIPHDesktopPWAsLinkCapturingLaunchAppInTa
+@@ -1127,7 +1127,7 @@ BASE_FEATURE(kIPHDesktopPWAsLinkCapturingLaunchAppInTa
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) ||
          // BUILDFLAG(IS_CHROMEOS)
  

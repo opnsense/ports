@@ -1,6 +1,6 @@
---- build/config/rust.gni.orig	2026-10-18 13:29:39 UTC
+--- build/config/rust.gni.orig	2026-11-19 12:25:27 UTC
 +++ build/config/rust.gni
-@@ -67,7 +67,8 @@ declare_args() {
+@@ -82,7 +82,8 @@ declare_args() {
    # set this to the output of `rustc -V`. Changing this string will cause all
    # Rust targets to be rebuilt, which allows you to update your toolchain and
    # not break incremental builds.
@@ -10,7 +10,7 @@
  
    # Whether artifacts produced by the Rust compiler can participate in ThinLTO.
    #
-@@ -169,6 +170,24 @@ if (enable_rust) {
+@@ -172,6 +173,24 @@ if (enable_rust) {
    } else {
      toolchain_has_rust = custom_toolchain_supports_platform
      rustc_revision = rustc_version
@@ -33,9 +33,9 @@
 +      rustc_nightly_capability = true
 +    }
    }
- }
  
-@@ -344,7 +363,11 @@ if (is_linux || is_chromeos) {
+   # Trim down `rustc_revision`.  This is partially done for aesthetics and
+@@ -372,7 +391,11 @@ if (is_linux || is_chromeos) {
    }
  }
  

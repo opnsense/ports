@@ -1,7 +1,7 @@
 PORTNAME=	kstars
 DISTVERSION=	3.8.5
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	astro kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${DISTVERSION}/
 
@@ -16,7 +16,7 @@ IGNORE_i386=	fails to build on i386
 
 LIB_DEPENDS=	libXISF.so:graphics/libxisf \
 		libcfitsio.so:astro/cfitsio \
-		libqt6keychain.so:security/qtkeychain@qt6 \
+		libqt6keychain.so:security/qtkeychain \
 		libraw.so:graphics/libraw \
 		libgsl.so:math/gsl \
 		libindiclient.so:devel/indi \

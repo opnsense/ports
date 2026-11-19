@@ -14,13 +14,13 @@ LICENSE=	GPLv3
 BUILD_DEPENDS=	pybind11>=2.4.3:devel/pybind11
 LIB_DEPENDS=	libmuparser.so:math/muparser \
 		libqalculate.so:math/libqalculate \
-		libqt6keychain.so:security/qtkeychain@qt6
+		libqt6keychain.so:security/qtkeychain
 RUN_DEPENDS=	play:audio/sox
 
 USES=	cmake compiler:c++23-lang gl libarchive localbase:ldflags pkgconfig python qt:6 xorg
 
 USE_GL=	gl opengl
-USE_QT=	base declarative scxml svg translations
+USE_QT=	base declarative scxml svg tools translations
 USE_XORG=x11 xext sm ice
 USE_LDCONFIG=	yes
 

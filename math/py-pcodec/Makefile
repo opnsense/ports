@@ -1,6 +1,5 @@
 PORTNAME=	pcodec
-PORTVERSION=	1.0.3
-PORTREVISION=	2
+PORTVERSION=	1.1.0
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,6 +10,7 @@ COMMENT=	Good compression for numerical sequences
 WWW=		https://github.com/pcodec/pcodec
 
 LICENSE=	APACHE20
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}maturin>=1.0<2.0:devel/py-maturin@${PY_FLAVOR}
 

@@ -1,6 +1,6 @@
---- ui/views/BUILD.gn.orig	2026-10-18 13:29:39 UTC
+--- ui/views/BUILD.gn.orig	2026-11-19 12:25:27 UTC
 +++ ui/views/BUILD.gn
-@@ -902,7 +902,6 @@ component("views") {
+@@ -908,7 +908,6 @@ component("views") {
        "widget/window_reorderer.cc",
      ]
      deps += [

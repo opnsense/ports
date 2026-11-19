@@ -939,6 +939,7 @@
     SUBDIR += py-descartes
     SUBDIR += py-diplib
     SUBDIR += py-dj60-sorl-thumbnail
+    SUBDIR += py-dj61-sorl-thumbnail
     SUBDIR += py-django-easy-thumbnails
     SUBDIR += py-easyocr
     SUBDIR += py-exifread
@@ -1015,6 +1016,7 @@
     SUBDIR += py-piexif
     SUBDIR += py-pillow
     SUBDIR += py-pillow-heif
+    SUBDIR += py-pillow-jxl-plugin
     SUBDIR += py-pivy
     SUBDIR += py-plotly
     SUBDIR += py-png
@@ -1033,6 +1035,7 @@
     SUBDIR += py-pyganim
     SUBDIR += py-pygeoapi
     SUBDIR += py-pygeos
+    SUBDIR += py-pygfx
     SUBDIR += py-pyglet
     SUBDIR += py-pyglet1
     SUBDIR += py-pyglm

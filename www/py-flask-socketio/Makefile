@@ -1,5 +1,5 @@
 PORTNAME=	flask-socketio
-PORTVERSION=	5.6.1
+PORTVERSION=	5.7.2
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -7,7 +7,8 @@ DISTNAME=	flask_socketio-${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Socket.IO integration for Flask applications
-WWW=		https://github.com/miguelgrinberg/Flask-SocketIO
+WWW=		https://github.com/miguelgrinberg/Flask-SocketIO \
+		https://code.miguelgrinberg.com/miguelgrinberg/flask-socketio
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -18,7 +19,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}blinker>=0:devel/py-blinker@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}click>=0:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}flask>=2.1.0:www/py-flask@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>=0:devel/py-Jinja2@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}python-socketio>=5.12.0:devel/py-python-socketio@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}python-socketio>=5.18.0:devel/py-python-socketio@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}werkzeug>=0:www/py-werkzeug@${PY_FLAVOR}
 
 USES=		python

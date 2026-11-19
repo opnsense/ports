@@ -107,7 +107,6 @@
     SUBDIR += innotop
     SUBDIR += iowow
     SUBDIR += ip4r
-    SUBDIR += ipa_sdb
     SUBDIR += iplike
     SUBDIR += jdb
     SUBDIR += jetbrains-datagrip
@@ -802,6 +801,7 @@
     SUBDIR += py-asyncmy
     SUBDIR += py-asyncpg
     SUBDIR += py-berkeleydb
+    SUBDIR += py-burner-redis
     SUBDIR += py-chroma-hnswlib
     SUBDIR += py-chromadb
     SUBDIR += py-couchdb
@@ -844,6 +844,7 @@
     SUBDIR += py-marshmallow-sqlalchemy
     SUBDIR += py-minidb
     SUBDIR += py-mongoengine
+    SUBDIR += py-mongomock
     SUBDIR += py-motor
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
@@ -877,6 +878,7 @@
     SUBDIR += py-pum
     SUBDIR += py-pyarrow
     SUBDIR += py-pyarrow-stubs
+    SUBDIR += py-pydocket
     SUBDIR += py-pyiceberg
     SUBDIR += py-pylance
     SUBDIR += py-pylibmc
@@ -928,6 +930,7 @@
     SUBDIR += py-sqlparse
     SUBDIR += py-sqlrelay
     SUBDIR += py-squall-sql
+    SUBDIR += py-surrealdb
     SUBDIR += py-tableschema
     SUBDIR += py-tarantool
     SUBDIR += py-tiledb

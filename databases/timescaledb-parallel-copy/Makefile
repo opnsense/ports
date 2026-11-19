@@ -1,6 +1,6 @@
 PORTNAME=	timescaledb-parallel-copy
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.1
+DISTVERSION=	0.13.2
 CATEGORIES=	databases
 
 MAINTAINER=	kbowling@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/timescale/timescaledb-parallel-copy
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.26+,modules
+USES=		go:1.27+,modules
 
 GO_MODULE=	github.com/timescale/timescaledb-parallel-copy
 GO_TARGET=	./cmd/${PORTNAME}

@@ -1,15 +1,24 @@
---- chrome/browser/ui/ui_features.h.orig	2026-10-18 13:29:39 UTC
+--- chrome/browser/ui/ui_features.h.orig	2026-11-19 12:25:27 UTC
 +++ chrome/browser/ui/ui_features.h
-@@ -26,7 +26,7 @@ BASE_DECLARE_FEATURE(kAllowEyeDropperWGCScreenCapture)
+@@ -28,7 +28,7 @@ BASE_DECLARE_FEATURE(kCtrlTabMru);
  
- BASE_DECLARE_FEATURE(kCtrlTabMru);
+ BASE_DECLARE_FEATURE(kFastFaviconDisplay);
  
 -#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  BASE_DECLARE_FEATURE(kDseIntegrity);
  BASE_DECLARE_FEATURE(kFeedbackDisabledDialog);
- BASE_DECLARE_FEATURE(kFewerUpdateConfirmations);
-@@ -90,7 +90,7 @@ BASE_DECLARE_FEATURE_PARAM(int,
+ BASE_DECLARE_FEATURE(kLegacySearchIntegrityCheck);
+@@ -44,7 +44,7 @@ BASE_DECLARE_FEATURE(kInfoBarQueuedCountPill);
+ 
+ BASE_DECLARE_FEATURE(kKeyboardLockHeldEscExitsTabFullscreen);
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ BASE_DECLARE_FEATURE(kLinuxPerProfileAppId);
+ #endif
+ 
+@@ -108,7 +108,7 @@ BASE_DECLARE_FEATURE_PARAM(int,
  BASE_DECLARE_FEATURE_PARAM(int, kSeparateDefaultAndPinPromptMessageVersion);
  #endif  // BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC)
  

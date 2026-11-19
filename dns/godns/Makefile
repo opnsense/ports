@@ -1,6 +1,7 @@
 PORTNAME=	godns
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.4.6
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	https://raw.githubusercontent.com/TimothyYe/${PORTNAME}/${DISTVERSIONFULL}/:gomod \
 		https://github.com/TimothyYe/${PORTNAME}/releases/download/v${DISTVERSION}/:webui
@@ -8,7 +9,7 @@ DISTFILES=	go.mod:gomod \
 		${PORTNAME}-web-${DISTVERSIONFULL}.zip:webui
 EXTRACT_ONLY=	${DISTFILE_DEFAULT}
 
-MAINTAINER=	diizzy@FreeBSD.org
+MAINTAINER=	daniel.engberg.lists@pyret.net
 COMMENT=	Dynamic DNS client (DDNS) with optional external reporting features
 WWW=		https://github.com/TimothyYe/godns
 

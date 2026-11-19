@@ -1,6 +1,6 @@
---- chrome/browser/ui/autofill/chrome_autofill_client.cc.orig	2026-10-18 13:29:39 UTC
+--- chrome/browser/ui/autofill/chrome_autofill_client.cc.orig	2026-11-19 12:25:27 UTC
 +++ chrome/browser/ui/autofill/chrome_autofill_client.cc
-@@ -334,7 +334,7 @@ void ChromeAutofillClient::AtMemoryCopyPasteObserver::
+@@ -343,7 +343,7 @@ void ChromeAutofillClient::AtMemoryCopyPasteObserver::
                                             ->GetPrimaryMainFrame()
                                             ->GetPageUkmSourceId())) {
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -9,7 +9,7 @@
      client_->ShowAutofillAtMemoryPromo();
  #endif
    }
-@@ -386,7 +386,7 @@ void ChromeAutofillClient::AtMemoryCopyPasteObserver::
+@@ -395,7 +395,7 @@ void ChromeAutofillClient::AtMemoryCopyPasteObserver::
  }
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

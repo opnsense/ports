@@ -12,6 +12,7 @@
     SUBDIR += atari800
     SUBDIR += azahar
     SUBDIR += bfe
+    SUBDIR += bobbin
     SUBDIR += bochs
     SUBDIR += bsvc
     SUBDIR += cannonball
@@ -69,6 +70,7 @@
     SUBDIR += libretro-bsnes
     SUBDIR += libretro-flycast
     SUBDIR += libretro-kronos
+    SUBDIR += libretro-np2kai
     SUBDIR += libretro-pcsx2
     SUBDIR += libretro-ppsspp
     SUBDIR += libretro-reicast
@@ -198,6 +200,7 @@
     SUBDIR += xemu
     SUBDIR += xen-kernel
     SUBDIR += xhomer
+    SUBDIR += xroar
     SUBDIR += xsystem35
     SUBDIR += xzx
     SUBDIR += yaze-ag

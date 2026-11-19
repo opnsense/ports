@@ -1,5 +1,5 @@
 PORTNAME=	net-ssh
-PORTVERSION=	7.3.3
+PORTVERSION=	8.1.2
 PORTEPOCH=	2
 CATEGORIES=	security rubygems
 MASTER_SITES=	RG
@@ -11,11 +11,12 @@ WWW=		https://github.com/net-ssh/net-ssh
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		gem shebangfix
+RUN_DEPENDS=	rubygem-logger>=0:devel/rubygem-logger \
+		rubygem-openssl>=3.2.0:security/rubygem-openssl
+
+USES=		gem
 
 NO_ARCH=	yes
-
-SHEBANG_FILES=	support/ssh_tunnel_bug.rb
 
 OPTIONS_DEFINE=	PROMPT_PASSPHRASES
 OPTIONS_DEFAULT=PROMPT_PASSPHRASES

@@ -1,7 +1,7 @@
---- content/app/initialize_mojo_core.cc.orig	2026-10-18 13:29:39 UTC
+--- content/app/initialize_mojo_core.cc.orig	2026-11-19 12:25:27 UTC
 +++ content/app/initialize_mojo_core.cc
-@@ -54,7 +54,7 @@ void InitializeMojoCore() {
-         mojo::core::kMojoDirectSharedMemoryAllocation);
+@@ -48,7 +48,7 @@ void InitializeMojoCore() {
+     config.force_direct_shared_memory_allocation = true;
  #endif
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS)

@@ -1,6 +1,6 @@
---- codex-rs/tui/src/clipboard_copy/worker.rs.orig	2026-10-15 18:57:07 UTC
+--- codex-rs/tui/src/clipboard_copy/worker.rs.orig	2026-11-18 02:28:28 UTC
 +++ codex-rs/tui/src/clipboard_copy/worker.rs
-@@ -433,8 +433,8 @@ impl ClipboardWorker {
+@@ -453,8 +453,8 @@ impl ClipboardWorker {
                      }
                      frames.schedule_frame();
                  }

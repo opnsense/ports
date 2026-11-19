@@ -1,33 +1,27 @@
 PORTNAME=	bucklespring
-PORTVERSION=	1.5.1
+PORTVERSION=	2.0.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Nostalgia bucklespring keyboard sound
-WWW=		https://github.com/zevv/bucklespring
+WWW=		https://github.com/barak/bucklespring
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libalure.so:audio/alure
+LIB_DEPENDS=	libsndfile.so:audio/libsndfile
 
-USES=		gmake openal pkgconfig xorg
+USES=		autoreconf gmake openal pkgconfig xorg
 USE_GITHUB=	yes
-GH_ACCOUNT=	zevv
+GH_ACCOUNT=	barak
 USE_XORG=	x11 xtst
+GNU_CONFIGURE=	yes
 
 MAKE_ENV+=	PATH_AUDIO=${DATADIR}/wav
 
-ALL_TARGET=	buckle
-
 LDFLAGS_i386=	-Wl,-znotext
 
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/buckle ${STAGEDIR}${PREFIX}/bin
-	${MKDIR} ${STAGEDIR}${DATADIR}/wav
-	${INSTALL_DATA} ${WRKSRC}/wav/* ${STAGEDIR}${DATADIR}/wav
-	${INSTALL_DATA} ${WRKSRC}/buckle.desktop \
-		${STAGEDIR}${PREFIX}/share/applications/
+PORTSCOUT=	skipv:2.0.1-1
 
 .include <bsd.port.mk>

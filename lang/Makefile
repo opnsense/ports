@@ -276,7 +276,6 @@
     SUBDIR += pfe
     SUBDIR += pharo
     SUBDIR += php-mode.el
-    SUBDIR += php80-legacy
     SUBDIR += php82
     SUBDIR += php82-extensions
     SUBDIR += php83
@@ -410,5 +409,6 @@
     SUBDIR += zig
     SUBDIR += zig014
     SUBDIR += zig015
+    SUBDIR += zig016
 
 .include <bsd.port.subdir.mk>

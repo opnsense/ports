@@ -131,6 +131,7 @@
     SUBDIR += jot
     SUBDIR += just
     SUBDIR += kaddressbook
+    SUBDIR += kaichat
     SUBDIR += kalarm
     SUBDIR += kanbanapp
     SUBDIR += kcharselect
@@ -172,6 +173,7 @@
     SUBDIR += lumina-photo
     SUBDIR += lumina-screenshot
     SUBDIR += lumina-textedit
+    SUBDIR += lxqt-clip
     SUBDIR += lxqt-notificationd
     SUBDIR += maliit-framework
     SUBDIR += maliit-keyboard
@@ -272,7 +274,6 @@
     SUBDIR += sysctlview
     SUBDIR += systempreferences
     SUBDIR += taskd
-    SUBDIR += tasksh
     SUBDIR += taskwarrior
     SUBDIR += taskwarrior-tui
     SUBDIR += tatuin

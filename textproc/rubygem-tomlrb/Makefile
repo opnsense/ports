@@ -1,10 +1,10 @@
 PORTNAME=	tomlrb
-PORTVERSION=	2.0.4
+PORTVERSION=	3.0.0
 CATEGORIES=	textproc rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	Racc-based TOML parser
+COMMENT=	Parses TOML 1.1 and 1.0 documents into Ruby Hashes
 WWW=		https://github.com/fbernier/tomlrb
 
 LICENSE=	MIT

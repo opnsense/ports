@@ -1,6 +1,6 @@
 PORTNAME=	greptimedb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.0
+DISTVERSION=	1.3.1
 CATEGORIES=	databases
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -21,10 +21,13 @@ LIB_DEPENDS=	libonig.so:devel/oniguruma \
 USES=		cargo
 USE_RC_SUBR=	greptimedb
 
-GIT?=		git
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	GreptimeTeam
+
+SUBSTRAIT_COMMIT=	2aaae7c0d369a23b5b469badce0644097f1769a1
+SUBSTRAIT_VERSION=	0.85.0
+
+GH_TUPLE=	substrait-io:substrait:${SUBSTRAIT_COMMIT}:1
 
 LTO_UNSAFE=	yes # OOM with LTO on final binary linking
 
@@ -437,7 +440,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		h3o-0.6.4 \
 		h3o-bit-0.1.1 \
 		half-2.7.1 \
-		halfbrown-0.3.0 \
+		halfbrown-0.4.0 \
 		hash32-0.3.1 \
 		hashbrown-0.12.3 \
 		hashbrown-0.14.5 \
@@ -787,7 +790,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		petgraph-0.7.1 \
 		petgraph-0.8.3 \
 		pg_interval-0.6.0 \
-		pgwire-0.41.0 \
+		pgwire-0.41.2 \
 		phf-0.12.1 \
 		phf-0.13.1 \
 		phf_codegen-0.12.1 \
@@ -1031,7 +1034,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		signature-3.0.0 \
 		simba-0.9.0 \
 		simd-adler32-0.3.7 \
-		simd-json-0.15.1 \
+		simd-json-0.19.0 \
 		simd_cesu8-1.1.1 \
 		simdutf8-0.1.5 \
 		similar-2.7.0 \
@@ -1213,7 +1216,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		uuid-1.26.0 \
 		uuid-simd-0.8.0 \
 		valuable-0.1.1 \
-		value-trait-0.11.0 \
+		value-trait-0.12.3 \
 		vcpkg-0.2.15 \
 		vec1-1.12.1 \
 		vergen-8.3.2 \
@@ -1343,6 +1346,7 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		zstd-safe-7.2.4 \
 		zstd-sys-2.0.15+zstd.1.5.7 \
 		catio@git+https://github.com/GreptimeTeam/catio.git?rev=c75be64e7a58f620f6340c24b5b8d76f131af6aa\#c75be64e7a58f620f6340c24b5b8d76f131af6aa \
+		jsonb@git+https://github.com/GreptimeTeam/jsonb?rev=5a6472858d860ac034075c17253f41617bdfa956\#5a6472858d860ac034075c17253f41617bdfa956 \
 		rskafka@git+https://github.com/influxdata/rskafka.git?rev=80f42eb15eb9419579a376bdf4411893a7da2728\#80f42eb15eb9419579a376bdf4411893a7da2728 \
 		opensrv-mysql@git+https://github.com/GreptimeTeam/opensrv?rev=1f3d88ccaafb5721be6cfcc3ccbca48642426119\#1f3d88ccaafb5721be6cfcc3ccbca48642426119 \
 		sqlparser,sqlparser_derive@git+https://github.com/GreptimeTeam/sqlparser-rs.git?rev=9e9019bb1c7040ed956f654e39378dd42ab17884\#9e9019bb1c7040ed956f654e39378dd42ab17884 \
@@ -1351,13 +1355,12 @@ CARGO_CRATES=	addr2line-0.24.2 \
 		greptime-proto@git+https://github.com/GreptimeTeam/greptime-proto.git?rev=acb247415b8f4c2f0750783dab4e1f38c71f5860\#acb247415b8f4c2f0750783dab4e1f38c71f5860 \
 		meter-core,meter-macros@git+https://github.com/GreptimeTeam/greptime-meter.git?rev=f743c3a5fe8c1f57363eac5866c356b7d91f9b39\#f743c3a5fe8c1f57363eac5866c356b7d91f9b39 \
 		loki-proto@git+https://github.com/GreptimeTeam/loki-proto.git?rev=f69c8924c4babe516373e26a4118be82d976629c\#f69c8924c4babe516373e26a4118be82d976629c \
+		datafusion,datafusion-catalog,datafusion-catalog-listing,datafusion-common,datafusion-common-runtime,datafusion-datasource,datafusion-datasource-arrow,datafusion-datasource-csv,datafusion-datasource-json,datafusion-datasource-parquet,datafusion-doc,datafusion-execution,datafusion-expr,datafusion-expr-common,datafusion-functions,datafusion-functions-aggregate,datafusion-functions-aggregate-common,datafusion-functions-nested,datafusion-functions-table,datafusion-functions-window,datafusion-functions-window-common,datafusion-macros,datafusion-optimizer,datafusion-physical-expr,datafusion-physical-expr-adapter,datafusion-physical-expr-common,datafusion-physical-optimizer,datafusion-physical-plan,datafusion-proto,datafusion-proto-common,datafusion-proto-models,datafusion-pruning,datafusion-session,datafusion-sql,datafusion-substrait@git+https://github.com/GreptimeTeam/datafusion.git?rev=638a77fb504e86f85ef6053c552bbee1ed814fb9\#638a77fb504e86f85ef6053c552bbee1ed814fb9 \
 		arrow-pg,datafusion-pg-catalog@git+https://github.com/datafusion-contrib/datafusion-postgres.git?rev=ffb14a52b3d7c7489559812e1ec38096f225ce93\#ffb14a52b3d7c7489559812e1ec38096f225ce93 \
 		tikv-jemalloc-sys@git+https://github.com/GreptimeTeam/jemallocator?rev=e254a7eaf13a9ede04953ddefd173b5303018530\#e254a7eaf13a9ede04953ddefd173b5303018530 \
 		substrait@git+https://github.com/GreptimeTeam/substrait-rs.git?rev=91ec978b0649417ad3da8390e7a515baec723b1b\#91ec978b0649417ad3da8390e7a515baec723b1b \
 		object_store_opendal@git+https://github.com/GreptimeTeam/opendal.git?rev=c03e56802b47de3ccfc8fe028e59a459b278a0d2\#c03e56802b47de3ccfc8fe028e59a459b278a0d2 \
 		influxdb_line_protocol@git+https://github.com/evenyag/influxdb_iox?branch=feat%2Fline-protocol\#10ef0d0b02705ac7518717390939fa3a9bcfcacc \
-		jsonb@git+https://github.com/GreptimeTeam/jsonb?rev=dd1e2341e3df35e9de38959328caa7628e81b6b1\#dd1e2341e3df35e9de38959328caa7628e81b6b1 \
-		datafusion,datafusion-catalog,datafusion-catalog-listing,datafusion-common,datafusion-common-runtime,datafusion-datasource,datafusion-datasource-arrow,datafusion-datasource-csv,datafusion-datasource-json,datafusion-datasource-parquet,datafusion-doc,datafusion-execution,datafusion-expr,datafusion-expr-common,datafusion-functions,datafusion-functions-aggregate,datafusion-functions-aggregate-common,datafusion-functions-nested,datafusion-functions-table,datafusion-functions-window,datafusion-functions-window-common,datafusion-macros,datafusion-optimizer,datafusion-physical-expr,datafusion-physical-expr-adapter,datafusion-physical-expr-common,datafusion-physical-optimizer,datafusion-physical-plan,datafusion-proto,datafusion-proto-common,datafusion-proto-models,datafusion-pruning,datafusion-session,datafusion-sql,datafusion-substrait@git+https://github.com/GreptimeTeam/datafusion.git?rev=cc5534492d5408831395609cdafb6520c7d514b7\#cc5534492d5408831395609cdafb6520c7d514b7 \
 		sqlness@git+https://github.com/GreptimeTeam/sqlness?rev=cf4c2ae005fb8531a023ea638124ef49f1022025\#cf4c2ae005fb8531a023ea638124ef49f1022025 \
 		pprof@git+https://github.com/tikv/pprof-rs?rev=01cff82dbe6fe110a707bf2b38d8ebb1d14a18f8\#01cff82dbe6fe110a707bf2b38d8ebb1d14a18f8
 
@@ -1369,54 +1372,40 @@ PLIST_SUB+=	USER=${USER} GROUP=${GROUP}
 
 PROGS=		greptime
 
-SUBSTRAIT_COMMIT=	2aaae7c0d369a23b5b469badce0644097f1769a1
-SUBSTRAIT_VERSION=	0.85.0
+# The object_store_opendal crate is referenced from greptimedb's workspace
+# Cargo.toml (src/object-store, bridge between object_store 0.13.x and opendal
+# 0.59.x) and is also listed as a cargo git source in CARGO_CRATES below:
+#   object_store_opendal@git+https://github.com/GreptimeTeam/opendal.git?rev=c03e568...
+# GitHub's auto-generated tarball for GreptimeTeam/opendal at that commit
+# excludes the integrations/object_store directory via .gitattributes
+# export-ignore, so GH_TUPLE cannot provide it.  The matching published
+# object_store_opendal crates on crates.io require opendal ^0.58 or object_store
+# ^0.14, neither of which matches GreptimeDB's pinned opendal 0.59.4 and
+# object_store 0.13.2, so the fork commit is the only usable source.
+#
+# To regenerate this distfile:
+#   git clone https://github.com/GreptimeTeam/opendal.git
+#   cd opendal
+#   git checkout c03e56802b47de3ccfc8fe028e59a459b278a0d2
+#   tar -czf opendal-object_store-c03e568.tar.gz \
+#       opendal-c03e56802b47de3ccfc8fe028e59a459b278a0d2/integrations/object_store
+# Then upload it with ssh-upload-file-to-freebsd-tarballs and update distinfo.
+MASTER_SITES+=	LOCAL/yuri/:object_store
+DISTFILES+=	opendal-object_store-c03e568.tar.gz:object_store
 
-DISTFILES+=	opendal-object_store-c03e568.tar.gz \
-		substrait-submodule-91ec978.tar.gz
-
-pre-fetch:
-	# GitHub's auto-generated tarball for GreptimeTeam/opendal excludes
-	# the integrations/ directory via .gitattributes export-ignore, but
-	# greptimedb's Cargo.toml patches object_store_opendal from that git
-	# revision.  Fetch the missing crate from the same revision and
-	# package it as an additional distfile.
-	@if [ ! -f ${DISTDIR}/opendal-object_store-c03e568.tar.gz ]; then \
-		${MKDIR} ${WRKDIR}/.opendal-fetch && \
-		cd ${WRKDIR}/.opendal-fetch && \
-		${GIT} clone --quiet --depth 1 \
-		    https://github.com/GreptimeTeam/opendal.git \
-		    opendal-c03e56802b47de3ccfc8fe028e59a459b278a0d2 && \
-		cd opendal-c03e56802b47de3ccfc8fe028e59a459b278a0d2 && \
-		${GIT} fetch --quiet --depth 1 origin c03e56802b47de3ccfc8fe028e59a459b278a0d2 && \
-		${GIT} checkout --quiet c03e56802b47de3ccfc8fe028e59a459b278a0d2 && \
-		cd .. && \
-		${TAR} -czf ${DISTDIR}/opendal-object_store-c03e568.tar.gz \
-		    opendal-c03e56802b47de3ccfc8fe028e59a459b278a0d2/integrations/object_store && \
-		${RM} -rf ${WRKDIR}/.opendal-fetch; \
-	fi
+post-extract:
 	# GitHub's auto-generated tarball for GreptimeTeam/substrait-rs excludes
-	# the substrait/ git submodule, but greptimedb's Cargo.toml patches
-	# substrait from that git revision.  Fetch the upstream commit as a plain
-	# archive (no .git directory), add the submodule files to a crate-shaped
-	# tree, and provide a version.in fallback so the build script can run
-	# without a git checkout.
-	@if [ ! -f ${DISTDIR}/substrait-submodule-91ec978.tar.gz ]; then \
-		${MKDIR} ${WRKDIR}/.substrait-fetch && \
-		cd ${WRKDIR}/.substrait-fetch && \
-		${FETCH_CMD} -o substrait-${SUBSTRAIT_COMMIT}.tar.gz \
-		    https://github.com/substrait-io/substrait/archive/${SUBSTRAIT_COMMIT}.tar.gz && \
-		${TAR} -xzf substrait-${SUBSTRAIT_COMMIT}.tar.gz && \
-		${MV} substrait-${SUBSTRAIT_COMMIT} substrait && \
-		${MKDIR} substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b && \
-		${MV} substrait substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/substrait && \
-		${MKDIR} substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/gen && \
-		${PRINTF} '%s' '${SUBSTRAIT_VERSION}' > substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/gen/version && \
-		${CP} ${FILESDIR}/substrait-version.in substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/gen/version.in && \
-		${TAR} -czf ${DISTDIR}/substrait-submodule-91ec978.tar.gz \
-		    substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b && \
-		${RM} -rf ${WRKDIR}/.substrait-fetch; \
-	fi
+	# the substrait/ git submodule.  Populate it from the GH_TUPLE-fetched
+	# substrait-io/substrait archive and provide the version fallback the
+	# substrait-rs build script expects when running outside a git checkout.
+	@${MKDIR} ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/gen && \
+	${RM} -rf ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/substrait && \
+	${MV} ${WRKDIR}/substrait-${SUBSTRAIT_COMMIT} \
+	    ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/substrait && \
+	${PRINTF} '%s' '${SUBSTRAIT_VERSION}' > \
+	    ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/gen/version && \
+	${CP} ${FILESDIR}/substrait-version.in \
+	    ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/gen/version.in
 
 post-patch:
 	# setup mold linker wrapper to reduce memory during final linking
@@ -1443,7 +1432,7 @@ post-patch:
 		@${PATCH} -d ${WRKDIR}/otel-arrow-5da284414e9b14f678344b51e5292229e4b5f8d2 --forward -p0 -i ${FILESDIR}/extra-otel-arrow-rust-proto-compat
 	# fix: trim trailing whitespace from the substrait-rs fallback version file
 	@${PATCH} -d ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b --forward -p0 -i ${FILESDIR}/extra-substrait-rs-build.rs
-	# fix: remove any leftover submodule .git directory so the build script
+	# ensure no submodule .git directory is present so the build script
 	# uses the version.in fallback instead of trying to run git commands.
 	@${RM} -rf ${WRKDIR}/substrait-rs-91ec978b0649417ad3da8390e7a515baec723b1b/substrait/.git
 

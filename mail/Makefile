@@ -167,6 +167,7 @@
     SUBDIR += imap-tools
     SUBDIR += imapdedup
     SUBDIR += imapfilter
+    SUBDIR += imapgoose
     SUBDIR += imapsync
     SUBDIR += imaptools
     SUBDIR += imaputils
@@ -216,7 +217,6 @@
     SUBDIR += mailutils
     SUBDIR += mailx
     SUBDIR += mairix
-    SUBDIR += masqmail
     SUBDIR += mb2md
     SUBDIR += mbar
     SUBDIR += mblaze
@@ -499,6 +499,7 @@
     SUBDIR += postfix-policyd-spf-perl
     SUBDIR += postfix-policyd-weight
     SUBDIR += postfix-postfwd
+    SUBDIR += postfix_exporter
     SUBDIR += postfixadmin
     SUBDIR += postfixadmin-lite
     SUBDIR += postfixadmin33
@@ -647,6 +648,7 @@
     SUBDIR += rubygem-net-smtp
     SUBDIR += rubygem-pony
     SUBDIR += rubygem-premailer
+    SUBDIR += rubygem-premailer-gitlab
     SUBDIR += rubygem-premailer-rails
     SUBDIR += rubygem-premailer-rails-rails-gitlab
     SUBDIR += rubygem-premailer-rails-rails5
@@ -764,6 +766,7 @@
     SUBDIR += thunderbird
     SUBDIR += thunderbird-dictionaries
     SUBDIR += thunderbird-esr
+    SUBDIR += tidemail
     SUBDIR += tlb
     SUBDIR += tmpmail
     SUBDIR += tpop3d

@@ -1,0 +1,11 @@
+--- menuselect/configure.orig	2026-11-05 13:20:21 UTC
++++ menuselect/configure
+@@ -5231,7 +5231,7 @@ printf "%s\n" "yes" >&6; }
+ printf "%s\n" "yes" >&6; }
+ 
+             PBX_LIBXML2=1
+-            LIBXML2_INCLUDE=$(echo ${LIBXML2_CFLAGS} | $SED -e "s|-std=c99||g")
++            LIBXML2_INCLUDE=$(echo ${LIBXML2_CFLAGS} | sed -e "s|-std=c99||g")
+             LIBXML2_LIB="$LIBXML2_LIBS"
+ 
+ printf "%s\n" "#define HAVE_LIBXML2 1" >>confdefs.h

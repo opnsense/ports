@@ -186,6 +186,7 @@
     SUBDIR += elasticsearch-plugin-head
     SUBDIR += elasticsearch8
     SUBDIR += elasticsearch94
+    SUBDIR += elasticsearch95
     SUBDIR += en-aspell
     SUBDIR += en-hunspell
     SUBDIR += en-mythes
@@ -640,6 +641,7 @@
     SUBDIR += p5-JavaScript-Minifier
     SUBDIR += p5-JavaScript-Minifier-XS
     SUBDIR += p5-JavaScript-Packer
+    SUBDIR += p5-Jq
     SUBDIR += p5-KinoSearch1
     SUBDIR += p5-Kwalify
     SUBDIR += p5-LaTeX-Driver
@@ -1659,6 +1661,7 @@
     SUBDIR += py-pystemmer
     SUBDIR += py-python-augeas
     SUBDIR += py-python-bidi
+    SUBDIR += py-python-calamine
     SUBDIR += py-python-docs-theme
     SUBDIR += py-python-docx
     SUBDIR += py-python-frontmatter
@@ -1955,6 +1958,7 @@
     SUBDIR += rubygem-cssmin
     SUBDIR += rubygem-cucumber-gherkin
     SUBDIR += rubygem-cucumber-gherkin39
+    SUBDIR += rubygem-cucumber-gherkin42
     SUBDIR += rubygem-cucumber-html-formatter
     SUBDIR += rubygem-cucumber-html-formatter22
     SUBDIR += rubygem-cucumber-html-formatter23
@@ -2060,6 +2064,7 @@
     SUBDIR += rubygem-phone
     SUBDIR += rubygem-pretty-xml
     SUBDIR += rubygem-prism
+    SUBDIR += rubygem-prism1
     SUBDIR += rubygem-psych
     SUBDIR += rubygem-psych3
     SUBDIR += rubygem-raabro
@@ -2138,6 +2143,7 @@
     SUBDIR += rubygem-toml
     SUBDIR += rubygem-tomlrb
     SUBDIR += rubygem-tomlrb1
+    SUBDIR += rubygem-tomlrb2
     SUBDIR += rubygem-truncato
     SUBDIR += rubygem-twitter-text
     SUBDIR += rubygem-twitter-text1

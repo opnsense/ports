@@ -1,5 +1,5 @@
 PORTNAME=	css_parser
-PORTVERSION=	3.2.0
+PORTVERSION=	3.4.0
 CATEGORIES=	textproc www rubygems
 MASTER_SITES=	RG
 

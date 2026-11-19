@@ -1,6 +1,11 @@
 DISTVERSION=	${DOTNETVERSION}.27
 PKGNAMESUFFIX=	8
 
+LIB_DEPENDS=	libbrotlienc.so:archivers/brotli \
+		libicuuc.so:devel/icu \
+		libinotify.so:devel/libinotify \
+		libunwind.so.8:devel/libunwind
+
 SHEBANG_FILES=	src/source-build-externals/src/azure-activedirectory-identitymodel-extensions-for-dotnet/updateAssemblyInfo.sh
 
 DOTNET_ENV=	PATH=${PATH}:${LLVM_PREFIX}/bin
@@ -8,6 +13,7 @@ DOTNET_ENV=	PATH=${PATH}:${LLVM_PREFIX}/bin
 BOOTSTRAP_DOTNETVERSION=	8.0
 BOOTSTRAP_SDKVERSION=		${BOOTSTRAP_DOTNETVERSION}.120
 BOOTSTRAP_SDKVERSIONSUFFIX=	-servicing.25421.1
+BOOTSTRAP_SOURCEBUILT_ARTIFACTS_DISTNAME=	Private.SourceBuilt.Artifacts.${BOOTSTRAP_SDKVERSION}${BOOTSTRAP_SDKVERSIONSUFFIX}.freebsd.13-${DOTNET_ARCH}
 
 DOTNETVERSION=			8.0
 SDKVERSION=			${DOTNETVERSION}.127

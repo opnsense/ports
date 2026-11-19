@@ -1,6 +1,6 @@
---- chrome/browser/web_applications/web_app.cc.orig	2026-08-12 09:02:10 UTC
+--- chrome/browser/web_applications/web_app.cc.orig	2026-11-19 12:25:27 UTC
 +++ chrome/browser/web_applications/web_app.cc
-@@ -76,7 +76,7 @@
+@@ -75,7 +75,7 @@
  #include "url/origin.h"
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \

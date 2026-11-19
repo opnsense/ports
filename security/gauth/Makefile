@@ -1,7 +1,7 @@
 PORTNAME=	gauth
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.5.0
-PORTREVISION=	18
+PORTREVISION=	19
 CATEGORIES=	security
 
 MAINTAINER=	nxjoseph@FreeBSD.org
@@ -9,7 +9,7 @@ COMMENT=	Google Authenticator in your terminal
 WWW=		https://github.com/pcarrier/gauth \
 		https://pkg.go.dev/github.com/pcarrier/gauth
 
-LICENSE=	ISCL
+LICENSE=	ISC
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules

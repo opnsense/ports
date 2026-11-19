@@ -1,10 +1,9 @@
 PORTNAME=	blocky
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.35.0
-PORTREVISION=	2
+DISTVERSION=	0.36.0
 CATEGORIES=	dns
 
-MAINTAINER=	diizzy@FreeBSD.org
+MAINTAINER=	daniel.engberg.lists@pyret.net
 COMMENT=	Fast and lightweight DNS proxy as ad-blocker
 WWW=		https://0xerr0r.github.io/blocky/
 

@@ -89,16 +89,16 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-invisible_captcha>=2.3.0<2.4:graphics/rubygem-invisible_captcha \
 	rubygem-devise-two-factor-rails-gitlab>=6.4.0<6.5:security/rubygem-devise-two-factor-rails-gitlab \
 	rubygem-rqrcode-gitlab>=2.2.0<3:www/rubygem-rqrcode-gitlab \
-	rubygem-webauthn>=3.0<4:security/rubygem-webauthn \
+	rubygem-webauthn>=3.4.4<4:security/rubygem-webauthn \
 	rubygem-attr_encrypted>=4.2<5:security/rubygem-attr_encrypted \
 	rubygem-validates_hostname-gitlab>=1.0.13<1.1.0:dns/rubygem-validates_hostname-gitlab \
 	rubygem-rubyzip-gitlab>=2.4.1<2.5:archivers/rubygem-rubyzip-gitlab \
 	rubygem-acme-client-gitlab>=2.0.34<3:security/rubygem-acme-client-gitlab \
 	rubygem-browser5>=5.3.1<5.4:www/rubygem-browser5 \
-	rubygem-ohai>=19.1.40<19.2:sysutils/rubygem-ohai \
+	rubygem-ohai-gitlab>=19.1.40<19.2:sysutils/rubygem-ohai-gitlab \
 	rubygem-gpgme>=2.0.26<2.1.0:security/rubygem-gpgme \
 	rubygem-gitlab_omniauth-ldap-gitlab>=2.3.0<2.4.0:net/rubygem-gitlab_omniauth-ldap-gitlab \
-	rubygem-net-ldap>=0.20.0<0.21:net/rubygem-net-ldap \
+	rubygem-net-ldap-gitlab>=0.20.0<0.21:net/rubygem-net-ldap-gitlab \
 	rubygem-grape-gitlab>=3.2.1<4:devel/rubygem-grape-gitlab \
 	rubygem-grape-entity>=1.1.0<1.2,1:devel/rubygem-grape-entity \
 	rubygem-grape-swagger-gitlab>=2.1.4<2.2:devel/rubygem-grape-swagger-gitlab \
@@ -284,7 +284,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-spamcheck>=1.3.3<1.4:net/rubygem-spamcheck \
 	rubygem-gitaly>=19.4<20:net/rubygem-gitaly \
 	rubygem-gitlab-kas-grpc>=${GITLAB_KAS_GRPC_VERSION}:net/rubygem-gitlab-kas-grpc \
-	rubygem-gitlab-orbit-proto>=0.137.0<0.138:net/rubygem-gitlab-orbit-proto \
+	rubygem-gitlab-orbit-proto>=0.156.0<0.157:net/rubygem-gitlab-orbit-proto \
 	rubygem-grpc-gitlab>=1.81.0<1.82:net/rubygem-grpc-gitlab \
 	rubygem-google-protobuf-gitlab>=4.36.0<5:devel/rubygem-google-protobuf-gitlab \
 	rubygem-toml-rb>=4.1<5:www/rubygem-toml-rb \
@@ -305,7 +305,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-jsonb_accessor>=1.4<2:www/rubygem-jsonb_accessor \
 	rubygem-json2>=2.21.2<2.22:devel/rubygem-json2 \
 	rubygem-json_schemer>=2.4.0<2.5:devel/rubygem-json_schemer \
-	rubygem-oj-gitlab>=3.17.6<3.18:devel/rubygem-oj-gitlab \
+	rubygem-oj-gitlab>=3.17.8<3.18:devel/rubygem-oj-gitlab \
 	rubygem-oj-introspect>=0.9<1:devel/rubygem-oj-introspect \
 	rubygem-multi_json-gitlab>=1.17.0<1.18:devel/rubygem-multi_json-gitlab \
 	rubygem-yajl-ruby>=1.4.3<1.5:devel/rubygem-yajl-ruby \

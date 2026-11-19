@@ -1,5 +1,5 @@
-TIMESTAMP = 1785251013
-SHA256 (go/sysutils_usacloud-core/usacloud-v1.22.8/v1.22.8.mod) = c8f76194dc93440dd7f3841bf0af69f5575c48a4585f1fb73f65e530d0766602
-SIZE (go/sysutils_usacloud-core/usacloud-v1.22.8/v1.22.8.mod) = 4056
-SHA256 (go/sysutils_usacloud-core/usacloud-v1.22.8/v1.22.8.zip) = 4dd248f9361d2df742b2a2c1fc19804a0e20b91c2fde15982d5ebe591b78a402
-SIZE (go/sysutils_usacloud-core/usacloud-v1.22.8/v1.22.8.zip) = 1184762
+TIMESTAMP = 1794925420
+SHA256 (go/sysutils_usacloud-core/usacloud-v1.22.12/v1.22.12.mod) = bc2eebfa7335dfa2eb46166d70746cea6a685a9b0057e1b7e9258acdebd2ddf3
+SIZE (go/sysutils_usacloud-core/usacloud-v1.22.12/v1.22.12.mod) = 3846
+SHA256 (go/sysutils_usacloud-core/usacloud-v1.22.12/v1.22.12.zip) = e17666a2f4850896851decf596434482e0c1b8143a9bc57f03f5d342143c7eaf
+SIZE (go/sysutils_usacloud-core/usacloud-v1.22.12/v1.22.12.zip) = 1198935

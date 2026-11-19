@@ -1,10 +1,9 @@
 PORTNAME=	gdu
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.38.0
-PORTREVISION=	1
+DISTVERSION=	5.39.0
 CATEGORIES=	sysutils
 
-MAINTAINER=	diizzy@FreeBSD.org
+MAINTAINER=	daniel.engberg.lists@pyret.net
 COMMENT=	Disk usage analyzer with console interface written in Go
 WWW=		https://github.com/dundee/gdu
 
