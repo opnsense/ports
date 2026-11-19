@@ -5,6 +5,110 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20261117:
+  AFFECTS: users of editors/vscode
+  AUTHOR: tagattie@FreeBSD.org
+
+  GitHub Copilot chat and other agent-related features require
+  additional settings to operate. Users who wish to continue using
+  those features should add the following settings via settings UI or
+  directly editing settings.json.
+  {
+    "chat.defaultToCopilotHarness": false,
+    "chat.editor.preferCopilotHarness": false
+  }
+
+  VSCode has migrated its agent harness implementation from the Local
+  harness to the Copilot harness. The latter depends on Copilot
+  SDK/CLI, which is closed source and does not support FreeBSD
+  (yet). The settings above make it switch back to use the Local
+  harness. Please be advised that the Local harness is deprecated and
+  will be removed by Feb 2027.
+
+  For more details on agent harnesses and the deprecation of the Local
+  harness, please visit the following URLs:
+
+  https://code.visualstudio.com/docs/agents/run/agent-harnesses
+  https://code.visualstudio.com/updates/v1_146#_copilot-harness-and-deprecation-of-the-local-harness
+
+20261111:
+  AFFECTS: users of net-mgmt/netbox
+  AUTHOR: kai@FreeBSD.org
+
+  1. The NetBox 4.7 release contains some breaking changes, so the following
+     items should be checked before upgrading:
+
+     * NetBox now requires PostgreSQL 15 or later: The upgrade script will
+       abort when connected to an earlier release.  (NetBox v4.6 reported
+       this as a warning.)
+
+     * The PostgreSQL database must support the "ltree" extension. This is a
+       trusted module which ships with the PostgreSQL contrib utilities
+       (e.g. postgresql-contrib18 for PostgreSQL 18) and does not require
+       superuser permission to activate.
+
+       The following command can be used to check whether the "ltree"
+       extension is available:
+
+       => SELECT * FROM pg_available_extensions WHERE name = 'ltree';
+
+     * Redis 5.x is no longer supported. NetBox now requires Redis 6.0 or
+       later.
+
+     * The py-netbox-secrets plugin v3.1.2 is not yet compatible with
+       NetBox 4.7 and can no longer be used after upgrading.
+
+  2. Please also check the pkg-message and the changelogs for further info.
+
+20261109:
+  AFFECTS: users of chinese/gcin
+  AUTHOR: vanilla@FreeBSD.org
+
+  The ANTHY option of chinese/gcin has been removed. The Anthy input
+  method module is now built by a separate slave port,
+  chinese/gcin-anthy, which depends on chinese/gcin.
+
+  If you built chinese/gcin with the ANTHY option, the old package
+  contains the files now installed by gcin-anthy. Remove it first,
+  then install the new port:
+
+    # pkg delete gcin
+    # pkg install gcin-anthy
+
+  or, when building from ports:
+
+    # pkg delete gcin
+    # cd /usr/ports/chinese/gcin-anthy && make install clean
+
+  chinese/gcin is installed again as a dependency of gcin-anthy.
+  Then restart gcin.
+
+20261107:
+  AFFECTS: users of net/rustdesk-server
+  AUTHOR: madpilot@madpilot.net
+
+  Rustdesk-server requires the HOME environment variable to point to its
+  DB directory to store configuration.
+  In port versions lower than 1.1.16_4 the user created by the port was
+  missing such home directory setting.
+  If you install the port with no existing rustdesk user, now the user
+  will be created with the appropriate setting.
+  If you are updating or installing on a system where the rustdesk user
+  already exists, please modify your passwd file and add
+  "/var/db/rustdesk-server" as the home directory for the user.
+
+20261107:
+  AFFECTS: users of mail/stalwart
+  AUTHOR: samm@os2.kiev.ua
+
+  mail/stalwart has been updated to 1.0.3.  The 1.0 data store layout is
+  not compatible with 0.16 and cannot be upgraded in place.  Users of
+  0.16 must migrate their data to a new 1.x store with
+  mail/stalwart-migrate; the previous 0.16.27 version is available as
+  mail/stalwart016.  Keep mail/stalwart016 installed until the migration
+  is complete.  mail/stalwart016 is deprecated and scheduled for removal
+  on 2027-11-02.
+
 20261101:
   AFFECTS: users of devel/subversion
   AUTHOR: michaelo@apache.org
@@ -117,7 +221,7 @@ you update your ports collection, before attempting any port upgrades.
   The default is lmdb0 for now.
 
   If you want/need to use lmdb1, you will need to build the package
-  with apropriate lmdb version selected.
+  with appropriate lmdb version selected.
 
 20261002:
   AFFECTS: users of www/nginx-devel

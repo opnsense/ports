@@ -4831,7 +4831,6 @@ devel/py-pyjq|textproc/py-jq|2025-11-01|Removed: Depended on expired Python vers
 devel/py-ctags||2025-11-01|Removed: Depended on expired Python version 3.9 and does not build with newer Python
 net-im/tdlib-purple||2025-11-01|Remove broken port
 databases/erlfdb||2025-11-01|Depends on removed port databases/foundationdb71-client
-www/mitmproxy||2025-11-02|Remove broken port
 net-im/signald|net-im/signal-cli|2025-11-02|Has expired: this project is no longer actively maintained. Use signal-cli instead
 net-im/libsignal-client|net-im/libsignal|2025-11-05|Renamed to match upstream name
 games/openlierox||2025-11-06|Remove broken port
@@ -5336,7 +5335,6 @@ graphics/mesa-gallium-xa||2026-06-15|EOLed upstream
 lang/clover||2026-06-15|EOLed upstream
 java/aparapi||2026-06-15|Has expired: no maintainer, no users in the ports tree, java 8 only, last upstream commit was 10 years ago
 sysutils/docker|sysutils/docker-cli|2026-06-18|Reflect its actual content
-multimedia/dvbcut||2026-06-19|Broken for more than 6 months and upstream is dead
 games/cgoban||2026-06-19|Broken for more than a year and upstream is dead
 games/valyriatear||2026-06-19|Broken for more than a year and upstream is dead
 multimedia/nymphcast||2026-06-19|Broken for more than 6 months
@@ -5724,7 +5722,7 @@ devel/cppurses|devel/termox|2026-10-04|Project renamed upstream
 devel/fatal||2026-10-05|Project archived on GitHub, no users
 sysutils/lava||2026-10-06|Removed, only applies to unsupported CouchDB 1.x versions
 audio/stegosaurus-lv2||2026-10-06|Removed, no longer maintained upstream
-math/mumps|math/mumps-edf|2026-10-07|Repomove to math/mumps-edf
+#math/mumps|math/mumps-edf|2026-10-07|Repomove to math/mumps-edf
 math/mumps4|math/mumps|2026-10-07|Repomove to math/mumps
 textproc/py-hieroglyph||2026-10-09|Has expired: Broken with textproc/py-sphinx 7 and newer, last upstream release in 2020
 graphics/kamerka||2026-10-11|Remove abandonware
@@ -5791,3 +5789,32 @@ mail/mailman-postfix||2026-11-01|Has expired: Uses expired lang/python27
 mail/mailman||2026-11-01|Has expired: Uses expired lang/python27
 dns/py-dnspython1||2026-11-01|Has expired: Depends on expired lang/cython0
 lang/cython0|lang/cython|2026-11-01|Has expired: Legacy version. Does not work with newer Python versions. Use lang/cython instead
+lang/tcl90|lang/tcl|2026-11-02|Tcl 9.x will be provided as a single port
+x11-toolkits/tk90|x11-toolkits/tk|2026-11-02|Tk 9.x will be provided as single port
+deskutils/owncloudclient||2026-11-02|Has expired: Outdated, depends on deprecated Qt5 qtkeychain
+sysutils/dekit||2026-11-03|Has expired: Cannot upgrade due to linuxisms
+textproc/lucene|textproc/lucene9|2026-11-03|Has expired: Release from 2013. Unsupported upstream. Lucene is now at version 10.X. Superseded in ports by textproc/lucene9
+java/apache-commons-lang|java/apache-commons-lang3|2026-11-03|Has expired: Unpatched CVE, last release in 2011, does not compile with Java 11+, not actively maintained. Superseded by port java/apache-commons-lang3
+mail/php80-mailparse||2026-11-04|No longer required in the cluster
+x11/plasma6-kgamma||2026-11-05|Removed: no longer shipped with KDE Plasma
+x11-wm/plasma6-kwin-x11||2026-11-05|Removed: no longer shipped with KDE Plasma
+cad/astk-client||2026-11-06|Superseded by science/codeaster-frontend
+cad/astk-serveur||2026-11-06|Superseded by science/codeaster-frontend
+databases/mysql267-client|databases/mysql2610-client|2026-11-06|Has expired: EOLed upstream with unfixed vulnerabilities, use databases/mysql2610-server
+databases/mysql267-server|databases/mysql2610-server|2026-11-06|Has expired: EOLed upstream with unfixed vulnerabilities, use databases/mysql2610-server
+devel/php80-APCu||2026-11-06|No longer required in the cluster
+devel/php80-arcanist||2026-11-07|No longer required in the cluster
+www/filebrowser||2026-11-08|Has expired: Upstream repo archived on Aug 31, 2026
+www/github-release-monitor||2026-11-10|Has expired: Cannot upgrade due to linuxisms
+mail/masqmail||2026-11-10|Has expired: Unmaintained with known parser and memory-safety issues use dma from base or mail/msmtp
+deskutils/tasksh||2026-11-10|Has expired: No upstream activity over the last 4 years
+games/polyglot||2026-11-10|Has expired: Obsolete software, original master site is no longer available
+devel/p5-Device-USB||2026-11-10|Has expired: Upstream advises it as deprecated and noo longer suitable for use
+sysutils/mapchan||2026-11-10|Has expired: Incomplete implementation and does not work as intended anymore
+lang/php80-legacy||2026-11-15|No longer required in the cluster
+devel/rubygem-io-wait01|devel/rubygem-io-wait|2026-11-16|Use devel/rubygem-io-wait instead
+sysutils/kvmclock-kmod||2026-11-19|Removed, not required on any supported FreeBSD version
+net-im/spectral||2026-11-19|Depends on removed qtkeychain-qt5
+databases/ipa_sdb||2026-11-19|Requested by upstream
+misc/ipa_conv||2026-11-19|Requested by upstream
+sysutils/ipa||2026-11-19|Requested by upstream

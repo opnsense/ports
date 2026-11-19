@@ -18,8 +18,8 @@ _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 LOCALBASE?=	/usr/local
 
 .  for lang in APACHE BDB COROSYNC EBUR128 EMACS FIREBIRD FORTRAN FPC GCC \
-	GHOSTSCRIPT GL GO GUILE IMAGEMAGICK JAVA LAZARUS LIBRSVG2 LINUX LLVM \
-	LUA LUAJIT MONO MYSQL NINJA NODEJS OPENLDAP PERL5 PGSQL PHP \
+	GHOSTSCRIPT GL GO GUILE IMAGEMAGICK JAVA KDE_PLASMA LAZARUS LIBRSVG2 \
+	LINUX LLVM LUA LUAJIT MONO MYSQL NINJA NODEJS OPENLDAP PERL5 PGSQL PHP \
 	PYCRYPTOGRAPHY PYTHON PYTHON2 RUBY RUST SAMBA SSL TCLTK VARNISH VINYL
 .    if defined(${lang}_DEFAULT)
 ERROR+=	"The variable ${lang}_DEFAULT is set and it should only be defined through DEFAULT_VERSIONS+=${lang:tl}=${${lang}_DEFAULT} in /etc/make.conf"
@@ -87,6 +87,14 @@ JAVA_DEFAULT?=		21
 .  else
 JAVA_DEFAULT?=		25
 .  endif
+# Possible versions: 6, 6lts
+# KDE Plasma 6 is Wayland only, 6lts supports both Wayland and X11
+# Wayland requires DRM, which is only supported on amd64
+.  if ${ARCH:Mamd64}
+KDE_PLASMA_DEFAULT?=	6
+.  else
+KDE_PLASMA_DEFAULT?=	6lts
+.  endif
 # Possible values: 4.8, 4.99
 .  if (defined(WANT_LAZARUS_DEVEL) && !empty(WANT_LAZARUS_DEVEL)) || ${ARCH:Maarch64} || ${ARCH:Mpowerpc*}
 LAZARUS_DEFAULT?=	4.99
@@ -117,7 +125,7 @@ LUAJIT_DEFAULT?=	luajit
 .  endif
 # Possible values: 5.10, 5.20, 6.8
 MONO_DEFAULT?=		5.20
-# Possible values: 8.0, 8.4, 9.7, 26.7, 26.10, 10.11m, 11.4m, 11.8m
+# Possible values: 8.0, 8.4, 9.7, 26.10, 10.11m, 11.4m, 11.8m, 12.3m
 MYSQL_DEFAULT?=		8.4
 # Possible values: ninja, samurai
 NINJA_DEFAULT?=		ninja
@@ -205,7 +213,7 @@ SSL_DEFAULT?=	base
 .  endif
 # Possible values: default, sssd
 SUDO_DEFAULT?=		default
-# Possible values: 8.6, 9.0
+# Possible values: 8.6, 9.1
 TCLTK_DEFAULT?=		8.6
 # Possible values: 6, 7
 VARNISH_DEFAULT?=	6
