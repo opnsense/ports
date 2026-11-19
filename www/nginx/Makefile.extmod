@@ -16,7 +16,7 @@ OPTIONS_GROUP_THIRDPARTYGRP=	AJP AWS_AUTH BROTLI CACHE_PURGE CERT_EXPIRY \
 	SYSLOG5424 VOD VTS XSS WEBSOCKIFY ZSTD
 
 AJP_BUILD_DEPENDS=	nginx-module-ajp>0:www/nginx-module-ajp
-WRKSRC_ajp=		${WRKDIR}/nginx_ajp_module
+WRKSRC_ajp=		${WRKDIR}/nginx-ajp-module
 AJP_VARS=		DSO_EXTMODS+=ajp
 
 ARRAYVAR_IMPLIES=	DEVEL_KIT
@@ -29,9 +29,9 @@ WRKSRC_aws_auth=	${WRKDIR}/ngx_aws_auth
 AWS_AUTH_VARS=		DSO_EXTMODS+=aws_auth
 
 BROTLI_LIB_DEPENDS=	libbrotlicommon.so:archivers/brotli
-BROTLI_GH_TUPLE=	google:ngx_brotli:a71f931:brotli
+BROTLI_BUILD_DEPENDS=	nginx-module-brotli>0:www/nginx-module-brotli
+WRKSRC_brotli=		${WRKDIR}/ngx_brotli
 BROTLI_VARS=		DSO_EXTMODS+=brotli
-BROTLI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_brotli_filter_config
 
 CACHE_PURGE_BUILD_DEPENDS=	nginx-module-cache-purge>0:www/nginx-module-cache-purge
 WRKSRC_cache_purge=	${WRKDIR}/ngx_cache_purge
@@ -54,7 +54,8 @@ WRKSRC_drizzle=		${WRKDIR}/drizzle-nginx-module
 DRIZZLE_VARS=		DSO_EXTMODS+=drizzle
 
 DYNAMIC_UPSTREAM_IMPLIES=	STREAM
-DYNAMIC_UPSTREAM_GH_TUPLE=	ZigzagAK:ngx_dynamic_upstream:960eef2:dynamic_upstream
+DYNAMIC_UPSTREAM_BUILD_DEPENDS=	nginx-module-dynamic-upstream>0:www/nginx-module-dynamic-upstream
+WRKSRC_dynamic_upstream=	${WRKDIR}/ngx_dynamic_upstream
 DYNAMIC_UPSTREAM_VARS=		DSO_EXTMODS+=dynamic_upstream
 
 DEVEL_KIT_BUILD_DEPENDS=	nginx-module-ndk>0:www/nginx-module-ndk
@@ -95,9 +96,9 @@ HTTP_AUTH_DIGEST_BUILD_DEPENDS=	nginx-module-auth-digest>0:www/nginx-module-auth
 WRKSRC_auth_digest=		${WRKDIR}/nginx-module-auth-digest
 HTTP_AUTH_DIGEST_VARS=		DSO_EXTMODS+=auth_digest
 
-HTTP_AUTH_KRB5_GH_TUPLE=	stnoonan:spnego-http-auth-nginx-module:3575542:auth_krb5
+HTTP_AUTH_KRB5_BUILD_DEPENDS=	nginx-module-auth-krb5>0:www/nginx-module-auth-krb5
+WRKSRC_auth_krb5=		${WRKDIR}/nginx-module-auth-krb5
 HTTP_AUTH_KRB5_VARS=		DSO_EXTMODS+=auth_krb5
-HTTP_AUTH_KRB5_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-spnego-http-auth-nginx-module-config
 
 HTTP_AUTH_LDAP_BUILD_DEPENDS=	nginx-module-auth-ldap>0:www/nginx-module-auth-ldap
 WRKSRC_http_auth_ldap=		${WRKDIR}/nginx-auth-ldap-module
@@ -105,7 +106,7 @@ HTTP_AUTH_LDAP_VARS=		DSO_EXTMODS+=http_auth_ldap
 HTTP_AUTH_LDAP_USES=		ldap
 
 HTTP_AUTH_PAM_BUILD_DEPENDS=	nginx-module-auth-pam>0:www/nginx-module-auth-pam
-WRKSRC_auth_pam=		${WRKDIR}/ngx_http_auth_pam_module
+WRKSRC_auth_pam=		${WRKDIR}/nginx-auth-pam-module
 HTTP_AUTH_PAM_VARS=		DSO_EXTMODS+=auth_pam
 
 HTTP_DAV_EXT_IMPLIES=		HTTP_DAV
@@ -128,13 +129,14 @@ WRKSRC_footer=		${WRKDIR}/nginx-footer-module
 HTTP_FOOTER_VARS=		DSO_EXTMODS+=footer
 
 HTTP_GEOIP2_BUILD_DEPENDS=	nginx-module-geoip2>0:www/nginx-module-geoip2
-WRKSRC_geoip2=			${WRKDIR}/ngx_http_geoip2_module
+WRKSRC_geoip2=			${WRKDIR}/nginx-geoip2-module
 HTTP_GEOIP2_CFLAGS=		-I${LOCALBASE}/include
 HTTP_GEOIP2_VARS=		DSO_EXTMODS+=geoip2
 HTTP_GEOIP2_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 
-HTTP_IP2LOCATION_GH_TUPLE=	ip2location:ip2location-nginx:2df35fb:ip2location
 HTTP_IP2LOCATION_LIB_DEPENDS=	libIP2Location.so:net/ip2location
+HTTP_IP2LOCATION_BUILD_DEPENDS=	nginx-module-ip2location>0:www/nginx-module-ip2location
+WRKSRC_ip2location=		${WRKDIR}/nginx-module-ip2location
 HTTP_IP2LOCATION_VARS=		DSO_EXTMODS+=ip2location
 
 HTTP_IP2PROXY_GH_TUPLE=		ip2location:ip2proxy-nginx:02ce447:ip2proxy
@@ -145,11 +147,9 @@ HTTP_JSON_STATUS_BUILD_DEPENDS=	nginx-module-json-status>0:www/nginx-module-json
 WRKSRC_json_status=		${WRKDIR}/nginx-json-status-module
 HTTP_JSON_STATUS_VARS=		DSO_EXTMODS+=json_status
 
-HTTP_MOGILEFS_MASTER_SITES=	http://www.grid.net.ru/nginx/download/:mogilefs
-HTTP_MOGILEFS_DISTFILES=	nginx_mogilefs_module-1.0.4.tar.gz:mogilefs
-HTTP_MOGILEFS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_mogilefs_module.c \
-				${PATCHDIR}/extra-patch-nginx_mogilefs_module-config
-HTTP_MOGILEFS_VARS=		DSO_EXTDIRS+=nginx_mogilefs_module-1.0.4
+HTTP_MOGILEFS_BUILD_DEPENDS=	nginx-module-mogilefs>0:www/nginx-module-mogilefs
+WRKSRC_mogilefs=		${WRKDIR}/nginx-mogilefs-module
+HTTP_MOGILEFS_VARS=		DSO_EXTMODS+=mogilefs
 
 HTTP_NOTICE_GH_TUPLE=		kr:nginx-notice:3c95966:notice
 HTTP_NOTICE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_notice_module.c \
@@ -159,7 +159,8 @@ HTTP_NOTICE_VARS=		DSO_EXTMODS+=notice
 HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.3.6:push
 HTTP_PUSH_VARS=			DSO_EXTMODS+=push
 
-HTTP_PUSH_STREAM_GH_TUPLE=	wandenberg:nginx-push-stream-module:8c02220:pushstream
+HTTP_PUSH_STREAM_BUILD_DEPENDS=	nginx-module-push-stream>0:www/nginx-module-push-stream
+WRKSRC_pushstream=		${WRKDIR}/nginx-push-stream-module
 HTTP_PUSH_STREAM_VARS=		DSO_EXTMODS+=pushstream
 
 HTTP_REDIS_BUILD_DEPENDS=	nginx-module-redis>0:www/nginx-module-redis
@@ -174,9 +175,9 @@ HTTP_SUBS_FILTER_VARS=		DSO_EXTMODS+=subs_filter
 
 HTTP_TARANTOOL_LIB_DEPENDS=	libmsgpuck.so:devel/msgpuck \
 				libyajl.so:devel/yajl
-HTTP_TARANTOOL_GH_TUPLE=	tarantool:nginx_upstream_module:aeb8696:nginx_tarantool
+HTTP_TARANTOOL_BUILD_DEPENDS=	nginx-module-tarantool>0:www/nginx-module-tarantool
+WRKSRC_nginx_tarantool=		${WRKDIR}/nginx-tarantool-module
 HTTP_TARANTOOL_VARS=		DSO_EXTMODS+=nginx_tarantool
-HTTP_TARANTOOL_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_tarantool-config
 
 HTTP_UPLOAD_BUILD_DEPENDS=	nginx-module-upload>0:www/nginx-module-upload
 WRKSRC_upload=		${WRKDIR}/nginx-upload-module
@@ -186,13 +187,11 @@ HTTP_UPLOAD_PROGRESS_GH_TUPLE=		masterzen:nginx-upload-progress-module:68b3ab3:u
 HTTP_UPLOAD_PROGRESS_VARS=		DSO_EXTMODS+=uploadprogress
 HTTP_UPLOAD_PROGRESS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_uploadprogress_module.c
 
-HTTP_UPSTREAM_CHECK_GH_TUPLE=		yaoweibin:nginx_upstream_check_module:9aecf15:upstreamcheck
+HTTP_UPSTREAM_CHECK_PATCH_DEPENDS=	nginx-module-upstream-check>0:www/nginx-module-upstream-check
+HTTP_UPSTREAM_CHECK_BUILD_DEPENDS=	nginx-module-upstream-check>0:www/nginx-module-upstream-check
+WRKSRC_upstreamcheck=	${WRKDIR}/nginx-upstream-check-module
 HTTP_UPSTREAM_CHECK_CONFIGURE_ON=	--add-module=${WRKSRC_upstreamcheck}
-HTTP_UPSTREAM_CHECK_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src-http-modules-ngx_http_upstream_hash_module.c \
-					${PATCHDIR}/extra-patch-src-http-modules-ngx_http_upstream_ip_hash_module.c \
-					${PATCHDIR}/extra-patch-src-http-modules-ngx_http_upstream_least_conn_module.c \
-					${PATCHDIR}/extra-patch-src-http-ngx_http_upstream_round_robin.c \
-					${PATCHDIR}/extra-patch-src-http-ngx_http_upstream_round_robin.h
+HTTP_UPSTREAM_CHECK_EXTRA_PATCHES=	${LOCALBASE}/share/nginx/modules/nginx-module-upstream-check/patches/nginx-1.30+.patch
 
 HTTP_UPSTREAM_FAIR_GH_TUPLE=		jaygooby:nginx-upstream-fair:10ecdcf:upstreamfair
 HTTP_UPSTREAM_FAIR_VARS=		DSO_EXTMODS+=upstreamfair
@@ -325,7 +324,8 @@ REDIS2_BUILD_DEPENDS=	nginx-module-redis2>0:www/nginx-module-redis2
 WRKSRC_redis2=		${WRKDIR}/nginx-redis2-module
 REDIS2_VARS=		DSO_EXTMODS+=redis2
 
-RTMP_GH_TUPLE=		arut:nginx-rtmp-module:v1.2.2:rtmp
+RTMP_BUILD_DEPENDS=	nginx-module-rtmp>0:www/nginx-module-rtmp
+WRKSRC_rtmp=		${WRKDIR}/nginx-rtmp-module
 RTMP_VARS=		DSO_EXTMODS+=rtmp
 
 SET_MISC_IMPLIES=	DEVEL_KIT
