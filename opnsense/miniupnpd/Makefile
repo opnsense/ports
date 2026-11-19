@@ -1,13 +1,14 @@
 PORTNAME=	miniupnpd
 DISTVERSION=	2.3.11
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	http://miniupnp.free.fr/files/ \
 		https://github.com/miniupnp/miniupnp/releases/download/${PORTNAME}_${DISTVERSION:S|.|_|g}/
 
 PATCH_SITES=	https://github.com/miniupnp/miniupnp/commit/
-PATCHFILES=	0f668f1fbc7900b7d6e0efcb30b35f0190f6de58.patch:-p2
+PATCHFILES=	0f668f1fbc7900b7d6e0efcb30b35f0190f6de58.patch:-p2 \
+		ef2048e0b1c7c0a9fd45180b89d1249bd00be464.patch:-p2
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Lightweight UPnP IGD & PCP/NAT-PMP daemon which uses pf
