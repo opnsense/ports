@@ -45,5 +45,6 @@ const char *code2str(const struct tok *, const char[], int);
 void ip_print(struct sbuf *sbuf, const u_char *bp, u_int length);
 void ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length);
 void tcp_print(struct sbuf *sbuf, const u_char *bp, u_int length);
+void icmp_print(struct sbuf *sbuf, const u_char *bp, u_int length, u_int caplen, int v6);
 
 #endif /* _FILTER_LOG_COMMON_H_ */

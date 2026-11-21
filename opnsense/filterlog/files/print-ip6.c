@@ -139,6 +139,11 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 				EXTRACT_16BITS(&up->uh_ulen));
 			return;
 		}
+		case IPPROTO_ICMPV6:
+			ip6_print_post(sbuf, ip6, nh, payload_len);
+			icmp_print(sbuf, cp, len, length > (u_int)(cp - bp) ?
+			    length - (u_int)(cp - bp) : 0, 1);
+			return;
 		case IPPROTO_VRRP:
 			ip6_print_post(sbuf, ip6, nh, payload_len);
 			sbuf_printf(sbuf, "%s,%d,%d,%d,%d,%d",
