@@ -30,3 +30,26 @@
                  add_fat_component("simde" "hs_exec_shared_simde" "${SIMDE_FLAGS} -march=x86-64 -msse2" "${hs_exec_SRCS}" TRUE)
  		list(APPEND RUNTIME_SHLIBS $<TARGET_OBJECTS:hs_exec_shared_simde>)
              endif()
+@@ -1069,6 +1064,22 @@ else ()
+             set_source_files_properties(src/hs_valid_platform.c PROPERTIES
+                 COMPILE_FLAGS "${SIMDE_FLAGS}")
+         endif() # SHARED
++
++        if (SIMDE_FLAGS)
++            set_property(SOURCE src/hs_version.c APPEND_STRING
++                PROPERTY COMPILE_FLAGS " ${SIMDE_FLAGS}")
++            separate_arguments(simde_options NATIVE_COMMAND "${SIMDE_FLAGS}")
++            if (BUILD_STATIC_LIBS)
++                target_compile_options(hs_compile PRIVATE ${simde_options})
++                target_compile_options(hs_exec_common PRIVATE ${simde_options})
++            endif()
++            if (BUILD_SHARED_LIBS)
++                target_compile_options(hs_compile_shared PRIVATE ${simde_options})
++                target_compile_options(hs_exec_common_shared PRIVATE ${simde_options})
++            endif()
++            # Use SIMDe in the utility and test targets added below.
++            add_compile_options(${simde_options})
++        endif()
+     endif (ARCH_IA32 OR ARCH_X86_64)
+     if (ARCH_AARCH64)
+         set(hs_exec_neon_SRCS ${hs_exec_SRCS} ${hs_exec_neon_SRCS})

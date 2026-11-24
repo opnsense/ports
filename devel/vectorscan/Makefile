@@ -1,6 +1,7 @@
 PORTNAME=	vectorscan
 DISTVERSIONPREFIX=	vectorscan/
 DISTVERSION=	5.4.14
+PORTREVISION=	1
 CATEGORIES=	devel textproc
 
 MAINTAINER=	delphij@FreeBSD.org
