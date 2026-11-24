@@ -449,6 +449,7 @@ include/kea/util/versioned_csv_file.h
 include/kea/util/watch_socket.h
 include/kea/util/watched_thread.h
 lib/kea/hooks/libdhcp_bootp.so
+%%KERBEROS%%lib/kea/hooks/libddns_gss_tsig.so
 lib/kea/hooks/libdhcp_class_cmds.so
 lib/kea/hooks/libdhcp_ddns_tuning.so
 lib/kea/hooks/libdhcp_flex_id.so
