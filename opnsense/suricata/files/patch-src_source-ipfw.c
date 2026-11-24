@@ -1,9 +1,16 @@
---- src/source-ipfw.c.orig	2026-05-19 06:59:36 UTC
+--- src/source-ipfw.c.orig	2026-10-28 21:51:11 UTC
 +++ src/source-ipfw.c
-@@ -360,6 +360,14 @@ TmEcode ReceiveIPFWThreadInit(ThreadVars *tv, const vo
+@@ -360,6 +360,21 @@ TmEcode ReceiveIPFWThreadInit(ThreadVars *tv, const vo
          SCReturnInt(TM_ECODE_FAILED);
      }
  
++    /* go with a fixed 512kb receive buffer for production for now */
++    int size = 512 * 1024;
++    if (setsockopt(nq->fd, SOL_SOCKET, SO_RCVBUF, &size, sizeof(size)) == -1) {
++        SCLogError("Can't set IPFW divert rcvbuf size: %s", strerror(errno));
++        SCReturnInt(TM_ECODE_FAILED);
++    }
++
 +#ifdef PF_DIVERT
 +    int one = 1;
 +    if (setsockopt(nq->fd, SOL_SOCKET, SO_REUSEPORT_LB, &one, sizeof(one)) == -1) {
@@ -15,7 +22,7 @@
      nq->ipfw_sinlen=sizeof(nq->ipfw_sin);
      memset(&nq->ipfw_sin, 0, nq->ipfw_sinlen);
      nq->ipfw_sin.sin_family = PF_INET;
-@@ -570,6 +578,14 @@ TmEcode IPFWSetVerdict(ThreadVars *tv, IPFWThreadVars 
+@@ -570,6 +585,14 @@ TmEcode IPFWSetVerdict(ThreadVars *tv, IPFWThreadVars 
                      SCReturnInt(TM_ECODE_FAILED);
                  case EHOSTDOWN:
                  case ENETDOWN:
