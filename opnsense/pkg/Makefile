@@ -1,13 +1,14 @@
 PORTNAME=	pkg
 DISTVERSION=	2.8.4
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 
 PATCH_SITES=	https://github.com/opnsense/${PORTNAME}/commit/
 PATCHFILES=	65e6bddc5ffb3edb71e240f7bbaf58fb00b7002e.patch:-p1 \
-		6a8c6d4bfc5fef41a055952ab2f6fd5e8c6348cb.patch:-p1
+		6a8c6d4bfc5fef41a055952ab2f6fd5e8c6348cb.patch:-p1 \
+		7667ca5a86e999afd34bb214708eb15b0fc2bb18.patch:-p1
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Package manager
@@ -64,6 +65,6 @@ post-install:
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}/NEWS
+	${INSTALL_DATA} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>
