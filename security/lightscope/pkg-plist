@@ -1,0 +1,7 @@
+bin/lightscope
+@sample etc/lightscope.conf.sample
+%%DATADIR%%/__init__.py
+%%DATADIR%%/honeypot.py
+%%DATADIR%%/lightscope_daemon.py
+%%DATADIR%%/pflog_reader.py
+%%DATADIR%%/uploader.py
