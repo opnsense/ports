@@ -1,7 +1,7 @@
 PROG=	filterlog
 BINDIR= ${PREFIX}/sbin
 
-SRCS=	print-ip.c print-ip6.c print-tcp.c filterlog.c
+SRCS=	print-ip.c print-ip6.c print-tcp.c print-icmp.c filterlog.c
 MAN=
 
 WARNS=	3
